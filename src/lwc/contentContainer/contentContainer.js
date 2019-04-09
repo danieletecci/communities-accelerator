@@ -348,7 +348,7 @@ export default class ContentContainer extends NavigationMixin(LightningElement) 
 
     tableDataDelete(clusterId, categoryId, tagIds){
         this.setRenderTable(false);
-        getUpdatedTableWrapper({ contentTypeId: this.contentTypeValue, clusterId: clusterId, categoryId: categoryId , tagIds: tagIds, status: this.statusValue, searchText: this.searchInputValue,isTemplate: this.radioButtonGroupValue })
+        getUpdatedTableWrapper({ contentTypeId: this.contentTypeValue, clusterId: clusterId, categoryId: categoryId , tagIds: tagIds, status: this.statusValue, searchText: this.searchInputValue,isTemplate: this.radioButtonGroupValue, recordOffset: this.recordOffset, recordLimit: this.recordLimit })
             .then(result => {
                 this.tabledata = JSON.parse(result);
                 this.setRenderTable(true);

@@ -4,8 +4,10 @@
         <div class="card-header-subtitle-filters" slot="title">
             <c-tab-filter listtabfilter={filtersstatus}></c-tab-filter>
         </div>
-        <template if:true={tabledata.title}>
-            <h1 class="table-title">{tabledata.title}</h1>
+        <template if:true={tabledata}>
+            <template if:true={tabledata.title}>
+                <h1 class="table-title">{tabledata.title}</h1>
+            </template>
         </template>
         <template if:false={rendertable}>
             <lightning-spinner alternative-text="Loading"></lightning-spinner>

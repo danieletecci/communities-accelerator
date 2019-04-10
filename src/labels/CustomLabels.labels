@@ -350,7 +350,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Content Detail Unschedule</shortDescription>
-        <value>Unscheduled</value>
+        <value>Unschedule</value>
     </labels>
     <labels>
         <fullName>ContentDetailArchived</fullName>

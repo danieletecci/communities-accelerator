@@ -64,7 +64,7 @@
 									<lightning:menuItem label="{!$Label.c.ContentDetailArchive}" value="archive" />
 								</aura:if>
 								<aura:if isTrue="{!(v.contentData.Status__c) == ($Label.c.ContentDetailScheduled)}">
-									<lightning:menuItem label="{!$Lable.c.ContentDetailUnschedule}" value="unschedule" />
+									<lightning:menuItem label="{!$Label.c.ContentDetailUnschedule}" value="unschedule" />
 								</aura:if>
 							</lightning:buttonMenu>
 					    </lightning:buttonGroup>

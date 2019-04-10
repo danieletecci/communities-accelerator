@@ -22,7 +22,7 @@
 		component.set('v.mediaElementId', mediaElementId);
 		component.set('v.imageUrl', imageUrl);
 		component.set('v.mediaElementName', mediaElementName);
-	}
+	},
 	unassignFeatureImg: function(component, event, helper){
 		helper.unassignFeatureImg(component, event, helper);
 	}

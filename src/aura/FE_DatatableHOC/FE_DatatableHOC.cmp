@@ -24,5 +24,4 @@
             <c:fe_DatatableLC table="{!v.componentWrapper.data}" onfilter="{!c.doHandleFilter}"/>
         </c:FE_ComponentToolBox>
     </div>
-
 </aura:component>

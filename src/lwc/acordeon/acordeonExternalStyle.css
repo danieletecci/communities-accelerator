@@ -1,0 +1,7 @@
+.slds-icon-utility-check .slds-icon,
+.slds-icon-utility-add .slds-icon {
+  fill: #1b5297;
+}
+.slds-button_icon-bare:focus {
+  box-shadow: none;
+}

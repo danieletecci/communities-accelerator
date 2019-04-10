@@ -1,76 +1,86 @@
 <template>
     <!-- the container element determine the height of the datatable -->
     <div class="datatable-container">
+        <div class="card-header-subtitle-filters" slot="title">
+            <c-tab-filter listtabfilter={filtersstatus}></c-tab-filter>
+        </div>
         <template if:true={tabledata.title}>
             <h1 class="table-title">{tabledata.title}</h1>
         </template>
-        <table role="table" class="slds-max-medium-table_stacked-horizontal slds-no-row-hover">
-            <template if:true={tabledata}>
-                <thead role="rowgroup">
-                    <template if:true={tabledata.columnSet}>
-                        <tr role="row">
-                            <template for:each={tabledata.columnSet} for:item=item>
-                                <template if:true={item}>
-                                    <th key={item.clusterId}>
-                                        <div class="column-permission">
-                                            <span class="slds-truncate" title={item}>{item}</span>
-                                        </div>
-                                    </th>
+        <template if:false={rendertable}>
+            <lightning-spinner alternative-text="Loading"></lightning-spinner>
+        </template>
+        <template if:true={rendertable}>
+            <div class="table">
+                <table role="table" class="slds-max-medium-table_stacked-horizontal slds-no-row-hover">
+                    <template if:true={tabledata}>
+                        <thead role="rowgroup">
+                            <template if:true={tabledata.columnSet}>
+                                <tr role="row">
+                                    <template for:each={tabledata.columnSet} for:item=item>
+                                        <template if:true={item}>
+                                            <th key={item.clusterId}>
+                                                <div class="column-permission">
+                                                    <span class="slds-truncate" title={item}>{item}</span>
+                                                </div>
+                                            </th>
+                                        </template>
+                                    </template>
+                                </tr>
+                            </template>
+                        </thead>
+                        <tbody role="rowgroup">
+                            <template if:true={tabledata.contentWrappers}>
+                                <template for:each={tabledata.contentWrappers} for:item=item>
+                                    <tr key={item.clusterId} class="tr-list-view-item">
+                                        <template for:each={item.fieldWrappers} for:item=itemfield>
+                                            <td key={itemfield.value} data-label={itemfield.label}>
+                                                <div class="slds-truncate">
+                                                    <span class="slds-truncate">
+                                                        <template if:true={itemfield.link}>
+                                                            <a href={itemfield.link} title={itemfield.value}>{itemfield.value}</a>
+                                                        </template>
+                                                        <template if:false={itemfield.link}>
+                                                            <span class="slds-truncate" title={itemfield.value}>{itemfield.value}</span>
+                                                        </template>
+                                                    </span>
+                                                </div>
+                                            </td>
+                                        </template>
+                                        <template if:true={item.actions}>
+                                            <td class="td-row-action">
+                                                <div class="slds-dropdown-trigger slds-dropdown-trigger_click divAction">
+                                                    <button class="slds-button slds-button_icon slds-button_icon-x-small slds-button_icon-border-filled" onblur={hideActions} onclick={showActions} aria-haspopup="true" title={showMore}>
+                                                        <lightning-icon
+                                                            icon-name="utility:down"
+                                                            size="xx-small">
+                                                        </lightning-icon>
+                                                        <span class="slds-assistive-text">{showMore}</span>
+                                                    </button>
+                                                    <div class="slds-dropdown slds-dropdown_right">
+                                                        <ul class="slds-dropdown__list" role="menu" aria-label="Show More">
+                                                            <template for:each={item.actions} for:item=itemAction>
+                                                                <li key={itemAction} class="slds-dropdown__item slds-truncate" role="presentation">
+                                                                    <a role="menuitem" tabindex="0" class="action-a" onmousedown={handleClick}>
+                                                                        <span class="slds-truncate" data-id={item.contentId} data-label={itemAction} title={itemAction}>{itemAction}</span>
+                                                                    </a>
+                                                                </li>
+                                                            </template>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </template>
+                                    </tr>
                                 </template>
                             </template>
-                        </tr>
-                    </template>
-                </thead>
-                <tbody role="rowgroup">
-                    <template if:true={tabledata.contentWrappers}>
-                        <template for:each={tabledata.contentWrappers} for:item=item>
-                            <tr key={item.clusterId} class="tr-list-view-item">
-                                <template for:each={item.fieldWrappers} for:item=itemfield>
-                                    <td key={itemfield.value} data-label={itemfield.label}>
-                                        <div class="slds-truncate">
-                                            <span class="slds-truncate">
-                                                <template if:true={itemfield.link}>
-                                                    <a href={itemfield.link} title={itemfield.value}>{itemfield.value}</a>
-                                                </template>
-                                                <template if:false={itemfield.link}>
-                                                    <span class="slds-truncate" title={itemfield.value}>{itemfield.value}</span>
-                                                </template>
-                                            </span>
-                                        </div>
-                                    </td>
-                                </template>
-                                <template if:true={item.actions}>
-                                    <td class="td-row-action">
-                                        <div class="slds-dropdown-trigger slds-dropdown-trigger_click divAction">
-                                            <button class="slds-button slds-button_icon slds-button_icon-x-small slds-button_icon-border-filled" onblur={hideActions} onclick={showActions} aria-haspopup="true" title={showMore}>
-                                                <lightning-icon
-                                                    icon-name="utility:down"
-                                                    size="x-small">
-                                                </lightning-icon>
-                                                <span class="slds-assistive-text">{showMore}</span>
-                                            </button>
-                                            <div class="slds-dropdown slds-dropdown_right">
-                                                <ul class="slds-dropdown__list" role="menu" aria-label="Show More">
-                                                    <template for:each={item.actions} for:item=itemAction>
-                                                        <li key={itemAction} class="slds-dropdown__item slds-truncate" role="presentation">
-                                                            <a role="menuitem" tabindex="0" class="action-a" onmousedown={handleClick}>
-                                                                <span class="slds-truncate" data-id={item.contentId} data-label={itemAction} title={itemAction}>{itemAction}</span>
-                                                            </a>
-                                                        </li>
-                                                    </template>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </template>
-                            </tr>
-                        </template>
-                    </template>
-                    <template if:false={tabledata.contentWrappers}>
-                        <p class="msg-no-records">{tabledata.message}</p>
-                    </template>
-                </tbody>
-            </template>            
-        </table>
+                            <template if:false={tabledata.contentWrappers}>
+                                <p class="msg-no-records">{tabledata.message}</p>
+                            </template>
+                        </tbody>
+                    </template>            
+                </table>
+            </div>
+        </template>
     </div>
 </template>

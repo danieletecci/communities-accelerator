@@ -28,7 +28,7 @@
                     <lightning:select name="bannerType" label="{!$Label.c.BannerContentDetailType}"
                         value="{!v.contentData.BannerFrameType__c}">
                         <aura:iteration items="{!v.bannerFrameTypes}" var="bannerFrameType">
-                            <option text="{!bannerFrameType}" value="{!bannerFrameType}" />
+                            <option text="{!bannerFrameType}" value="{!bannerFrameType}" selected="{! if(bannerFrameType == v.contentData.BannerFrameType__c, true, false)}" />
                         </aura:iteration>
                     </lightning:select>
                     <!--Feature Image-->

@@ -15,12 +15,15 @@
 					component.set("v.timeZone", 			data.timeZone);
 					component.set("v.visibilitySelectors", 	data.visibilitySelectors);
 					component.set("v.security", 			data.security);
+					component.set("v.bannerFrameTypes",		data.bannerFrameTypes);
 					if(data.content.MediaElementAssignments__r != null){
 						component.set('v.imageUrl', data.content.MediaElementAssignments__r[0].MediaElement__r.FileURLDesktop__c);
                         component.set('v.mediaElementName', data.content.MediaElementAssignments__r[0].MediaElement__r.Name);
                         component.set('v.mediaElementId', data.content.MediaElementAssignments__r[0].MediaElement__r.Id);
 					}
                     helper.setLayoutOptions(component);
+                    console.log("hola");
+                    console.log(component.get("v.contentData.BannerFrameType__c"));
 				//	component.find("richTextContainer").setContentBody();
 				}else{
 					helper.displayErrorMessage($A.get("$Label.c.NewsContentDetailLoadError"));

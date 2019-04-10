@@ -2,6 +2,9 @@
 <FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
     <flexiPageRegions>
         <componentInstances>
+            <componentName>ComponentBehaviour</componentName>
+        </componentInstances>
+        <componentInstances>
             <componentName>ContentAdvanceContentRecordEdit</componentName>
         </componentInstances>
         <name>Facet-adc36bb6-7f9d-4ad8-af37-dbd6e7a0f2c9</name>

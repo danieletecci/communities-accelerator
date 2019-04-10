@@ -5,3 +5,13 @@
     justify-content: center;
     display: flex;
 }
+.slds-radio_button-group{
+    width: 100%;
+}
+.slds-radio_button-group span{
+    width: 50%;
+}
+.slds-radio_button-group span label{
+    width: 100%;
+    text-align: center;
+}

@@ -7,6 +7,8 @@ import { CurrentPageReference,NavigationMixin } from 'lightning/navigation';
 
 export default class TableFilter extends NavigationMixin(LightningElement) {
     @api tabledata; //Change to @api when Parent Component asign value
+    @api filtersstatus;
+    @api rendertable;
 
     @track showMore;
 

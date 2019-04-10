@@ -1,11 +1,29 @@
 ({	
 	doInit : function(component, event, helper){
-        var layoutOptions = [
-			{value:"Title Top", imageUrl:"/ContentLayouts/Event-Layouts/TitleTop.png", label:$A.get("$Label.c.EventContentDetailTitleTop")},
-			{value:"Title Middle", imageUrl:"/ContentLayouts/Event-Layouts/TitleMiddle.png", label:$A.get("$Label.c.EventContentDetailTitleMiddle")},
-			{value:"Title Bottom", imageUrl:"/ContentLayouts/Event-Layouts/TitleBottom.png", label:$A.get("$Label.c.EventContentDetailTitleBottom")}
-		];
-		component.set('v.layoutOptions', layoutOptions);
-        component.set('v.contentData.Layout__c', component.get('v.contentData.Layout__c') == null ? 'Title Top' : component.get('v.contentData.Layout__c')); 
+		helper.setContentData(component);
+	},
+	handleUpsertEvent : function(component, event, helper){
+		var status = event.getParam("status");
+		var contentId = event.getParam("contentId");
+		var recordId = component.get("v.contentData.Id");
+		var content = component.get('v.contentData');
+		content.PublishStartDate__c = event.getParam("publishStartDate");
+		content.PublishEndDate__c = event.getParam("publishEndDate");
+		component.set('v.contentData', content);
+		if(recordId == contentId){
+			event.stopPropagation();
+			helper.updateContent(component, status);
+		}
+	},
+	handleMediaElementEvent : function(component, event, helper){
+		var mediaElementId = event.getParam("ID");
+		var imageUrl = event.getParam("URL");
+		var mediaElementName = event.getParam("NAME");
+		component.set('v.mediaElementId', mediaElementId);
+		component.set('v.imageUrl', imageUrl);
+		component.set('v.mediaElementName', mediaElementName);
+	}
+	unassignFeatureImg: function(component, event, helper){
+		helper.unassignFeatureImg(component, event, helper);
 	}
 })

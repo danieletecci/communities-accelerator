@@ -594,11 +594,6 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
                     <default>false</default>
                     <label>Archived</label>
                 </value>
-                <value>
-                    <fullName>Scheduled</fullName>
-                    <default>false</default>
-                    <label>Scheduled</label>
-                </value>
             </valueSetDefinition>
         </valueSet>
     </fields>

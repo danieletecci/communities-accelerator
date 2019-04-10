@@ -12,7 +12,7 @@
 				var data = response.getReturnValue();
 				if(data){
 					component.set("v.contentData", 			data.content);
-					component.set("v.timeZone", 			data.timeZone);
+					
 					component.set("v.visibilitySelectors", 	data.visibilitySelectors);
 					component.set("v.security", 			data.security);
 					if(data.content.MediaElementAssignments__r != null){
@@ -20,8 +20,7 @@
                         component.set('v.mediaElementName', data.content.MediaElementAssignments__r[0].MediaElement__r.Name);
                         component.set('v.mediaElementId', data.content.MediaElementAssignments__r[0].MediaElement__r.Id);
 					}
-                    helper.setLayoutOptions(component);
-				//	component.find("richTextContainer").setContentBody();
+					//component.find("richTextContainer").setContentBody();
 				}else{
 					helper.displayErrorMessage($A.get("$Label.c.NewsContentDetailLoadError"));
 				}
@@ -37,15 +36,6 @@
 		
 		$A.enqueueAction(action);
 	},
-    setLayoutOptions : function(component) {
-		var layoutOptions = [
-			{value:"Middle-Left", imageUrl:"/ContentLayouts/Banner-OverlayQuadrant/Middle-Left.png", label:$A.get("$Label.c.BannerContentDetailLeftAlign")},
-			{value:"Middle-Center", imageUrl:"/ContentLayouts/Banner-OverlayQuadrant/Middle-Center.png", label:$A.get("$Label.c.BannerContentDetailMiddleAlign")},
-			{value:"Middle-Right", imageUrl:"/ContentLayouts/Banner-OverlayQuadrant/Middle-Right.png", label:$A.get("$Label.c.BannerContentDetailRightAlign")}
-		];
-		component.set('v.layoutOptions', layoutOptions);
-		component.set('v.contentData.OverlayQuadrant__c', component.get('v.contentData.OverlayQuadrant__c') == null ? 'Middle-Left' : component.get('v.contentData.OverlayQuadrant__c')); 
-    },
     updateContent : function(component, status){
     	var helper				   = this;
 		var content 			   = component.get('v.contentData');
@@ -118,12 +108,5 @@
 	    return string.replace(/\{(\d+)\}/g, function() {
 	        return outerArguments[parseInt(arguments[1]) + 1];
 	    });
-	},
-	unassignFeatureImg: function(component, event, helper){
-		component.set('v.mediaElementId', null);
-		component.set('v.imageUrl', null);
-		component.set('v.mediaElementName', null);
 	}
-
-	
 })

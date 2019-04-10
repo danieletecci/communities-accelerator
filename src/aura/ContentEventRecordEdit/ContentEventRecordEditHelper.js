@@ -21,7 +21,7 @@
                         component.set('v.mediaElementId', data.content.MediaElementAssignments__r[0].MediaElement__r.Id);
 					}
                     helper.setLayoutOptions(component);
-				//	component.find("richTextContainer").setContentBody();
+					component.find("richTextContainer").setContentBody();
 				}else{
 					helper.displayErrorMessage($A.get("$Label.c.NewsContentDetailLoadError"));
 				}
@@ -38,13 +38,13 @@
 		$A.enqueueAction(action);
 	},
     setLayoutOptions : function(component) {
-		var layoutOptions = [
-			{value:"Middle-Left", imageUrl:"/ContentLayouts/Banner-OverlayQuadrant/Middle-Left.png", label:$A.get("$Label.c.BannerContentDetailLeftAlign")},
-			{value:"Middle-Center", imageUrl:"/ContentLayouts/Banner-OverlayQuadrant/Middle-Center.png", label:$A.get("$Label.c.BannerContentDetailMiddleAlign")},
-			{value:"Middle-Right", imageUrl:"/ContentLayouts/Banner-OverlayQuadrant/Middle-Right.png", label:$A.get("$Label.c.BannerContentDetailRightAlign")}
+        var layoutOptions = [
+			{value:"Title Top", imageUrl:"/ContentLayouts/Event-Layouts/TitleTop.png", label:$A.get("$Label.c.EventContentDetailTitleTop")},
+			{value:"Title Middle", imageUrl:"/ContentLayouts/Event-Layouts/TitleMiddle.png", label:$A.get("$Label.c.EventContentDetailTitleMiddle")},
+			{value:"Title Bottom", imageUrl:"/ContentLayouts/Event-Layouts/TitleBottom.png", label:$A.get("$Label.c.EventContentDetailTitleBottom")}
 		];
 		component.set('v.layoutOptions', layoutOptions);
-		component.set('v.contentData.OverlayQuadrant__c', component.get('v.contentData.OverlayQuadrant__c') == null ? 'Middle-Left' : component.get('v.contentData.OverlayQuadrant__c')); 
+        component.set('v.contentData.Layout__c', component.get('v.contentData.Layout__c') == null ? 'Title Top' : component.get('v.contentData.Layout__c'));  
     },
     updateContent : function(component, status){
     	var helper				   = this;
@@ -124,6 +124,4 @@
 		component.set('v.imageUrl', null);
 		component.set('v.mediaElementName', null);
 	}
-
-	
 })

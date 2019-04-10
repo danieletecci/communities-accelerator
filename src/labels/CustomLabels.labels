@@ -929,6 +929,14 @@
         <value>The inserted SObject API Name does not exist</value>
     </labels>
     <labels>
+        <fullName>HeaderComponentTitle</fullName>
+        <categories>Header title</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>HeaderComponentTitle</shortDescription>
+        <value>Landing</value>
+    </labels>
+    <labels>
         <fullName>ImageUploader</fullName>
         <categories>MediaElementUpload.cmp</categories>
         <language>en_US</language>

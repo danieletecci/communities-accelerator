@@ -1,5 +1,6 @@
 .THIS.container{
     padding: 0px;
+    height: 100%;
     flex-shrink: 0;
     box-shadow: none;
     display: block;

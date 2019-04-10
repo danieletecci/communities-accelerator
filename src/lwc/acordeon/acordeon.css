@@ -1,87 +1,146 @@
 .accordion {
-    background-color: transparent;
-    color: #7F7F7F;
-    cursor: pointer;
-    padding: 10px;
-    width: 100%;
-    border: 1px solid #7F7F7F;
-    text-align: left;
-    outline: none;
-    font-size: 15px;
-    transition: .4s;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+  background-color: transparent;
+  color: #7f7f7f;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  font-size: 15px;
+  justify-content: space-between;
+  outline: none;
+  padding: 10px;
+  text-align: left;
+  transition: 0.4s;
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid #DDDBDA;
+  height: 32px;
+  padding-top: 5px;
 }
-.accordeon-item-container{
-    margin-bottom: 39px;
+.accordion p {
+  font-size: 13px;
 }
-.chevron-icon{
-    line-height: 22px;
+.accordion .slds-icon-utility-down {
+  padding-top: 1px;
 }
-.accordion.active{
-    border-bottom: none;
-    background-color: transparent;
-    margin-bottom: 0;
+.accordeon-item-container {
+  margin-bottom: 25px;
+}
+.accordeon-item-container:last-of-type {
+  margin-bottom: 15px;
+}
+.slds-button {
+  border: none;
+  color: #0070D2;
+  margin-left: auto;
+  margin-right: 0;
+  padding-right: 5px;
+}
+.accordion.active {
+  background-color: transparent;
+  margin-bottom: 0;
 }
 .accordion.active .chevron-icon {
-    transform: rotate(180deg);
+  transform: rotate(180deg);
 }
-.panel{
-    padding: 0 10px;
-    background-color: transparent;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.2s ease-out;
+.panel {
+  background-color: transparent;
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 10px;
+  transition: max-height 0.2s ease-out;
 }
-.panel.active{
-    border-bottom: 1px solid #7f7f7f;
-    border-left: 1px solid #7f7f7f;
-    border-right: 1px solid #7f7f7f;
-    border-top: none;
-    margin-bottom: 10px;
+.panel label {
+  color: #7f7f7f;
+  display: flex;
+  flex-direction: row;
+  line-height: 16px;
+  padding-bottom: 10px;
+  width: 100%;
 }
-.panel label{
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    line-height: 16px;
-    color: #7F7F7F;
-    padding-bottom: 10px;
+.panel label:first-child {
+  padding-top: 10px;
 }
-.panel label:first-child{
-    padding-top: 10px;
+.panel label input[type=checkbox] {
+  cursor: pointer;
+  height: 16px;
+  margin-right: 5px;
+  width: 16px;
 }
-.panel label input[type=checkbox]{
-    width: 16px;
-    height: 16px;
-    margin-right: 5px;
+.panel label input[type=radio] {
+  cursor: pointer;
+  margin-right: 5px;
 }
-.panel label input[type=radio]{
-    margin-right: 5px;
+.panel.active {
+  border-radius: 4px;
+  border: 1px solid #DDDBDA;
+  margin-top: 3px;
 }
-.panel label input[type=radio],.panel label input[type=checkbox]{
-    cursor: pointer;
+select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: auto;
+  background: transparent;
+  border-radius: 0;
+  border: 1px solid #7f7f7f;
+  color: #7f7f7f;
+  display: flex;
+  flex-direction: column;
+  font-size: 15px;
+  height: auto;
+  margin-bottom: 20px;
+  padding: 10px;
+  width: 100%;
 }
-select{
-    display: flex;
-    flex-direction: column;
-    font-size: 15px;
-    width: 100%;
-    border: 1px solid #7F7F7F;
-    border-radius: 0;
-    color: #7F7F7F;
-    background: transparent;
-    height: auto;
-    margin-bottom: 20px;
-    padding: 10px;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: auto;
-}
-select:hover{
-    cursor: pointer;
+select:hover {
+  cursor: pointer;
 }
 .btn-filter-remove {
-    margin-bottom: 39px;
+  margin-bottom: 39px;
+}
+.btn-filter-remove:hover {
+  background-color: transparent;
+}
+.btn-filter-remove:focus {
+  background-color: transparent;
+  box-shadow: none;
+}
+.radio input[type='radio'] {
+  display: none;
+}
+.radio label {
+  position: relative;
+}
+.radio label input[type='radio'] + lightning-icon {
+  visibility: hidden;
+  padding-right: 5px;
+}
+.radio label input[type='radio']:checked + lightning-icon {
+  visibility: visible;
+}
+.radio label .label-text {
+  color: black;
+}
+.checkbox input[type='checkbox'] {
+  display: none;
+}
+.checkbox label {
+  position: relative;
+}
+.checkbox label input[type='checkbox'] + span lightning-icon {
+  padding-right: 5px;
+}
+.checkbox label input[type='checkbox'] + span lightning-icon.checked {
+  display: none;
+}
+.checkbox label input[type='checkbox'] + span lightning-icon.unchecked {
+  display: block;
+}
+.checkbox label input[type='checkbox']:checked + span lightning-icon.checked {
+  display: block;
+}
+.checkbox label input[type='checkbox']:checked + span lightning-icon.unchecked {
+  display: none;
+}
+.checkbox label .label-text {
+  color: black;
 }

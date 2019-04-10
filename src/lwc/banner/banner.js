@@ -73,10 +73,10 @@ export default class Banner extends LightningElement {
         
     }
 
-    handleswipe(){
-        if (this.swipedir === 'right'){
+    handleswipe(isrightswipe){
+        if (isrightswipe)
             this.next();
-        }else{
+        else{
             this.previous();
         }
     }
@@ -101,5 +101,9 @@ export default class Banner extends LightningElement {
         }
         this.elements[this.position].class = this.elements[this.position].class.concat(' active');
         this.elements[this.position].indicatorClass = 'active';
+    }
+
+    hasText(){
+        return this.bannerData.title || this.bannerData.description
     }
 }

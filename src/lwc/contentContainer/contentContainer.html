@@ -1,25 +1,27 @@
 <template>
-    <div class="slds-grid slds-wrap">
-        <div class="slds-col left-col slds-size_2-of-12" onfilterselected={handlerFilterSidebarEvent}>
-            <template if:true={optionsFilterRadioButtonGroup}>
-                <c-radio-button-group options={optionsFilterRadioButtonGroup} onradiobuttongroupselected={handleRadioButtonGroupEvent}></c-radio-button-group>
-            </template>
-            <template if:true={renderFilterSidebar}>
-                <p class="title-filter">{SidebarFilterTitle}</p>
-                <c-acordeon filters={filters}></c-acordeon>
-            </template>
-        </div>
-        <div class="slds-col right-col slds-size_10-of-12" onsearchenter={onSearchEvent}>
+    <div class="content">
+        <div class="top-bar" onsearchenter={onSearchEvent}>
             <template if:true={renderHeader}>
                 <c-record-type-selection-modal objectapiname={objectApiName}></c-record-type-selection-modal>
                 <c-create-new-content-modal></c-create-new-content-modal>
-                <c-header-list-view-page objectlabel={objectLabel} filtersstatus={filtersStatus} filterselected={filtersValues} headerbuttonsprimary={headerButtonsPrimary} headerbuttonssecondary={headerButtonsSecondary}></c-header-list-view-page>
+                <c-header-list-view-page objectlabel={objectLabel} filterselected={filtersValues} headerbuttonsprimary={headerButtonsPrimary} headerbuttonssecondary={headerButtonsSecondary}></c-header-list-view-page>
             </template>
-            <template if:true={renderTable}>
+        </div>
+        <div class="slds-grid slds-wrap">
+            <div class="slds-col left-col slds-size_2-of-12" onfilterselected={handlerFilterSidebarEvent}>
+                <template if:true={optionsFilterRadioButtonGroup}>
+                    <c-radio-button-group options={optionsFilterRadioButtonGroup} onradiobuttongroupselected={handleRadioButtonGroupEvent}></c-radio-button-group>
+                </template>
+                <template if:true={renderFilterSidebar}>
+                    <p class="title-filter">{SidebarFilterTitle}</p>
+                    <c-acordeon filters={filters}></c-acordeon>
+                </template>
+            </div>
+            <div class="slds-col right-col slds-10-of-12">
                 <div class="tableContainer" >
-                    <c-table-filter tabledata={tabledata} ondeletecontentrecord={handleDeleteContent} oncreatecontentrecord={handleCreateContent}></c-table-filter>
+                    <c-table-filter rendertable={renderTable} tabledata={tabledata} filtersstatus={filtersStatus} ondeletecontentrecord={handleDeleteContent} oncreatecontentrecord={handleCreateContent}></c-table-filter>
                 </div>
-            </template>
+            </div>
         </div>
     </div>
 </template>

@@ -5,14 +5,21 @@
                 <div class="accordeon-item-container" key={itemAcordeon.id}>
                     <button class="accordion" onclick={openAccordeon}>
                         <p class="slds-truncate" title={itemAcordeon.label}>{itemAcordeon.label}</p>
-                        <lightning-icon class="chevron-icon"
-                        icon-name="utility:chevrondown"
-                        size="x-small">
+                        <lightning-icon class="slds-icon-utility-down"
+                        icon-name="utility:down"
+                        size="xx-small">
                         </lightning-icon>
                     </button>
-                    <div class="panel">
+                    <div class="panel checkbox">
                         <template for:each={itemAcordeon.values} for:item="itemAcordeonValue">
-                            <label key={itemAcordeonValue.id} title={itemAcordeonValue.label}><input type="checkbox" checked={itemAcordeonValue.isSelected} data-label={itemAcordeonValue.label} data-accordeon={itemAcordeon.label} name={itemAcordeon.label} value={itemAcordeonValue.id} onclick={acordeonCheckboxSelected}><span class="slds-truncate">{itemAcordeonValue.label}</span></label>
+                            <label key={itemAcordeonValue.id} title={itemAcordeonValue.label} >
+                                <input type="checkbox" checked={itemAcordeonValue.isSelected} data-label={itemAcordeonValue.label} data-accordeon={itemAcordeon.label} name={itemAcordeon.label} value={itemAcordeonValue.id} onclick={acordeonCheckboxSelected}>
+                                <span>
+                                    <lightning-icon class="checked" size="xx-small" icon-name="utility:check" alternative-text="Checked" ></lightning-icon>                                    
+                                    <lightning-icon class="unchecked" size="xx-small" icon-name="utility:add" alternative-text="Unchecked" ></lightning-icon>                                    
+                                </span>
+                                <span class="slds-truncate label-text">{itemAcordeonValue.label}</span>
+                            </label>
                         </template>
                     </div>
                 </div>
@@ -21,14 +28,18 @@
                 <div class="accordeon-item-container" key={itemAcordeon.id}>
                     <button class="accordion" onclick={openAccordeon}>
                         <p class="slds-truncate" title={itemAcordeon.label}>{itemAcordeon.label}</p>
-                        <lightning-icon class="chevron-icon"
-                        icon-name="utility:chevrondown"
-                        size="x-small">
+                        <lightning-icon class="slds-icon-utility-down"
+                        icon-name="utility:down"
+                        size="xx-small">
                         </lightning-icon>
                     </button>
-                    <div class="panel">
+                    <div class="panel radio">
                         <template for:each={itemAcordeon.values} for:item="itemAcordeonValue">
-                            <label key={itemAcordeonValue.id} title={itemAcordeonValue.label}><input type="radio" checked={itemAcordeonValue.isSelected} data-label={itemAcordeonValue.label} data-accordeon={itemAcordeon.label} name={itemAcordeon.label} value={itemAcordeonValue.id} onclick={acordeonRadioBtnSelected}><span class="slds-truncate">{itemAcordeonValue.label}</span></label>
+                            <label key={itemAcordeonValue.id} title={itemAcordeonValue.label}>
+                                <input type="radio" checked={itemAcordeonValue.isSelected} data-label={itemAcordeonValue.label} data-accordeon={itemAcordeon.label} name={itemAcordeon.label} value={itemAcordeonValue.id} onclick={acordeonRadioBtnSelected}>
+                                <lightning-icon size="xx-small" icon-name="utility:check" alternative-text="Checked" ></lightning-icon>
+                                <span class="slds-truncate label-text">{itemAcordeonValue.label}</span>
+                            </label>
                         </template>
                     </div>
                 </div>

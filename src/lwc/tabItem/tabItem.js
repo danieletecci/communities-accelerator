@@ -26,6 +26,6 @@ export default class TabItem extends LightningElement {
     }
     //Getter to calculate the classnames
     get classes() {
-        return this.activeIndex === this.index.toString() ? "btn-tab-item active" : "btn-tab-item";
+        return this.activeIndex === this.index.toString() ? "btn-tab-item slds-truncate active" : "btn-tab-item slds-truncate";
     }
 }

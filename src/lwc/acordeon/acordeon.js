@@ -1,8 +1,14 @@
 import { LightningElement, api } from 'lwc';
+import { loadStyle } from 'lightning/platformResourceLoader';
+import Style from '@salesforce/resourceUrl/Assets';
 
 export default class Acordeon extends LightningElement {
 
     @api filters;
+
+    connectedCallback() {
+        loadStyle(this, Style + '/Assets/Styles/acordeonExternalStyle.css');
+    }
 
     openAccordeon(event){
         var panel;

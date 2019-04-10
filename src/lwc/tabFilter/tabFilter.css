@@ -1,6 +1,7 @@
 .tab-container{
     display: flex;
     flex-direction: row;
+    margin-bottom: -2px;
 }
 .tab-container .btn-tab-item{
     background: transparent;

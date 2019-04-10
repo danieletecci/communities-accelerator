@@ -11,14 +11,14 @@
                 <div key={element.id} class={element.class}>
                     <img src={element.imgSrc} class="d-flex min-vh-100" alt="...">
                     <template if:true={hasText}>
-                        <div class="carousel-caption d-md-block acrylic blurred">
-                            <h5>{element.title}</h5>
-                            <p>{element.description}</p>
-                        </div>
-                        <div class="carousel-caption d-md-block acrylic">
-                            <h5>{element.title}</h5>
-                            <p>{element.description}</p>
-                        </div>
+                      <div class="carousel-caption d-md-block acrylic blurred">
+                          <h5>{element.title}</h5>
+                          <p>{element.description}</p>
+                      </div>
+                      <div class="carousel-caption d-md-block acrylic">
+                          <h5>{element.title}</h5>
+                          <p>{element.description}</p>
+                      </div>
                     </template>
                 </div>
             </template>

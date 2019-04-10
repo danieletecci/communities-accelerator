@@ -2,15 +2,16 @@
     background: transparent;
     border: none;
     font-weight: 300;
-    font-size: 16px;
+    font-size: 13px;
     width: 120px;
     padding-bottom: 0;
     padding-top: 0;
+    height: 40px;
 }
 .btn-tab-item:hover, .btn-tab-item:focus, .btn-tab-item:active, .btn-tab-item.active{
     outline: none;
+    border-bottom: 2px solid #0070d2;
 }
 .btn-tab-item:hover span, .btn-tab-item:focus span, .btn-tab-item:active span, .btn-tab-item.active span{
-    border-bottom: 3px solid #0070d2;
     font-weight: 700;
 }

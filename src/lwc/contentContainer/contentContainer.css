@@ -1,5 +1,9 @@
+.content{
+    height: 100%;
+}
 .slds-wrap{
     align-items: initial;
+    height: calc(100% - 138px);
 }
 .slds-col{
     padding-left: 10px;
@@ -9,10 +13,21 @@
     background-color: #FFF;
 }
 .title-filter{
-    padding-top: 18px;
-    padding-bottom: 47px;
-    font-size: 16px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    padding-left: 5px;
 }
 .tableContainer{
     background-color: #FFF;
+    height: 100%;
+}
+.top-bar{
+    padding-left: 0;
+    padding-right: 0;
+    height: 140px;
+}
+.right-col{
+    padding-right: 0;
 }

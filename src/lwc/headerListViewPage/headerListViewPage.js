@@ -1,14 +1,15 @@
-import { LightningElement, api, wire } from 'lwc';
+import { LightningElement, api, wire, track } from 'lwc';
 import General_Search from '@salesforce/label/c.General_Search';
 import { CurrentPageReference } from 'lightning/navigation';
 import { fireEvent } from 'c/pubsub';
+import HeaderComponentTitle from '@salesforce/label/c.HeaderComponentTitle';
 
 export default class HeaderListViewPage extends LightningElement {
     @api objectlabel; //Change to @api when Parent Component asign value
     @api filterselected;
-    @api filtersstatus;
     @api headerbuttonsprimary;
     @api headerbuttonssecondary;
+    @track HeaderComponentTitle;
 
     //Reference used for the pubsub module
     @wire(CurrentPageReference) pageRef;
@@ -16,6 +17,11 @@ export default class HeaderListViewPage extends LightningElement {
     label = {
         General_Search,
     };
+
+    constructor(){
+        super();
+        this.HeaderComponentTitle = HeaderComponentTitle;
+    }
 
     searchEnter(event) {
         if (event.which === 13 || event.keyCode === 13) {

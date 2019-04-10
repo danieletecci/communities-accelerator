@@ -52,7 +52,7 @@ public with sharing class TagTriggersTest {
 		Valida la creacion de las Manual Sharing al moemnto de crear un Tag*/
 
 		// Given
-		List<Cluster__c> clusterRootList = MockupFactory.createCluster('ClusterRootTest', null, 1, 'ClusterRoot');
+		List<Cluster__c> clusterRootList = MockupFactory.createCluster('ClusterRootTest', null, 1, 'ClusterRoot', 'CRT');
 		List<Cluster__c> clusterList = [SELECT Id, Name FROM Cluster__c WHERE Name LIKE 'ClusterRootTest%' LIMIT 1 ];
 		//System.debug('ClusterTriggersTest method clusterList: '+clusterList);
 		
@@ -71,7 +71,7 @@ public with sharing class TagTriggersTest {
 	@isTest
 	static void updateTagSharing(){
 		// Given
-		List<Cluster__c> clusterRootList = MockupFactory.createCluster('ClusterRootTest', null, 2, 'ClusterRoot');
+		List<Cluster__c> clusterRootList = MockupFactory.createCluster('ClusterRootTest', null, 2, 'ClusterRoot', 'CRT');
 		List<Cluster__c> getClusterList = [SELECT Id, Name FROM Cluster__c WHERE Name LIKE 'ClusterRootTest%' LIMIT 2 ];
 		System.debug('ClusterTriggersTest method getClusterList: '+getClusterList);
 		
@@ -109,9 +109,9 @@ public with sharing class TagTriggersTest {
 		Tag__c tagTest = new Tag__c(Name='Tag Test 01');
 		String name = 'Argentina';
         String nameGroup = 'Buenos Aires';
-        List<Cluster__c> clusterRootList = MockupFactory.createCluster(name, null, 1, 'ClusterRoot');
+        List<Cluster__c> clusterRootList = MockupFactory.createCluster(name, null, 1, 'ClusterRoot', 'CRT');
         Cluster__c cg = clusterRootList[0];
-        List<Cluster__c> clusterList = MockupFactory.createCluster(nameGroup, cg.Id, 1, 'ClusterGroup');
+        List<Cluster__c> clusterList = MockupFactory.createCluster(nameGroup, cg.Id, 1, 'ClusterGroup', 'CGT');
         Cluster__c cgGr = clusterList[0];
         tagTest.Cluster__c=cgGr.Id;
         

@@ -68,11 +68,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Cluster__c.ExternalId__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Cluster__c.MappingClusterField__c</field>
         <readable>true</readable>
     </fieldPermissions>

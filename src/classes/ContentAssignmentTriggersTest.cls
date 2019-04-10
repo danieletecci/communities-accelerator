@@ -9,7 +9,7 @@ public class ContentAssignmentTriggersTest {
 		//Given
 
 		MockupFactory.generateAcceleratorSetting();
-		List<Cluster__c> clusterRootList = MockupFactory.createCluster('ClusterRootTest', null, 1, 'ClusterRoot');
+		List<Cluster__c> clusterRootList = MockupFactory.createCluster('ClusterRootTest', null, 1, 'ClusterRoot', 'CRT');
 		List<Content__c> listContent= MockupFactory.createContent('Banner', clusterRootList[0], 1);
 		List<Component__c> listComponent = MockupFactory.createComponent('Banner', 1);							
 
@@ -33,7 +33,7 @@ public class ContentAssignmentTriggersTest {
 
 		//Given
 		MockupFactory.generateAcceleratorSetting();
-		List<Cluster__c> clusterRootList = MockupFactory.createCluster('ClusterRootTest', null, 1, 'ClusterRoot');
+		List<Cluster__c> clusterRootList = MockupFactory.createCluster('ClusterRootTest', null, 1, 'ClusterRoot', 'CRT');
 		List<Content__c> listContent= MockupFactory.createContent('Banner', clusterRootList[0], 1);
 		List<Component__c> listComponent = MockupFactory.createComponent('Banner', 1);		
 		

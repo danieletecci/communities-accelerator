@@ -4,7 +4,7 @@ public with sharing class ContentTriggersTest {
     @testSetup
 	static void generateData(){
 		MockupFactory.generateAcceleratorSetting();
-		List<Cluster__c> clusterRoot = MockupFactory.createCluster('Cluster Root', '', 1, 'ClusterRoot');
+		List<Cluster__c> clusterRoot = MockupFactory.createCluster('Cluster Root', '', 1, 'ClusterRoot', 'CRT');
         MockupFactory.createComponent('Banner', 1, clusterRoot.get(0));
 	}
 
@@ -14,7 +14,7 @@ public with sharing class ContentTriggersTest {
 		con el correspondiente ExternalId__c */
 
 		//Given
-		List<Cluster__c> clusterArg = MockupFactory.createCluster('Global', null, 1, 'ClusterRoot');
+		List<Cluster__c> clusterArg = MockupFactory.createCluster('Global', null, 1, 'ClusterRoot', 'ARG');
 
 		//When
 		Test.startTest();
@@ -32,7 +32,7 @@ public with sharing class ContentTriggersTest {
 		con el correspondiente ExternalId__c */
 
 		//Given
-		List<Cluster__c> clusterArg = MockupFactory.createCluster('Global', null, 1, 'ClusterRoot');
+		List<Cluster__c> clusterArg = MockupFactory.createCluster('Global', null, 1, 'ClusterRoot', 'ARG');
 		List<Content__c> contentTest = MockupFactory.createContent('Banner', clusterArg[0], 1);
 		contentTest[0].ExternalId__c = null;
 		contentTest[0].Name = 'Content Test 02';
@@ -54,7 +54,7 @@ public with sharing class ContentTriggersTest {
 		Valida la creacion de las Manual Sharing al moemnto de crear un Tag*/
 
 		// Given
-		List<Cluster__c> clusterRootList = MockupFactory.createCluster('ClusterRootTest', null, 1, 'ClusterRoot');
+		List<Cluster__c> clusterRootList = MockupFactory.createCluster('ClusterRootTest', null, 1, 'ClusterRoot', 'ARG');
 		List<Cluster__c> getClusterList = [SELECT Id, Name FROM Cluster__c WHERE Name LIKE 'ClusterRootTest%' LIMIT 1 ];
 		//System.debug('ClusterTriggersTest method clusterList: '+clusterList);
 		
@@ -74,7 +74,7 @@ public with sharing class ContentTriggersTest {
 	@isTest
 	static void updateNavigationSharing(){
 		// Given
-		List<Cluster__c> clusterRootList = MockupFactory.createCluster('ClusterRootTest', null, 2, 'ClusterRoot');
+		List<Cluster__c> clusterRootList = MockupFactory.createCluster('ClusterRootTest', null, 2, 'ClusterRoot', 'ARG');
 		List<Cluster__c> getClusterList = [SELECT Id, Name FROM Cluster__c WHERE Name LIKE 'ClusterRootTest%' LIMIT 2 ];
 		System.debug('ClusterTriggersTest method getClusterList: '+getClusterList);
 		
@@ -108,7 +108,7 @@ public with sharing class ContentTriggersTest {
 		los assigment correspondientes */
 
 		//Given
-		List<Cluster__c> clusterArg = MockupFactory.createCluster('Global', null, 1, 'ClusterRoot');
+		List<Cluster__c> clusterArg = MockupFactory.createCluster('Global', null, 1, 'ClusterRoot', 'ARG');
 		List<Content__c> contentTest = MockupFactory.createContent('Banner', clusterArg[0], 1);
 		
 		List<MediaElement__c> mediaElementList = MockupFactory.createMediaElement(1);
@@ -163,7 +163,7 @@ public with sharing class ContentTriggersTest {
         Component__c component = [SELECT Id FROM Component__c LIMIT 1];
         component.Datasource__c = 'ManualAssignment';
         update component;
-        List<Cluster__c> clusterArg = MockupFactory.createCluster('Global', null, 1, 'ClusterRoot');
+        List<Cluster__c> clusterArg = MockupFactory.createCluster('Global', null, 1, 'ClusterRoot', 'ARG');
 
 		//When
 		Test.startTest();

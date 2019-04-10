@@ -9,7 +9,7 @@ public with sharing class SocialNetworkTriggersTest {
 	@isTest
 	public static void insertExternalId(){
 		//Given
-		List<Cluster__c> cluster = MockupFactory.createCluster('ClusterTest', null, 1, 'ClusterRoot');
+		List<Cluster__c> cluster = MockupFactory.createCluster('ClusterTest', null, 1, 'ClusterRoot', 'CRT');
 		List<Navigation__c> navigation = MockupFactory.createNavigation('TestNav', 'http://www.google.com/', 1 , cluster[0].Id);
 		List<Brand__c> brand = MockupFactory.createBrand('BrandTest', 1, cluster[0].Id);
 		
@@ -26,7 +26,7 @@ public with sharing class SocialNetworkTriggersTest {
 	@isTest
 	public static void updateExternalId(){
 		//Given
-		List<Cluster__c> cluster = MockupFactory.createCluster('ClusterTest', null, 1, 'ClusterRoot');
+		List<Cluster__c> cluster = MockupFactory.createCluster('ClusterTest', null, 1, 'ClusterRoot', 'CRT');
 		List<Navigation__c> navigation = MockupFactory.createNavigation('TestNav', 'http://www.google.com/', 1 , cluster[0].Id);
 		List<Brand__c> brand = MockupFactory.createBrand('BrandTest', 1, cluster[0].Id);
 		

@@ -4,7 +4,7 @@ public class MediaElementsManagerControllerTest {
 	static void setup(){
 		// Given in all cases
 		MockupFactory.generateAcceleratorSetting();
-		MockupFactory.createCluster('global', null, 1, 'ClusterRoot');
+		MockupFactory.createCluster('global', null, 1, 'ClusterRoot', 'CRT');
 	}
 	@isTest 
 	static void PA181_CASE_1(){

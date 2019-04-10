@@ -25,7 +25,7 @@ public with sharing class RecipeIngredientTriggers extends TriggersHandler{
         if(!canMethod('setExternalId')){return;}
         
         if(recNew.ExternalID__c == null){
-            recNew.ExternalID__c = GeneralUtils.generateExternalId(recNew.Name);
+            recNew.ExternalID__c = GeneralUtils.generateExternalId(recNew.Name, null, recNew.getSObjectType().getDescribe().getName());
         }
     }
 }

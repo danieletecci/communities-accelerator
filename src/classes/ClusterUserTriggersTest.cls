@@ -4,7 +4,7 @@ private class ClusterUserTriggersTest{
 	@testSetup
 	static void setup(){
 		MockupFactory.generateAcceleratorSetting();
-		List<Cluster__c> clusters = MockupFactory.createCluster('Test Cluster Root', null, 1, 'ClusterRoot');
+		List<Cluster__c> clusters = MockupFactory.createCluster('Test Cluster Root', null, 1, 'ClusterRoot', 'CRT');
 		
 		User userToInsert = MockupFactory.createUser('userToInsert@cg.com','test@user.com');
 		User userRW = MockupFactory.createUser('userRW@cg.com','test@user.com');
@@ -17,7 +17,7 @@ private class ClusterUserTriggersTest{
 	@isTest
 	static void insertClusterUserWithAccessLevelReadWrite(){
 		// Given
-		Map<Id, Group> groups = new Map<Id, Group> ([SELECT Id, developerName FROM Group WHERE developerName LIKE 'TestClusterRoot%']);
+		Map<Id, Group> groups = new Map<Id, Group> ([SELECT Id, developerName FROM Group WHERE developerName LIKE 'CRT%']);
 		Cluster__C cluster = [SELECT Id FROM Cluster__c WHERE Name = 'Test Cluster Root00' LIMIT 1];
 		User testUser = [SELECT Id FROM User WHERE username = 'userToInsert@cg.com' LIMIT 1];
 		ClusterUser__c clusterUser = new ClusterUser__c();
@@ -34,14 +34,14 @@ private class ClusterUserTriggersTest{
 		List<GroupMember> groupMembers = [SELECT Id, GroupId, UserOrGroupId FROM GroupMember WHERE UserOrGroupId = :testUser.Id];
 		for (GroupMember gm : groupMembers){
 			Group g = groups.get(gm.GroupId);
-			system.assert(g.developerName == 'TestClusterRoot00_RW' || g.developerName == 'TestClusterRoot00_ROViewUp');
+			system.assert(g.developerName.contains('_RW') || g.developerName.contains('_ROViewUp'));
 		}
 	}
 
 	@isTest
 	static void insertClusterUserWithAccessLevelReadOnly(){
 		// Given
-		Map<Id, Group> groups = new Map<Id, Group> ([SELECT Id, developerName FROM Group WHERE developerName LIKE 'TestClusterRoot%']);
+		Map<Id, Group> groups = new Map<Id, Group> ([SELECT Id, developerName FROM Group WHERE developerName LIKE 'CRT%']);
 		Cluster__C cluster = [SELECT Id FROM Cluster__c WHERE Name = 'Test Cluster Root00' LIMIT 1];
 		User testUser = [SELECT Id FROM User WHERE username = 'userToInsert@cg.com' LIMIT 1];
 		ClusterUser__c clusterUser = new ClusterUser__c();
@@ -58,14 +58,14 @@ private class ClusterUserTriggersTest{
 		List<GroupMember> groupMembers = [SELECT Id, GroupId, UserOrGroupId FROM GroupMember WHERE UserOrGroupId = :testUser.Id];
 		for (GroupMember gm : groupMembers){
 			Group g = groups.get(gm.GroupId);
-			system.assert(g.developerName == 'TestClusterRoot00_ROViewDown' || g.developerName == 'TestClusterRoot00_ROViewUp');
+			system.assert(g.developerName.contains('_ROViewDown') || g.developerName.contains('_ROViewUp'));
 		}
 	}
 
 	@isTest
 	static void updateClusterUserAccessLevelRWToRO(){
 		// Given
-		Map<Id, Group> groups = new Map<Id, Group> ([SELECT Id, developerName FROM Group WHERE developerName LIKE 'TestClusterRoot%']);
+		Map<Id, Group> groups = new Map<Id, Group> ([SELECT Id, developerName FROM Group WHERE developerName LIKE 'CRT%']);
 		Cluster__C cluster = [SELECT Id FROM Cluster__c WHERE Name = 'Test Cluster Root00' LIMIT 1];
 		User testUser = [SELECT Id FROM User WHERE username = 'userRW@cg.com' LIMIT 1];
 		ClusterUser__c clusterUser = [SELECT Id FROM ClusterUser__c WHERE User__c = :testUser.Id LIMIT 1];
@@ -80,14 +80,14 @@ private class ClusterUserTriggersTest{
 		List<GroupMember> groupMembers = [SELECT Id, GroupId, UserOrGroupId FROM GroupMember WHERE UserOrGroupId = :testUser.Id];
 		for (GroupMember gm : groupMembers){
 			Group g = groups.get(gm.GroupId);
-			system.assert(g.developerName == 'TestClusterRoot00_ROViewDown' || g.developerName == 'TestClusterRoot00_ROViewUp');
+			system.assert(g.developerName.contains('_ROViewDown') || g.developerName.contains('_ROViewUp'));
 		}
 	}
 
 	@isTest
 	static void updateClusterUserAccessLevelROToRW(){
 		// Given
-		Map<Id, Group> groups = new Map<Id, Group> ([SELECT Id, developerName FROM Group WHERE developerName LIKE 'TestClusterRoot%']);
+		Map<Id, Group> groups = new Map<Id, Group> ([SELECT Id, developerName FROM Group WHERE developerName LIKE 'CRT%']);
 		User testUser = [SELECT Id FROM User WHERE username = 'userRO@cg.com' LIMIT 1];
 		ClusterUser__c clusterUser = [SELECT Id FROM ClusterUser__c WHERE User__c = :testUser.Id LIMIT 1];
 
@@ -101,14 +101,14 @@ private class ClusterUserTriggersTest{
 		List<GroupMember> groupMembers = [SELECT Id, GroupId, UserOrGroupId FROM GroupMember WHERE UserOrGroupId = :testUser.Id];
 		for (GroupMember gm : groupMembers){
 			Group g = groups.get(gm.GroupId);
-			system.assert(g.developerName == 'TestClusterRoot00_RW' || g.developerName == 'TestClusterRoot00_ROViewUp');
+			system.assert(g.developerName.contains('_RW') || g.developerName.contains('_ROViewUp'));
 		}
 	}
 
 	@isTest
 	static void deleteClusterUserAccessLevelReadWrite(){
 		// Given
-		Map<Id, Group> groups = new Map<Id, Group> ([SELECT Id, developerName FROM Group WHERE developerName LIKE 'TestClusterRoot%']);
+		Map<Id, Group> groups = new Map<Id, Group> ([SELECT Id, developerName FROM Group WHERE developerName LIKE 'CRT%']);
 		User testUser = [SELECT Id FROM User WHERE username = 'userRW@cg.com' LIMIT 1];
 		ClusterUser__c clusterUser = [SELECT Id FROM ClusterUser__c WHERE User__c = :testUser.Id LIMIT 1];
 
@@ -129,7 +129,7 @@ private class ClusterUserTriggersTest{
 	@isTest
 	static void deleteClusterUserAccessLevelReadOnly(){
 		// Given
-		Map<Id, Group> groups = new Map<Id, Group> ([SELECT Id, developerName FROM Group WHERE developerName LIKE 'TestClusterRoot%']);
+		Map<Id, Group> groups = new Map<Id, Group> ([SELECT Id, developerName FROM Group WHERE developerName LIKE 'CRT%']);
 		User testUser = [SELECT Id FROM User WHERE username = 'userRO@cg.com' LIMIT 1];
 		ClusterUser__c clusterUser = [SELECT Id FROM ClusterUser__c WHERE User__c = :testUser.Id LIMIT 1];
 

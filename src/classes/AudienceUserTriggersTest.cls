@@ -12,7 +12,7 @@ private class AudienceUserTriggersTest {
 		
 		//When
 		Test.startTest();
-		List<Cluster__c> clusterList = MockupFactory.createCluster('ClusterRootTest', null, 1, 'ClusterRoot');
+		List<Cluster__c> clusterList = MockupFactory.createCluster('ClusterRootTest', null, 1, 'ClusterRoot', 'CRT');
 		User us = MockupFactory.createUser('userTest@cg.com','test@testinguser.com');
 		AudienceUser__c AU = MockupFactory.createAudienceUser('AudienceUser1',clusterList[0].Id,'Active',us.Id);
 		Test.stopTest();
@@ -28,7 +28,7 @@ private class AudienceUserTriggersTest {
 		con el correspondiente ExternalId__c */
 
 		//Given
-	    List<Cluster__c> clusterList = MockupFactory.createCluster('ClusterRootTest', null, 1, 'ClusterRoot');
+	    List<Cluster__c> clusterList = MockupFactory.createCluster('ClusterRootTest', null, 1, 'ClusterRoot', 'CRT');
 		User us = MockupFactory.createUser('userTest@cg.com','test@testinguser.com');
 		AudienceUser__c AU = MockupFactory.createAudienceUser('AudienceUser1',clusterList[0].Id,'Active',us.Id);
 		AU.ExternalId__c = '';

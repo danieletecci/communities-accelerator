@@ -37,7 +37,7 @@ public with sharing class SocialNetworkTriggers extends TriggersHandler{
         if(!canMethod('setExternalId')){return;}
         
         if(recNew.ExternalId__c == null){
-            recNew.ExternalId__c = GeneralUtils.generateExternalId(recNew.Name);
+            recNew.ExternalId__c = GeneralUtils.generateExternalId(recNew.Name, null, recNew.getSObjectType().getDescribe().getName());
         }
     }
 

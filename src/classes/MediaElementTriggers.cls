@@ -29,7 +29,7 @@ public with sharing class MediaElementTriggers extends TriggersHandler {
         if(!canMethod('setExternalId')){return;}
 
         if(recNew.ExternalID__c == null){
-            recNew.ExternalID__c = GeneralUtils.generateExternalId(recNew.Name);
+            recNew.ExternalID__c = GeneralUtils.generateExternalId(recNew.Name, null, recNew.getSObjectType().getDescribe().getName());
         }
     }
 

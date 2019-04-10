@@ -2,11 +2,11 @@
 public with sharing class ContentDetailControllerTest {
     
     @testSetup
-    static void generateCustomSettings(){
-        MockupFactory.generateAcceleratorSetting();
-        List<Cluster__c> clusterRoot = MockupFactory.createCluster('Cluster Root', '', 1, 'ClusterRoot');
-        List<Cluster__c> clusterGroup = MockupFactory.createCluster('Cluster Group', clusterRoot.get(0).id, 1, 'ClusterGroup');
-        List<Cluster__c> clusterLeaf = MockupFactory.createCluster('Cluster Leaf', clusterGroup.get(0).id, 2, 'ClusterLeaf');
+	static void generateCustomSettings(){
+		MockupFactory.generateAcceleratorSetting();
+		List<Cluster__c> clusterRoot = MockupFactory.createCluster('CRoot', '', 1, 'ClusterRoot', 'CRT');
+        List<Cluster__c> clusterGroup = MockupFactory.createCluster('CGroup', clusterRoot.get(0).id, 1, 'ClusterGroup', 'CGT');
+        List<Cluster__c> clusterLeaf = MockupFactory.createCluster('CLeaf', clusterGroup.get(0).id, 2, 'ClusterLeaf', 'CLT');
         MockupFactory.createComponent('FAQ', 1, clusterRoot.get(0));
         MockupFactory.createComponent('News', 1, clusterRoot.get(0));
         MockupFactory.createClusterUser(clusterRoot.get(0).id, UserInfo.getUserId(), 1, 'Read/Write');

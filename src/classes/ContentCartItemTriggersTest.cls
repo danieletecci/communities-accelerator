@@ -7,9 +7,9 @@ private class ContentCartItemTriggersTest {
     	MockupFactory.generateAcceleratorSetting();
         
         String name = 'Argentina';
-        List<Cluster__c> clusterRootList = MockupFactory.createCluster(name, null, 1, 'ClusterRoot');
+        List<Cluster__c> clusterRootList = MockupFactory.createCluster(name, null, 1, 'ClusterRoot', 'CRT');
         Cluster__c cg = clusterRootList[0];
-        List<Cluster__c> clusterList = MockupFactory.createCluster(cg.Name, cg.Id, 1, 'ClusterGroup');
+        List<Cluster__c> clusterList = MockupFactory.createCluster('Buenos Aires', cg.Id, 1, 'ClusterGroup', 'CGT');
     	List<Content__c> contentList = MockupFactory.createContent(nameRecordType, clusterList[0], quantity);
        
     }

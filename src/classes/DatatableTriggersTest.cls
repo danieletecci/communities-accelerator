@@ -10,7 +10,7 @@ private class DatatableTriggersTest {
     static void createValidDatatable() {
         
         Test.startTest();
-        List<Cluster__c> clusters = MockUpFactory.createCluster('DummyCluster', null, 1, 'ClusterRoot');
+        List<Cluster__c> clusters = MockUpFactory.createCluster('DummyCluster', null, 1, 'ClusterRoot', 'CRT');
         
         List<Datatable__c> datatables = MockupFactory.createDatatables('DummyDatatable', 'DummyDatatable', 'Account', 2, clusters.get(0).Id);
         
@@ -23,8 +23,8 @@ private class DatatableTriggersTest {
     static void updateValidDatatable() {
         
         Test.startTest();
-        List<Cluster__c> clustersRoot = MockUpFactory.createCluster('DummyRootCluster', null, 1, 'ClusterRoot');
-        List<Cluster__c> clustersLeaf = MockUpFactory.createCluster('DummyLeafCluster', clustersRoot[0].Id, 1, 'ClusterLeaf');
+        List<Cluster__c> clustersRoot = MockUpFactory.createCluster('DummyRootCluster', null, 1, 'ClusterRoot', 'CRT');
+        List<Cluster__c> clustersLeaf = MockUpFactory.createCluster('DummyLeafCluster', clustersRoot[0].Id, 1, 'ClusterLeaf', 'CLT');
         
         Cluster__c leaf = clustersLeaf[0];
         
@@ -51,7 +51,7 @@ private class DatatableTriggersTest {
     static void createInvalidDatatable() {
         
         Test.startTest();
-        List<Cluster__c> clusters = MockUpFactory.createCluster('DummyCluster', null, 1, 'ClusterRoot');
+        List<Cluster__c> clusters = MockUpFactory.createCluster('DummyCluster', null, 1, 'ClusterRoot', 'CRT');
         List<Datatable__c> datatables = new List<Datatable__c>();
         
         String name = 'DummyDatatable';

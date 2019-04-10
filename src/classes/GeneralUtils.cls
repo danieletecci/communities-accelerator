@@ -1,6 +1,6 @@
 public class GeneralUtils{
 
-    public static String generateExternalId(String name, String clusterID){
+    public static String generateExternalId(String name, String clusterID, String sobjectType){
         String apiName = name.deleteWhitespace();
         // Alternativa: '[|,|.|\\,||"||:|~|!|@|#|$|%|^|&|*|°|-|+|=|<|>|?|\\(|\\)|\\{|\\}|\\;|\\\'"]'s
         apiName = apiName.replaceAll('[^a-zA-Z0-9]', '_');
@@ -9,18 +9,28 @@ public class GeneralUtils{
             return apiName;
         } else {
             if (Pattern.compile( '[a-zA-Z0-9]{15}|[a-zA-Z0-9]{18}' ).matcher(clusterID).matches() ){
-                Cluster__c cluster = [SELECT Id, name FROM Cluster__c WHERE Id =: clusterID];
-                clusterID = cluster.name;
-                clusterID.deleteWhitespace().replaceAll('[^a-zA-Z0-9]', '_');
+                Cluster__c cluster = [SELECT Id, ExternalID__c FROM Cluster__c WHERE Id =: clusterID];
+
+                if(String.isNotEmpty(sobjectType) && sobjectType.equalsIgnoreCase('Content__c')){
+                   
+                    String dateString = String.valueOf(datetime.now());
+                 
+                    dateString = dateString.replaceAll('-','');
+                    dateString = dateString.replaceAll(':','');
+                    dateString = dateString.replaceAll(' ','');
+                    if(apiName.length()>59){
+                        apiName=apiName.subString(0,59);    
+                    }
+                    return cluster.ExternalID__c +'_'+ apiName +'_'+ dateString;// contentDate + timeString;
+                }else{
+                    if(apiName.length()>74){
+                        apiName=apiName.subString(0,74);    
+                    }
+                    apiName=cluster.ExternalID__c +'_'+ apiName;
+                }
             }
         }
-        return clusterID + '_' + apiName;
-        //Test
-    }
-
-    public static String generateExternalId(String name){
-        String stringToReturn = generateExternalId(name, null);
-        return stringToReturn;  
+        return apiName;
     }
 
     public static String joinFields(List<String> listToJoin){

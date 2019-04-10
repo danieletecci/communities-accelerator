@@ -8,7 +8,7 @@ public class MediaElementAssignmentTriggersTest {
 
 		//Given
 		MockupFactory.generateAcceleratorSetting();
-		List<Cluster__c> clusterRootList = MockupFactory.createCluster('ClusterRootTest', null, 1, 'ClusterRoot');
+		List<Cluster__c> clusterRootList = MockupFactory.createCluster('ClusterRootTest', null, 1, 'ClusterRoot', 'CRT');
 		List<Content__c> listContent= MockupFactory.createContent('Banner', clusterRootList[0], 1);
 
 		MediaElement__c mediaElementTest = new MediaElement__c(Name='Test');
@@ -34,7 +34,7 @@ public class MediaElementAssignmentTriggersTest {
 
 		//Given
 		MockupFactory.generateAcceleratorSetting();
-		List<Cluster__c> clusterRootList = MockupFactory.createCluster('ClusterRootTest', null, 1, 'ClusterRoot');
+		List<Cluster__c> clusterRootList = MockupFactory.createCluster('ClusterRootTest', null, 1, 'ClusterRoot', 'CRT');
 		List<Content__c> listContent= MockupFactory.createContent('Banner', clusterRootList[0], 1);
 		
 		MediaElement__c mediaElementTest = new MediaElement__c(Name='Test');

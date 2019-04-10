@@ -129,7 +129,7 @@ public class DatatableTriggers extends TriggersHandler {
         if(!canMethod('setExternalId')){return;}
         
         if(recNew.ExternalID__c == null){
-            recNew.ExternalID__c = GeneralUtils.generateExternalId(recNew.Name);
+            recNew.ExternalID__c = GeneralUtils.generateExternalId(recNew.Name, recNew.Cluster__c, recNew.getSObjectType().getDescribe().getName());
         }
     }
 }

@@ -8,7 +8,7 @@ public class TagAssignmentTriggersTest {
 
 		//Given
 		MockupFactory.generateAcceleratorSetting();
-        Cluster__c cluster = MockupFactory.createCluster('Argentina', null, 1, 'ClusterRoot')[0];
+        Cluster__c cluster = MockupFactory.createCluster('Argentina', null, 1, 'ClusterRoot', 'CRT')[0];
 		MockupFactory.createComponent('Banner', 1);
         MockupFactory.createContent('Banner', cluster, 1);
 		Tag__c tagTest = new Tag__c(Name='Test');
@@ -37,7 +37,7 @@ public class TagAssignmentTriggersTest {
 
 		//Given
 		MockupFactory.generateAcceleratorSetting();
-        Cluster__c cluster = MockupFactory.createCluster('Argentina', null, 1, 'ClusterRoot')[0];
+        Cluster__c cluster = MockupFactory.createCluster('Argentina', null, 1, 'ClusterRoot', 'CRT')[0];
 		MockupFactory.createComponent('Banner', 1);
         MockupFactory.createContent('Banner', cluster, 1);
 		Tag__c tagTest = new Tag__c(Name='Test');

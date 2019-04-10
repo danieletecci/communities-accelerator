@@ -10,7 +10,7 @@ public with sharing class TreePreviewControllerTest {
 
 		String name = 'Argentina';
         String nameGroup = 'Buenos Aires';
-        List<Cluster__c> clusterRootList = MockupFactory.createCluster(name, null, 1, 'ClusterRoot');
+        List<Cluster__c> clusterRootList = MockupFactory.createCluster(name, null, 1, 'ClusterRoot', 'CRT');
         Cluster__c cg = clusterRootList[0];
         List<Category__c> catList = MockupFactory.createCategory(nameGroup, 8, cg.Id);
         Category__c rootCat = catList[0];

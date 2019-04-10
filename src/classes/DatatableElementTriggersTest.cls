@@ -10,7 +10,7 @@ private class DatatableElementTriggersTest {
     static void createDatabaseElementWithExternalId() {
         Test.startTest();
         
-        List<Cluster__c> clustersRoot = MockUpFactory.createCluster('DummyRootCluster', null, 1, 'ClusterRoot');
+        List<Cluster__c> clustersRoot = MockUpFactory.createCluster('DummyRootCluster', null, 1, 'ClusterRoot', 'CRT');
         
         Id clusterId = clustersRoot.get(0).Id;
         
@@ -25,7 +25,7 @@ private class DatatableElementTriggersTest {
     static void createDatabaseElementWithoutExternalId() {
         Test.startTest();
         
-        List<Cluster__c> clustersRoot = MockUpFactory.createCluster('DummyRootCluster', null, 1, 'ClusterRoot');
+        List<Cluster__c> clustersRoot = MockUpFactory.createCluster('DummyRootCluster', null, 1, 'ClusterRoot', 'CRT');
         
         Id clusterId = clustersRoot.get(0).Id;
         
@@ -40,7 +40,7 @@ private class DatatableElementTriggersTest {
     static void updateDatabaseElementWithExternalId() {
         Test.startTest();
         
-        List<Cluster__c> clustersRoot = MockUpFactory.createCluster('DummyRootCluster', null, 1, 'ClusterRoot');
+        List<Cluster__c> clustersRoot = MockUpFactory.createCluster('DummyRootCluster', null, 1, 'ClusterRoot', 'CRT');
         
         Id clusterId = clustersRoot.get(0).Id;
         
@@ -60,7 +60,7 @@ private class DatatableElementTriggersTest {
     static void updateDatabaseElementWithoutExternalId() {
         Test.startTest();
         
-        List<Cluster__c> clustersRoot = MockUpFactory.createCluster('DummyRootCluster', null, 1, 'ClusterRoot');
+        List<Cluster__c> clustersRoot = MockUpFactory.createCluster('DummyRootCluster', null, 1, 'ClusterRoot', 'CRT');
         
         Id clusterId = clustersRoot.get(0).Id;
         

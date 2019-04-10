@@ -4,7 +4,7 @@ public class CG_NavigationControllerTest {
     static void setup(){
         // Given in all cases
         MockupFactory.generateAcceleratorSetting();
-        MockupFactory.createCluster('global', null, 1, 'ClusterRoot');
+        MockupFactory.createCluster('global', null, 1, 'ClusterRoot', 'CRT');
     }
     @isTest
     static void CASE_1(){

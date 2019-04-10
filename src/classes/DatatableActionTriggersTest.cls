@@ -10,7 +10,7 @@ private class DatatableActionTriggersTest {
     static void createDatabaseActionWithExternalId() {
         Test.startTest();
         
-        List<Cluster__c> clustersRoot = MockUpFactory.createCluster('DummyRootCluster', null, 1, 'ClusterRoot');
+        List<Cluster__c> clustersRoot = MockUpFactory.createCluster('DummyRootCluster', null, 1, 'ClusterRoot', 'CRT');
         
         Id clusterId = clustersRoot.get(0).Id;
         RecordType rt = [SELECT Id FROM RecordType WHERE SobjectType = 'DatatableAction__c' AND DeveloperName = 'GlobalAction'];
@@ -26,7 +26,7 @@ private class DatatableActionTriggersTest {
     static void createDatabaseActionWithoutExternalId() {
         Test.startTest();
         
-        List<Cluster__c> clustersRoot = MockUpFactory.createCluster('DummyRootCluster', null, 1, 'ClusterRoot');
+        List<Cluster__c> clustersRoot = MockUpFactory.createCluster('DummyRootCluster', null, 1, 'ClusterRoot', 'CRT');
         
         Id clusterId = clustersRoot.get(0).Id;
         RecordType rt = [SELECT Id FROM RecordType WHERE SobjectType = 'DatatableAction__c' AND DeveloperName = 'GlobalAction'];
@@ -42,7 +42,7 @@ private class DatatableActionTriggersTest {
     static void updateDatabaseElementWithExternalId() {
         Test.startTest();
         
-        List<Cluster__c> clustersRoot = MockUpFactory.createCluster('DummyRootCluster', null, 1, 'ClusterRoot');
+        List<Cluster__c> clustersRoot = MockUpFactory.createCluster('DummyRootCluster', null, 1, 'ClusterRoot', 'CRT');
         
         Id clusterId = clustersRoot.get(0).Id;
         RecordType rt = [SELECT Id FROM RecordType WHERE SobjectType = 'DatatableAction__c' AND DeveloperName = 'GlobalAction'];
@@ -63,7 +63,7 @@ private class DatatableActionTriggersTest {
     static void updateDatabaseElementWithoutExternalId() {
         Test.startTest();
         
-        List<Cluster__c> clustersRoot = MockUpFactory.createCluster('DummyRootCluster', null, 1, 'ClusterRoot');
+        List<Cluster__c> clustersRoot = MockUpFactory.createCluster('DummyRootCluster', null, 1, 'ClusterRoot', 'CRT');
         
         Id clusterId = clustersRoot[0].Id;
         RecordType rt = [SELECT Id FROM RecordType WHERE SobjectType = 'DatatableAction__c' AND DeveloperName = 'GlobalAction'];

@@ -11,9 +11,9 @@ public with sharing class CategoryTriggersTest {
 		Category__c categoryTest = new Category__c(Name='Category Test 01');
 		String name = 'Argentina';
         String nameGroup = 'Buenos Aires';
-        List<Cluster__c> clusterRootList = MockupFactory.createCluster(name, null, 1, 'ClusterRoot');
+        List<Cluster__c> clusterRootList = MockupFactory.createCluster(name, null, 1, 'ClusterRoot', 'CRT');
         Cluster__c cg = clusterRootList[0];
-        List<Cluster__c> clusterList = MockupFactory.createCluster(nameGroup, cg.Id, 1, 'ClusterGroup');
+        List<Cluster__c> clusterList = MockupFactory.createCluster(nameGroup, cg.Id, 1, 'ClusterGroup', 'CGT');
         Cluster__c cgGr = clusterList[0];
         categoryTest.Cluster__c=cgGr.Id;
 		//When
@@ -37,9 +37,9 @@ public with sharing class CategoryTriggersTest {
 		Category__c categoryTest = new Category__c(Name='Category Test 01');
 		String name = 'Argentina';
         String nameGroup = 'Buenos Aires';
-        List<Cluster__c> clusterRootList = MockupFactory.createCluster(name, null, 1, 'ClusterRoot');
+        List<Cluster__c> clusterRootList = MockupFactory.createCluster(name, null, 1, 'ClusterRoot', 'CRT');
         Cluster__c cg = clusterRootList[0];
-        List<Cluster__c> clusterList = MockupFactory.createCluster(nameGroup, cg.Id, 1, 'ClusterGroup');
+        List<Cluster__c> clusterList = MockupFactory.createCluster(nameGroup, cg.Id, 1, 'ClusterGroup', 'CGT');
         Cluster__c cgGr = clusterList[0];
         categoryTest.Cluster__c=cgGr.Id;
 
@@ -64,7 +64,7 @@ public with sharing class CategoryTriggersTest {
 
 		// Given
 		MockupFactory.generateAcceleratorSetting();
-		List<Cluster__c> clusterRootList = MockupFactory.createCluster('ClusterRootTest', null, 1, 'ClusterRoot');
+		List<Cluster__c> clusterRootList = MockupFactory.createCluster('ClusterRootTest', null, 1, 'ClusterRoot', 'CRT');
 		List<Cluster__c> clusterList = [SELECT Id, Name FROM Cluster__c WHERE Name LIKE 'ClusterRootTest%' LIMIT 1 ];
 		//System.debug('ClusterTriggersTest method clusterList: '+clusterList);
 		
@@ -84,7 +84,7 @@ public with sharing class CategoryTriggersTest {
 	static void updateCatSharing(){
 		// Given
 		MockupFactory.generateAcceleratorSetting();
-		List<Cluster__c> clusterRootList = MockupFactory.createCluster('ClusterRootTest', null, 2, 'ClusterRoot');
+		List<Cluster__c> clusterRootList = MockupFactory.createCluster('ClusterRootTest', null, 2, 'ClusterRoot', 'CRT');
 		List<Cluster__c> getClusterList = [SELECT Id, Name FROM Cluster__c WHERE Name LIKE 'ClusterRootTest%' LIMIT 2 ];
 		System.debug('ClusterTriggersTest method getClusterList: '+getClusterList);
 		
@@ -122,9 +122,9 @@ public with sharing class CategoryTriggersTest {
 		Category__c categoryTest = new Category__c(Name='Category Test 01');
 		String name = 'Argentina';
         String nameGroup = 'Buenos Aires';
-        List<Cluster__c> clusterRootList = MockupFactory.createCluster(name, null, 1, 'ClusterRoot');
+        List<Cluster__c> clusterRootList = MockupFactory.createCluster(name, null, 1, 'ClusterRoot', 'CRT');
         Cluster__c cg = clusterRootList[0];
-        List<Cluster__c> clusterList = MockupFactory.createCluster(nameGroup, cg.Id, 1, 'ClusterGroup');
+        List<Cluster__c> clusterList = MockupFactory.createCluster(nameGroup, cg.Id, 1, 'ClusterGroup', 'CGT');
         Cluster__c cgGr = clusterList[0];
         categoryTest.Cluster__c=cgGr.Id;
         

@@ -5,9 +5,9 @@ public class ContentSearchFiltersControllerTest {
     static void getFiltersTest(){
         //Given
         MockupFactory.generateAcceleratorSetting();
-		List<Cluster__c> clusterRoot = MockupFactory.createCluster('Cluster Root', '', 1, 'ClusterRoot');
-        List<Cluster__c> clusterGroup = MockupFactory.createCluster('Cluster Group', clusterRoot.get(0).id, 1, 'ClusterGroup');
-        List<Cluster__c> clusterLeaf = MockupFactory.createCluster('Cluster Leaf', clusterGroup.get(0).id, 2, 'ClusterLeaf');
+		List<Cluster__c> clusterRoot = MockupFactory.createCluster('CRoot', '', 1, 'ClusterRoot', 'CRT');
+        List<Cluster__c> clusterGroup = MockupFactory.createCluster('CGroup', clusterRoot.get(0).id, 1, 'ClusterGroup', 'CGT');
+        List<Cluster__c> clusterLeaf = MockupFactory.createCluster('CLeaf', clusterGroup.get(0).id, 2, 'ClusterLeaf', 'CLT');
 		MockupFactory.createCategory('Category', 2, clusterLeaf.get(0).id);
 		MockupFactory.createClusterUser(clusterRoot.get(0).id, UserInfo.getUserId(), 1, 'Read/Write');
         MockupFactory.createTag('Tag Name', '', 2, clusterLeaf.get(0).id);

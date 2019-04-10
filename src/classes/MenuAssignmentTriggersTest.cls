@@ -8,7 +8,7 @@ public class MenuAssignmentTriggersTest {
 
 		//Given
 		MockupFactory.generateAcceleratorSetting();
-        Cluster__c cluster = MockupFactory.createCluster('Argentina', null, 1, 'ClusterRoot')[0];
+        Cluster__c cluster = MockupFactory.createCluster('Argentina', null, 1, 'ClusterRoot', 'CRT')[0];
 		MockupFactory.createComponent('Banner', 1);
 		Menu__c menuTest = new Menu__c(Name='Test');
 		insert menuTest;
@@ -35,7 +35,7 @@ public class MenuAssignmentTriggersTest {
 
 		//Given
 		MockupFactory.generateAcceleratorSetting();
-        Cluster__c cluster = MockupFactory.createCluster('Argentina', null, 1, 'ClusterRoot')[0];
+        Cluster__c cluster = MockupFactory.createCluster('Argentina', null, 1, 'ClusterRoot', 'CRT')[0];
 		MockupFactory.createComponent('Banner', 1);
         Component__c compTest = [select id, Name, ExternalId__c from Component__c limit 1];
 		Menu__c menuTest = new Menu__c(Name='Test');

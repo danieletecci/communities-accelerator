@@ -5,9 +5,9 @@ public class ComponentBehaviourControllerTest {
     static void manualAssignmentTest(){
         //Given
         MockupFactory.generateAcceleratorSetting();
-        List<Cluster__c> clusterRoot = MockupFactory.createCluster('Cluster Root', '', 1, 'ClusterRoot');
-        List<Cluster__c> clusterGroup = MockupFactory.createCluster('Cluster Group', clusterRoot.get(0).id, 1, 'ClusterGroup');
-        List<Cluster__c> clusterLeaf = MockupFactory.createCluster('Cluster Leaf', clusterGroup.get(0).id, 2, 'ClusterLeaf');
+        List<Cluster__c> clusterRoot = MockupFactory.createCluster('CRoot', '', 1, 'ClusterRoot', 'CRT');
+        List<Cluster__c> clusterGroup = MockupFactory.createCluster('CGroup', clusterRoot.get(0).id, 1, 'ClusterGroup', 'CGT');
+        List<Cluster__c> clusterLeaf = MockupFactory.createCluster('CLeaf', clusterGroup.get(0).id, 2, 'ClusterLeaf', 'CLT');
         List<Component__c> components = MockupFactory.createComponent('Advance Content', 1, clusterRoot.get(0));
         components.get(0).DataSource__c = 'ManualAssignment'; 
         update components;
@@ -23,12 +23,12 @@ public class ComponentBehaviourControllerTest {
     }
 
     @isTest 
-	static void tagsCategoriesTest(){
+    static void tagsCategoriesTest(){
         //Given
         MockupFactory.generateAcceleratorSetting();
-        List<Cluster__c> clusterRoot = MockupFactory.createCluster('Cluster Root', '', 1, 'ClusterRoot');
-        List<Cluster__c> clusterGroup = MockupFactory.createCluster('Cluster Group', clusterRoot.get(0).id, 1, 'ClusterGroup');
-        List<Cluster__c> clusterLeaf = MockupFactory.createCluster('Cluster Leaf', clusterGroup.get(0).id, 2, 'ClusterLeaf');
+        List<Cluster__c> clusterRoot = MockupFactory.createCluster('CRoot', '', 1, 'ClusterRoot', 'CRT');
+        List<Cluster__c> clusterGroup = MockupFactory.createCluster('CGroup', clusterRoot.get(0).id, 1, 'ClusterGroup', 'CGT');
+        List<Cluster__c> clusterLeaf = MockupFactory.createCluster('CLeaf', clusterGroup.get(0).id, 2, 'ClusterLeaf', 'CLT');
         List<Component__c> components = MockupFactory.createComponent('Banner', 1, clusterRoot.get(0));
         components.get(0).DataSource__c = 'TagsCategories'; 
         update components;

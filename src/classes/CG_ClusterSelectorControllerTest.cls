@@ -12,7 +12,7 @@ public with sharing class CG_ClusterSelectorControllerTest {
 
 		//Given
 
-		Cluster__c clusterToInsert = MockupFactory.createCluster('Argentina', null, 3, 'ClusterRoot')[0];
+		Cluster__c clusterToInsert = MockupFactory.createCluster('Argentina', null, 3, 'ClusterRoot', 'CRT')[0];
         MockupFactory.createComponent('Banner', 1);
 
 		Cluster__c cluster = [SELECT Id, ExternalId__c, Name FROM Cluster__c WHERE RecordType.DeveloperName='ClusterRoot' and Name like 'Argentina%' LIMIT 1];	
@@ -34,7 +34,7 @@ public with sharing class CG_ClusterSelectorControllerTest {
 
 		//Given
 
-		Cluster__c clusterToInsert1 = MockupFactory.createCluster('Argentina', null, 3, 'ClusterRoot')[0];
+		Cluster__c clusterToInsert1 = MockupFactory.createCluster('Argentina', null, 3, 'ClusterRoot', 'CRT')[0];
         MockupFactory.createComponent('Banner', 1);
 
 		Cluster__c cluster = [SELECT Id, ExternalId__c, Name FROM Cluster__c WHERE RecordType.DeveloperName='ClusterRoot' and Name like 'Argentina%' LIMIT 1];	
@@ -57,7 +57,7 @@ public with sharing class CG_ClusterSelectorControllerTest {
 
 		//Given
 
-		Cluster__c clusterToInsert = MockupFactory.createCluster('Argentina', null, 3, 'ClusterRoot')[0];
+		Cluster__c clusterToInsert = MockupFactory.createCluster('Argentina', null, 3, 'ClusterRoot', 'CRT')[0];
         MockupFactory.createComponent('Banner', 1); 
         
 		Cluster__c cluster = [SELECT Id, ExternalId__c, Name, ClusterLandingUrl__c FROM Cluster__c WHERE RecordType.DeveloperName='ClusterRoot' and Name like 'Argentina%' LIMIT 1];		
@@ -89,7 +89,7 @@ public with sharing class CG_ClusterSelectorControllerTest {
 		/* Comment: Comprueba que sin un ExternalId devuelve null*/
 
 		//Given
-		Cluster__c clusterToInsert = MockupFactory.createCluster('Argentina', null, 3, 'ClusterRoot')[0];
+		Cluster__c clusterToInsert = MockupFactory.createCluster('Argentina', null, 3, 'ClusterRoot', 'CRT')[0];
         MockupFactory.createComponent('Banner', 1); 
 
 		Cluster__c cluster = [SELECT Id, ExternalId__c, Name FROM Cluster__c WHERE RecordType.DeveloperName='ClusterRoot' and Name like 'Argentina%' LIMIT 1];

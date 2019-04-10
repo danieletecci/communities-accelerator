@@ -11,7 +11,7 @@ private class ObjectSharingUtilTest
 	static void insertTagSharing()
 	{
 		// Given
-		List<Cluster__c> clusterRootList = MockupFactory.createCluster('ClusterRootTest', null, 1, 'ClusterRoot');
+		List<Cluster__c> clusterRootList = MockupFactory.createCluster('ClusterRootTest', null, 1, 'ClusterRoot', 'CRT');
 		List<Cluster__c> clusterList = [SELECT Id, Name FROM Cluster__c WHERE Name LIKE 'ClusterRootTest%' LIMIT 1 ];
 		System.debug('ClusterTriggersTest method clusterList: '+clusterList);
 
@@ -35,7 +35,7 @@ private class ObjectSharingUtilTest
 		
 
 		// When
-		List<Cluster__c> clusterRootList = MockupFactory.createCluster('ClusterRootTest', null, 1, 'ClusterRoot');
+		List<Cluster__c> clusterRootList = MockupFactory.createCluster('ClusterRootTest', null, 1, 'ClusterRoot', 'CRT');
 
 		ObjectSharingUtil.SharingWrapper sharingWrapper = ObjectSharingUtil.generateSharingForCluster(clusterRootList, 'Cluster__c', 'Cluster__Share', 'Clustering__c', false);
 

@@ -65,7 +65,9 @@ public with sharing class ORGInitUtils {
     }
 
     public static void upsertDummyData(){
-
+        
+        createUsersAndPermissionSetAssignment();
+        
         //TriggersHandlerManager.byPassTrigger('ClusterTriggers');
         upsertClusters();
         
@@ -946,4 +948,135 @@ public with sharing class ORGInitUtils {
         addToMapRecords(datatableActionsList);
         /* Inserta 1 DatatableAction__c - END */
     }
+    @future
+    public static void createUsersAndPermissionSetAssignment(){        
+        Set<User> usersSet = new Set<User>();
+        List<User> usersToInsertList = new List<User>();
+        List<User> usersToUpdateList = new List<User>();
+        List<PermissionSetAssignment> permissionSetAssignmentToUpsertList = new List<PermissionSetAssignment>();
+        
+        Map<String,Id> ProfileNameToIdMap = new Map<String,Id>();
+        for (Profile profile : [SELECT id, Name FROM Profile]){
+            ProfileNameToIdMap.put(profile.Name, profile.Id);
+        }
+        
+        Map<String,String> userAliasToIdMap = new Map<String,String>();
+        for(User user : [SELECT Id, Alias FROM User]){
+            userAliasToIdMap.put(user.Alias, user.Id);
+        }
+        
+        Map<String,Id> permissionSetnameToIdMap = new Map<String,Id>();
+        for(PermissionSet permissionSet : [SELECT Id, Name FROM PermissionSet]){
+            permissionSetnameToIdMap.put(permissionSet.Name, permissionSet.Id);
+        }
+        
+        String UserAdminProfileAlias = [SELECT Id, Alias FROM User WHERE ProfileId = :ProfileNameToIdMap.get('System Administrator') LIMIT 1].Alias;
+        
+        //setup users
+        User cmsAdmin = new User (Alias='cadmi', LastName = 'Admin', FirstName='CMS',Username ='cmsadmin@cloudgaia.com.' + UserAdminProfileAlias, Email = 'cms@cloudgaia.com', ProfileId = ProfileNameToIdMap.get('Standard User'), TimeZoneSidKey = 'GMT', LanguageLocaleKey = 'en_US', EmailEncodingKey = 'UTF-8', LocaleSidKey = 'en_US', isActive = true);
+        usersSet.add(cmsAdmin);
+        User contentApprover = new User (Alias='cappr', LastName = 'Approver', FirstName='Content',Username ='contentapprover@cloudgaia.com.' + UserAdminProfileAlias, Email = 'cms@cloudgaia.com', ProfileId = ProfileNameToIdMap.get('Standard User'), TimeZoneSidKey = 'GMT', LanguageLocaleKey = 'en_US', EmailEncodingKey = 'UTF-8', LocaleSidKey = 'en_US', isActive = true);
+        usersSet.add(contentApprover);
+        User mediaElementManagent = new User (Alias='meman', LastName = 'Management', FirstName='MediaElement',Username ='mediaelementmanagement@cloudgaia.com.' + UserAdminProfileAlias, Email = 'cms@cloudgaia.com', ProfileId = ProfileNameToIdMap.get('Standard User'), TimeZoneSidKey = 'GMT', LanguageLocaleKey = 'en_US', EmailEncodingKey = 'UTF-8', LocaleSidKey = 'en_US', isActive = true);
+        usersSet.add(mediaElementManagent);
+        User communityManager = new User (Alias='cmana', LastName = 'Manager', FirstName='Community',Username ='communitymanager@cloudgaia.com.' + UserAdminProfileAlias, Email = 'cms@cloudgaia.com', ProfileId = ProfileNameToIdMap.get('Standard User'), TimeZoneSidKey = 'GMT', LanguageLocaleKey = 'en_US', EmailEncodingKey = 'UTF-8', LocaleSidKey = 'en_US', isActive = true);
+        usersSet.add(communityManager);
+        User contentManager = new User (Alias='cman', LastName = 'Manager', FirstName='Content',Username ='contentmanager@cloudgaia.com.' + UserAdminProfileAlias, Email = 'cms@cloudgaia.com', ProfileId = ProfileNameToIdMap.get('Standard User'), TimeZoneSidKey = 'GMT', LanguageLocaleKey = 'en_US', EmailEncodingKey = 'UTF-8', LocaleSidKey = 'en_US', isActive = true);
+        usersSet.add(contentManager);
+        User readOnly = new User (Alias='ronly', LastName = 'Only', FirstName='Read',Username ='readonly@cloudgaia.com.' + UserAdminProfileAlias, Email = 'cms@cloudgaia.com', ProfileId = ProfileNameToIdMap.get('Standard User'), TimeZoneSidKey = 'GMT', LanguageLocaleKey = 'en_US', EmailEncodingKey = 'UTF-8', LocaleSidKey = 'en_US', isActive = true);
+        usersSet.add(readOnly);
+        User userCMS = new User (Alias='ccms', LastName = 'User', FirstName='CMS', Username ='cmsuser@cloudgaia.com.' + UserAdminProfileAlias, Email = 'cms@cloudgaia.com', ProfileId = ProfileNameToIdMap.get('Standard User'), TimeZoneSidKey = 'GMT', LanguageLocaleKey = 'en_US', EmailEncodingKey = 'UTF-8', LocaleSidKey = 'en_US', isActive = true);
+        usersSet.add(userCMS);
+        
+        for(User user : usersSet){
+            if( userAliasToIdMap.keySet().contains(user.Alias) ){
+                user.Id = userAliasToIdMap.get(user.Alias);
+                usersToUpdateList.add(user);
+            } else {
+                usersToInsertList.add(user);
+            }
+        }
+        
+        if( !usersToInsertList.isEmpty() )
+			Database.insert(usersToInsertList, true);
+        if( !usersToUpdateList.isEmpty() )
+			Database.update(usersToUpdateList, true);
+        
+        //PermissionSet process
+        Map<String,Set<String>> userIdToSetofPermissionSetIdMap = new  Map<String,Set<String>>();
+        for(PermissionSetAssignment psa :[SELECT Id, AssigneeId, PermissionSetId FROM PermissionSetAssignment WHERE AssigneeId IN :usersSet]){
+            if( !userIdToSetofPermissionSetIdMap.containsKey(psa.AssigneeId) ){
+                userIdToSetofPermissionSetIdMap.put(psa.AssigneeId, new Set<String>{psa.PermissionSetId});
+            } else {
+                userIdToSetofPermissionSetIdMap.get(psa.AssigneeId).add(psa.PermissionSetId);
+            }
+        }
+        
+        for(User user : usersSet){
+            PermissionSetAssignment actual = new PermissionSetAssignment();
+            
+            if(user.Alias == 'cadmi'){//cmsAdmin
+                if(userIdToSetofPermissionSetIdMap.containsKey(user.Id) && !userIdToSetofPermissionSetIdMap.get(user.Id).contains(permissionSetnameToIdMap.get('CMSAdmin'))){
+                    actual.AssigneeId = user.id;
+                    actual.PermissionSetId = permissionSetnameToIdMap.get('CMSAdmin');
+                }
+            }
+            if(user.Alias == 'cappr'){//contentApprover
+                if(userIdToSetofPermissionSetIdMap.containsKey(user.Id) && !userIdToSetofPermissionSetIdMap.get(user.Id).contains(permissionSetnameToIdMap.get('ContentApprover'))){
+                    actual.AssigneeId = user.id;
+                    actual.PermissionSetId = permissionSetnameToIdMap.get('ContentApprover');
+                }
+            }
+            if(user.Alias == 'meman'){//mediaElementManagent
+                if(userIdToSetofPermissionSetIdMap.containsKey(user.Id) && !userIdToSetofPermissionSetIdMap.get(user.Id).contains(permissionSetnameToIdMap.get('MediaElementManagement'))){
+                    actual.AssigneeId = user.id;
+                    actual.PermissionSetId = permissionSetnameToIdMap.get('MediaElementManagement');
+                }
+            }
+            if(user.Alias == 'cmana'){//communityManager
+                if(userIdToSetofPermissionSetIdMap.containsKey(user.Id) && !userIdToSetofPermissionSetIdMap.get(user.Id).contains(permissionSetnameToIdMap.get('CommunityManager'))){
+                    actual.AssigneeId = user.id;
+                    actual.PermissionSetId = permissionSetnameToIdMap.get('CommunityManager');
+                }
+            }
+            if(user.Alias == 'cman'){//contentManager
+                
+                if(userIdToSetofPermissionSetIdMap.containsKey(user.Id) && !userIdToSetofPermissionSetIdMap.get(user.Id).contains(permissionSetnameToIdMap.get('ContentManager'))){
+                    actual.AssigneeId = user.id;
+                    actual.PermissionSetId = permissionSetnameToIdMap.get('ContentManager');
+                }
+            }
+            if(user.Alias == 'ronly'){//readOnly
+                if(userIdToSetofPermissionSetIdMap.containsKey(user.Id) && !userIdToSetofPermissionSetIdMap.get(user.Id).contains(permissionSetnameToIdMap.get('ReadOnly'))){
+                    actual.AssigneeId = user.id;
+                    actual.PermissionSetId = permissionSetnameToIdMap.get('ReadOnly');
+                }
+            }
+            if(user.Alias == 'ccms'){//userCMS
+                if(userIdToSetofPermissionSetIdMap.containsKey(user.Id) && !userIdToSetofPermissionSetIdMap.get(user.Id).contains(permissionSetnameToIdMap.get('CMSUser'))){
+                    actual.AssigneeId = user.id;
+                    actual.PermissionSetId = permissionSetnameToIdMap.get('CMSUser');
+                }
+            }
+            
+            if(actual.AssigneeId != null && actual.PermissionSetId != null)
+                permissionSetAssignmentToUpsertList.add(actual);
+        }
+        
+        if( !permissionSetAssignmentToUpsertList.isEmpty() )
+			Database.insert(permissionSetAssignmentToUpsertList, true);
+        
+        //update all user desactivate
+        List<User> updateDesactiveUsersList = new List<User>();
+        updateDesactiveUsersList.addAll(usersToInsertList);
+        updateDesactiveUsersList.addAll(usersToUpdateList);
+        
+        for (User userToDesactivate : updateDesactiveUsersList){
+            userToDesactivate.IsActive = false;
+        }
+        if( !updateDesactiveUsersList.isEmpty() )
+       		Database.update(updateDesactiveUsersList, true);
+        
+    }
+    
 }

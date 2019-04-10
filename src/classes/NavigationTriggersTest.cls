@@ -14,7 +14,7 @@ private class NavigationTriggersTest
 
 		// Given
 		//List<String> clustersList = new List<String>();
-		List<Cluster__c> clusterRootList = MockupFactory.createCluster('ClusterRootTest', null, 1, 'ClusterRoot');
+		List<Cluster__c> clusterRootList = MockupFactory.createCluster('ClusterRootTest', null, 1, 'ClusterRoot', 'CRT');
 		List<Cluster__c> clusterList = [SELECT Id, Name FROM Cluster__c WHERE Name LIKE 'ClusterRootTest%' LIMIT 1 ];
 		System.debug('ClusterTriggersTest method clusterList: '+clusterList);
 
@@ -40,7 +40,7 @@ private class NavigationTriggersTest
 
 		// Given
 		//List<String> clustersList = new List<String>();
-		List<Cluster__c> clusterRootList = MockupFactory.createCluster('ClusterRootTest', null, 1, 'ClusterRoot');
+		List<Cluster__c> clusterRootList = MockupFactory.createCluster('ClusterRootTest', null, 1, 'ClusterRoot', 'CRT');
 		List<Cluster__c> clusterList = [SELECT Id, Name FROM Cluster__c WHERE Name LIKE 'ClusterRootTest%' LIMIT 1 ];
 		System.debug('ClusterTriggersTest method clusterList: '+clusterList);
 
@@ -66,7 +66,7 @@ private class NavigationTriggersTest
 
 		// Given
 		//List<String> clustersList = new List<String>();
-		List<Cluster__c> clusterRootList = MockupFactory.createCluster('ClusterRootTest', null, 2, 'ClusterRoot');
+		List<Cluster__c> clusterRootList = MockupFactory.createCluster('ClusterRootTest', null, 2, 'ClusterRoot', 'CRT');
 		List<Cluster__c> getClusterList = [SELECT Id, Name FROM Cluster__c WHERE Name LIKE 'ClusterRootTest%' LIMIT 2 ];
 		System.debug('ClusterTriggersTest method getClusterList: '+getClusterList);
 		
@@ -101,7 +101,7 @@ private class NavigationTriggersTest
 
 		// Given
 		//List<String> clustersList = new List<String>();
-		List<Cluster__c> clusterRootList = MockupFactory.createCluster('ClusterRootTest', null, 2, 'ClusterRoot');
+		List<Cluster__c> clusterRootList = MockupFactory.createCluster('ClusterRootTest', null, 2, 'ClusterRoot', 'CRT');
 		List<Cluster__c> getClusterList = [SELECT Id, Name FROM Cluster__c WHERE Name LIKE 'ClusterRootTest%' LIMIT 2 ];
 		System.debug('ClusterTriggersTest method getClusterList: '+getClusterList);
 		

@@ -3,7 +3,7 @@ public with sharing class CG_ContentCatalogControllerTest {
 	@testSetup
 	public static void setParameters(){
         MockupFactory.generateAcceleratorSetting();
-        MockupFactory.createCluster('Global', null, 1, 'ClusterRoot');
+        MockupFactory.createCluster('Global', null, 1, 'ClusterRoot', 'CRT');
 	}
 
 	@isTest

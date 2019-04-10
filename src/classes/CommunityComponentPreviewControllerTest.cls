@@ -25,7 +25,7 @@ public class CommunityComponentPreviewControllerTest {
 		//Given
 		MockupFactory.generateAcceleratorSetting();
 		String clusterName = 'ClusterTest'; 
-		Cluster__c clusterTest = MockupFactory.createCluster(clusterName, null, 3, 'ClusterRoot')[0];
+		Cluster__c clusterTest = MockupFactory.createCluster(clusterName, null, 3, 'ClusterRoot', 'CRT')[0];
 		System.debug('clusterTest: ' + clusterTest);
 		
 		//When

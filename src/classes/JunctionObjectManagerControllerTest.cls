@@ -7,7 +7,7 @@ public with sharing class JunctionObjectManagerControllerTest {
 
 		//Given
 		MockupFactory.generateAcceleratorSetting();
-		List<Cluster__c> cluster = MockupFactory.createCluster('Global',null, 1,'ClusterRoot');
+		List<Cluster__c> cluster = MockupFactory.createCluster('Global',null, 1,'ClusterRoot', 'CRT');
 		List<Component__c> comp = MockupFactory.createComponent('Banner', 1);
 		List<Content__c> cont = MockupFactory.createContent('Banner',cluster[0],1);
 		List<ContentAssignment__c> contAssign = MockupFactory.createContentAssignment(cont,comp);
@@ -28,7 +28,7 @@ public with sharing class JunctionObjectManagerControllerTest {
 
 		// Given
 		MockupFactory.generateAcceleratorSetting();
-		List<Cluster__c> cluster = MockupFactory.createCluster('Global',null, 1,'ClusterRoot');
+		List<Cluster__c> cluster = MockupFactory.createCluster('Global',null, 1,'ClusterRoot', 'CRT');
 		List<Component__c> comp = MockupFactory.createComponent('Banner', 1);
 		List<Content__c> cont = MockupFactory.createContent('Banner',cluster[0],1);
 		List<ContentAssignment__c> contAssign = MockupFactory.createContentAssignment(cont,comp);
@@ -49,7 +49,7 @@ public with sharing class JunctionObjectManagerControllerTest {
 
 		// Given
 		MockupFactory.generateAcceleratorSetting();
-		List<Cluster__c> cluster = MockupFactory.createCluster('Global', null, 1, 'ClusterRoot');
+		List<Cluster__c> cluster = MockupFactory.createCluster('Global', null, 1, 'ClusterRoot', 'CRT');
 		List<Component__c> comp = MockupFactory.createComponent('Banner', 1);
 		List<Menu__c> menu = MockupFactory.createMenu('testMenu', 2, cluster[0].id);
 		List<MenuAssignment__c> menuAssign = MockupFactory.createMenuAssignment(menu,comp);
@@ -74,7 +74,7 @@ public with sharing class JunctionObjectManagerControllerTest {
 
 		// Given
 		MockupFactory.generateAcceleratorSetting();
-		List<Cluster__c> cluster = MockupFactory.createCluster('Global', null, 1, 'ClusterRoot');
+		List<Cluster__c> cluster = MockupFactory.createCluster('Global', null, 1, 'ClusterRoot', 'CRT');
 		List<Component__c> comp = MockupFactory.createComponent('Banner', 1);
 		List<Menu__c> menu = MockupFactory.createMenu('testMenu', 2, cluster[0].id);
 		List<MenuAssignment__c> menuAssign = MockupFactory.createMenuAssignment(menu,comp);

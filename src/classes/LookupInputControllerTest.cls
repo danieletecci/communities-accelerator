@@ -4,7 +4,7 @@ public class LookupInputControllerTest {
     @testSetup
     static void setupTest(){
 		MockupFactory.generateAcceleratorSetting();
-        List<Cluster__c> clusterRoot = MockupFactory.createCluster('Cluster Root', '', 1, 'ClusterRoot');
+        List<Cluster__c> clusterRoot = MockupFactory.createCluster('Cluster Root', '', 1, 'ClusterRoot', 'CRT');
         MockupFactory.createNavigation('testNav', 'testUrl', 2, clusterRoot.get(0).Id);
     }
 

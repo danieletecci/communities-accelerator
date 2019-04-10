@@ -48,8 +48,8 @@ public with sharing class ComponentTriggersTest {
 
 		//Given
 		MockupFactory.generateAcceleratorSetting();
-		List<Cluster__c> clusterTest1 = MockupFactory.createCluster('Cluster Test 1', null, 1, 'ClusterRoot');
-		List<Cluster__c> clusterTest2 = MockupFactory.createCluster('Cluster Test 2', null, 1, 'ClusterRoot');
+		List<Cluster__c> clusterTest1 = MockupFactory.createCluster('CR1 Test', null, 1, 'ClusterRoot', 'CR1');
+		List<Cluster__c> clusterTest2 = MockupFactory.createCluster('CR2 Test', null, 1, 'ClusterRoot', 'CR2');
 		List<Component__c> componentListTest = MockupFactory.createComponent('Banner', 1);
 		List<Content__c> contentListTest = MockupFactory.createContent('Banner', clusterTest1[0], 1);
 		List<ContentAssignment__c> contentAssignmentListTest = MockupFactory.createContentAssignment(contentListTest, componentListTest);
@@ -80,7 +80,7 @@ public with sharing class ComponentTriggersTest {
 	{
 		// Given
 		MockupFactory.generateAcceleratorSetting();
-		List<Cluster__c> clusterRootList = MockupFactory.createCluster('ClusterRootTest', null, 1, 'ClusterRoot');
+		List<Cluster__c> clusterRootList = MockupFactory.createCluster('ClusterRootTest', null, 1, 'ClusterRoot', 'CRT');
 		List<Cluster__c> clusterList = [SELECT Id, Name FROM Cluster__c WHERE Name LIKE 'ClusterRootTest%' LIMIT 1 ];
 		System.debug('ClusterTriggersTest method clusterList: '+clusterList);
 		String nameRecordType = 'Banner';
@@ -102,7 +102,7 @@ public with sharing class ComponentTriggersTest {
 	static void updateComponentSharing(){
 		// Given
 		MockupFactory.generateAcceleratorSetting();
-		List<Cluster__c> clusterRootList = MockupFactory.createCluster('ClusterRootTest', null, 2, 'ClusterRoot');
+		List<Cluster__c> clusterRootList = MockupFactory.createCluster('ClusterRootTest', null, 2, 'ClusterRoot', 'CRT');
 		List<Cluster__c> getClusterList = [SELECT Id, Name FROM Cluster__c WHERE Name LIKE 'ClusterRootTest%' LIMIT 2 ];
 		System.debug('ClusterTriggersTest method getClusterList: '+getClusterList);
 		
@@ -141,7 +141,7 @@ public with sharing class ComponentTriggersTest {
 
 		//Given
 		MockupFactory.generateAcceleratorSetting();
-		List<Cluster__c> clusterArg = MockupFactory.createCluster('Global', null, 1, 'ClusterRoot');
+		List<Cluster__c> clusterArg = MockupFactory.createCluster('Global', null, 1, 'ClusterRoot', 'CRT');
 		List<Component__c> componentList = MockupFactory.createComponent('Banner', 1, clusterArg[0]);
 		
 		List<Content__c> contentList = MockupFactory.createContent('Banner', clusterArg[0], 1);

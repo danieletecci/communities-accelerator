@@ -6,9 +6,9 @@ private class RecipeTriggersTest {
     	MockupFactory.generateAcceleratorSetting();
         
         String name = 'Argentina';
-        List<Cluster__c> clusterRootList = MockupFactory.createCluster(name, null, 1, 'ClusterRoot');
+        List<Cluster__c> clusterRootList = MockupFactory.createCluster(name, null, 1, 'ClusterRoot', 'CRT');
         Cluster__c cg = clusterRootList[0];
-        List<Cluster__c> clusterList = MockupFactory.createCluster(cg.Name, cg.Id, 1, 'ClusterGroup');
+        List<Cluster__c> clusterList = MockupFactory.createCluster('BuenosAires', cg.Id, 1, 'ClusterGroup', 'CGT');
         List<Content__c> contentList = MockupFactory.createContent('Recipe', clusterList[0], 1);
        
     }
@@ -44,7 +44,7 @@ private class RecipeTriggersTest {
 
 		//Then
 		Recipe__c recipeTest = [SELECT id, ExternalID__c, Name from Recipe__c where Id =: recipe.Id   Limit 1];
-		System.assertEquals(recipeTest.ExternalID__c, recipeTest.Name);
+		System.assertNotEquals(recipeTest.ExternalID__c, null);
 	}
 	
 
@@ -83,7 +83,7 @@ private class RecipeTriggersTest {
 	@isTest
 	static void updateMenuSharing(){
 		// Given
-		List<Cluster__c> clusterRootList = MockupFactory.createCluster('ClusterRootTest', null, 2, 'ClusterRoot');
+		List<Cluster__c> clusterRootList = MockupFactory.createCluster('ClusterRootTest', null, 2, 'ClusterRoot', 'CR2');
 		List<Cluster__c> getClusterList = [SELECT Id, Name FROM Cluster__c WHERE Name LIKE 'ClusterRootTest%' LIMIT 2 ];
 		System.debug('ClusterTriggersTest method getClusterList: '+getClusterList);
 		Content__c cont = [SELECT id from Content__c limit 1]; 
@@ -104,7 +104,7 @@ private class RecipeTriggersTest {
 	@isTest
 	static void updateMenuSharingWithoutClusterId(){
 		// Given
-		List<Cluster__c> clusterRootList = MockupFactory.createCluster('ClusterRootTest', null, 2, 'ClusterRoot');
+		List<Cluster__c> clusterRootList = MockupFactory.createCluster('ClusterRootTest', null, 2, 'ClusterRoot', 'CR2');
 		List<Cluster__c> getClusterList = [SELECT Id, Name FROM Cluster__c WHERE Name LIKE 'ClusterRootTest%' LIMIT 2 ];	
 		Content__c cont = [SELECT id from Content__c limit 1]; 
 		List<Recipe__c> recipesList = MockupFactory.createRecipes('recipe test', 1, cont.id, getClusterList[0].Id);

@@ -4,7 +4,7 @@ public class CG_BrandDetailControllerTest {
 	@testSetup
 	static void testSetup(){
 		MockupFactory.generateAcceleratorSetting();
-		Cluster__c cluster = MockupFactory.createCluster('ClusterTest', null, 1, 'ClusterRoot')[0];
+		Cluster__c cluster = MockupFactory.createCluster('ClusterTest', null, 1, 'ClusterRoot', 'CRT')[0];
 		Brand__c brandMaster = MockupFactory.createBrand('TestBrandMaster', 1, cluster.Id)[0];
 		Brand__c brandVariant = MockupFactory.createBrand('TestBrandVariant', 1, cluster.Id)[0];
 		Component__c component = MockupFactory.createComponent('Brand Detail', 1)[0];

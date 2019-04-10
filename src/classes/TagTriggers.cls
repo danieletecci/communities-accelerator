@@ -125,7 +125,7 @@ public with sharing class TagTriggers extends TriggersHandler {
     private void setExternalId(Tag__c recNew){
         if(!canMethod('setExternalId')){return;}
         if(recNew.ExternalID__c == null){
-            recNew.ExternalID__c = GeneralUtils.generateExternalId(recNew.Name);
+            recNew.ExternalID__c = GeneralUtils.generateExternalId(recNew.Name, recNew.Cluster__c, recNew.getSObjectType().getDescribe().getName());
         }
     }
 

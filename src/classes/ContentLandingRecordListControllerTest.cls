@@ -3,7 +3,7 @@ public class ContentLandingRecordListControllerTest {
 
     static void generalTestSetup(){
         MockupFactory.generateAcceleratorSetting();
-        Cluster__c clusterTest = MockupFactory.createCluster('ClusterTest', null, 1, 'ClusterRoot')[0];     
+        Cluster__c clusterTest = MockupFactory.createCluster('ClusterTest', null, 1, 'ClusterRoot', 'CRT')[0];     
         Content__c bannerTest = MockupFactory.createContent('Banner', clusterTest, 1)[0];
         bannerTest.Status__c = 'Draft'; update bannerTest;
         Content__c newsTest = MockupFactory.createContent('News', clusterTest, 1)[0];
@@ -28,7 +28,7 @@ public class ContentLandingRecordListControllerTest {
         
         //Given
         MockupFactory.generateAcceleratorSetting();
-        Cluster__c clusterTest = MockupFactory.createCluster('ClusterTest', null, 1, 'ClusterRoot')[0];
+        Cluster__c clusterTest = MockupFactory.createCluster('ClusterTest', null, 1, 'ClusterRoot', 'CRT')[0];
         List<Content__c> contents = MockupFactory.createContent('Banner', clusterTest, 2);
         Content__c bannerTest1 = contents[0];
         Content__c bannerTest2 = contents[1];

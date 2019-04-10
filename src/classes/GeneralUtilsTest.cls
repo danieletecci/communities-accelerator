@@ -7,9 +7,9 @@ private class GeneralUtilsTest {
     	MockupFactory.generateAcceleratorSetting();
         
         String name = 'Argentina';
-        List<Cluster__c> clusterRootList = MockupFactory.createCluster(name, null, 1, 'ClusterRoot');
+        List<Cluster__c> clusterRootList = MockupFactory.createCluster(name, null, 1, 'ClusterRoot', 'CRT');
         Cluster__c cg = clusterRootList[0];
-        List<Cluster__c> clusterList = MockupFactory.createCluster(cg.Name, cg.Id, 1, 'ClusterGroup');
+        List<Cluster__c> clusterList = MockupFactory.createCluster('BuenosAires', cg.Id, 1, 'ClusterGroup', 'CGT');
     }
 
 	@isTest
@@ -169,34 +169,37 @@ private class GeneralUtilsTest {
 		String name2 = 'Special°**° Characters';
 		String name3 = 'Number123 space';
 		String name4 = 'Number123 space';
-		String cluster = 'AR';
 		String name5 = 'Cachaça';
-		String cluster2 = 'BR';
 		String res1 = 'FrancoFolatelli';
 		String res2 = 'Special____Characters';
 		String res3 = 'Number123space';
-		String res4 = 'AR_Number123space';
-		String res5 = 'BR_Cacha_a';
+		String res4 = name4.deleteWhitespace();
+		
+		String res5 = name5.deleteWhitespace();
+		
 
-		Cluster__c clusterC = [SELECT id, name FROM Cluster__c LIMIT 1];
+		Cluster__c clusterC = [SELECT id, ExternalId__c FROM Cluster__c LIMIT 1];
 
 		// When
 		Test.startTest();
-		String test1 = GeneralUtils.generateExternalId(name1);
-		String test2 = GeneralUtils.generateExternalId(name2);
-		String test3 = GeneralUtils.generateExternalId(name3);
-		String test4 = GeneralUtils.generateExternalId(name4, cluster);
-		String test5 = GeneralUtils.generateExternalId(name5, cluster2);
-		String test6 = GeneralUtils.generateExternalId(cluster, (String)clusterC.id);
+		String test1 = GeneralUtils.generateExternalId(name1, null, null);
+		String test2 = GeneralUtils.generateExternalId(name2, null, null);
+		String test3 = GeneralUtils.generateExternalId(name3, null, null);
+		String test4 = GeneralUtils.generateExternalId(name4, clusterC.id, null);
+		String test5 = GeneralUtils.generateExternalId(name5, clusterC.id, 'Content__c');
 		Test.stopTest();
+		String dateString = String.valueOf(datetime.now());
+                 
+        dateString = dateString.replaceAll('-','');
+        dateString = dateString.replaceAll(':','');
+        dateString = dateString.replaceAll(' ','');
 
 		//Then
 		System.assertEquals(test1, res1);
 		System.assertEquals(test2, res2);
 		System.assertEquals(test3, res3);
-		System.assertEquals(test4, res4);
-		System.assertEquals(test5, res5);
-		System.assertEquals(test6, clusterC.name.deleteWhitespace().replaceAll('[^a-zA-Z0-9]', '_') + '_' + cluster);
+		System.assertEquals(test4, clusterC.ExternalId__c+'_'+res4.replaceAll('[^a-zA-Z0-9]', '_'));
+		System.assertEquals(test5, clusterC.ExternalId__c+'_'+res5.replaceAll('[^a-zA-Z0-9]', '_')+'_'+ dateString);
 	}
 
 	@isTest

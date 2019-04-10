@@ -47,9 +47,11 @@ export default class HeaderListViewPage extends LightningElement {
     handleOnClick(event){
         var typeOfAction = event.currentTarget.dataset.typeaction;
         var value = event.currentTarget.dataset.label;
-
+        const eventDetail = { 
+            value : value
+        }
         if(typeOfAction === "dispatchEvent"){
-            fireEvent(this.pageRef, 'btnheaderlistviewclicked', value);
+            fireEvent(this.pageRef, 'btnheaderlistviewclicked', eventDetail);
         }
         // else if (typeOfAction === "redirect"){
             
@@ -59,12 +61,21 @@ export default class HeaderListViewPage extends LightningElement {
     handleOnClickCreateTemplate(event){
         var typeOfAction = event.currentTarget.dataset.typeaction;
         var value = event.currentTarget.dataset.label;
+        const eventDetail = { 
+            value : value
+        }
 
         if(typeOfAction === "dispatchEvent"){
-            fireEvent(this.pageRef, 'btnheaderopencreatetemplate', value);
+            fireEvent(this.pageRef, 'btnheaderopencreatetemplate', eventDetail);
         }
         // else if (typeOfAction === "redirect"){
             
         // }
     }
+
+    filterhandler(event) {
+        const filters = event.detail;
+        this.filterselected = filters;
+    }
+
 }

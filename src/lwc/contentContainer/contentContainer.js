@@ -5,7 +5,6 @@ import getPicklistValues from	'@salesforce/apex/ContentLandingHeaderController.g
 import getTableWrapper from	'@salesforce/apex/ContentLandingRecordListController.getTableWrapper';
 import getUpdatedTableWrapper from	'@salesforce/apex/ContentLandingRecordListController.getUpdatedTableWrapper';
 import deleteContent from	'@salesforce/apex/ContentLandingRecordListController.deleteContent';
-import createFromTemplate from	'@salesforce/apex/ContentUtils.createFromTemplate';
 import ContentLandingAll from '@salesforce/label/c.ContentLandingAll';
 import ContentLandingNone from '@salesforce/label/c.ContentLandingNone';
 import ContentLandingContentType from '@salesforce/label/c.ContentLandingContentType';
@@ -18,9 +17,9 @@ import ContentLandingTemplate from '@salesforce/label/c.ContentLandingTemplate';
 import TemplateLabel from '@salesforce/label/c.Template';
 import ContentDetailContent from '@salesforce/label/c.ContentDetailContent';
 import General_Error from '@salesforce/label/c.General_Error';
-import { registerListener, unregisterAllListeners } from 'c/pubsub';
+import { registerListener, unregisterAllListeners, fireEvent } from 'c/pubsub';
 import { CurrentPageReference,NavigationMixin } from 'lightning/navigation';
-import { ShowToastEvent } from 'lightning/platformShowToastEvent'
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
 export default class ContentContainer extends NavigationMixin(LightningElement) {
     @api objectApiName;
@@ -49,6 +48,9 @@ export default class ContentContainer extends NavigationMixin(LightningElement) 
     contentTypeValue;
     radioButtonGroupValue;
     lblContent;
+    recordOffset;
+    isAddingRecords;
+    recordLimit;
 
     //Reference used for the pubsub module
     @wire(CurrentPageReference) pageRef;
@@ -99,7 +101,7 @@ export default class ContentContainer extends NavigationMixin(LightningElement) 
     }
 
     // Get data of the table from APEX CLASS
-    @wire(getTableWrapper, { contentTypeId: null, clusterId: null, categoryId: null, tagIds: null, status: ContentLandingAll, searchText: null,isTemplate: false })
+    @wire(getTableWrapper, { contentTypeId: null, clusterId: null, categoryId: null, tagIds: null, status: ContentLandingAll, searchText: null,isTemplate: false, recordOffset:0, recordLimit:20 })
     wiredTableData({ error, data }) {
         if (error) {
             this.tabledata = null;
@@ -149,10 +151,28 @@ export default class ContentContainer extends NavigationMixin(LightningElement) 
             { name: "filterRadio", label: this.lblContent, value: false, checked: true },
             { name: "filterRadio", label: TemplateLabel, value: true, checked: false },
         ];
+        this.recordOffset = 0;
+        this.recordLimit = 20;
     }
 
     connectedCallback() {
+        //Workaround
+        var html = document.getElementsByTagName('html')[0];
+        var body = document.body;
+        var lwc = this;
         registerListener('tabItemClick', this.handleTabChange, this);
+        body.onscroll = function(event){
+
+            var elem = lwc.template.querySelector('.landingContainerLwc');
+                if (html.clientHeight + html.scrollTop + 400 >= html.scrollHeight && !lwc.isAddingRecords) {
+                    //Call your helper method to show more items
+                    lwc.recordOffset += lwc.recordLimit;
+                    lwc.isAddingRecords = true;
+                    lwc.tableDataFilter(lwc.filtersValues[0].id, lwc.filtersValues[1].id, lwc.filtersValues[2].id, lwc.recordOffset);
+                    
+                }
+            }
+        
     }
 
     //Delete all pubsub events
@@ -278,6 +298,12 @@ export default class ContentContainer extends NavigationMixin(LightningElement) 
             ];
            this.tableDataFilter();
         }
+        this.filtertHandler();
+    }
+
+    filtertHandler() {
+        const selectedEvent = new CustomEvent('filtervalues', { detail: this.filtersValues });
+        this.dispatchEvent(selectedEvent);
     }
 
     //Handler Status events
@@ -293,11 +319,24 @@ export default class ContentContainer extends NavigationMixin(LightningElement) 
     }
 
 
-    tableDataFilter(clusterId, categoryId, tagIds){
-        this.setRenderTable(false);
-        getTableWrapper({ contentTypeId: this.contentTypeValue, clusterId: clusterId, categoryId: categoryId , tagIds: tagIds, status: this.statusValue, searchText: this.searchInputValue,isTemplate: this.radioButtonGroupValue })
+    tableDataFilter(clusterId, categoryId, tagIds, recordOffset){
+        var tabledata;
+        if(!recordOffset){
+            recordOffset = 0;
+            this.recordOffset = 0;
+            this.setRenderTable(false);
+        }
+        getTableWrapper({ contentTypeId: this.contentTypeValue, clusterId: clusterId, categoryId: categoryId , tagIds: tagIds, status: this.statusValue, searchText: this.searchInputValue,isTemplate: this.radioButtonGroupValue, recordOffset:recordOffset, recordLimit:this.recordLimit })
             .then(result => {
-                this.tabledata = JSON.parse(result);
+                if(recordOffset === 0){
+                    this.tabledata = JSON.parse(result);
+                }else{
+                    tabledata = JSON.parse(JSON.stringify(this.tabledata));
+                    if(JSON.parse(result).contentWrappers != null)
+                        tabledata.contentWrappers = tabledata.contentWrappers.concat(JSON.parse(result).contentWrappers);
+                    this.tabledata = tabledata;
+                    this.isAddingRecords = false;
+                }
                 this.setRenderTable(true);
             })
             .catch( err => {
@@ -309,7 +348,7 @@ export default class ContentContainer extends NavigationMixin(LightningElement) 
 
     tableDataDelete(clusterId, categoryId, tagIds){
         this.setRenderTable(false);
-        getUpdatedTableWrapper({ contentTypeId: this.contentTypeValue, clusterId: clusterId, categoryId: categoryId , tagIds: tagIds, status: this.statusValue, searchText: this.searchInputValue,isTemplate: this.radioButtonGroupValue })
+        getUpdatedTableWrapper({ contentTypeId: this.contentTypeValue, clusterId: clusterId, categoryId: categoryId , tagIds: tagIds, status: this.statusValue, searchText: this.searchInputValue,isTemplate: this.radioButtonGroupValue, recordOffset: this.recordOffset, recordLimit: this.recordLimit })
             .then(result => {
                 this.tabledata = JSON.parse(result);
                 this.setRenderTable(true);
@@ -326,25 +365,11 @@ export default class ContentContainer extends NavigationMixin(LightningElement) 
         event.stopPropagation();
         deleteContent({ contentId: idContent})
             .then(result => {
-                this.tableDataDelete(this.filtersValues[0].id, this.filtersValues[1].id, this.filtersValues[2].id);
+                //this.tableDataDelete(this.filtersValues[0].id, this.filtersValues[1].id, this.filtersValues[2].id);
+                this.removeContentFromTableData(idContent);
             })
             .catch( err => {
                 console.log(err);
-            });
-    }
-
-    handleCreateContent(event){
-        var idContent = event.detail;
-        event.stopPropagation();
-        createFromTemplate({ templateId: idContent})
-            .then(result => {
-                this.navigateToWebPage("/" + result); //result = recordId
-            })
-            .catch( err => {
-                console.log(err);
-                if(err.body.message){
-                    this.showToast(General_Error,err.body.message,'error');
-                }
             });
     }
 
@@ -352,16 +377,6 @@ export default class ContentContainer extends NavigationMixin(LightningElement) 
         this.radioButtonGroupValue = event.detail;
         this.tableDataFilter(this.filtersValues[0].id, this.filtersValues[1].id, this.filtersValues[2].id);
     }  
-
-    navigateToWebPage(url) {
-        // Navigate to a URL
-        this[NavigationMixin.Navigate]({
-            type: 'standard__webPage',
-            attributes: {
-                url: url
-            }
-        });
-    }
 
      //Open toast with a message
      showToast(toastTitle,toastMessage,toastVariant) {
@@ -373,4 +388,35 @@ export default class ContentContainer extends NavigationMixin(LightningElement) 
         });
         this.dispatchEvent(event);
     }
+
+    removeContentFromTableData(contentId){
+        var tabledata = JSON.parse(JSON.stringify(this.tabledata));
+        for(var i = 0 ; i < tabledata.contentWrappers.length ; i++){
+            if(tabledata.contentWrappers[i].contentId === contentId){
+                tabledata.contentWrappers.splice(i, 1);
+                this.tabledata = tabledata;
+                this.recordOffset--;
+            }
+        }
+    }
+
+    handleCreateContent(event){
+        var idContent = event.detail;
+        event.stopPropagation();
+
+        const eventDetail = { 
+            recordTypeId : this.value,
+            isTemplate : false,
+            componentId : null,
+            navigationId : null,
+            templateId : idContent
+        }
+        this.dispatchEventFromTemplateModal(eventDetail);
+    }
+
+	//Fire event to notify LC that general content is selected
+	dispatchEventFromTemplateModal(eventDetail) {
+		fireEvent(this.pageRef, 'btncreatecontentclicked', eventDetail);
+	}
+
 }

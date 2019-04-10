@@ -70,21 +70,21 @@ public class ContentLandingRecordListController {
     
     //Cacheable = TRUE, used when the table is not updated
     @auraEnabled(Cacheable = true)
-    public static String getTableWrapper(String contentTypeId, String clusterId, String categoryId, List<String> tagIds, String status, String searchText, Boolean isTemplate){
-        TableWrapper tableWrapper = buildTableWrapper(contentTypeId, clusterId, categoryId, tagIds, status, searchText, isTemplate);
+    public static String getTableWrapper(String contentTypeId, String clusterId, String categoryId, List<String> tagIds, String status, String searchText, Boolean isTemplate, Integer recordOffset, Integer recordLimit){
+        TableWrapper tableWrapper = buildTableWrapper(contentTypeId, clusterId, categoryId, tagIds, status, searchText, isTemplate, recordOffset, recordLimit);
         // El Wrapper es enviado al componente en forma de JSON
         return JSON.serialize(tableWrapper);
     }
     
     //Cacheable = FALSE, used when the table is updated
     @auraEnabled(Cacheable = false)
-    public static String getUpdatedTableWrapper(String contentTypeId, String clusterId, String categoryId, List<String> tagIds, String status, String searchText, Boolean isTemplate){
-        TableWrapper tableWrapper = buildTableWrapper(contentTypeId, clusterId, categoryId, tagIds, status, searchText, isTemplate);
+    public static String getUpdatedTableWrapper(String contentTypeId, String clusterId, String categoryId, List<String> tagIds, String status, String searchText, Boolean isTemplate, Integer recordOffset, Integer recordLimit){
+        TableWrapper tableWrapper = buildTableWrapper(contentTypeId, clusterId, categoryId, tagIds, status, searchText, isTemplate, recordOffset, recordLimit);
         // El Wrapper es enviado al componente en forma de JSON
         return JSON.serialize(tableWrapper);
     }
     
-    public static TableWrapper buildTableWrapper(String contentType, String clusterId, String categoryId, List<String> tagIds, String status, String searchText, Boolean isTemplate){
+    public static TableWrapper buildTableWrapper(String contentType, String clusterId, String categoryId, List<String> tagIds, String status, String searchText, Boolean isTemplate, Integer recordOffset, Integer recordLimit){
         FilterWrapper wrapper = new FilterWrapper(contentType, clusterId, categoryId, tagIds, status, searchText, isTemplate);
         String title = (wrapper.contentTypeName + ' Records').toUpperCase();
         String columnSetString = getColumnSet();
@@ -93,7 +93,7 @@ public class ContentLandingRecordListController {
         List<String> columnLabelSet = getColumnLabelSet();
         columnLabelSet.add(' ');
         TableWrapper tableWrapper = new TableWrapper(title, columnLabelSet, new List<ContentWrapper>());
-        List<Content__c> contents = getRecords(wrapper);
+        List<Content__c> contents = getRecords(wrapper, recordOffset, recordLimit);
         // Filtra los Contenidos que contienen el String buscado en la columna Name
         if(searchText != null && searchText != '') contents = searchTextInRecords(searchText, contents);
         // Construye los Wrappers auxiliares
@@ -127,7 +127,7 @@ public class ContentLandingRecordListController {
         return new ContentWrapper(content.Id, fieldWrappers, actions);
     }                                                                                  
                                                               
-    static List<Content__c> getRecords(FilterWrapper wrapper){      
+    static List<Content__c> getRecords(FilterWrapper wrapper, Integer recordOffset, Integer recordLimit){      
         String columnSet = getColumnSet();
         columnSet += columnSet.contains('Status__c') ? '' : ', Status__c';
         columnSet += columnSet.contains('isTemplate__c') ? '' : ', isTemplate__c';                                                                                      
@@ -137,14 +137,15 @@ public class ContentLandingRecordListController {
         if(queryConditions.size() <= 1){
             if(wrapper.searchText == null || wrapper.searchText == ''){
                 queryInString += 'WHERE isTemplate__c = ' + wrapper.isTemplate + ' ';
-                queryInString = setDefaultCondition(queryInString);
+                queryInString = setDefaultCondition(queryInString, recordOffset, recordLimit);
             } else {
-                queryInString = setSearchCondition(queryInString, wrapper.searchText);
+                queryInString = setSearchCondition(queryInString, wrapper.searchText, recordOffset, recordLimit);
             }
         // Si recibe filtros, construye la query
         } else {
-            queryInString = setCustomConditions(queryInString, queryConditions);
+            queryInString = setCustomConditions(queryInString, queryConditions, recordOffset, recordLimit);
         }
+        
         // Devuelve los registros filtrados
         System.debug('queryInString: ' + queryInString);
         List<Content__c> records = Database.query(queryInString);
@@ -217,19 +218,20 @@ public class ContentLandingRecordListController {
         return queryConditions;
     }
 
-    static String setDefaultCondition(String queryInString){
-        String defaultCondition = 'ORDER BY LastModifiedDate DESC LIMIT 10';
+    static String setDefaultCondition(String queryInString, Integer recordOffset, Integer recordLimit){
+        String defaultCondition = 'ORDER BY LastModifiedDate DESC  LIMIT ' + recordLimit + ' OFFSET ' + recordOffset;
         queryInString += defaultCondition;
         return queryInString;
     }
 
-    static String setSearchCondition(String queryInString, String searchText){
+    static String setSearchCondition(String queryInString, String searchText, Integer recordOffset, Integer recordLimit){
         String searchCondition = 'WHERE Name LIKE \'%' + searchText + '%\'';
         queryInString += searchCondition;
+        queryInString +=  ' LIMIT ' + recordLimit + ' OFFSET ' + recordOffset;
         return queryInString;
     }
 
-    static String setCustomConditions(String queryInString, List<String> queryConditions){
+    static String setCustomConditions(String queryInString, List<String> queryConditions, Integer recordOffset, Integer recordLimit){
         // Agrega las Query Conditions a la query
         queryInString += 'WHERE ';
         for(String queryCondition : queryConditions){
@@ -237,7 +239,8 @@ public class ContentLandingRecordListController {
                 queryInString += queryCondition + ' AND ';
             }
             else{
-                queryInString += queryCondition;
+                queryInString += queryCondition ;
+                queryInString +=  ' LIMIT '+ recordLimit + ' OFFSET ' + recordOffset;
             } 
         }
         return queryInString;
@@ -269,6 +272,7 @@ public class ContentLandingRecordListController {
                 }
             }
         }
+        
         // Devuelve la lista de forma que pueda ser incluida en la query dinámicamente
         return tagedContentIds.length() > 2 ? tagedContentIds = '(' + tagedContentIds.substring(0, tagedContentIds.length()-2) + ')' : null;
     }

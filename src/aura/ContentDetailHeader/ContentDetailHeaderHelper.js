@@ -91,34 +91,7 @@
 		$A.enqueueAction(action);
 	},
 	createFromTemplate : function(component){
-		var action = component.get('c.createFromTemplate');
-		var helper = this;
-
-		action.setParams({
-			recordId: component.get('v.recordId')
-    	});
-
-		action.setCallback(this, function(response){
-			var state = response.getState();
-			if (state === "SUCCESS") {
-				helper.displaySuccessMessage(helper.stringFormat($A.get("$Label.c.ContentCreatedFromTemplate"), component.get("v.contentData").Name));
-				var contentId = response.getReturnValue();
-				var navEvt = $A.get("e.force:navigateToSObject");
-				navEvt.setParams({
-					"recordId": contentId,
-					 });
-				navEvt.fire();
-			} else if (state === "ERROR") {
-				let errors = response.getError();
-				let message = 'Unknown error';
-				if (errors && Array.isArray(errors) && errors.length > 0) {
-				    message = errors[0].message;
-				}
-				helper.displayErrorMessage(message);
-			}
-		});
-
-		$A.enqueueAction(action);
+		component.find("newContentModal").show();
 	},
 	deleteContent : function(component){
 		var action = component.get('c.deleteContent');

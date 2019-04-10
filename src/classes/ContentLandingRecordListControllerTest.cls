@@ -17,7 +17,7 @@ public class ContentLandingRecordListControllerTest {
         generalTestSetup();
 
         //When
-        ContentLandingRecordListController.TableWrapper tableWrapperTest = ContentLandingRecordListController.buildTableWrapper(null, null, null, null, null, null, false);
+        ContentLandingRecordListController.TableWrapper tableWrapperTest = ContentLandingRecordListController.buildTableWrapper(null, null, null, null, null, null, false, 0, 5);
 
         //Then
         System.assertEquals(2, tableWrapperTest.contentWrappers.size());
@@ -44,7 +44,7 @@ public class ContentLandingRecordListControllerTest {
         insert new TagAssignment__c(Component__c = componentTest.Id, Content__c = bannerTest2.Id, Tag__c = TagTest2.Id);
 
         //When
-        ContentLandingRecordListController.TableWrapper tableWrapperTest = ContentLandingRecordListController.buildTableWrapper(bannerRecordTypeId, clusterTest.Id, categoryTest.Id, new List<String>{TagTest1.Id, TagTest2.Id}, 'Draft', null, false);
+        ContentLandingRecordListController.TableWrapper tableWrapperTest = ContentLandingRecordListController.buildTableWrapper(bannerRecordTypeId, clusterTest.Id, categoryTest.Id, new List<String>{TagTest1.Id, TagTest2.Id}, 'Draft', null, false, 0, 5);
 
         //Then
         System.assertEquals(1, tableWrapperTest.contentWrappers.size());
@@ -58,7 +58,7 @@ public class ContentLandingRecordListControllerTest {
         generalTestSetup();
 
         //When
-        ContentLandingRecordListController.TableWrapper tableWrapperTest = ContentLandingRecordListController.buildTableWrapper(null, null, null, null, null, 'Banner', false);
+        ContentLandingRecordListController.TableWrapper tableWrapperTest = ContentLandingRecordListController.buildTableWrapper(null, null, null, null, null, 'Banner', false, 0, 5);
         
         //Then
         System.assertEquals(1, tableWrapperTest.contentWrappers.size());        
@@ -72,7 +72,7 @@ public class ContentLandingRecordListControllerTest {
         generalTestSetup();
 
         //When
-        ContentLandingRecordListController.TableWrapper tableWrapperTest = ContentLandingRecordListController.buildTableWrapper(null, null, null, null, null, 'String Inexistente', false);
+        ContentLandingRecordListController.TableWrapper tableWrapperTest = ContentLandingRecordListController.buildTableWrapper(null, null, null, null, null, 'String Inexistente', false, 0, 5);
         
         //Then  
         System.assertEquals(True, tableWrapperTest.title == null);
@@ -86,8 +86,8 @@ public class ContentLandingRecordListControllerTest {
         String bannerContentTestId = [SELECT Id FROM Content__c WHERE RecordType.Name = 'Banner' LIMIT 1].Id;
 
         //When
-        ContentLandingRecordListController.TableWrapper tableWrapperTest1 = ContentLandingRecordListController.buildTableWrapper(null, null, null, null, null, null, false);
-        String tableWrapperJSON = ContentLandingRecordListController.getTableWrapper(null, null, null, null, null, null, false);
+        ContentLandingRecordListController.TableWrapper tableWrapperTest1 = ContentLandingRecordListController.buildTableWrapper(null, null, null, null, null, null, false, 0, 5);
+        String tableWrapperJSON = ContentLandingRecordListController.getTableWrapper(null, null, null, null, null, null, false, 0, 5);
         ContentLandingRecordListController.TableWrapper tableWrapperTest2 = (ContentLandingRecordListController.TableWrapper) JSON.deserialize(tableWrapperJSON, ContentLandingRecordListController.TableWrapper.class);
 
         //Then
@@ -106,8 +106,8 @@ public class ContentLandingRecordListControllerTest {
         String bannerContentTestId = [SELECT Id FROM Content__c WHERE RecordType.Name = 'Banner' LIMIT 1].Id;
 
         //When
-        ContentLandingRecordListController.TableWrapper tableWrapperTest1 = ContentLandingRecordListController.buildTableWrapper(null, null, null, null, null, null, false);
-        String tableWrapperJSON = ContentLandingRecordListController.getUpdatedTableWrapper(null, null, null, null, null, null, false);
+        ContentLandingRecordListController.TableWrapper tableWrapperTest1 = ContentLandingRecordListController.buildTableWrapper(null, null, null, null, null, null, false, 0, 5);
+        String tableWrapperJSON = ContentLandingRecordListController.getUpdatedTableWrapper(null, null, null, null, null, null, false, 0, 5);
         ContentLandingRecordListController.TableWrapper tableWrapperTest2 = (ContentLandingRecordListController.TableWrapper) JSON.deserialize(tableWrapperJSON, ContentLandingRecordListController.TableWrapper.class);
 
         //Then

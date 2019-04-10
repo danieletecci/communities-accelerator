@@ -9,3 +9,17 @@
     width: 80%;
     margin: auto;
 }
+
+
+@media screen and (min-width: 992px) {
+    .spacer {
+        border: none;
+    }
+    .list-container {
+        flex-flow: initial;
+        justify-content: flex-start;
+    }
+    .slds-col {
+        padding: 0 8px;
+    }
+}

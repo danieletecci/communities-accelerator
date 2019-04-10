@@ -3,8 +3,15 @@
     font-size: 16px;
     margin: 20px auto;
     color: #C0C0C0;
-    width: 80%;
     min-width: 300px;
+    > div {
+        width: 80%;
+        margin: auto;
+    }
+    .img-container-portrait{
+        width: 100%;
+        margin: 0;
+    }
 }
 
 .container-landscape {
@@ -36,10 +43,6 @@
     color: #C0C0C0;
 }
 
-.title-container {
-    margin-top: 10px;
-}
-
 .title {
     word-break: break-word;
     font-family: 'Roboto';
@@ -52,13 +55,13 @@
 }
 
 .body {
-    max-height: 42px;
+    max-height: 3em;
     overflow: hidden;
     font-weight: 400;
 }
 
 .body-portrait {
-    margin: 10px 0;
+    margin: 10px 0 ;
 }
 
 .body-landscape { 
@@ -68,7 +71,7 @@
 
 .img-container-portrait {
     width: 100vw;
-    height: 150px;
+    height: 140px;
     position: relative;
     left: 50%;
     overflow: hidden;
@@ -89,7 +92,9 @@
 
 .description {
     font-weight: 400;
-
+    &:last-child {
+        padding-top: 10px
+    }
 }
 
 .desc-normal {
@@ -100,7 +105,6 @@
 .desc-highlight {
     color: #333333;
     line-height: 17px; 
-    padding-top: 8px;
 }
 
 .img-landscape {

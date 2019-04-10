@@ -3,8 +3,8 @@
 	<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
 
 	<aura:attribute name="recordId" type="Id" />
-    <aura:attribute name="objectName" type="String" />
-    <aura:attribute name="parentLookUp" type="String" />
+    <aura:attribute name="objectName" type="String" access="global"/>
+    <aura:attribute name="parentLookUp" type="String" access="global"/>
 	<aura:attribute name="root" type="Object" />
 
 	<aura:if isTrue="{!not(empty(v.root))}">

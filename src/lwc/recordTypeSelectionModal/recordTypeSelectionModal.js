@@ -19,6 +19,8 @@ export default class RecordTypeSelectionModal extends NavigationMixin(LightningE
 	@api options; //type="List"
 	@api option; //type="List"
 	@api value; //type="String"
+	@api clusterId; //type="String"
+	@api clusterName; //type="String"
 	
 	@track create;
 	@track templateLabel;
@@ -63,8 +65,8 @@ export default class RecordTypeSelectionModal extends NavigationMixin(LightningE
 				var structureContent;
 				this.options = JSON.parse(JSON.stringify(result));
 				structureContent = {Id: 'structureContent',
-														Name: "Structure Content", 
-														Description: this.structureContentDescription};
+									Name: "Structure Content", 
+									Description: this.structureContentDescription};
 				opt.push(structureContent);
 				this.option = JSON.parse(JSON.stringify(opt));
 			})
@@ -127,7 +129,8 @@ export default class RecordTypeSelectionModal extends NavigationMixin(LightningE
 				recordTypeId : this.value,
 				isTemplate : true,
 				componentId : null,
-				navigationId : null
+				navigationId : null,
+				templateId : null
 			}
 			this.dispatchEventTemplateModal(eventDetail);
 		}else{
@@ -138,7 +141,8 @@ export default class RecordTypeSelectionModal extends NavigationMixin(LightningE
 					recordTypeId : this.value,
 					isTemplate : false,
 					componentId : null,
-					navigationId : null
+					navigationId : null,
+					templateId : null
 				}
 				this.dispatchEventTemplateModal(eventDetail);
 			}
@@ -168,14 +172,16 @@ export default class RecordTypeSelectionModal extends NavigationMixin(LightningE
     }
 
 	//Handle event dispatched when create content button is clicked on the headerListViewComponent
-	handleClickBtnHeader(){
+	handleClickBtnHeader(event){
+		this.value = event.value;
 		this.isTemplate = false;
 		this.onInit();
 		this.showHideModal();
 	}
 
 	//Handle event dispatched when create template button is clicked on the headerListViewComponent
-	handleClickBtnHeaderCreateTemplate(){
+	handleClickBtnHeaderCreateTemplate(event){
+		this.value = event.value;
 		this.isTemplate = true;
 		this.onInit();
 		this.showHideModal();

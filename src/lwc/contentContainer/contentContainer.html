@@ -1,5 +1,5 @@
 <template>
-    <div class="slds-grid slds-wrap">
+    <div class="slds-grid slds-wrap landingContainerLwc">
         <div class="slds-col left-col slds-size_2-of-12" onfilterselected={handlerFilterSidebarEvent}>
             <template if:true={optionsFilterRadioButtonGroup}>
                 <c-radio-button-group options={optionsFilterRadioButtonGroup} onradiobuttongroupselected={handleRadioButtonGroupEvent}></c-radio-button-group>
@@ -13,7 +13,7 @@
             <template if:true={renderHeader}>
                 <c-record-type-selection-modal objectapiname={objectApiName}></c-record-type-selection-modal>
                 <c-create-new-content-modal></c-create-new-content-modal>
-                <c-header-list-view-page objectlabel={objectLabel} filtersstatus={filtersStatus} filterselected={filtersValues} headerbuttonsprimary={headerButtonsPrimary} headerbuttonssecondary={headerButtonsSecondary}></c-header-list-view-page>
+                <c-header-list-view-page objectlabel={objectLabel} filtersstatus={filtersStatus} filterselected={filtersValues} headerbuttonsprimary={headerButtonsPrimary} headerbuttonssecondary={headerButtonsSecondary} ></c-header-list-view-page>
             </template>
             <template if:true={renderTable}>
                 <div class="tableContainer" >

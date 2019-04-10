@@ -31,6 +31,7 @@ export default class RecordTypeSelectionModal extends NavigationMixin(LightningE
     // Use alerts instead of toast to notify user
     @api notifyViaAlerts = false;
     @api clusters;
+    @api templateId;
     
     @track isMultiEntry = false;
     @api initialSelection = [
@@ -72,6 +73,7 @@ export default class RecordTypeSelectionModal extends NavigationMixin(LightningE
 
     constructor(){
         super();
+        this.isDisabled = true;
         this.recordNameValue = null;
     }
 
@@ -90,6 +92,9 @@ export default class RecordTypeSelectionModal extends NavigationMixin(LightningE
         this.isTemplate = event.isTemplate;
         this.componentId = event.componentId;
         this.navigationUrl = event.navigationUrl;
+        this.templateId = event.templateId;
+        this.isDisabled = true;
+        this.recordNameValue = null;
         this.onInit();
         this.showHideModal();
     }
@@ -147,6 +152,7 @@ export default class RecordTypeSelectionModal extends NavigationMixin(LightningE
     handleSelectionChange() {
         const selection = JSON.parse(JSON.stringify(this.template.querySelector('c-lightning-lookup').getSelection()));
         this.selectedClusterId = ( selection.length > 0) ? selection[0].id : null;
+        this.checkDisable();
     }
 
     //Sets the modal title.
@@ -161,9 +167,6 @@ export default class RecordTypeSelectionModal extends NavigationMixin(LightningE
     showHideModal(){
         var cmpTarget = this.template.querySelector('section.modalbox3');
         var cmpBack = this.template.querySelector('div.divBackdrop3');
-       
-        this.isDisabled = true;
-        this.recordNameValue = null;
 
         cmpTarget.classList.toggle("slds-fade-in-open");
         cmpBack.classList.toggle("slds-backdrop_open");
@@ -179,6 +182,19 @@ export default class RecordTypeSelectionModal extends NavigationMixin(LightningE
         }
     }
 
+    handleRecordNameChange(event) {
+        this.recordNameValue = event.target.value;
+        this.checkDisable();
+    }
+
+    checkDisable(){
+        if(this.recordNameValue && this.selectedClusterId){
+            this.isDisabled = false;
+        }else{
+            this.isDisabled = true;
+        }
+    }
+
     //Create the record.
     setRecord(){
         var contentModal = this;
@@ -190,25 +206,26 @@ export default class RecordTypeSelectionModal extends NavigationMixin(LightningE
             componentId :  this.componentId, 
             navigationUrl : this.navigationUrl, 
             recordName : this.recordNameValue, 
-            clusterId : this.selectedClusterId
+            clusterId : this.selectedClusterId,
+            templateId : this.templateId
         }).then(result => {
             this.result = JSON.parse(JSON.stringify(result));
-            if(result.isSuccess){
-                this.showHideModal();
-                if(this.salesforceDomain == null){
-                    this.navigateToWebPage("/" + this.result.message);
-                } else {
-                    contentModal.dispatchEvent(new CustomEvent('contentcreated', {detail: { recordId: this.result.message }}));
-                } 
+            this.showHideModal();
+            if(this.salesforceDomain == null){
+                this.navigateToWebPage("/" + this.result);
+            } else {
+                contentModal.dispatchEvent(new CustomEvent('contentcreated', {detail: { recordId: this.result }}));
+            }
                 message = this.stringFormat(this.label.contentCreated, recordName);
                 this.showToast(this.label.generalSuccess, message, "success");
-            }else{
-                this.showToast(this.label.generalError, this.result.message, "errror");
-            }
+            
         // eslint-disable-next-line handle-callback-err
         }).catch( err => {
-            contentModal.showToast(this.label.generalError, this.label.errorMessageLabel, "errror");
-        });
+			console.log(err);
+			if(err.body.message){
+				this.showToast(this.label.generalError, err.body.message, 'error');
+			}
+		});
     }
 
     //Navigates to URL

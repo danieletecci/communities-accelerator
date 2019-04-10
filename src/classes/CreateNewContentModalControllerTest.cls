@@ -27,6 +27,8 @@ public class CreateNewContentModalControllerTest {
 
     @isTest
     static void getClusters(){
+        Cluster__c cluster = [SELECT id FROM Cluster__c WHERE Name LIKE: '%Cluster Root%' LIMIT 1];
+        MockupFactory.createClusterUser(cluster.Id, UserInfo.getUserId(), 1, 'Read/Write');
         try{
             CreateNewContentModalController.getClusters();
         } catch(Exception e){
@@ -43,14 +45,15 @@ public class CreateNewContentModalControllerTest {
         Cluster__c cluster = [SELECT id FROM Cluster__c LIMIT 1];
 
         //When
-        CreateNewContentModalController.SaveResponseWrapper response = CreateNewContentModalController.createNewContent((String) rt.Id, false, (String) component.Id, null, 'Test FAQ', cluster.Id);
+        String response = CreateNewContentModalController.createNewContent((String) rt.Id, false, (String) component.Id, null, 'Test FAQ', cluster.Id, null);
 
         //Then
-        system.assert(response.isSuccess);
+        system.assert(response != null);
         List<Content__c> content = [SELECT Id, Name FROM Content__c WHERE Name = 'Test FAQ' LIMIT 1];
         system.assert(!content.isEmpty());
 
     }
+
 
     @isTest
     static void createNewContentFail(){
@@ -59,11 +62,16 @@ public class CreateNewContentModalControllerTest {
         RecordType rt = [SELECT Id FROM RecordType WHERE SobjectType = 'Content__c' AND DeveloperName = 'FAQ'];
         Cluster__c cluster = [SELECT id FROM Cluster__c LIMIT 1];
 
+        String response = '';
         //When
-        CreateNewContentModalController.SaveResponseWrapper response = CreateNewContentModalController.createNewContent(rt.Id, true, rt.Id, null, 'Test FAQ', cluster.Id);
+        try{
+            response = CreateNewContentModalController.createNewContent(rt.Id, true, rt.Id, null, 'Test FAQ', cluster.Id, null);
+        }catch(Exception e){
+            
+        }
 
         //Then
-        system.assert(!response.isSuccess);
+        system.assert(response == '');
 
     }
     

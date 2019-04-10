@@ -280,7 +280,7 @@ public class ContentUtilsTest {
         Test.startTest();
         String result = '';
         try{
-            result = ContentUtils.createFromTemplate(contentList[0].Id);
+            result = ContentUtils.createFromTemplate(contentList[0].Id, 'Test Template Name', null);
         }catch(Exception e){
         }
         Test.stopTest();
@@ -304,7 +304,7 @@ public class ContentUtilsTest {
         Test.startTest();
         String result = '';
         try{
-            result = ContentUtils.createFromTemplate(contentList[0].Id);
+            result = ContentUtils.createFromTemplate(contentList[0].Id, 'Test Template Name', null);
         }catch(Exception e){
         }
         Test.stopTest();

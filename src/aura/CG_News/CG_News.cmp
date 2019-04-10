@@ -1,29 +1,35 @@
-<aura:component extends="c:CG_BaseComponent" implements="forceCommunity:availableForAllPageTypes">
+<aura:component extends="c:CG_BaseComponent" implements="forceCommunity:availableForAllPageTypes" access="global">
 
 	<!-- GENERAL VARIABLES --> 
-	<aura:attribute name="componentExternalId" type="String" />
+	<aura:attribute name="componentExternalId" type="String" access="global"/>
 	<aura:attribute name="componentType" type="String" default="News"/>
     <aura:attribute name="componentWrapper" type="Object" />
     <aura:attribute name="showPaging" type="Boolean" default="{!v.componentWrapper.listAllContentIds.length > v.componentWrapper.contentWrapper.length}"/>
 
     <aura:if isTrue="{!v.componentWrapper.listAllContentIds.length > 0}">
-        <aura:if isTrue="{!$Browser.isPhone}">
+        <!-- <aura:if isTrue="{!$Browser.isPhone}"> -->
+                <h2 class="list-header">{!v.componentWrapper.component.title}</h2>
                 <aura:if isTrue="{!v.componentWrapper.component.RecordType.DeveloperName == 'News'}">
-                        <c:cardList onnavigatetodetail="{!c.handleNavigateToDetail}" contents="{!v.componentWrapper.contentWrapper}" type="{!v.componentType}"/>
+                        <c:cardList 
+                        onnavigatetodetail="{!c.handleNavigateToDetail}" 
+                        contents="{!v.componentWrapper.contentWrapper}" 
+                        type="{!v.componentType}"
+                        numberofcards="{!v.componentWrapper.component.PageSize__c}"
+                        />
                         <aura:set attribute="else">
                                 <c:relatedCardList onnavigatetodetail="{!c.handleNavigateToDetail}" contents="{!v.componentWrapper.contentWrapper}" type="{!v.componentWrapper.component.RecordType.DeveloperName}"/>
                         </aura:set>
                 </aura:if>
-        </aura:if>
-        <aura:if isTrue="{!!$Browser.isPhone}">
-                <!-- PORTRAIT AND HIGHLIGHTS -->
+        <!-- </aura:if> -->
+        <!-- <aura:if isTrue="{!!$Browser.isPhone}">
+                PORTRAIT AND HIGHLIGHTS
                 <aura:if isTrue="{!or(v.componentWrapper.component.NewsType__c == 'Portrait', v.componentWrapper.component.NewsType__c == 'Highlight')}" >
                     <aura:iteration items="{!v.componentWrapper.contentWrapper}" var="contentItem" >
                         <c:CG_NewsItem contentWrapper="{!contentItem}" componentWrapper="{!v.componentWrapper}" parentComponentId="{!v.parentComponentId}" type="{!v.componentWrapper.component.NewsType__c}" linkDetail="{!v.componentWrapper.component.LinkDetail__r.URL__c}"/>
                     </aura:iteration>
                 </aura:if>
         
-                <!-- LANDSCAPE -->
+                LANDSCAPE
                 <aura:if isTrue="{!v.componentWrapper.component.NewsType__c == 'Landscape'}" >
                     <div class="main-div-landscape" style="{! 'height: ' + v.aspectRatios.height1_5 }">
                         <lightning:layout >
@@ -71,6 +77,6 @@
                         </div>
                     </aura:if>
                 </aura:if>
-        </aura:if>
+        </aura:if> -->
     </aura:if>
 </aura:component>

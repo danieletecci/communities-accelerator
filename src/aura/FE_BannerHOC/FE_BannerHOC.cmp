@@ -3,7 +3,7 @@
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
 
 	<!-- GENERAL VARIABLES --> 
-    <aura:attribute name="componentExternalId" type="String" />
+    <aura:attribute name="componentExternalId" type="String" access="global"/>
     <aura:attribute name="componentWrapper" type="Object"/>
     <aura:attribute name="elements" type="Object"/>
     

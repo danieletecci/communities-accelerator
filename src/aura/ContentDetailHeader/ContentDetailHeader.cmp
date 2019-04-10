@@ -12,6 +12,7 @@
 	<aura:attribute name="isNameEdit"			type="Boolean"		default="false"	/>
 	<aura:attribute name="confirmationModal"	type="Aura.Component"				/>
 	<aura:attribute name="security"				type="Object"						/>
+    <aura:attribute name="IsNewFromTemplate"	type="Boolean"		default="false"	/>
 
 	<aura:registerEvent name="upsertContentsEvent" type="c:upsertContentsEvent"/>
 
@@ -117,7 +118,8 @@
 
 	{!v.confirmationModal}
 
-	<!--<c:BE_ConfirmationModal aura:id="confirmationModal" title="{! $Label.c.General_Delete + ' ' + v.contentData.Name}" message="{!$Label.c.ContentDeletingMessage}" confirmLabel="{!$Label.c.General_Delete}" confirmVariant="destructive" />-->
-
-
+    <aura:if isTrue="{!v.contentData.Id != null}">
+    	<c:createNewContentModal aura:id="newContentModal" oncontentcreated="{!c.doGoToContent}" templateId="{!v.contentData.Id}"></c:createNewContentModal>
+    </aura:if>
+    
 </aura:component>

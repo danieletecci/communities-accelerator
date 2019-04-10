@@ -1,4 +1,4 @@
-<template>
+<template >
         <div class="slds-page-header card-header-title">
             <div class="slds-page-header__row">
                 <div class="slds-page-header__col-title">
@@ -7,7 +7,7 @@
                             <div class="slds-page-header__name">
                                 <div class="slds-page-header__name-title">
                                     <h1 class="h1-object-label slds-align_absolute-center">
-                                        <span class="slds-page-header__title slds-truncate" title={objectlabel}>
+                                        <span class= "slds-page-header__title slds-truncate" title={objectlabel}>
                                             {objectlabel}
                                         </span>
                                     </h1>
@@ -16,7 +16,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="slds-page-header__col-actions">
+                <div class="slds-page-header__col-actions" onfiltervalues={filterhandler}>
                     <div class="slds-page-header__controls">
                         <lightning-button-group class="header-button-group">
                             <template for:each={headerbuttonsprimary} for:item="button">

@@ -6,12 +6,12 @@
     <aura:attribute name="isLoading" type="boolean" default="true" />
     
     <!-- Parameterizable attributes -->
-    <aura:attribute name="relationTitle" type="String"/>
-    <aura:attribute name="junctionObjectAPIName" type="String"/>
-    <aura:attribute name="parentLookup" type="String"/>
-    <aura:attribute name="secondaryLookup" type="String"/>
-    <aura:attribute name="whereCondition" type="String"/>
-    <aura:attribute name="OrderFieldName" type="String"/>
+    <aura:attribute name="relationTitle" type="String" access="global"/>
+    <aura:attribute name="junctionObjectAPIName" type="String" access="global"/>
+    <aura:attribute name="parentLookup" type="String" access="global"/>
+    <aura:attribute name="secondaryLookup" type="String" access="global"/>
+    <aura:attribute name="whereCondition" type="String" access="global"/>
+    <aura:attribute name="OrderFieldName" type="String" access="global"/>
     
     <!-- Junction Object Records -->
     <aura:attribute name="recordsWrapper" type="Object"/>

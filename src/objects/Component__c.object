@@ -1512,11 +1512,11 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Initial</fullName>
+                <fullName>Pending</fullName>
                 <default>true</default>
             </values>
             <values>
-                <fullName>Pending Approval</fullName>
+                <fullName>In Approval</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1794,11 +1794,11 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Initial</fullName>
+                <fullName>Pending</fullName>
                 <default>true</default>
             </values>
             <values>
-                <fullName>Pending Approval</fullName>
+                <fullName>In Approval</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2116,11 +2116,11 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Initial</fullName>
+                <fullName>Pending</fullName>
                 <default>true</default>
             </values>
             <values>
-                <fullName>Pending Approval</fullName>
+                <fullName>In Approval</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2442,7 +2442,7 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Pending Approval</fullName>
+                <fullName>In Approval</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2760,11 +2760,11 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Initial</fullName>
+                <fullName>Pending</fullName>
                 <default>true</default>
             </values>
             <values>
-                <fullName>Pending Approval</fullName>
+                <fullName>In Approval</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3022,11 +3022,11 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Initial</fullName>
+                <fullName>Pending</fullName>
                 <default>true</default>
             </values>
             <values>
-                <fullName>Pending Approval</fullName>
+                <fullName>In Approval</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3324,11 +3324,11 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Initial</fullName>
+                <fullName>Pending</fullName>
                 <default>true</default>
             </values>
             <values>
-                <fullName>Pending Approval</fullName>
+                <fullName>In Approval</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3618,11 +3618,11 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Initial</fullName>
+                <fullName>Pending</fullName>
                 <default>true</default>
             </values>
             <values>
-                <fullName>Pending Approval</fullName>
+                <fullName>In Approval</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3900,11 +3900,11 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Initial</fullName>
+                <fullName>Pending</fullName>
                 <default>true</default>
             </values>
             <values>
-                <fullName>Pending Approval</fullName>
+                <fullName>In Approval</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4221,11 +4221,11 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Initial</fullName>
+                <fullName>Pending</fullName>
                 <default>true</default>
             </values>
             <values>
-                <fullName>Pending Approval</fullName>
+                <fullName>In Approval</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4543,11 +4543,11 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Initial</fullName>
+                <fullName>Pending</fullName>
                 <default>true</default>
             </values>
             <values>
-                <fullName>Pending Approval</fullName>
+                <fullName>In Approval</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4837,11 +4837,11 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Initial</fullName>
+                <fullName>Pending</fullName>
                 <default>true</default>
             </values>
             <values>
-                <fullName>Pending Approval</fullName>
+                <fullName>In Approval</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -5131,11 +5131,11 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Initial</fullName>
+                <fullName>Pending</fullName>
                 <default>true</default>
             </values>
             <values>
-                <fullName>Pending Approval</fullName>
+                <fullName>In Approval</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -5449,11 +5449,11 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Initial</fullName>
+                <fullName>Pending</fullName>
                 <default>true</default>
             </values>
             <values>
-                <fullName>Pending Approval</fullName>
+                <fullName>In Approval</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -5759,11 +5759,11 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Initial</fullName>
+                <fullName>Pending</fullName>
                 <default>true</default>
             </values>
             <values>
-                <fullName>Pending Approval</fullName>
+                <fullName>In Approval</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -6080,11 +6080,11 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Initial</fullName>
+                <fullName>Pending</fullName>
                 <default>true</default>
             </values>
             <values>
-                <fullName>Pending Approval</fullName>
+                <fullName>In Approval</fullName>
                 <default>false</default>
             </values>
             <values>

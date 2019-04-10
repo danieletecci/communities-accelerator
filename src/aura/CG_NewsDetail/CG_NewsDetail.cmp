@@ -1,6 +1,6 @@
-<aura:component extends="c:CG_BaseComponent" implements="forceCommunity:availableForAllPageTypes">
+<aura:component extends="c:CG_BaseComponent" implements="forceCommunity:availableForAllPageTypes" access="global">
 	<!-- GENERAL VARIABLES --> 
-	<aura:attribute name="componentExternalId" type="String" />
+	<aura:attribute name="componentExternalId" type="String" access="global"/>
 	<aura:attribute name="componentType" type="String" default="NewsDetail"/>
 	
 	<aura:if isTrue="{!$Browser.isPhone}">

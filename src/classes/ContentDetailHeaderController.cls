@@ -71,7 +71,7 @@ public with sharing class ContentDetailHeaderController {
     
     @AuraEnabled
     public static String createFromTemplate(String recordId){
-        return ContentUtils.createFromTemplate(recordId);
+        return null; //ContentUtils.createFromTemplate(recordId);
     }
 
     private static Content__c getContentData(String recordId){

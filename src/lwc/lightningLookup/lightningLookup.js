@@ -37,7 +37,6 @@ export default class LightningLookup extends LightningElement {
         return this.selection;
     }
 
-
 // INTERNAL FUNCTIONS
 
     updateSearchTerm(newSearchTerm) {

@@ -2,7 +2,7 @@
 
     <ltng:require scripts="/resource/Jszip/dist/jszip.js" />
 	<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
-    <aura:attribute name="componentExternalId" type="String" />
+    <aura:attribute name="componentExternalId" type="String" access="global"/>
     <aura:attribute name="contentWrapper" type="Object" />
     <aura:attribute name="contentId" type="String" />
     <aura:attribute name="downloadList" type="String[]" />

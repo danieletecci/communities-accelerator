@@ -1,8 +1,8 @@
-<aura:component controller="CG_NavigationController" extends="c:CG_BaseComponent" implements="forceCommunity:availableForAllPageTypes">
+<aura:component controller="CG_NavigationController" extends="c:CG_BaseComponent" implements="forceCommunity:availableForAllPageTypes" access="global">
     <!-- extends="c:CG_BaseComponent" 
     -->
 	<!-- GENERAL VARIABLES --> 
-	<aura:attribute name="componentExternalId" type="String" />
+	<aura:attribute name="componentExternalId" type="String" access="global"/>
     <aura:attribute name="componentType" type="String" default="Navigation"/>
 
 	<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>

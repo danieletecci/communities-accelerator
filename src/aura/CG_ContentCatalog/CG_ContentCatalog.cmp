@@ -4,7 +4,7 @@
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     
     <!-- KEY ATTRIBUTES -->
-	<aura:attribute name="componentUniqueName" type="String" />
+	<aura:attribute name="componentUniqueName" type="String" access="global"/>
 	<aura:attribute name="catalogWrapper" type="Object"/>
 	<aura:attribute name="allContentIdsFiltered" type="String[]" />
 	<aura:attribute name="allContentIdsShown" type="String[]" />

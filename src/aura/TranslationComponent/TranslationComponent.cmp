@@ -16,8 +16,8 @@
     <aura:attribute name="isLoading" type="boolean" default="true" />
 
     <!--Parameters-->
-    <aura:attribute name="parentLookupName" type="String"/>
-    <aura:attribute name="fieldSet" type="String" />    
+    <aura:attribute name="parentLookupName" type="String" access="global"/>
+    <aura:attribute name="fieldSet" type="String" access="global"/>    
     
 	<lightning:card >
 		<aura:if isTrue="{!v.isLoading}">

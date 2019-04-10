@@ -100,7 +100,6 @@ public without sharing virtual class ContentUtils {
             query = query.replace('ORDER BY', 'ORDER BY Cluster__r.ClusterLevel__c ' + component.HierarchicalOrderBy__c + ', ');
         }       
         
-
         ContentWrapper cw = new ContentWrapper();
         Map<Id, Content__c> mapContent = new Map<Id, Content__c>((List<Content__c>)Database.query(query));
 
@@ -342,18 +341,20 @@ public without sharing virtual class ContentUtils {
     }
     
     @auraEnabled
-    public static String createFromTemplate(Id templateId){
+    public static String createFromTemplate(Id templateId, String recordName, String clusterId){
 
         Set<String> fieldNames = GeneralUtils.getObjectFieldNames('Content__c');
         Content__c template = Database.query('SELECT ' +  String.join(new List<String>(fieldNames), ',') + ' FROM Content__c WHERE Id =: templateId');
 
         if(template.IsTemplate__c && template.Status__c == 'Published'){
             Content__c newContent = template.clone(false,false,false,false);
-            newContent.Name = 'Copy of - ' + template.Name.left(69);
+            newContent.Name = recordName.left(60);
             newContent.TemplateUsed__c = templateId;
+            newContent.Cluster__c = clusterId != null ? clusterId : newContent.Cluster__c;
             newContent.Status__c = 'Draft';
             newContent.IsTemplate__c = false;
             newContent.ExternalId__c = null;
+            newContent.Category__c = null;
             newContent.OwnerId = UserInfo.getUserId();
             try{
                 insert newContent;

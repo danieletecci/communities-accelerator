@@ -4,8 +4,8 @@
 	<aura:attribute name="recordId" type="String"/>
 
 	<!-- Parameterizable attributes -->
-    <aura:attribute name="places" type="String"/>
-    <aura:attribute name="parentLookup" type="String"/>
+    <aura:attribute name="places" type="String" access="global"/>
+    <aura:attribute name="parentLookup" type="String" access="global"/>
 
     <!-- General Variables -->
     <aura:attribute name="isLoading" type="boolean" default="false" />

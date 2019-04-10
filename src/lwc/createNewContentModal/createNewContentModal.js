@@ -182,6 +182,8 @@ export default class RecordTypeSelectionModal extends NavigationMixin(LightningE
     //Create the record.
     setRecord(){
         var contentModal = this;
+        var recordName = this.recordNameValue;
+        var message;
         createNewContent({ 
             recordTypeId: this.recordTypeId, 
             isTemplate : this.isTemplate, 
@@ -197,8 +199,9 @@ export default class RecordTypeSelectionModal extends NavigationMixin(LightningE
                     this.navigateToWebPage("/" + this.result.message);
                 } else {
                     contentModal.dispatchEvent(new CustomEvent('contentcreated', {detail: { recordId: this.result.message }}));
-                }
-                this.showToast(this.label.generalSuccess, this.stringFormat(this.label.contentCreated, this.recordNameValue), "success");
+                } 
+                message = this.stringFormat(this.label.contentCreated, recordName);
+                this.showToast(this.label.generalSuccess, message, "success");
             }else{
                 this.showToast(this.label.generalError, this.result.message, "errror");
             }

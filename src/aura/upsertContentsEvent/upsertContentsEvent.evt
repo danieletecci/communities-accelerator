@@ -1,4 +1,6 @@
 <aura:event type="APPLICATION" description="This event is call to send the action from ContentDetailHeader to ContentDetailContainer to update the record" >
-	<aura:attribute name="status" type="String"/>
-	<aura:attribute name="contentId" type="String"/>
+	<aura:attribute name="contentId" 		type="String"/>
+	<aura:attribute name="status" 			type="String"/>
+	<aura:attribute name="publishStartDate" type="DateTime"/>
+	<aura:attribute name="publishEndDate" 	type="DateTime"/>
 </aura:event>

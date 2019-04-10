@@ -14,6 +14,7 @@
 				if(dataWrapper){
 					component.set("v.contentData", dataWrapper.content);
 					component.set("v.timeZone", dataWrapper.timeZone);
+					component.set("v.security", dataWrapper.security);
 				}else{
 					helper.displayErrorMessage($A.get("$Label.c.NewsContentDetailLoadError"));
 				}
@@ -58,13 +59,15 @@
 
 		$A.enqueueAction(action);
 	},
-	setStatus : function(component, status){
+	setStatus : function(component, status, publishStartDate, publishEndDate){
 		var action = component.get('c.setStatus');
 		var helper = this;
 
 		action.setParams({
-			recordId: component.get('v.recordId'),
-			status: status
+			recordId			: component.get('v.recordId'),
+			status 				: status,
+			publishStartDate 	: publishStartDate,
+			publishEndDate 		: publishEndDate
     	});
 
 		action.setCallback(this, function(response){
@@ -117,6 +120,41 @@
 
 		$A.enqueueAction(action);
 	},
+	deleteContent : function(component){
+		var action = component.get('c.deleteContent');
+		var helper = this;
+
+		action.setParams({
+			recordId: component.get('v.recordId')
+    	});
+
+		action.setCallback(this, function(response){
+			var state = response.getState();
+			if (state === "SUCCESS") {
+				helper.displaySuccessMessage(
+					helper.stringFormat(
+						$A.get("$Label.c.ContentDetailDeletedMessage"), 
+						component.get("v.contentData").RecordType.Name, 
+						component.get("v.contentData").Name
+					)
+				);
+				var urlEvent = $A.get("e.force:navigateToURL");
+			    urlEvent.setParams({
+			      "url": "/lightning/n/ContentLanding"
+			    });
+			    urlEvent.fire();
+			} else if (state === "ERROR") {
+				let errors = response.getError();
+				let message = 'Unknown error';
+				if (errors && Array.isArray(errors) && errors.length > 0) {
+				    message = errors[0].message;
+				}
+				helper.displayErrorMessage(message);
+			}
+		});
+
+		$A.enqueueAction(action);
+	},
 	showCorrectMessage : function(component, previousStatus, actualStatus){
 		var recordTypeName 	= component.get("v.contentData").recordType.Name;
 		var recordName 		= component.get("v.contentData").Name;
@@ -132,45 +170,41 @@
 			helper.displaySuccessMessage(helper.stringFormat($A.get("$Label.c.ContentDetailPublishMessage"), recordTypeName, recordName));
 		}
 	},
-	saveDraft : function(component, event, helper) {
-		console.log("[ContentDetailHeaderHelper.js][saveDraft] hasDetailComponent: " + component.get("v.hasDetailComponent"));
-		var contentId = component.get('v.recordId');
+	updateContent : function(component, status, publishStartDate, publishEndDate){
+		var contentId 			= component.get('v.recordId');
 		if(component.get("v.hasDetailComponent")){
 			var cmpEvent = $A.get("e.c:upsertContentsEvent");
 	        cmpEvent.setParams({
-				"status" : "Draft",
-				"contentId" :  contentId
+				"status" 			: status,
+				"contentId" 		: contentId,
+				"publishStartDate"	: publishStartDate,
+				"publishEndDate"	: publishEndDate
 			});
 	        cmpEvent.fire();
 	    } else
-	    	helper.setStatus(component, 'Draft');
+	    	helper.setStatus(component, status, publishStartDate, publishEndDate);
 	},
-	publish : function(component, event, helper) {
-		console.log("[ContentDetailHeaderHelper.js][publish] hasDetailComponent: " + component.get("v.hasDetailComponent"));
-		var contentId = component.get('v.recordId');
-		if(component.get("v.hasDetailComponent")){
-			var cmpEvent = $A.get("e.c:upsertContentsEvent");
-	        cmpEvent.setParams({
-				"status" : "Published",
-				"contentId" :  contentId
-			});
-	        cmpEvent.fire();
-	    } else
-	    	helper.setStatus(component, 'Published');
-	},
-	unpublish : function(component, event, helper) {
-		console.log("[ContentDetailHeaderHelper.js][unpublish] hasDetailComponent: " + component.get("v.hasDetailComponent"));
-		var contentId = component.get('v.recordId');
-		if(component.get("v.hasDetailComponent")){
-			var cmpEvent = $A.get("e.c:upsertContentsEvent");
-	        cmpEvent.setParams({
-				"status" : "Draft",
-				"contentId" :  contentId
-			});
-	        cmpEvent.fire();
-	    } else
-	    	helper.setStatus(component, 'Draft');
-	},
+	showConfirmationDelete : function(component){
+		$A.createComponent(
+            "c:BE_ConfirmationModal",
+            {
+                "aura:id"		: "confirmationModal",
+                "title"			: $A.get("$Label.c.General_Delete") + ' ' + component.get("v.contentData").Name,
+                "message"		: $A.get("$Label.c.ContentDeletingMessage"),
+                "confirmLabel"	: $A.get("$Label.c.General_Delete"),
+                "confirmVariant": "destructive",
+                "onconfirm"		: component.getReference("c.doDelete"),
+                "oncancel"		: component.getReference("c.doHideConfirmation")
+            },
+            function(confirmationModal, status, errorMessage){
+                //Add the new button to the body array
+                if (status === "SUCCESS") {
+                    component.set("v.confirmationModal", confirmationModal);
+                    confirmationModal.show();
+                }
+            }
+        );
+    },
 	displayErrorMessage : function(message){
 		var toastEvent = $A.get("e.force:showToast");
 					toastEvent.setParams({

@@ -337,6 +337,46 @@
         <value>Draft</value>
     </labels>
     <labels>
+        <fullName>ContentDetailScheduled</fullName>
+        <categories>Content Detail</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Content Detail Scheduled</shortDescription>
+        <value>Scheduled</value>
+    </labels>
+    <labels>
+        <fullName>ContentDetailUnschedule</fullName>
+        <categories>Content Detail</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Content Detail Unschedule</shortDescription>
+        <value>Unscheduled</value>
+    </labels>
+    <labels>
+        <fullName>ContentDetailArchived</fullName>
+        <categories>Content Detail</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Content Detail Archived</shortDescription>
+        <value>Archived</value>
+    </labels>
+    <labels>
+        <fullName>ContentDetailArchive</fullName>
+        <categories>Content Detail</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Content Detail Archive</shortDescription>
+        <value>Archive</value>
+    </labels>
+    <labels>
+        <fullName>ContentDetailUnarchive</fullName>
+        <categories>Content Detail</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Content Detail Unarchive</shortDescription>
+        <value>Unarchive</value>
+    </labels>
+    <labels>
         <fullName>ContentDetailPublished</fullName>
         <categories>Content Detail</categories>
         <language>en_US</language>
@@ -399,6 +439,22 @@
         <protected>true</protected>
         <shortDescription>Content Detail Unpublish</shortDescription>
         <value>Unpublish</value>
+    </labels>
+    <labels>
+        <fullName>ContentDetailDeletedMessage</fullName>
+        <categories>Content Detail</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Content Detail Deleted Message</shortDescription>
+        <value>{0} "{1}" was deleted</value>
+    </labels>
+    <labels>
+        <fullName>ContentModalScheduledMessage</fullName>
+        <categories>BE_ContentModalPublish.cmp</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>ContentModalScheduledMessage</shortDescription>
+        <value>The publication of the {0} "{1}" was scheduled</value>
     </labels>
     <labels>
         <fullName>ContentLandingStructurePromptTitle</fullName>
@@ -785,6 +841,14 @@
         <value>Next</value>
     </labels>
     <labels>
+        <fullName>General_Confirm</fullName>
+        <categories>General</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Confirm</shortDescription>
+        <value>Confirm</value>
+    </labels>
+    <labels>
         <fullName>General_Order</fullName>
         <categories>General</categories>
         <language>en_US</language>
@@ -839,6 +903,14 @@
         <protected>false</protected>
         <shortDescription>General_Success</shortDescription>
         <value>Success</value>
+    </labels>
+    <labels>
+        <fullName>General_CompleteThisField</fullName>
+        <categories>General</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>General_CompleteThisField</shortDescription>
+        <value>Complete this field</value>
     </labels>
     <labels>
         <fullName>General_View</fullName>
@@ -1320,6 +1392,78 @@
         <value>Template Description</value>
     </labels>
     <labels>
+        <fullName>PublishModalTitle</fullName>
+        <categories>BE_ContentModalPublish.cmp</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Publish Modal Title</shortDescription>
+        <value>Publish Content</value>
+    </labels>
+    <labels>
+        <fullName>PublishModalSubtitle</fullName>
+        <categories>BE_ContentModalPublish.cmp</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Publish Modal Subtitle</shortDescription>
+        <value>You can publish immediately or schedule for a feature date</value>
+    </labels>
+    <labels>
+        <fullName>ModalStartPublication</fullName>
+        <categories>BE_ContentModalPublish.cmp</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Publish Modal Start Publication Field Label</shortDescription>
+        <value>Start Publication</value>
+    </labels>
+    <labels>
+        <fullName>PublishModalRadioPublishNow</fullName>
+        <categories>BE_ContentModalPublish.cmp</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Publish Modal Radio Button Publish Now</shortDescription>
+        <value>Publish Now</value>
+    </labels>
+    <labels>
+        <fullName>PublishModalCheckboxExpire</fullName>
+        <categories>BE_ContentModalPublish.cmp</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Publish Modal Checkbox Expire</shortDescription>
+        <value>Expire by date and time</value>
+    </labels>
+    <labels>
+        <fullName>PublishModalRadioSchedulePublication</fullName>
+        <categories>BE_ContentModalPublish.cmp</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Publish Modal Radio Button Schedule Publication</shortDescription>
+        <value>Schedule Publication</value>
+    </labels>
+    <labels>
+        <fullName>PublishModalFutureStartDate</fullName>
+        <categories>BE_ContentModalPublish.cmp</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PublishModalFutureStartDate</shortDescription>
+        <value>Start Publication field must be in the future</value>
+    </labels>
+    <labels>
+        <fullName>PublishModalFutureEndDate</fullName>
+        <categories>BE_ContentModalPublish.cmp</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PublishModalFutureEndDate</shortDescription>
+        <value>Expire Publication field must be in the future</value>
+    </labels>
+    <labels>
+        <fullName>PublishModalWrongEndDate</fullName>
+        <categories>BE_ContentModalPublish.cmp</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PublishModalFutureStartDate</shortDescription>
+        <value>Expire Publication field must be after Start Publication field</value>
+    </labels>
+    <labels>
         <fullName>ContentCreatedFromTemplate</fullName>
         <categories>ContentDetailHeader.cmp</categories>
         <language>en_US</language>
@@ -1328,12 +1472,20 @@
         <value>A new Content was created based on {0} template</value>
     </labels>
     <labels>
+        <fullName>ContentDeletingMessage</fullName>
+        <categories>ContentDetailHeader.cmp</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ContentDeletingMessage</shortDescription>
+        <value>This is an irreversible action. Do you want to continue?</value>
+    </labels>
+    <labels>
         <fullName>ContentCreated</fullName>
         <categories>CreateNewContentModal</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>ContentCreated</shortDescription>
-        <value>Content {0} was created</value>
+        <value>Content "{0}" was created</value>
     </labels>
     <labels>
         <fullName>EventContentDetailTemplateDescription</fullName>

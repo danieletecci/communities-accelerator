@@ -1,7 +1,6 @@
 @isTest
-public class ContentDetailHeaderControllerTest {
-
-    @testSetup
+public with sharing class BE_ContentModalPublishControllerTest {
+	@testSetup
     static void generateCustomSettings(){
         MockupFactory.generateAcceleratorSetting();
         List<Cluster__c> clusterRoot = MockupFactory.createCluster('Cluster Root', '', 1, 'ClusterRoot', 'CRT');
@@ -24,37 +23,17 @@ public class ContentDetailHeaderControllerTest {
         MockupFactory.createCategoryAssignment(categories, components);
         update components;
     }
-    
-    @isTest
-    public static void getData(){
-        List<Content__c> contents = [SELECT id FROM Content__c];
-        ContentDetailHeaderController.getData(contents.get(0).Id);
-    }
-    
-    @isTest
-    public static void setName(){
-        List<Content__c> contents = [SELECT id FROM Content__c];
-        ContentDetailHeaderController.setName(contents.get(0).Id, 'New Name');
-    }
 
     @isTest
-    public static void deleteContent(){
+    public static void schedulePublication(){
         List<Content__c> contents = [SELECT id FROM Content__c];
-        ContentDetailHeaderController.deleteContent(contents.get(0).Id);
-    }
-
-    @isTest
-    public static void setStatus(){
-        List<Content__c> contents = [SELECT id FROM Content__c];
-        ContentDetailHeaderController.setStatus(contents.get(0).Id, 'Published', null, null);
-    }
-
-    @isTest
-    public static void createFromTemplate(){
-        List<Content__c> contents = [SELECT id FROM Content__c];
-        contents.get(0).IsTemplate__c = true;
-        contents.get(0).Status__c = 'Published';
-        update contents.get(0);
-        ContentDetailHeaderController.createFromTemplate(contents.get(0).Id);
+        BE_ContentModalPublishController.schedulePublication(contents.get(0));
+        contents.get(0).Status__c = 'test';
+        try{
+        BE_ContentModalPublishController.schedulePublication(contents.get(0));
+            
+        } catch(Exception e){
+            System.assertEquals(e.getMessage(), 'Script-thrown exception');
+        }
     }
 }

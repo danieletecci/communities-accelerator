@@ -492,7 +492,6 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
     </fields>
     <fields>
         <fullName>PublishEndDate__c</fullName>
-        <defaultValue>NOW()+365</defaultValue>
         <externalId>false</externalId>
         <label>Publish End Date</label>
         <required>false</required>
@@ -502,7 +501,6 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
     </fields>
     <fields>
         <fullName>PublishStartDate__c</fullName>
-        <defaultValue>NOW()</defaultValue>
         <externalId>false</externalId>
         <label>Publish Start Date</label>
         <required>false</required>
@@ -590,6 +588,11 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
                     <fullName>Archived</fullName>
                     <default>false</default>
                     <label>Archived</label>
+                </value>
+                <value>
+                    <fullName>Scheduled</fullName>
+                    <default>false</default>
+                    <label>Scheduled</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -922,6 +925,10 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
                 <fullName>Published</fullName>
                 <default>false</default>
             </values>
+            <values>
+                <fullName>Scheduled</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
@@ -1047,6 +1054,10 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
             </values>
             <values>
                 <fullName>Published</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Scheduled</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1192,6 +1203,10 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
                 <fullName>Published</fullName>
                 <default>false</default>
             </values>
+            <values>
+                <fullName>Scheduled</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
@@ -1333,6 +1348,10 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
             </values>
             <values>
                 <fullName>Published</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Scheduled</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1478,6 +1497,10 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
                 <fullName>Published</fullName>
                 <default>false</default>
             </values>
+            <values>
+                <fullName>Scheduled</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
@@ -1619,6 +1642,10 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
             </values>
             <values>
                 <fullName>Published</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Scheduled</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1764,6 +1791,10 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
                 <fullName>Published</fullName>
                 <default>false</default>
             </values>
+            <values>
+                <fullName>Scheduled</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
@@ -1889,6 +1920,10 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
             </values>
             <values>
                 <fullName>Published</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Scheduled</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2032,6 +2067,10 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
             </values>
             <values>
                 <fullName>Published</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Scheduled</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

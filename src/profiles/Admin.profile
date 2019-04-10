@@ -592,6 +592,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Content__c.PublishStartDate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Content__c.PublishEndDate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Content__c.ButtonLabel__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -768,6 +778,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>MediaElementAssignment__c.Content__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>MediaElementAssignment__c.Placement__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

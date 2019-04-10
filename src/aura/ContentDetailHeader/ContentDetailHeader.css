@@ -1,2 +1,12 @@
-.THIS {
+.THIS .slds-dropdown__item > a{
+	color: rgba(0, 68, 135, 1);
+}
+.THIS .slds-icon-standard-date-time {
+	background-color: #f2cf5b;
+}
+.THIS .slds-icon-standard-drafts {
+	background-color: #f49756;
+}
+.THIS .slds-icon-custom-custom42 {
+	background-color: #3c97dd;
 }

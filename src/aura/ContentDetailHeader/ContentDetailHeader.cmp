@@ -10,6 +10,8 @@
 	<aura:attribute name="hasDetailComponent"	type="Boolean" 						/>
 	<aura:attribute name="temporaryName"		type="String"						/>
 	<aura:attribute name="isNameEdit"			type="Boolean"		default="false"	/>
+	<aura:attribute name="confirmationModal"	type="Aura.Component"				/>
+	<aura:attribute name="security"				type="Object"						/>
 
 	<aura:registerEvent name="upsertContentsEvent" type="c:upsertContentsEvent"/>
 
@@ -42,23 +44,35 @@
 	            <div class="slds-page-header__controls">
 	                <div class="slds-page-header__control">
 	                    <lightning:buttonGroup>
-		                	<aura:if isTrue="{!(v.contentData.Status__c) == ($Label.c.ContentDetailDraft)}">
-						        <lightning:button label="{!$Label.c.ContentDetailSaveDraft}"  onclick="{! c.doSaveDraft}" />
+		                	<aura:if isTrue="{!(v.contentData.Status__c) != ($Label.c.ContentDetailArchived)}">
+						        <lightning:button label="{!$Label.c.General_Save}" onclick="{! c.doSave}" />
 						    </aura:if>
 					        <!-- <lightning:button label="{!$Label.c.ContentDetailSchedule}" /> -->
 		                	<aura:if isTrue="{!and(v.contentData.IsTemplate__c,v.contentData.Status__c == ($Label.c.ContentDetailPublished))}">
 						        <lightning:button label="{!$Label.c.CreateFromTemplateButton}"  onclick="{! c.doCreateFromTemplate}" />
 						    </aura:if>
+						    <aura:if isTrue="{!(v.contentData.Status__c) == ($Label.c.ContentDetailArchived)}">
+						        <lightning:button label="{!$Label.c.ContentDetailUnarchive}" onclick="{! c.doUnarchive}" />
+						    </aura:if>
+						    <lightning:buttonMenu alternativeText="Show menu" onselect="{! c.handleMenuSelect }" class="slds-button_last">
+						    	<aura:if isTrue="{!and(v.contentData.Status__c != $Label.c.ContentDetailPublished, v.security.hasDeleteAccess)}">
+									<lightning:menuItem label="{!$Label.c.General_Delete}" value="delete" />
+								</aura:if>
+	                			<aura:if isTrue="{!(v.contentData.Status__c) == ($Label.c.ContentDetailPublished)}">
+									<lightning:menuItem label="{!$Label.c.ContentDetailUnpublish}" value="unpublish" />
+									<lightning:menuItem label="{!$Label.c.ContentDetailArchive}" value="archive" />
+								</aura:if>
+								<aura:if isTrue="{!(v.contentData.Status__c) == ($Label.c.ContentDetailScheduled)}">
+									<lightning:menuItem label="{!$Lable.c.ContentDetailUnschedule}" value="unschedule" />
+								</aura:if>
+							</lightning:buttonMenu>
 					    </lightning:buttonGroup>
 	                </div>
-	                <aura:if isTrue="{!not((v.contentData.Status__c) == ($Label.c.ContentDetailDraft))}">
-	                	<div class="slds-page-header__control">
-	                    	<lightning:button label="{!$Label.c.ContentDetailUnpublish}" variant="destructive" title="{!$Label.c.ContentDetailUnpublish}" onclick="{! c.doUnpublishContent }"/>
-	                	</div>
-	        		</aura:if>
-	        		<div class="slds-page-header__control">
-	        			<lightning:button label="{!$Label.c.ContentDetailPublish}" variant="brand" title="{!$Label.c.ContentDetailPublish}" onclick="{! c.doPublishContent }"/>
-	        		</div>
+	                <aura:if isTrue="{!(v.contentData.Status__c != $Label.c.ContentDetailArchived)}">
+		        		<div class="slds-page-header__control">
+		        			<lightning:button label="{!$Label.c.ContentDetailPublish}" variant="brand" title="{!$Label.c.ContentDetailPublish}" onclick="{! c.doPublishContent }"/>
+		        		</div>
+		        	</aura:if>
 	            </div>
 	        </div>
 	    </div>
@@ -75,7 +89,10 @@
 	                    <div class="slds-text-title slds-truncate" title="{!$Label.c.ContentDetailPublicationStatus}">
 	                    	{!$Label.c.ContentDetailPublicationStatus}
 	                    </div>
-	                    <div class="slds-truncate" title="{!v.contentData.Status__c}">{!v.contentData.Status__c}</div>
+	                    <div class="slds-truncate" title="{!v.contentData.Status__c}">
+	                    	<lightning:icon iconName="{!if(v.contentData.Status__c == $Label.c.ContentDetailDraft, 'standard:drafts', if(v.contentData.Status__c == $Label.c.ContentDetailScheduled, 'standard:date_time', if(v.contentData.Status__c == $Label.c.ContentDetailPublished, 'standard:task2', 'custom:custom42')))}" class="slds-m-right_x-small" size="x-small" alternativeText="{!v.contentData.Status__c}" />
+	                    	{!v.contentData.Status__c}
+	                    </div>
 	                </li>
 	                <li class="slds-page-header__detail-block">
 	                    <div class="slds-text-title slds-truncate" title="{!$Label.c.ContentDetailLastSave}">
@@ -93,5 +110,14 @@
 	        </div>
 	    </div>
 	</div>
+
+    <aura:if isTrue="{!v.contentData}">
+		<c:BE_ContentModalPublish aura:id="contentModalPublish" content="{!v.contentData}" hasDetailComponent="{!v.hasDetailComponent}"/>
+	</aura:if>
+
+	{!v.confirmationModal}
+
+	<!--<c:BE_ConfirmationModal aura:id="confirmationModal" title="{! $Label.c.General_Delete + ' ' + v.contentData.Name}" message="{!$Label.c.ContentDeletingMessage}" confirmLabel="{!$Label.c.General_Delete}" confirmVariant="destructive" />-->
+
 
 </aura:component>

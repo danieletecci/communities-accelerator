@@ -2,14 +2,16 @@
 	doInit: function (component, event, helper) {
         helper.getData(component);
     },
-    doSaveDraft: function (component, event, helper) {
-    	helper.saveDraft(component, event, helper);
+    doSave: function (component, event, helper) {
+        helper.updateContent(
+            component, 
+            component.get("v.contentData").Status__c, 
+            component.get("v.contentData").PublishStartDate__c,
+            component.get("v.contentData").PublishEndDate__c
+        );
     },
     doPublishContent: function (component, event, helper) {
-    	helper.publish(component, event, helper);
-    },
-    doUnpublishContent: function (component, event, helper) {
-    	helper.unpublish(component, event, helper);
+        component.find("contentModalPublish").show();
     },
     doCreateFromTemplate: function (component, event, helper) {
         helper.createFromTemplate(component);
@@ -32,5 +34,32 @@
             var nameinput = component.find("name-input");
             nameinput.focus();
         }, 0);
+    },
+    doUnarchive: function(component, event, helper){
+        helper.updateContent(component, "Draft", null, null);
+    },
+    doDelete: function(component, event, helper){
+        helper.deleteContent(component);
+    },
+    doHideConfirmation: function(component, event, helper){
+        var confrimationModal = component.get("v.confirmationModal");
+        confirmationModal.hide();
+        confirmationModal.destroy();
+    },
+    handleMenuSelect: function(component, event, helper){
+        switch(event.getParam("value")){
+            case "delete":
+                helper.showConfirmationDelete(component);
+                break;
+            case "unpublish":
+                helper.updateContent(component, "Draft", null, null);
+                break;
+            case "archive":
+                helper.updateContent(component, "Archived", null, null);
+                break;
+            case "unschedule":
+                helper.updateContent(component, "Draft", null, null);
+                break;
+        }
     }
 })

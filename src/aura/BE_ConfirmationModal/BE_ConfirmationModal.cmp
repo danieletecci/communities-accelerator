@@ -1,0 +1,42 @@
+<aura:component >
+    
+    <!-- ATTRIBUTES -->
+    <aura:attribute name="title"            type="String" 		/>
+    <aura:attribute name="message"          type="String" 		/>
+    <aura:attribute name="confirmVariant"   type="String"       default="brand"                         />
+    <aura:attribute name="confirmLabel"     type="String" 		default="{!$Label.c.General_Confirm}"   />
+    <aura:attribute name="cancelLabel" 	    type="String" 		default="{!$Label.c.General_Cancel}"    />
+    <aura:attribute name="onconfirm"        type="Aura.Action" 	/>
+    
+    <!-- METHODS -->
+	<aura:method name="show" action="{!c.doShow}" />
+	<aura:method name="hide" action="{!c.doHide}" />
+    
+    
+	<section aura:id="confirmModal" role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal">
+	    <div class="slds-modal__container">
+	        <header class="slds-modal__header">
+	            <lightning:buttonIcon
+                    iconName="utility:close"
+                    size="large"
+                    variant="bare"
+                    title="{!$Label.c.General_Close}"
+                    iconClass="slds-button slds-button_icon slds-button_icon-inverse"
+                    class="buttonStyle slds-modal__close"
+                    alternativeText="{!$Label.c.General_Close}"
+                    onclick="{!c.doHide}" />
+	            <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">
+	            	{!v.title}
+	            </h2>
+	        </header>
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+        		<p>{!v.message}</p>
+      		</div>
+	        <footer class="slds-modal__footer">
+	            <button class="slds-button slds-button_neutral" onclick="{!c.doHide}">{!v.cancelLabel}</button>
+	            <button class="{! 'slds-button slds-button_' + v.confirmVariant}" onclick="{!v.onconfirm}">{!v.confirmLabel}</button>
+	        </footer>
+        </div>
+    </section>
+    <div aura:id="confirmModalBackdrop" class="slds-backdrop"></div>
+</aura:component>

@@ -63,6 +63,10 @@ public class FE_DatatableController extends FE_ComponentManager {
 
         FE_DatatableController.DatatableWrapper wrapper = (FE_DatatableController.DatatableWrapper)JSON.deserialize(componentWrapper, FE_DatatableController.DatatableWrapper.class);
         
+        System.debug('### wrapper');
+        System.debug(wrapper);
+        System.debug('    wrapper ###');
+
         Datatable__c datatable = FE_DatatableUtils.getDatatableInfo(wrapper.componentExternalId);
         datatable.OrderBy__c = wrapper.orderBy;
 
@@ -94,7 +98,7 @@ public class FE_DatatableController extends FE_ComponentManager {
             datatableWrapper.componentExternalId = this.componentExternalId;
 
             datatableWrapper.columns = FE_DatatableUtils.mapDatatableElementsToWrappers(datatable.DatatableElements__r);
-
+            datatableWrapper.searchTerm = '';
             datatableWrapper.actions = FE_DatatableUtils.mapDatatableActionsToWrappers(datatable.DatatableActions__r);
             
             List<SObject> records = FE_DatatableUtils.doGetRecords(datatable, 0, datatableWrapper);

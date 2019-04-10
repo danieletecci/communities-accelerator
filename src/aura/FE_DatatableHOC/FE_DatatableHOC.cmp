@@ -21,7 +21,7 @@
         <!-- BASE COMPONENT -->
         <c:FE_ComponentToolBox componentType="Datatable" componentExternalId="{!v.componentExternalId}" componentWrapper="{!v.componentWrapper}" salesforceDomain="{!v.componentWrapper.acceleratorSettings.SalesforceDomain__c}" isLoading="{!v.isLoading}">
             <!-- DATATABLE COMPONENT -->
-            <c:fe_DatatableLC table="{!v.componentWrapper.data}" onfilter="{!c.doHandleFilter}"/>
+            <c:fe_DatatableLC table="{!v.componentWrapper.data}" onfilter="{!c.doHandleFilter}" onclearfilter="{!c.doHandleClearFilters}" onsearch="{!c.doHandleSearch}"/>
         </c:FE_ComponentToolBox>
     </div>
 </aura:component>

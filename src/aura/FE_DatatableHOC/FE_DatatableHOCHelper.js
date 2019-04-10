@@ -122,10 +122,11 @@
         component.set('v.isLoading', true);
     },
     doHandleSearch : function(component, event, helper) {
-        var action = component.get("c.getPage");
-
-        action.setParams({componentWrapper: component.get("v.componentWrapper")
-                            , actualPage: event.getParam('actualPage')});
+        var action = component.get("c.handleFilter");
+        
+        var componentWrapperData = component.get("v.componentWrapper.data");
+        
+        action.setParams({componentWrapper: JSON.stringify(componentWrapperData)});
 
         action.setCallback(this, function(response) {
             var state = response.getState();

@@ -2,6 +2,7 @@ public with sharing class FE_DatatableUtils {
     
     public static List<SObject> doGetRecords(Datatable__c datatable, Integer offSet, FE_DatatableController.DatatableWrapper wrapper){
         List<SObject> rows = new List<SObject>();
+        
         List<String> fieldSet = new List<String>();
 
         for(DatatableElement__c elem : datatable.DatatableElements__r) {
@@ -10,32 +11,22 @@ public with sharing class FE_DatatableUtils {
 
         String fieldSetString = String.join(fieldSet, ', ');
 
-        String fromPart = ' FROM ' + datatable.ObjectApiName__c;
+        String whereCondition = datatable.WhereCondition__c != null ? datatable.WhereCondition__c : '';
 
         String filtersWhereCondition = FE_DatatableUtils.processAppliedFilters(wrapper.appliedFilters);
 
         String searchTermWhereCondition = FE_DatatableUtils.processSearchTerm(datatable, wrapper.searchTerm);
 
-        String whereCondition = datatable.WhereCondition__c != null ? datatable.WhereCondition__c : '';
-
-        String query = 'SELECT count() ';
-        query += fromPart + ' ';
-        query += whereCondition;
-        query += String.isNotEmpty(whereCondition) ? ' AND ' + searchTermWhereCondition : searchTermWhereCondition;
-        query += String.isNotEmpty(whereCondition) || String.isNotEmpty(searchTermWhereCondition) ? ' AND ' + filtersWhereCondition : filtersWhereCondition;
+        String query = generateDatatableRecordsQuery('SELECT count()', ' FROM ' + datatable.ObjectApiName__c + ' ', whereCondition, filtersWhereCondition, searchTermWhereCondition);
 
         System.debug('count query: ' + query);
-
+        
         Integer totalRows = Database.countQuery(query);
 
         if(totalRows > 0) {
             wrapper.totalRows = totalRows;
 
-            query = 'SELECT Id, ' + fieldSetString + ' ';
-            query += fromPart + ' ';
-            query += whereCondition;
-            query += String.isNotEmpty(whereCondition) ? ' AND ' + searchTermWhereCondition : searchTermWhereCondition;
-            query += String.isNotEmpty(whereCondition) || String.isNotEmpty(searchTermWhereCondition) ? ' AND ' + filtersWhereCondition : filtersWhereCondition;
+            query = generateDatatableRecordsQuery('SELECT Id, ' + fieldSetString + ' ', ' FROM ' + datatable.ObjectApiName__c + ' ', whereCondition, filtersWhereCondition, searchTermWhereCondition);
 
             if(String.isNotEmpty(datatable.OrderBy__c)) {
                 System.debug('datatable.orderBy: ' + datatable.OrderBy__c);
@@ -52,6 +43,42 @@ public with sharing class FE_DatatableUtils {
         return rows;
     }
     
+    public static String generateDatatableRecordsQuery(String selectPart, String fromPart, String whereCondition, String filtersCondition, String searchTermCondition) {
+        Boolean hasConditions = false;
+        Boolean hasWhereCondition = false;
+        Boolean hasFiltersCondition = false;
+        Boolean hasSearchTermCondition = false;
+
+        String query = selectPart + ' ' + fromPart;
+        
+        String wherePart = '';
+
+        if(whereCondition.contains('WHERE')) {
+            whereCondition = whereCondition.replace('WHERE', '');
+        }
+
+        hasWhereCondition = String.isNotEmpty(whereCondition);
+        hasFiltersCondition = String.isNotEmpty(filtersCondition);
+        hasSearchTermCondition = String.isNotEmpty(searchTermCondition);
+
+        if(hasWhereCondition || hasFiltersCondition || hasSearchTermCondition) {
+            hasConditions = true;
+
+            System.debug('whereCondition: ' + whereCondition);
+            System.debug('filtersCondition: ' + filtersCondition);
+            System.debug('searchTermCondition: ' + searchTermCondition);
+        }
+
+        whereCondition += String.isNotEmpty(whereCondition) && hasWhereCondition ? whereCondition : '';
+        whereCondition += String.isNotEmpty(whereCondition) && hasSearchTermCondition ? ' AND ' + searchTermCondition : searchTermCondition;
+        whereCondition += String.isNotEmpty(whereCondition) && hasFiltersCondition ? ' AND ' + filtersCondition : filtersCondition;
+
+        if(hasConditions) {
+            query += ' WHERE ' + whereCondition;
+        }
+
+        return query;
+    }
     /**
      * Methods that retrieves the Datatable__c object information, and its childs relationships (Elements & Actions)
      * @input componentExternalId
@@ -185,7 +212,10 @@ public with sharing class FE_DatatableUtils {
     public static String processSearchTerm(Datatable__c datatable, String searchTerm) {
         String result = '';
 
+        System.debug('searchTerm: ' + searchTerm);
+
         if(String.isNotEmpty(searchTerm)) {
+            
             List<String> searchableColumns = new List<String>();
 
             for(DatatableElement__c elem : datatable.DatatableElements__r) {

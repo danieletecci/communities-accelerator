@@ -92,7 +92,29 @@
             </valueSetDefinition>
         </valueSet>
     </fields>
-	<fields>
+    <fields>
+        <fullName>Audience__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Audience</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>Audience__c.RecordType.DeveloperName</field>
+                <operation>equals</operation>
+                <value>AudienceGroup</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>Audience__c</referenceTo>
+        <relationshipLabel>Contents</relationshipLabel>
+        <relationshipName>Contents</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>BannerFrameType__c</fullName>
         <externalId>false</externalId>
         <label>Banner Frame Type</label>

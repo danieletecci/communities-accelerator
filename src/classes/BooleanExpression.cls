@@ -1,9 +1,31 @@
 public class BooleanExpression {
     static Map<String, String> logicTypes = new Map<String, String>();
     static Map<String, Map<String, String>> expressionLogic = new Map<String, Map<String, String>>();
+    
     /**
-    * Evaluate a boolean expreassion 
-    * 
+    * Validate a boolean expression 
+    *  
+    */
+    public static Boolean validateExpression(String expression, Set<Integer> validNumbersSet){
+        if(expression == null || expression == '' || validNumbersSet == null || validNumbersSet.isEmpty()){return false;}
+        expression = expression.deleteWhitespace().toUpperCase().replaceAll('AND', ' AND ').replaceAll('OR', ' OR ');
+        Pattern p = Pattern.compile('(\\d+)');
+        Matcher m = p.matcher(expression);
+        if(m.find()) {
+            do {
+                if(!validNumbersSet.contains(Integer.valueOf(m.group()))){return false;}
+            } while(m.find());
+        }
+        expression = expression.replaceAll('\\d', 'TRUE');
+        if(expression.replaceAll('TRUE|\\(|\\)|AND|OR| ', '').length() > 0 || !eval(expression)){
+            return false;
+        }
+        return true;
+    }
+    
+    /**
+    * Evaluate a boolean expression 
+    *  
     */
     public static Boolean eval(String expression) {        
         // If expression contains all TRUE or FALSE

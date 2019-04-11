@@ -216,6 +216,15 @@
         <type>Flexipage</type>
         <profile>Admin</profile>
     </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Audience_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Audience__c</pageOrSobjectType>
+        <recordType>Audience__c.Audience</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
     <tabs>Cluster__c</tabs>
     <tabs>Component__c</tabs>
     <tabs>ContentLanding</tabs>
@@ -231,5 +240,7 @@
     <tabs>AudienceUser__c</tabs>
     <tabs>SocialNetwork__c</tabs>
     <tabs>Datatable__c</tabs>
+    <tabs>Audience__c</tabs>
+    <tabs>CMSUserSettings__c</tabs>
     <uiType>Lightning</uiType>
 </CustomApplication>

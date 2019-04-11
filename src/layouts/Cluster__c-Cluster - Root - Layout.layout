@@ -73,6 +73,38 @@
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
     <layoutSections>
+        <customLabel>true</customLabel>
+        <detailHeading>true</detailHeading>
+        <editHeading>true</editHeading>
+        <label>Audience Settings</label>
+        <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>AudienceFieldsAccount__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>AudienceFieldsContact__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>AudienceFieldsAccountContact__c</field>
+            </layoutItems>
+            <layoutItems>
+                <emptySpace>true</emptySpace>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>AudienceCustomObjectType__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>AudienceFieldsCustomObject__c</field>
+            </layoutItems>
+        </layoutColumns>
+        <style>OneColumn</style>
+    </layoutSections>
+    <layoutSections>
         <customLabel>false</customLabel>
         <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>

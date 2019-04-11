@@ -2130,22 +2130,6 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
         <errorMessage>Can not fill both HTML Content and Long Description fields.</errorMessage>
     </validationRules>
     <validationRules>
-        <fullName>OverlayQuadrantObligatory</fullName>
-        <active>true</active>
-        <description>RecordType &quot;Banner&quot;; Cuando OverlayQuadrant__c este vació y los campos Title__c, Extract__c, ButtonLabel__c tienen valor u OverlayQuadrant__c tiene valor y todos los campos Title__c, Extract__c, ButtonLabel__c  estén todos vacíos.</description>
-        <errorConditionFormula>AND(
-    OR(
-        AND(ISBLANK(TEXT(OverlayQuadrant__c)), OR(NOT(ISBLANK(Title__c)), NOT(LEN(Extract__c) = 0), NOT(ISBLANK(ButtonLabel__c))))  
-    ,
-        AND(NOT(ISBLANK(TEXT(OverlayQuadrant__c))), AND(ISBLANK(Title__c), LEN(Extract__c) = 0, ISBLANK(ButtonLabel__c)))  
-    ),
-                 RecordType.Name = &quot;Banner&quot;
-)</errorConditionFormula>
-        <errorDisplayField>OverlayQuadrant__c</errorDisplayField>
-        <errorMessage>Si este campo esta vacío, los campos &quot;List Title&quot;, &quot;List Description&quot;, &quot;Button Label&quot; NO deben tener valor. 
-Si este campo tiene valor, de los campos &quot;List Title&quot;, &quot;List Description&quot;, &quot;Button Label&quot; al menos uno NO debe estar vacío.</errorMessage>
-    </validationRules>
-    <validationRules>
         <fullName>PublishEndDate</fullName>
         <active>true</active>
         <description>When Publish End Date is before than Publish Start Date</description>

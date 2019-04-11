@@ -590,7 +590,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Content Landing New Content button label</shortDescription>
-        <value>New Content</value>
+        <value>Create Content</value>
     </labels>
     <labels>
         <fullName>ContentLandingNone</fullName>

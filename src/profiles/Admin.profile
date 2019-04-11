@@ -542,6 +542,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Component__c.MatchCriteria__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	</fieldPermissions>
+        <fieldPermissions>
+        <editable>true</editable>
+        <field>Component__c.TagCriteria__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Component__c.HierarchicalOrderBy__c</field>
         <readable>true</readable>
     </fieldPermissions>

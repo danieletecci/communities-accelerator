@@ -107,7 +107,6 @@
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
-    <gender>Feminine</gender>
     <label>CMS User Settings</label>
     <listViews>
         <fullName>All</fullName>

@@ -97,7 +97,7 @@ public class GeneralUtils{
                 return null;
             }
         }
-        Object val = recordAux.get(fieldPath);
+        Object val = recordAux != null ? recordAux.get(fieldPath) : null;
         return val;
     }
     

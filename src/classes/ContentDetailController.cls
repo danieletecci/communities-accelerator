@@ -71,6 +71,8 @@ public with sharing class ContentDetailController {
             Set<Id> clusterIds = getClusterBranch(contentRecord.Cluster__c);
             //Gets the tags related to the content record.
             Set<Id> tagIds = getTagsFromContentRecord(contentRecord);
+            //Gets the audiences related to the content record.
+            Set<String> audiencesExternalIds = getAudiencesFromContentRecord(contentRecord);
             //Gets all the visibility options, with the current content options set as true.
             SecurityWrapper sw = new SecurityWrapper(hasEditAccess(recordId), hasCreateContentPermission(), hasRecordTypeAvailable(contentRecord.RecordType.DeveloperName));
             List<VisibilitySelectorWrapper> visibilitySelectorList = new List<VisibilitySelectorWrapper>();
@@ -79,6 +81,7 @@ public with sharing class ContentDetailController {
                 visibilitySelectorList.add(getCategorySelectorWrapper(clusterIds, contentRecord.category__c));
             }
             visibilitySelectorList.add(getTagSelectorWrapper(clusterIds, tagIds, sw.hasEditAccess));
+            visibilitySelectorList.add(getAudienceSelectorWrapper(clusterIds, audiencesExternalIds, sw.hasEditAccess));
             List<String> bannerFrameTypes = getBannerFrameTypes();
 
             data = new DataWrapper(contentRecord, sw, visibilitySelectorList, UserInfo.getTimeZone().getID(), bannerFrameTypes);
@@ -96,9 +99,19 @@ public with sharing class ContentDetailController {
         return tagIds;
     }
 
+    private static Set<String> getAudiencesFromContentRecord(Content__c content){
+        Set<String> audiencesExtIds = new Set<String>();
+        if(content.Audience__r.ReferenceAudienceExternalIds__c != null){
+            for(String audienceExtId: content.Audience__r.ReferenceAudienceExternalIds__c.split(';')){
+                audiencesExtIds.add(audienceExtId.replace(' ',''));
+            }
+        }
+        return audiencesExtIds;
+    }
+
     private static Content__c getContentData(String recordId){
         String contentFields = getContentFields();
-        Content__c content = Database.query('SELECT (SELECT Tag__c FROM Tags__r),(SELECT MediaElement__r.FileURLDesktop__c,MediaElement__r.Name FROM MediaElementAssignments__r),RecordType.Name,RecordType.DeveloperName,' 
+        Content__c content = Database.query('SELECT (SELECT Tag__c FROM Tags__r),(SELECT MediaElement__r.FileURLDesktop__c,MediaElement__r.Name FROM MediaElementAssignments__r),RecordType.Name,RecordType.DeveloperName,Audience__r.ReferenceAudienceExternalIds__c,' 
                                             + contentFields + ' FROM Content__c WHERE id = :recordId');
         content.Body__c = externalIdToUrl(content.Body__c);
         return content;
@@ -143,6 +156,27 @@ public with sharing class ContentDetailController {
         return categorySelectorWrapper;
     }
 
+    private static VisibilitySelectorWrapper getAudienceSelectorWrapper(Set<Id> clusterIds, Set<String> audienceExtIds, Boolean hasEditAccess){
+        List<Audience__c> audiences;
+        if(hasEditAccess)
+            audiences = [SELECT id, ExternalId__c, name FROM Audience__c WHERE RecordType.DeveloperName = 'Audience' AND Cluster__c IN :clusterIds];
+        else
+            audiences = [SELECT id, ExternalId__c, name FROM Audience__c WHERE Id IN :audiences];
+
+        List<VisibilityOptionWrapper> audienceWrapperList = new List<VisibilityOptionWrapper>();
+        for(Audience__c audience : audiences){
+            VisibilityOptionWrapper audienceWrapper;  
+            if(audienceExtIds.contains(audience.ExternalId__c)){
+                audienceWrapper = new VisibilityOptionWrapper(audience.name, audience.ExternalId__c, true);
+            }else{
+                audienceWrapper = new VisibilityOptionWrapper(audience.name, audience.ExternalId__c, false);
+            }
+            audienceWrapperList.add(audienceWrapper);
+        }
+        VisibilitySelectorWrapper categorySelectorWrapper = new VisibilitySelectorWrapper('Audiences', 'Audience__c', true, audienceWrapperList, null, Label.MultiComboboxAudiencePlaceholder);
+        return categorySelectorWrapper;
+    }
+
     private static Set<Id> getClusterBranch(Id clusterId){
         Set<Id> clusters = (Set<Id>)JSON.deserialize(JSON.serialize(ClusterUtils.getClustersParents(clusterId)), Set<Id>.class);
         return clusters;
@@ -160,6 +194,7 @@ public with sharing class ContentDetailController {
         Savepoint sp = Database.setSavepoint();
         try{
             List<VisibilitySelectorWrapper> visibilitySelectors = (List<VisibilitySelectorWrapper>)JSON.deserialize(visibilitySelectorsString, List<VisibilitySelectorWrapper>.class);
+            updateAudienceAssignments(content, getSelectorByApiName(visibilitySelectors, 'Audience__c'));
             content = updateContent(content, visibilitySelectors, status);
             updateTagAssignments(content, getSelectorByApiName(visibilitySelectors, 'Tag__c'), contentOldTagAssignments);
             updateMediaElementAssignment(content, mediaElementId);
@@ -198,10 +233,10 @@ public with sharing class ContentDetailController {
                     }
                 }
                 if(!mediaElementAlreadyAssigned){
-                	insert new MediaElementAssignment__c(Content__c = content.Id, MediaElement__c = mediaElementId, Placement__c = placement);
+                    insert new MediaElementAssignment__c(Content__c = content.Id, MediaElement__c = mediaElementId, Placement__c = placement);
                 }
                 if(!toDelete.isEmpty()){
-                	delete toDelete;
+                    delete toDelete;
                 }
             }           
         }
@@ -239,10 +274,19 @@ public with sharing class ContentDetailController {
         }
 
     }
+    
+    private static void updateAudienceAssignments(Content__c content, VisibilitySelectorWrapper audienceVisibility){
+        List<String> audienceExternalIdsList = new List<String>();
+        for(VisibilityOptionWrapper audienceOption: audienceVisibility.values){
+            if(audienceOption.isSelected){
+                audienceExternalIdsList.add(audienceOption.value);
+            }
+        }
+        content.Audience__c = AudienceUtils.audienceGroupCreation(audienceExternalIdsList, content.Cluster__c);
+    }
 
     private static Content__c updateContent(Content__c content, List<VisibilitySelectorWrapper> visibilitySelectors, String status){
         VisibilitySelectorWrapper categorySelector = getSelectorByApiName(visibilitySelectors, 'Category__c');
-        System.debug('categorySelector: ' + JSON.serialize(categorySelector));
         
         for(VisibilityOptionWrapper category : categorySelector.values){
             if(category.isSelected){

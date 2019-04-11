@@ -1,0 +1,42 @@
+.THIS .slds-text-title--caps{
+    padding-left: 1.5%;
+}
+.THIS .criterionTable{
+    margin-bottom: 20px;
+}
+.THIS .criterionTable .fieldPaths .slds-button-group{
+    margin-top: 5px;
+}
+.THIS .criterionTable .fieldPaths .slds-form-element{
+    width: 100%;
+    padding: 5px;
+}
+.THIS .criterionTable .operators .slds-button-group{
+    margin-top: 5px;
+}
+.THIS .criterionTable .operators .slds-form-element{
+    width: 100%;
+    padding: 5px;
+}
+.THIS .matchCriteria{
+    padding-left: 1.5%;
+}
+.THIS .matchCriteria label{
+    padding-right: 5px;
+}
+.THIS .matchCriteria .slds-button-group{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.THIS .matchCriteria .slds-form-element__icon{
+    padding-top: 0px !important;
+}
+.THIS .hideLabel label{
+    display: none;
+}
+.THIS .values .slds-form-element{
+    width: 100%;
+}
+.THIS .hideField{
+    display: none;
+}

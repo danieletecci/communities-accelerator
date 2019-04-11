@@ -35,6 +35,7 @@ public without sharing virtual class ContentUtils {
         String query = '';
 
         //SELECT
+        fieldSet.add('Audience__r.ReferenceAudienceExternalIds__c');
         query += 'SELECT ' + GeneralUtils.joinFields(fieldSet) + ', (SELECT Id, MediaElement__c, Placement__c FROM MediaElementAssignments__r WHERE Placement__c = \''+ getPlaceForRTComponent(component.RecordType.Developername) +'\') ';     
         
         //FROM
@@ -101,11 +102,8 @@ public without sharing virtual class ContentUtils {
             query = query.replace('ORDER BY', 'ORDER BY Cluster__r.ClusterLevel__c ' + component.HierarchicalOrderBy__c + ', ');
         }       
         
-
         ContentWrapper cw = new ContentWrapper();
         Map<Id, Content__c> mapContent = new Map<Id, Content__c>((List<Content__c>)Database.query(query));
-
-  
 
         if(!mapContent.isEmpty()){
             //Manual Order del contenido
@@ -116,25 +114,33 @@ public without sharing virtual class ContentUtils {
                 }
                 mapContent = mapContentOrdered;
             }
-            
-            //TODO: Aca tenemos que aplicar segmentacion y se tiene que cambiar como manejamos las paginas y el total de las paginas
 
             //Si despues de aplicar segmentacion tenemos algun registro evaluamos las paginas
             if(!mapContent.isEmpty()){
 
+                set<Id> contentIdsSet = mapContent.keySet();
+                List<Content__c> contentList = mapContent.values();
+                
+                //Application of audiences
+                try{
+                    AudienceUtils.filterRecords(UserInfo.getUserId(), contentList, 'Audience__c');
+                }catch(Exception e){
+                    contentList = new List<Content__c>();
+                }
+
                 //Seteo todos los Ids posibles para despues hacer el query de paginas
-                cw.setAllContentIds = (Set<String>)JSON.deserialize(JSON.serialize(mapContent.keySet()), Set<String>.class);
+                cw.setAllContentIds = (Set<String>)JSON.deserialize(JSON.serialize(contentIdsSet), Set<String>.class);
 
                 //Calculo el total de paginas
-                cw.totalPages = component.PageSize__c != null ? Integer.valueOf((mapContent.size() / component.PageSize__c).round(RoundingMode.UP)) : 1;
+                cw.totalPages = component.PageSize__c != null ? Integer.valueOf((contentList.size() / component.PageSize__c).round(RoundingMode.UP)) : 1;
                 //Content Data Wrapper
                 List<Content__c> firstPage = new List<Content__c>();
                 if(component.PageSize__c == null){
-                    firstPage = mapContent.values();
+                    firstPage = contentList;
                 }else{
-                    Decimal limitSize = component.PageSize__c < mapContent.values().size() ? component.PageSize__c : mapContent.values().size();
+                    Decimal limitSize = component.PageSize__c < contentList.size() ? component.PageSize__c : contentList.size();
                     for(Integer i = 0; i < limitSize; i++){
-                        firstPage.add(mapContent.values()[i]);
+                        firstPage.add(contentList[i]);
                     }
                 }
                 //Translate content records

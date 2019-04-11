@@ -1,23 +1,34 @@
 /*
-***********************************************************************************************************************************************
+-----------------------------------------------------------------------------------------------------------------------------------------------
 
-Esta estructura permite optimizar la ejecucion de triggers haciendo la menor cantidad de loops posibles de los registros involucrados en un 
-trigger, organizando los queries, ejecutando los DMLs en conjunto, evitando recursividad y permitiendo un By Pass atomico a nivel de trigger 
-y metodos, y a su vez a nivel de Usuario. Tambien permite activar debug logs para poder trackear y seguir el codigo de manera mas sencilla en
-un debug.
+The triggers framework "Master Loop" was thought mainly to solve performance problems. It is based on the fact that any business requirement can be solved with only 2 loops ("Master" and "Final" loops) of the records involved in a trigger.
 
-La estrucutra de Loops se basa en que solo 2 loops son necesarios para resolver cualquier operacion sobre los registros.
+The framework was designed and developed to enhance the following points:
+- Standardization of design patterns for triggers
+- Distinction between architecture and business logic
+- Standardization of records iteration and amount of iterations ("Master Loop & Final Loop")
+- Standardization on "steps" of triggers
+- Standardization on general variables naming
+- Easy reuse of variables and queries
+- Easy usage of "New record" and "Old record"
+- General bypass of triggers and trigger methods
+- Bypass by user on triggers and methods
+- Bypass on "runtime" of triggers and methods
+- Native capabilities for Multi-Country and Multi-Business
+- Recursivity control
+- Execution path debug. You can activate declaratively this functionality
+- Capabilities to do "Self Update" of records in trigger
 
-Orden de ejecucion:
-1. triggerPreparing: Sirve para hacer filtros sobre el "trigger new/old" o instanciar variales globales a la ejecucion
-2. masterLoops: Primer loop de todos los registros involucrados en el trigger
-3. dataPreparing: En este metodo seran ejecutados todos los SOQL queries y preparado de colecciones que luego seran usadas en DMLs o finalLoops
-4. executeDMLs: En este metodo se ejecutaran todos los DMLs tratando siempre de juntar las colecciones de iguales tipos
-5. finalLoops: Segundo y ultimo loop de todos los registros involucrados en el trigger
-6. triggerFinish: Sirve para la ejecucion de DMLs que necesitan mas de un loop de los registros en el trigger
-7. * selfupdate: Este metodo se ejecutara solo si es necesario actualizar un registro involucrado en el mismo trigger
+Execution order:
+1. triggerPreparing: This methods is used to do an aditional filter on the list "trigger new/old" or, for example, instantiate global variables
+2. masterLoops: First loop of all the records involved in the trigger
+3. dataPreparing: This method must contain all the SOQL queries and process the queries data to make collections that will then be used in DMLs or finalLoops
+4. executeDMLs: This method must contain all the DMLs (always trying to group the collections of the same types)
+5. finalLoops: Second and last loop of all the records involved in the trigger
+6. triggerFinish: This method is used to execute DMLs that need more than one loop of the records, webservices executions or global action for the trigger
+7. * selfupdate: This method will be executed only if is necessary to update a record involved in the same trigger
 
-***********************************************************************************************************************************************
+-----------------------------------------------------------------------------------------------------------------------------------------------
 */
 
 
@@ -63,7 +74,7 @@ public without sharing virtual class TriggersHandler {
     private map<Id, SObject> mapRecordsToSelfUpdate;
     private Schema.DescribeSObjectResult objDesc;
     
-    //CONSTRUCTORES
+    //CONSTRUCTORS
     public TriggersHandler(List<SObject> p_triggerNew, List<SObject> p_triggerOld, Boolean allowRecursivity) {
         init(p_triggerNew, p_triggerOld, allowRecursivity);
     }
@@ -72,7 +83,7 @@ public without sharing virtual class TriggersHandler {
         init(p_triggerNew, p_triggerOld, true);
     }
 
-    //METODO DE INICIALIZACION
+    //INITIALIZATION METHOD
     private void init(List<SObject> p_triggerNew, List<SObject> p_triggerOld, Boolean allowRecursivity){
         this.allowRecursivity = allowRecursivity;
         mapRecordsToSelfUpdate = new map<Id, SObject>();
@@ -90,7 +101,7 @@ public without sharing virtual class TriggersHandler {
         if(!isTriggersHandlerTest){triggerOldMap   = trigger.oldMap;}
     }
 
-    //METODOS HABILITADOS PARA SER SOBREESCRITOS
+    //TEMPLATE METHODS ENABLED TO BE OVERWRITED
     /*
     public override void triggerPreparing() {}
     public override void masterLoop_BeforeInsert(SObject recNew) {}
@@ -131,28 +142,28 @@ public without sharing virtual class TriggersHandler {
     }
 
     private void exeMasterLoops() {
-        //Ejecucion previa
+        //First method (trigger "setup")
         triggerPreparingMaster();
 
         if((triggerIsInsert || triggerIsUpdate || triggerIsUndelete) && triggerNew.isEmpty()){return;}
         if(triggerIsDelete && triggerOld.isEmpty()){return;}
-
-        //Loop principal para impactar datos default en before o recopilar datos en colecciones para operaciones posteriores
+        
+        //Main loop of records to impact data by default in before events, or collect data for later operations
         masterLoop(false);
-
-        //Metodo en el que se ejecutan queries y se hace el procesamiento de datos para luego ser impactados
+        
+        //Method to execute queries and process data in collections
         dataPreparingMaster();
 
-        //Metodo para ejecutar todos los DMLs
+        //Method to execute DMLs
         executeDMLsMaster();
 
-        //Loop final para impactar datos
+        //Final loop of records to impact data
         masterLoop(true);
 
-        //Metodo para ejecutar los DMLs de finalizacion de trigger
+        //Method to execute extra DMLs or global final processes
         triggerFinishMaster();
-
-        //Metodo para actualizar la misma lista del trigger new
+        
+        //Method to update records involved in the same trigger
         selfUpdateMaster();
     }
 
@@ -275,7 +286,7 @@ public without sharing virtual class TriggersHandler {
 
     }
 
-    //INCLUIR QUERIES Y PROCESAMIENTO EN ESTE METODO
+    //QUERIES AND DATA PROCESSING
     private void dataPreparingMaster() {
         if(allow_dataPreparing){
             if(runDebugs){system.debug('TRIGGER ' + triggerName + ' - dataPreparing');}
@@ -284,7 +295,7 @@ public without sharing virtual class TriggersHandler {
         }
     }
 
-    //INCLUIR DMLs EN ESTE METODO
+    //DMLS
     private void executeDMLsMaster() {
         if(allow_executeDMLs){
             if(runDebugs){system.debug('TRIGGER ' + triggerName + ' - executeDMLs');}
@@ -292,8 +303,8 @@ public without sharing virtual class TriggersHandler {
             executeDMLs();
         }
     }
-
-    //INCLUIR DMLs AUXILIARES, METODOS @FUTURE, INTEGRACIONES, ETC (LA PRIMERA OPCION SERIA EN "executeDMLs")
+    
+    //EXTRA DMLS, @FUTURE METHODS, WEBSERVICES, ETC
     private void triggerFinishMaster() {
         if(allow_triggerFinish){
             if(runDebugs){system.debug('TRIGGER ' + triggerName + ' - triggerFinish');}
@@ -302,7 +313,7 @@ public without sharing virtual class TriggersHandler {
         }
     }
 
-    //METODO PARA ACTUALIZAR LOS REIGSTROS INVOLUCRADOS EN EL TRIGGER
+    //UPDATE FOR RECORDS INVOLVED IN THE TRIGGER
     private void selfUpdateMaster() {
         if(allow_selfUpdate || !mapRecordsToSelfUpdate.values().isEmpty()){
             if(runDebugs){system.debug('TRIGGER ' + triggerName + ' - selfUpdate');}
@@ -311,9 +322,8 @@ public without sharing virtual class TriggersHandler {
         selfUpdate();
     }
 
-    //METODOS HABILITADOS PARA SER SOBREESCRITOS
+    //METHODS ENABLED TO BE OVERWRITED
     public virtual void triggerPreparing() {}
-
     public virtual void masterLoop_BeforeInsert(SObject recNew) {}
     public virtual void masterLoop_AfterInsert(SObject recNew) {}
     public virtual void masterLoop_BeforeUpdate(SObject recNew, SObject recOld) {}
@@ -321,11 +331,8 @@ public without sharing virtual class TriggersHandler {
     public virtual void masterLoop_BeforeDelete(SObject recOld) {}
     public virtual void masterLoop_AfterDelete(SObject recOld) {}
     public virtual void masterLoop_AfterUndelete(SObject recOld) {}
-
     public virtual void dataPreparing() {}
-
     public virtual void executeDMLs() {}
-
     public virtual void finalLoop_BeforeInsert(SObject recNew) {}
     public virtual void finalLoop_AfterInsert(SObject recNew) {}
     public virtual void finalLoop_BeforeUpdate(SObject recNew, SObject recOld) {}
@@ -333,7 +340,6 @@ public without sharing virtual class TriggersHandler {
     public virtual void finalLoop_BeforeDelete(SObject recOld) {}
     public virtual void finalLoop_AfterDelete(SObject recOld) {}
     public virtual void finalLoop_AfterUndelete(SObject recNew) {}
-
     public virtual void triggerFinish() {}
 
     public virtual void selfUpdate() {
@@ -342,7 +348,7 @@ public without sharing virtual class TriggersHandler {
         }
     }
 
-    //METODOS DE UTILIDAD
+    //UTILITY METHODS
     public Boolean canMethod(String method){
         Boolean allowMethod = TriggersHandlerManager.canTrigger(triggerName + '.' + method);
         if(allowMethod){

@@ -100,7 +100,7 @@ public class GeneralUtils{
         Object val = recordAux.get(fieldPath);
         return val;
     }
-
+    
     public static map<Id, List<ContentVersion>> getFilesByParentId(Set<ID> idSet){
         map<Id, List<ContentVersion>> mapParentIdFiles = new map<Id, List<ContentVersion>>();
 

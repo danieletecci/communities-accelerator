@@ -17,6 +17,14 @@
         <value>Add Media</value>
     </labels>
 	<labels>
+        <fullName>CustomCriteriaValidation</fullName>
+        <categories>AudienceTriggers.cls</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Custom Criteria Validation</shortDescription>
+        <value>Invalid custom logic expression. You only can use &quot;(&quot;, &quot;)&quot;, &quot;AND&quot;, &quot;OR&quot; and the criteria numbers</value>
+    </labels>
+	<labels>
         <fullName>MultiComboboxAudiencePlaceholder</fullName>
         <categories>ContentDetailController.apxc</categories>
         <language>en_US</language>

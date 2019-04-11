@@ -2,7 +2,7 @@
 .THIS .slds-table--header-fixed_container {border-top: 1px solid rgb(221, 219, 218);}
 .THIS .slds-button-group {margin-left:10px; margin-top:10px;}
 .THIS .slds-scrollable_y {height:100%; border-bottom: 1px solid rgb(221, 219, 218);}
-
+.THIS .slds-card__body {padding:20px;}
 .THIS .c_row_header_fixed {margin-top: 9px; margin-left: 8.5px;}
 .THIS .c_row_toselect {width:3.25rem;}
 .THIS .slds-icon-action-close { background-color: transparent;}

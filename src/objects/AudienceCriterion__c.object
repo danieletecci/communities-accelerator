@@ -224,7 +224,6 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
-    <gender>Feminine</gender>
     <label>Audience Criterion</label>
     <listViews>
         <fullName>All</fullName>

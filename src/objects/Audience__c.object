@@ -161,7 +161,6 @@
             <valueSetName>Status</valueSetName>
         </valueSet>
     </fields>
-    <gender>Feminine</gender>
     <label>Audience</label>
     <listViews>
         <fullName>All</fullName>

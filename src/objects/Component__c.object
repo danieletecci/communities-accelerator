@@ -483,6 +483,36 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>MatchCriteria__c</fullName>
+        <externalId>false</externalId>
+        <label>Match Criteria</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>All</fullName>
+                    <default>true</default>
+                    <label>All</label>
+                </value>
+                <value>
+                    <fullName>Any</fullName>
+                    <default>false</default>
+                    <label>Any</label>
+                </value>
+                <value>
+                    <fullName>Custom</fullName>
+                    <default>false</default>
+                    <label>Custom</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
         <fullName>Mode__c</fullName>
         <description>How will be showed the catalog component</description>
         <externalId>false</externalId>
@@ -1377,6 +1407,21 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>MatchCriteria__c</picklist>
+            <values>
+                <fullName>All</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Any</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Custom</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Mode__c</picklist>
             <values>
                 <fullName>Full</fullName>
@@ -1647,6 +1692,21 @@
             </values>
             <values>
                 <fullName>DESC</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>MatchCriteria__c</picklist>
+            <values>
+                <fullName>All</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Any</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Custom</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1953,6 +2013,21 @@
             </values>
             <values>
                 <fullName>DESC</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>MatchCriteria__c</picklist>
+            <values>
+                <fullName>All</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Any</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Custom</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2279,6 +2354,21 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>MatchCriteria__c</picklist>
+            <values>
+                <fullName>All</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Any</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Custom</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Mode__c</picklist>
             <values>
                 <fullName>Full</fullName>
@@ -2601,6 +2691,21 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>MatchCriteria__c</picklist>
+            <values>
+                <fullName>All</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Any</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Custom</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Mode__c</picklist>
             <values>
                 <fullName>Full</fullName>
@@ -2899,6 +3004,21 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>MatchCriteria__c</picklist>
+            <values>
+                <fullName>All</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Any</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Custom</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Mode__c</picklist>
             <values>
                 <fullName>Full</fullName>
@@ -3161,6 +3281,21 @@
             </values>
             <values>
                 <fullName>DESC</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>MatchCriteria__c</picklist>
+            <values>
+                <fullName>All</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Any</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Custom</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3463,6 +3598,21 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>MatchCriteria__c</picklist>
+            <values>
+                <fullName>All</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Any</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Custom</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Mode__c</picklist>
             <values>
                 <fullName>Full</fullName>
@@ -3753,6 +3903,21 @@
             </values>
             <values>
                 <fullName>DESC</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>MatchCriteria__c</picklist>
+            <values>
+                <fullName>All</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Any</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Custom</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -4058,6 +4223,21 @@
             </values>
             <values>
                 <fullName>DESC</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>MatchCriteria__c</picklist>
+            <values>
+                <fullName>All</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Any</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Custom</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -4384,6 +4564,21 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>MatchCriteria__c</picklist>
+            <values>
+                <fullName>All</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Any</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Custom</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Mode__c</picklist>
             <values>
                 <fullName>Full</fullName>
@@ -4686,6 +4881,21 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>MatchCriteria__c</picklist>
+            <values>
+                <fullName>All</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Any</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Custom</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Mode__c</picklist>
             <values>
                 <fullName>Full</fullName>
@@ -4972,6 +5182,21 @@
             </values>
             <values>
                 <fullName>DESC</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>MatchCriteria__c</picklist>
+            <values>
+                <fullName>All</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Any</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Custom</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -5282,6 +5507,21 @@
             </values>
             <values>
                 <fullName>DESC</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>MatchCriteria__c</picklist>
+            <values>
+                <fullName>All</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Any</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Custom</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -5604,6 +5844,21 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>MatchCriteria__c</picklist>
+            <values>
+                <fullName>All</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Any</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Custom</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Mode__c</picklist>
             <values>
                 <fullName>Full</fullName>
@@ -5917,6 +6172,21 @@
             </values>
             <values>
                 <fullName>DESC</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>MatchCriteria__c</picklist>
+            <values>
+                <fullName>All</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Any</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Custom</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

@@ -67,7 +67,11 @@
                 <field>OrderByAdvance__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
+                <field>MatchCriteria__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
                 <field>TagCriteria__c</field>
             </layoutItems>
         </layoutColumns>

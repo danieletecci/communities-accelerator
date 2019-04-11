@@ -1687,4 +1687,36 @@
         <shortDescription>Values</shortDescription>
         <value>VALUES</value>
     </labels>
+    <labels>
+        <fullName>CriteriaListInBlank</fullName>
+        <categories>Tags</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>CriteriaListInBlank</shortDescription>
+        <value>Please complete the Criteria List.</value>
+    </labels>
+    <labels>
+        <fullName>TagValidation</fullName>
+        <categories>Tags</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>TagValidation</shortDescription>
+        <value>The tag criteria doesn't match with tags selected.</value>
+    </labels>
+    <labels>
+        <fullName>Criteria</fullName>
+        <categories>Tags</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Criteria</shortDescription>
+        <value>Criteria</value>
+    </labels>
+    <labels>
+        <fullName>AddTag</fullName>
+        <categories>Tags</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>AddTag</shortDescription>
+        <value>Add Tags</value>
+    </labels>
 </CustomLabels>

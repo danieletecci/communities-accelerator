@@ -6,26 +6,35 @@ public class BooleanExpression {
     * Validate a boolean expression 
     *  
     */
-    public static Boolean validateExpression(String expression, Set<Integer> validNumbersSet){
-        if(expression == null || expression == '' || validNumbersSet == null || validNumbersSet.isEmpty()){return false;}
+    public static Boolean validateExpression(String expression, Set<Integer> validNumberSet){
+        if(expression == null || expression == '' || validNumberSet == null || validNumberSet.isEmpty()){
+            return false;
+        }
         expression = expression.deleteWhitespace().toUpperCase().replaceAll('AND', ' AND ').replaceAll('OR', ' OR ');
         Pattern p = Pattern.compile('(\\d+)');
         Matcher m = p.matcher(expression);
+        Set<Integer> existNumberSet = new Set<Integer>();
+
         if(m.find()) {
             do {
-                if(!validNumbersSet.contains(Integer.valueOf(m.group()))){return false;}
+                Integer value = Integer.valueOf(m.group());
+                if(!validNumberSet.contains(value)){
+                        return false;
+                    }else{
+                        existNumberSet.add(value);
+                    }
             } while(m.find());
         }
         expression = expression.replaceAll('\\d', 'TRUE');
-        if(expression.replaceAll('TRUE|\\(|\\)|AND|OR| ', '').length() > 0 || !eval(expression)){
+        if(expression.replaceAll('TRUE|\\(|\\)|AND|OR| ', '').length() > 0 || !eval(expression) || existNumberSet.size() != validNumberSet.size()){
             return false;
         }
         return true;
     }
-    
+
     /**
-    * Evaluate a boolean expression 
-    *  
+    * Evaluate a boolean expreassion 
+    * 
     */
     public static Boolean eval(String expression) {        
         // If expression contains all TRUE or FALSE

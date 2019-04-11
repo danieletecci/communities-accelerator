@@ -3,12 +3,14 @@ public with sharing class ContentDetailHeaderController {
     public class DataWrapper{
         @AuraEnabled public Content__c      content;
         @AuraEnabled public String          timeZone;
-        @AuraEnabled public SecurityWrapper  security;
+        @AuraEnabled public String          gmtOffset;
+        @AuraEnabled public SecurityWrapper security;
         
-        public DataWrapper(Content__c content, String timeZone, SecurityWrapper security){
-            this.content    = content;
-            this.timeZone   = timeZone;
-            this.security   = security;
+        public DataWrapper(Content__c content, String timeZone, String gmtOffset, SecurityWrapper security){
+            this.content            = content;
+            this.timeZone           = timeZone;
+            this.gmtOffset          = gmtOffset;
+            this.security           = security;
         }
     }
 
@@ -31,7 +33,13 @@ public with sharing class ContentDetailHeaderController {
         Content__c content = getContentData(recordId);
         UserRecordAccess ura = getRecordAccess(recordId);
         SecurityWrapper sw = new SecurityWrapper(ura.HasEditAccess, ura.HasDeleteAccess, hasCreateContentPermission(), hasRecordTypeAvailable(content.RecordType.DeveloperName));
-        return new DataWrapper(getContentData(recordId), UserInfo.getTimeZone().getID(), sw);
+        String tzName = UserInfo.getTimeZone().getDisplayName();
+        return new DataWrapper(
+            getContentData(recordId), 
+            UserInfo.getTimeZone().getID(), 
+            tzName.substring(tzName.indexOf('GMT')+3, tzName.indexOf(')')), 
+            sw
+        );
     }
 
     @AuraEnabled

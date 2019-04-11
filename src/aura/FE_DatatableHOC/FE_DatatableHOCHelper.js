@@ -164,5 +164,36 @@
 	    d.setTime(d.getTime() + (exdays*24*60*60*1000));
 	    var expires = "expires="+ d.toUTCString();
 	    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    },
+    doHandleCustomRowAction : function(component, event, helper) {
+        var modalBody;
+        var eventParams = JSON.parse(event.getParam('values'));
+        
+        if(eventParams) {
+            var recordId = eventParams['recordId'];
+            var componentName = eventParams['componentName'];
+            var showAsModal = eventParams['showAsModal'];
+            
+            $A.createComponent("c:"+componentName,
+                                    { recordId : recordId}
+                                    , function(content, status) {
+                                            if (status === "SUCCESS") {
+                                                modalBody = content;
+    
+                                                if(showAsModal) {
+                                                    component.find('rowActionModal').showCustomModal({
+                                                        header: "",
+                                                        body: modalBody,
+                                                        showCloseButton: true,
+                                                        closeCallback: function() {}
+                                                    })
+                                                }else {
+                                                    component.set('v.showDatatable', false);
+                                                    component.set("v.customContent", modalBody);
+                                                }
+                                            }
+                                    }
+                );
+        }
     }
 })

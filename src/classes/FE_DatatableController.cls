@@ -96,9 +96,9 @@ public class FE_DatatableController extends FE_ComponentManager {
             System.debug('datatable: ' + datatable);
             DatatableWrapper datatableWrapper = FE_DatatableUtils.mapDatatableToWrapper(datatable);
             datatableWrapper.componentExternalId = this.componentExternalId;
+            datatableWrapper.searchTerm = '';
 
             datatableWrapper.columns = FE_DatatableUtils.mapDatatableElementsToWrappers(datatable.DatatableElements__r);
-            datatableWrapper.searchTerm = '';
             datatableWrapper.actions = FE_DatatableUtils.mapDatatableActionsToWrappers(datatable.DatatableActions__r);
             
             List<SObject> records = FE_DatatableUtils.doGetRecords(datatable, 0, datatableWrapper);
@@ -161,6 +161,7 @@ public class FE_DatatableController extends FE_ComponentManager {
         public String label {get;set;}
         public String icon {get;set;}
         public String displaySettings {get;set;}
+        public Boolean showAsModal {get;set;}
     }
 
     public class DatatableFilterWrapper implements Comparable {

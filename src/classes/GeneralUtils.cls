@@ -254,24 +254,8 @@ public class GeneralUtils{
     }
 
     public static String getDateTimeForQuery(Datetime dt) {
-        String stringDate = String.valueOf(dt.date());
+        String stringDate = String.valueOf(dt);
 
         return stringDate.replace(' ', 'T') + 'Z';
-    }
-
-    public static Datetime getDatetimeFromString (String dateString, Time hourPart) {
-        String dateFormat = getUserDateFormat();
-
-        System.debug('in GeneralUtils.getDatetimeFromString() - dateFormat: ' + dateFormat);
-
-        String[] dateParts = dateString.split('-');
-        Integer year = Integer.valueOf(dateParts[0]);
-        Integer month = Integer.valueOf(dateParts[1]);
-        Integer day = Integer.valueOf(dateParts[2]);
-
-        Date d = Date.newInstance(year, month, day);
-        Datetime result = Datetime.newInstance(d, hourPart);
-
-        return result;
     }
 }

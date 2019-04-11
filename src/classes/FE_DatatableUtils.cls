@@ -44,6 +44,8 @@ public with sharing class FE_DatatableUtils {
     }
     
     public static String generateDatatableRecordsQuery(String selectPart, String fromPart, String whereCondition, String filtersCondition, String searchTermCondition) {
+        String result = '';
+
         Boolean hasConditions = false;
         Boolean hasWhereCondition = false;
         Boolean hasFiltersCondition = false;
@@ -57,6 +59,10 @@ public with sharing class FE_DatatableUtils {
             whereCondition = whereCondition.replace('WHERE', '');
         }
 
+        System.debug('generateDatatableRecordsQuery - whereCondition: ' + whereCondition);
+        /*
+        replaceDynamicFieldsOnWhereCondition(whereCondition, true);
+        */
         hasWhereCondition = String.isNotEmpty(whereCondition);
         hasFiltersCondition = String.isNotEmpty(filtersCondition);
         hasSearchTermCondition = String.isNotEmpty(searchTermCondition);
@@ -69,12 +75,12 @@ public with sharing class FE_DatatableUtils {
             System.debug('searchTermCondition: ' + searchTermCondition);
         }
 
-        whereCondition += String.isNotEmpty(whereCondition) && hasWhereCondition ? whereCondition : '';
-        whereCondition += String.isNotEmpty(whereCondition) && hasSearchTermCondition ? ' AND ' + searchTermCondition : searchTermCondition;
-        whereCondition += String.isNotEmpty(whereCondition) && hasFiltersCondition ? ' AND ' + filtersCondition : filtersCondition;
+        result += String.isNotEmpty(whereCondition) && hasWhereCondition ? whereCondition : '';
+        result += String.isNotEmpty(result) && hasSearchTermCondition ? ' AND ' + searchTermCondition : searchTermCondition;
+        result += String.isNotEmpty(result) && hasFiltersCondition ? ' AND ' + filtersCondition : filtersCondition;
 
         if(hasConditions) {
-            query += ' WHERE ' + whereCondition;
+            query += ' WHERE ' + result;
         }
 
         return query;
@@ -101,7 +107,8 @@ public with sharing class FE_DatatableUtils {
                                                     , Type__c, Datatable__r.ObjectApiName__c, ExcludedPicklistValues__c
                                             FROM DatatableElements__r ORDER BY Order__c)
                                         , (SELECT Id, Label__c, DisplaySettings__c, Icon__c, SelectableRow__c
-                                                , Type__c, RecordType.DeveloperName, Component__c
+                                                , Type__c, RecordType.DeveloperName, Component__c, ShowAsModal__c
+                                                , Navigation__r.URL__c
                                             FROM DatatableActions__r)
                                     FROM Datatable__c 
                                     WHERE ExternalId__c = : componentExternalId
@@ -120,10 +127,21 @@ public with sharing class FE_DatatableUtils {
         for(SObject record : records) {
             Map<String, String> structure = new Map<String, String>();
 
+            structure.put('Id', (String)record.get('Id'));
+
             for(FE_DatatableController.DatatableElementWrapper de : datatableElements) {
                 String fieldApiName = de.fieldName;
+                String value;
 
-                structure.put(fieldApiName, String.valueOf(record.get(fieldApiName)));
+                if(de.type == String.valueOf(Schema.DisplayType.DATE) || 
+                    de.type == String.valueOf(Schema.DisplayType.DATETIME)) {
+                    Datetime fieldDate = (Datetime)record.get(fieldApiName);
+                    value  = fieldDate.format();
+                }else {
+                    value = String.valueOf(record.get(fieldApiName));
+                }
+
+                structure.put(fieldApiName, value);
             }
 
             datatableData.add(structure);
@@ -146,7 +164,6 @@ public with sharing class FE_DatatableUtils {
             elem.searchable = ele.Searchable__c;
             elem.sortable = ele.Sortable__c;
             elem.filtrable = ele.Filtrable__c;
-            elem.navigation = ele.Navigation__c;
 
             if(ele.Type__c == String.valueOf(Schema.DisplayType.PICKLIST)) {
                 elem.filtrableValues = new List<String>();
@@ -186,6 +203,8 @@ public with sharing class FE_DatatableUtils {
             ac.label = action.Label__c;
             ac.icon = action.Icon__c;
             ac.displaySettings = action.DisplaySettings__c;
+            ac.showAsModal = action.ShowAsModal__c;
+            ac.navigation = action.Navigation__c;
 
             result.add(ac);
         }
@@ -289,16 +308,19 @@ public with sharing class FE_DatatableUtils {
             
             if(appliedFilter.filter.type == String.valueOf(Schema.DisplayType.STRING) || appliedFilter.filter.type == String.valueOf(Schema.DisplayType.PICKLIST)) {
                 filterCondition += appliedFilter.filter.name + ' = \'' + String.escapeSingleQuotes(appliedFilter.value1) + '\' ';
-            }else if(appliedFilter.filter.type == String.valueOf(Schema.DisplayType.DATE)) {
+            }else if(appliedFilter.filter.type == String.valueOf(Schema.DisplayType.DATE) || appliedFilter.filter.type == String.valueOf(Schema.DisplayType.DATETIME)) {
+
                 if(String.isNotEmpty(appliedFilter.value1) && String.isNotEmpty(appliedFilter.value2)) {
-                    Datetime datetimeValue1 = GeneralUtils.getDatetimeFromString(appliedFilter.value1, Time.newInstance(0, 0, 0, 0));
-                    Datetime datetimeValue2 = GeneralUtils.getDatetimeFromString(appliedFilter.value2, Time.newInstance(23, 59, 59, 0));
+
+                    Datetime datetimeValue1 = Datetime.newInstance(Date.valueOf(appliedFilter.value1), Time.newInstance(0, 0, 0, 0));
+                    Datetime datetimeValue2 = Datetime.newInstance(Date.valueOf(appliedFilter.value2), Time.newInstance(23, 59, 59, 0));
+
                     filterCondition += appliedFilter.filter.name + ' >= ' + GeneralUtils.getDateTimeForQuery(datetimeValue1) + ' AND ' + appliedFilter.filter.name + ' <= ' + GeneralUtils.getDateTimeForQuery(datetimeValue2) + ' ';
                 }else if(String.isNotEmpty(appliedFilter.value1)) {
-                    Datetime datetimeValue1 = GeneralUtils.getDatetimeFromString(appliedFilter.value1, Time.newInstance(0, 0, 0, 0));
+                    Datetime datetimeValue1 = Datetime.newInstance(Date.valueOf(appliedFilter.value1), Time.newInstance(23, 59, 59, 0));
                     filterCondition += appliedFilter.filter.name + ' >= ' + GeneralUtils.getDateTimeForQuery(datetimeValue1) + ' ';
                 }else if(String.isNotEmpty(appliedFilter.value2)) {
-                    Datetime datetimeValue2 = GeneralUtils.getDatetimeFromString(appliedFilter.value2, Time.newInstance(0, 0, 0, 0));
+                    Datetime datetimeValue2 = Datetime.newInstance(Date.valueOf(appliedFilter.value2), Time.newInstance(23, 59, 59, 0));
                     filterCondition += appliedFilter.filter.name + ' <= ' + GeneralUtils.getDateTimeForQuery(datetimeValue2) + ' ';
                 }
             }else if(appliedFilter.filter.type == String.valueOf(Schema.DisplayType.INTEGER) || appliedFilter.filter.type == String.valueOf(Schema.DisplayType.LONG) 

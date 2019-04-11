@@ -2,6 +2,116 @@
 <Profile xmlns="http://soap.sforce.com/2006/04/metadata">
     <fieldPermissions>
         <editable>true</editable>
+        <field>CMSUserSettings__c.AudienceAccount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>Cluster__c.AudienceCustomObjectType__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Cluster__c.AudienceFieldsAccountContact__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Cluster__c.AudienceFieldsAccount__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Cluster__c.AudienceFieldsContact__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Cluster__c.AudienceFieldsCustomObject__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>AudienceCriterion__c.ExternalId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>AudienceCriterion__c.Value__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>Audience__c.AudienceCriteria__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Audience__c.AudienceNumber__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>Content__c.Audience__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>Navigation__c.Audience__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Audience__c.Description__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Audience__c.ExternalId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Audience__c.MatchCriteria__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Audience__c.ReferenceAudienceExternalIds__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Audience__c.ReferenceAudience__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Audience__c.Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CMSUserSettings__c.AudienceContact__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CMSUserSettings__c.Audiencies__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CMSUserSettings__c.Cluster__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CMSUserSettings__c.User__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
         <field>Recipe__c.ExternalId__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -432,6 +542,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Component__c.MatchCriteria__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>Component__c.TagCriteria__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Component__c.HierarchicalOrderBy__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -588,6 +708,16 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Content__c.BannerFrameType__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Content__c.PublishStartDate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Content__c.PublishEndDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -768,6 +898,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>MediaElementAssignment__c.Content__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>MediaElementAssignment__c.Placement__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1037,6 +1172,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>DatatableAction__c.ShowAsModal__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>DatatableElement__c.ColumnInformationIcon__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1148,6 +1288,20 @@
     <custom>false</custom>
     <layoutAssignments>
         <layout>Recipe__c-Recipe Layout</layout>
+    </layoutAssignments>
+	<layoutAssignments>
+        <layout>Audience__c-Audience Group Layout</layout>
+        <recordType>Audience__c.AudienceGroup</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Audience__c-Audience Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Audience__c-Audience Layout</layout>
+        <recordType>Audience__c.Audience</recordType>
+    </layoutAssignments>
+	<layoutAssignments>
+        <layout>CMSUserSettings__c-CMS User Settings Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>RecipeIngredient__c-Recipe Ingredient Layout</layout>
@@ -1315,6 +1469,9 @@
         <layout>DatatableAction__c-List View Action Layout</layout>
         <recordType>DatatableAction__c.GlobalAction</recordType>
     </layoutAssignments>
+	<layoutAssignments>
+        <layout>AudienceCriterion__c-Audience Criterion Layout</layout>
+    </layoutAssignments>
     <layoutAssignments>
         <layout>DatatableAction__c-List View Action Layout</layout>
         <recordType>DatatableAction__c.RowAction</recordType>
@@ -1327,6 +1484,10 @@
     </layoutAssignments>
     <tabVisibilities>
         <tab>Brand__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+	<tabVisibilities>
+        <tab>Audience__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
@@ -1348,6 +1509,10 @@
     <tabVisibilities>
         <tab>ContentAssignment__c</tab>
         <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+	<tabVisibilities>
+        <tab>CMSUserSettings__c</tab>
+        <visibility>DefaultOff</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>ContentLanding</tab>
@@ -1405,6 +1570,33 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>true</modifyAllRecords>
         <object>MenuAssignment__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+	<objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>AudienceCriterion__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+	<objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>Audience__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+	<objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>CMSUserSettings__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
@@ -1608,6 +1800,16 @@
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Component__c.ContentCatalog</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+	<recordTypeVisibilities>
+        <default>true</default>
+        <recordType>Audience__c.Audience</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Audience__c.AudienceGroup</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>

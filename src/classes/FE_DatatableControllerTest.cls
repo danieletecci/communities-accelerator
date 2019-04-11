@@ -1,6 +1,6 @@
 @isTest
 public class FE_DatatableControllerTest {
-
+    
     @testSetup
     static void generateCustomSettings(){
         MockupFactory.generateAcceleratorSetting();
@@ -73,8 +73,8 @@ public class FE_DatatableControllerTest {
         row.rowValue = 'test value';
         List<FE_DatatableController.DatatableRowWrapper> rowList = new List<FE_DatatableController.DatatableRowWrapper>();
         rowList.add(row);
-        jsonWrapper.tableData = new List<List<FE_DatatableController.DatatableRowWrapper>>();
-        jsonWrapper.tableData.add(rowList);
+        jsonWrapper.tableData = new List<Map<String, String>>();
+        //jsonWrapper.tableData.add(rowList);
              
         // When
         Test.startTest();
@@ -146,15 +146,15 @@ public class FE_DatatableControllerTest {
         filterFieldWrDate.type='Date';    
         FE_DatatableController.DatatableFilterWrapper dataFilterWrDate =new FE_DatatableController.DatatableFilterWrapper();
         dataFilterWrDate.filter=filterFieldWrDate;
-        dataFilterWrDate.value1 = '2019/03/28';
-        dataFilterWrDate.value2 = '2019/03/29';
+        dataFilterWrDate.value1 = '2019-03-28';
+        dataFilterWrDate.value2 = '2019-03-29';
         FE_DatatableController.DatatableFilterWrapper dataFilterWrDateV1 =new FE_DatatableController.DatatableFilterWrapper();
         dataFilterWrDateV1.filter=filterFieldWrDate;
         dataFilterWrDateV1.value1 = null;
-        dataFilterWrDateV1.value2 = '2019/03/29';
+        dataFilterWrDateV1.value2 = '2019-03-29';
         FE_DatatableController.DatatableFilterWrapper dataFilterWrDateV2 =new FE_DatatableController.DatatableFilterWrapper();
         dataFilterWrDateV2.filter=filterFieldWrDate;
-        dataFilterWrDateV2.value1 = '2019/03/28';
+        dataFilterWrDateV2.value1 = '2019-03-28';
         dataFilterWrDateV2.value2 = null;
         
         List<FE_DatatableController.DatatableFilterWrapper> appliedFilters = new List<FE_DatatableController.DatatableFilterWrapper>();
@@ -166,11 +166,10 @@ public class FE_DatatableControllerTest {
         appliedFilters.add(dataFilterWrDate);
         appliedFilters.add(dataFilterWrDateV1);
         appliedFilters.add(dataFilterWrDateV2);
-        
           
         // When   
         Test.startTest();      	
-        String result = FE_DatatableController.processAppliedFilters(appliedFilters);
+        String result = FE_DatatableUtils.processAppliedFilters(appliedFilters);
         Test.stopTest();
         // Then
         System.assertNotEquals(result, null);
@@ -187,7 +186,7 @@ public class FE_DatatableControllerTest {
 
         // When   
         Test.startTest();      	
-        List<FE_DatatableController.DatatableActionWrapper> result = FE_DatatableController.mapDatatableActionsToWrappers(actionList);
+        List<FE_DatatableController.DatatableActionWrapper> result = FE_DatatableUtils.mapDatatableActionsToWrappers(actionList);
         Test.stopTest();
         // Then
         System.assertNotEquals(result, null); 
@@ -201,16 +200,11 @@ public class FE_DatatableControllerTest {
         dataw.fieldName = 'Name';
         List<FE_DatatableController.DatatableElementWrapper> listDataw= new List<FE_DatatableController.DatatableElementWrapper>();
         listDataw.add(dataw);
-        
-        Cluster__c cluster = [Select id From Cluster__c limit 1];
-        List<Tag__c> tagList = MockupFactory.createTag('tagTest', 'description', 1, cluster.Id); 
-        
         List<SObject> SOlist = new List<SObject>();
-        SOlist.addAll(tagList);
         
         // When   
         Test.startTest();
-        List<List<FE_DatatableController.DatatableRowWrapper>> result = FE_DatatableController.mapDatatableDataToWrappers(SOlist, listDataw);
+        List<Map<String,String>> result = FE_DatatableUtils.mapDatatableDataToWrappers(SOlist, listDataw);
         Test.stopTest();
         // Then
         System.assertNotEquals(result, null); 

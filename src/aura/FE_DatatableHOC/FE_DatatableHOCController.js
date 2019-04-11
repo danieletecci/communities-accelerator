@@ -6,7 +6,7 @@
         helper.doGetPage(component, event, helper);
     },
     doHandleSearch : function(component, event, helper) {
-        var searchTerm = event.getParam("searchTerm");
+        var searchTerm = event.getParam("values");
         component.set("v.componentWrapper.data.searchTerm", searchTerm);
         component.set("v.componentWrapper.data.tableData", []);
         helper.doHandleSearch(component, event, helper);
@@ -35,6 +35,12 @@
         componentWrapper.data.appliedFilters  = eventValues;
         component.set('v.componentWrapper', componentWrapper);
         helper.dohandleFilter(component);
-    }
-
+    },
+    doHandleCustomRowAction : function(component, event, helper) {
+        helper.doHandleCustomRowAction(component, event, helper);
+    },
+    closeCustom : function(component, event, helper) {
+        component.set("v.customContent", []);
+        component.set('v.showDatatable', true);
+    },
 })

@@ -58,6 +58,57 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
+        <fullName>AudienceCustomObjectType__c</fullName>
+        <externalId>false</externalId>
+        <label>Custom Object Audience Type</label>
+        <length>80</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AudienceFieldsAccountContact__c</fullName>
+        <externalId>false</externalId>
+        <label>Account-Contact Relation Audience Fields</label>
+        <length>131072</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>AudienceFieldsAccount__c</fullName>
+        <externalId>false</externalId>
+        <label>Account Audience Fields</label>
+        <length>131072</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>AudienceFieldsContact__c</fullName>
+        <externalId>false</externalId>
+        <label>Contact Audience Fields</label>
+        <length>131072</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>AudienceFieldsCustomObject__c</fullName>
+        <externalId>false</externalId>
+        <label>Custom Object Audience Fields</label>
+        <length>131072</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
         <fullName>ClusterLandingUrl__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>URL to redirect</description>

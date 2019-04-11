@@ -1,53 +1,67 @@
-<aura:component>
-    <aura:attribute name="contentData" type="Object" />
-    <aura:attribute name="imageUrl" type="String" />
-    <aura:attribute name="layoutOptions" type="List" />
-    <aura:attribute name="bannerFrameTypes" type="List" />
+<aura:component implements="flexipage:availableForAllPageTypes,force:appHostable,lightning:isUrlAddressable,force:hasRecordId" controller="ContentDetailController">
+    
+    <!-- HANDLERS -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler event="c:upsertContentsEvent" action="{!c.handleUpsertEvent}"/>
+    <aura:handler name="URLEvent" event="c:MediaElementSearcherEvent" action="{!c.handleMediaElementEvent}"/>
 
-    <!--Banner Name-->
-    <lightning:input label="{!$Label.c.BannerContentDetailName}" name="bannerName" value="{!v.contentData.Name}"
-        required="true" aura:id="bannerName" />
-    <!--External Id-->
-    <lightning:input label="{!$Label.c.BannerContentDetailExternalId}" name="contentExternalId"
-        value="{!v.contentData.ExternalId__c}" />
-    <!--Banner Type-->
-    <lightning:select name="bannerType" label="{!$Label.c.BannerContentDetailType}"
-        value="{!v.contentData.BannerFrameType__c}">
-        <aura:iteration items="{!v.bannerFrameTypes}" var="bannerFrameType">
-            <option text="{!bannerFrameType}" value="{!bannerFrameType}" />
-        </aura:iteration>
-    </lightning:select>
-    <!--Feature Image-->
-    <ui:outputText value="{!$Label.c.NewsContentDetailImage}" /><br />
-    <c:MediaElementSearcher />
-    <aura:if isTrue="{!v.imageUrl}">
-        <img style="height:200px" src="{!v.imageUrl}" />
-    </aura:if>
-    <!--Title-->
-    <lightning:input label="{!$Label.c.BannerContentDetailTitle}" name="contentName" value="{!v.contentData.Title__c}"
-        required="true" aura:id="contentName" />
-    <!--Extract-->
-    <lightning:input label="{!$Label.c.BannerContentDetailExtract}" name="contentExtract"
-        value="{!v.contentData.Extract__c}" />
-    <br />
-    <!--Booton-->
-    <lightning:input label="{!$Label.c.BannerContentDetailButton}" name="buttonLabel"
-        value="{!v.contentData.ButtonLabel__c}" />
-    <br />
-    <!--Link-->
-    <c:LookupInput objectAPIName="Navigation__c" IconName="standard:link"
-        selectedRecordId="{!v.contentData.LinkDetail__c}" label="{!$Label.c.BannerContentDetailLink}" />
-    <br />
-    <ui:outputText value="{!$Label.c.BannerContentDetailLayout}" /><br />
-    <!--Choose Layout-->
-    <div>
-        <aura:if isTrue="{!v.layoutOptions.length > 0}">
-            <c:ContentLayoutPicker selectedValue="{!v.contentData.OverlayQuadrant__c}"
-                layoutOptions="{!v.layoutOptions}" />
-        </aura:if>
+    <aura:attribute name="contentData"            type="Object" />
+    <aura:attribute name="imageUrl"               type="String" />
+    <aura:attribute name="layoutOptions"          type="List" />
+    <aura:attribute name="bannerFrameTypes"       type="List" />
+    
+    <aura:attribute name="visibilitySelectors"    type="List"     />
+    <aura:attribute name="security"               type="Object"   />
+    <aura:attribute name="timeZone"               type="String"   />
+    <aura:attribute name="mediaElementId"         type="String"   />
+    <aura:attribute name="mediaElementName"       type="String"   />
+
+    <div class="slds-grid">
+        <div class="slds-m-around_medium slds-border_top slds-border_bottom slds-border_right slds-border_left">
+            <c:ContentDetailColumnFields objectWrapper="{!v.visibilitySelectors}" />
+        </div>
+        <div class="slds-col slds-p-around_small" >
+            <div class="slds-grid slds-grid_vertical">
+                <div class="slds-col slds-p-bottom_small">
+                    
+                    <!--Banner Type-->
+                    <lightning:select name="bannerType" label="{!$Label.c.BannerContentDetailType}"
+                        value="{!v.contentData.BannerFrameType__c}">
+                        <aura:iteration items="{!v.bannerFrameTypes}" var="bannerFrameType">
+                            <option text="{!bannerFrameType}" value="{!bannerFrameType}" selected="{! if(bannerFrameType == v.contentData.BannerFrameType__c, true, false)}" />
+                        </aura:iteration>
+                    </lightning:select>
+                    <!--Feature Image-->
+                    <ui:outputText value="{!$Label.c.NewsContentDetailImage}" /><br />
+                    <c:MediaElementSearcher />
+                    <aura:if isTrue="{!v.imageUrl}">
+                        <img style="height:200px" src="{!v.imageUrl}" />
+                    </aura:if>
+                    <!--Title-->
+                    <lightning:input label="{!$Label.c.BannerContentDetailTitle}" name="contentName" value="{!v.contentData.Title__c}"
+                        required="true" aura:id="contentName" />
+                    <!--Extract-->
+                    <lightning:input label="{!$Label.c.BannerContentDetailExtract}" name="contentExtract"
+                        value="{!v.contentData.Extract__c}" />
+                    <br />
+                    <!--Booton-->
+                    <lightning:input label="{!$Label.c.BannerContentDetailButton}" name="buttonLabel"
+                        value="{!v.contentData.ButtonLabel__c}" />
+                    <br />
+                    <!--Link-->
+                    <c:LookupInput objectAPIName="Navigation__c" IconName="standard:link"
+                        selectedRecordId="{!v.contentData.LinkDetail__c}" label="{!$Label.c.BannerContentDetailLink}" />
+                    <br />
+                    <ui:outputText value="{!$Label.c.BannerContentDetailLayout}" /><br />
+                    <!--Choose Layout-->
+                    <div>
+                        <aura:if isTrue="{!v.layoutOptions.length > 0}">
+                            <c:ContentLayoutPicker selectedValue="{!v.contentData.OverlayQuadrant__c}"
+                                layoutOptions="{!v.layoutOptions}" />
+                        </aura:if>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-
-
-
 </aura:component>

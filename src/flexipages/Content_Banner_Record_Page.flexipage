@@ -2,9 +2,27 @@
 <FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
     <flexiPageRegions>
         <componentInstances>
-            <componentName>ContentDetailContainer</componentName>
+            <componentName>ComponentBehaviour</componentName>
+        </componentInstances>
+        <componentInstances>
+            <componentName>ContentBannerRecordEdit</componentName>
         </componentInstances>
         <name>Facet-c24813c8-908c-4fa6-93ff-98a10bd086a6</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>fieldSet</name>
+                <value>Title__c,Extract__c,ButtonLabel__c</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>parentLookupName</name>
+                <value>Content__c</value>
+            </componentInstanceProperties>
+            <componentName>TranslationComponent</componentName>
+        </componentInstances>
+        <name>Facet-e8a8a2d2-ee92-433d-a0b7-b4b29b7ace65</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -16,6 +34,17 @@
             <componentInstanceProperties>
                 <name>title</name>
                 <value>Standard.Tab.detail</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:tab</componentName>
+        </componentInstances>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>body</name>
+                <value>Facet-e8a8a2d2-ee92-433d-a0b7-b4b29b7ace65</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>title</name>
+                <value>Translation</value>
             </componentInstanceProperties>
             <componentName>flexipage:tab</componentName>
         </componentInstances>

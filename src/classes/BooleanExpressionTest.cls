@@ -1,6 +1,9 @@
 @isTest
 public with sharing  class BooleanExpressionTest {
     @isTest static void eval_test() {
+        System.assert(BooleanExpression.validateExpression('1 OR (2 AND 3)', new Set<Integer>{1, 2, 3}));
+        System.assert(!BooleanExpression.validateExpression('1 OR (4 AND 3)', new Set<Integer>{1, 2, 3}));
+
         System.assert(BooleanExpression.eval('TRUE'));
         System.assert(BooleanExpression.eval('TRUE OR FALSE'));
         System.assert(BooleanExpression.eval('TRUE OR TRUE'));

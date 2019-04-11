@@ -1,11 +1,32 @@
-<aura:component>
-    <aura:attribute name="contentData" type="Object" />
-    <aura:attribute name="imageUrl" type="String" />
+<aura:component implements="flexipage:availableForAllPageTypes,force:appHostable,lightning:isUrlAddressable,force:hasRecordId" controller="ContentDetailController">
+    
+    <!-- HANDLERS -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler event="c:upsertContentsEvent" action="{!c.handleUpsertEvent}"/>
+    <aura:handler name="URLEvent" event="c:MediaElementSearcherEvent" action="{!c.handleMediaElementEvent}"/>
+    
+    <aura:attribute name="contentData" 			  type="Object" />
+    <aura:attribute name="imageUrl" 			  type="String" />
+    <aura:attribute name="visibilitySelectors"    type="List"     />
+    <aura:attribute name="security"               type="Object"   />
+    <aura:attribute name="mediaElementId"         type="String"   />
+    <aura:attribute name="mediaElementName"       type="String"   />
 
-    <lightning:input label="{!$Label.c.FAQContentDetailExternalId}" name="contentExternalId" value="{!v.contentData.ExternalId__c}"/>
-    <lightning:input label="{!$Label.c.FAQContentDetailTitle}" name="contentName" value="{!v.contentData.Title__c}" required="true" aura:id="contentName"/>
-    <br />
+    <div class="slds-grid">
+        <div class="slds-m-around_medium slds-border_top slds-border_bottom slds-border_right slds-border_left">
+            <c:ContentDetailColumnFields objectWrapper="{!v.visibilitySelectors}" />
+        </div>
+        <div class="slds-col slds-p-around_small" >
+            <div class="slds-grid slds-grid_vertical">    
+    			<!--
+    			<lightning:input label="{!$Label.c.FAQContentDetailExternalId}" name="contentExternalId" value="{!v.contentData.ExternalId__c}"/>
+    			-->
+				<lightning:input label="{!$Label.c.FAQContentDetailTitle}" name="contentName" value="{!v.contentData.Title__c}" required="true" aura:id="contentName"/>
+    			<br />
 
-    <ui:outputText value="{!$Label.c.FAQContentDetailBody}"/>
-    <c:richTextContainer contentBody="{!v.contentData.Body__c}" />
+    			<ui:outputText value="{!$Label.c.FAQContentDetailBody}"/>
+    			<c:richTextContainer aura:id="richTextContainer" contentBody="{!v.contentData.Body__c}" />
+            </div>
+        </div>
+    </div>
 </aura:component>

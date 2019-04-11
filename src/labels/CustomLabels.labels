@@ -16,6 +16,14 @@
         <shortDescription>AddMediaElement</shortDescription>
         <value>Add Media</value>
     </labels>
+	<labels>
+        <fullName>MultiComboboxAudiencePlaceholder</fullName>
+        <categories>ContentDetailController.apxc</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>MultiComboboxAudiencePlaceholder</shortDescription>
+        <value>Select audiences...</value>
+    </labels>
     <labels>
         <fullName>AddNew</fullName>
         <categories>AudienceCriteria.cmp</categories>

@@ -5,7 +5,7 @@ public with sharing class BE_TagCriteriaManagerControllerTest {
     static void getTagsFromComponentTest(){
         //Given
         MockupFactory.generateAcceleratorSetting();
-        List<Cluster__c> cluster = MockupFactory.createCluster('Global',null, 1,'ClusterRoot');
+        List<Cluster__c> cluster = MockupFactory.createCluster('Global',null, 1,'ClusterRoot', 'Global');
         List<Component__c> comp = MockupFactory.createComponent('Banner', 1);
         List<Content__c> cont = MockupFactory.createContent('Banner',cluster[0],1);
         List<Tag__c> tags = MockupFactory.createTag('TestTag','TestDescription',1,cluster[0].Id);
@@ -27,7 +27,7 @@ public with sharing class BE_TagCriteriaManagerControllerTest {
 
         // Given
         MockupFactory.generateAcceleratorSetting();
-        List<Cluster__c> cluster = MockupFactory.createCluster('Global', null, 1, 'ClusterRoot');
+        List<Cluster__c> cluster = MockupFactory.createCluster('Global', null, 1, 'ClusterRoot', 'Global');
         List<Component__c> comp = MockupFactory.createComponent('Banner', 1);
         List<Tag__c> tags = MockupFactory.createTag('TestTag','TestDescription',2,cluster[0].Id);
         List<String> listSelectedIds = new List<String>(); 
@@ -48,7 +48,7 @@ public with sharing class BE_TagCriteriaManagerControllerTest {
 
         // Given
         MockupFactory.generateAcceleratorSetting();
-        List<Cluster__c> cluster = MockupFactory.createCluster('Global', null, 1, 'ClusterRoot');
+        List<Cluster__c> cluster = MockupFactory.createCluster('Global', null, 1, 'ClusterRoot', 'Global');
         List<Component__c> comp = MockupFactory.createComponent('Banner', 1);
         List<Tag__c> tags = MockupFactory.createTag('TestTag','TestDescription',2,cluster[0].Id);
         List<String> listSelectedIds = new List<String>(); 
@@ -69,7 +69,7 @@ public with sharing class BE_TagCriteriaManagerControllerTest {
 
         // Given
         MockupFactory.generateAcceleratorSetting();
-        List<Cluster__c> cluster = MockupFactory.createCluster('Global', null, 1, 'ClusterRoot');
+        List<Cluster__c> cluster = MockupFactory.createCluster('Global', null, 1, 'ClusterRoot', 'Global');
         List<Component__c> comp = MockupFactory.createComponent('Banner', 1);
         List<Tag__c> tags = MockupFactory.createTag('TestTag','TestDescription',3,cluster[0].Id);
         List<String> listSelectedIds = new List<String>(); 
@@ -88,7 +88,7 @@ public with sharing class BE_TagCriteriaManagerControllerTest {
 
         // Given
         MockupFactory.generateAcceleratorSetting();
-        List<Cluster__c> cluster = MockupFactory.createCluster('Global', null, 1, 'ClusterRoot');
+        List<Cluster__c> cluster = MockupFactory.createCluster('Global', null, 1, 'ClusterRoot', 'Global');
         List<Component__c> comp = MockupFactory.createComponent('Banner', 1);
         List<Tag__c> tags = MockupFactory.createTag('TestTag','TestDescription',3,cluster[0].Id);
 
@@ -110,7 +110,7 @@ public with sharing class BE_TagCriteriaManagerControllerTest {
 
         // Given
         MockupFactory.generateAcceleratorSetting();
-        List<Cluster__c> cluster = MockupFactory.createCluster('Global', null, 1, 'ClusterRoot');
+        List<Cluster__c> cluster = MockupFactory.createCluster('Global', null, 1, 'ClusterRoot', 'Global');
         List<Component__c> comp = MockupFactory.createComponent('Banner', 1);
         List<Tag__c> tags = MockupFactory.createTag('TestTag','TestDescription',3,cluster[0].Id);
 

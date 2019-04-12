@@ -10,7 +10,6 @@ public with sharing class AudienceUtils {
     public static void filterRecords(Id userId, List<SObject> records, String audienceLookupApiName){
         //Get user audiences
         set<String> userAudiences = CMS.getUserAudiences(userId);
-        system.debug('userAudiences: ' + userAudiences);
         
         //Loop records to be filtered
         for(Integer i=0; i < records.size(); i++){
@@ -19,8 +18,6 @@ public with sharing class AudienceUtils {
             String audiencesExternalIds;
             try{audiencesExternalIds = String.ValueOf(GeneralUtils.getFieldValue(records[i], audienceLookupApiName.removeEndIgnoreCase('__c') + '__r.ReferenceAudienceExternalIds__c'));}catch(Exception e){}
             
-            system.debug('audiencesExternalIds: ' + audiencesExternalIds);
-
             if(audiencesExternalIds != null){
                 for(String audExtId: audiencesExternalIds.split(';')){
                     //if any audience on the record doesn't match with the user audiences, that record is removed from the original list
@@ -217,7 +214,7 @@ public with sharing class AudienceUtils {
             Decimal recordValue = (Decimal)GeneralUtils.getFieldValue(recordMain, ac.FieldAPIName__c);
             audienceCriterionApply = decimalOperators(ac.Operator__c, Decimal.ValueOf(ac.Value__c), recordValue);
 
-        }else if(ac.ValueType__c == 'Text' || ac.ValueType__c == 'Email'){
+        }else if(ac.ValueType__c == 'Text' || ac.ValueType__c == 'Email' || ac.ValueType__c == 'Lookup' || ac.ValueType__c == 'Picklist'){
             String recordValue = (String)GeneralUtils.getFieldValue(recordMain, ac.FieldAPIName__c);
             audienceCriterionApply = stringOperators(ac.Operator__c, ac.Value__c, recordValue);
         }

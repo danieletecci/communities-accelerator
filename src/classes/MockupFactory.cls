@@ -570,10 +570,6 @@ public class MockupFactory {
     
     public static List<DatatableAction__c> createDatatableActions(String name, String externalId, Integer quantity, Id datatableId, Id recordtypeId) {
         List<DatatableAction__c> datatableActionsToCreate = new List<DatatableAction__c>();
-         
-        List<Cluster__c> clustersRoot = MockUpFactory.createCluster('DummyRootClusterTest', null, 1, 'ClusterRoot','DRC');
-        
-        List<Navigation__c> nav = MockupFactory.createNavigation('NavTest','nav-test',1,clustersRoot[0].Id);
         
         for(Integer i = 0 ; i < quantity ; i ++) {
             DatatableAction__c datAction = new DatatableAction__c();
@@ -581,11 +577,10 @@ public class MockupFactory {
             datAction.Datatable__c = datatableId;
             datAction.ExternalId__c = name + '_' + i;
             datAction.RecordTypeId = recordtypeId;
-            datAction.Type__c = 'Navigation';
+            datAction.Type__c = 'Custom';
             datAction.Label__c = 'Test';
             datAction.DisplaySettings__c = 'Desktop';
-            datAction.Navigation__c = nav[0].Id;
-            
+            datAction.Component__c = 'Spinner';
             
             datatableActionsToCreate.add(datAction);
         }

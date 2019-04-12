@@ -1,0 +1,18 @@
+<aura:component>
+
+	<!-- GENERAL VARIABLES --> 
+    <aura:attribute name="dataWrapper" type="Object" access="global"/>
+
+	<!-- FAQs COMPONENT -->
+	<aura:if isTrue="{!v.dataWrapper.listAllContentIds.length > 0}">
+		<lightning:accordion aura:id="accordion" allowMultipleSectionsOpen="true">
+			<aura:iteration items="{!v.dataWrapper.contentWrapper}" var="wrapper">
+				<div class="slds-grid">
+					<div class="slds-col slds-size_12-of-12">
+						<c:genericAccordion items="{!wrapper.content}"/>
+					</div>
+				</div>
+	    	</aura:iteration>
+	    </lightning:accordion>
+	</aura:if>
+</aura:component>

@@ -52,7 +52,7 @@
                             <c:CG_Events componentExternalId="{!v.record.ExternalId__c}"/>
                         </aura:if>
                         <aura:if isTrue="{!v.record.RecordType.DeveloperName == 'FAQ'}">
-                            <c:CG_FAQ componentExternalId="{!v.record.ExternalId__c}"/>
+                            <c:FE_BannerHOC componentExternalId="{!v.record.ExternalId__c}"/>
                         </aura:if>
                         <aura:if isTrue="{!v.record.RecordType.DeveloperName == 'AdvanceContent'}">
                             <c:FE_AdvanceContentHOC componentExternalId="{!v.record.ExternalId__c}"/>

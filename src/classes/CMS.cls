@@ -18,16 +18,16 @@ public with sharing class CMS {
                 if(userSettings == null){
                     userSettings = new CMSUserSettings__c(
                         Name = user.UserName,
-                        User__c = user.Id,
-                        Cluster__c = cluster.Id,
-                        AudienceAccount__c = accountId,
-                        AudienceContact__c = contactId
+                        User__c = user.Id
                     );
                 }
+                userSettings.Cluster__c = cluster.Id;
+                userSettings.AudienceAccount__c = accountId;
+                userSettings.AudienceContact__c = contactId;
 
                 //Calculate User Audiences
-                map<Id, Audience__c> audiencesMap = new map<Id, Audience__c>([SELECT Id FROM Audience__c WHERE RecordType.DeveloperName = 'Audience' AND Cluster__c =: cluster.Id AND Status__c = 'Active']);
-                List<String> userAudiences = AudienceUtils.audienceUserCalculation(audiencesMap.keySet(), accountId, contactId, acRelationId, customRecordId);
+                map<Id, Audience__c> audiencesMap = new map<Id, Audience__c>([SELECT Id FROM Audience__c WHERE RecordType.DeveloperName = 'Audience' AND Cluster__c =: userSettings.Cluster__c AND Status__c = 'Active']);
+                List<String> userAudiences = AudienceUtils.audienceUserCalculation(audiencesMap.keySet(), userSettings.AudienceAccount__c, userSettings.AudienceContact__c, acRelationId, customRecordId);
                 userSettings.Audiencies__c = String.join(userAudiences, ';');
 
                 //Upsert CMS User Settings

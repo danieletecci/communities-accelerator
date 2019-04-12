@@ -94,6 +94,7 @@ public with sharing class FE_DatatableUtils {
         List<Datatable__c> datatables = [SELECT Id 
                                         , Title__c
                                         , Navigation__c
+										, Navigation__r.URL__c
                                         , ObjectApiName__c
                                         , RecordsPerPage__c 
                                         , PagingType__c
@@ -102,7 +103,7 @@ public with sharing class FE_DatatableUtils {
                                         , ActionLabel__c
                                         , WhereCondition__c
                                         , OrderBy__c
-                                        , (SELECT Id, Label__c, Navigation__c, ColumnInformation__c, ColumnInformationIcon__c
+                                        , (SELECT Id, Label__c, Navigation__c, Navigation__r.URL__c, ColumnInformation__c, ColumnInformationIcon__c
                                                     , DisplaySettings__c, FieldApiName__c, Filtrable__c, Searchable__c, Sortable__c
                                                     , Type__c, Datatable__r.ObjectApiName__c, ExcludedPicklistValues__c
                                             FROM DatatableElements__r ORDER BY Order__c)
@@ -155,7 +156,10 @@ public with sharing class FE_DatatableUtils {
 
         for(DatatableElement__c ele : elements) {
             FE_DatatableController.DatatableElementWrapper elem = new FE_DatatableController.DatatableElementWrapper();
-
+			
+			if(ele.Navigation__c != null) {
+				elem.navigation = ele.Navigation__r.URL__c;
+			}
             elem.label = ele.Label__c;
             elem.fieldName = ele.FieldApiName__c;
             elem.type = ele.Type__c;
@@ -204,7 +208,10 @@ public with sharing class FE_DatatableUtils {
             ac.icon = action.Icon__c;
             ac.displaySettings = action.DisplaySettings__c;
             ac.showAsModal = action.ShowAsModal__c;
-            ac.navigation = action.Navigation__c;
+			
+			if(action.Navigation__c != null) {
+				ac.navigation = action.Navigation__r.URL__c;
+			}
 
             result.add(ac);
         }
@@ -217,7 +224,9 @@ public with sharing class FE_DatatableUtils {
         datatableWrapper.Id = datatable.Id;
         datatableWrapper.title = datatable.Title__c;
         datatableWrapper.objectApiName = datatable.ObjectApiName__c;
-        datatableWrapper.navigation = datatable.Navigation__c;
+		if(datatable.Navigation__c != null) {
+			datatableWrapper.navigation = datatable.Navigation__r.URL__c;
+		}
         datatableWrapper.recordsPerPage = Integer.valueOf(datatable.RecordsPerPage__c);
         datatableWrapper.pagingType = datatable.PagingType__c;
         datatableWrapper.numberOfColumns = Integer.valueOf(datatable.NumberOfColumns__c);

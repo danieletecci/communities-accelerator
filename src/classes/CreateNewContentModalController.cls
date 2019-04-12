@@ -55,7 +55,8 @@ public with sharing class CreateNewContentModalController {
     public static Id getClusterUserId(){
         List<ClusterUser__c> clusterUser = [SELECT Id, Cluster__c FROM ClusterUser__c WHERE User__c =:UserInfo.getUserId() AND AccessLevel__c = 'Read/Write'];
         if(clusterUser.size() == 0)
-            throw new AuraException('You have no cluster associated');
+         //   throw new AuraException('You have no cluster associated');
+            throw new AuraHandledException('You have no cluster associated');
         return clusterUser.get(0).Cluster__c;
     }
 

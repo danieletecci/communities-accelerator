@@ -21,12 +21,14 @@ public class ContentLandingRecordListController {
     class ContentWrapper{
         public String contentId;                  
         public List<FieldWrapper> fieldWrappers;
+        public String recordTypeId;
         public List<String> actions;                      
         // Wrapper que emula un Contenido para soportar Wrappers de campo
-        ContentWrapper(String contentId, List<FieldWrapper> fieldWrappers, List<String> actions){
-            this.contentId = contentId;               
+        ContentWrapper(String contentId, List<FieldWrapper> fieldWrappers, String recordTypeId, List<String> actions){
+            this.contentId = contentId;
             this.fieldWrappers = fieldWrappers;
-            this.actions = actions;           
+            this.recordTypeId = recordTypeId;
+            this.actions = actions;
         }
     }
 
@@ -124,7 +126,7 @@ public class ContentLandingRecordListController {
             actions.add(System.Label.ContentLandingNewFromTemplate);
         }
         // Crea el Wrapper de Contenido y lo agrega a la lista
-        return new ContentWrapper(content.Id, fieldWrappers, actions);
+        return new ContentWrapper(content.Id, fieldWrappers, content.RecordType.Id, actions);
     }                                                                                  
                                                               
     static List<Content__c> getRecords(FilterWrapper wrapper, Integer recordOffset, Integer recordLimit){      

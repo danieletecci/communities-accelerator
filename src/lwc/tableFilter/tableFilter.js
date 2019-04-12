@@ -42,7 +42,9 @@ export default class TableFilter extends NavigationMixin(LightningElement) {
     handleClick(event){
         var child = event.currentTarget.children[0];
         var label;
+        var recordTypeId;
         var id;
+        var datasetString = JSON.stringify(child.dataset);
         
         this.hideActions();
 
@@ -50,6 +52,7 @@ export default class TableFilter extends NavigationMixin(LightningElement) {
             if(child.tagName === "SPAN"){
                 label = child.dataset.label;
                 id = child.dataset.id;
+                recordTypeId = child.dataset.rtid;
             }
 		}
 
@@ -61,7 +64,7 @@ export default class TableFilter extends NavigationMixin(LightningElement) {
                 this.deleteContent(id);
                 break;
             case this.createFromTemplateLbl:
-                this.createContentFromLanding(id);
+                this.createContentFromLanding(id,recordTypeId);
                 break;
             default:
         }
@@ -87,8 +90,11 @@ export default class TableFilter extends NavigationMixin(LightningElement) {
         this.hideActions();
     }
     
-    createContentFromLanding(idContent){
-        var value = idContent;
+    createContentFromLanding(idContent, recordTypeId){
+        var value = {
+            templateId :idContent,
+            recordTypeId: recordTypeId
+        };
         const createContent = new CustomEvent('createcontentrecord', {
         detail: value
         });

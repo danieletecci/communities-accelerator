@@ -401,11 +401,12 @@ export default class ContentContainer extends NavigationMixin(LightningElement) 
     }
 
     handleCreateContent(event){
-        var idContent = event.detail;
+        var idContent = event.detail.templateId;
+        var recordTypeId = event.detail.recordTypeId;
         event.stopPropagation();
 
         const eventDetail = { 
-            recordTypeId : this.value,
+            recordTypeId : recordTypeId,
             isTemplate : false,
             componentId : null,
             navigationId : null,

@@ -34,7 +34,7 @@
                         <tbody role="rowgroup">
                             <template if:true={tabledata.contentWrappers}>
                                 <template for:each={tabledata.contentWrappers} for:item=item>
-                                    <tr key={item.clusterId} class="tr-list-view-item">
+                                    <tr key={item.contentId} class="tr-list-view-item">
                                         <template for:each={item.fieldWrappers} for:item=itemfield>
                                             <td key={itemfield.value} data-label={itemfield.label}>
                                                 <div class="slds-truncate">
@@ -64,7 +64,7 @@
                                                             <template for:each={item.actions} for:item=itemAction>
                                                                 <li key={itemAction} class="slds-dropdown__item slds-truncate" role="presentation">
                                                                     <a role="menuitem" tabindex="0" class="action-a" onmousedown={handleClick}>
-                                                                        <span class="slds-truncate" data-id={item.contentId} data-label={itemAction} title={itemAction}>{itemAction}</span>
+                                                                        <span class="slds-truncate" data-id={item.contentId} data-label={itemAction} data-rtid={item.recordTypeId} title={itemAction}>{itemAction}</span>
                                                                     </a>
                                                                 </li>
                                                             </template>

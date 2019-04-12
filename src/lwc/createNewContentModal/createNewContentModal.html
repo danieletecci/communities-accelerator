@@ -23,19 +23,18 @@
             <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">     
                 <div class="slds-grid slds-warp slds-grid_vertical">
                     <div class="slds-col slds-size_12-of-12">
-                        <c-lightning-lookup selection={initialSelection} errors={errors}
-                            onsearch={handleSearch} onselectionchange={handleSelectionChange}
-                            label={label.clusterField} placeholder={label.ClusterLookupPlaceholder} is-multi-entry={isMultiEntry}>
-                        </c-lightning-lookup>
-                    </div>
-                    <div class="slds-col slds-size_12-of-12 slds-m-vertical-small">
-                        <div class="slds-form-element">
+                        <div class="slds-form-element slds-m-bottom-small">
                             <label class="slds-form-element__label" for="inputTitleIdEmpty">{label.recordName}</label>
                             <div class="slds-form-element__control">
                                 <input id="inputTitleIdEmpty" maxlength="80" class="slds-input inputName" type="text" value={recordNameValue} onkeyup={handleRecordNameChange} />
                             </div>
-                            
                         </div>
+                    </div>
+                    <div class="slds-col slds-size_12-of-12 slds-p-vertical-small">
+                        <c-lightning-lookup selection={initialSelection} errors={errors}
+                            onsearch={handleSearch} onselectionchange={handleSelectionChange}
+                            label={label.clusterField} placeholder={label.ClusterLookupPlaceholder} is-multi-entry={isMultiEntry}>
+                        </c-lightning-lookup>
                     </div>
                 </div>
             </div>

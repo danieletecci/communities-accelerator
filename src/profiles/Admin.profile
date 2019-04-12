@@ -1172,6 +1172,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>DatatableAction__c.ShowAsModal__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>DatatableElement__c.ColumnInformationIcon__c</field>
         <readable>true</readable>
     </fieldPermissions>

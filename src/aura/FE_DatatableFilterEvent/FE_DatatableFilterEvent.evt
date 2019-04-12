@@ -1,0 +1,6 @@
+<aura:event type="COMPONENT" description="Event template">
+    <aura:attribute name="field" type="String" />
+    <aura:attribute name="value1" type="String" />
+    <aura:attribute name="value2" type="String" />
+    <aura:attribute name="isRange" type="Boolean" />
+</aura:event>

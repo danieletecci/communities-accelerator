@@ -1,4 +1,5 @@
 public class GeneralUtils{
+    private static Map<String,String> localeToDateTimeFmtMap;
 
     public static String generateExternalId(String name, String clusterID, String sobjectType){
         String apiName = name.deleteWhitespace();
@@ -250,5 +251,11 @@ public class GeneralUtils{
             }            
         }       
         return ''; 
-    }    
+    }
+
+    public static String getDateTimeForQuery(Datetime dt) {
+        String stringDate = String.valueOf(dt);
+
+        return stringDate.replace(' ', 'T') + 'Z';
+    }
 }

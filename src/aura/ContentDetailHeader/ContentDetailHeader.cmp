@@ -128,7 +128,7 @@
 	{!v.confirmationModal}
 
     <aura:if isTrue="{!v.contentData.Id != null}">
-    	<c:createNewContentModal aura:id="newContentModal" oncontentcreated="{!c.doGoToContent}" templateId="{!v.contentData.Id}"></c:createNewContentModal>
+    	<c:createNewContentModal aura:id="newContentModal" oncontentcreated="{!c.doGoToContent}" recordTypeId="{!v.contentData.RecordType.Id}" templateId="{!v.contentData.Id}"></c:createNewContentModal>
     </aura:if>
     
 </aura:component>

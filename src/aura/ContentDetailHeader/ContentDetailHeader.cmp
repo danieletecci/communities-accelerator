@@ -7,14 +7,20 @@
 	<aura:attribute name="recordId" 			type="String" 						/>
 	<aura:attribute name="contentData" 			type="Content__c" 					/>
 	<aura:attribute name="timeZone" 			type="String" 						/>
+	<aura:attribute name="gmtOffset"	 		type="String" 						/>
 	<aura:attribute name="hasDetailComponent"	type="Boolean" 						/>
 	<aura:attribute name="temporaryName"		type="String"						/>
 	<aura:attribute name="isNameEdit"			type="Boolean"		default="false"	/>
 	<aura:attribute name="confirmationModal"	type="Aura.Component"				/>
 	<aura:attribute name="security"				type="Object"						/>
     <aura:attribute name="IsNewFromTemplate"	type="Boolean"		default="false"	/>
+	<aura:attribute name="scheduledTooltip" 	type="String" 						/>
+	<aura:attribute name="publishedTooltip"		type="String" 						/>
+	<aura:attribute name="tooltipClass"			type="String"		default="slds-fall-into-ground" />
 
 	<aura:registerEvent name="upsertContentsEvent" type="c:upsertContentsEvent"/>
+
+	<ltng:require scripts="{!$Resource.momentJS}" afterScriptsLoaded="{!c.afterMomentLoaded}" />
 
 	<div class="slds-page-header slds-page-header_record-home">
 	    <div class="slds-page-header__row">
@@ -80,20 +86,23 @@
 	    <div class="slds-page-header__row slds-page-header__row_gutters">
 	        <div class="slds-page-header__col-details">
 	            <ul class="slds-page-header__detail-row">
+	                <li class="slds-page-header__detail-block">
+	                    <div class="slds-text-title slds-truncate" title="{!$Label.c.ContentDetailPublicationStatus}">
+	                    	{!$Label.c.ContentDetailPublicationStatus}
+	                    </div>
+	                    <div onmouseenter="{!c.showTooltip}"  onmouseleave="{!c.hideTooltip}">
+	                    	<div class="{! 'slds-popover slds-popover_tooltip slds-nubbin_bottom-left ' + v.tooltipClass}" role="tooltip" id="help" style="position:absolute;margin-top:-3rem;margin-left:-1rem;" aura:id="tooltip">
+							   <div class="slds-popover__body">{! if(v.contentData.Status__c == $Label.c.ContentDetailScheduled, v.scheduledTooltip, if(v.contentData.Status__c == $Label.c.ContentDetailPublished, v.publishedTooltip, '')) }</div>
+							</div>
+	                    	<lightning:icon iconName="{!if(v.contentData.Status__c == $Label.c.ContentDetailDraft, 'standard:drafts', if(v.contentData.Status__c == $Label.c.ContentDetailScheduled, 'standard:date_time', if(v.contentData.Status__c == $Label.c.ContentDetailPublished, 'standard:task2', 'custom:custom42')))}" class="slds-m-right_x-small" size="x-small" alternativeText="{!v.contentData.Status__c}" />
+	                    	{!v.contentData.Status__c}
+	                    </div>
+	                </li>
 	            	<li class="slds-page-header__detail-block">
 	                    <div class="slds-text-title slds-truncate" title="{!$Label.c.ContentLandingCluster}">
 	                    	{!$Label.c.ContentLandingCluster}
 	                    </div>
 	                    <div class="slds-truncate" title="{!v.contentData.Cluster__r.Name}">{!v.contentData.Cluster__r.Name}</div>
-	                </li>
-	                <li class="slds-page-header__detail-block">
-	                    <div class="slds-text-title slds-truncate" title="{!$Label.c.ContentDetailPublicationStatus}">
-	                    	{!$Label.c.ContentDetailPublicationStatus}
-	                    </div>
-	                    <div class="slds-truncate" title="{!v.contentData.Status__c}">
-	                    	<lightning:icon iconName="{!if(v.contentData.Status__c == $Label.c.ContentDetailDraft, 'standard:drafts', if(v.contentData.Status__c == $Label.c.ContentDetailScheduled, 'standard:date_time', if(v.contentData.Status__c == $Label.c.ContentDetailPublished, 'standard:task2', 'custom:custom42')))}" class="slds-m-right_x-small" size="x-small" alternativeText="{!v.contentData.Status__c}" />
-	                    	{!v.contentData.Status__c}
-	                    </div>
 	                </li>
 	                <li class="slds-page-header__detail-block">
 	                    <div class="slds-text-title slds-truncate" title="{!$Label.c.ContentDetailLastSave}">

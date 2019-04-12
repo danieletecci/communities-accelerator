@@ -92,7 +92,29 @@
             </valueSetDefinition>
         </valueSet>
     </fields>
-	<fields>
+    <fields>
+        <fullName>Audience__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Audience</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>Audience__c.RecordType.DeveloperName</field>
+                <operation>equals</operation>
+                <value>AudienceGroup</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>Audience__c</referenceTo>
+        <relationshipLabel>Contents</relationshipLabel>
+        <relationshipName>Contents</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>BannerFrameType__c</fullName>
         <externalId>false</externalId>
         <label>Banner Frame Type</label>
@@ -2106,22 +2128,6 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
         <description>Validation on HTMLContent__c and LongDescription__c fields</description>
         <errorConditionFormula>AND(NOT(ISBLANK(HTMLContent__c)), LEN(Body__c) &lt;&gt; 0)</errorConditionFormula>
         <errorMessage>Can not fill both HTML Content and Long Description fields.</errorMessage>
-    </validationRules>
-    <validationRules>
-        <fullName>OverlayQuadrantObligatory</fullName>
-        <active>true</active>
-        <description>RecordType &quot;Banner&quot;; Cuando OverlayQuadrant__c este vació y los campos Title__c, Extract__c, ButtonLabel__c tienen valor u OverlayQuadrant__c tiene valor y todos los campos Title__c, Extract__c, ButtonLabel__c  estén todos vacíos.</description>
-        <errorConditionFormula>AND(
-    OR(
-        AND(ISBLANK(TEXT(OverlayQuadrant__c)), OR(NOT(ISBLANK(Title__c)), NOT(LEN(Extract__c) = 0), NOT(ISBLANK(ButtonLabel__c))))  
-    ,
-        AND(NOT(ISBLANK(TEXT(OverlayQuadrant__c))), AND(ISBLANK(Title__c), LEN(Extract__c) = 0, ISBLANK(ButtonLabel__c)))  
-    ),
-                 RecordType.Name = &quot;Banner&quot;
-)</errorConditionFormula>
-        <errorDisplayField>OverlayQuadrant__c</errorDisplayField>
-        <errorMessage>Si este campo esta vacío, los campos &quot;List Title&quot;, &quot;List Description&quot;, &quot;Button Label&quot; NO deben tener valor. 
-Si este campo tiene valor, de los campos &quot;List Title&quot;, &quot;List Description&quot;, &quot;Button Label&quot; al menos uno NO debe estar vacío.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>PublishEndDate</fullName>

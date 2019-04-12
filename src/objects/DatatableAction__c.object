@@ -156,6 +156,16 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>ShowAsModal__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>For Type &quot;Custom&quot;, this filed will be taking on account for rendering the Custom Component as Modal or not</description>
+        <externalId>false</externalId>
+        <inlineHelpText>For Custom type, show the Component as Modal or not</inlineHelpText>
+        <label>Show as Modal</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Type__c</fullName>
         <externalId>false</externalId>
         <label>Type</label>

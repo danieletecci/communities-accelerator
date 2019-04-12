@@ -15,14 +15,30 @@
     <aura:attribute name="isLoading" type="Boolean" />
 
     <!-- INTERNAL -->
+    <lightning:overlayLibrary aura:id="rowActionModal" />
+    <aura:attribute name="showDatatable" type="Boolean" default="true" />
+    <aura:attribute name="customContent" type="Aura.Component" />
 
     <!-- LOC Component -->
     <div aura:id="cg_component">
+        <lightning:button variant="brand" label="Custom Component" onclick="{! c.doHandleCustomRowAction }" />
+        
         <!-- BASE COMPONENT -->
         <c:FE_ComponentToolBox componentType="Datatable" componentExternalId="{!v.componentExternalId}" componentWrapper="{!v.componentWrapper}" salesforceDomain="{!v.componentWrapper.acceleratorSettings.SalesforceDomain__c}" isLoading="{!v.isLoading}">
             <!-- DATATABLE COMPONENT -->
-            <c:fe_DatatableLC table="{!v.componentWrapper.data}" onfilter="{!c.doHandleFilter}"/>
+                <aura:renderIf isTrue="{! v.showDatatable}">
+                    <c:fe_DatatableLC table="{!v.componentWrapper.data}" onfilter="{!c.doHandleFilter}" onclearfilter="{!c.doHandleClearFilters}" onsearch="{!c.doHandleSearch}" onaction="{!c.doHandleCustomRowAction}"/>
+                    <aura:set attribute="else">
+                        <div>
+                            <div class="custom-component-header">
+                                <lightning:button label="Close" onclick="{! c.closeCustom}" />
+                            </div>
+                            <div class="custom-component-header" >
+                                {! v.customContent}
+                            </div>
+                        </div>
+                    </aura:set>
+                </aura:renderIf>
         </c:FE_ComponentToolBox>
     </div>
-
 </aura:component>

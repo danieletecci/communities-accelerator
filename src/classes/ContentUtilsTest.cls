@@ -3,7 +3,8 @@ public class ContentUtilsTest {
     @testSetup
     static void generateCustomSettings(){
         MockupFactory.generateAcceleratorSetting();
-        List<Cluster__c> clusterRootList = MockupFactory.createCluster('ClusterRootTest', null, 1, 'ClusterRoot', 'CRT');      
+        List<Cluster__c> clusterRootList = MockupFactory.createCluster('ClusterRootTest', null, 1, 'ClusterRoot', 'CRT');
+        insert new CMSUserSettings__c(Name = UserInfo.getUserName(), User__c = UserInfo.getUserId(), Cluster__c = clusterRootList[0].Id);
     }
 
     @isTest

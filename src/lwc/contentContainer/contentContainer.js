@@ -121,9 +121,9 @@ export default class ContentContainer extends NavigationMixin(LightningElement) 
         this.radioButtonGroupValue = false;
         this.filtersValues = 
         [ 
-            {label: ContentLandingCluster, value: null, id: null},
-            {label: ContentLandingCategory, value: null, id: null},
-            {label: ContentLandingTags, value: null, id: null},
+            {label: ContentLandingCluster, value: null, id: null, hasRightBar: true},
+            {label: ContentLandingCategory, value: null, id: null, hasRightBar: true},
+            {label: ContentLandingTags, value: null, id: null, hasRightBar: false},
         ];
         this.SidebarFilterTitle = SidebarFilterTitle;
         this.headerButtonsPrimary = [

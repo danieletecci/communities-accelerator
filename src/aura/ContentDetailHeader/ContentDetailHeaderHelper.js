@@ -12,9 +12,11 @@
 			if (state === "SUCCESS") {
 				var dataWrapper = response.getReturnValue();
 				if(dataWrapper){
-					component.set("v.contentData", dataWrapper.content);
-					component.set("v.timeZone", dataWrapper.timeZone);
-					component.set("v.security", dataWrapper.security);
+					component.set("v.contentData", 	dataWrapper.content);
+					component.set("v.timeZone", 	dataWrapper.timeZone);
+					component.set("v.gmtOffset", 	dataWrapper.gmtOffset);
+					component.set("v.security", 	dataWrapper.security);
+					helper.setTooltips(component);
 				}else{
 					helper.displayErrorMessage($A.get("$Label.c.NewsContentDetailLoadError"));
 				}
@@ -177,6 +179,27 @@
                 }
             }
         );
+    },
+    setTooltips : function(component){
+    	try{
+    		if(component.get("v.contentData").PublishStartDate__c && component.get("v.contentData").Status__c == $A.get("$Label.c.ContentDetailScheduled")){
+	        	moment.locale(component.get("v.locale"));
+		    	var publishStartDate = moment(component.get("v.contentData").PublishStartDate__c).format('LLL');
+				component.set("v.scheduledTooltip", this.stringFormat($A.get("$Label.c.ContentPendingPublication"), publishStartDate));
+	    	}
+	    } catch(e){
+	    	console.log(e.message);
+	    }
+	    try{
+	    	if(component.get("v.contentData").PublishEndDate__c && component.get("v.contentData").Status__c == $A.get("$Label.c.ContentDetailPublished")){
+	        	var gmtOffset = component.get("v.gmtOffset");
+	        	var pedMoment = moment(component.get("v.contentData").PublishEndDate__c).zone(gmtOffset);
+		    	var publishEndDate = pedMoment.format('LLL');
+		    	component.set("v.publishedTooltip", this.stringFormat($A.get("$Label.c.ContentPublishedUntil"), publishEndDate));
+	    	}
+	    } catch(e){
+	    	console.log(e.message);
+	    }
     },
 	displayErrorMessage : function(message){
 		var toastEvent = $A.get("e.force:showToast");

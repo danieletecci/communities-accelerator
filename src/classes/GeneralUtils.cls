@@ -1,4 +1,5 @@
 public class GeneralUtils{
+    private static Map<String,String> localeToDateTimeFmtMap;
 
     public static String generateExternalId(String name, String clusterID, String sobjectType){
         String apiName = name.deleteWhitespace();
@@ -97,10 +98,10 @@ public class GeneralUtils{
                 return null;
             }
         }
-        Object val = recordAux.get(fieldPath);
+        Object val = recordAux != null ? recordAux.get(fieldPath) : null;
         return val;
     }
-
+    
     public static map<Id, List<ContentVersion>> getFilesByParentId(Set<ID> idSet){
         map<Id, List<ContentVersion>> mapParentIdFiles = new map<Id, List<ContentVersion>>();
 
@@ -250,5 +251,11 @@ public class GeneralUtils{
             }            
         }       
         return ''; 
-    }    
+    }
+
+    public static String getDateTimeForQuery(Datetime dt) {
+        String stringDate = String.valueOf(dt);
+
+        return stringDate.replace(' ', 'T') + 'Z';
+    }
 }

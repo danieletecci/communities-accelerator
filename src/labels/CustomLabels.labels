@@ -16,6 +16,30 @@
         <shortDescription>AddMediaElement</shortDescription>
         <value>Add Media</value>
     </labels>
+	<labels>
+        <fullName>CustomCriteriaValidation</fullName>
+        <categories>AudienceTriggers.cls</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Custom Criteria Validation</shortDescription>
+        <value>Invalid custom logic expression. You only can use &quot;(&quot;, &quot;)&quot;, &quot;AND&quot;, &quot;OR&quot; and the criteria numbers</value>
+    </labels>
+	<labels>
+        <fullName>MultiComboboxAudiencePlaceholder</fullName>
+        <categories>ContentDetailController.apxc</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>MultiComboboxAudiencePlaceholder</shortDescription>
+        <value>Select audiences...</value>
+    </labels>
+    <labels>
+        <fullName>AddNew</fullName>
+        <categories>AudienceCriteria.cmp</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Add New</shortDescription>
+        <value>Add new</value>
+    </labels>
     <labels>
         <fullName>AdvanceContentContentDetailBody</fullName>
         <categories>ContentDetailContainer.cmp</categories>
@@ -87,6 +111,14 @@
         <protected>true</protected>
         <shortDescription>AssetDetailsTitle</shortDescription>
         <value>Asset Details</value>
+    </labels>
+    <labels>
+        <fullName>AudienceValidationOnStatusActivate</fullName>
+        <categories>AudienceTriggers.cls</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Audience Validation On Status Activate</shortDescription>
+        <value>You cannot activate an audience without criteria</value>
     </labels>
     <labels>
         <fullName>BannerContentDetailButton</fullName>
@@ -271,6 +303,14 @@
         <protected>true</protected>
         <shortDescription>ComponentEmpty</shortDescription>
         <value>Please complete the component attribute &quot;Component External Id&quot; with a valid value</value>
+    </labels>
+    <labels>
+        <fullName>Contains</fullName>
+        <categories>AudienceCriteriaController.cls</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Contains</shortDescription>
+        <value>contains</value>
     </labels>
     <labels>
         <fullName>ContentDetailContent</fullName>
@@ -550,7 +590,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Content Landing New Content button label</shortDescription>
-        <value>New Content</value>
+        <value>Create Content</value>
     </labels>
     <labels>
         <fullName>ContentLandingNone</fullName>
@@ -607,6 +647,14 @@
         <protected>true</protected>
         <shortDescription>Duplicate Item</shortDescription>
         <value>The item you added is already present in the cart</value>
+    </labels>
+    <labels>
+        <fullName>Equals</fullName>
+        <categories>AudienceCriteriaController.cls</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Equals</shortDescription>
+        <value>equals</value>
     </labels>
     <labels>
         <fullName>EventContentDetailBody</fullName>
@@ -705,6 +753,22 @@
         <value>Title Top</value>
     </labels>
     <labels>
+        <fullName>ExceptionMessageClusterNotFound</fullName>
+        <categories>CMS.cls</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Exception Message Cluster Not Found</shortDescription>
+        <value>Cluster not found</value>
+    </labels>
+    <labels>
+        <fullName>ExceptionMessageUserNotFound</fullName>
+        <categories>CMS.cls</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Exception Message User Not Found</shortDescription>
+        <value>User not found</value>
+    </labels>
+    <labels>
         <fullName>ExistByDefaultLanguage</fullName>
         <categories>ClusterTriggers</categories>
         <language>en_US</language>
@@ -745,12 +809,28 @@
         <value>Title</value>
     </labels>
     <labels>
+        <fullName>FieldName</fullName>
+        <categories>AudienceCriteria.cmp</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Field Name</shortDescription>
+        <value>FIELD NAME</value>
+    </labels>
+    <labels>
         <fullName>FieldsValues</fullName>
         <categories>TranslationComponent.cmp</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Fields Values</shortDescription>
         <value>Fields Values</value>
+    </labels>
+    <labels>
+        <fullName>FilterCriteria</fullName>
+        <categories>AudienceCriteria.cmp</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Filter Criteria</shortDescription>
+        <value>Filter Criteria</value>
     </labels>
     <labels>
         <fullName>GeneralContents</fullName>
@@ -1007,6 +1087,22 @@
         <protected>true</protected>
         <shortDescription>HeaderComponentTitle</shortDescription>
         <value>Landing</value>
+	</labels>
+	<labels>
+        <fullName>GreaterOrEqualThan</fullName>
+        <categories>AudienceCriteriaController.cls</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Greater or equal than</shortDescription>
+        <value>greater or equal than</value>
+    </labels>
+    <labels>
+        <fullName>GreaterThan</fullName>
+        <categories>AudienceCriteriaController.cls</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Greater than</shortDescription>
+        <value>greater than</value>
     </labels>
     <labels>
         <fullName>ImageUploader</fullName>
@@ -1039,6 +1135,22 @@
         <protected>true</protected>
         <shortDescription>Language</shortDescription>
         <value>Language</value>
+    </labels>
+    <labels>
+        <fullName>LessOrEqualThan</fullName>
+        <categories>AudienceCriteriaController.cls</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Less or equal than</shortDescription>
+        <value>less or equal than</value>
+    </labels>
+    <labels>
+        <fullName>LessThan</fullName>
+        <categories>AudienceCriteriaController.cls</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Less than</shortDescription>
+        <value>less than</value>
     </labels>
     <labels>
         <fullName>Mobile</fullName>
@@ -1193,12 +1305,60 @@
         <value>No records to show</value>
     </labels>
     <labels>
+        <fullName>NoneValue</fullName>
+        <categories>AudienceCriteria.cmp</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>None Value</shortDescription>
+        <value>-- NONE --</value>
+    </labels>
+    <labels>
+        <fullName>NotContains</fullName>
+        <categories>AudienceCriteriaController.cls</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Not contains</shortDescription>
+        <value>not contains</value>
+    </labels>
+    <labels>
+        <fullName>NotEquals</fullName>
+        <categories>AudienceCriteriaController.cls</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Not Equals</shortDescription>
+        <value>not equals</value>
+    </labels>
+    <labels>
+        <fullName>ObjectFieldsLabel</fullName>
+        <categories>AudienceCriteriaController.cls</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Object Fields Label</shortDescription>
+        <value>Fields</value>
+    </labels>
+    <labels>
+        <fullName>Operators</fullName>
+        <categories>AudienceCriteria.cmp</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Operators</shortDescription>
+        <value>OPERATORS</value>
+    </labels>
+    <labels>
         <fullName>OrderByInvalidFormat</fullName>
         <categories>ComponentTriggers.cls</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Component Order By Advance Invalid Format</shortDescription>
         <value>Invalid format:</value>
+    </labels>
+    <labels>
+        <fullName>PleaseSelectOption</fullName>
+        <categories>AudienceCriteria.cmp</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please select an option</shortDescription>
+        <value>Please select an option</value>
     </labels>
     <labels>
         <fullName>RequiredField</fullName>
@@ -1480,6 +1640,22 @@
         <value>A new Content was created based on {0} template</value>
     </labels>
     <labels>
+        <fullName>ContentPendingPublication</fullName>
+        <categories>ContentDetailHeader.cmp</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ContentPendingPublication</shortDescription>
+        <value>Pending publication on {0}</value>
+    </labels>
+    <labels>
+        <fullName>ContentPublishedUntil</fullName>
+        <categories>ContentDetailHeader.cmp</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ContentPublishedUntil</shortDescription>
+        <value>Published until {0}</value>
+    </labels>
+    <labels>
         <fullName>ContentDeletingMessage</fullName>
         <categories>ContentDetailHeader.cmp</categories>
         <language>en_US</language>
@@ -1518,5 +1694,45 @@
         <protected>false</protected>
         <shortDescription>UnassignImage</shortDescription>
         <value>Unassign Image</value>
+    </labels>
+    <labels>
+        <fullName>Values</fullName>
+        <categories>AudienceCriteria.cmp</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Values</shortDescription>
+        <value>VALUES</value>
+    </labels>
+    <labels>
+        <fullName>CriteriaListInBlank</fullName>
+        <categories>Tags</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>CriteriaListInBlank</shortDescription>
+        <value>Please complete the Criteria List.</value>
+    </labels>
+    <labels>
+        <fullName>TagValidation</fullName>
+        <categories>Tags</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>TagValidation</shortDescription>
+        <value>The tag criteria doesn't match with tags selected.</value>
+    </labels>
+    <labels>
+        <fullName>Criteria</fullName>
+        <categories>Tags</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Criteria</shortDescription>
+        <value>Criteria</value>
+    </labels>
+    <labels>
+        <fullName>AddTag</fullName>
+        <categories>Tags</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>AddTag</shortDescription>
+        <value>Add Tags</value>
     </labels>
 </CustomLabels>

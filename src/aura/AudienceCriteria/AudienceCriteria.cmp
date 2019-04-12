@@ -1,0 +1,237 @@
+<aura:component controller="AudienceCriteriaController" implements="flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+	
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler event="force:refreshView" action="{!c.doInit}"/>
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="isLoading" type="boolean" default="true" />
+
+    <aura:attribute name="audienceWrapper" type="Object"/>
+
+    <div class="slds-page-header">
+		<div class="slds-page-header__row">
+			<div class="slds-page-header__col-title">
+				<div class="slds-media">
+					<div class="slds-media__body">
+						<div class="slds-page-header__name">
+							<div class="slds-page-header__name-title">
+								<h1>
+									<span class="slds-page-header__title slds-truncate" title="{!v.sObjectLabel}">{!$Label.c.FilterCriteria}</span>
+								</h1>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		    <div class="slds-page-header__col-actions">
+		      	<div class="slds-page-header__controls">
+		      		<lightning:buttonGroup>
+				        <lightning:button class="slds-button slds-button_brand" label="{!$Label.c.General_Save}" disabled="{!v.isLoading}" onclick="{!c.doSave}"/>
+				    </lightning:buttonGroup>
+				</div>
+			</div>
+		</div>
+    </div>
+
+    <lightning:card>
+        
+        <aura:if isTrue="{!v.isLoading}">
+            <c:Spinner/>
+        </aura:if>
+
+        <div class="slds-grid slds-wrap criterionTable">
+
+            <!-- HEADERS -->
+            <div class="slds-col slds-size_5-of-12 slds-truncate slds-text-title--caps">{!$Label.c.FieldName}</div>
+            <div class="slds-col slds-size_3-of-12 slds-truncate slds-text-title--caps">{!$Label.c.Operators}</div>
+            <div class="slds-col slds-size_4-of-12 slds-truncate slds-text-title--caps">{!$Label.c.Values}</div>
+
+            <!-- CRITERIA -->
+            <aura:iteration items="{!v.audienceWrapper.criteria}" var="criterion">
+
+                <!-- ORDER -->
+                <div class="slds-col slds-size_1-of-12 slds-align_absolute-center orders">
+                    <div>{!criterion.order}</div>
+                </div>
+
+                <!-- FIELD -->
+                <div class="slds-col slds-size_4-of-12 slds-align_absolute-center fieldPaths">
+                    <div class="slds-form-element">
+                        <div class="slds-form-element__control">
+                            <div class="slds-select_container">
+                                <select id="{!'field-'+criterion.order}" class="slds-select" onchange="{!c.doChangeField}">
+                                    <option value="">{!$Label.c.PleaseSelectOption}</option>
+                                    <aura:iteration items="{!v.audienceWrapper.fields}" var="f">
+                                        <aura:if isTrue="{!f.isSeparator}">
+                                            <option disabled="disabled" >{!f.fieldLabel}</option>
+                                            <aura:set attribute="else">
+                                                <aura:if isTrue="{!f.fieldPath == criterion.field}">
+                                                    <option selected="selected" value="{!f.fieldPath}">{!f.fieldLabel}</option>
+                                                    <aura:set attribute="else">
+                                                        <option value="{!f.mainObjectType + f.fieldPath}">{!f.fieldLabel}</option>
+                                                    </aura:set>
+                                                </aura:if>
+                                            </aura:set>
+                                        </aura:if>
+                                    </aura:iteration>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- OPERATOR -->
+                <div class="slds-col slds-size_3-of-12 slds-align_absolute-center operators">
+                    <aura:if isTrue="{!not(criterion.valueType == '')}">
+                        <div class="slds-form-element">
+                            <div class="slds-form-element__control">
+                                <div class="slds-select_container">
+                                    <select id="{!'operator-'+criterion.order}" class="slds-select">
+                                        <option value="">{!$Label.c.PleaseSelectOption}</option>
+                                        
+                                        <!-- CHECKBOX OPERATORS -->
+                                        <aura:if isTrue="{!equals(criterion.valueType,'Checkbox')}">
+                                            <aura:iteration items="{!v.audienceWrapper.booleanOperators}" var="checkOperation">
+                                                <aura:if isTrue="{!equals(checkOperation, criterion.operator)}">
+                                                    <option selected="selected" value="{!checkOperation}">{!checkOperation}</option>
+                                                    <aura:set attribute="else">
+                                                        <option value="{!checkOperation}">{!checkOperation}</option>
+                                                    </aura:set>
+                                                </aura:if>
+                                            </aura:iteration>
+                                        </aura:if>
+
+                                        <!-- DECIMAL OPERATORS -->
+                                        <aura:if isTrue="{!or(equals(criterion.valueType,'Number'), equals(criterion.valueType,'Percent'), equals(criterion.valueType,'Currency'))}">
+                                            <aura:iteration items="{!v.audienceWrapper.decimalOperators}" var="decOperation">
+                                                <aura:if isTrue="{!equals(decOperation, criterion.operator)}">
+                                                    <option selected="selected" value="{!decOperation}">{!decOperation}</option>
+                                                    <aura:set attribute="else">
+                                                        <option value="{!decOperation}">{!decOperation}</option>
+                                                    </aura:set>>
+                                                </aura:if>
+                                            </aura:iteration>
+                                        </aura:if>
+
+                                        <!-- STRING OPERATORS -->
+                                        <aura:if isTrue="{!or(equals(criterion.valueType,'Picklist'), equals(criterion.valueType,'Text'), equals(criterion.valueType,'Lookup'), equals(criterion.valueType,'Email'))}">
+                                            <aura:iteration items="{!v.audienceWrapper.stringOperators}" var="strOperation">
+                                                <aura:if isTrue="{!equals(strOperation, criterion.operator)}">
+                                                    <option selected="selected" value="{!strOperation}">{!strOperation}</option>
+                                                    <aura:set attribute="else">
+                                                        <option value="{!strOperation}">{!strOperation}</option>
+                                                    </aura:set>
+                                                </aura:if>
+                                            </aura:iteration>
+                                        </aura:if>
+                                        
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </aura:if>
+                </div>
+
+                <!-- VALUE -->
+                <div class="slds-col slds-size_3-of-12 slds-align_absolute-center values">
+                    <aura:if isTrue="{!not(criterion.valueType == '')}">
+                        <div class="slds-form-element">
+                            <div class="slds-form-element__control">
+                                
+                                <!-- CHECKBOX -->
+                                <div class="{!not(criterion.valueType == 'Checkbox') ? 'hideField' : ''}">
+                                    <input id="{!'valueCheckbox-'+criterion.order}" type="checkbox" checked="{!criterion.value == 'true' ? 'checked' : ''}"/>
+                                </div>
+
+                                <!-- CURRENCY -->
+                                <div class="{!not(criterion.valueType == 'Currency') ? 'hideField' : ''}">
+                                    <lightning:input type="currency" value="{!criterion.value}" class="hideLabel"/>
+                                </div>
+
+                                <!-- EMAIL -->
+                                <div class="{!not(criterion.valueType == 'Email') ? 'hideField' : ''}">
+                                    <lightning:input type="email" value="{!criterion.value}" class="hideLabel"/>
+                                </div>
+
+                                <!-- NUMBER -->
+                                <div class="{!not(criterion.valueType == 'Number') ? 'hideField' : ''}">
+                                    <lightning:input type="number" value="{!criterion.value}" class="hideLabel"/>
+                                </div>
+
+                                <!-- PERCENT -->
+                                <div class="{!not(criterion.valueType == 'Percent') ? 'hideField' : ''}">
+                                    <lightning:input type="number" value="{!criterion.value}" class="hideLabel"/>
+                                </div>
+
+                                <!-- TEXT -->
+                                <div class="{!not(criterion.valueType == 'Text') ? 'hideField' : ''}">
+                                    <lightning:input type="text" value="{!criterion.value}" class="hideLabel"/>
+                                </div>
+
+                                <!-- LOOKUP -->
+                                <div class="{!not(criterion.valueType == 'Lookup') ? 'hideField' : ''}">
+                                    <lightning:input type="text" value="{!criterion.value}" class="hideLabel"/>
+                                </div>
+
+                                <!-- PICKLIST -->
+                                <div class="{!not(criterion.valueType == 'Picklist') ? 'hideField' : ''}">
+                                    <select class="slds-select" id="{!'valuePicklist-'+criterion.order}">
+                                        <option value="">{!$Label.c.NoneValue}</option>
+                                        <aura:iteration items="{!v.audienceWrapper.fields}" var="f">
+                                            <aura:if isTrue="{!f.fieldPath == criterion.field}">
+                                                <aura:iteration items="{!f.values}" var="fpv">
+                                                    <aura:if isTrue="{!criterion.value == fpv.apiVal}">    
+                                                        <option selected="selected" value="{!fpv.apiVal}">{!fpv.label}</option>
+                                                        <aura:set attribute="else">
+                                                            <option value="{!fpv.apiVal}">{!fpv.label}</option>
+                                                        </aura:set>
+                                                    </aura:if>
+                                                </aura:iteration> 
+                                            </aura:if>
+                                        </aura:iteration>
+                                    </select>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </aura:if>
+                </div>
+
+                <!-- DELETE -->
+                <div class="slds-col slds-size_1-of-12 slds-align_absolute-center">
+                    <div class="slds-form-element__control">
+                        <lightning:buttonIcon iconName="utility:delete" name="{!criterion.order}" onclick="{!c.doRemoveCriterion}"/>
+                    </div>
+                </div>
+            </aura:iteration>
+
+            <div class="slds-col slds-size_12-of-12 slds-truncate slds-text-title--caps">
+                <lightning:button label="{!$Label.c.AddNew}" onclick="{!c.doAddCriterion}" />
+            </div>
+
+        </div>
+
+        <div class="slds-grid slds-wrap matchCriteria">
+            <div class="slds-col slds-size_2-of-12">
+                <div>
+                    <label>{!v.audienceWrapper.labels.matchCriteriaFieldLabel}</label>
+                    <lightning:helptext content="{!v.audienceWrapper.labels.matchCriteriaHelp}"/>
+                </div>
+                
+                <lightning:buttonGroup>
+                    <lightning:button name="All"    class="{!v.audienceWrapper.matchCriteria == 'All' ? 'slds-button slds-button_brand' : 'slds-button'}" label="{!v.audienceWrapper.labels.matchCriteriaAll}" onclick="{!c.doChangeMatchCriteria}" />
+                    <lightning:button name="Any"    class="{!v.audienceWrapper.matchCriteria == 'Any' ? 'slds-button slds-button_brand' : 'slds-button'}" label="{!v.audienceWrapper.labels.matchCriteriaAny}" onclick="{!c.doChangeMatchCriteria}"/>
+                    <lightning:button name="Custom" class="{!v.audienceWrapper.matchCriteria == 'Custom' ? 'slds-button slds-button_brand' : 'slds-button'}" label="{!v.audienceWrapper.labels.matchCriteriaCustom}" onclick="{!c.doChangeMatchCriteria}" />
+                </lightning:buttonGroup>
+            </div>
+
+            <div class="slds-col slds-size_3-of-12">
+                <aura:if isTrue="{!v.audienceWrapper.matchCriteria == 'Custom'}">
+                    <lightning:textarea name="audienceCriteria" value="{!v.audienceWrapper.audienceCriteria}"/>
+                </aura:if>
+            </div>
+
+        </div>
+
+    </lightning:card>
+
+</aura:component>

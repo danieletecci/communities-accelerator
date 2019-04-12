@@ -2,6 +2,9 @@
 	doInit: function (component, event, helper) {
         helper.getData(component);
     },
+    afterMomentLoaded: function(component, event, helper){
+        helper.setTooltips(component);
+    },
     doSave: function (component, event, helper) {
         helper.updateContent(
             component, 
@@ -61,5 +64,18 @@
                 helper.updateContent(component, "Draft", null, null);
                 break;
         }
+    },
+    getScheduleMessage: function(component, event, helper){
+        return "schedule";
+    },
+    getPublishMessage: function(component, event, helper){
+        return "publish";
+    },
+    showTooltip: function(component, event, helper){
+        if(component.get("v.scheduledTooltip") || component.get("v.publishedTooltip"))
+            component.set("v.tooltipClass", "slds-rise-from-ground")
+    },
+    hideTooltip: function(component, event, helper){
+        component.set("v.tooltipClass", "slds-fall-into-ground")
     }
 })

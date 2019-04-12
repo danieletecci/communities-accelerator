@@ -23,7 +23,7 @@
                 <field>ExternalId__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Required</behavior>
                 <field>Type__c</field>
             </layoutItems>
             <layoutItems>
@@ -35,7 +35,7 @@
                 <field>SelectableRow__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Required</behavior>
                 <field>Label__c</field>
             </layoutItems>
             <layoutItems>
@@ -43,8 +43,12 @@
                 <field>Icon__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Required</behavior>
                 <field>DisplaySettings__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ShowAsModal__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns/>

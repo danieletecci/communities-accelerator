@@ -6,8 +6,6 @@
     height: calc(100% - 138px);
 }
 .slds-col{
-    padding-left: 10px;
-    padding-right: 10px;
 }
 .left-col{
     background-color: #FFF;
@@ -22,6 +20,10 @@
 .tableContainer{
     background-color: #FFF;
     height: 100%;
+}
+.slds-card__header{
+    padding: 0px !important;
+    margin: 0px !important;
 }
 .top-bar{
     padding-left: 0;

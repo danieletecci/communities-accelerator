@@ -1,6 +1,6 @@
 <aura:component>    
 	
-	<div style="position:relative; min-height: 45px;">
+	<div style="position: absolute; background: rgba(0,0,0,0.02); height: 100%; width: 100%; top: 0; min-height: 45px;">
         <div role="status" class="slds-spinner slds-spinner_brand slds-spinner_medium">
             <span class="slds-assistive-text">Loading</span>
             <div class="slds-spinner__dot-a"></div>

@@ -1,7 +1,7 @@
 public class DatatableElementTriggers extends TriggersHandler {
     
     public String objectApiName;
-    public Map<Id, String> datatablesMapId = new Map<Id, String>();
+    public Map<Id, Datatable__c> datatablesMap = new Map<Id, Datatable__c>();
     public Map<Id, String> datatableElementsObjectMap = new Map<Id, String>();
     
 	public DatatableElementTriggers(List<SObject> p_triggerNew, List<SObject> p_triggerOld) {
@@ -17,9 +17,13 @@ public class DatatableElementTriggers extends TriggersHandler {
     public override void masterLoop_BeforeInsert(SObject recNew) {
         setExternalId((DatatableElement__c)recNew);
         validateObjectFieldApiName((DatatableElement__c)recNew);
+        validateSearchableField((DatatableElement__c)recNew);
+        validateParentMaxQuantity((DatatableElement__c)recNew);
     }
     public override void masterLoop_BeforeUpdate(SObject recNew, SObject recOld) {
         setExternalId((DatatableElement__c)recNew);
+        validateObjectFieldApiName((DatatableElement__c)recNew);
+        validateSearchableField((DatatableElement__c)recNew);
     }
     
     public override void finalLoop_BeforeUpdate(SObject recNew, SObject recOld) {
@@ -41,13 +45,15 @@ public class DatatableElementTriggers extends TriggersHandler {
             
             System.debug(datatablesIdSet);
             
-            for(Datatable__c dt : [SELECT Id, ObjectApiName__c FROM Datatable__c WHERE Id IN :datatablesIdSet]) {
-                datatablesMapId.put(dt.Id, dt.ObjectApiName__c);
+            for(Datatable__c dt : [SELECT Id, ObjectApiName__c
+                                            , NumberOfColumns__c, (SELECT Id FROM DatatableElements__r) 
+                                    FROM Datatable__c WHERE Id IN :datatablesIdSet]) {
+                datatablesMap.put(dt.Id, dt);
             }
-            
+
             for(SObject tNew : triggerRecordsList) {
                 DatatableElement__c de = (DatatableElement__c)tNew;
-                datatableElementsObjectMap.put(de.Id, datatablesMapId.get(de.Datatable__c));
+                datatableElementsObjectMap.put(de.Id, datatablesMap.get(de.Datatable__c).ObjectApiName__c);
             }
             
             System.debug('datatableElementsObjectMap: ' + datatableElementsObjectMap);
@@ -56,6 +62,16 @@ public class DatatableElementTriggers extends TriggersHandler {
     
     /*****************************************************************/
     /********************** USE CASE METHODS *************************/
+    public void validateParentMaxQuantity(DatatableElement__c recNew) {
+        Datatable__c dt = datatablesMap.get(recNew.Datatable__c);
+
+        System.debug('in validateParentMaxQuantity - dt.DatatableElements__r.size(): ' + dt.DatatableElements__r.size() + ' - dt.NumberOfColumns__c: ' + dt.NumberOfColumns__c);
+
+        if((dt.DatatableElements__r.size() + 1) > Integer.valueOf(dt.NumberOfColumns__c)) {
+            recNew.addError('Max. number of elements reached.');
+        }
+        
+    }
     public void validateObjectFieldApiName(DatatableElement__c recNew) {
         String objectName = this.datatableElementsObjectMap.get(recNew.Id);
         
@@ -64,6 +80,14 @@ public class DatatableElementTriggers extends TriggersHandler {
            	recNew.Type__c = String.valueOf(elementType);
         }else {
             recNew.addError(recNew.FieldApiName__c + ' is not a valid field for the ' + objectName + ' object');
+        }
+    }
+    
+    public void validateSearchableField(DatatableElement__c recNew) {
+        System.debug('validateSearchableField - recNew.Searchable__c: ' + recNew.Searchable__c + ' - recNew.Type__c: ' + recNew.Type__c);
+        
+        if(recNew.Searchable__c && recNew.Type__c != String.valueOf(Schema.DisplayType.STRING)) {
+            recNew.addError(recNew.FieldApiName__c + ' cannot be Searchable');
         }
     }
     

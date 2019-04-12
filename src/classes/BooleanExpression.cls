@@ -1,6 +1,37 @@
 public class BooleanExpression {
     static Map<String, String> logicTypes = new Map<String, String>();
     static Map<String, Map<String, String>> expressionLogic = new Map<String, Map<String, String>>();
+    
+    /**
+    * Validate a boolean expression 
+    *  
+    */
+    public static Boolean validateExpression(String expression, Set<Integer> validNumberSet){
+        if(expression == null || expression == '' || validNumberSet == null || validNumberSet.isEmpty()){
+            return false;
+        }
+        expression = expression.deleteWhitespace().toUpperCase().replaceAll('AND', ' AND ').replaceAll('OR', ' OR ');
+        Pattern p = Pattern.compile('(\\d+)');
+        Matcher m = p.matcher(expression);
+        Set<Integer> existNumberSet = new Set<Integer>();
+
+        if(m.find()) {
+            do {
+                Integer value = Integer.valueOf(m.group());
+                if(!validNumberSet.contains(value)){
+                        return false;
+                    }else{
+                        existNumberSet.add(value);
+                    }
+            } while(m.find());
+        }
+        expression = expression.replaceAll('\\d', 'TRUE');
+        if(expression.replaceAll('TRUE|\\(|\\)|AND|OR| ', '').length() > 0 || !eval(expression) || existNumberSet.size() != validNumberSet.size()){
+            return false;
+        }
+        return true;
+    }
+
     /**
     * Evaluate a boolean expreassion 
     * 

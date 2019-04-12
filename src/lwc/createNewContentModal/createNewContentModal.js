@@ -18,7 +18,7 @@ import getClusters from '@salesforce/apex/CreateNewContentModalController.getClu
 
 import { CurrentPageReference,NavigationMixin } from 'lightning/navigation';
 import { registerListener, unregisterAllListeners } from 'c/pubsub';
-import { ShowToastEvent } from 'lightning/platformShowToastEvent'
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
 
 export default class RecordTypeSelectionModal extends NavigationMixin(LightningElement) {

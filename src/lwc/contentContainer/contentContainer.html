@@ -8,19 +8,21 @@
             </template>
         </div>
         <div class="slds-grid slds-wrap">
-            <div class="slds-col left-col slds-size_2-of-12" onfilterselected={handlerFilterSidebarEvent}>
-                <template if:true={optionsFilterRadioButtonGroup}>
-                    <c-radio-button-group options={optionsFilterRadioButtonGroup} onradiobuttongroupselected={handleRadioButtonGroupEvent}></c-radio-button-group>
-                </template>
-                <template if:true={renderFilterSidebar}>
-                    <p class="title-filter">{SidebarFilterTitle}</p>
-                    <c-acordeon filters={filters}></c-acordeon>
-                </template>
+            <div class="slds-col slds-size_2-of-12" onfilterselected={handlerFilterSidebarEvent}>
+                <article class="slds-card slds-p-horizontal_small content">
+                    <template if:true={optionsFilterRadioButtonGroup}>
+                        <c-radio-button-group options={optionsFilterRadioButtonGroup} onradiobuttongroupselected={handleRadioButtonGroupEvent}></c-radio-button-group>
+                    </template>
+                    <template if:true={renderFilterSidebar}>
+                        <p class="title-filter">{SidebarFilterTitle}</p>
+                        <c-acordeon filters={filters}></c-acordeon>
+                    </template>
+                </article>
             </div>
-            <div class="slds-col right-col slds-10-of-12">
-                <div class="tableContainer" >
-                    <c-table-filter rendertable={renderTable} tabledata={tabledata} filtersstatus={filtersStatus} ondeletecontentrecord={handleDeleteContent} oncreatecontentrecord={handleCreateContent}></c-table-filter>
-                </div>
+            <div class="slds-col slds-p-left_x-small slds-10-of-12">
+                <article class="slds-card tableContainer slds-m-bottom_large">
+                        <c-table-filter rendertable={renderTable} tabledata={tabledata} filtersstatus={filtersStatus} ondeletecontentrecord={handleDeleteContent} oncreatecontentrecord={handleCreateContent}></c-table-filter>
+                </article>
             </div>
         </div>
     </div>

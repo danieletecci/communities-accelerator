@@ -16,6 +16,9 @@
                 <field>User__c</field>
             </layoutItems>
             <layoutItems>
+                <emptySpace>true</emptySpace>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Cluster__c</field>
             </layoutItems>
@@ -29,7 +32,14 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Audiencies__c</field>
+                <field>CustomRecordId__c</field>
+            </layoutItems>
+            <layoutItems>
+                <emptySpace>true</emptySpace>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Audiences__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>

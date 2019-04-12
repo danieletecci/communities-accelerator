@@ -14,7 +14,7 @@ public with sharing class AudienceUtils {
         //Loop records to be filtered
         for(Integer i=0; i < records.size(); i++){
             
-            //Get audiencies of each record
+            //Get audiences of each record
             String audiencesExternalIds;
             try{audiencesExternalIds = String.ValueOf(GeneralUtils.getFieldValue(records[i], audienceLookupApiName.removeEndIgnoreCase('__c') + '__r.ReferenceAudienceExternalIds__c'));}catch(Exception e){}
             
@@ -259,7 +259,7 @@ public with sharing class AudienceUtils {
         }else if(operator == 'contains'){
             apply = recordValue.contains(acValue);
         }else if(operator == 'not contains'){
-            apply = recordValue.containsNone(acValue);
+            apply = !recordValue.contains(acValue);
         }
         return apply;
     }

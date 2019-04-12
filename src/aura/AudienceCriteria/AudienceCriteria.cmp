@@ -93,33 +93,77 @@
                                             <aura:iteration items="{!v.audienceWrapper.booleanOperators}" var="checkOperation">
                                                 <aura:if isTrue="{!equals(checkOperation, criterion.operator)}">
                                                     <option selected="selected" value="{!checkOperation}">{!checkOperation}</option>
-                                                    <aura:set attribute="else">
-                                                        <option value="{!checkOperation}">{!checkOperation}</option>
-                                                    </aura:set>
+                                                    <aura:set attribute="else"><option value="{!checkOperation}">{!checkOperation}</option></aura:set>
                                                 </aura:if>
                                             </aura:iteration>
                                         </aura:if>
 
-                                        <!-- DECIMAL OPERATORS -->
-                                        <aura:if isTrue="{!or(equals(criterion.valueType,'Number'), equals(criterion.valueType,'Percent'), equals(criterion.valueType,'Currency'))}">
+                                        <!-- NUMBER OPERATORS -->
+                                        <aura:if isTrue="{!equals(criterion.valueType,'Number')}">
                                             <aura:iteration items="{!v.audienceWrapper.decimalOperators}" var="decOperation">
                                                 <aura:if isTrue="{!equals(decOperation, criterion.operator)}">
                                                     <option selected="selected" value="{!decOperation}">{!decOperation}</option>
-                                                    <aura:set attribute="else">
-                                                        <option value="{!decOperation}">{!decOperation}</option>
-                                                    </aura:set>>
+                                                    <aura:set attribute="else"><option value="{!decOperation}">{!decOperation}</option></aura:set>>
                                                 </aura:if>
                                             </aura:iteration>
                                         </aura:if>
 
-                                        <!-- STRING OPERATORS -->
-                                        <aura:if isTrue="{!or(equals(criterion.valueType,'Picklist'), equals(criterion.valueType,'Text'), equals(criterion.valueType,'Lookup'), equals(criterion.valueType,'Email'))}">
+                                        <!-- PERCENT OPERATORS -->
+                                        <aura:if isTrue="{!equals(criterion.valueType,'Percent')}">
+                                            <aura:iteration items="{!v.audienceWrapper.decimalOperators}" var="decOperation">
+                                                <aura:if isTrue="{!equals(decOperation, criterion.operator)}">
+                                                    <option selected="selected" value="{!decOperation}">{!decOperation}</option>
+                                                    <aura:set attribute="else"><option value="{!decOperation}">{!decOperation}</option></aura:set>>
+                                                </aura:if>
+                                            </aura:iteration>
+                                        </aura:if>
+
+                                        <!-- CURRENCY OPERATORS -->
+                                        <aura:if isTrue="{!equals(criterion.valueType,'Currency')}">
+                                            <aura:iteration items="{!v.audienceWrapper.decimalOperators}" var="decOperation">
+                                                <aura:if isTrue="{!equals(decOperation, criterion.operator)}">
+                                                    <option selected="selected" value="{!decOperation}">{!decOperation}</option>
+                                                    <aura:set attribute="else"><option value="{!decOperation}">{!decOperation}</option></aura:set>>
+                                                </aura:if>
+                                            </aura:iteration>
+                                        </aura:if>
+
+                                        <!-- PICKLIST OPERATORS -->
+                                        <aura:if isTrue="{!equals(criterion.valueType,'Picklist')}">
                                             <aura:iteration items="{!v.audienceWrapper.stringOperators}" var="strOperation">
                                                 <aura:if isTrue="{!equals(strOperation, criterion.operator)}">
                                                     <option selected="selected" value="{!strOperation}">{!strOperation}</option>
-                                                    <aura:set attribute="else">
-                                                        <option value="{!strOperation}">{!strOperation}</option>
-                                                    </aura:set>
+                                                    <aura:set attribute="else"><option value="{!strOperation}">{!strOperation}</option></aura:set>
+                                                </aura:if>
+                                            </aura:iteration>
+                                        </aura:if>
+
+                                        <!-- TEXT OPERATORS -->
+                                        <aura:if isTrue="{!equals(criterion.valueType,'Text')}">
+                                            <aura:iteration items="{!v.audienceWrapper.stringOperators}" var="strOperation">
+                                                <aura:if isTrue="{!equals(strOperation, criterion.operator)}">
+                                                    <option selected="selected" value="{!strOperation}">{!strOperation}</option>
+                                                    <aura:set attribute="else"><option value="{!strOperation}">{!strOperation}</option></aura:set>
+                                                </aura:if>
+                                            </aura:iteration>
+                                        </aura:if>
+
+                                        <!-- LOOKUP OPERATORS -->
+                                        <aura:if isTrue="{!equals(criterion.valueType,'Lookup')}">
+                                            <aura:iteration items="{!v.audienceWrapper.stringOperators}" var="strOperation">
+                                                <aura:if isTrue="{!equals(strOperation, criterion.operator)}">
+                                                    <option selected="selected" value="{!strOperation}">{!strOperation}</option>
+                                                    <aura:set attribute="else"><option value="{!strOperation}">{!strOperation}</option></aura:set>
+                                                </aura:if>
+                                            </aura:iteration>
+                                        </aura:if>
+
+                                        <!-- EMAIL OPERATORS -->
+                                        <aura:if isTrue="{!equals(criterion.valueType,'Email')}">
+                                            <aura:iteration items="{!v.audienceWrapper.stringOperators}" var="strOperation">
+                                                <aura:if isTrue="{!equals(strOperation, criterion.operator)}">
+                                                    <option selected="selected" value="{!strOperation}">{!strOperation}</option>
+                                                    <aura:set attribute="else"><option value="{!strOperation}">{!strOperation}</option></aura:set>
                                                 </aura:if>
                                             </aura:iteration>
                                         </aura:if>

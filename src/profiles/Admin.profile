@@ -97,7 +97,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>CMSUserSettings__c.Audiencies__c</field>
+        <field>CMSUserSettings__c.Audiences__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

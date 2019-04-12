@@ -43,6 +43,7 @@
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
+    <description>Represents the different Audience and Audience Group, which will be used for segment any record.</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -217,6 +218,7 @@
     <recordTypes>
         <fullName>Audience</fullName>
         <active>true</active>
+        <description>Configure a new Audience to segment records.</description>
         <label>Audience</label>
         <picklistValues>
             <picklist>MatchCriteria__c</picklist>
@@ -248,6 +250,7 @@
     <recordTypes>
         <fullName>AudienceGroup</fullName>
         <active>true</active>
+        <description>Configure a new Audience Group who is related to any record.</description>
         <label>Audience Group</label>
         <picklistValues>
             <picklist>MatchCriteria__c</picklist>

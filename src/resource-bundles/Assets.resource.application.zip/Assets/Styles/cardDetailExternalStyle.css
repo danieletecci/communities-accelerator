@@ -2,7 +2,7 @@
   fill: #FF4500 !important;
   padding-bottom: 1px !important;
 }
-.body-container p {
+.card-body-container p {
   margin-top: 20px;
   font-size: 16px;
   text-align: left;
@@ -10,7 +10,7 @@
   line-height: 26px;
   font-weight: 400;
 }
-.body-container .banner-img-container {
+.card-body-container .banner-img-container {
   margin-top: 20px;
   width: 101vw;
   height: 120px;
@@ -19,10 +19,10 @@
   overflow: hidden;
   transform: translateX(-50%);
 }
-.body-container .banner-img-container .banner-img {
+.card-body-container .banner-img-container .banner-img {
   width: 100%;
   position: relative;
 }
-.body-container img {
+.card-body-container img {
   width: 100%;
 }

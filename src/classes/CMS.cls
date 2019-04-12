@@ -3,7 +3,7 @@ public with sharing class CMS {
     public static String prefix = '';
 
     //This methods updates the CMS User Settings with the audiences calculation
-    public static void updateUserSettings(Id userId, Id clusterId, Id accountId, Id contactId, Id acRelationId, Id customRecordId){
+    public static void updateUserSettings(Id userId, Id clusterId, Id accountId, Id contactId, Id customRecordId){
         User user;
         try{user = [SELECT Id, UserName FROM User WHERE Id =: userId];}catch(Exception e){}
         
@@ -24,11 +24,7 @@ public with sharing class CMS {
                 userSettings.Cluster__c = cluster.Id;
                 userSettings.AudienceAccount__c = accountId;
                 userSettings.AudienceContact__c = contactId;
-
-                //Calculate User Audiences
-                map<Id, Audience__c> audiencesMap = new map<Id, Audience__c>([SELECT Id FROM Audience__c WHERE RecordType.DeveloperName = 'Audience' AND Cluster__c =: userSettings.Cluster__c AND Status__c = 'Active']);
-                List<String> userAudiences = AudienceUtils.audienceUserCalculation(audiencesMap.keySet(), userSettings.AudienceAccount__c, userSettings.AudienceContact__c, acRelationId, customRecordId);
-                userSettings.Audiencies__c = String.join(userAudiences, ';');
+                userSettings.CustomRecordId__c = customRecordId;
 
                 //Upsert CMS User Settings
                 upsert userSettings;
@@ -49,7 +45,7 @@ public with sharing class CMS {
             CMSUsersSettingsMap = new map<Id, CMSUserSettings__c>();
         }
         if(!CMSUsersSettingsMap.containsKey(userId)){
-            try{CMSUsersSettingsMap.put(userId, [SELECT Id, User__c, Cluster__c, Audiencies__c FROM CMSUserSettings__c WHERE User__c =: userId]);}catch(Exception e){}
+            try{CMSUsersSettingsMap.put(userId, [SELECT Id, User__c, Cluster__c, Audiences__c FROM CMSUserSettings__c WHERE User__c =: userId]);}catch(Exception e){}
         }
         
         return CMSUsersSettingsMap.get(userId);
@@ -58,8 +54,8 @@ public with sharing class CMS {
     //This methods returns a set of Audiences External Ids of a User
     public static set<String> getUserAudiences(Id userId){
         set<String> userAudiencesSet = new set<String>();
-        if(getUserSettings(userId).Audiencies__c != null){
-            userAudiencesSet.addAll(getUserSettings(userId).Audiencies__c.split(';'));
+        if(getUserSettings(userId).Audiences__c != null){
+            userAudiencesSet.addAll(getUserSettings(userId).Audiences__c.split(';'));
         }
         return userAudiencesSet;
     }

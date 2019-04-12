@@ -1,0 +1,52 @@
+.datatableModals .modal {
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: white;
+  z-index: 1;
+}
+.datatableModals .modal .modal__content {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+}
+.datatableModals .modal .modal__footer {
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+}
+.datatableModals .modal .detailmodal h1 {
+  font-size: 40px;
+  font-weight: 200;
+  padding: 44px 36px 36px 28px;
+}
+.datatableModals .modal .detailmodal .modal__header {
+  text-align: right;
+  height: 50px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-right: 40px;
+}
+.datatableModals .modal .detailmodal .modal__content {
+  padding: 30px 36px 50px 28px;
+}
+.datatableModals .modal .detailmodal .modal__content .detailcontent {
+  padding-bottom: 20px;
+}
+.datatableModals .modal .detailmodal .modal__content .detailcontent p {
+  font-weight: 500;
+  font-size: 16px;
+}
+.datatableModals .modal .detailmodal .modal__content .detailcontent p.column {
+  color: #848484;
+}
+.datatableModals .modal .detailmodal .modal__content .detailcontent p.value {
+  color: #0B0B0B;
+  margin-top: 10px;
+}
+.datatableModals .modal .detailmodal .modal__footer {
+  height: 50px;
+  padding-top: 15px;
+}

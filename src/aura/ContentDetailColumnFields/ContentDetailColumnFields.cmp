@@ -11,7 +11,13 @@
 				<div class="slds-col slds-p-top_small">
 				<!--Cluster-->
 					<aura:if isTrue="{!data.isMultiPicklist}">
-						<c:MultiSelectCombobox label="{!data.label}" options="{!data.values}" placeholder="{!data.placeholder}" oneItemSelectedText="{!$Label.c.MultiComboboxOneTagSelected}" moreItemsSelectedText="{!$Label.c.MultiComboboxMoreTagsSelected}"/>
+						<c:MultiSelectCombobox
+							label="{!data.label}"
+							options="{!data.values}"
+							placeholder="{!data.placeholder}"
+							oneItemSelectedText="{!data.label == 'Tags' ? $Label.c.MultiComboboxOneTagSelected : $Label.c.MultiComboboxOneAudienceSelected}"
+							moreItemsSelectedText="{!data.label == 'Tags' ? $Label.c.MultiComboboxMoreTagsSelected : $Label.c.MultiComboboxMoreAudiencesSelected}"
+						/>
 				    	<aura:set attribute="else">
 					    	<lightning:combobox name="{!data.apiName}" label="{!data.label}" value="{!data.selectedValue}" placeholder="{!data.placeholder}" options="{! data.values }" onchange="{! c.onChange }"/>
 					    </aura:set>

@@ -81,7 +81,7 @@ public with sharing class ContentDetailController {
                 visibilitySelectorList.add(getCategorySelectorWrapper(clusterIds, contentRecord.category__c));
             }
             visibilitySelectorList.add(getTagSelectorWrapper(clusterIds, tagIds, sw.hasEditAccess));
-            visibilitySelectorList.add(getAudienceSelectorWrapper(clusterIds, audiencesExternalIds, sw.hasEditAccess));
+            visibilitySelectorList.add(getAudienceSelectorWrapper(contentRecord.Cluster__c, audiencesExternalIds, sw.hasEditAccess));
             List<String> bannerFrameTypes = getBannerFrameTypes();
 
             data = new DataWrapper(contentRecord, sw, visibilitySelectorList, UserInfo.getTimeZone().getID(), bannerFrameTypes);
@@ -156,12 +156,12 @@ public with sharing class ContentDetailController {
         return categorySelectorWrapper;
     }
 
-    private static VisibilitySelectorWrapper getAudienceSelectorWrapper(Set<Id> clusterIds, Set<String> audienceExtIds, Boolean hasEditAccess){
+    private static VisibilitySelectorWrapper getAudienceSelectorWrapper(Id clusterId, Set<String> audienceExtIds, Boolean hasEditAccess){
         List<Audience__c> audiences;
         if(hasEditAccess)
-            audiences = [SELECT id, ExternalId__c, name FROM Audience__c WHERE RecordType.DeveloperName = 'Audience' AND Cluster__c IN :clusterIds];
+            audiences = [SELECT id, ExternalId__c, name FROM Audience__c WHERE RecordType.DeveloperName = 'Audience' AND Cluster__c =: clusterId AND Status__c = 'Active'];
         else
-            audiences = [SELECT id, ExternalId__c, name FROM Audience__c WHERE Id IN :audiences];
+            audiences = [SELECT id, ExternalId__c, name FROM Audience__c WHERE ExternalId__c IN :audienceExtIds];
 
         List<VisibilityOptionWrapper> audienceWrapperList = new List<VisibilityOptionWrapper>();
         for(Audience__c audience : audiences){

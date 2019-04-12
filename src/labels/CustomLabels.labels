@@ -16,6 +16,22 @@
         <shortDescription>AddMediaElement</shortDescription>
         <value>Add Media</value>
     </labels>
+    <labels>
+        <fullName>MultiComboboxMoreAudiencesSelected</fullName>
+        <categories>ContentDetailColumnFields.cmp</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Text showed when more audiences are selected</shortDescription>
+        <value>{0} audiences selected</value>
+    </labels>
+	<labels>
+        <fullName>MultiComboboxOneAudienceSelected</fullName>
+        <categories>ContentDetailColumnFields.cmp</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Text showed when only a audience is selected</shortDescription>
+        <value>{0} audience selected</value>
+    </labels>
 	<labels>
         <fullName>CustomCriteriaValidation</fullName>
         <categories>AudienceTriggers.cls</categories>

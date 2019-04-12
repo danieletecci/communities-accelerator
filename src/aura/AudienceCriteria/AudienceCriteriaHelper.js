@@ -45,7 +45,6 @@
 				}
 			}
 		}
-		component.set("v.audienceWrapper", audienceWrapper);
 
 		var action = component.get("c.saveCriteria");
 		action.setParams({

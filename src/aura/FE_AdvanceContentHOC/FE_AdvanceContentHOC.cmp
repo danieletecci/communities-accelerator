@@ -1,4 +1,4 @@
-<aura:component controller="FE_AdvanceContentController" implements="forceCommunity:availableForAllPageTypes">
+<aura:component controller="FE_AdvanceContentController" implements="forceCommunity:availableForAllPageTypes" access="global">
 	<!-- CONSTRUCTOR -->
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
 

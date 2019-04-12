@@ -1,0 +1,46 @@
+<template>
+    <div class="datatableModals">
+        <div class="modal">
+            <!--                DETAIL MODAL                 -->
+            <div class="detailmodal">
+                <h1>{table.title}</h1>
+                <template if:true={detailmodal}>
+                    <div class="modal__header">
+                        <img class="closeModal" src={closeicon} onclick={closeDetailModal}>
+                    </div>
+                    <div class="modal__content">
+                        <template for:each={rowData} for:item="data">
+                            <div class="detailcontent" key={data.column}>
+                                    <p class="column">{data.column}</p>
+                                    <p class="value">{data.row}</p>
+                            </div>
+                        </template>
+                    </div>
+                    <!-- <div class="slds-grid slds-wrap modal__footer">
+                        <template for:each={rowaction} for:item="action">
+                                <div key={action.label} class="slds-no-flex slds-col slds-size_1-of-4">
+                                    <img src={action.icon}>
+                                </div>
+                        </template>
+                    </div> -->
+                </template>
+            </div>
+            <!--                ACTIONS MODAL                 -->
+            <template if:true={actionmodal}>
+                <div class="modal__header">
+                </div>
+                <div class="modal__content">
+                    <template for:each={rowaction} for:item="action">
+                            <div key={action.label}>
+                                <label>{action.label}</label>
+                                <img src={action.icon}>
+                            </div>
+                    </template>
+                </div>
+                <div class="modal__footer">
+                    <button onclick={closeDetailModal}>Close</button>
+                </div>
+            </template>
+        </div>
+    </div>
+</template>

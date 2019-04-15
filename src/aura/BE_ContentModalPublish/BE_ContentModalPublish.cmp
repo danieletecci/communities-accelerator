@@ -19,7 +19,7 @@
     <aura:attribute name="endDate" 				type="DateTime" 					/>
 	<aura:attribute name="hasDetailComponent"	type="Boolean"						/>
 	
-	<ltng:require styles="{!$Resource.Assets + '/Assets/Styles/BE_ContentModalPublishExternalStyle.css'}"/>
+	<!--<ltng:require styles="{!$Resource.Assets + '/Assets/Styles/BE_ContentModalPublishExternalStyle.css'}"/>-->
 
 	<section aura:id="publishModal" role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal">
 	    <div class="slds-modal__container">

@@ -1,11 +1,53 @@
 @isTest
 public class CG_DynamicPicklistComponentsTest {
+    
+    @testSetup
+    public static void testSetup() {
+        MockupFactory.generateAcceleratorSetting();
+        List<Cluster__c> clusters = MockupFactory.createCluster('DummyCluster', null, 1, 'ClusterRoot', 'DummyCluster');
+        
+        List<Datatable__c>  datatables = MockupFactory.createDatatables('DatatableDummy', 'DatatableDummy', 'Case', 1, clusters.get(0).Id);		            
+    }
+    
+    @isTest 
+	static void setValuesInpicklist(){
+	//When
+	List<Component__c> componentList = MockupFactory.createComponent('Banner',2);
+
+	//Then
+	Test.startTest();
+	CG_DynamicPicklistComponent picklistValues = new CG_DynamicPicklistComponent();
+	picklistValues.getDefaultValue();
+	picklistValues.getValues();
+	Test.stopTest();
+	
+	}
+    
+    @isTest
+    public static void getDefaultValueDatatableTest01() {
+        Test.startTest();
+        FE_DynamicPicklistDatatable dp = new FE_DynamicPicklistDatatable();
+        
+        System.debug(dp.getDefaultValue());
+        
+        Test.stopTest();
+    }
+    
+    @isTest
+    public static void getValuesDatatableTest01() {
+        Test.startTest();
+        FE_DynamicPicklistDatatable dp = new FE_DynamicPicklistDatatable();
+        
+        System.debug(dp.getValues());
+        
+        Test.stopTest();
+    }
+
    @isTest 
     static void setValuesInpicklistAdvanceContent(){
     //Given
     List<Component__c> componentList = MockupFactory.createComponent('Advance Content',2);
     
-                
     //When
     Test.startTest();
     CG_DynamicPicklistAdvanceContent picklistValues = new CG_DynamicPicklistAdvanceContent();

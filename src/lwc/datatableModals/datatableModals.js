@@ -1,6 +1,6 @@
 import { LightningElement, api, track } from 'lwc';
 
-export default class FeDatatableModals extends LightningElement {
+export default class datatableModals extends LightningElement {
     @api table;
     @api closeicon;
     @api rowkey;

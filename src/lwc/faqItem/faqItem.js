@@ -1,6 +1,6 @@
 import { LightningElement, api } from 'lwc';
 
-export default class GenericAccordion extends LightningElement {
+export default class faqItem extends LightningElement {
     @api items;
 
     openAccordion(){

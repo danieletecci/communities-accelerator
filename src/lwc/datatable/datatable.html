@@ -69,7 +69,7 @@
                 <div class="slds-grid slds-wrap" onclick={openDetailModal} data-key={row.Id}>
                     <template for:each={columnsToShow} for:item="col">
                         <div key={col.label} class={columnClass}>
-                            <c-fe-datatable-row colname={col.label} column={col.fieldName} row={row}></c-fe-datatable-row>
+                            <c-datatable-row colname={col.label} column={col.fieldName} row={row}></c-datatable-row>
                         </div> 
                     </template>
                 </div>
@@ -97,22 +97,22 @@
         </template>
         <!--                MODALS                 -->
         <template if:true={showDetailModal}>
-            <c-fe-datatable-modals  type="detailModal"
+            <c-datatable-modals  type="detailModal"
                                     table={table} 
                                     rowkey={clickRow}
                                     rowaction={rowAction}
                                     closeicon={closeIcon}
                                     onclose={closeDetailModal}>
-            </c-fe-datatable-modals>
+            </c-datatable-modals>
         </template>
         <template if:true={showActionModal}>
-            <c-fe-datatable-modals  type="actionModal"
+            <c-datatable-modals  type="actionModal"
                                     table={table} 
                                     rowaction={rowAction}
                                     rowkey={clickRow}
                                     closeicon={closeIcon}
                                     onclose={closeActionModal}>
-            </c-fe-datatable-modals>
+            </c-datatable-modals>
         </template>
     </div>
 </template>

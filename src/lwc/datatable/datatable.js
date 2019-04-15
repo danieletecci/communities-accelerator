@@ -3,7 +3,7 @@ import { loadStyle } from 'lightning/platformResourceLoader';
 
 import { LightningElement, api, track } from 'lwc';
 
-export default class Fe_DatatableLC extends LightningElement {
+export default class datatable extends LightningElement {
     @api table;
 
     @track orientation;

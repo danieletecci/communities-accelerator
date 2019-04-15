@@ -26,7 +26,7 @@
         <c:FE_ComponentToolBox componentType="Datatable" componentExternalId="{!v.componentExternalId}" componentWrapper="{!v.componentWrapper}" salesforceDomain="{!v.componentWrapper.acceleratorSettings.SalesforceDomain__c}" isLoading="{!v.isLoading}">
             <!-- DATATABLE COMPONENT -->
                 <aura:renderIf isTrue="{! v.showDatatable}">
-                    <c:fe_DatatableLC table="{!v.componentWrapper.data}" onfilter="{!c.doHandleFilter}" onclearfilter="{!c.doHandleClearFilters}" onsearch="{!c.doHandleSearch}" onaction="{!c.doHandleCustomRowAction}"/>
+                    <c:datatable table="{!v.componentWrapper.data}" onfilter="{!c.doHandleFilter}" onclearfilter="{!c.doHandleClearFilters}" onsearch="{!c.doHandleSearch}" onaction="{!c.doHandleCustomRowAction}"/>
                     <aura:set attribute="else">
                         <div>
                             <div class="custom-component-header">

@@ -850,7 +850,7 @@
     </labels>
     <labels>
         <fullName>GeneralContents</fullName>
-        <categories>ModalRecordTypeSelection.cmp</categories>
+        <categories>ContentRecordTypeModal.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>General contents</shortDescription>
@@ -1489,7 +1489,7 @@
     </labels>
     <labels>
         <fullName>StructureContent</fullName>
-        <categories>ModalRecordTypeSelection.cmp</categories>
+        <categories>ContentRecordTypeModal.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Structure content</shortDescription>
@@ -1497,7 +1497,7 @@
     </labels>
     <labels>
         <fullName>StructureContentDescription</fullName>
-        <categories>ModalRecordTypeSelectionHelper.js</categories>
+        <categories>ContentRecordTypeModalHelper.js</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Structure content description</shortDescription>

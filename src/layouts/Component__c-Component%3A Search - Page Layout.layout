@@ -50,7 +50,7 @@
         <fields>NAME</fields>
         <fields>ObjectAPIName__c</fields>
         <fields>RecordTypeDevName__c</fields>
-        <relatedList>SearchDetail__c.Component__c</relatedList>
+        <relatedList>SearchSetting__c.Component__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>

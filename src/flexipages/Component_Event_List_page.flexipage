@@ -4,33 +4,21 @@
         <componentInstances>
             <componentName>force:detailPanel</componentName>
         </componentInstances>
-        <name>Facet-433ccf2e-748c-469a-b780-ac97227c8f18</name>
+        <name>Facet-229a76ed-ae1c-4406-87df-c839f9c9ec82</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
         <componentInstances>
-            <componentInstanceProperties>
-                <name>fieldSet</name>
-                <value>Title__c, Extract__c, Body__c</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>parentLookupName</name>
-                <value>Content__c</value>
-            </componentInstanceProperties>
-            <componentName>Translation</componentName>
+            <componentName>CommunityComponentPreview</componentName>
         </componentInstances>
-        <name>Facet-bb6a5c87-2d3c-418c-ada6-c7a3a6bb0c27</name>
+        <name>Facet-e0dbd8e5-5889-4da4-a54e-1914b23c5370</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
         <componentInstances>
-            <componentInstanceProperties>
-                <name>active</name>
-                <value>true</value>
-            </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>body</name>
-                <value>Facet-433ccf2e-748c-469a-b780-ac97227c8f18</value>
+                <value>Facet-229a76ed-ae1c-4406-87df-c839f9c9ec82</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>title</name>
@@ -41,15 +29,15 @@
         <componentInstances>
             <componentInstanceProperties>
                 <name>body</name>
-                <value>Facet-bb6a5c87-2d3c-418c-ada6-c7a3a6bb0c27</value>
+                <value>Facet-e0dbd8e5-5889-4da4-a54e-1914b23c5370</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>title</name>
-                <value>Translations</value>
+                <value>Standard.Tab.preview</value>
             </componentInstanceProperties>
             <componentName>flexipage:tab</componentName>
         </componentInstances>
-        <name>Facet-c2566a7a-27e5-4857-8ac7-c332ccc184f2</name>
+        <name>Facet-ae9610f6-9291-4cf0-a510-0917bc27c9f1</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -60,46 +48,16 @@
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>numVisibleActions</name>
-                <value>4</value>
+                <value>3</value>
             </componentInstanceProperties>
             <componentName>force:highlightsPanel</componentName>
         </componentInstances>
         <componentInstances>
             <componentInstanceProperties>
                 <name>tabs</name>
-                <value>Facet-c2566a7a-27e5-4857-8ac7-c332ccc184f2</value>
+                <value>Facet-ae9610f6-9291-4cf0-a510-0917bc27c9f1</value>
             </componentInstanceProperties>
             <componentName>flexipage:tabset</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentInstanceProperties>
-                <name>parentLookup</name>
-                <value>Content__c</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>places</name>
-                <value>EventImageList,EventImageDetail</value>
-            </componentInstanceProperties>
-            <componentName>MediaElementManager</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentInstanceProperties>
-                <name>junctionObjectAPIName</name>
-                <value>TagAssignment__c</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>parentLookup</name>
-                <value>Content__c</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>secondaryLookup</name>
-                <value>Tag__c</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>whereCondition</name>
-                <value>ORDER BY Name</value>
-            </componentInstanceProperties>
-            <componentName>JunctionObjectManager</componentName>
         </componentInstances>
         <componentInstances>
             <componentInstanceProperties>
@@ -108,17 +66,76 @@
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>parentLookup</name>
-                <value>Content__c</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>secondaryLookup</name>
                 <value>Component__c</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
+                <name>relationTitle</name>
+                <value>Contents</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>secondaryLookup</name>
+                <value>Content__c</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
                 <name>whereCondition</name>
-                <value>WHERE RecordType.DeveloperName = [!rec.RecordType.DeveloperName] AND ClusterExternalId__c = [!rec.ClusterRootExternalId__c]</value>
+                <value>WHERE RecordType.DeveloperName = [!rec.RecordType.DeveloperName] AND ClusterRootExternalId__c = [!rec.ClusterExternalId__c]</value>
             </componentInstanceProperties>
             <componentName>JunctionObjectManager</componentName>
+            <visibilityRule>
+                <criteria>
+                    <leftValue>{!Record.Datasource__c}</leftValue>
+                    <operator>EQUAL</operator>
+                    <rightValue>ManualAssignment</rightValue>
+                </criteria>
+            </visibilityRule>
+        </componentInstances>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>junctionObjectAPIName</name>
+                <value>CategoryAssignment__c</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>parentLookup</name>
+                <value>Component__c</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>relationTitle</name>
+                <value>Categories</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>secondaryLookup</name>
+                <value>Category__c</value>
+            </componentInstanceProperties>
+            <componentName>JunctionObjectManager</componentName>
+            <visibilityRule>
+                <booleanFilter>(1 OR 2)</booleanFilter>
+                <criteria>
+                    <leftValue>{!Record.Datasource__c}</leftValue>
+                    <operator>EQUAL</operator>
+                    <rightValue>Categories</rightValue>
+                </criteria>
+                <criteria>
+                    <leftValue>{!Record.Datasource__c}</leftValue>
+                    <operator>EQUAL</operator>
+                    <rightValue>TagsCategories</rightValue>
+                </criteria>
+            </visibilityRule>
+        </componentInstances>
+        <componentInstances>
+            <componentName>BE_TagCriteriaManager</componentName>
+            <visibilityRule>
+                <booleanFilter>1 OR 2</booleanFilter>
+                <criteria>
+                    <leftValue>{!Record.Datasource__c}</leftValue>
+                    <operator>EQUAL</operator>
+                    <rightValue>Tags</rightValue>
+                </criteria>
+                <criteria>
+                    <leftValue>{!Record.Datasource__c}</leftValue>
+                    <operator>EQUAL</operator>
+                    <rightValue>TagsCategories</rightValue>
+                </criteria>
+            </visibilityRule>
         </componentInstances>
         <name>header</name>
         <type>Region</type>
@@ -131,8 +148,8 @@
         <name>sidebar</name>
         <type>Region</type>
     </flexiPageRegions>
-    <masterLabel>Content Event Page</masterLabel>
-    <sobjectType>Content__c</sobjectType>
+    <masterLabel>Component Event List page</masterLabel>
+    <sobjectType>Component__c</sobjectType>
     <template>
         <name>flexipage:recordHomeTemplateDesktop</name>
     </template>

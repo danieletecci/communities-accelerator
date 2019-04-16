@@ -5,7 +5,7 @@
         
         var parentComponentId;
         var parentComponentType = component.get("v.componentWrapper.component.RecordType.DeveloperName");
-        if (parentComponentType == 'RelatedArticle'){
+        if (parentComponentType == 'ArticlesRelatedHOC'){
             parentComponentId = component.get("v.parentComponentId");
         } else {
             parentComponentId = component.get("v.componentWrapper.component.ExternalId__c");

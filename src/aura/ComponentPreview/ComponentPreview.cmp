@@ -46,10 +46,10 @@
                             <c:BannerHOC componentExternalId="{!v.record.ExternalId__c}"/>
                         </aura:if>
                         <aura:if isTrue="{!v.record.RecordType.DeveloperName == 'Article'}">
-                            <c:ArticleHOC componentExternalId="{!v.record.ExternalId__c}"/>
+                            <c:ArticleListHOC componentExternalId="{!v.record.ExternalId__c}"/>
                         </aura:if>
                         <aura:if isTrue="{!v.record.RecordType.DeveloperName == 'Event'}">
-                            <c:EventHOC componentExternalId="{!v.record.ExternalId__c}"/>
+                            <c:EventListHOC componentExternalId="{!v.record.ExternalId__c}"/>
                         </aura:if>
                         <aura:if isTrue="{!v.record.RecordType.DeveloperName == 'FAQ'}">
                             <c:BannerHOC componentExternalId="{!v.record.ExternalId__c}"/>

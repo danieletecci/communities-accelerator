@@ -208,7 +208,7 @@ public with sharing class ContentDetailController {
             Database.rollback(sp);
             System.debug(e.getMessage() + ' Error during content upsert process, rolling back');
             System.debug(e.getStackTraceString());
-            throw new AuraHandledException(label.NewsContentDetailError);
+            throw new AuraHandledException(label.ArticleContentDetailError);
         }        
     }
 

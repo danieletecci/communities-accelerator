@@ -663,67 +663,67 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>SearchDetail__c.Active__c</field>
+        <field>SearchSetting__c.Active__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>SearchDetail__c.Cluster__c</field>
+        <field>SearchSetting__c.Cluster__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>SearchDetail__c.Component__c</field>
+        <field>SearchSetting__c.Component__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>SearchDetail__c.ExternalId__c</field>
+        <field>SearchSetting__c.ExternalId__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>SearchDetail__c.FieldsToSearch__c</field>
+        <field>SearchSetting__c.FieldsToSearch__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>SearchDetail__c.FieldsToShow__c</field>
+        <field>SearchSetting__c.FieldsToShow__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>SearchDetail__c.Filter__c</field>
+        <field>SearchSetting__c.Filter__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>SearchDetail__c.IconName__c</field>
+        <field>SearchSetting__c.IconName__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>SearchDetail__c.Navigation__c</field>
+        <field>SearchSetting__c.Navigation__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>SearchDetail__c.PredictiveSearchRecordsNumber__c</field>
+        <field>SearchSetting__c.PredictiveSearchRecordsNumber__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>SearchDetail__c.RecordTypeDevName__c</field>
+        <field>SearchSetting__c.RecordTypeDevName__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>SearchDetail__c.URLParameterField__c</field>
+        <field>SearchSetting__c.URLParameterField__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>SearchDetail__c.URLParameterName__c</field>
+        <field>SearchSetting__c.URLParameterName__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -798,7 +798,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Translation__c.SearchDetail__c</field>
+        <field>Translation__c.SearchSetting__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -938,7 +938,7 @@
         <allowEdit>false</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
-        <object>SearchDetail__c</object>
+        <object>SearchSetting__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
@@ -1101,7 +1101,7 @@
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
-        <tab>SearchDetail__c</tab>
+        <tab>SearchSetting__c</tab>
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>

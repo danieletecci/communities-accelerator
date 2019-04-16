@@ -1,4 +1,4 @@
-global class SearchComponentPicklist extends VisualEditor.DynamicPickList{
+global class SearchDynamicPicklist extends VisualEditor.DynamicPickList{
 	List<Component__c> 	compList = [SELECT Id,Name,ExternalId__c FROM Component__c WHERE RecordType.DeveloperName = 'Search'];
     
     global override VisualEditor.DataRow getDefaultValue(){

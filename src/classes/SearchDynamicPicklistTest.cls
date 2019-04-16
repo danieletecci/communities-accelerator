@@ -1,14 +1,14 @@
 @isTest
-public class SearchComponentPicklistTest {
+public class SearchDynamicPicklistTest {
 	@isTest
     static void getValues(){
-        SearchComponentPicklist scp = new SearchComponentPicklist();
+        SearchDynamicPicklist scp = new SearchDynamicPicklist();
         scp.getDefaultValue();
         scp.getValues();
         
         MockupFactory.createComponent('Search',1);
         
-        SearchComponentPicklist scp2 = new SearchComponentPicklist();
+        SearchDynamicPicklist scp2 = new SearchDynamicPicklist();
         scp2.getDefaultValue();
         scp2.getValues();
     }

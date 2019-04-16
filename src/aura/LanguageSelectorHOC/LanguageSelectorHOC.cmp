@@ -1,4 +1,4 @@
-<aura:component controller="CG_LanguageSelectorController" extends="c:CG_BaseComponent" implements="forceCommunity:availableForAllPageTypes" access="global">
+<aura:component controller="LanguageSelectorController" extends="c:CG_BaseComponent" implements="forceCommunity:availableForAllPageTypes" access="global">
 	<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
 
     <!-- GENERAL VARIABLES  -->
@@ -13,7 +13,7 @@
 	<div class="slds-grid slds-gutters slds-dropdown-trigger slds-dropdown-trigger_click slds-is-open slds-grid slds-wrap  " >
 		<div class="slds-size_full slds-size_2-of-2">
 			<a class="slds-button slds-button_icon slds-button_icon-more languajeBtn  slds-size_2-of-2 " aria-expanded="true" aria-haspopup="true" onclick="{!c.showMenuItems}">
-				<img src="{!$Resource.CG_Flags + '/' + v.MenuWrapper.userLanguage.value + '.png'}" class="flag-icon flag-selected"/> 
+				<img src="{!$Resource.Flags + '/' + v.MenuWrapper.userLanguage.value + '.png'}" class="flag-icon flag-selected"/> 
 				<aura:if isTrue="{!!$Browser.isPhone}">
 					{!v.MenuWrapper.userLanguage.name}
 				</aura:if>
@@ -27,7 +27,7 @@
 						<aura:if isTrue="{!v.MenuWrapper.userLanguage.value!=langCode.value}">
 							<li class="slds-dropdown__item items"  role="presentation" aura:id="{!langCode.value}"  >
 								<a href="javascript:void(0)" role="menuitem" tabindex="-1"  data-langValue="{!langCode.value}" onclick="{!c.handleChanges1}" 	>
-										<img src="{!$Resource.CG_Flags + '/' + langCode.value + '.png'}" class="flag-icon"/>
+										<img src="{!$Resource.Flags + '/' + langCode.value + '.png'}" class="flag-icon"/>
 
 									<span class="slds-truncate" >{!langCode.name}</span>
 								</a>

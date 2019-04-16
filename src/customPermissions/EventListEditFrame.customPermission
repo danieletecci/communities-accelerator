@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomPermission xmlns="http://soap.sforce.com/2006/04/metadata">
-    <description>Allow Edit over all Event community components</description>
-    <label>Event Edit Frame</label>
+    <description>Allow Edit over all Event List community components</description>
+    <label>Event List Edit Frame</label>
 </CustomPermission>

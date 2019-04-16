@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomPermission xmlns="http://soap.sforce.com/2006/04/metadata">
-    <description>Allow View all Related Articles community components</description>
+    <description>Allow View all Articles Related community components</description>
     <label>Articles Related View Frame</label>
 </CustomPermission>

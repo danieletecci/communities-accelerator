@@ -148,7 +148,7 @@
 	updateContent : function(component, status, publishStartDate, publishEndDate){
 		var contentId 			= component.get('v.recordId');
 		if(component.get("v.hasDetailComponent")){
-			var cmpEvent = $A.get("e.c:upsertContentsEvent");
+			var cmpEvent = $A.get("e.c:ContentUpsertEvent");
 	        cmpEvent.setParams({
 				"status" 			: status,
 				"contentId" 		: contentId,

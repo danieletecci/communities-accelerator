@@ -1,4 +1,4 @@
-public class ModalRecordTypeController {
+public class ContentRecordTypeModalController {
 
     @AuraEnabled(cacheable=true)
     public static String getObjectLabel(String sObjectType){

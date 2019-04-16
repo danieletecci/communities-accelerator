@@ -86,5 +86,5 @@
 		  	</div>
 		</div>
     </lightning:card>
-    <c:ModalRecordTypeSelection aura:id="modalRT" sObjectName="{!v.sObjectName}" sObjectLabel="{!v.sObjectLabel}"/>
+    <c:ContentRecordTypeModal aura:id="modalRT" sObjectName="{!v.sObjectName}" sObjectLabel="{!v.sObjectLabel}"/>
 </aura:component>

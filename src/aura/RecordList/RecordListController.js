@@ -28,7 +28,7 @@
         */
     },
     sortData: function(cmp, event, helper){
-        console.log('[CG_RecordListController.js][sortData]');
+        console.log('[RecordListController.js][sortData]');
         var fieldName = event.getParam('fieldName');
         var sortDirection = event.getParam('sortDirection');
         // assign the latest attribute with the sorted column fieldName and sorted direction

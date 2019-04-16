@@ -36,7 +36,7 @@
                     <ul class="lookup__list visible" role="presentation">
                         <aura:iteration items="{!v.predictiveResults}" var="result">
                             <aura:iteration items="{!result.records}" var="record">
-                                <c:CG_PredictiveItem result="{!result}" record="{!record}" />
+                                <c:PredictiveItem result="{!result}" record="{!record}" />
                             </aura:iteration>
                         </aura:iteration>
                     </ul>

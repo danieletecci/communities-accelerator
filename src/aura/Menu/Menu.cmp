@@ -13,7 +13,7 @@
             <nav class="{!v.navMode}">
                 <ul class="slds-show_medium ul-level-0">
                     <aura:iteration items="{!v.menus}" var="menu" indexVar="fistIndex">
-                        <c:CG_NavigationMenuItem item="{!menu}" menuLevel="1" index="{!fistIndex}" mobileFormat="false" component="{!v.component}"> 
+                        <c:MenuItem item="{!menu}" menuLevel="1" index="{!fistIndex}" mobileFormat="false" component="{!v.component}"> 
                             <aura:iteration items="{!menu.subMenus}" var="subM" indexVar="secondIndex">
                                 <c:CG_NavigationMenuItem item="{!subM}" menuLevel="2" index="{!secondIndex}" mobileFormat="false" component="{!v.component}"> 
                                     <aura:iteration items="{!subM.subMenus}" var="subSubM" indexVar="thirdIndex">

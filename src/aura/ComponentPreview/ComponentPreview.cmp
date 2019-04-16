@@ -1,0 +1,67 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId" controller="ComponentPreviewController" access="global" >
+    
+    <!-- CONSTRUCTOR -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:attribute name="isLoading" type="boolean" default="true" />
+    
+    <aura:attribute name="record" type="Object"/>
+    <aura:attribute name="recordId" type="Id"/>
+    <aura:attribute name="clusterSelectorExternalId" type="String"/>
+    <aura:attribute name="clusterName" type="String"/>
+    <aura:attribute name="clusterCookie" type="String"/>
+    
+    <div id="ComponentPreview">
+        <aura:if isTrue="{!v.isLoading}">
+            <c:Spinner/>
+            
+            <aura:set attribute="else">
+                
+                <!--PopUp-->
+                <h3 class="slds-text-heading--medium h3_formatted_text">Viewing as Cluster:</h3>
+                <h3 class="slds-text-heading--medium h3_formatted_text h3_cluster_name"> {!v.clusterName}</h3>
+                <lightning:button aura:id="selectCluster" label="Edit" onclick="{!c.showModal}"/>
+                
+                <div aria-hidden="false" id="clusterSelectorModal" role="dialog" class="slds-modal slds-slide-up-saving slds-backdrop" style="display:none;">
+                    <div class="slds-modal__container">
+                        <div class="slds-modal__header">
+                            <h2 id="header43" class="slds-text-heading--medium">Select Cluster</h2> 
+                        </div>
+                        <div aura:id="div1"></div>
+                        <div class="slds-modal__content slds-p-around--medium" onclick="{!c.doClusterChange}">
+                            <c:ClusterSelectorHOC isBackend="true" componentId="{!v.recordId}" componentExternalId="{!v.clusterSelectorExternalId}"/>
+                        </div>
+                        <footer class="slds-modal__footer">     
+                            <div class="slds-align_absolute-center">
+                                <lightning:button variant="brand" onclick="{!c.hideModal}">Close</lightning:button>     
+                            </div>
+                        </footer>
+                    </div>        
+                </div>            
+                <!--PopUp-->
+                
+                <div id="mainDiv">
+                    <lightning:buttonIcon iconName="utility:refresh" alternativeText="{!$Label.c.General_Refresh}" onclick="{!c.doInit}" size="medium"/>                
+                    <div class="div_render_components">
+                        <aura:if isTrue="{!v.record.RecordType.DeveloperName == 'Banner'}">
+                            <c:BannerHOC componentExternalId="{!v.record.ExternalId__c}"/>
+                        </aura:if>
+                        <aura:if isTrue="{!v.record.RecordType.DeveloperName == 'News'}">
+                            <c:ArticleHOC componentExternalId="{!v.record.ExternalId__c}"/>
+                        </aura:if>
+                        <aura:if isTrue="{!v.record.RecordType.DeveloperName == 'Event'}">
+                            <c:EventHOC componentExternalId="{!v.record.ExternalId__c}"/>
+                        </aura:if>
+                        <aura:if isTrue="{!v.record.RecordType.DeveloperName == 'FAQ'}">
+                            <c:BannerHOC componentExternalId="{!v.record.ExternalId__c}"/>
+                        </aura:if>
+                        <aura:if isTrue="{!v.record.RecordType.DeveloperName == 'AdvanceContent'}">
+                            <c:AdvanceContentHOC componentExternalId="{!v.record.ExternalId__c}"/>
+                        </aura:if>
+                    </div>
+                </div>
+            </aura:set>
+            
+        </aura:if>
+    </div>
+    
+</aura:component>

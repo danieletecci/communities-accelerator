@@ -43,7 +43,7 @@ public class AudienceUtilsTest {
         audienceTest3.Status__c = 'Active';
         update audienceTest3;
 
-        CMS.updateUserSettings(u.Id, clusterLeaf[0].Id, null, null, u.Id);
+        CMSUserSettingsUtils.updateUserSettings(u.Id, clusterLeaf[0].Id, null, null, u.Id);
     }
 
     @isTest 
@@ -100,20 +100,20 @@ public class AudienceUtilsTest {
 
         //Given
         User u = [SELECT Id, Name FROM User WHERE Id =: UserInfo.getUserId()];
-        Id clusterId = CMS.getUserSettings(UserInfo.getUserId()).Cluster__c;
+        Id clusterId = CMSUserSettingsUtils.getUserSettings(UserInfo.getUserId()).Cluster__c;
         Audience__c audienceTest = [SELECT Id, Cluster__c, ExternalId__c FROM Audience__c WHERE Name = 'Test' AND RecordTypeId =: AudienceUtils.rtAudience];
         Audience__c audienceTest2 = [SELECT Id, Cluster__c, ExternalId__c FROM Audience__c WHERE Name = 'Test2' AND RecordTypeId =: AudienceUtils.rtAudience];
         Audience__c audienceTest3 = [SELECT Id, Cluster__c, ExternalId__c FROM Audience__c WHERE Name = 'Test3' AND RecordTypeId =: AudienceUtils.rtAudience];
 
         //When
         Test.startTest();
-        CMS.updateUserSettings(u.Id, clusterId, null, null, u.Id);
+        CMSUserSettingsUtils.updateUserSettings(u.Id, clusterId, null, null, u.Id);
         Test.stopTest();
 
         //Then
-        System.assert(CMS.getUserAudiences(UserInfo.getUserId()).contains(audienceTest.ExternalId__c));
-        System.assert(!CMS.getUserAudiences(UserInfo.getUserId()).contains(audienceTest2.ExternalId__c));
-        System.assert(CMS.getUserAudiences(UserInfo.getUserId()).contains(audienceTest3.ExternalId__c));
+        System.assert(CMSUserSettingsUtils.getUserAudiences(UserInfo.getUserId()).contains(audienceTest.ExternalId__c));
+        System.assert(!CMSUserSettingsUtils.getUserAudiences(UserInfo.getUserId()).contains(audienceTest2.ExternalId__c));
+        System.assert(CMSUserSettingsUtils.getUserAudiences(UserInfo.getUserId()).contains(audienceTest3.ExternalId__c));
     }
 
 }

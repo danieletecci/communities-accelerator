@@ -4,6 +4,6 @@
     <protected>false</protected>
     <values>
         <field>ContentTemplateRecordTypes__c</field>
-        <value xsi:type="xsd:string">News,Event,AdvanceContent</value>
+        <value xsi:type="xsd:string">Article,Event,AdvanceContent</value>
     </values>
 </CustomMetadata>

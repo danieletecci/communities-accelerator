@@ -4,7 +4,7 @@ private class CG_CommunityComponentFrameControllerTest
 	@isTest
 	static void getContentRecordtypeId()
 	{
-		// Given Exist a sObject with recordType RelatedNews
+		// Given Exist a sObject with recordType ArticlesRelated
 
 
 		// When

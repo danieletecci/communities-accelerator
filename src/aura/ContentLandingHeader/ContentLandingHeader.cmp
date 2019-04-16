@@ -1,6 +1,6 @@
 <aura:component controller="ContentLandingHeaderController">
 
-    <aura:registerEvent name="appEvent" type="c:SetContentLandingHeaderFilters"/>
+    <aura:registerEvent name="appEvent" type="c:ContentLandingSearchEvent"/>
 
 	<aura:handler name="init" value="{!this}" action="{!c.onInit}" />
 

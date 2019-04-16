@@ -1,3 +1,0 @@
-<design:component label="CG Advance Content">
-	<design:attribute name="componentExternalId" label="Component External Id" datasource="apex://CG_DynamicPicklistAdvanceContent"/>
-</design:component>

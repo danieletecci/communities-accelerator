@@ -1,0 +1,29 @@
+<aura:component controller="ClusterSelectorController" implements="forceCommunity:availableForAllPageTypes" access="global">
+    
+    <!-- CONSTRUCTOR  -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    <!-- EVENTS -->
+    <aura:handler name="changeCluster" event="c:ClusterSelectorChangeItemEvent" action="{!c.handleChangeCluster}" />
+    
+    <!-- GENERAL VARIABLES  -->
+    <aura:attribute name="componentExternalId" type="String" access="global"/>
+    <aura:attribute name="componentId" type="Id"/>
+    <aura:attribute name="isBackend" type="Boolean" default="false"/>
+
+    <aura:attribute name="componentWrapper" type="Object"/>
+
+    <!-- MAIN COMPONENT -->
+    <div>        
+        <!-- TOOL BOX COMPONENT -->
+        <c:ComponentToolBox componentType="ClusterSelector" componentExternalId="{!v.componentExternalId}" componentWrapper="{!v.componentWrapper}" salesforceDomain="{!v.componentWrapper.acceleratorSettings.SalesforceDomain__c}" isLoading="{!v.isLoading}">
+            <!-- CLUSTER SELECTOR LOC COMPONENT -->
+            <c:ClusterSelector
+                tree="{!v.componentWrapper.data}"
+            />
+
+        </c:ComponentToolBox>
+    </div>	
+    
+    
+</aura:component>

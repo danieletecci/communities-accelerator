@@ -1,0 +1,24 @@
+<aura:component>
+    
+    <aura:attribute name="componentWrapper" type="Object" access="global"/>
+    <aura:attribute name="dataWrapper" type="Object" access="global"/>
+	<aura:attribute name="heightValue" type="String" access="global"/>
+	
+	<!-- CAROUSEL / FADE -->
+	<aura:if isTrue="{!not(v.componentWrapper == null)}">
+
+		<aura:if isTrue="{!v.dataWrapper.listAllContentIds.length > 0}">
+		
+	        <div style="{!'height: ' + v.heightValue}">
+
+				<c:Carousel showTotal="false" seeBullet="{!v.componentWrapper.ShowBullets__c}" automaticTransition="{!v.componentWrapper.AutomaticTransition__c}" transitionTime="{!v.componentWrapper.BannerTransitionTime__c}" loop="{!v.componentWrapper.Loop__c}" direction="{!v.componentWrapper.Direction__c}" fadeInMode="{!v.componentWrapper.BannerType__c == 'Fade'}" heightValue="{!v.heightValue}">
+				    <aura:iteration items="{!v.dataWrapper.contentWrapper}" var="wrapper">
+						<aura:iteration items="{!wrapper.mediaElements}" var="element">
+					    	<c:CarouselItem imgSrc="{!element.FileURLDesktop__c}" imgHref="{!wrapper.content.LinkDetail__r.URL__c}" title="{!wrapper.content.ListTitle__c}" description="{!wrapper.content.ListDescription__c}" buttonLabel="{!wrapper.content.ButtonLabel__c}" overLapLocation="{!wrapper.content.OverlayQuadrant__c}" heightValue="{!v.heightValue}"/> 
+						</aura:iteration>
+					</aura:iteration>
+				</c:Carousel>
+			</div>			
+        </aura:if>        
+	</aura:if>	
+</aura:component>

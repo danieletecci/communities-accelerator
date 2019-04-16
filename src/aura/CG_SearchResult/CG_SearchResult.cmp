@@ -39,7 +39,7 @@
   		</div>
   		<div class="slds-col slds-size_4-of-4 slds-medium-size_3-of-4">
     		<span>
-    			<c:CG_RecordList />
+    			<c:RecordList />
     		</span>
   		</div>
   	</div>

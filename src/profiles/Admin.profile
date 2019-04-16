@@ -110,121 +110,6 @@
         <field>CMSUserSettings__c.User__c</field>
         <readable>true</readable>
     </fieldPermissions>
-	<fieldPermissions>
-        <editable>true</editable>
-        <field>Recipe__c.ExternalId__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Recipe__c.Cluster__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Recipe__c.Content__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Recipe__c.StatusApprovalProcess__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>RecipeIngredient__c.ExternalId__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>RecipeIngredient__c.Quantity__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>RecipeIngredient__c.Unit__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>RecipeIngredient__c.OtherIngredient__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>RecipeIngredient__c.Order__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>RecipeIngredient__c.CustomIngredient__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>RecipeIngredient__c.Brand__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>RecipeIngredient__c.BrandVariant__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>RecipeStep__c.ExternalId__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>RecipeStep__c.Order__c</field>
-        <readable>true</readable>
-    </fieldPermissions> 
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>RecipeStep__c.Step__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>AudienceUser__c.Audience__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Brand__c.BrandContent__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Brand__c.Cluster__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Brand__c.Description__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Brand__c.ExternalId__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Brand__c.MasterBrand__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Brand__c.SiteURL__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Brand__c.StatusApprovalProcess__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>MenuAssignment__c.ExternalId__c</field>
@@ -533,11 +418,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Component__c.AutomaticTransition__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Component__c.CatalogContentType__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1286,9 +1166,6 @@
         <visible>true</visible>
     </applicationVisibilities>
     <custom>false</custom>
-    <layoutAssignments>
-        <layout>Recipe__c-Recipe Layout</layout>
-    </layoutAssignments>
 	<layoutAssignments>
         <layout>Audience__c-Audience Group Layout</layout>
         <recordType>Audience__c.AudienceGroup</recordType>
@@ -1302,28 +1179,6 @@
     </layoutAssignments>
 	<layoutAssignments>
         <layout>CMSUserSettings__c-CMS User Settings Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>RecipeIngredient__c-Recipe Ingredient Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>RecipeIngredient__c-Custom Ingredient Layout</layout>
-        <recordType>RecipeIngredient__c.CustomIngredient</recordType>
-    </layoutAssignments>    
-    <layoutAssignments>
-        <layout>RecipeIngredient__c-Brand Ingredient Layout</layout>
-        <recordType>RecipeIngredient__c.BrandIngredient</recordType>
-    </layoutAssignments>    
-    <layoutAssignments>
-        <layout>RecipeStep__c-Recipe Step Layout</layout>
-    </layoutAssignments>    
-    <layoutAssignments>
-        <layout>Brand__c-Brand Layout</layout>
-        <recordType>Brand__c.Brand</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Brand__c-Brand Variant Layout</layout>
-        <recordType>Brand__c.BrandVariant</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>CategoryAssignment__c-Category Assignment Layout</layout>
@@ -1358,16 +1213,8 @@
         <recordType>Component__c.Banner</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Component__c-Component%3A Brand Detail - Page Layout</layout>
-        <recordType>Component__c.Brand_Detail</recordType>
-    </layoutAssignments>    
-    <layoutAssignments>
         <layout>Component__c-Component%3A ClusterSelector - Page Layout</layout>
         <recordType>Component__c.Cluster_Selector</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Component__c-Component%3A Catalog - Page Layout</layout>
-        <recordType>Component__c.ContentCatalog</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Component__c-Component%3A Events - Page Layout</layout>
@@ -1416,10 +1263,6 @@
         <recordType>Content__c.Product</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Content__c-Content%3A Recipe - Page Layout</layout>
-        <recordType>Content__c.Recipe</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
         <layout>Content__c-Content%3A Advance Content - Page Layout</layout>
         <recordType>Content__c.AdvanceContent</recordType>
     </layoutAssignments>
@@ -1430,10 +1273,6 @@
     <layoutAssignments>
         <layout>Content__c-Content%3A Banner - Page Layout</layout>
         <recordType>Content__c.Banner</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Content__c-Content%3A Brand Detail - Page Layout</layout>
-        <recordType>Content__c.BrandDetail</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Content__c-Content%3A Events - Page Layout</layout>
@@ -1482,10 +1321,6 @@
     <layoutAssignments>
         <layout>Datatable__c-List View Layout</layout>
     </layoutAssignments>
-    <tabVisibilities>
-        <tab>Brand__c</tab>
-        <visibility>DefaultOn</visibility>
-    </tabVisibilities>
 	<tabVisibilities>
         <tab>Audience__c</tab>
         <visibility>DefaultOn</visibility>
@@ -1548,10 +1383,6 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>SearchDetail__c</tab>
-        <visibility>DefaultOn</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
-        <tab>Recipe__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
@@ -1624,15 +1455,6 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>true</modifyAllRecords>
         <object>CategoryAssignment__c</object>
-        <viewAllRecords>true</viewAllRecords>
-    </objectPermissions>
-    <objectPermissions>
-        <allowCreate>true</allowCreate>
-        <allowDelete>true</allowDelete>
-        <allowEdit>true</allowEdit>
-        <allowRead>true</allowRead>
-        <modifyAllRecords>true</modifyAllRecords>
-        <object>Brand__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
@@ -1743,33 +1565,6 @@
         <object>Translation__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
-    <objectPermissions>
-        <allowCreate>true</allowCreate>
-        <allowDelete>true</allowDelete>
-        <allowEdit>true</allowEdit>
-        <allowRead>true</allowRead>
-        <modifyAllRecords>true</modifyAllRecords>
-        <object>Recipe__c</object>
-        <viewAllRecords>true</viewAllRecords>
-    </objectPermissions>
-    <objectPermissions>
-        <allowCreate>true</allowCreate>
-        <allowDelete>true</allowDelete>
-        <allowEdit>true</allowEdit>
-        <allowRead>true</allowRead>
-        <modifyAllRecords>true</modifyAllRecords>
-        <object>RecipeStep__c</object>
-        <viewAllRecords>true</viewAllRecords>
-    </objectPermissions>
-    <objectPermissions>
-        <allowCreate>true</allowCreate>
-        <allowDelete>true</allowDelete>
-        <allowEdit>true</allowEdit>
-        <allowRead>true</allowRead>
-        <modifyAllRecords>true</modifyAllRecords>
-        <object>RecipeIngredient__c</object>
-        <viewAllRecords>true</viewAllRecords>
-    </objectPermissions>
 <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>
@@ -1797,11 +1592,6 @@
         <object>Datatable__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
-    <recordTypeVisibilities>
-        <default>false</default>
-        <recordType>Component__c.ContentCatalog</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>
 	<recordTypeVisibilities>
         <default>true</default>
         <recordType>Audience__c.Audience</recordType>
@@ -1833,16 +1623,6 @@
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
-        <default>true</default>
-        <recordType>Brand__c.Brand</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <default>false</default>
-        <recordType>Brand__c.BrandVariant</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
         <default>false</default>
         <recordType>Cluster__c.ClusterGroup</recordType>
         <visible>true</visible>
@@ -1868,11 +1648,6 @@
         <recordType>Component__c.Banner</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <default>false</default>
-        <recordType>Component__c.Brand_Detail</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>   
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Component__c.Cluster_Selector</recordType>
@@ -1931,11 +1706,6 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
-        <recordType>Content__c.BrandDetail</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <default>false</default>
         <recordType>Content__c.Event</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
@@ -1947,21 +1717,6 @@
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Content__c.News</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <default>false</default>
-        <recordType>Content__c.Recipe</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>   
-    <recordTypeVisibilities>
-        <default>true</default>
-        <recordType>RecipeIngredient__c.BrandIngredient</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <default>false</default>
-        <recordType>RecipeIngredient__c.CustomIngredient</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>

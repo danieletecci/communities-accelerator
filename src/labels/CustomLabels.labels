@@ -89,46 +89,6 @@
         <value>Title</value>
     </labels>
     <labels>
-        <fullName>AssetDetailsFeaturing</fullName>
-        <categories>CG_AssetDetail</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Asset Details Featuring</shortDescription>
-        <value>Featuring</value>
-    </labels>
-    <labels>
-        <fullName>AssetDetailsIngredients</fullName>
-        <categories>CG_AssetDetail</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Asset Details Ingredients</shortDescription>
-        <value>INGREDIENTS</value>
-    </labels>
-    <labels>
-        <fullName>AssetDetailsInstructions</fullName>
-        <categories>CG_AssetDetail</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Asset Details Instructions</shortDescription>
-        <value>INSTRUCTIONS</value>
-    </labels>
-    <labels>
-        <fullName>AssetDetailsRelatedTags</fullName>
-        <categories>CG_AssetDetail</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Asset Details Related Tags</shortDescription>
-        <value>Related Tags</value>
-    </labels>
-    <labels>
-        <fullName>AssetDetailsTitle</fullName>
-        <categories>CG Asset Detail</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>AssetDetailsTitle</shortDescription>
-        <value>Asset Details</value>
-    </labels>
-    <labels>
         <fullName>AudienceValidationOnStatusActivate</fullName>
         <categories>AudienceTriggers.cls</categories>
         <language>en_US</language>
@@ -506,7 +466,7 @@
     </labels>
     <labels>
         <fullName>ContentModalScheduledMessage</fullName>
-        <categories>BE_ContentModalPublish.cmp</categories>
+        <categories>ContentPublishModal.cmp</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>ContentModalScheduledMessage</shortDescription>
@@ -770,7 +730,7 @@
     </labels>
     <labels>
         <fullName>ExceptionMessageClusterNotFound</fullName>
-        <categories>CMS.cls</categories>
+        <categories>CMSUserSettingsUtils.cls</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Exception Message Cluster Not Found</shortDescription>
@@ -778,7 +738,7 @@
     </labels>
     <labels>
         <fullName>ExceptionMessageUserNotFound</fullName>
-        <categories>CMS.cls</categories>
+        <categories>CMSUserSettingsUtils.cls</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Exception Message User Not Found</shortDescription>
@@ -850,7 +810,7 @@
     </labels>
     <labels>
         <fullName>GeneralContents</fullName>
-        <categories>ModalRecordTypeSelection.cmp</categories>
+        <categories>ContentRecordTypeModal.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>General contents</shortDescription>
@@ -1489,7 +1449,7 @@
     </labels>
     <labels>
         <fullName>StructureContent</fullName>
-        <categories>ModalRecordTypeSelection.cmp</categories>
+        <categories>ContentRecordTypeModal.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Structure content</shortDescription>
@@ -1497,7 +1457,7 @@
     </labels>
     <labels>
         <fullName>StructureContentDescription</fullName>
-        <categories>ModalRecordTypeSelectionHelper.js</categories>
+        <categories>ContentRecordTypeModalHelper.js</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Structure content description</shortDescription>
@@ -1577,7 +1537,7 @@
     </labels>
     <labels>
         <fullName>PublishModalTitle</fullName>
-        <categories>BE_ContentModalPublish.cmp</categories>
+        <categories>ContentPublishModal.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Publish Modal Title</shortDescription>
@@ -1585,7 +1545,7 @@
     </labels>
     <labels>
         <fullName>PublishModalSubtitle</fullName>
-        <categories>BE_ContentModalPublish.cmp</categories>
+        <categories>ContentPublishModal.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Publish Modal Subtitle</shortDescription>
@@ -1593,7 +1553,7 @@
     </labels>
     <labels>
         <fullName>ModalStartPublication</fullName>
-        <categories>BE_ContentModalPublish.cmp</categories>
+        <categories>ContentPublishModal.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Publish Modal Start Publication Field Label</shortDescription>
@@ -1601,7 +1561,7 @@
     </labels>
     <labels>
         <fullName>PublishModalRadioPublishNow</fullName>
-        <categories>BE_ContentModalPublish.cmp</categories>
+        <categories>ContentPublishModal.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Publish Modal Radio Button Publish Now</shortDescription>
@@ -1609,7 +1569,7 @@
     </labels>
     <labels>
         <fullName>PublishModalCheckboxExpire</fullName>
-        <categories>BE_ContentModalPublish.cmp</categories>
+        <categories>ContentPublishModal.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Publish Modal Checkbox Expire</shortDescription>
@@ -1617,7 +1577,7 @@
     </labels>
     <labels>
         <fullName>PublishModalRadioSchedulePublication</fullName>
-        <categories>BE_ContentModalPublish.cmp</categories>
+        <categories>ContentPublishModal.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Publish Modal Radio Button Schedule Publication</shortDescription>
@@ -1625,7 +1585,7 @@
     </labels>
     <labels>
         <fullName>PublishModalFutureStartDate</fullName>
-        <categories>BE_ContentModalPublish.cmp</categories>
+        <categories>ContentPublishModal.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>PublishModalFutureStartDate</shortDescription>
@@ -1633,7 +1593,7 @@
     </labels>
     <labels>
         <fullName>PublishModalFutureEndDate</fullName>
-        <categories>BE_ContentModalPublish.cmp</categories>
+        <categories>ContentPublishModal.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>PublishModalFutureEndDate</shortDescription>
@@ -1641,7 +1601,7 @@
     </labels>
     <labels>
         <fullName>PublishModalWrongEndDate</fullName>
-        <categories>BE_ContentModalPublish.cmp</categories>
+        <categories>ContentPublishModal.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>PublishModalFutureStartDate</shortDescription>

@@ -8,21 +8,7 @@ public class CG_DynamicPicklistComponentsTest {
         
         List<Datatable__c>  datatables = MockupFactory.createDatatables('DatatableDummy', 'DatatableDummy', 'Case', 1, clusters.get(0).Id);		            
     }
-    
-    @isTest 
-	static void setValuesInpicklist(){
-	//When
-	List<Component__c> componentList = MockupFactory.createComponent('Banner',2);
-
-	//Then
-	Test.startTest();
-	CG_DynamicPicklistComponent picklistValues = new CG_DynamicPicklistComponent();
-	picklistValues.getDefaultValue();
-	picklistValues.getValues();
-	Test.stopTest();
-	
-	}
-    
+        
     @isTest
     public static void getDefaultValueDatatableTest01() {
         Test.startTest();

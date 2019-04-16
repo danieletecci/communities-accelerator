@@ -31,7 +31,7 @@
                     
                     <!-- LOADING SPINNER -->
                     <aura:if isTrue="{!v.isLoading}">
-                        <c:CG_Spinner/>
+                        <c:Spinner/>
                     </aura:if>
                 </div>
 

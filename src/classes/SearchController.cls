@@ -50,9 +50,9 @@ public with sharing class SearchController {
 
     public class SearchDetailWrapper {
         @AuraEnabled public Component__c                    component;
-        @AuraEnabled public List<SearchDetail__c>           searchDetails;
+        @AuraEnabled public List<SearchSetting__c>           searchDetails;
 
-        public SearchDetailWrapper(Component__c component, List<SearchDetail__c> searchDetails){
+        public SearchDetailWrapper(Component__c component, List<SearchSetting__c> searchDetails){
             this.component          = component;
             this.searchDetails      = searchDetails;
         }
@@ -71,17 +71,17 @@ public with sharing class SearchController {
         List<Component__c> component = [SELECT Name, ExternalId__c, SearchPlaceholder__c, LinkDetail__r.URL__c, LinkDetail__r.URLMask__c, PredictiveSearchEnabled__c
                                                     FROM Component__c WHERE ExternalId__c = :externalId];
 
-        List<SearchDetail__c> searchDetails = [SELECT Name, ExternalId__c, URLParameterName__c, URLParameterField__c, FieldsToSearch__c, FieldsToShow__c, IconName__c, ObjectAPIName__c, RecordTypeDevName__c, Filter__c, Navigation__r.URL__c, Navigation__r.URLMask__c, PredictiveSearchRecordsNumber__c 
-                                                    FROM SearchDetail__c WHERE Active__c = true AND Component__r.ExternalId__c = :externalId];
+        List<SearchSetting__c> searchDetails = [SELECT Name, ExternalId__c, URLParameterName__c, URLParameterField__c, FieldsToSearch__c, FieldsToShow__c, IconName__c, ObjectAPIName__c, RecordTypeDevName__c, Filter__c, Navigation__r.URL__c, Navigation__r.URLMask__c, PredictiveSearchRecordsNumber__c 
+                                                    FROM SearchSetting__c WHERE Active__c = true AND Component__r.ExternalId__c = :externalId];
 
         return new SearchDetailWrapper(((component.isEmpty()) ? null : component.get(0)), searchDetails);
     }
 
     @AuraEnabled
-    public static List<SearchResultWrapper> getSearchResults(String searchedString, List<SearchDetail__c> searchDetails){
+    public static List<SearchResultWrapper> getSearchResults(String searchedString, List<SearchSetting__c> searchDetails){
         List<SearchResultWrapper>   searchResults = new List<SearchResultWrapper>();
 
-        for(SearchDetail__c rll : searchDetails){
+        for(SearchSetting__c rll : searchDetails){
             searchResults.add( new SearchResultWrapper( Database.query(buildQuery(rll, searchedString)),
                                                         rll.Name,
                                                         rll.ExternalId__c,
@@ -99,10 +99,10 @@ public with sharing class SearchController {
     }
 
     @AuraEnabled
-    public static List<PredictiveResultWrapper> getPredictiveResults(String searchedString, List<SearchDetail__c> searchDetails){
+    public static List<PredictiveResultWrapper> getPredictiveResults(String searchedString, List<SearchSetting__c> searchDetails){
         List<PredictiveResultWrapper>   predictiveResults = new List<PredictiveResultWrapper>();
 
-        for(SearchDetail__c rll : searchDetails){
+        for(SearchSetting__c rll : searchDetails){
             predictiveResults.add( new PredictiveResultWrapper( Database.query(buildPredictiveQuery(rll, searchedString)),
                                                         rll.Name,
                                                         rll.IconName__c,
@@ -116,7 +116,7 @@ public with sharing class SearchController {
         return predictiveResults;
     }
 
-    private static String buildQuery(SearchDetail__c rll, String searchedString){
+    private static String buildQuery(SearchSetting__c rll, String searchedString){
         List<String>    fields  = rll.FieldsToSearch__c.split(',');
         String          query   = 'SELECT ' + rll.FieldsToShow__c + ((rll.FieldsToShow__c.split(',').contains(rll.URLParameterField__c)) ? '' : ',' + rll.URLParameterField__c) +
                                     ' FROM ' + rll.ObjectAPIName__c +
@@ -134,7 +134,7 @@ public with sharing class SearchController {
         return query;
     }
 
-    private static String buildPredictiveQuery(SearchDetail__c rll, String searchedString){
+    private static String buildPredictiveQuery(SearchSetting__c rll, String searchedString){
         List<String>    fields  = rll.FieldsToSearch__c.split(',');
         String          query   = 'SELECT Name,' + rll.URLParameterField__c +
                                     ' FROM ' + rll.ObjectAPIName__c +

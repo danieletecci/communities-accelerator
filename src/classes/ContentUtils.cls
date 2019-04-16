@@ -1,11 +1,11 @@
 public without sharing virtual class ContentUtils {
 
     public static Map<String, String> rtComponentToContent = new Map<String, String>{
-        'Event'             => 'Event',
-        'FAQ'               => 'FAQ',
-        'Article'           => 'Article',
-        'AdvanceContent'    => 'AdvanceContent',
-        'Banner'            => 'Banner'
+        'EventList'             => 'Event',
+        'FAQ'                   => 'FAQ',
+        'ArticleList'           => 'Article',
+        'AdvanceContent'        => 'AdvanceContent',
+        'Banner'                => 'Banner'
     };
 
     public class ContentWrapper{
@@ -82,7 +82,7 @@ public without sharing virtual class ContentUtils {
                 query += 'WHERE (Id IN: contentIdList OR Category__c IN: setCategoriesIds) AND (Id NOT IN: setContentToExclude) AND (ExternalId__c NOT IN: setContentToExclude) AND Cluster__c IN: setClusterIds AND Recordtype.DeveloperName =: contentTypeToSearch ';
             }
 
-            if(component.Recordtype.Developername == 'Event' || component.Recordtype.DeveloperName == 'RelatedEvent'){
+            if(component.Recordtype.Developername == 'EventList' || component.Recordtype.DeveloperName == 'EventsRelated'){
                 if (component.ExcludePastEvents__c){
                     Datetime dateAndTime = System.today();
                     query += 'AND (EventEndDate__c >: dateAndTime) ';
@@ -305,8 +305,8 @@ public without sharing virtual class ContentUtils {
 
     public static String getRecordTypeContentFromRTComponent(String componentRT){
         String contentTypeToSearch;
-        if(componentRT == 'RelatedArticles' || componentRT == 'ArticleDetail'){contentTypeToSearch = 'Article';}
-        else if(componentRT == 'RelatedEvents' || componentRT == 'EventDetail'){contentTypeToSearch = 'Event';}
+        if(componentRT == 'ArticlesRelated' || componentRT == 'ArticleDetail'){contentTypeToSearch = 'ArticleList';}
+        else if(componentRT == 'EventsRelated' || componentRT == 'EventDetail'){contentTypeToSearch = 'EventList';}
         else{
             contentTypeToSearch = componentRT;
         }
@@ -318,11 +318,11 @@ public without sharing virtual class ContentUtils {
         
         String contentPlaceToSearch = '';
         if(componentRT == 'Banner'){contentPlaceToSearch = 'BannerImage';}
-        else if(componentRT == 'RelatedArticles'){contentPlaceToSearch = 'ArticleImage';}
-        else if(componentRT == 'Article'){contentPlaceToSearch = 'ArticleImage';}
+        else if(componentRT == 'ArticlesRelated'){contentPlaceToSearch = 'ArticleImage';}
+        else if(componentRT == 'ArticleList'){contentPlaceToSearch = 'ArticleImage';}
         else if(componentRT == 'ArticleDetail'){contentPlaceToSearch = 'ArticleImage';}
-        else if(componentRT == 'Event'){contentPlaceToSearch = 'EventImage';}
-        else if(componentRT == 'RelatedEvents'){contentPlaceToSearch = 'EventImage';}
+        else if(componentRT == 'EventList'){contentPlaceToSearch = 'EventImage';}
+        else if(componentRT == 'EventsRelated'){contentPlaceToSearch = 'EventImage';}
         else if(componentRT == 'EventDetail'){contentPlaceToSearch = 'EventImage';}
         return contentPlaceToSearch;
     }

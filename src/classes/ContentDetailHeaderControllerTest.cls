@@ -8,7 +8,7 @@ public class ContentDetailHeaderControllerTest {
         List<Cluster__c> clusterGroup = MockupFactory.createCluster('Cluster Group', clusterRoot.get(0).id, 1, 'ClusterGroup', 'CGT');
         List<Cluster__c> clusterLeaf = MockupFactory.createCluster('Cluster Leaf', clusterGroup.get(0).id, 2, 'ClusterLeaf', 'CLT');
         MockupFactory.createComponent('FAQ', 1, clusterRoot.get(0));
-        MockupFactory.createComponent('Article', 1, clusterRoot.get(0));
+        MockupFactory.createComponent('ArticleList', 1, clusterRoot.get(0));
         MockupFactory.createClusterUser(clusterRoot.get(0).id, UserInfo.getUserId(), 1, 'Read/Write');
         List<Tag__c> tags = MockupFactory.createTag('Tag Name', '', 2, clusterLeaf.get(0).id);
         List<Category__c> categories = MockupFactory.createCategory('Category', 2, clusterLeaf.get(0).id);

@@ -11,8 +11,6 @@
     <tabs>Translation__c</tabs>
     <tabs>Navigation__c</tabs>
     <tabs>Menu__c</tabs>
-    <tabs>Brand__c</tabs>
-    <tabs>AudienceUser__c</tabs>
     <tabs>Datatable__c</tabs>
     <tabs>Audience__c</tabs>
     <tabs>CMSUserSettings__c</tabs>

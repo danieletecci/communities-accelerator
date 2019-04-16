@@ -4,7 +4,7 @@
         <customLabel>true</customLabel>
         <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
-        <label>News Content Information</label>
+        <label>Article Content Information</label>
         <layoutColumns>
             <layoutItems>
                 <behavior>Required</behavior>
@@ -57,7 +57,7 @@
         <customLabel>true</customLabel>
         <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
-        <label>News List Information</label>
+        <label>Article List Information</label>
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -78,7 +78,7 @@
         <customLabel>true</customLabel>
         <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
-        <label>News Detail Information</label>
+        <label>Article Detail Information</label>
         <layoutColumns/>
         <style>OneColumn</style>
     </layoutSections>

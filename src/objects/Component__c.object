@@ -2042,10 +2042,10 @@
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>Event</fullName>
+        <fullName>EventList</fullName>
         <active>true</active>
         <description>Configure a new Event component. Each event will have related information such as event date, event place, event maximum allowance, etc.</description>
-        <label>Event</label>
+        <label>Event List</label>
         <picklistValues>
             <picklist>BannerFrameType__c</picklist>
             <values>
@@ -2335,7 +2335,7 @@
         <fullName>EventDetail</fullName>
         <active>true</active>
         <description>Configure a new Event Detail component. This component show event information such as event date, event place, event maximum allowance, etc.</description>
-        <label>Events Detail</label>
+        <label>Event Detail</label>
         <picklistValues>
             <picklist>BannerFrameType__c</picklist>
             <values>
@@ -3503,10 +3503,10 @@
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>Article</fullName>
+        <fullName>ArticleList</fullName>
         <active>true</active>
         <description>Configure a new Article component. Each Article component acts as a placeholder for one or more Articles</description>
-        <label>Article</label>
+        <label>Article List</label>
         <picklistValues>
             <picklist>BannerFrameType__c</picklist>
             <values>

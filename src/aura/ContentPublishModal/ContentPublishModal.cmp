@@ -1,0 +1,67 @@
+<aura:component controller="ContentPublishModalController">
+
+    <!-- HANDLERS -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <!-- REGISTER EVENTS -->
+	<aura:registerEvent name="ContentUpsertEvent" type="c:ContentUpsertEvent"/>
+
+    <!-- METHODS -->
+	<aura:method name="show" action="{!c.doShow}" />
+	<aura:method name="hide" action="{!c.doHide}" />
+
+    <!-- ATTRIBUTES -->
+    <aura:attribute name="content"				type="Content__c"					/>
+	<aura:attribute name="options" 				type="List" 						/>
+    <aura:attribute name="action"  				type="String"  	default="publish" 	/>
+    <aura:attribute name="expire"  				type="Boolean" 	default="false"		/>
+    <aura:attribute name="startDate" 			type="DateTime" 					/>
+    <aura:attribute name="endDate" 				type="DateTime" 					/>
+	<aura:attribute name="hasDetailComponent"	type="Boolean"						/>
+	
+	<ltng:require styles="{!$Resource.Assets + '/Assets/Styles/ContentPublishModalExternalStyle.css'}"/>
+
+	<section aura:id="publishModal" role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal">
+	    <div class="slds-modal__container">
+	        <header class="slds-modal__header">
+	            <lightning:buttonIcon
+                    iconName="utility:close"
+                    size="large"
+                    variant="bare"
+                    title="{!$Label.c.General_Close}"
+                    iconClass="slds-button slds-button_icon slds-button_icon-inverse"
+                    class="buttonStyle slds-modal__close"
+                    alternativeText="{!$Label.c.General_Close}"
+                    onclick="{!c.doHide}" />
+	            <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">
+	            	{!$Label.c.PublishModalTitle}
+	            </h2>
+	            <p class="slds-m-top_x-small">{!$Label.c.PublishModalSubtitle}</p>
+	        </header>
+	        <div class="slds-modal__content slds-p-vertical_medium slds-p-horizontal_xx-large" id="modal-content-id-1">
+	            <div class="slds-p-horizontal_xx-large slds-m-horizontal_xx-large">
+				    <lightning:radioGroup name="radioGroup"
+				                          label="Radio Group"
+				                          options="{! v.options }"
+				                          value="{! v.action }"
+				                          type="radio"
+				                          class="slds-m-vertical_small"/>
+				    <aura:if isTrue="{!v.action == 'schedule'}">
+				    	<lightning:input aura:id="start-date" class="slds-m-vertical_x-small" type="datetime" name="startDate" label="{!$Label.c.ModalStartPublication}" value="{!v.startDate}" messageWhenValueMissing="{!$Label.c.General_CompleteThisField}"/>
+				    </aura:if>
+				    <div class="slds-checkbox slds-m-vertical_small">
+				    	<lightning:input type="checkbox" label="{! $Label.c.PublishModalCheckboxExpire}" checked="{!v.expire}"/>
+	    			</div>
+	    			<aura:if isTrue="{!v.expire == true}">
+				    	<lightning:input aura:id="end-date" class="slds-m-bottom_x-small" type="datetime" name="startDate" label="" value="{!v.endDate}" messageWhenValueMissing="{!$Label.c.General_CompleteThisField}"/>
+				    </aura:if>
+	    		</div>
+	        </div>
+	        <footer class="slds-modal__footer">
+	            <button class="slds-button slds-button_neutral" onclick="{!c.doHide}">{!$Label.c.General_Cancel}</button>
+	            <button class="slds-button slds-button_brand" onclick="{!c.doPublish}">{!$Label.c.ContentDetailPublish}</button>
+	        </footer>
+        </div>
+    </section>
+    <div aura:id="publishModalBackdrop" class="slds-backdrop"></div>
+</aura:component>

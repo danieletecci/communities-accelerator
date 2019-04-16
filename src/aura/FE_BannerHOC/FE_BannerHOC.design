@@ -1,3 +1,0 @@
-<design:component label="CG Banner">
-	<design:attribute name="componentExternalId" label="Component External Id" datasource="apex://CG_DynamicPicklistBanner"/>
-</design:component>

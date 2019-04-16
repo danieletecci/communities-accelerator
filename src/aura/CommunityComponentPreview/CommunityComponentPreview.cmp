@@ -28,7 +28,7 @@
                         </div>
                         <div aura:id="div1"></div>
                         <div class="slds-modal__content slds-p-around--medium" onclick="{!c.doClusterChange}">
-                            <c:FE_ClusterSelectorHOC isBackend="true" componentId="{!v.recordId}" componentExternalId="{!v.clusterSelectorExternalId}"/>
+                            <c:ClusterSelectorHOC isBackend="true" componentId="{!v.recordId}" componentExternalId="{!v.clusterSelectorExternalId}"/>
                         </div>
                         <footer class="slds-modal__footer">     
                             <div class="slds-align_absolute-center">
@@ -43,7 +43,7 @@
                     <lightning:buttonIcon iconName="utility:refresh" alternativeText="{!$Label.c.General_Refresh}" onclick="{!c.doInit}" size="medium"/>                
                     <div class="div_render_components">
                         <aura:if isTrue="{!v.record.RecordType.DeveloperName == 'Banner'}">
-                            <c:FE_BannerHOC componentExternalId="{!v.record.ExternalId__c}"/>
+                            <c:BannerHOC componentExternalId="{!v.record.ExternalId__c}"/>
                         </aura:if>
                         <aura:if isTrue="{!v.record.RecordType.DeveloperName == 'News'}">
                             <c:ArticleHOC componentExternalId="{!v.record.ExternalId__c}"/>
@@ -52,10 +52,10 @@
                             <c:EventHOC componentExternalId="{!v.record.ExternalId__c}"/>
                         </aura:if>
                         <aura:if isTrue="{!v.record.RecordType.DeveloperName == 'FAQ'}">
-                            <c:FE_BannerHOC componentExternalId="{!v.record.ExternalId__c}"/>
+                            <c:BannerHOC componentExternalId="{!v.record.ExternalId__c}"/>
                         </aura:if>
                         <aura:if isTrue="{!v.record.RecordType.DeveloperName == 'AdvanceContent'}">
-                            <c:FE_AdvanceContentHOC componentExternalId="{!v.record.ExternalId__c}"/>
+                            <c:AdvanceContentHOC componentExternalId="{!v.record.ExternalId__c}"/>
                         </aura:if>
                     </div>
                 </div>

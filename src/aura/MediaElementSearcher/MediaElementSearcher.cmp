@@ -14,7 +14,7 @@
     <aura:attribute name="elementPerPage" type="Integer" default="3"/>
 
     <!-- Events -->
-    <aura:registerevent name="URLEvent" type="c:MediaElementSearcherEvent" />
+    <aura:registerevent name="URLEvent" type="c:ContentUpsertEvent" />
     <aura:method name="initPopUp" action="{!c.initSearch}"  />
 
     <aura:if isTrue="{!v.hasButton}">

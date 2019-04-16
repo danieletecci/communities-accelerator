@@ -1,4 +1,4 @@
-<aura:component controller="LookupInputController" access="global">
+<aura:component controller="LookupController" access="global">
     <!--declare attributes--> 
     <aura:attribute name="selectedRecordId" type="String" />
     <aura:attribute name="selectedRecord" type="sObject" default="{}" description="Use,for store SELECTED sObject Record"/>
@@ -11,7 +11,7 @@
 
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     <!--declare events hendlers-->  
-    <aura:handler name="oSelectedRecordEvent" event="c:LookupInputSelectedObject" action="{!c.handleComponentEvent}"/>
+    <aura:handler name="oSelectedRecordEvent" event="c:LookupInputSelectedObjectEvent" action="{!c.handleComponentEvent}"/>
    
     
     <div onmouseleave="{!c.onblur}" aura:id="searchRes" class="slds-form-element slds-lookup slds-is-close" data-select="single">

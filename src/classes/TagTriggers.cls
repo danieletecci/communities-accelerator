@@ -61,7 +61,7 @@ public with sharing class TagTriggers extends TriggersHandler {
     
     public override void dataPreparing() {
         if(!recordList.isEmpty() && toContinueTrigger){
-            ObjectSharingUtil.SharingWrapper sharingWrapper = ObjectSharingUtil.generateSharingForRecordsOnCluster(recordList, 'Cluster__c', 'Tag__Share', 'Clustering__c', false);           
+            SharingUtils.SharingWrapper sharingWrapper = SharingUtils.generateSharingForRecordsOnCluster(recordList, 'Cluster__c', 'Tag__Share', 'Clustering__c', false);           
             if(sharingWrapper.objectIdToMessageErrosMap.size()>0){
                 objectIdToMessageErrosMap = sharingWrapper.objectIdToMessageErrosMap;
                 toContinueTrigger = false;

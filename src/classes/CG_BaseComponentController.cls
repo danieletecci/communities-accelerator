@@ -168,10 +168,8 @@ public with sharing class CG_BaseComponentController {
         if(componentType == 'EventDetail'){		setFields = new set<String>{};}
         if(componentType == 'ArticlesRelated'){		setFields = new set<String>{'ArticleType__c', 'PagingType__c', 'LinkDetail__r.URL__c', 'ExternalId__c'};}
         if(componentType == 'EventsRelated'){	setFields = new set<String>{'EventsType__c', 'ExcludePastEvents__c', 'PagingType__c', 'LinkDetail__r.URL__c', 'ExternalId__c'};}
-        if(componentType == 'Brand_Detail'){   	setFields = new set<String>{};}
-		if(componentType == 'Cluster_Selector'){	setFields = new set<String>{};}
+        if(componentType == 'Cluster_Selector'){	setFields = new set<String>{};}
         if(componentType == 'Language_Selector'){	setFields = new set<String>{};}
-        if(componentType == 'Content_Cart'){	setFields = new set<String>{};}
         if(componentType == 'Navigation'){	setFields = new set<String>{};}
         
         //Default fields
@@ -201,9 +199,7 @@ public with sharing class CG_BaseComponentController {
         if(componentType == 'ArticleDetail'){		setFields = new set<String>{'Title__c', 'Extract__c','Body__c','Layout__c'};}
         if(componentType == 'EventDetail'){		setFields = new set<String>{'Title__c', 'Extract__c','Body__c', 'EventStartDate__c', 'EventEndDate__c', 'Location__c','Layout__c'};}
         if(componentType == 'Cluster_Selector'){	setFields = new set<String>{};}
-		if(componentType == 'Brand_Detail'){   	setFields = new set<String>{};}
-        if(componentType == 'Language_Selector'){	setFields = new set<String>{};}
-        if(componentType == 'Content_Cart'){	setFields = new set<String>{};}
+		if(componentType == 'Language_Selector'){	setFields = new set<String>{};}
         if(componentType == 'Navigation'){	setFields = new set<String>{};}
         setFields.add('Id');
         setFields.add('Name');

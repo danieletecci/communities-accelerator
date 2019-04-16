@@ -2,14 +2,14 @@
 
 	<!-- GENERAL VARIABLES --> 
 	<aura:attribute name="componentExternalId" type="String" access="global"/>
-	<aura:attribute name="componentType" type="String" default="News"/>
+	<aura:attribute name="componentType" type="String" default="Article"/>
     <aura:attribute name="componentWrapper" type="Object" />
     <aura:attribute name="showPaging" type="Boolean" default="{!v.componentWrapper.listAllContentIds.length > v.componentWrapper.contentWrapper.length}"/>
 
     <aura:if isTrue="{!v.componentWrapper.listAllContentIds.length > 0}">
         <!-- <aura:if isTrue="{!$Browser.isPhone}"> -->
                 <h2 class="list-header">{!v.componentWrapper.component.title}</h2>
-                <aura:if isTrue="{!v.componentWrapper.component.RecordType.DeveloperName == 'News'}">
+                <aura:if isTrue="{!v.componentWrapper.component.RecordType.DeveloperName == 'Article'}">
                         <c:cardList 
                         onnavigatetodetail="{!c.handleNavigateToDetail}" 
                         contents="{!v.componentWrapper.contentWrapper}" 
@@ -23,14 +23,14 @@
         <!-- </aura:if> -->
         <!-- <aura:if isTrue="{!!$Browser.isPhone}">
                 PORTRAIT AND HIGHLIGHTS
-                <aura:if isTrue="{!or(v.componentWrapper.component.NewsType__c == 'Portrait', v.componentWrapper.component.NewsType__c == 'Highlight')}" >
+                <aura:if isTrue="{!or(v.componentWrapper.component.ArticleType__c == 'Portrait', v.componentWrapper.component.ArticleType__c == 'Highlight')}" >
                     <aura:iteration items="{!v.componentWrapper.contentWrapper}" var="contentItem" >
-                        <c:ArticleItem contentWrapper="{!contentItem}" componentWrapper="{!v.componentWrapper}" parentComponentId="{!v.parentComponentId}" type="{!v.componentWrapper.component.NewsType__c}" linkDetail="{!v.componentWrapper.component.LinkDetail__r.URL__c}"/>
+                        <c:ArticleItem contentWrapper="{!contentItem}" componentWrapper="{!v.componentWrapper}" parentComponentId="{!v.parentComponentId}" type="{!v.componentWrapper.component.ArticleType__c}" linkDetail="{!v.componentWrapper.component.LinkDetail__r.URL__c}"/>
                     </aura:iteration>
                 </aura:if>
         
                 LANDSCAPE
-                <aura:if isTrue="{!v.componentWrapper.component.NewsType__c == 'Landscape'}" >
+                <aura:if isTrue="{!v.componentWrapper.component.ArticleType__c == 'Landscape'}" >
                     <div class="main-div-landscape" style="{! 'height: ' + v.aspectRatios.height1_5 }">
                         <lightning:layout >
         
@@ -44,7 +44,7 @@
                                 <lightning:layout multipleRows="true" >
                                     <aura:iteration items="{!v.componentWrapper.contentWrapper}" var="contentItem" >
                                         <lightning:layoutItem class="{!' slds-x-small-size_12-of-12 slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_' + (12 / if(v.componentWrapper.component.PageSize__c > v.componentWrapper.listAllContentIds.length, v.componentWrapper.listAllContentIds.length, v.componentWrapper.component.PageSize__c)) + '-of-12'}" padding="around-small" >
-                                            <c:ArticleItem contentWrapper="{!contentItem}" componentWrapper="{!v.componentWrapper}" parentComponentId="{!v.parentComponentId}" type="{!v.componentWrapper.component.NewsType__c}" linkDetail="{!v.componentWrapper.component.LinkDetail__r.URL__c}" height="{!v.aspectRatios.height1_5}"/>
+                                            <c:ArticleItem contentWrapper="{!contentItem}" componentWrapper="{!v.componentWrapper}" parentComponentId="{!v.parentComponentId}" type="{!v.componentWrapper.component.ArticleType__c}" linkDetail="{!v.componentWrapper.component.LinkDetail__r.URL__c}" height="{!v.aspectRatios.height1_5}"/>
                                         </lightning:layoutItem> 
                                     </aura:iteration>
                                 </lightning:layout>

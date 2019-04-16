@@ -40,11 +40,11 @@ public with sharing class CG_BaseComponentController {
 		//Busqueda de componente
 		component = ComponentUtils.getComponent(componentExternalId, getComponentFieldSetByComponentType(componentType, device), device);
 		
-		if(componentType == 'RelatedNews' || componentType == 'RelatedEvents'){
+		if(componentType == 'ArticlesRelated' || componentType == 'EventsRelated'){
 			//Busqueda del componente padre
 			String parentComponentType;
-			if(componentType == 'RelatedNews'){parentComponentType = 'News';}
-			if(componentType == 'RelatedEvents'){parentComponentType = 'Event';}
+			if(componentType == 'ArticlesRelated'){parentComponentType = 'Article';}
+			if(componentType == 'EventsRelated'){parentComponentType = 'Event';}
 
 			parentComponent = ComponentUtils.getComponent(parentComponentId, getComponentFieldSetByComponentType(parentComponentType, device), device);
 
@@ -75,10 +75,10 @@ public with sharing class CG_BaseComponentController {
 					}
 				}
 			}else{
-				if(componentType == 'Banner' || componentType == 'News' || componentType == 'Event' || 
+				if(componentType == 'Banner' || componentType == 'Article' || componentType == 'Event' || 
 				componentType == 'AdvanceContent' || componentType == 'FAQ' || 
-				componentType == 'NewsDetail' || componentType == 'EventDetail' || componentType == 'RelatedNews' ||
-				componentType == 'RelatedEvents'){
+				componentType == 'ArticleDetail' || componentType == 'EventDetail' || componentType == 'ArticlesRelated' ||
+				componentType == 'EventsRelated'){
 					contentWrapper = ContentUtils.getContentFromComponent(component, getContentFieldSetByComponentType(component.Recordtype.Developername, device), setContentDirect, setContentToExclude, setClusterIds, device);
 				}
 			}
@@ -160,14 +160,14 @@ public with sharing class CG_BaseComponentController {
     private static set<String> getComponentFieldSetByComponentType(String componentType, String device){
         set<String> setFields;
         if(componentType == 'Banner'){			setFields = new set<String>{'BannerFrameType__c','Orientation__c','BannerType__c','ShowBullets__c','AutomaticTransition__c','BannerTransitionTime__c','Loop__c','Direction__c'};}
-        if(componentType == 'News'){			setFields = new set<String>{'NewsType__c', 'PagingType__c', 'LinkDetail__r.URL__c', 'ExternalId__c'};}
+        if(componentType == 'Article'){			setFields = new set<String>{'ArticleType__c', 'PagingType__c', 'LinkDetail__r.URL__c', 'ExternalId__c'};}
         if(componentType == 'Event'){			setFields = new set<String>{'EventsType__c', 'ExcludePastEvents__c', 'PagingType__c', 'LinkDetail__r.URL__c', 'ExternalId__c'};}
         if(componentType == 'AdvanceContent'){	setFields = new set<String>{};}
         if(componentType == 'FAQ'){				setFields = new set<String>{};}
-        if(componentType == 'NewsDetail'){		setFields = new set<String>{};}
+        if(componentType == 'ArticleDetail'){		setFields = new set<String>{};}
         if(componentType == 'EventDetail'){		setFields = new set<String>{};}
-        if(componentType == 'RelatedNews'){		setFields = new set<String>{'NewsType__c', 'PagingType__c', 'LinkDetail__r.URL__c', 'ExternalId__c'};}
-        if(componentType == 'RelatedEvents'){	setFields = new set<String>{'EventsType__c', 'ExcludePastEvents__c', 'PagingType__c', 'LinkDetail__r.URL__c', 'ExternalId__c'};}
+        if(componentType == 'ArticlesRelated'){		setFields = new set<String>{'ArticleType__c', 'PagingType__c', 'LinkDetail__r.URL__c', 'ExternalId__c'};}
+        if(componentType == 'EventsRelated'){	setFields = new set<String>{'EventsType__c', 'ExcludePastEvents__c', 'PagingType__c', 'LinkDetail__r.URL__c', 'ExternalId__c'};}
         if(componentType == 'Brand_Detail'){   	setFields = new set<String>{};}
 		if(componentType == 'Cluster_Selector'){	setFields = new set<String>{};}
         if(componentType == 'Language_Selector'){	setFields = new set<String>{};}
@@ -189,16 +189,16 @@ public with sharing class CG_BaseComponentController {
     }
 
     private static set<String> getContentFieldSetByComponentType(String componentType, String device){
-    	if(componentType == 'RelatedEvents'){componentType = 'Event';}
-    	if(componentType == 'RelatedNews'){componentType = 'News';}
+    	if(componentType == 'EventsRelated'){componentType = 'Event';}
+    	if(componentType == 'ArticlesRelated'){componentType = 'Article';}
     	
         set<String> setFields;
         if(componentType == 'Banner'){			setFields = new set<String>{'LinkDetail__r.URL__c','OverlayQuadrant__c', 'Title__c', 'Extract__c', 'ButtonLabel__c','BannerFrameType__c'};}
-        if(componentType == 'News'){			setFields = new set<String>{'Title__c','Body__c', 'Extract__c', 'LinkDetail__r.URL__c', 'ExternalId__c'};}
+        if(componentType == 'Article'){			setFields = new set<String>{'Title__c','Body__c', 'Extract__c', 'LinkDetail__r.URL__c', 'ExternalId__c'};}
         if(componentType == 'Event'){			setFields = new set<String>{'Title__c','Body__c', 'Extract__c', 'EventStartDate__c', 'EventEndDate__c', 'Location__c', 'LinkDetail__r.URL__c', 'ExternalId__c'};}
         if(componentType == 'AdvanceContent'){	setFields = new set<String>{'HTMLContent__c'};}
         if(componentType == 'FAQ'){				setFields = new set<String>{'Title__c', 'Body__c'};}
-        if(componentType == 'NewsDetail'){		setFields = new set<String>{'Title__c', 'Extract__c','Body__c','Layout__c'};}
+        if(componentType == 'ArticleDetail'){		setFields = new set<String>{'Title__c', 'Extract__c','Body__c','Layout__c'};}
         if(componentType == 'EventDetail'){		setFields = new set<String>{'Title__c', 'Extract__c','Body__c', 'EventStartDate__c', 'EventEndDate__c', 'Location__c','Layout__c'};}
         if(componentType == 'Cluster_Selector'){	setFields = new set<String>{};}
 		if(componentType == 'Brand_Detail'){   	setFields = new set<String>{};}

@@ -153,11 +153,11 @@
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>SearchDetail__c</fullName>
+        <fullName>SearchSetting__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
         <label>Search Detail</label>
-        <referenceTo>SearchDetail__c</referenceTo>
+        <referenceTo>SearchSetting__c</referenceTo>
         <relationshipLabel>Translations</relationshipLabel>
         <relationshipName>Translations</relationshipName>
         <required>false</required>

@@ -4,12 +4,12 @@ private class CG_CommunityComponentFrameControllerTest
 	@isTest
 	static void getContentRecordtypeId()
 	{
-		// Given Exist a sObject with recordType RelatedNews
+		// Given Exist a sObject with recordType ArticlesRelated
 
 
 		// When
 		test.startTest();
-		CG_CommunityComponentFrameController.ContentRecordTypeWrapper crtw = CG_CommunityComponentFrameController.getContentRecordtypeId('RelatedNews');
+		CG_CommunityComponentFrameController.ContentRecordTypeWrapper crtw = CG_CommunityComponentFrameController.getContentRecordtypeId('ArticlesRelated');
 		test.stopTest();
 
 

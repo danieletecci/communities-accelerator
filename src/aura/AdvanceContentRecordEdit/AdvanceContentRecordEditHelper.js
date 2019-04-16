@@ -20,9 +20,9 @@
                         component.set('v.mediaElementName', data.content.MediaElementAssignments__r[0].MediaElement__r.Name);
                         component.set('v.mediaElementId', data.content.MediaElementAssignments__r[0].MediaElement__r.Id);
 					}
-					//component.find("richTextContainer").setContentBody();
+					//component.find("RichTextContainer").setContentBody();
 				}else{
-					helper.displayErrorMessage($A.get("$Label.c.NewsContentDetailLoadError"));
+					helper.displayErrorMessage($A.get("$Label.c.ArticleContentDetailLoadError"));
 				}
 			} else if (state === "ERROR") {
 				let errors = response.getError();

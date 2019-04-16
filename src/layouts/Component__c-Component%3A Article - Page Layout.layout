@@ -77,7 +77,7 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>NewsType__c</field>
+                <field>ArticleType__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>

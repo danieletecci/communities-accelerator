@@ -1,4 +1,4 @@
-global class EventRelatedDynamicPicklist extends VisualEditor.DynamicPickList{
+global class ArticlesRelatedDynamicPicklist extends VisualEditor.DynamicPickList{
 	// Default value -- The one that appears at the top
 	global override VisualEditor.DataRow getDefaultValue(){
 		VisualEditor.DataRow defaultValue = new VisualEditor.DataRow('--None--','');
@@ -11,7 +11,7 @@ global class EventRelatedDynamicPicklist extends VisualEditor.DynamicPickList{
 		VisualEditor.DataRow nullValue = new VisualEditor.DataRow('--None--','');
 		picklistValues.addRow(nullValue); 
 
-		List<Component__c> idsToDisplay = [SELECT Name, ExternalId__c, RecordType.Name FROM Component__c WHERE RecordType.Name = 'Related Events'];
+		List<Component__c> idsToDisplay = [SELECT Name, ExternalId__c, RecordType.Name FROM Component__c WHERE RecordType.Name = 'Related News'];
 		for(Component__c cIds : idsToDisplay){
 			picklistValues.addRow(new VisualEditor.DataRow(cIds.Name,cIds.ExternalId__c));
 		}

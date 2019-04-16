@@ -100,7 +100,7 @@ public class ComponentsDynamicPicklistTest {
                     
         //When
         Test.startTest();
-        EventRelatedDynamicPicklist picklistValues = new EventRelatedDynamicPicklist();
+        EventsRelatedDynamicPicklist picklistValues = new EventsRelatedDynamicPicklist();
         picklistValues.getDefaultValue();
         picklistValues.getValues();
         Test.stopTest();        
@@ -214,7 +214,7 @@ public class ComponentsDynamicPicklistTest {
                             
         //When
         Test.startTest();
-        ArticleRelatedDynamicPicklist picklistValues = new ArticleRelatedDynamicPicklist();
+        ArticlesRelatedDynamicPicklist picklistValues = new ArticlesRelatedDynamicPicklist();
         picklistValues.getDefaultValue();
         picklistValues.getValues();
         Test.stopTest();

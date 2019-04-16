@@ -1,0 +1,36 @@
+<aura:component controller="DatatableController" implements="forceCommunity:availableForAllPageTypes">
+	<!-- CONSTRUCTOR -->
+    <aura:handler name="init" value="{!this}" action="{!c.getRecord}" />
+
+	<!-- GENERAL VARIABLES --> 
+    <aura:attribute name="componentExternalId" type="String" access="global"/>
+    <aura:attribute name="componentWrapper" type="Object" />
+    <aura:attribute name="isLoading" type="Boolean" />
+
+    <!-- INTERNAL -->
+    <lightning:overlayLibrary aura:id="rowActionModal" />
+    <aura:attribute name="showDatatable" type="Boolean" default="true" />
+    <aura:attribute name="customContent" type="Aura.Component" />
+
+    <!-- LOC Component -->
+    <div aura:id="cg_component">
+        
+        <!-- BASE COMPONENT -->
+        <c:ComponentToolBox componentType="Datatable" componentExternalId="{!v.componentExternalId}" componentWrapper="{!v.componentWrapper}" salesforceDomain="{!v.componentWrapper.acceleratorSettings.SalesforceDomain__c}" isLoading="{!v.isLoading}">
+            <!-- DATATABLE COMPONENT -->
+                <aura:renderIf isTrue="{! v.showDatatable}">
+                    <c:datatable table="{!v.componentWrapper.data}" onfilter="{!c.doHandleFilter}" onclearfilter="{!c.doHandleClearFilters}" onsearch="{!c.doHandleSearch}" onaction="{!c.doHandleCustomRowAction}"/>
+                    <aura:set attribute="else">
+                        <div>
+                            <div class="custom-component-header">
+                                <lightning:button label="Close" onclick="{! c.closeCustom}" />
+                            </div>
+                            <div class="custom-component-header" >
+                                {! v.customContent}
+                            </div>
+                        </div>
+                    </aura:set>
+                </aura:renderIf>
+        </c:ComponentToolBox>
+    </div>
+</aura:component>

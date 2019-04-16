@@ -122,7 +122,7 @@
 	</div>
 
     <aura:if isTrue="{!v.contentData}">
-		<c:BE_ContentModalPublish aura:id="contentModalPublish" content="{!v.contentData}" hasDetailComponent="{!v.hasDetailComponent}"/>
+		<c:ContentPublishModal aura:id="contentModalPublish" content="{!v.contentData}" hasDetailComponent="{!v.hasDetailComponent}"/>
 	</aura:if>
 
 	{!v.confirmationModal}

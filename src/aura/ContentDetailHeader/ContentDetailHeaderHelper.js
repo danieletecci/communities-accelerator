@@ -161,7 +161,7 @@
 	},
 	showConfirmationDelete : function(component){
 		$A.createComponent(
-            "c:BE_ConfirmationModal",
+            "c:ConfirmationModal",
             {
                 "aura:id"		: "confirmationModal",
                 "title"			: $A.get("$Label.c.General_Delete") + ' ' + component.get("v.contentData").Name,

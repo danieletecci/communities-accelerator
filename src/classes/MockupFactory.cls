@@ -9,7 +9,7 @@ public class MockupFactory {
             MaxSizeTablet__c = 768,
             ClusterFieldForPublicGroups__c = 'ExternalId__c',
             ContentLandingColumnFields__c = 'RecordType.Name,Name,Category__r.Name,Status__c',
-            ContentLandingRecordTypes__c = 'News,Event,Recipe,BrandDetail'
+            ContentLandingRecordTypes__c = 'Article,Event,Recipe,BrandDetail'
             );
         insert acceleratorSetting;
     }
@@ -426,107 +426,6 @@ public class MockupFactory {
         return menuAssignmentList;
     }
 
-    public static List<Brand__c>  createBrand(String brandName, Integer quantity, Id clusterId){
-        List<Brand__c> brandList = new List<Brand__c>();
-        
-        for(Integer i = 0;i<quantity;i++){
-            brandList.add( new Brand__c(Name=brandName+i, Cluster__c=clusterId, Status__c='Inactive'));
-        }
-        insert brandList;
-
-        return brandList;
-    }
-
-    //Create contentCartItems to each Content
-    public static List<ContentCartItem__c>  createContentCartItem(List<Content__c> contentIdList){
-        List<ContentCartItem__c> contentCartList = new List<ContentCartItem__c>();
-        
-        for(Integer i = 0; i < contentIdList.size(); i++){
-            contentCartList.add( new ContentCartItem__c(Content__c = contentIdList[i].Id, User__c = UserInfo.getUserId(), Name='Test'+i));
-        }
-
-        insert contentCartList;
-        return contentCartList;
-    }
-
-    //Create SocialNetwork for a Brand 
-    public static List<SocialNetwork__c> createSocialNetworks(String name, String username, Id brandId, Id navigation, String rType){
-        List<SocialNetwork__c> socialNetwork = new List<SocialNetwork__c>();
-        RecordType recType = [SELECT Id FROM RecordType WHERE SObjectType = 'SocialNetwork__c' AND DeveloperName =: rType LIMIT 1];
-        socialNetwork.add(new SocialNetwork__c(Name = name, Username__c = username, Brand__c = brandId, Navigation__c = navigation, RecordTypeId = recType.Id, Status__c='Inactive'));
-    
-        insert socialNetwork;
-        return socialNetwork;
-    }
-    
-    
-    //Create audience user
-    public static AudienceUser__c createAudienceUser(String name, Id clusterId, String status, Id userId){
-        AudienceUser__c AU = new AudienceUser__c(Name=name, Cluster__c=clusterId, Status__c= status, User__c = userId);
-        insert AU;
-        return AU;
-        
-    }
-
-    //Create Recipe
-    public static List<Recipe__c>  createRecipes(String recipeName, Integer quantity, Id content, Id clusterId){
-        List<Recipe__c> recipeList = new List<Recipe__c>();
-        
-        for(Integer i = 0;i<quantity;i++){
-            recipeList.add( new Recipe__c(Name=recipeName+i, Content__c = content, Cluster__c=clusterId, Status__c='Inactive'));
-        }
-        insert recipeList;
-
-        return recipeList;
-    }
-
-    //Create RecipeStep for Recipe
-    public static List<RecipeStep__c> createRecipeStep(String step, Integer quantity, Id recipe){
-        List<RecipeStep__c> stepsList = new List<RecipeStep__c>();
-        
-        for(Integer i = 0; i < quantity; i++){
-            stepsList.add(new RecipeStep__c( Step__c = step+i, Name = step+i, Recipe__c = recipe, Order__c = i+1));
-        }
-        insert stepsList;
-        return stepsList;
-    }
-
-    //Create RecipeIngredient for Recipe
-    public static List<RecipeIngredient__c> createRecipeIngredientBrand(String name, Integer quantity, Id recipe, Id brand, Id brandVariant){
-        List<RecipeIngredient__c> stepsList = new List<RecipeIngredient__c>();        
- //       Id recordTypeId = Schema.SObjectType.RecipeIngredient__c.getRecordTypeInfosByDeveloperName().get('BrandIngredient').getRecordTypeId();
-
-        RecordType rtGroup = [SELECT Id FROM RecordType WHERE SobjectType = 'RecipeIngredient__c' AND DeveloperName =: 'BrandIngredient'];
-
-        for(Integer i = 0; i < quantity; i++){
-            stepsList.add(new RecipeIngredient__c( Name = name+i, 
-                                                Recipe__c = recipe, 
-                                                Order__c = i+1,
-                                                Brand__c = brand,
-                                                BrandVariant__c = brandVariant, 
-                                                RecordTypeId = rtGroup.Id));
-        }
-        insert stepsList;
-        return stepsList;
-    }
-
-    //Create RecipeIngredient for Recipe
-    public static List<RecipeIngredient__c> createRecipeIngredientWithoutBrand(String name, Integer quantity, Id recipe){
-        List<RecipeIngredient__c> stepsList = new List<RecipeIngredient__c>(); 
-        //Id recordTypeId = Schema.SObjectType.RecipeIngredient__c.getRecordTypeInfosByDeveloperName().get('BrandIngredient').getRecordTypeId();
-
-        RecordType rtGroup = [SELECT Id FROM RecordType WHERE SobjectType = 'RecipeIngredient__c' AND DeveloperName =: 'CustomIngredient'];
-        for(Integer i = 0; i < quantity; i++){
-            stepsList.add(new RecipeIngredient__c( Name = name+i, 
-                                                Recipe__c = recipe,
-                                                Order__c = i+1,
-                                                OtherIngredient__c = name+i,
-                                                CustomIngredient__c = 'ice', 
-                                                RecordTypeId = rtGroup.Id));
-        }
-        insert stepsList;
-        return stepsList;
-    }
     
     public static List<Datatable__c> createDatatables(String name, String externalId, String objectApiName, Integer quantity, Id clusterId) {
         List<Datatable__c> datatablesToCreate = new List<Datatable__c>();

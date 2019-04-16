@@ -3,7 +3,7 @@ public without sharing virtual class ContentUtils {
     public static Map<String, String> rtComponentToContent = new Map<String, String>{
         'Event'             => 'Event',
         'FAQ'               => 'FAQ',
-        'News'              => 'News',
+        'Article'           => 'Article',
         'AdvanceContent'    => 'AdvanceContent',
         'Banner'            => 'Banner'
     };
@@ -75,7 +75,7 @@ public without sharing virtual class ContentUtils {
                 }
             }
 
-            if(component.Datasource__c != null && (component.Datasource__c == 'All News' || component.Datasource__c == 'All Events') ){
+            if(component.Datasource__c != null && (component.Datasource__c == 'All Articles' || component.Datasource__c == 'All Events') ){
                 query += 'WHERE Id NOT IN: setContentToExclude AND ExternalId__c NOT IN: setContentToExclude AND Cluster__c IN: setClusterIds AND Recordtype.DeveloperName =: contentTypeToSearch ';
             }else{
 
@@ -305,7 +305,7 @@ public without sharing virtual class ContentUtils {
 
     public static String getRecordTypeContentFromRTComponent(String componentRT){
         String contentTypeToSearch;
-        if(componentRT == 'RelatedNews' || componentRT == 'NewsDetail'){contentTypeToSearch = 'News';}
+        if(componentRT == 'RelatedArticles' || componentRT == 'ArticleDetail'){contentTypeToSearch = 'Article';}
         else if(componentRT == 'RelatedEvents' || componentRT == 'EventDetail'){contentTypeToSearch = 'Event';}
         else{
             contentTypeToSearch = componentRT;
@@ -318,9 +318,9 @@ public without sharing virtual class ContentUtils {
         
         String contentPlaceToSearch = '';
         if(componentRT == 'Banner'){contentPlaceToSearch = 'BannerImage';}
-        else if(componentRT == 'RelatedNews'){contentPlaceToSearch = 'NewsImage';}
-        else if(componentRT == 'News'){contentPlaceToSearch = 'NewsImage';}
-        else if(componentRT == 'NewsDetail'){contentPlaceToSearch = 'NewsImage';}
+        else if(componentRT == 'RelatedArticles'){contentPlaceToSearch = 'ArticleImage';}
+        else if(componentRT == 'Article'){contentPlaceToSearch = 'ArticleImage';}
+        else if(componentRT == 'ArticleDetail'){contentPlaceToSearch = 'ArticleImage';}
         else if(componentRT == 'Event'){contentPlaceToSearch = 'EventImage';}
         else if(componentRT == 'RelatedEvents'){contentPlaceToSearch = 'EventImage';}
         else if(componentRT == 'EventDetail'){contentPlaceToSearch = 'EventImage';}
@@ -334,7 +334,7 @@ public without sharing virtual class ContentUtils {
     }
 
     private static Content__c externalIdToUrl(Content__c content){
-        List<String> recordTypesWithBody = new List<String>{'News', 'Event', 'FAQ', 'NewsDetail', 'EventDetail'};
+        List<String> recordTypesWithBody = new List<String>{'Article', 'Event', 'FAQ', 'ArticleDetail', 'EventDetail'};
         String recordTypeDeveloperName = [SELECT Id, RecordType.DeveloperName FROM Content__c WHERE Id =: content.Id].RecordType.DeveloperName;
         if(recordTypesWithBody.contains(recordTypeDeveloperName)){
             if(content.Body__c != null){

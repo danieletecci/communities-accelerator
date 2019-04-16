@@ -1,3 +1,3 @@
 <design:component label="CG Navigation">
-	<design:attribute name="componentExternalId" label="Component External Id" datasource="apex://CG_DynamicPicklistMenu"/>
+	<design:attribute name="componentExternalId" label="Component External Id" datasource="apex://MenuDynamicPicklist"/>
 </design:component>

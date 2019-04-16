@@ -1,3 +1,0 @@
-<design:component label="CG Asset Detail">
-	<design:attribute name="componentExternalId" label="Component External Id"/>
-</design:component>

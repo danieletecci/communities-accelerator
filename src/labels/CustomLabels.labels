@@ -10,7 +10,7 @@
     </labels>
     <labels>
         <fullName>AddMediaElement</fullName>
-        <categories>MediaElementSearcher.cmp</categories>
+        <categories>MediaElementManager.cmp</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>AddMediaElement</shortDescription>
@@ -138,7 +138,7 @@
     </labels>
     <labels>
         <fullName>BannerContentDetailButton</fullName>
-        <categories>ContentBannerRecordEdit.cmp</categories>
+        <categories>BannerContentRecordEdit.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Banner button field used in banner record page</shortDescription>
@@ -146,7 +146,7 @@
     </labels>
     <labels>
         <fullName>BannerContentDetailExternalId</fullName>
-        <categories>ContentBannerRecordEdit.cmp</categories>
+        <categories>BannerContentRecordEdit.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>ExternalId field used in banner record page</shortDescription>
@@ -154,7 +154,7 @@
     </labels>
     <labels>
         <fullName>BannerContentDetailExtract</fullName>
-        <categories>ContentBannerRecordEdit.cmp</categories>
+        <categories>BannerContentRecordEdit.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Banner extract field used in banner record page</shortDescription>
@@ -162,7 +162,7 @@
     </labels>
     <labels>
         <fullName>BannerContentDetailLayout</fullName>
-        <categories>ContentBannerRecordEdit.cmp</categories>
+        <categories>BannerContentRecordEdit.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Banner layout field used in banner record page</shortDescription>
@@ -170,7 +170,7 @@
     </labels>
     <labels>
         <fullName>BannerContentDetailLeftAlign</fullName>
-        <categories>ContentBannerRecordEdit.cmp</categories>
+        <categories>BannerContentRecordEdit.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Left-Align value of the overlayQuadrant field</shortDescription>
@@ -178,7 +178,7 @@
     </labels>
     <labels>
         <fullName>BannerContentDetailLink</fullName>
-        <categories>ContentBannerRecordEdit.cmp</categories>
+        <categories>BannerContentRecordEdit.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Banner link field used in banner record page</shortDescription>
@@ -186,7 +186,7 @@
     </labels>
     <labels>
         <fullName>BannerContentDetailMiddleAlign</fullName>
-        <categories>ContentBannerRecordEdit.cmp</categories>
+        <categories>BannerContentRecordEdit.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Center-Align value of the overlayQuadrant field</shortDescription>
@@ -194,7 +194,7 @@
     </labels>
     <labels>
         <fullName>BannerContentDetailName</fullName>
-        <categories>ContentBannerRecordEdit.cmp</categories>
+        <categories>BannerContentRecordEdit.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Banner name field used in banner record page</shortDescription>
@@ -202,7 +202,7 @@
     </labels>
     <labels>
         <fullName>BannerContentDetailRightAlign</fullName>
-        <categories>ContentBannerRecordEdit.cmp</categories>
+        <categories>BannerContentRecordEdit.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Right-Align value of the overlayQuadrant field</shortDescription>
@@ -210,7 +210,7 @@
     </labels>
     <labels>
         <fullName>BannerContentDetailTitle</fullName>
-        <categories>ContentBannerRecordEdit.cmp</categories>
+        <categories>BannerContentRecordEdit.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Banner title field used in banner record page</shortDescription>
@@ -218,7 +218,7 @@
     </labels>
     <labels>
         <fullName>BannerContentDetailType</fullName>
-        <categories>ContentBannerRecordEdit.cmp</categories>
+        <categories>BannerContentRecordEdit.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Banner type field used in banner record page</shortDescription>
@@ -674,7 +674,7 @@
     </labels>
     <labels>
         <fullName>EventContentDetailBody</fullName>
-        <categories>ContentEventRecordEdit.cmp</categories>
+        <categories>EventContentRecordEdit.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>EventContentDetailBody</shortDescription>
@@ -682,7 +682,7 @@
     </labels>
     <labels>
         <fullName>EventContentDetailChooseLayout</fullName>
-        <categories>ContentEventRecordEdit.cmp</categories>
+        <categories>EventContentRecordEdit.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>EventContentDetailChooseLayout</shortDescription>
@@ -690,7 +690,7 @@
     </labels>
     <labels>
         <fullName>EventContentDetailEventEndDate</fullName>
-        <categories>ContentEventRecordEdit.cmp</categories>
+        <categories>EventContentRecordEdit.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>EventContentDetailEventEndDate</shortDescription>
@@ -698,7 +698,7 @@
     </labels>
     <labels>
         <fullName>EventContentDetailEventLocationInformation</fullName>
-        <categories>ContentEventRecordEdit.cmp</categories>
+        <categories>EventContentRecordEdit.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>EventContentDetailEventLocationInformation</shortDescription>
@@ -706,7 +706,7 @@
     </labels>
     <labels>
         <fullName>EventContentDetailEventStartDate</fullName>
-        <categories>ContentEventRecordEdit.cmp</categories>
+        <categories>EventContentRecordEdit.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>EventContentDetailEventStartDate</shortDescription>
@@ -714,7 +714,7 @@
     </labels>
     <labels>
         <fullName>EventContentDetailExternalId</fullName>
-        <categories>ContentEventRecordEdit.cmp</categories>
+        <categories>EventContentRecordEdit.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>EventContentDetailExternalId</shortDescription>
@@ -722,7 +722,7 @@
     </labels>
     <labels>
         <fullName>EventContentDetailExtract</fullName>
-        <categories>ContentEventRecordEdit.cmp</categories>
+        <categories>EventContentRecordEdit.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>EventContentDetailExtract</shortDescription>
@@ -730,7 +730,7 @@
     </labels>
     <labels>
         <fullName>EventContentDetailFeatureImage</fullName>
-        <categories>ContentEventRecordEdit.cmp</categories>
+        <categories>EventContentRecordEdit.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>EventContentDetailFeatureImage</shortDescription>
@@ -738,7 +738,7 @@
     </labels>
     <labels>
         <fullName>EventContentDetailTitle</fullName>
-        <categories>ContentEventRecordEdit.cmp</categories>
+        <categories>EventContentRecordEdit.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>EventContentDetailTitle</shortDescription>
@@ -746,7 +746,7 @@
     </labels>
     <labels>
         <fullName>EventContentDetailTitleBottom</fullName>
-        <categories>ContentEventRecordEdit.cmp</categories>
+        <categories>EventContentRecordEdit.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>EventContentDetailTitleBottom</shortDescription>
@@ -754,7 +754,7 @@
     </labels>
     <labels>
         <fullName>EventContentDetailTitleMiddle</fullName>
-        <categories>ContentEventRecordEdit.cmp</categories>
+        <categories>EventContentRecordEdit.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>EventContentDetailTitleMiddle</shortDescription>
@@ -762,7 +762,7 @@
     </labels>
     <labels>
         <fullName>EventContentDetailTitleTop</fullName>
-        <categories>ContentEventRecordEdit.cmp</categories>
+        <categories>EventContentRecordEdit.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>EventContentDetailTitleTop</shortDescription>
@@ -850,7 +850,7 @@
     </labels>
     <labels>
         <fullName>GeneralContents</fullName>
-        <categories>ModalRecordTypeSelection.cmp</categories>
+        <categories>ContentRecordTypeModal.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>General contents</shortDescription>
@@ -1457,7 +1457,7 @@
     </labels>
     <labels>
         <fullName>SelectMediaElement</fullName>
-        <categories>MediaElementSearcher.cmp</categories>
+        <categories>MediaElementManager.cmp</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>SelectMediaElement</shortDescription>
@@ -1489,7 +1489,7 @@
     </labels>
     <labels>
         <fullName>StructureContent</fullName>
-        <categories>ModalRecordTypeSelection.cmp</categories>
+        <categories>ContentRecordTypeModal.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Structure content</shortDescription>
@@ -1497,7 +1497,7 @@
     </labels>
     <labels>
         <fullName>StructureContentDescription</fullName>
-        <categories>ModalRecordTypeSelectionHelper.js</categories>
+        <categories>ContentRecordTypeModalHelper.js</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Structure content description</shortDescription>
@@ -1689,7 +1689,7 @@
     </labels>
     <labels>
         <fullName>EventContentDetailTemplateDescription</fullName>
-        <categories>ContentEventRecordEdit.cmp</categories>
+        <categories>EventContentRecordEdit.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>EventContentDetailTemplateDescription</shortDescription>
@@ -1697,7 +1697,7 @@
     </labels>
     <labels>
         <fullName>AdvanceContentDetailTemplateDescription</fullName>
-        <categories>ContentAdvanceContentNewsRecordEdit.cmp</categories>
+        <categories>ContentAdvanceArticleContentRecordEdit.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>AdvanceContentDetailTemplateDescription</shortDescription>

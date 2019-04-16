@@ -2,11 +2,11 @@
 	<aura:attribute name="contentBody" type="String"/>
 	<aura:attribute name="label" type="String" />
     
-    <aura:handler name="URLEvent" event="c:MediaElementSearcherEvent" action="{!c.handleURLEvent}"/>
+    <aura:handler name="URLEvent" event="c:MediaElementManagerEvent" action="{!c.handleURLEvent}"/>
     
     <aura:method name="setContentBody" action="{!c.setContentBody}"/> 
 
-    <c:MediaElementSearcher aura:id="mediaElement" hasButton="false"/>
+    <c:MediaElementManager aura:id="mediaElement" hasButton="false"/>
     <c:richText aura:id="customRich" label="{!v.label}" onimageclicked="{!c.handleImageClicked}" onsavecontent="{!c.handleTextChange}"  />
       
 </aura:component>

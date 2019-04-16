@@ -1,4 +1,4 @@
-public with sharing class CommunityComponentPreviewController {
+public with sharing class ComponentPreviewController {
 	
 	@AuraEnabled
     public static Component__c getRecord(String recordId){

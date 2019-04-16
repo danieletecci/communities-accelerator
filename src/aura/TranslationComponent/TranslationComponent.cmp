@@ -1,4 +1,4 @@
-<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId" controller="TranslationComponentController" access="global">
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId" controller="TranslationController" access="global">
     <!--Constructor -->
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
         

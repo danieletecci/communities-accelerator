@@ -1,4 +1,4 @@
-public with sharing class TranslationComponentController {
+public with sharing class TranslationController {
     
 	public class RecordsWrapper{
 		@auraEnabled public String defaultLanguage;

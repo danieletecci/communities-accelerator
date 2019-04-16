@@ -1,5 +1,5 @@
 @isTest
-public class FE_DatatableControllerTest {
+public class DatatableControllerTest {
     
     @testSetup
     static void generateCustomSettings(){
@@ -15,7 +15,7 @@ public class FE_DatatableControllerTest {
 		Datatable__c data = [Select ExternalId__c from Datatable__c where ExternalId__c like'TableTest%' Limit 1];
         // When
         Test.startTest();
-        String jsonTest = FE_DatatableController.doInit(data.ExternalId__c);
+        String jsonTest = DatatableController.doInit(data.ExternalId__c);
         Test.stopTest();
         // Then
         System.assertNotEquals(jsonTest, null);
@@ -26,7 +26,7 @@ public class FE_DatatableControllerTest {
         // Given
         Datatable__c data = [Select ExternalId__c from Datatable__c where ExternalId__c like'TableTest%' Limit 1];
         
-        FE_DatatableController.DatatableWrapper jsonWrapper = new FE_DatatableController.DatatableWrapper();
+        DatatableController.DatatableWrapper jsonWrapper = new DatatableController.DatatableWrapper();
         jsonWrapper.componentExternalId = data.ExternalId__c;
         jsonWrapper.pagingType = 'Bottom';
         jsonWrapper.numberOfColumns = 3;
@@ -34,7 +34,7 @@ public class FE_DatatableControllerTest {
 
         // When
         Test.startTest();        
-        String jsonTest = FE_DatatableController.getPage(JSON.serialize(jsonWrapper),1);
+        String jsonTest = DatatableController.getPage(JSON.serialize(jsonWrapper),1);
         Test.stopTest();
         
         // Then
@@ -45,11 +45,11 @@ public class FE_DatatableControllerTest {
     static void testHandleDelete(){       
        // Given
         Datatable__c data = [Select ExternalId__c from Datatable__c where ExternalId__c like'TableTest%' Limit 1];
-        String jsonComponentWrapper = FE_DatatableController.doInit(data.ExternalId__c);
+        String jsonComponentWrapper = DatatableController.doInit(data.ExternalId__c);
         // When
         Test.startTest();
        	List<Id> ids=new List<Id>();
-        String jsonTest = FE_DatatableController.handleDelete(jsonComponentWrapper, ids);
+        String jsonTest = DatatableController.handleDelete(jsonComponentWrapper, ids);
         Test.stopTest();
         // Then
         System.assertEquals(jsonTest, '');
@@ -60,7 +60,7 @@ public class FE_DatatableControllerTest {
        // Given
         Datatable__c data = [Select ExternalId__c from Datatable__c where ExternalId__c like'TableTest%' Limit 1];
 
-        FE_DatatableController.DatatableWrapper jsonWrapper = new FE_DatatableController.DatatableWrapper();
+        DatatableController.DatatableWrapper jsonWrapper = new DatatableController.DatatableWrapper();
         jsonWrapper.componentExternalId = data.ExternalId__c;
         jsonWrapper.pagingType = 'Bottom';
         jsonWrapper.numberOfColumns = 3;
@@ -68,17 +68,17 @@ public class FE_DatatableControllerTest {
 		
         jsonWrapper.name ='Test';
         jsonWrapper.totalRows = 1;
-        FE_DatatableController.DatatableRowWrapper row = new FE_DatatableController.DatatableRowWrapper();
+        DatatableController.DatatableRowWrapper row = new DatatableController.DatatableRowWrapper();
         row.columnName = 'Name column test';
         row.rowValue = 'test value';
-        List<FE_DatatableController.DatatableRowWrapper> rowList = new List<FE_DatatableController.DatatableRowWrapper>();
+        List<DatatableController.DatatableRowWrapper> rowList = new List<DatatableController.DatatableRowWrapper>();
         rowList.add(row);
         jsonWrapper.tableData = new List<Map<String, String>>();
         //jsonWrapper.tableData.add(rowList);
              
         // When
         Test.startTest();
-        String jsonTest = FE_DatatableController.handleFilter(JSON.serialize(jsonWrapper));
+        String jsonTest = DatatableController.handleFilter(JSON.serialize(jsonWrapper));
         Test.stopTest();
         // Then
         System.assertNotEquals(jsonTest, null);
@@ -90,7 +90,7 @@ public class FE_DatatableControllerTest {
      // Given
         Datatable__c data = [Select ExternalId__c from Datatable__c where ExternalId__c like'TableTest%' Limit 1];
         
-        FE_DatatableController.DatatableWrapper jsonWrapper = new FE_DatatableController.DatatableWrapper();
+        DatatableController.DatatableWrapper jsonWrapper = new DatatableController.DatatableWrapper();
         jsonWrapper.componentExternalId = data.ExternalId__c;
         jsonWrapper.pagingType = 'Bottom';
         jsonWrapper.numberOfColumns = 3;
@@ -99,7 +99,7 @@ public class FE_DatatableControllerTest {
         // When   
         Test.startTest();
        	
-        String jsonTest = FE_DatatableController.handleSort(JSON.serialize(jsonWrapper), 'Name', 'ASC');
+        String jsonTest = DatatableController.handleSort(JSON.serialize(jsonWrapper), 'Name', 'ASC');
         Test.stopTest();
         // Then
         System.assertNotEquals(jsonTest, null);
@@ -109,55 +109,55 @@ public class FE_DatatableControllerTest {
     static void TestprocessAppliedFilters(){   
         
         //Given
-        FE_DatatableController.DatatableFilterFieldWrapper filterFieldWrStr = new FE_DatatableController.DatatableFilterFieldWrapper(); 
+        DatatableController.DatatableFilterFieldWrapper filterFieldWrStr = new DatatableController.DatatableFilterFieldWrapper(); 
         filterFieldWrStr.name='TestFilterField';
         filterFieldWrStr.type='String';
-        FE_DatatableController.DatatableFilterWrapper dataFilterWrStr =new FE_DatatableController.DatatableFilterWrapper();
+        DatatableController.DatatableFilterWrapper dataFilterWrStr =new DatatableController.DatatableFilterWrapper();
         dataFilterWrStr.filter=filterFieldWrStr;
         dataFilterWrStr.value1 = 'test';
         dataFilterWrStr.value2 = 'table';
         
-        FE_DatatableController.DatatableFilterFieldWrapper filterFieldWrInt = new FE_DatatableController.DatatableFilterFieldWrapper(); 
+        DatatableController.DatatableFilterFieldWrapper filterFieldWrInt = new DatatableController.DatatableFilterFieldWrapper(); 
         filterFieldWrInt.name='TestFilterField';
         filterFieldWrInt.type='Integer';    
-        FE_DatatableController.DatatableFilterWrapper dataFilterWrInt =new FE_DatatableController.DatatableFilterWrapper();
+        DatatableController.DatatableFilterWrapper dataFilterWrInt =new DatatableController.DatatableFilterWrapper();
         dataFilterWrInt.filter=filterFieldWrInt;
         dataFilterWrInt.value1 = '123';
         dataFilterWrInt.value2 = '890';
-        FE_DatatableController.DatatableFilterWrapper dataFilterWrIntV1 =new FE_DatatableController.DatatableFilterWrapper();
+        DatatableController.DatatableFilterWrapper dataFilterWrIntV1 =new DatatableController.DatatableFilterWrapper();
         dataFilterWrIntV1.filter=filterFieldWrInt;
         dataFilterWrIntV1.value1 = '123';
         dataFilterWrIntV1.value2 = null;  
-        FE_DatatableController.DatatableFilterWrapper dataFilterWrIntV2 =new FE_DatatableController.DatatableFilterWrapper();
+        DatatableController.DatatableFilterWrapper dataFilterWrIntV2 =new DatatableController.DatatableFilterWrapper();
         dataFilterWrIntV2.filter=filterFieldWrInt;
         dataFilterWrIntV2.value1 = null;
         dataFilterWrIntV2.value2 = '890';
         
-        FE_DatatableController.DatatableFilterFieldWrapper filterFieldWrDouble = new FE_DatatableController.DatatableFilterFieldWrapper(); 
+        DatatableController.DatatableFilterFieldWrapper filterFieldWrDouble = new DatatableController.DatatableFilterFieldWrapper(); 
         filterFieldWrDouble.name='TestFilterField';
         filterFieldWrDouble.type='Double';
-        FE_DatatableController.DatatableFilterWrapper dataFilterWrDouble =new FE_DatatableController.DatatableFilterWrapper();
+        DatatableController.DatatableFilterWrapper dataFilterWrDouble =new DatatableController.DatatableFilterWrapper();
         dataFilterWrDouble.filter=filterFieldWrDouble;
         dataFilterWrDouble.value1 = null;
         dataFilterWrDouble.value2 = '890.5';
 
-        FE_DatatableController.DatatableFilterFieldWrapper filterFieldWrDate = new FE_DatatableController.DatatableFilterFieldWrapper(); 
+        DatatableController.DatatableFilterFieldWrapper filterFieldWrDate = new DatatableController.DatatableFilterFieldWrapper(); 
         filterFieldWrDate.name='TestFilterField';
         filterFieldWrDate.type='Date';    
-        FE_DatatableController.DatatableFilterWrapper dataFilterWrDate =new FE_DatatableController.DatatableFilterWrapper();
+        DatatableController.DatatableFilterWrapper dataFilterWrDate =new DatatableController.DatatableFilterWrapper();
         dataFilterWrDate.filter=filterFieldWrDate;
         dataFilterWrDate.value1 = '2019-03-28';
         dataFilterWrDate.value2 = '2019-03-29';
-        FE_DatatableController.DatatableFilterWrapper dataFilterWrDateV1 =new FE_DatatableController.DatatableFilterWrapper();
+        DatatableController.DatatableFilterWrapper dataFilterWrDateV1 =new DatatableController.DatatableFilterWrapper();
         dataFilterWrDateV1.filter=filterFieldWrDate;
         dataFilterWrDateV1.value1 = null;
         dataFilterWrDateV1.value2 = '2019-03-29';
-        FE_DatatableController.DatatableFilterWrapper dataFilterWrDateV2 =new FE_DatatableController.DatatableFilterWrapper();
+        DatatableController.DatatableFilterWrapper dataFilterWrDateV2 =new DatatableController.DatatableFilterWrapper();
         dataFilterWrDateV2.filter=filterFieldWrDate;
         dataFilterWrDateV2.value1 = '2019-03-28';
         dataFilterWrDateV2.value2 = null;
         
-        List<FE_DatatableController.DatatableFilterWrapper> appliedFilters = new List<FE_DatatableController.DatatableFilterWrapper>();
+        List<DatatableController.DatatableFilterWrapper> appliedFilters = new List<DatatableController.DatatableFilterWrapper>();
         appliedFilters.add(dataFilterWrStr);
         appliedFilters.add(dataFilterWrInt);
         appliedFilters.add(dataFilterWrIntV1);
@@ -186,7 +186,7 @@ public class FE_DatatableControllerTest {
 
         // When   
         Test.startTest();      	
-        List<FE_DatatableController.DatatableActionWrapper> result = FE_DatatableUtils.mapDatatableActionsToWrappers(actionList);
+        List<DatatableController.DatatableActionWrapper> result = FE_DatatableUtils.mapDatatableActionsToWrappers(actionList);
         Test.stopTest();
         // Then
         System.assertNotEquals(result, null); 
@@ -196,9 +196,9 @@ public class FE_DatatableControllerTest {
     static void TestmapDatatableDataToWrappers(){ 
         
         //Given
-		FE_DatatableController.DatatableElementWrapper dataW = new FE_DatatableController.DatatableElementWrapper();
+		DatatableController.DatatableElementWrapper dataW = new DatatableController.DatatableElementWrapper();
         dataw.fieldName = 'Name';
-        List<FE_DatatableController.DatatableElementWrapper> listDataw= new List<FE_DatatableController.DatatableElementWrapper>();
+        List<DatatableController.DatatableElementWrapper> listDataw= new List<DatatableController.DatatableElementWrapper>();
         listDataw.add(dataw);
         List<SObject> SOlist = new List<SObject>();
         

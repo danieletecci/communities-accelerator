@@ -1,4 +1,4 @@
-<aura:component controller="FE_DatatableController" implements="forceCommunity:availableForAllPageTypes">
+<aura:component controller="DatatableController" implements="forceCommunity:availableForAllPageTypes">
 	<!-- CONSTRUCTOR -->
     <aura:handler name="init" value="{!this}" action="{!c.getRecord}" />
 

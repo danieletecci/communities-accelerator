@@ -1,6 +1,6 @@
 public with sharing class FE_DatatableUtils {
     
-    public static List<SObject> doGetRecords(Datatable__c datatable, Integer offSet, FE_DatatableController.DatatableWrapper wrapper){
+    public static List<SObject> doGetRecords(Datatable__c datatable, Integer offSet, DatatableController.DatatableWrapper wrapper){
         List<SObject> rows = new List<SObject>();
         
         List<String> fieldSet = new List<String>();
@@ -122,7 +122,7 @@ public with sharing class FE_DatatableUtils {
         }
     }
     
-    public static List<Map<String, String>> mapDatatableDataToWrappers(List<SObject> records, List<FE_DatatableController.DatatableElementWrapper> datatableElements) {
+    public static List<Map<String, String>> mapDatatableDataToWrappers(List<SObject> records, List<DatatableController.DatatableElementWrapper> datatableElements) {
         List<Map<String, String>> datatableData = new List<Map<String, String>>();
         
         for(SObject record : records) {
@@ -130,7 +130,7 @@ public with sharing class FE_DatatableUtils {
 
             structure.put('Id', (String)record.get('Id'));
 
-            for(FE_DatatableController.DatatableElementWrapper de : datatableElements) {
+            for(DatatableController.DatatableElementWrapper de : datatableElements) {
                 String fieldApiName = de.fieldName;
                 String value;
 
@@ -151,11 +151,11 @@ public with sharing class FE_DatatableUtils {
         return datatableData;
     }
 
-    public static List<FE_DatatableController.DatatableElementWrapper> mapDatatableElementsToWrappers(List<DatatableElement__c> elements) {
-        List<FE_DatatableController.DatatableElementWrapper> result = new List<FE_DatatableController.DatatableElementWrapper>();
+    public static List<DatatableController.DatatableElementWrapper> mapDatatableElementsToWrappers(List<DatatableElement__c> elements) {
+        List<DatatableController.DatatableElementWrapper> result = new List<DatatableController.DatatableElementWrapper>();
 
         for(DatatableElement__c ele : elements) {
-            FE_DatatableController.DatatableElementWrapper elem = new FE_DatatableController.DatatableElementWrapper();
+            DatatableController.DatatableElementWrapper elem = new DatatableController.DatatableElementWrapper();
 			
 			if(ele.Navigation__c != null) {
 				elem.navigation = ele.Navigation__r.URL__c;
@@ -195,11 +195,11 @@ public with sharing class FE_DatatableUtils {
         return result;
     }
 
-    public static List<FE_DatatableController.DatatableActionWrapper> mapDatatableActionsToWrappers(List<DatatableAction__c> actions) {
-        List<FE_DatatableController.DatatableActionWrapper> result = new List<FE_DatatableController.DatatableActionWrapper>();
+    public static List<DatatableController.DatatableActionWrapper> mapDatatableActionsToWrappers(List<DatatableAction__c> actions) {
+        List<DatatableController.DatatableActionWrapper> result = new List<DatatableController.DatatableActionWrapper>();
 
         for(DatatableAction__c action : actions) {
-            FE_DatatableController.DatatableActionWrapper ac = new FE_DatatableController.DatatableActionWrapper();
+            DatatableController.DatatableActionWrapper ac = new DatatableController.DatatableActionWrapper();
         
             ac.recordType = action.RecordType.DeveloperName;
             ac.component = action.Component__c;
@@ -219,8 +219,8 @@ public with sharing class FE_DatatableUtils {
         return result;
     }
 
-    public static FE_DatatableController.DatatableWrapper mapDatatableToWrapper(Datatable__c datatable) {
-        FE_DatatableController.DatatableWrapper datatableWrapper = new FE_DatatableController.DatatableWrapper();
+    public static DatatableController.DatatableWrapper mapDatatableToWrapper(Datatable__c datatable) {
+        DatatableController.DatatableWrapper datatableWrapper = new DatatableController.DatatableWrapper();
         datatableWrapper.Id = datatable.Id;
         datatableWrapper.title = datatable.Title__c;
         datatableWrapper.objectApiName = datatable.ObjectApiName__c;
@@ -271,8 +271,8 @@ public with sharing class FE_DatatableUtils {
         return result;
     }
 
-    public static String processAppliedFilters(List<FE_DatatableController.DatatableFilterWrapper> appliedFilters) {
-        System.debug('in FE_DatatableController.processAppliedFilters() method.');
+    public static String processAppliedFilters(List<DatatableController.DatatableFilterWrapper> appliedFilters) {
+        System.debug('in DatatableController.processAppliedFilters() method.');
         Boolean newFilter = false;
         String filterCondition = '';
         String result = '';
@@ -280,7 +280,7 @@ public with sharing class FE_DatatableUtils {
         
         appliedFilters.sort();
         
-        for(FE_DatatableController.DatatableFilterWrapper appliedFilter : appliedFilters) {
+        for(DatatableController.DatatableFilterWrapper appliedFilter : appliedFilters) {
 			System.debug('appliedFilter: ' + appliedFilter);
             
             if(filterName != appliedFilter.filter.name) {

@@ -1,5 +1,5 @@
 @isTest
-public class CommunityComponentPreviewControllerTest {
+public class ComponentPreviewControllerTest {
 	@isTest static void getRecordTest(){
 		/* Comment: Comprueba que dado un String correspondiente a un recordId de un componente, el método getRecord de la clase CommunityComponentPreview, retorne el
 		componente representado por dado record Id. */
@@ -11,7 +11,7 @@ public class CommunityComponentPreviewControllerTest {
 		
 		//When
 		Test.startTest();
-        Component__c testComponent = CommunityComponentPreviewController.getRecord(String.valueOf(testRecord.Id));
+        Component__c testComponent = ComponentPreviewController.getRecord(String.valueOf(testRecord.Id));
 		Test.stopTest();
 
 		//Then
@@ -30,7 +30,7 @@ public class CommunityComponentPreviewControllerTest {
 		
 		//When
 		Test.startTest();
-        String testName = CommunityComponentPreviewController.getClusterName(String.valueOf(clusterTest.Id));
+        String testName = ComponentPreviewController.getClusterName(String.valueOf(clusterTest.Id));
 		Test.stopTest();
 
 		//Then

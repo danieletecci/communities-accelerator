@@ -1,4 +1,4 @@
-<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId" controller="CommunityComponentPreviewController" access="global" >
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId" controller="ComponentPreviewController" access="global" >
     
     <!-- CONSTRUCTOR -->
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />

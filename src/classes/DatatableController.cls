@@ -1,4 +1,4 @@
-public class FE_DatatableController extends FE_ComponentManager {
+public class DatatableController extends ComponentManager {
 
     public Datatable__c datatable {get;set;}
     public List<DatatableElement__c> datatableElements {get;set;}
@@ -7,7 +7,7 @@ public class FE_DatatableController extends FE_ComponentManager {
     /* Aura Methods - BEGIN */
     @AuraEnabled
     public static String doInit(String externalId) {
-        FE_DatatableController controller = new FE_DatatableController();
+        DatatableController controller = new DatatableController();
         controller.componentExternalId = externalId;
         controller.componentFieldSet = new Set<String>();
         controller.customPermissionEdit='Datatable Edit Frame';
@@ -18,10 +18,10 @@ public class FE_DatatableController extends FE_ComponentManager {
 
     @AuraEnabled
     public static String getPage(String componentWrapper, Integer actualPage) {
-        System.debug('in FE_DatatableController.getPage() method. componentWrapper: ');
+        System.debug('in DatatableController.getPage() method. componentWrapper: ');
         System.debug(componentWrapper);
 
-        FE_DatatableController.DatatableWrapper wrapper = (FE_DatatableController.DatatableWrapper)JSON.deserialize(componentWrapper, FE_DatatableController.DatatableWrapper.class);
+        DatatableController.DatatableWrapper wrapper = (DatatableController.DatatableWrapper)JSON.deserialize(componentWrapper, DatatableController.DatatableWrapper.class);
         Datatable__c datatable = FE_DatatableUtils.getDatatableInfo(wrapper.componentExternalId);
 
         Integer offSet = wrapper.recordsPerPage * actualPage;
@@ -33,11 +33,11 @@ public class FE_DatatableController extends FE_ComponentManager {
 
     @AuraEnabled
     public static String handleDelete(String componentWrapper, List<Id> ids) {
-        System.debug('in FE_DatatableController.handleDelete() method.');
+        System.debug('in DatatableController.handleDelete() method.');
         Boolean result = true;
 
         if(result) {
-            FE_DatatableController.DatatableWrapper wrapper = (FE_DatatableController.DatatableWrapper)JSON.deserialize(componentWrapper, FE_DatatableController.DatatableWrapper.class);
+            DatatableController.DatatableWrapper wrapper = (DatatableController.DatatableWrapper)JSON.deserialize(componentWrapper, DatatableController.DatatableWrapper.class);
         }
         
         return '';
@@ -45,9 +45,9 @@ public class FE_DatatableController extends FE_ComponentManager {
 
     @AuraEnabled
     public static String handleSort(String componentWrapper, String fieldName, String direction) {
-        System.debug('in FE_DatatableController.handleSort() method.');
+        System.debug('in DatatableController.handleSort() method.');
 
-        FE_DatatableController.DatatableWrapper wrapper = (FE_DatatableController.DatatableWrapper)JSON.deserialize(componentWrapper, FE_DatatableController.DatatableWrapper.class);
+        DatatableController.DatatableWrapper wrapper = (DatatableController.DatatableWrapper)JSON.deserialize(componentWrapper, DatatableController.DatatableWrapper.class);
         wrapper.orderBy = fieldName + ' ' + direction;
 
         Datatable__c datatable = FE_DatatableUtils.getDatatableInfo(wrapper.componentExternalId);
@@ -59,9 +59,9 @@ public class FE_DatatableController extends FE_ComponentManager {
 
     @AuraEnabled
     public static String handleFilter(String componentWrapper) {
-        System.debug('in FE_DatatableController.handleFilter() method. ');
+        System.debug('in DatatableController.handleFilter() method. ');
 
-        FE_DatatableController.DatatableWrapper wrapper = (FE_DatatableController.DatatableWrapper)JSON.deserialize(componentWrapper, FE_DatatableController.DatatableWrapper.class);
+        DatatableController.DatatableWrapper wrapper = (DatatableController.DatatableWrapper)JSON.deserialize(componentWrapper, DatatableController.DatatableWrapper.class);
         
         System.debug('### wrapper');
         System.debug(wrapper);
@@ -87,7 +87,7 @@ public class FE_DatatableController extends FE_ComponentManager {
      }
 
     public override DataWrapper getData() {
-        System.debug('in FE_DatatableController.getData() - externalId: ' + this.componentExternalId);
+        System.debug('in DatatableController.getData() - externalId: ' + this.componentExternalId);
 
         Datatable__c datatable = FE_DatatableUtils.getDatatableInfo(this.componentExternalId);
 
@@ -128,8 +128,8 @@ public class FE_DatatableController extends FE_ComponentManager {
         public String orderBy {get;set;}
 
         public List<DatatableFilterWrapper> appliedFilters {get;set;}
-        public List<FE_DatatableController.DatatableElementWrapper> columns {get;set;}
-        public List<FE_DatatableController.DatatableActionWrapper> actions {get;set;}        
+        public List<DatatableController.DatatableElementWrapper> columns {get;set;}
+        public List<DatatableController.DatatableActionWrapper> actions {get;set;}        
         public List<Map<String, String>> tableData {get;set;}
 
         public DatatableWrapper() {
@@ -165,12 +165,12 @@ public class FE_DatatableController extends FE_ComponentManager {
     }
 
     public class DatatableFilterWrapper implements Comparable {
-        public FE_DatatableController.DatatableFilterFieldWrapper filter {get;set;}
+        public DatatableController.DatatableFilterFieldWrapper filter {get;set;}
         public String value1 {get;set;}
         public String value2 {get;set;}
 
         public Integer compareTo(Object compareTo) {
-            FE_DatatableController.DatatableFilterWrapper obj = (FE_DatatableController.DatatableFilterWrapper)compareTo;
+            DatatableController.DatatableFilterWrapper obj = (DatatableController.DatatableFilterWrapper)compareTo;
             
             if(String.isNotEmpty(this.filter.name) && String.isNotEmpty(obj.filter.name)) {
                 return this.filter.name.compareTo(obj.filter.name);

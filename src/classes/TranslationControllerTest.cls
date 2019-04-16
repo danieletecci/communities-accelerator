@@ -1,5 +1,5 @@
 @isTest
-private class TranslationComponentControllerTest {
+private class TranslationControllerTest {
 
 	@testSetup
     static void setupTest(){
@@ -21,7 +21,7 @@ private class TranslationComponentControllerTest {
 	static void getLanguagesTest() {
 		Content__c cont = [SELECT id from Content__c where Cluster__c!=null LIMIT 1];
 		Test.startTest();
-		TranslationComponentController.RecordsWrapper rw = TranslationComponentController.getLanguages('Content__c', 'Description__c, Name', cont.id);
+		TranslationController.RecordsWrapper rw = TranslationController.getLanguages('Content__c', 'Description__c, Name', cont.id);
 		Test.stopTest();
 		System.assertNotEquals(rw, null);
 	}
@@ -33,12 +33,12 @@ private class TranslationComponentControllerTest {
         apiNameTypeMap.put('Name','Text');
         MockUpFactory.createTranslation(cont, apiNameTypeMap, 'it');
 		String parentLookupName = 'Content__c';
-		TranslationComponentController.RecordsWrapper rw = TranslationComponentController.getLanguages(parentLookupName, 'Description__c, Name', cont.id);
+		TranslationController.RecordsWrapper rw = TranslationController.getLanguages(parentLookupName, 'Description__c, Name', cont.id);
 		String queryStr = 'SELECT id FROM ' + parentLookupName + ' LIMIT 1';
 		sObject sobj = Database.query(queryStr);
 
 		Test.startTest();
-		rw = TranslationComponentController.changeLanguage(parentLookupName, 'it', (String)sobj.get('Id'), JSON.serialize(rw));
+		rw = TranslationController.changeLanguage(parentLookupName, 'it', (String)sobj.get('Id'), JSON.serialize(rw));
 		Test.stopTest();
 		System.assertEquals(rw.defaultLanguage, 'it');
 		System.debug(rw);
@@ -49,22 +49,22 @@ private class TranslationComponentControllerTest {
 		Content__c cont = [SELECT id from Content__c where Cluster__c!=null LIMIT 1];		
 		String parentLookupName = 'Content__c';
 		String fieldSet = 'Description__c, Name,Extract__c';
-		TranslationComponentController.RecordsWrapper rw = TranslationComponentController.getLanguages(parentLookupName, fieldSet, cont.id);
+		TranslationController.RecordsWrapper rw = TranslationController.getLanguages(parentLookupName, fieldSet, cont.id);
 		String queryStr = 'SELECT id FROM ' + parentLookupName + ' LIMIT 1';
 		sObject sobj = Database.query(queryStr);
 
-		rw = TranslationComponentController.changeLanguage(parentLookupName, 'it', (String)sobj.get('Id'), JSON.serialize(rw));
+		rw = TranslationController.changeLanguage(parentLookupName, 'it', (String)sobj.get('Id'), JSON.serialize(rw));
 		for(Integer i = 0 ; i < rw.dataObject.size(); i++){
 			rw.dataObject[i].value = 'Tutto Bouno';
 		}
 
 		Test.startTest();
-		rw = TranslationComponentController.saveTranslation(parentLookupName, (String)sobj.get('Id'), JSON.serialize(rw));
+		rw = TranslationController.saveTranslation(parentLookupName, (String)sobj.get('Id'), JSON.serialize(rw));
 		List<Translation__c> translationList = [SELECT Id, FieldApiName__c FROM Translation__c];
 		System.assertEquals(translationList.size(), fieldSet.split(',').size());
 
 		rw.dataObject[2].value = 'Cambio';
-		rw = TranslationComponentController.saveTranslation(parentLookupName, (String)sobj.get('Id'), JSON.serialize(rw));
+		rw = TranslationController.saveTranslation(parentLookupName, (String)sobj.get('Id'), JSON.serialize(rw));
 		Test.stopTest();
 		System.assertEquals(rw.dataObject[2].value, 'Cambio');
 	}	

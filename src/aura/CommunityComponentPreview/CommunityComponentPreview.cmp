@@ -49,7 +49,7 @@
                             <c:ArticleHOC componentExternalId="{!v.record.ExternalId__c}"/>
                         </aura:if>
                         <aura:if isTrue="{!v.record.RecordType.DeveloperName == 'Event'}">
-                            <c:CG_Events componentExternalId="{!v.record.ExternalId__c}"/>
+                            <c:EventHOC componentExternalId="{!v.record.ExternalId__c}"/>
                         </aura:if>
                         <aura:if isTrue="{!v.record.RecordType.DeveloperName == 'FAQ'}">
                             <c:FE_BannerHOC componentExternalId="{!v.record.ExternalId__c}"/>

@@ -25,7 +25,7 @@
                 PORTRAIT AND HIGHLIGHTS
                 <aura:if isTrue="{!or(v.componentWrapper.component.NewsType__c == 'Portrait', v.componentWrapper.component.NewsType__c == 'Highlight')}" >
                     <aura:iteration items="{!v.componentWrapper.contentWrapper}" var="contentItem" >
-                        <c:CG_NewsItem contentWrapper="{!contentItem}" componentWrapper="{!v.componentWrapper}" parentComponentId="{!v.parentComponentId}" type="{!v.componentWrapper.component.NewsType__c}" linkDetail="{!v.componentWrapper.component.LinkDetail__r.URL__c}"/>
+                        <c:ArticleItem contentWrapper="{!contentItem}" componentWrapper="{!v.componentWrapper}" parentComponentId="{!v.parentComponentId}" type="{!v.componentWrapper.component.NewsType__c}" linkDetail="{!v.componentWrapper.component.LinkDetail__r.URL__c}"/>
                     </aura:iteration>
                 </aura:if>
         
@@ -44,7 +44,7 @@
                                 <lightning:layout multipleRows="true" >
                                     <aura:iteration items="{!v.componentWrapper.contentWrapper}" var="contentItem" >
                                         <lightning:layoutItem class="{!' slds-x-small-size_12-of-12 slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_' + (12 / if(v.componentWrapper.component.PageSize__c > v.componentWrapper.listAllContentIds.length, v.componentWrapper.listAllContentIds.length, v.componentWrapper.component.PageSize__c)) + '-of-12'}" padding="around-small" >
-                                            <c:CG_NewsItem contentWrapper="{!contentItem}" componentWrapper="{!v.componentWrapper}" parentComponentId="{!v.parentComponentId}" type="{!v.componentWrapper.component.NewsType__c}" linkDetail="{!v.componentWrapper.component.LinkDetail__r.URL__c}" height="{!v.aspectRatios.height1_5}"/>
+                                            <c:ArticleItem contentWrapper="{!contentItem}" componentWrapper="{!v.componentWrapper}" parentComponentId="{!v.parentComponentId}" type="{!v.componentWrapper.component.NewsType__c}" linkDetail="{!v.componentWrapper.component.LinkDetail__r.URL__c}" height="{!v.aspectRatios.height1_5}"/>
                                         </lightning:layoutItem> 
                                     </aura:iteration>
                                 </lightning:layout>

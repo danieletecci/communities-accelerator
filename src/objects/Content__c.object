@@ -58,41 +58,6 @@
     <enableSharing>false</enableSharing>
     <enableStreamingApi>false</enableStreamingApi>
     <fields>
-        <fullName>AssetType__c</fullName>
-        <externalId>false</externalId>
-        <label>Asset Type</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>Logo</fullName>
-                    <default>false</default>
-                    <label>Logo</label>
-                </value>
-                <value>
-                    <fullName>Social Media</fullName>
-                    <default>false</default>
-                    <label>Social Media</label>
-                </value>
-                <value>
-                    <fullName>Videos</fullName>
-                    <default>false</default>
-                    <label>Videos</label>
-                </value>
-                <value>
-                    <fullName>Occasion</fullName>
-                    <default>false</default>
-                    <label>Occasion</label>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
-    </fields>
-    <fields>
         <fullName>Audience__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -136,19 +101,6 @@
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>25</visibleLines>
-    </fields>
-    <fields>
-        <fullName>Brand__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>Brand</label>
-        <referenceTo>Brand__c</referenceTo>
-        <relationshipLabel>Contents</relationshipLabel>
-        <relationshipName>Contents</relationshipName>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>ButtonLabel__c</fullName>
@@ -558,9 +510,9 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
                     <label>Event</label>
                 </value>
                 <value>
-                    <fullName>News</fullName>
+                    <fullName>Article</fullName>
                     <default>false</default>
-                    <label>News</label>
+                    <label>Article</label>
                 </value>
                 <value>
                     <fullName>URL</fullName>
@@ -723,17 +675,6 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
         <label>All</label>
     </listViews>
     <listViews>
-        <fullName>Assets</fullName>
-        <columns>NAME</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>RECORDTYPE</field>
-            <operation>equals</operation>
-            <value>Content__c.Asset</value>
-        </filters>
-        <label>Assets</label>
-    </listViews>
-    <listViews>
         <fullName>Banners</fullName>
         <columns>NAME</columns>
         <filterScope>Mine</filterScope>
@@ -767,15 +708,15 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
         <label>FAQs</label>
     </listViews>
     <listViews>
-        <fullName>News</fullName>
+        <fullName>Article</fullName>
         <columns>NAME</columns>
         <filterScope>Mine</filterScope>
         <filters>
             <field>RECORDTYPE</field>
             <operation>equals</operation>
-            <value>Content__c.News</value>
+            <value>Content__c.Article</value>
         </filters>
-        <label>News</label>
+        <label>Article</label>
     </listViews>
     <listViews>
         <fullName>Products</fullName>
@@ -787,17 +728,6 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
             <value>Content__c.Product</value>
         </filters>
         <label>Products</label>
-    </listViews>
-    <listViews>
-        <fullName>Recipe</fullName>
-        <columns>NAME</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>RECORDTYPE</field>
-            <operation>equals</operation>
-            <value>Content__c.Recipe</value>
-        </filters>
-        <label>Recipes</label>
     </listViews>
     <nameField>
         <label>Name</label>
@@ -811,25 +741,6 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
         <active>true</active>
         <description>Configure a new Advance Content.</description>
         <label>Advance Content</label>
-        <picklistValues>
-            <picklist>AssetType__c</picklist>
-            <values>
-                <fullName>Logo</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Occasion</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Social Media</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Videos</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
 		<picklistValues>
             <picklist>BannerFrameType__c</picklist>
             <values>
@@ -906,138 +817,7 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
                 <default>false</default>
             </values>
             <values>
-                <fullName>News</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>URL</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>StatusApprovalProcess__c</picklist>
-            <values>
-                <fullName>Approved</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pending</fullName>
-                <default>true</default>
-            </values>
-            <values>
-                <fullName>In Approval</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Rejected</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Status__c</picklist>
-            <values>
-                <fullName>Archived</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Draft</fullName>
-                <default>true</default>
-            </values>
-            <values>
-                <fullName>Published</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Scheduled</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-    </recordTypes>
-    <recordTypes>
-        <fullName>Asset</fullName>
-        <active>true</active>
-        <label>Asset</label>
-        <picklistValues>
-            <picklist>AssetType__c</picklist>
-            <values>
-                <fullName>Logo</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Occasion</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Social Media</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Videos</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Layout__c</picklist>
-            <values>
-                <fullName>Title Bottom</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Title Middle</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Title Top</fullName>
-                <default>true</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>OverlayQuadrant__c</picklist>
-            <values>
-                <fullName>Bottom-Center</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Bottom-Left</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Bottom-Right</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Middle-Center</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Middle-Left</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Middle-Right</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Top-Center</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Top-Left</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Top-Right</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>RedirectType__c</picklist>
-            <values>
-                <fullName>Event</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>News</fullName>
+                <fullName>Article</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1089,25 +869,6 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
         <active>true</active>
         <description>Configure a new Banner content. This content will scroll or appear-fade inside a Banner. The data this type of content allows are Media elements</description>
         <label>Banner</label>
-        <picklistValues>
-            <picklist>AssetType__c</picklist>
-            <values>
-                <fullName>Logo</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Occasion</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Social Media</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Videos</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
 		<picklistValues>
             <picklist>BannerFrameType__c</picklist>
             <values>
@@ -1184,154 +945,7 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
                 <default>false</default>
             </values>
             <values>
-                <fullName>News</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>URL</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>StatusApprovalProcess__c</picklist>
-            <values>
-                <fullName>Approved</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pending</fullName>
-                <default>true</default>
-            </values>
-            <values>
-                <fullName>In Approval</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Rejected</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Status__c</picklist>
-            <values>
-                <fullName>Archived</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Draft</fullName>
-                <default>true</default>
-            </values>
-            <values>
-                <fullName>Published</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Scheduled</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-    </recordTypes>
-    <recordTypes>
-        <fullName>BrandDetail</fullName>
-        <active>true</active>
-        <description>Configure a new Brand Detail content. This content will display a a brand detail including all it related brands. The data this type of content allows are Media elements</description>
-        <label>Brand Detail</label>
-        <picklistValues>
-            <picklist>AssetType__c</picklist>
-            <values>
-                <fullName>Logo</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Occasion</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Social Media</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Videos</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-		<picklistValues>
-            <picklist>BannerFrameType__c</picklist>
-            <values>
-                <fullName>Hero</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Page</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Square</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Layout__c</picklist>
-            <values>
-                <fullName>Title Bottom</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Title Middle</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Title Top</fullName>
-                <default>true</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>OverlayQuadrant__c</picklist>
-            <values>
-                <fullName>Bottom-Center</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Bottom-Left</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Bottom-Right</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Middle-Center</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Middle-Left</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Middle-Right</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Top-Center</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Top-Left</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Top-Right</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>RedirectType__c</picklist>
-            <values>
-                <fullName>Event</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>News</fullName>
+                <fullName>Article</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1383,25 +997,6 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
         <active>true</active>
         <description>Configure a new Event content. This content will be shown inside an Event. The data this type of content allows are Media elements and Event metadata such as event date, event capacity, etc.</description>
         <label>Event</label>
-        <picklistValues>
-            <picklist>AssetType__c</picklist>
-            <values>
-                <fullName>Logo</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Occasion</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Social Media</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Videos</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
 		<picklistValues>
             <picklist>BannerFrameType__c</picklist>
             <values>
@@ -1478,7 +1073,7 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
                 <default>false</default>
             </values>
             <values>
-                <fullName>News</fullName>
+                <fullName>Article</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1530,25 +1125,6 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
         <active>true</active>
         <description>Configure a new FAQ content. This content will be shown inside a FAQ list. The data this type of content allows are Texts for questions and answers</description>
         <label>FAQ</label>
-        <picklistValues>
-            <picklist>AssetType__c</picklist>
-            <values>
-                <fullName>Logo</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Occasion</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Social Media</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Videos</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
 		 <picklistValues>
             <picklist>BannerFrameType__c</picklist>
             <values>
@@ -1625,7 +1201,7 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
                 <default>false</default>
             </values>
             <values>
-                <fullName>News</fullName>
+                <fullName>Article</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1673,29 +1249,10 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>News</fullName>
+        <fullName>Article</fullName>
         <active>true</active>
-        <description>Configure a new News content. This content will be shown inside a News. The data this type of content allows are Media elements and News metadata such as title, news description, etc.</description>
-        <label>News</label>
-        <picklistValues>
-            <picklist>AssetType__c</picklist>
-            <values>
-                <fullName>Logo</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Occasion</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Social Media</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Videos</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
+        <description>Configure a new Article content. This content will be shown inside an Article. The data this type of content allows are Media elements and Article metadata such as title, article description, etc.</description>
+        <label>Article</label>
 		<picklistValues>
             <picklist>BannerFrameType__c</picklist>
             <values>
@@ -1772,7 +1329,7 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
                 <default>false</default>
             </values>
             <values>
-                <fullName>News</fullName>
+                <fullName>Article</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1824,25 +1381,6 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
         <active>true</active>
         <label>Product</label>
         <picklistValues>
-            <picklist>AssetType__c</picklist>
-            <values>
-                <fullName>Logo</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Occasion</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Social Media</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Videos</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Layout__c</picklist>
             <values>
                 <fullName>Title Bottom</fullName>
@@ -1903,154 +1441,7 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
                 <default>false</default>
             </values>
             <values>
-                <fullName>News</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>URL</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>StatusApprovalProcess__c</picklist>
-            <values>
-                <fullName>Approved</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pending</fullName>
-                <default>true</default>
-            </values>
-            <values>
-                <fullName>In Approval</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Rejected</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Status__c</picklist>
-            <values>
-                <fullName>Archived</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Draft</fullName>
-                <default>true</default>
-            </values>
-            <values>
-                <fullName>Published</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Scheduled</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-    </recordTypes>
-    <recordTypes>
-        <fullName>Recipe</fullName>
-        <active>true</active>
-        <description>Configure a new Recipe content. This content will be shown inside a Recipe</description>
-        <label>Recipe</label>
-        <picklistValues>
-            <picklist>AssetType__c</picklist>
-            <values>
-                <fullName>Logo</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Occasion</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Social Media</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Videos</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-		<picklistValues>
-            <picklist>BannerFrameType__c</picklist>
-            <values>
-                <fullName>Hero</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Page</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Square</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Layout__c</picklist>
-            <values>
-                <fullName>Title Bottom</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Title Middle</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Title Top</fullName>
-                <default>true</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>OverlayQuadrant__c</picklist>
-            <values>
-                <fullName>Bottom-Center</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Bottom-Left</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Bottom-Right</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Middle-Center</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Middle-Left</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Middle-Right</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Top-Center</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Top-Left</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Top-Right</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>RedirectType__c</picklist>
-            <values>
-                <fullName>Event</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>News</fullName>
+                <fullName>Article</fullName>
                 <default>false</default>
             </values>
             <values>

@@ -25,7 +25,7 @@
     			<br />
 
     			<ui:outputText value="{!$Label.c.FAQContentDetailBody}"/>
-    			<c:richTextContainer aura:id="richTextContainer" contentBody="{!v.contentData.Body__c}" />
+    			<c:RichTextContainer aura:id="RichTextContainer" contentBody="{!v.contentData.Body__c}" />
             </div>
         </div>
     </div>

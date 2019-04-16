@@ -56,7 +56,7 @@
                     <lightning:textarea name="contentExtract" value="{!v.contentData.Extract__c}" label="{!$Label.c.ArticleContentDetailExtract}" maxlength="1500" />
                 </div>
                 <div class="slds-col slds-p-bottom_small">
-                    <c:richTextContainer aura:id="richTextContainer" label="{!$Label.c.ArticleContentDetailBody}" contentBody="{!v.contentData.Body__c}" />
+                    <c:RichTextContainer aura:id="RichTextContainer" label="{!$Label.c.ArticleContentDetailBody}" contentBody="{!v.contentData.Body__c}" />
                 </div>
                 <div class="slds-col slds-p-bottom_small">
                     <ui:outputText value="{!$Label.c.ArticleContentDetailImage}"/>

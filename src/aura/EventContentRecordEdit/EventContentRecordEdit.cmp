@@ -42,7 +42,7 @@
                         <br/>
                         <!--Body -->
                         <ui:outputText value="{!$Label.c.EventContentDetailBody}"/>
-                        <c:richTextContainer aura:id="richTextContainer" contentBody="{!v.contentData.Body__c}" />
+                        <c:RichTextContainer aura:id="RichTextContainer" contentBody="{!v.contentData.Body__c}" />
                         
                         <!--Start Date-->
                         <br/>

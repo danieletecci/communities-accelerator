@@ -24,7 +24,7 @@
                     helper.setLayoutOptions(component);
                     console.log("hola");
                     console.log(component.get("v.contentData.BannerFrameType__c"));
-				//	component.find("richTextContainer").setContentBody();
+				//	component.find("RichTextContainer").setContentBody();
 				}else{
 					helper.displayErrorMessage($A.get("$Label.c.ArticleContentDetailLoadError"));
 				}

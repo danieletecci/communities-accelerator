@@ -21,7 +21,7 @@
                         component.set('v.mediaElementId', data.content.MediaElementAssignments__r[0].MediaElement__r.Id);
 					}
 					helper.setLayoutOptions(component);
-					component.find("richTextContainer").setContentBody();
+					component.find("RichTextContainer").setContentBody();
 				}else{
 					helper.displayErrorMessage($A.get("$Label.c.ArticleContentDetailLoadError"));
 				}

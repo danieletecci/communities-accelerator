@@ -89,46 +89,6 @@
         <value>Title</value>
     </labels>
     <labels>
-        <fullName>AssetDetailsFeaturing</fullName>
-        <categories>CG_AssetDetail</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Asset Details Featuring</shortDescription>
-        <value>Featuring</value>
-    </labels>
-    <labels>
-        <fullName>AssetDetailsIngredients</fullName>
-        <categories>CG_AssetDetail</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Asset Details Ingredients</shortDescription>
-        <value>INGREDIENTS</value>
-    </labels>
-    <labels>
-        <fullName>AssetDetailsInstructions</fullName>
-        <categories>CG_AssetDetail</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Asset Details Instructions</shortDescription>
-        <value>INSTRUCTIONS</value>
-    </labels>
-    <labels>
-        <fullName>AssetDetailsRelatedTags</fullName>
-        <categories>CG_AssetDetail</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Asset Details Related Tags</shortDescription>
-        <value>Related Tags</value>
-    </labels>
-    <labels>
-        <fullName>AssetDetailsTitle</fullName>
-        <categories>CG Asset Detail</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>AssetDetailsTitle</shortDescription>
-        <value>Asset Details</value>
-    </labels>
-    <labels>
         <fullName>AudienceValidationOnStatusActivate</fullName>
         <categories>AudienceTriggers.cls</categories>
         <language>en_US</language>
@@ -770,7 +730,7 @@
     </labels>
     <labels>
         <fullName>ExceptionMessageClusterNotFound</fullName>
-        <categories>CMS.cls</categories>
+        <categories>CMSUserSettingsUtils.cls</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Exception Message Cluster Not Found</shortDescription>
@@ -778,7 +738,7 @@
     </labels>
     <labels>
         <fullName>ExceptionMessageUserNotFound</fullName>
-        <categories>CMS.cls</categories>
+        <categories>CMSUserSettingsUtils.cls</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Exception Message User Not Found</shortDescription>

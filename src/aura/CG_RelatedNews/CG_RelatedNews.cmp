@@ -7,7 +7,7 @@
 
 	<aura:if isTrue="{!not(v.componentWrapper == null)}" >
 		<aura:if isTrue="{!v.componentWrapper.listAllContentIds.length > 0}">
-				<c:CG_News componentWrapper="{!v.componentWrapper}"/>
+				<c:ArticleHOC componentWrapper="{!v.componentWrapper}"/>
         </aura:if>
     </aura:if>
 

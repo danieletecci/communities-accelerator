@@ -77,7 +77,7 @@ public class ComponentsDynamicPicklistTest {
     @isTest 
     static void setValuesInpicklistEventsDetail(){
         //Given
-        List<Component__c> componentList = MockupFactory.createComponent('Events Detail',2);
+        List<Component__c> componentList = MockupFactory.createComponent('Event Detail',2);
                             
         //When
         Test.startTest();
@@ -172,7 +172,7 @@ public class ComponentsDynamicPicklistTest {
     @isTest 
     static void setValuesInpicklistArticle(){
         //Given
-        List<Component__c> componentList = MockupFactory.createComponent('News',2);        
+        List<Component__c> componentList = MockupFactory.createComponent('Article',2);        
                     
         //When
         Test.startTest();
@@ -190,7 +190,7 @@ public class ComponentsDynamicPicklistTest {
     @isTest 
     static void setValuesInpicklistArticleDetail(){
         //Given
-        List<Component__c> componentList = MockupFactory.createComponent('News Detail',2);
+        List<Component__c> componentList = MockupFactory.createComponent('Article Detail',2);
         
                     
         //When
@@ -210,7 +210,7 @@ public class ComponentsDynamicPicklistTest {
     @isTest 
     static void setValuesInpicklistRelatedArticle(){
         //Given
-        List<Component__c> componentList = MockupFactory.createComponent('Related News',2);
+        List<Component__c> componentList = MockupFactory.createComponent('Articles - Related',2);
                             
         //When
         Test.startTest();

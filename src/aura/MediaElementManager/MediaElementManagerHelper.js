@@ -1,53 +1,62 @@
 ({
-	getRecords : function(component, event, helper) {
-		var junctionObjectHardcode = "MediaElementAssignment__c";
-
-		//component.set("v.isLoading", true);
+	initSearch : function(component, event, helper){
+        component.set("v.searchValue", '');
+        component.find("searchField").getElement().value = '';
+        component.set("v.offset", '0');
 		component.set("v.mediaElementList", '');
-		component.set("v.mediaElementPlace", '');
-		component.set("v.searchValue",'');
-
-		var action = component.get("c.getRecord");
-
-		action.setParams({
-			recordId: component.get("v.recordId"),
-			places: component.get("v.places"),
-			parentLookup: component.get("v.parentLookup"),
-			junctionObject: junctionObjectHardcode
-		});
-
-	    action.setCallback(this, function(f) {
-            if(f.getState() === "SUCCESS") {
-            	component.set("v.recordWrapperList", action.getReturnValue());
-            	//component.set("v.isLoading", false);
-	        }
-	    });
-
-	    $A.enqueueAction(action);
-	},
-
-	getMedElemsButton: function(component, event, helper) {
+		document.body.style.overflowY = "hidden";
+        var cmpTarget = component.find('Modalbox');
+        var cmpBack = component.find('Modalbackdrop');
+        $A.util.addClass(cmpTarget, 'slds-fade-in-open');
+        $A.util.addClass(cmpBack, 'slds-backdrop--open');
+        helper.searchByText(component, event, helper);
+    },
+	searchByText : function(component, event, helper) {
+		component.set('v.scrollCalled', true);
 		component.set("v.isEndPage", false);
-		component.set("v.mediaElementPlace", event.getSource().get("v.value"));// get place
 		component.set("v.offset", 0);
-		component.set("v.searchValue",'');
+		component.set("v.searchValue", component.find("searchField").getElement().value);
 		component.set("v.mediaElementList", '');
-		component.set("v.scrollCalled", true);
 		helper.getMedElems(component);
 	},
+	selectMediaElement : function(component, event, helper) {
+        var mElementUrl;
+		var mElementId;
+		var mElementName;
+		var compEvents;
+		
+		var childElements = Array.from(event.currentTarget.children);
 
+        childElements.forEach(element => {
+            if(element.tagName === "IMG" && element.classList.contains("img_mediaElementReview")){
+				mElementUrl = element.getAttribute("src"), 
+				mElementId = element.getAttribute("id");
+				mElementName = element.dataset.name;
+				compEvents = component.getEvent("URLEvent");
+				compEvents.setParams({ 
+					"URL" 	: mElementUrl,
+					"ID" 	:  mElementId,
+					"NAME" 	: mElementName
+				});
+				compEvents.fire();
+				helper.closeModal(component, event, helper);
+            }
+        });
+
+    },
 	getMedElems: function( component ) {
 		//component.set("v.isLoading", true);
-		var searchValue = component.get("v.searchValue");
+		var searchtext = component.get("v.searchValue");
 		var elementPerPage = component.get("v.elementPerPage");
 		var action = component.get("c.getData");
 
 		action.setParams({
 			stringOffset: component.get("v.offset").toString(),
-			searchText: searchValue,
+			searchText: searchtext,
 			stringElementPerPage: elementPerPage.toString(),
-			findContent: 'false'
+			findContent: 'true'
 		});
+
 		action.setCallback(this, function(f) {
             if(f.getState() === "SUCCESS") {
 				if(action.getReturnValue() == ''){
@@ -75,62 +84,26 @@
 
 	    $A.enqueueAction(action);
 	},
-
-	choseMediaElement : function(component, event, helper) {
-
-		var mElementId = event.target.getAttribute('id');
-		var junctionObjectHardcode = "MediaElementAssignment__c";
-		var action = component.get("c.assignMediaElementToId");
-
-		action.setParams({
-			recordId: component.get("v.recordId"),
-			place: component.get("v.mediaElementPlace"),
-			parentLookup: component.get("v.parentLookup"),
-			junctionObject: junctionObjectHardcode,
-			mediaElementId: event.target.getAttribute('id')
-		});
-
-	    action.setCallback(this, function(f) {
-            if(f.getState() === "SUCCESS") {
-            	//component.set("v.isLoading", false);
-            	component.set("v.mediaElementList", '');
-            	helper.getRecords(component, event, helper);
-	        }
-	    });
-
-	    $A.enqueueAction(action);
+	closeModal : function(component, event, helper){	
+		document.body.style.overflowY = "auto";	
+        var cmpTarget = component.find('Modalbox');
+        var cmpBack = component.find('Modalbackdrop');
+        $A.util.removeClass(cmpBack,'slds-backdrop--open');
+        $A.util.removeClass(cmpTarget, 'slds-fade-in-open');
 	},
-
-	deleteMediaElement : function(component, event, helper) {
-		var answer = confirm($A.get("$Label.c.General_AreYouSure"));
-		if (answer == true){
-			// var jObjectId = event.target.getAttribute('id');
-			var jObjectId = event.getSource().get("v.value");
-			var junctionObjectHardcode = "MediaElementAssignment__c";
-			var action = component.get("c.deleteJunctionObject");
-
-			action.setParams({
-				junctionObjectId: jObjectId,
-				junctionObjectApiName: junctionObjectHardcode
-			});
-
-		    action.setCallback(this, function(f) {
-	            if(f.getState() === "SUCCESS") {
-	            	//component.set("v.isLoading", false);
-	            	helper.getRecords(component, event, helper);
-		        }
-		    });
-
-		    $A.enqueueAction(action);
-		}
-	},
-
-	searchByText : function(component, event, helper) {
-		component.set('v.scrollCalled', true);
-		component.set("v.isEndPage", false);
-		component.set("v.offset", 0);
-		component.set("v.searchValue", component.find("searchField").getElement().value);
-		component.set("v.mediaElementList", '');
-		helper.getMedElems(component);
-	}
+    doSearch: function(component, event, helper) {
+        if (event.which === 13 || event.keyCode === 13) {
+            helper.searchByText(component, event, helper);
+        }
+    },
+	getMoreRecords: function(component, event, helper) {
+        var elem = event.currentTarget;
+        if (component.isValid() && !component.get('v.scrollCalled')) {
+            if (elem.clientHeight + elem.scrollTop + 1 >= elem.scrollHeight) {
+                //Call your helper method to show more items
+                helper.getMedElems(component);
+                component.set('v.scrollCalled', true);
+            }
+        }
+    }
 })

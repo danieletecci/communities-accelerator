@@ -61,7 +61,7 @@
                         <!--Feature Image-->
                         <ui:outputText value="{!$Label.c.EventContentDetailFeatureImage}"/>
                         <br/>
-                        <c:MediaElementSearcher />
+                        <c:MediaElementManager />
                         <aura:if isTrue="{!v.imageUrl}">
                             <img style="height:200px" src="{!v.imageUrl}" />
                         </aura:if>

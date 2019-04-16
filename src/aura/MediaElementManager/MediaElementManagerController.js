@@ -1,18 +1,20 @@
 ({
-	doInit : function(component, event, helper) {
-		helper.getRecords(component, event, helper);
-	},
-	getMedElems : function(component, event, helper){
-		window.scrollTo(0,window.innerHeight+document.body.scrollHeight);
-		helper.getMedElemsButton(component, event, helper);
-	},
-	choseMediaElement : function(component, event, helper){ 
-		helper.choseMediaElement(component, event, helper);
-	},
-	deleteMediaElement : function(component, event, helper){ 
-		helper.deleteMediaElement(component, event, helper);
-	},
+	initSearch : function(component, event, helper){
+        helper.initSearch(component, event, helper);
+    },
+    closeNewModal : function(component, event, helper){
+        helper.closeModal(component,event,helper);
+    },
 	searchByText : function(component, event, helper){ 
 		helper.searchByText(component, event, helper);
-	}
+	},
+    selectMediaElement : function(component, event, helper) {
+        helper.selectMediaElement(component, event, helper);
+    },
+    doSearch: function(component, event, helper) {
+        helper.doSearch(component, event, helper);
+    },
+    getMoreRecords: function(component, event, helper) {
+        helper.getMoreRecords(component, event, helper);
+    }
 })

@@ -78,7 +78,7 @@
                                 </p>
                             </div>
                             <aura:set attribute="else">
-                                <c:MediaElementSearcher />
+                                <c:MediaElementManager />
                             </aura:set>
                         </aura:if>
                     </div>

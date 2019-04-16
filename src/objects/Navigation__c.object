@@ -54,19 +54,6 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
-        <fullName>AudienceUser__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>Audience user</label>
-        <referenceTo>AudienceUser__c</referenceTo>
-        <relationshipLabel>Navigations</relationshipLabel>
-        <relationshipName>Navigations</relationshipName>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>
-    <fields>
         <fullName>Audience__c</fullName>
         <externalId>false</externalId>
         <label>Audience</label>

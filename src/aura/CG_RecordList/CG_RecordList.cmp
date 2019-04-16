@@ -1,5 +1,5 @@
 <aura:component access="global">
-	<aura:handler event="c:SetRecordList" action="{!c.handleRecordList}"/>
+	<aura:handler event="c:RecordListSetEvent" action="{!c.handleRecordList}"/>
 
 	<aura:attribute name="title" type="String" />
 	<aura:attribute name="iconName" type="String" />

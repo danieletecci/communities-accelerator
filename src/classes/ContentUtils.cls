@@ -91,6 +91,8 @@ public without sharing virtual class ContentUtils {
 
             query += contentTypeToSearch == 'Banner' ? ' AND BannerFrameType__c = \'' + component.BannerFrameType__c + '\' ' : '';
         }
+        
+        query += ' AND Status__c = \'Published\' AND IsTemplate__c = false ';
 
         //ORDER
         if((component.OrderBy__c != null && component.OrderBy__c != 'Custom Sorting' && component.OrderBy__c != 'Manual Order') || (component.OrderBy__c != null && component.OrderBy__c == 'Custom Sorting' && component.OrderByAdvance__c != null) ){

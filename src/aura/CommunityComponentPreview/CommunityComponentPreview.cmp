@@ -46,7 +46,7 @@
                             <c:FE_BannerHOC componentExternalId="{!v.record.ExternalId__c}"/>
                         </aura:if>
                         <aura:if isTrue="{!v.record.RecordType.DeveloperName == 'News'}">
-                            <c:CG_News componentExternalId="{!v.record.ExternalId__c}"/>
+                            <c:ArticleHOC componentExternalId="{!v.record.ExternalId__c}"/>
                         </aura:if>
                         <aura:if isTrue="{!v.record.RecordType.DeveloperName == 'Event'}">
                             <c:CG_Events componentExternalId="{!v.record.ExternalId__c}"/>

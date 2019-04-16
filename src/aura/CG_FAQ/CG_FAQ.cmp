@@ -15,7 +15,7 @@
 				</lightning:accordionSection> -->
 				<div class="slds-grid">
 					<div class="slds-col slds-size_12-of-12">
-						<c:genericAccordion items="{!wrapper.content}"/>
+						<c:faqItem items="{!wrapper.content}"/>
 					</div>
 				</div>
 	    	</aura:iteration>

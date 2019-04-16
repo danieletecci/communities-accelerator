@@ -2,39 +2,48 @@
 <FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
     <flexiPageRegions>
         <componentInstances>
-            <componentName>ArticleContentRecordEdit</componentName>
+            <componentInstanceProperties>
+                <name>collapsed</name>
+                <value>false</value>
+            </componentInstanceProperties>
+            <componentName>force:highlightsPanel</componentName>
         </componentInstances>
-        <name>Facet-2af9b6f3-cb51-4cf1-bc41-8b1f1103d6cd</name>
-        <type>Facet</type>
+        <mode>Replace</mode>
+        <name>header</name>
+        <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <name>Facet-9bc7d270-ed8e-4e1b-8e6d-6455113bfcd1</name>
+        <componentInstances>
+            <componentName>force:detailPanel</componentName>
+        </componentInstances>
+        <mode>Replace</mode>
+        <name>detailTabContent</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
         <componentInstances>
             <componentInstanceProperties>
                 <name>fieldSet</name>
-                <value>Title__c,Extract__c,Body__c</value>
+                <value>Name</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>parentLookupName</name>
-                <value>Content__c</value>
+                <value>SearchSetting__c</value>
             </componentInstanceProperties>
             <componentName>Translation</componentName>
         </componentInstances>
-        <name>Facet-0xqdxwtygmd</name>
+        <name>Facet-8ec7e179-ec8a-472c-ae58-d838d807943c</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
         <componentInstances>
             <componentInstanceProperties>
                 <name>active</name>
-                <value>true</value>
+                <value>false</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>body</name>
-                <value>Facet-2af9b6f3-cb51-4cf1-bc41-8b1f1103d6cd</value>
+                <value>detailTabContent</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>title</name>
@@ -45,50 +54,40 @@
         <componentInstances>
             <componentInstanceProperties>
                 <name>body</name>
-                <value>Facet-9bc7d270-ed8e-4e1b-8e6d-6455113bfcd1</value>
+                <value>Facet-8ec7e179-ec8a-472c-ae58-d838d807943c</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>title</name>
-                <value>Preview</value>
+                <value>Translations</value>
             </componentInstanceProperties>
             <componentName>flexipage:tab</componentName>
         </componentInstances>
-        <componentInstances>
-            <componentInstanceProperties>
-                <name>body</name>
-                <value>Facet-0xqdxwtygmd</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>title</name>
-                <value>Translation</value>
-            </componentInstanceProperties>
-            <componentName>flexipage:tab</componentName>
-        </componentInstances>
-        <name>Facet-bd726761-90d0-4fd1-bfd7-2bc1807526ce</name>
+        <mode>Replace</mode>
+        <name>maintabs</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
         <componentInstances>
             <componentInstanceProperties>
-                <name>hasDetailComponent</name>
-                <value>true</value>
-            </componentInstanceProperties>
-            <componentName>ContentDetailHeader</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentInstanceProperties>
                 <name>tabs</name>
-                <value>Facet-bd726761-90d0-4fd1-bfd7-2bc1807526ce</value>
+                <value>maintabs</value>
             </componentInstanceProperties>
             <componentName>flexipage:tabset</componentName>
         </componentInstances>
+        <mode>Replace</mode>
         <name>main</name>
         <type>Region</type>
     </flexiPageRegions>
-    <masterLabel>Content News Record Page</masterLabel>
-    <sobjectType>Content__c</sobjectType>
+    <flexiPageRegions>
+        <mode>Replace</mode>
+        <name>sidebar</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <masterLabel>Search Setting Record Page</masterLabel>
+    <parentFlexiPage>flexipage__default_rec_L</parentFlexiPage>
+    <sobjectType>SearchSetting__c</sobjectType>
     <template>
-        <name>flexipage:recordHomeSingleColNoHeaderTemplateDesktop</name>
+        <name>flexipage:recordHomeTemplateDesktop</name>
     </template>
     <type>RecordPage</type>
 </FlexiPage>

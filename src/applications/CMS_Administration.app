@@ -54,7 +54,7 @@
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
-        <content>Content_AdvanceContent_Record_Page</content>
+        <content>Content_Advance_Content_Record_Page</content>
         <formFactor>Large</formFactor>
         <pageOrSobjectType>Content__c</pageOrSobjectType>
         <recordType>Content__c.AdvanceContent</recordType>
@@ -105,10 +105,10 @@
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
-        <content>Component_Article_page</content>
+        <content>Component_Article_List_page</content>
         <formFactor>Large</formFactor>
         <pageOrSobjectType>Component__c</pageOrSobjectType>
-        <recordType>Component__c.Article</recordType>
+        <recordType>Component__c.ArticleList</recordType>
         <type>Flexipage</type>
         <profile>Admin</profile>
     </profileActionOverrides>
@@ -157,7 +157,7 @@
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
-        <content>Component_Event_page</content>
+        <content>Component_Event_List_page</content>
         <formFactor>Large</formFactor>
         <pageOrSobjectType>Component__c</pageOrSobjectType>
         <recordType>Component__c.Event</recordType>
@@ -226,7 +226,7 @@
     <tabs>Translation__c</tabs>
     <tabs>Navigation__c</tabs>
     <tabs>Menu__c</tabs>
-    <tabs>SearchDetail__c</tabs>
+    <tabs>SearchSetting__c</tabs>
     <tabs>Datatable__c</tabs>
     <tabs>Audience__c</tabs>
     <tabs>CMSUserSettings__c</tabs>

@@ -1,0 +1,3 @@
+<design:component label="CG Cluster Selector">
+	<design:attribute name="componentExternalId" label="Component External Id" datasource="apex://ClusterSelectorDynamicPicklist"/>
+</design:component>

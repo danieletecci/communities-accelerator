@@ -1,5 +1,6 @@
 @isTest
 public class SearchDynamicPicklistTest {
+
 	@isTest
     static void getValues(){
         SearchDynamicPicklist scp = new SearchDynamicPicklist();

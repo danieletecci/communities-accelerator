@@ -1,5 +1,5 @@
 @isTest
-public class LookupInputControllerTest {
+public class LookupControllerTest {
 
     @testSetup
     static void setupTest(){

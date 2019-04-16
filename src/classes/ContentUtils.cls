@@ -263,7 +263,7 @@ public without sharing virtual class ContentUtils {
 
                 evalCriteria = evalCriteria.deleteWhitespace();
                 evalCriteria = evalCriteria.replaceAll('AND', ' AND ').replaceAll('OR', ' OR ');
-                if (String.isNotBlank(contentId) && BooleanExpression.eval(evalCriteria)){
+                if (String.isNotBlank(contentId) && BooleanExpressionUtils.eval(evalCriteria)){
                     if(!contentIdList.contains(contentId)) contentIdList.add(contentId);
                 }
             }

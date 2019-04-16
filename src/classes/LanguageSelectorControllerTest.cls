@@ -1,5 +1,5 @@
 @isTest(seeAllData = false)
-public with sharing class CG_LanguageSelectorControllerTest {
+public with sharing class LanguageSelectorControllerTest {
 
 	@testSetup
 	static void generateCustomSettings(){
@@ -22,7 +22,7 @@ public with sharing class CG_LanguageSelectorControllerTest {
 		//When
 		Test.startTest();
 
-		CG_LanguageSelectorController.MenuWrapper wrap = CG_LanguageSelectorController.getLanguageMenu(cluster.Id);
+		LanguageSelectorController.MenuWrapper wrap = LanguageSelectorController.getLanguageMenu(cluster.Id);
 		
 		Test.stopTest();
 		//Then
@@ -38,7 +38,7 @@ public with sharing class CG_LanguageSelectorControllerTest {
 		//When
 		Test.startTest();
 
-		CG_LanguageSelectorController.setLanguage('es');
+		LanguageSelectorController.setLanguage('es');
 		
 		Test.stopTest();
 		//Then

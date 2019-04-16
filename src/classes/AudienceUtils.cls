@@ -179,7 +179,7 @@ public with sharing class AudienceUtils {
                 for(Integer audcNumber: criterionNumberApplyMap.keySet()){
                     aud.AudienceCriteria__c = aud.AudienceCriteria__c.replace(String.ValueOf(audcNumber), String.valueOf(criterionNumberApplyMap.get(audcNumber)).toUpperCase());
                 }
-                applyAudience = BooleanExpression.eval(aud.AudienceCriteria__c);
+                applyAudience = BooleanExpressionUtils.eval(aud.AudienceCriteria__c);
             }
             
             //If the Audience apply add it to the list

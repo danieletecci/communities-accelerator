@@ -109,8 +109,8 @@ public with sharing class ComponentTriggers extends TriggersHandler {
         if(!recordList.isEmpty() && excecuteTrigger){
             List<SObject> listSO = new List<SObject>();
 
-            //listSO = ObjectSharingUtil.generateSharingForRecordsOnCluster(recordList, 'Cluster__c');
-            ObjectSharingUtil.SharingWrapper sharingWrapper = ObjectSharingUtil.generateSharingForRecordsOnCluster(recordList, 'Cluster__c', 'Component__Share', 'Clustering__c', false);           
+            //listSO = SharingUtils.generateSharingForRecordsOnCluster(recordList, 'Cluster__c');
+            SharingUtils.SharingWrapper sharingWrapper = SharingUtils.generateSharingForRecordsOnCluster(recordList, 'Cluster__c', 'Component__Share', 'Clustering__c', false);           
             if(sharingWrapper.objectIdToMessageErrosMap.size()>0){
                 objectIdToMessageErrosMap = sharingWrapper.objectIdToMessageErrosMap;
                 excecuteTrigger = false;
@@ -163,7 +163,7 @@ public with sharing class ComponentTriggers extends TriggersHandler {
         if(recNew.TagCriteria__c != null){
             String value = recNew.TagCriteria__c.deleteWhitespace().toUpperCase().replaceAll('AND', ' AND ').replaceAll('OR', ' OR ');
             value = value.replaceAll('\\d', 'TRUE');
-            if(value.replaceAll('TRUE|\\(|\\)|AND|OR| ', '').length() > 0 || !BooleanExpression.eval(value)){
+            if(value.replaceAll('TRUE|\\(|\\)|AND|OR| ', '').length() > 0 || !BooleanExpressionUtils.eval(value)){
                 recNew.TagCriteria__c.AddError(Label.General_InvalidFormulaFormat);
             }
         }

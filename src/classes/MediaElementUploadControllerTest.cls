@@ -1,5 +1,5 @@
 @isTest(seeAllData = false)
-public class MediaElementUploaderControllerTest {
+public class MediaElementUploadController {
 	
 	@isTest 
 	static void getMediaElementTest(){
@@ -12,7 +12,7 @@ public class MediaElementUploaderControllerTest {
 
 		//When
 		Test.startTest();
-		MediaElement__c test1 = MediaElementUploaderController.getMedia(media.Id);
+		MediaElement__c test1 = MediaElementUploadController.getMedia(media.Id);
 		Test.stopTest();
 
 		//Then
@@ -30,7 +30,7 @@ public class MediaElementUploaderControllerTest {
 		MediaElement__c media = listMedia.get(0);
 		//When
 		Test.startTest();
-		MediaElementUploaderController.MediaElementWrapper test1 = MediaElementUploaderController.getRecord(media.Id);
+		MediaElementUploadController.MediaElementWrapper test1 = MediaElementUploadController.getRecord(media.Id);
 		Test.stopTest();
 
 		//Then
@@ -56,7 +56,7 @@ public class MediaElementUploaderControllerTest {
 		String vdata=EncodingUtil.base64Encode(contv.VersionData);
 		//When
 		Test.startTest();
-		String result = MediaElementUploaderController.getFileById(contv.ContentDocumentId);
+		String result = MediaElementUploadController.getFileById(contv.ContentDocumentId);
 		Test.stopTest();
 
 		//Then
@@ -84,7 +84,7 @@ public class MediaElementUploaderControllerTest {
 
 		//When
 		Test.startTest();
-		String result = MediaElementUploaderController.createFile(media.Id, contv.ContentDocumentId, vdata, contv.Title, '2', '2', 'Desktop');
+		String result = MediaElementUploadController.createFile(media.Id, contv.ContentDocumentId, vdata, contv.Title, '2', '2', 'Desktop');
 		Test.stopTest();
 
 		//Then
@@ -112,8 +112,8 @@ public class MediaElementUploaderControllerTest {
 
 		//When
 		Test.startTest();
-		String resultTablet = MediaElementUploaderController.createFile(media.Id, null, base64Data, 'Title_test_Tablet', '2', '2', 'Tablet');
-		String resultMobile = MediaElementUploaderController.createFile(media.Id, null, base64Data, 'Title_test_Mobile', '2', '2', 'Mobile');
+		String resultTablet = MediaElementUploadController.createFile(media.Id, null, base64Data, 'Title_test_Tablet', '2', '2', 'Tablet');
+		String resultMobile = MediaElementUploadController.createFile(media.Id, null, base64Data, 'Title_test_Mobile', '2', '2', 'Mobile');
 		Test.stopTest();
 
 		//Then
@@ -153,11 +153,11 @@ public class MediaElementUploaderControllerTest {
 		ContentVersion contv = [SELECT Id, ContentDocumentId, VersionData, Title FROM ContentVersion WHERE ContentDocumentId =: contentLink.contentDocumentId];
 		String vdata=EncodingUtil.base64Encode(contv.VersionData);
 
-		MediaElementUploaderController.createFile(media.Id, contv.ContentDocumentId, vdata, contv.Title, '2', '2', 'Desktop');
+		MediaElementUploadController.createFile(media.Id, contv.ContentDocumentId, vdata, contv.Title, '2', '2', 'Desktop');
 		
 		//When
 		Test.startTest();
-		MediaElementUploaderController.deleteFileDesktop(media.Id);
+		MediaElementUploadController.deleteFileDesktop(media.Id);
 		Test.stopTest();
 
 		//Then
@@ -195,10 +195,10 @@ public class MediaElementUploaderControllerTest {
 		ContentVersion contv = [SELECT Id, ContentDocumentId, VersionData, Title FROM ContentVersion WHERE ContentDocumentId =: contentLink.contentDocumentId];
 		String vdata=EncodingUtil.base64Encode(contv.VersionData);
 
-		MediaElementUploaderController.createFile(media.Id, contv.ContentDocumentId, vdata, contv.Title, '2', '2', 'Tablet');
+		MediaElementUploadController.createFile(media.Id, contv.ContentDocumentId, vdata, contv.Title, '2', '2', 'Tablet');
 		//When
 		Test.startTest();
-		MediaElementUploaderController.deleteFileTablet(media.Id);
+		MediaElementUploadController.deleteFileTablet(media.Id);
 		Test.stopTest();
 
 		//Then
@@ -238,10 +238,10 @@ public class MediaElementUploaderControllerTest {
 		ContentVersion contv = [SELECT Id, ContentDocumentId, VersionData, Title FROM ContentVersion WHERE ContentDocumentId =: contentLink.contentDocumentId];
 		String vdata=EncodingUtil.base64Encode(contv.VersionData);
 
-				MediaElementUploaderController.createFile(media.Id, contv.ContentDocumentId, vdata, contv.Title, '2', '2', 'Mobile');
+				MediaElementUploadController.createFile(media.Id, contv.ContentDocumentId, vdata, contv.Title, '2', '2', 'Mobile');
 		//When
 		Test.startTest();
-		MediaElementUploaderController.deleteFileMobile(media.Id);
+		MediaElementUploadController.deleteFileMobile(media.Id);
 		Test.stopTest();
 
 		//Then

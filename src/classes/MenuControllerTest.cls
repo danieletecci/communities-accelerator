@@ -1,5 +1,5 @@
 @isTest
-public class CG_NavigationControllerTest {
+public class MenuControllerTest {
     @testSetup
     static void setup(){
         // Given in all cases
@@ -24,7 +24,7 @@ public class CG_NavigationControllerTest {
 
         //When
         test.startTest();
-        CG_NavigationController.ComponentWrapper componentWrapper = CG_NavigationController.getNavWrapper(component[0].ExternalId__c, cluster.id, 'DESKTOP');
+        MenuController.ComponentWrapper componentWrapper = MenuController.getNavWrapper(component[0].ExternalId__c, cluster.id, 'DESKTOP');
         test.stopTest();
         //Then
         System.assertNotEquals(null, componentWrapper);

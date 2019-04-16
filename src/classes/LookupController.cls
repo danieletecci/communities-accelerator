@@ -1,4 +1,4 @@
-public class LookupInputController {
+public class LookupController {
     @AuraEnabled
     public static List < sObject > fetchLookUpValues(String searchKeyWord, String ObjectName) {
         String searchKey = searchKeyWord + '%';

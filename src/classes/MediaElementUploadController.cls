@@ -1,4 +1,4 @@
-public with sharing class MediaElementUploaderController {
+public with sharing class MediaElementUploadController {
 
 	//WRAPPERS
     public class MediaElementWrapper{
@@ -32,12 +32,12 @@ public with sharing class MediaElementUploaderController {
 
     @AuraEnabled
     public static MediaElementWrapper getRecord(String recordId){
-        MediaElement__c me = MediaElementUploaderController.getMedia(recordId);
+        MediaElement__c me = MediaElementUploadController.getMedia(recordId);
         
         MediaElementWrapper mew = new MediaElementWrapper();
         mew.mediaElement = me;
 
-        MediaElementUploaderController.retrieveLastModifiedAndSize(mew);
+        MediaElementUploadController.retrieveLastModifiedAndSize(mew);
 
         system.debug('mew: ' + mew);
 
@@ -155,8 +155,8 @@ public with sharing class MediaElementUploaderController {
     @AuraEnabled
     public static void deleteFileDesktop(String recordId){
             
-        MediaElement__c media = MediaElementUploaderController.getMedia(recordId);
-        MediaElementUploaderController.deleteDocument(media.FileURLDesktop__c);
+        MediaElement__c media = MediaElementUploadController.getMedia(recordId);
+        MediaElementUploadController.deleteDocument(media.FileURLDesktop__c);
 
         media.DesktopFileExtension__c=null;
         media.FileNameDesktop__c=null;
@@ -170,8 +170,8 @@ public with sharing class MediaElementUploaderController {
     @AuraEnabled
     public static void deleteFileTablet(String recordId){
             
-        MediaElement__c media = MediaElementUploaderController.getMedia(recordId);
-        MediaElementUploaderController.deleteDocument(media.FileURLTablet__c);
+        MediaElement__c media = MediaElementUploadController.getMedia(recordId);
+        MediaElementUploadController.deleteDocument(media.FileURLTablet__c);
 
         media.TabletFileExtension__c=null;
         media.FileNameTablet__c=null;
@@ -185,8 +185,8 @@ public with sharing class MediaElementUploaderController {
     @AuraEnabled
     public static void deleteFileMobile(String recordId){
             
-        MediaElement__c media = MediaElementUploaderController.getMedia(recordId);
-        MediaElementUploaderController.deleteDocument(media.FileURLMobile__c);
+        MediaElement__c media = MediaElementUploadController.getMedia(recordId);
+        MediaElementUploadController.deleteDocument(media.FileURLMobile__c);
 
         media.MobileFileExtension__c=null;
         media.FileNameMobile__c=null;

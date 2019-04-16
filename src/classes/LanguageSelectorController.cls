@@ -1,4 +1,4 @@
-public with sharing class CG_LanguageSelectorController {
+public with sharing class LanguageSelectorController {
 
 	//WRAPPER
 	public class LanguageWrapper {

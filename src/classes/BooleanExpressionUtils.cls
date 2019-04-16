@@ -1,4 +1,4 @@
-public class BooleanExpression {
+public class BooleanExpressionUtils {
     static Map<String, String> logicTypes = new Map<String, String>();
     static Map<String, Map<String, String>> expressionLogic = new Map<String, Map<String, String>>();
     

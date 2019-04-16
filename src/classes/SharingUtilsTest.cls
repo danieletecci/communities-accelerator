@@ -1,5 +1,5 @@
 @isTest
-private class ObjectSharingUtilTest
+private class SharingUtilsTest
 {
 
 	@testSetup
@@ -21,7 +21,7 @@ private class ObjectSharingUtilTest
 		// When
 		//Test.startTest();//(List<SObject> records, String lookupField, String nameObjectShare, String sharingReason, Boolean isCluster){
 			//'Cluster__c', 'Tag__Share', 'Clustering__c', false
-		ObjectSharingUtil.SharingWrapper sharingWrapper = ObjectSharingUtil.generateSharingForRecordsOnCluster(tagList, 'Cluster__c', 'Tag__Share', 'Clustering__c', false);
+		SharingUtils.SharingWrapper sharingWrapper = SharingUtils.generateSharingForRecordsOnCluster(tagList, 'Cluster__c', 'Tag__Share', 'Clustering__c', false);
 		//Test.stopTest();
 		System.assertEquals(0, sharingWrapper.objectIdToMessageErrosMap.size());
 		System.assertEquals(3, sharingWrapper.listOfSharesToInsert.size());
@@ -37,7 +37,7 @@ private class ObjectSharingUtilTest
 		// When
 		List<Cluster__c> clusterRootList = MockupFactory.createCluster('ClusterRootTest', null, 1, 'ClusterRoot', 'CRT');
 
-		ObjectSharingUtil.SharingWrapper sharingWrapper = ObjectSharingUtil.generateSharingForCluster(clusterRootList, 'Cluster__c', 'Cluster__Share', 'Clustering__c', false);
+		SharingUtils.SharingWrapper sharingWrapper = SharingUtils.generateSharingForCluster(clusterRootList, 'Cluster__c', 'Cluster__Share', 'Clustering__c', false);
 
 		//Then
 		System.assertEquals(0, sharingWrapper.objectIdToMessageErrosMap.size());

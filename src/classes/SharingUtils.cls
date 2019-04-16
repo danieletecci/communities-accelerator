@@ -1,4 +1,4 @@
-public with sharing class ObjectSharingUtil {
+public with sharing class SharingUtils {
     
     public static SharingWrapper generateSharingForRecordsOnCluster(List<SObject> records, String lookupField, String nameObjectShare, String sharingReason, Boolean isCluster){
 

@@ -1,4 +1,4 @@
-public class CG_NavigationController {
+public class MenuController {
 
 	//WRAPPERS
     public class ComponentWrapper{
@@ -47,8 +47,8 @@ public class CG_NavigationController {
 		ComponentWrapper cw = new ComponentWrapper();
 		//verificar los custom permisions
 		if(!cw.isEnabledCommunityEditFrame){
-			System.debug('CG_NavigationController isEnabledCommunityEditFrame: ' + cw.isEnabledCommunityEditFrame);
-			System.debug('CG_NavigationController component.RecordType.DeveloperName: ' + component.RecordType.DeveloperName);
+			System.debug('MenuController isEnabledCommunityEditFrame: ' + cw.isEnabledCommunityEditFrame);
+			System.debug('MenuController component.RecordType.DeveloperName: ' + component.RecordType.DeveloperName);
 			if(FeatureManagement.checkPermission(component.RecordType.DeveloperName + 'EditFrame')){
 				System.debug('RecordType.DeveloperName: ' + component.RecordType.DeveloperName + 'EditFrame');
 				cw.isEnabledCommunityEditFrame = true;
@@ -58,8 +58,8 @@ public class CG_NavigationController {
 		}
 
 		if (!cw.isEnabledCommunityViewFrame){
-			System.debug('CG_NavigationController isEnabledCommunityViewFrame: ' + cw.isEnabledCommunityViewFrame);
-			System.debug('CG_NavigationController component.RecordType.DeveloperName: ' + component.RecordType.DeveloperName);
+			System.debug('MenuController isEnabledCommunityViewFrame: ' + cw.isEnabledCommunityViewFrame);
+			System.debug('MenuController component.RecordType.DeveloperName: ' + component.RecordType.DeveloperName);
 			if(FeatureManagement.checkPermission(component.RecordType.DeveloperName + 'ViewFrame')){
 				System.debug('RecordType.DeveloperName: ' + component.RecordType.DeveloperName + 'ViewFrame');
 				cw.isEnabledCommunityViewFrame = true;

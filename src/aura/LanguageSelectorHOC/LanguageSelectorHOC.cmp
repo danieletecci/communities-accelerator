@@ -1,4 +1,4 @@
-<aura:component controller="CG_LanguageSelectorController" extends="c:CG_BaseComponent" implements="forceCommunity:availableForAllPageTypes" access="global">
+<aura:component controller="LanguageSelectorController" extends="c:CG_BaseComponent" implements="forceCommunity:availableForAllPageTypes" access="global">
 	<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
 
     <!-- GENERAL VARIABLES  -->

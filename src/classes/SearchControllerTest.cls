@@ -8,8 +8,8 @@ public with sharing class SearchControllerTest {
     
     @isTest
     static void getSearchResults(){
-        List<SearchDetail__c> searchDetails = [SELECT Name, ExternalId__c, URLParameterName__c, URLParameterField__c, FieldsToSearch__c, FieldsToShow__c, IconName__c, ObjectAPIName__c, RecordTypeDevName__c, Filter__c, Navigation__r.URL__c, Navigation__r.URLMask__c, PredictiveSearchRecordsNumber__c 
-                                                    FROM SearchDetail__c];
+        List<SearchSetting__c> searchDetails = [SELECT Name, ExternalId__c, URLParameterName__c, URLParameterField__c, FieldsToSearch__c, FieldsToShow__c, IconName__c, ObjectAPIName__c, RecordTypeDevName__c, Filter__c, Navigation__r.URL__c, Navigation__r.URLMask__c, PredictiveSearchRecordsNumber__c 
+                                                    FROM SearchSetting__c];
         List<SearchController.SearchResultWrapper> listResult = SearchController.getSearchResults('Test', searchDetails);
         System.debug('listResult ' + JSON.serialize(listResult));
     }
@@ -26,14 +26,14 @@ public with sharing class SearchControllerTest {
     
     @isTest
     static void getPredictiveResults(){
-        List<SearchDetail__c> searchDetails = [SELECT Name, ExternalId__c, URLParameterName__c, URLParameterField__c, FieldsToSearch__c, FieldsToShow__c, IconName__c, ObjectAPIName__c, RecordTypeDevName__c, Filter__c, Navigation__r.URL__c, Navigation__r.URLMask__c, PredictiveSearchRecordsNumber__c 
-                                                    FROM SearchDetail__c];
+        List<SearchSetting__c> searchDetails = [SELECT Name, ExternalId__c, URLParameterName__c, URLParameterField__c, FieldsToSearch__c, FieldsToShow__c, IconName__c, ObjectAPIName__c, RecordTypeDevName__c, Filter__c, Navigation__r.URL__c, Navigation__r.URLMask__c, PredictiveSearchRecordsNumber__c 
+                                                    FROM SearchSetting__c];
         List<SearchController.PredictiveResultWrapper> listResult = SearchController.getPredictiveResults('Test', searchDetails);
         System.debug('listResult ' + JSON.serialize(listResult));
     }
 
-    static SearchDetail__c createSearchDetail(Component__c component, String name, String sectionApiName, String objectApiName, String fieldsToSearch, String fieldsToShow, String recordTypeDevName){
-        SearchDetail__c rll = new SearchDetail__c(
+    static SearchSetting__c createSearchDetail(Component__c component, String name, String sectionApiName, String objectApiName, String fieldsToSearch, String fieldsToShow, String recordTypeDevName){
+        SearchSetting__c rll = new SearchSetting__c(
             												Component__c			= component.Id,
                                                             Name                    = name,
                                                             ExternalId__c           = sectionApiName,

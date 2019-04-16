@@ -3,14 +3,14 @@ public with sharing class SearchDetailTriggerTest {
     
     @testSetup
     static void setup(){
-        SearchDetail__c rll = createSearchDetail('Banner','banner','Content__c','Name','Name,Description__c','Banner');
+        SearchSetting__c rll = createSearchDetail('Banner','banner','Content__c','Name','Name,Description__c','Banner');
         update rll;
     }
 
     @isTest
     static void updateSearchDetail(){
-        SearchDetail__c rll = [SELECT Id,Name,ExternalId__c,ObjectAPIName__c,FieldsToSearch__c,FieldsToShow__c,RecordTypeDevName__c 
-                                    FROM SearchDetail__c 
+        SearchSetting__c rll = [SELECT Id,Name,ExternalId__c,ObjectAPIName__c,FieldsToSearch__c,FieldsToShow__c,RecordTypeDevName__c 
+                                    FROM SearchSetting__c 
                                     LIMIT 1];
         rll.FieldsToShow__c = 'Name';
         update rll;
@@ -18,8 +18,8 @@ public with sharing class SearchDetailTriggerTest {
 
     @isTest
     static void updateWrongSobject(){
-        SearchDetail__c rll = [SELECT Id,Name,ExternalId__c,ObjectAPIName__c,FieldsToSearch__c,FieldsToShow__c,RecordTypeDevName__c 
-                                    FROM SearchDetail__c 
+        SearchSetting__c rll = [SELECT Id,Name,ExternalId__c,ObjectAPIName__c,FieldsToSearch__c,FieldsToShow__c,RecordTypeDevName__c 
+                                    FROM SearchSetting__c 
                                     LIMIT 1];
         rll.ObjectAPIName__c = 'NoExistingSobject';
         try{
@@ -32,8 +32,8 @@ public with sharing class SearchDetailTriggerTest {
 
     @isTest
     static void updateWrongField(){
-        SearchDetail__c rll = [SELECT Id,Name,ExternalId__c,ObjectAPIName__c,FieldsToSearch__c,FieldsToShow__c,RecordTypeDevName__c 
-                                    FROM SearchDetail__c 
+        SearchSetting__c rll = [SELECT Id,Name,ExternalId__c,ObjectAPIName__c,FieldsToSearch__c,FieldsToShow__c,RecordTypeDevName__c 
+                                    FROM SearchSetting__c 
                                     LIMIT 1];
 
         rll.FieldsToSearch__c = 'NoExistingField';
@@ -68,8 +68,8 @@ public with sharing class SearchDetailTriggerTest {
 
     @isTest
     static void updateWrongRT(){
-        SearchDetail__c rll = [SELECT Id,Name,ExternalId__c,ObjectAPIName__c,FieldsToSearch__c,FieldsToShow__c,RecordTypeDevName__c 
-                                    FROM SearchDetail__c 
+        SearchSetting__c rll = [SELECT Id,Name,ExternalId__c,ObjectAPIName__c,FieldsToSearch__c,FieldsToShow__c,RecordTypeDevName__c 
+                                    FROM SearchSetting__c 
                                     LIMIT 1];
 
         rll.RecordTypeDevName__c = 'NoExistingRT';
@@ -83,8 +83,8 @@ public with sharing class SearchDetailTriggerTest {
     
      @isTest
     static void updateUrlParameterField(){
-        SearchDetail__c rll = [SELECT Id,Name,ExternalId__c,ObjectAPIName__c,FieldsToSearch__c,FieldsToShow__c,RecordTypeDevName__c 
-                                    FROM SearchDetail__c 
+        SearchSetting__c rll = [SELECT Id,Name,ExternalId__c,ObjectAPIName__c,FieldsToSearch__c,FieldsToShow__c,RecordTypeDevName__c 
+                                    FROM SearchSetting__c 
                                     LIMIT 1];
 
         rll.URLParameterField__c = 'NoExistingField';
@@ -97,8 +97,8 @@ public with sharing class SearchDetailTriggerTest {
     }
 
 
-    static SearchDetail__c createSearchDetail(String name, String sectionApiName, String objectApiName, String fieldsToSearch, String fieldsToShow, String recordTypeDevName){
-        SearchDetail__c rll = new SearchDetail__c (
+    static SearchSetting__c createSearchDetail(String name, String sectionApiName, String objectApiName, String fieldsToSearch, String fieldsToShow, String recordTypeDevName){
+        SearchSetting__c rll = new SearchSetting__c (
                                                             Name                    = name,
                                                             ObjectAPIName__c        = objectApiName,
                                                             FieldsToSearch__c       = fieldsToSearch,

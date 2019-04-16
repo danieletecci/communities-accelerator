@@ -11,21 +11,21 @@ public with sharing class SearchSettingTriggers extends TriggersHandler{
 
     //Master loops
     public override void masterLoop_BeforeInsert(SObject recNew) {
-        setExternalId((SearchDetail__c)recNew);
-        checkSobjectAPIName((SearchDetail__c)recNew);
-        checkFieldsAPIName((SearchDetail__c)recNew);
-        checkURLParameterField((SearchDetail__c)recNew);
-        checkRecordTypeDevName((SearchDetail__c)recNew);
+        setExternalId((SearchSetting__c)recNew);
+        checkSobjectAPIName((SearchSetting__c)recNew);
+        checkFieldsAPIName((SearchSetting__c)recNew);
+        checkURLParameterField((SearchSetting__c)recNew);
+        checkRecordTypeDevName((SearchSetting__c)recNew);
     }
     public override void masterLoop_BeforeUpdate(SObject recNew, SObject recOld) {
-        setExternalId((SearchDetail__c)recNew);
-        checkSobjectAPIName((SearchDetail__c)recNew);
-        checkFieldsAPIName((SearchDetail__c)recNew);
-        checkURLParameterField((SearchDetail__c)recNew);
-        checkRecordTypeDevName((SearchDetail__c)recNew);
+        setExternalId((SearchSetting__c)recNew);
+        checkSobjectAPIName((SearchSetting__c)recNew);
+        checkFieldsAPIName((SearchSetting__c)recNew);
+        checkURLParameterField((SearchSetting__c)recNew);
+        checkRecordTypeDevName((SearchSetting__c)recNew);
     }
 
-    private void checkSobjectAPIName(SearchDetail__c recNew){
+    private void checkSobjectAPIName(SearchSetting__c recNew){
         Boolean exist = false;
         for (Schema.SObjectType sObjectType : Schema.getGlobalDescribe().values() ) {
             String sobjName = String.valueOf(sObjectType);
@@ -39,7 +39,7 @@ public with sharing class SearchSettingTriggers extends TriggersHandler{
         }
     }
 
-    private void checkFieldsAPIName(SearchDetail__c recNew){
+    private void checkFieldsAPIName(SearchSetting__c recNew){
         if(!hasError){
 
             List<String>                        fieldsToShow    = recNew.FieldsToShow__c.split(',');
@@ -71,7 +71,7 @@ public with sharing class SearchSettingTriggers extends TriggersHandler{
         }
     }
 
-    private void checkURLParameterField(SearchDetail__c recNew){
+    private void checkURLParameterField(SearchSetting__c recNew){
         if(!hasError){
 
             String                              urlParameterField   = recNew.URLParameterField__c;
@@ -88,7 +88,7 @@ public with sharing class SearchSettingTriggers extends TriggersHandler{
         }
     }
 
-    private void checkRecordTypeDevName(SearchDetail__c recNew){
+    private void checkRecordTypeDevName(SearchSetting__c recNew){
         if(!String.isBlank(recNew.RecordTypeDevName__c) && !hasError){
             Map<String, Schema.SObjectType>     schemaMap   = Schema.getGlobalDescribe();
             Map<String,Schema.RecordTypeInfo>   recordTypes = schemaMap.get(recNew.ObjectAPIName__c).getDescribe().getRecordTypeInfosByDeveloperName();
@@ -98,7 +98,7 @@ public with sharing class SearchSettingTriggers extends TriggersHandler{
         }
     }
 
-    private void setExternalId(SearchDetail__c recNew){
+    private void setExternalId(SearchSetting__c recNew){
         if(!canMethod('setExternalId')){return;}
 
         if(recNew.ExternalID__c == null){

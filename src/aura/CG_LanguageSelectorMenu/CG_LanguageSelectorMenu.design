@@ -1,3 +1,0 @@
-<design:component label="CG Language Selector">
-	<design:attribute name="componentExternalId" label="Component External Id" datasource="apex://CG_DynamicPicklistLanguageSelector"/>
-</design:component>

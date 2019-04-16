@@ -517,7 +517,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Component__c.NewsType__c</field>
+        <field>Component__c.ArticleType__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1237,20 +1237,20 @@
         <recordType>Component__c.Menu</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Component__c-Component%3A News - Page Layout</layout>
-        <recordType>Component__c.News</recordType>
+        <layout>Component__c-Component%3A Article List - Page Layout</layout>
+        <recordType>Component__c.ArticleList</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Component__c-Component%3A News Detail - Page Layout</layout>
-        <recordType>Component__c.NewsDetail</recordType>
+        <layout>Component__c-Component%3A Article Detail - Page Layout</layout>
+        <recordType>Component__c.ArticleDetail</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Component__c-Component%3A Related Events - Page Layout</layout>
-        <recordType>Component__c.RelatedEvents</recordType>
+        <layout>Component__c-Component%3A Events Related - Page Layout</layout>
+        <recordType>Component__c.EventsRelated</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Component__c-Component%3A Related News - Page Layout</layout>
-        <recordType>Component__c.RelatedNews</recordType>
+        <layout>Component__c-Component%3A Articles Related - Page Layout</layout>
+        <recordType>Component__c.ArticlesRelated</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>ContentAssignment__c-Component Content Assignment Layout</layout>
@@ -1283,8 +1283,8 @@
         <recordType>Content__c.FAQ</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Content__c-Content%3A News - Page Layout</layout>
-        <recordType>Content__c.News</recordType>
+        <layout>Content__c-Content%3A Article - Page Layout</layout>
+        <recordType>Content__c.Article</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Navigation__c-Navigation Layout</layout>
@@ -1675,22 +1675,22 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
-        <recordType>Component__c.News</recordType>
+        <recordType>Component__c.ArticleList</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
-        <recordType>Component__c.NewsDetail</recordType>
+        <recordType>Component__c.ArticleDetail</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
-        <recordType>Component__c.RelatedEvents</recordType>
+        <recordType>Component__c.EventsRelated</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
-        <recordType>Component__c.RelatedNews</recordType>
+        <recordType>Component__c.ArticlesRelated</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
@@ -1716,7 +1716,7 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
-        <recordType>Content__c.News</recordType>
+        <recordType>Content__c.Article</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>

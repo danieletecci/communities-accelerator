@@ -19,7 +19,7 @@
 		var results 		= component.get("v.results");
 		var selectedResult 	= results.find( result => result.sectionApiName === selectedItem );
 		selectedResult		= this.setNameAsUrl(selectedResult);
-		console.log("[CG_SearchResultsHelper.js][setRecordList] selectedResult: " + JSON.stringify(selectedResult));
+		console.log("[SearchHOCResultsHelper.js][setRecordList] selectedResult: " + JSON.stringify(selectedResult));
 
 
         var appEvent 	= $A.get("e.c:SetRecordList");
@@ -33,7 +33,7 @@
 		});
 		appEvent.fire();
 
-		console.log("[CG_SearchResultsHelper.js][setRecordList] selectedResult: " + JSON.stringify(selectedResult));
+		console.log("[SearchHOCResultsHelper.js][setRecordList] selectedResult: " + JSON.stringify(selectedResult));
 	},
 	setNameAsUrl : function(selectedResult) {
 		var linkField = {label: 'Name', fieldName: 'linkDetail', type: 'url', sortable: true, typeAttributes: { label: { fieldName: 'Name' }, target: '_self' }};
@@ -45,7 +45,7 @@
 			}
 			for(var i=0; i<selectedResult.records.length; i++){
 				selectedResult.records[i].linkDetail = "/" + selectedResult.navigation + '?' + selectedResult.urlParameterName + '=' + selectedResult.records[i][selectedResult.urlParameterField];
-				console.log("[CG_SearchResultsHelper.js][setNameAsUrl] link: " + selectedResult.records[i].linkDetail);
+				console.log("[SearchHOCResultsHelper.js][setNameAsUrl] link: " + selectedResult.records[i].linkDetail);
 			}
 		}
 

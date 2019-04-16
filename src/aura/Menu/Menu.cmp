@@ -15,17 +15,17 @@
                     <aura:iteration items="{!v.menus}" var="menu" indexVar="fistIndex">
                         <c:MenuItem item="{!menu}" menuLevel="1" index="{!fistIndex}" mobileFormat="false" component="{!v.component}"> 
                             <aura:iteration items="{!menu.subMenus}" var="subM" indexVar="secondIndex">
-                                <c:CG_NavigationMenuItem item="{!subM}" menuLevel="2" index="{!secondIndex}" mobileFormat="false" component="{!v.component}"> 
+                                <c:MenuItem item="{!subM}" menuLevel="2" index="{!secondIndex}" mobileFormat="false" component="{!v.component}"> 
                                     <aura:iteration items="{!subM.subMenus}" var="subSubM" indexVar="thirdIndex">
-                                        <c:CG_NavigationMenuItem item="{!subSubM}" menuLevel="3" index="{!thirdIndex}" mobileFormat="false" component="{!v.component}">
+                                        <c:MenuItem item="{!subSubM}" menuLevel="3" index="{!thirdIndex}" mobileFormat="false" component="{!v.component}">
                                             <aura:iteration items="{!subSubM.subMenus}" var="subSubSubM" indexVar="fourthIndex">
-                                                <c:CG_NavigationMenuItem item="{!subSubSubM}" menuLevel="4" index="{!fourthIndex}" mobileFormat="false" component="{!v.component}"/>
+                                                <c:MenuItem item="{!subSubSubM}" menuLevel="4" index="{!fourthIndex}" mobileFormat="false" component="{!v.component}"/>
                                             </aura:iteration>
-                                        </c:CG_NavigationMenuItem>
+                                        </c:MenuItem>
                                     </aura:iteration>
-                                </c:CG_NavigationMenuItem>
+                                </c:MenuItem>
                             </aura:iteration>
-                        </c:CG_NavigationMenuItem>
+                        </c:MenuItem>
                     </aura:iteration>
                 </ul>
             </nav>

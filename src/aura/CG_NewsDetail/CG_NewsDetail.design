@@ -1,3 +1,0 @@
-<design:component label="CG News - Detail">
-	<design:attribute name="componentExternalId" label="Component External Id" datasource="apex://CG_DynamicPicklistNewsDetail"/>
-</design:component>

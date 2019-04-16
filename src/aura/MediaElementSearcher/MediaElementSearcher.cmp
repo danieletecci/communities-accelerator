@@ -1,0 +1,86 @@
+<aura:component controller="MediaElementsManagerController" access="global">
+	<!-- External -->
+	<aura:attribute name="iconName" type="String"/>
+    <aura:attribute name="hasButton" type="boolean" default="true"/>
+
+	<!-- General Variables -->
+    <aura:attribute name="isLoading" type="boolean" default="false" />
+    <aura:attribute name="searchValue" type="String" default=""/>
+    <aura:attribute name="scrollCallback" type="Object" access="private" />
+    <aura:attribute name="scrollCalled" type="Boolean" access="private" default="false" />
+    <aura:attribute name="isEndPage" type="boolean" default="false"/>
+    <aura:attribute name="mediaElementList" type="Object"/>
+    <aura:attribute name="offset" type="Integer" default="0"/>
+    <aura:attribute name="elementPerPage" type="Integer" default="3"/>
+
+    <!-- Events -->
+    <aura:registerevent name="URLEvent" type="c:ContentUpsertEvent" />
+    <aura:method name="initPopUp" action="{!c.initSearch}"  />
+
+    <aura:if isTrue="{!v.hasButton}">
+    	<!-- ICON USAGE iconName=utility:image-->
+        <aura:if isTrue="{!and(v.iconName != null, v.iconName != '')}">
+            <lightning:button variant="brand" title="{!$Label.c.AddMediaElement}" onclick="{!c.initSearch}">
+                <lightning:Icon size="small" iconName="{!c.iconName }"/>
+            </lightning:button>
+        </aura:if>
+
+        <!-- LABEL USAGE -->
+        <aura:if isTrue="{!not(and(v.iconName != null, v.iconName != ''))}">
+            <aura:if isTrue="{!v.isLoading}">
+                <lightning:button variant="brand" label="{!$Label.c.General_Search}" disabled="true"/>
+                <aura:set attribute="else">
+                    <lightning:button variant="brand" label="{!$Label.c.AddMediaElement}" title="{!$Label.c.AddMediaElement}" onclick="{!c.initSearch}"/>
+                </aura:set>
+            </aura:if>
+        </aura:if>
+    </aura:if>
+
+    <div>
+        <section aura:id="Modalbox" role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal">
+            <div class="slds-modal__container" style="width: 40%;">
+                <header class="slds-modal__header">
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">{!$Label.c.SelectMediaElement}</h2>
+                    <div>
+                        <lightning:buttonIcon
+                        iconName="utility:close"
+                        size="large"
+                        variant="bare"
+                        title="{!$Label.c.General_Close}"
+                        iconClass="slds-button slds-button_icon slds-button_icon-inverse"
+                        class="buttonStyle slds-modal__close"
+                        alternativeText="{!$Label.c.General_Close}"
+                        onclick="{!c.closeNewModal}"/>
+                    </div>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <!-- SEARCH BOX -->
+                    <input type="text" aura:id="searchField" class="input_search" placeholder="{!$Label.c.GlobalSearchPlaceholder}" onkeypress="{!c.doSearch}"/>
+                    <lightning:buttonIcon
+                        iconName="utility:search"
+                        size="large"
+                        variant="bare"
+                        class="icon_search"
+                        title="{!$Label.c.General_Search}" 
+                        alternativeText="{!$Label.c.General_Search}"
+                        onclick="{!c.searchByText}"/>
+                    <div class="div_mediaSearchSection" onscroll="{!c.getMoreRecords}">
+                        <!-- MEDIA ELEMENTS LIST -->
+                        <div class="div_mediaElementsContainer infinite-list" id="infinite-list">					
+                            <aura:iteration items="{!v.mediaElementList}" var="mediaElement">
+                                <div class="div_mediaElementCardContainer slds-align_absolute-center" onclick="{!c.selectMediaElement}">
+                                    <img src="{!mediaElement.fileURLDesktop}" data-name="{!mediaElement.name}" class="img_mediaElementReview" id="{!mediaElement.idME}"/>
+                                    <div class="div_cardTitle">
+                                        <p class="slds-truncate">{!mediaElement.name}</p>
+                                        <p class="slds-truncate">{!mediaElement.lastModified} - {!mediaElement.size} - {!mediaElement.ext}</p>
+                                    </div>
+                                </div>
+                            </aura:iteration>
+                        </div>
+                    </div>            
+                </div>           
+            </div>
+        </section>
+        <div aura:id="Modalbackdrop" class="divBackdrop slds-backdrop"></div>
+    </div>
+</aura:component>

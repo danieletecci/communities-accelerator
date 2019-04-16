@@ -18,7 +18,7 @@
 	<aura:attribute name="publishedTooltip"		type="String" 						/>
 	<aura:attribute name="tooltipClass"			type="String"		default="slds-fall-into-ground" />
 
-	<aura:registerEvent name="upsertContentsEvent" type="c:upsertContentsEvent"/>
+	<aura:registerEvent name="ContentUpsertEvent" type="c:ContentUpsertEvent"/>
 
 	<ltng:require scripts="{!$Resource.momentJS}" afterScriptsLoaded="{!c.afterMomentLoaded}" />
 

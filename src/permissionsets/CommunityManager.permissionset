@@ -3,26 +3,6 @@
     <description>Community Manager</description>
     <fieldPermissions>
         <editable>true</editable>
-        <field>AudienceUser__c.Audience__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>AudienceUser__c.Cluster__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>AudienceUser__c.ExternalId__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>AudienceUser__c.User__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>ClusterUser__c.UserForDuplicateRule__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -163,11 +143,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Navigation__c.AudienceUser__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Navigation__c.Audience__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -218,15 +193,6 @@
     </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Community Manager</label>
-    <objectPermissions>
-        <allowCreate>true</allowCreate>
-        <allowDelete>true</allowDelete>
-        <allowEdit>true</allowEdit>
-        <allowRead>true</allowRead>
-        <modifyAllRecords>false</modifyAllRecords>
-        <object>AudienceUser__c</object>
-        <viewAllRecords>false</viewAllRecords>
-    </objectPermissions>
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>
@@ -309,10 +275,6 @@
         <recordType>Navigation__c.Navigation_variant</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
-    <tabSettings>
-        <tab>AudienceUser__c</tab>
-        <visibility>Visible</visibility>
-    </tabSettings>
     <tabSettings>
         <tab>Cluster__c</tab>
         <visibility>Visible</visibility>

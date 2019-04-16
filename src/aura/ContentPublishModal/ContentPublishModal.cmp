@@ -4,7 +4,7 @@
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
 
     <!-- REGISTER EVENTS -->
-	<aura:registerEvent name="upsertContentsEvent" type="c:upsertContentsEvent"/>
+	<aura:registerEvent name="ContentUpsertEvent" type="c:ContentUpsertEvent"/>
 
     <!-- METHODS -->
 	<aura:method name="show" action="{!c.doShow}" />

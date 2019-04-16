@@ -962,11 +962,11 @@
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
-        <recordType>Component__c.RelatedEvents</recordType>
+        <recordType>Component__c.EventsRelated</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
-        <recordType>Component__c.RelatedArticles</recordType>
+        <recordType>Component__c.ArticlesRelated</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>

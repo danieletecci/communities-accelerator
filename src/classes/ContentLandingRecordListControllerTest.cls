@@ -6,8 +6,10 @@ public class ContentLandingRecordListControllerTest {
         Cluster__c clusterTest = MockupFactory.createCluster('ClusterTest', null, 1, 'ClusterRoot', 'CRT')[0];     
         Content__c bannerTest = MockupFactory.createContent('Banner', clusterTest, 1)[0];
         bannerTest.Status__c = 'Draft'; update bannerTest;
-        Content__c newsTest = MockupFactory.createContent('News', clusterTest, 1)[0];
-        newsTest.Status__c = 'Published'; newsTest.isTemplate__c = false; update newsTest;
+        Content__c articleTest = MockupFactory.createContent('Article', clusterTest, 1)[0];
+        articleTest.Status__c = 'Published'; 
+        articleTest.isTemplate__c = false; 
+        update articleTest;
     }
 
     @isTest

@@ -1171,26 +1171,26 @@
         <label>Article Details</label>
     </listViews>
     <listViews>
-        <fullName>Related_Events</fullName>
+        <fullName>EventsRelated</fullName>
         <columns>NAME</columns>
         <filterScope>Mine</filterScope>
         <filters>
             <field>RECORDTYPE</field>
             <operation>equals</operation>
-            <value>Component__c.RelatedEvents</value>
+            <value>Component__c.EventsRelated</value>
         </filters>
-        <label>Related Events</label>
+        <label>Events - Related</label>
     </listViews>
     <listViews>
-        <fullName>Related_Article</fullName>
+        <fullName>ArticlesRelated</fullName>
         <columns>NAME</columns>
         <filterScope>Mine</filterScope>
         <filters>
             <field>RECORDTYPE</field>
             <operation>equals</operation>
-            <value>Component__c.RelatedArticles</value>
+            <value>Component__c.ArticlesRelated</value>
         </filters>
-        <label>Related Articles</label>
+        <label>Articles - Related</label>
     </listViews>
     <nameField>
         <label>Component Name</label>
@@ -4067,10 +4067,10 @@
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>RelatedEvents</fullName>
+        <fullName>EventsRelated</fullName>
         <active>true</active>
-        <description>Configure a new Related Events component. Each Related Events component acts as a placeholder for one or more Related Events</description>
-        <label>Related Events</label>
+        <description>Configure a new Events Related component. Each Events Related component acts as a placeholder for one or more Events Related</description>
+        <label>Events - Related</label>
         <picklistValues>
             <picklist>BannerFrameType__c</picklist>
             <values>
@@ -4373,10 +4373,10 @@
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>RelatedArticles</fullName>
+        <fullName>ArticlesRelated</fullName>
         <active>true</active>
-        <description>Configure a new Related Article component. Each Related Article component acts as a placeholder for one or more Related Articles</description>
-        <label>Related Articles</label>
+        <description>Configure a new Articles Related component. Each Articles Related component acts as a placeholder for one or more Articles Related</description>
+        <label>Articles - Related</label>
         <picklistValues>
             <picklist>BannerFrameType__c</picklist>
             <values>

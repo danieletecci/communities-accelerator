@@ -162,122 +162,122 @@
     </fieldPermissions>
         <fieldPermissions>
         <editable>true</editable>
-        <field>SearchDetail__c.Active__c</field>
+        <field>SearchSetting__c.Active__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>SearchDetail__c.Cluster__c</field>
+        <field>SearchSetting__c.Cluster__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>SearchDetail__c.Component__c</field>
+        <field>SearchSetting__c.Component__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>SearchDetail__c.ExternalId__c</field>
+        <field>SearchSetting__c.ExternalId__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>SearchDetail__c.FieldsToSearch__c</field>
+        <field>SearchSetting__c.FieldsToSearch__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>SearchDetail__c.FieldsToShow__c</field>
+        <field>SearchSetting__c.FieldsToShow__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>SearchDetail__c.Filter__c</field>
+        <field>SearchSetting__c.Filter__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>SearchDetail__c.IconName__c</field>
+        <field>SearchSetting__c.IconName__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>SearchDetail__c.Navigation__c</field>
+        <field>SearchSetting__c.Navigation__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>SearchDetail__c.PredictiveSearchRecordsNumber__c</field>
+        <field>SearchSetting__c.PredictiveSearchRecordsNumber__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>SearchDetail__c.RecordTypeDevName__c</field>
+        <field>SearchSetting__c.RecordTypeDevName__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>SearchDetail__c.URLParameterField__c</field>
+        <field>SearchSetting__c.URLParameterField__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>SearchDetail__c.Active__c</field>
+        <field>SearchSetting__c.Active__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>SearchDetail__c.Cluster__c</field>
+        <field>SearchSetting__c.Cluster__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>SearchDetail__c.Component__c</field>
+        <field>SearchSetting__c.Component__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>SearchDetail__c.ExternalId__c</field>
+        <field>SearchSetting__c.ExternalId__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>SearchDetail__c.FieldsToSearch__c</field>
+        <field>SearchSetting__c.FieldsToSearch__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>SearchDetail__c.FieldsToShow__c</field>
+        <field>SearchSetting__c.FieldsToShow__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>SearchDetail__c.Filter__c</field>
+        <field>SearchSetting__c.Filter__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>SearchDetail__c.IconName__c</field>
+        <field>SearchSetting__c.IconName__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>SearchDetail__c.Navigation__c</field>
+        <field>SearchSetting__c.Navigation__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>SearchDetail__c.PredictiveSearchRecordsNumber__c</field>
+        <field>SearchSetting__c.PredictiveSearchRecordsNumber__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>SearchDetail__c.RecordTypeDevName__c</field>
+        <field>SearchSetting__c.RecordTypeDevName__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>SearchDetail__c.URLParameterField__c</field>
+        <field>SearchSetting__c.URLParameterField__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -517,7 +517,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Component__c.NewsType__c</field>
+        <field>Component__c.ArticleType__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -982,7 +982,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Translation__c.SearchDetail__c</field>
+        <field>Translation__c.SearchSetting__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1237,20 +1237,20 @@
         <recordType>Component__c.Menu</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Component__c-Component%3A News - Page Layout</layout>
-        <recordType>Component__c.News</recordType>
+        <layout>Component__c-Component%3A Article List - Page Layout</layout>
+        <recordType>Component__c.ArticleList</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Component__c-Component%3A News Detail - Page Layout</layout>
-        <recordType>Component__c.NewsDetail</recordType>
+        <layout>Component__c-Component%3A Article Detail - Page Layout</layout>
+        <recordType>Component__c.ArticleDetail</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Component__c-Component%3A Related Events - Page Layout</layout>
-        <recordType>Component__c.RelatedEvents</recordType>
+        <layout>Component__c-Component%3A Events Related - Page Layout</layout>
+        <recordType>Component__c.EventsRelated</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Component__c-Component%3A Related News - Page Layout</layout>
-        <recordType>Component__c.RelatedNews</recordType>
+        <layout>Component__c-Component%3A Articles Related - Page Layout</layout>
+        <recordType>Component__c.ArticlesRelated</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>ContentAssignment__c-Component Content Assignment Layout</layout>
@@ -1283,8 +1283,8 @@
         <recordType>Content__c.FAQ</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Content__c-Content%3A News - Page Layout</layout>
-        <recordType>Content__c.News</recordType>
+        <layout>Content__c-Content%3A Article - Page Layout</layout>
+        <recordType>Content__c.Article</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Navigation__c-Navigation Layout</layout>
@@ -1382,7 +1382,7 @@
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
-        <tab>SearchDetail__c</tab>
+        <tab>SearchSetting__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
@@ -1436,7 +1436,7 @@
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>true</modifyAllRecords>
-        <object>SearchDetail__c</object>
+        <object>SearchSetting__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
@@ -1675,22 +1675,22 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
-        <recordType>Component__c.News</recordType>
+        <recordType>Component__c.ArticleList</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
-        <recordType>Component__c.NewsDetail</recordType>
+        <recordType>Component__c.ArticleDetail</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
-        <recordType>Component__c.RelatedEvents</recordType>
+        <recordType>Component__c.EventsRelated</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
-        <recordType>Component__c.RelatedNews</recordType>
+        <recordType>Component__c.ArticlesRelated</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
@@ -1716,7 +1716,7 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
-        <recordType>Content__c.News</recordType>
+        <recordType>Content__c.Article</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>

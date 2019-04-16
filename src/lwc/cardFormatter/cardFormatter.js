@@ -2,7 +2,7 @@ import { LightningElement, api, wire } from 'lwc';
 import { formatContent } from 'c/contentFormatter'
 import { CurrentPageReference, NavigationMixin } from 'lightning/navigation';
 
-export default class CardHoc extends NavigationMixin(LightningElement) {
+export default class CardFormatter extends NavigationMixin(LightningElement) {
     @api content;
     @api formatedContent;
     @api type;

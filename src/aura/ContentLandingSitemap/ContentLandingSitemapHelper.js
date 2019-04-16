@@ -52,19 +52,19 @@
 			var state = response.getState();
 			if (state === "SUCCESS") {
 				var oldSite 				= component.get("v.siteId");
-				var newSite 				= response.getReturnValue()
+				var Articleite 				= response.getReturnValue()
 				var communityPreviewDomain 	= component.get("v.communityPreviewDomain");
-				if(communityPreviewDomain == null || newSite == null){
+				if(communityPreviewDomain == null || Articleite == null){
 					helper.showToast("Error!", $A.get("$Label.c.ContentLandingStructureMissingConfiguration"), "error");
 					component.set("v.isLoading", true);
 					return;
 				}
-				component.set('v.siteId', newSite);
+				component.set('v.siteId', Articleite);
 				var instance = component.get("v.instance");
-				if(oldSite != newSite){
+				if(oldSite != Articleite){
 					component.set("v.isLogin", true);
 					component.set("v.url", "https://" + communityPreviewDomain + "/?orgId=" + 
-								component.get("v.orgId") + "&siteId=" + newSite + "&language=en_US");
+								component.get("v.orgId") + "&siteId=" + Articleite + "&language=en_US");
 					component.set("v.isLoading", true);
 				}
 				console.log(component.get("v.url"));

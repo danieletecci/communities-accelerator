@@ -1161,7 +1161,7 @@
         <value>Unable to create the record.</value>
     </labels>
     <labels>
-        <fullName>NewsContentDetailBody</fullName>
+        <fullName>ArticleContentDetailBody</fullName>
         <categories>ContentDetailContainer.cmp</categories>
         <language>en_US</language>
         <protected>true</protected>
@@ -1169,23 +1169,23 @@
         <value>Body</value>
     </labels>
     <labels>
-        <fullName>NewsContentDetailChooseLayout</fullName>
+        <fullName>ArticleContentDetailChooseLayout</fullName>
         <categories>ArticleContentRecordEdit.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>NewsContentDetailChooseLayout</shortDescription>
+        <shortDescription>ArticleContentDetailChooseLayout</shortDescription>
         <value>Choose Layout</value>
     </labels>
     <labels>
-        <fullName>NewsContentDetailError</fullName>
+        <fullName>ArticleContentDetailError</fullName>
         <categories>ContentDetailContainer.cmp</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Unexpected error while saving a news content</shortDescription>
+        <shortDescription>Unexpected error while saving a Article content</shortDescription>
         <value>There was an error while saving.</value>
     </labels>
     <labels>
-        <fullName>NewsContentDetailExternalId</fullName>
+        <fullName>ArticleContentDetailExternalId</fullName>
         <categories>ContentDetailContainer.cmp</categories>
         <language>en_US</language>
         <protected>true</protected>
@@ -1193,7 +1193,7 @@
         <value>External Id</value>
     </labels>
     <labels>
-        <fullName>NewsContentDetailExtract</fullName>
+        <fullName>ArticleContentDetailExtract</fullName>
         <categories>ContentDetailContainer.cmp</categories>
         <language>en_US</language>
         <protected>true</protected>
@@ -1201,7 +1201,7 @@
         <value>Extract</value>
     </labels>
     <labels>
-        <fullName>NewsContentDetailImage</fullName>
+        <fullName>ArticleContentDetailImage</fullName>
         <categories>ContentDetailContainer.cmp</categories>
         <language>en_US</language>
         <protected>true</protected>
@@ -1209,7 +1209,7 @@
         <value>Feature Image</value>
     </labels>
     <labels>
-        <fullName>NewsContentDetailLoadError</fullName>
+        <fullName>ArticleContentDetailLoadError</fullName>
         <categories>ContentDetailContainer.cmp</categories>
         <language>en_US</language>
         <protected>true</protected>
@@ -1217,7 +1217,7 @@
         <value>Error while loading content.</value>
     </labels>
     <labels>
-        <fullName>NewsContentDetailRequiredField</fullName>
+        <fullName>ArticleContentDetailRequiredField</fullName>
         <categories>ContentDetailContainer.cmp</categories>
         <language>en_US</language>
         <protected>true</protected>
@@ -1225,7 +1225,7 @@
         <value>All required fields must be completed.</value>
     </labels>
     <labels>
-        <fullName>NewsContentDetailTitle</fullName>
+        <fullName>ArticleContentDetailTitle</fullName>
         <categories>ContentDetailContainer.cmp</categories>
         <language>en_US</language>
         <protected>true</protected>
@@ -1233,27 +1233,27 @@
         <value>Title</value>
     </labels>
     <labels>
-        <fullName>NewsContentDetailTitleBottom</fullName>
+        <fullName>ArticleContentDetailTitleBottom</fullName>
         <categories>ArticleContentRecordEdit.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>NewsContentDetailTitleBottom</shortDescription>
+        <shortDescription>ArticleContentDetailTitleBottom</shortDescription>
         <value>Title Bottom</value>
     </labels>
     <labels>
-        <fullName>NewsContentDetailTitleMiddle</fullName>
+        <fullName>ArticleContentDetailTitleMiddle</fullName>
         <categories>ArticleContentRecordEdit.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>NewsContentDetailTitleMiddle</shortDescription>
+        <shortDescription>ArticleContentDetailTitleMiddle</shortDescription>
         <value>Title Middle</value>
     </labels>
     <labels>
-        <fullName>NewsContentDetailTitleTop</fullName>
+        <fullName>ArticleContentDetailTitleTop</fullName>
         <categories>ArticleContentRecordEdit.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>NewsContentDetailTitleTop</shortDescription>
+        <shortDescription>ArticleContentDetailTitleTop</shortDescription>
         <value>Title Top</value>
     </labels>
     <labels>
@@ -1528,11 +1528,11 @@
         <value>New from template</value>
     </labels>
     <labels>
-        <fullName>NewsContentDetailTemplateDescription</fullName>
+        <fullName>ArticleContentDetailTemplateDescription</fullName>
         <categories>ArticleContentRecordEdit.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>NewsContentDetailTemplateDescription</shortDescription>
+        <shortDescription>ArticleContentDetailTemplateDescription</shortDescription>
         <value>Template Description</value>
     </labels>
     <labels>

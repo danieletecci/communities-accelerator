@@ -8,9 +8,9 @@
         parentComponentId = parentComponentId === undefined ? '' : parentComponentId;
 
         var parentContentId = '';
-        var newsId = helper.getUrlParameter('newsId');
+        var ArticleId = helper.getUrlParameter('ArticleId');
         var eventId = helper.getUrlParameter('eventId');
-        if( !(newsId === undefined) ){parentContentId = newsId;}
+        if( !(ArticleId === undefined) ){parentContentId = ArticleId;}
         if( !(eventId === undefined) ){parentContentId = eventId;}
 
         component.set("v.parentComponentId", parentComponentId);
@@ -42,9 +42,9 @@
 						//mobile cast
 	                    if($A.get("$Browser.isPhone")){
 							var recordType = cWrapper.component.RecordType.DeveloperName;
-							if(recordType === 'EventDetail' || recordType === 'NewsDetail'){
+							if(recordType === 'EventDetail' || recordType === 'ArticleDetail'){
 		                        var details = {};
-		                        details.type = recordType === 'EventDetail' ? 'Event' : 'News';
+		                        details.type = recordType === 'EventDetail' ? 'Event' : 'Article';
 								if(cWrapper.contentWrapper.length > 0){
 			                        var content = cWrapper.contentWrapper[0].content;
 			                        details.date = content.EventStartDate__c;

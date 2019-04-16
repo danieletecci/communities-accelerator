@@ -23,7 +23,7 @@
                 <div class="slds-col slds-p-bottom_small">
                     <aura:if isTrue="{!v.contentData.IsTemplate__c}">
                         <div style="background-color:#EEEEEE;padding:10px;">
-                            <lightning:textarea label="{!$Label.c.NewsContentDetailTemplateDescription}" name="templateDescription" value="{!v.contentData.TemplateDescription__c}" aura:id="templateDescription"/>
+                            <lightning:textarea label="{!$Label.c.ArticleContentDetailTemplateDescription}" name="templateDescription" value="{!v.contentData.TemplateDescription__c}" aura:id="templateDescription"/>
                         </div>
                     </aura:if>
                 </div>
@@ -33,7 +33,7 @@
                             <div class="slds-form__row">
                                 <div class="slds-form__item" role="listitem">
                                     <div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
-                                        <span class="slds-form-element__label">{!$Label.c.NewsContentDetailExternalId}</span>
+                                        <span class="slds-form-element__label">{!$Label.c.ArticleContentDetailExternalId}</span>
                                         <div class="slds-form-element__control">
                                             <div class="slds-form-element__static" ondblclick="{!c.editExternalId}">{!v.contentData.ExternalId__c}</div>
                                             <lightning:buttonIcon iconName="utility:edit" size="medium" variant="bare" alternativeText="Edit" class="slds-button__icon_hint" onclick="{!c.editExternalId}"/>
@@ -44,22 +44,22 @@
                         </div>
                         <aura:set attribute="else">
                             <div onkeyup="{!c.onExternalIdKeyUp}">
-                                <lightning:input label="{!$Label.c.NewsContentDetailExternalId}" aura:id="externalid-input" value="{!v.contentData.ExternalId__c}" maxlength="80" onblur="{!c.onExternalIdInputBlur}"/>
+                                <lightning:input label="{!$Label.c.ArticleContentDetailExternalId}" aura:id="externalid-input" value="{!v.contentData.ExternalId__c}" maxlength="80" onblur="{!c.onExternalIdInputBlur}"/>
                             </div>
                         </aura:set>
                     </aura:if>
                 </div>-->
                 <div class="slds-col slds-p-bottom_small">
-                    <lightning:input label="{!$Label.c.NewsContentDetailTitle}" name="contentName" value="{!v.contentData.Title__c}" aura:id="contentName" maxlength="255"/>
+                    <lightning:input label="{!$Label.c.ArticleContentDetailTitle}" name="contentName" value="{!v.contentData.Title__c}" aura:id="contentName" maxlength="255"/>
                 </div>
                 <div class="slds-col slds-p-bottom_small">
-                    <lightning:textarea name="contentExtract" value="{!v.contentData.Extract__c}" label="{!$Label.c.NewsContentDetailExtract}" maxlength="1500" />
+                    <lightning:textarea name="contentExtract" value="{!v.contentData.Extract__c}" label="{!$Label.c.ArticleContentDetailExtract}" maxlength="1500" />
                 </div>
                 <div class="slds-col slds-p-bottom_small">
-                    <c:richTextContainer aura:id="richTextContainer" label="{!$Label.c.NewsContentDetailBody}" contentBody="{!v.contentData.Body__c}" />
+                    <c:richTextContainer aura:id="richTextContainer" label="{!$Label.c.ArticleContentDetailBody}" contentBody="{!v.contentData.Body__c}" />
                 </div>
                 <div class="slds-col slds-p-bottom_small">
-                    <ui:outputText value="{!$Label.c.NewsContentDetailImage}"/>
+                    <ui:outputText value="{!$Label.c.ArticleContentDetailImage}"/>
                     <div class="slds-form-element__control slds-align_absolute-center div-add-media">
                         <aura:if isTrue="{!v.imageUrl}">
                             <div class="img-div">
@@ -85,7 +85,7 @@
                 </div>
                 <div class="slds-col slds-p-bottom_small">
                     <!--Choose Layout-->
-                    <ui:outputText value="{!$Label.c.NewsContentDetailChooseLayout}"/>
+                    <ui:outputText value="{!$Label.c.ArticleContentDetailChooseLayout}"/>
                     <div class="slds-form-element__control slds-align_absolute-center div-choose-layout">
                         <aura:if isTrue="{!v.layoutOptions.length > 0}">
                             <c:ContentLayoutPicker selectedValue="{!v.contentData.Layout__c}" layoutOptions="{!v.layoutOptions}" />

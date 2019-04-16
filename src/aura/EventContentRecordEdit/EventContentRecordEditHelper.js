@@ -23,7 +23,7 @@
                     helper.setLayoutOptions(component);
 					component.find("richTextContainer").setContentBody();
 				}else{
-					helper.displayErrorMessage($A.get("$Label.c.NewsContentDetailLoadError"));
+					helper.displayErrorMessage($A.get("$Label.c.ArticleContentDetailLoadError"));
 				}
 			} else if (state === "ERROR") {
 				let errors = response.getError();

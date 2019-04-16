@@ -4,7 +4,7 @@
         var url;
         var parentComponentId;
         var parentComponentType = component.get("v.componentWrapper.component.RecordType.DeveloperName");
-        if (parentComponentType == 'RelatedNews'){
+        if (parentComponentType == 'RelatedArticle'){
             parentComponentId = component.get("v.parentComponentId");
         } else {
             parentComponentId = component.get("v.componentWrapper.component.ExternalId__c");
@@ -18,7 +18,7 @@
 
         var urlEvent = $A.get("e.force:navigateToURL");
         urlEvent.setParams({
-            "url": url + '?newsId=' + values.id + '&parentComponentId=' + parentComponentId
+            "url": url + '?ArticleId=' + values.id + '&parentComponentId=' + parentComponentId
         });
         urlEvent.fire();
     }

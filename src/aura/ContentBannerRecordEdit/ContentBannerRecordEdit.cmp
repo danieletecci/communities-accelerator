@@ -2,7 +2,7 @@
     
     <!-- HANDLERS -->
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
-    <aura:handler event="c:upsertContentsEvent" action="{!c.handleUpsertEvent}"/>
+    <aura:handler event="c:ContentUpsertEvent" action="{!c.handleUpsertEvent}"/>
     <aura:handler name="URLEvent" event="c:MediaElementSearcherEvent" action="{!c.handleMediaElementEvent}"/>
 
     <aura:attribute name="contentData"            type="Object" />

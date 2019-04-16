@@ -1,0 +1,83 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:appHostable,lightning:isUrlAddressable,force:hasRecordId" controller="ContentDetailController">
+
+    <!-- HANDLERS -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler event="c:ContentUpsertEvent" action="{!c.handleUpsertEvent}"/>
+    <aura:handler name="URLEvent" event="c:MediaElementSearcherEvent" action="{!c.handleMediaElementEvent}"/>
+
+    <aura:attribute name="contentData"            type="Object"   />
+    <aura:attribute name="imageUrl"               type="String"   />
+    <aura:attribute name="layoutOptions"          type="List"     />
+    <aura:attribute name="visibilitySelectors"    type="List"     />
+    <aura:attribute name="security"               type="Object"   />
+    <aura:attribute name="timeZone"               type="String"   />
+    <aura:attribute name="mediaElementId"         type="String"   />
+    <aura:attribute name="mediaElementName"       type="String"   />
+    <aura:attribute name="isExtIdEdit"            type="Boolean"      default="false" />
+    <aura:attribute name="oldExtId"               type="String"    />
+
+    <div class="slds-grid">
+        <div class="slds-m-around_medium slds-border_top slds-border_bottom slds-border_right slds-border_left">
+            <c:ContentDetailColumnFields objectWrapper="{!v.visibilitySelectors}" />
+        </div>
+        <div class="slds-col slds-p-around_small" >
+            <div class="slds-grid slds-grid_vertical">
+                <div class="slds-col slds-p-bottom_small">
+
+                    <aura:if isTrue="{!v.contentData.IsTemplate__c}">
+                        <div style="background-color:#EEEEEE;padding:10px;">
+                            <lightning:textarea label="{!$Label.c.EventContentDetailTemplateDescription}" name="templateDescription" value="{!v.contentData.TemplateDescription__c}" required="true" aura:id="templateDescription"/>
+                         </div>
+                    
+                    </aura:if>
+                    <div style="padding:10px">
+
+                        <!--Title-->
+                        <lightning:input label="{!$Label.c.EventContentDetailTitle}" aura:id="eventTitle" value="{!v.contentData.Title__c}" required="true"/>
+                        
+                        
+                        <!--Extract-->
+                        <ui:inputTextArea label="{!$Label.c.EventContentDetailExtract}" aura:id="eventExtract" value="{!v.contentData.Extract__c}" rows="4" required="true"/>
+                        
+                        <br/>
+                        <!--Body -->
+                        <ui:outputText value="{!$Label.c.EventContentDetailBody}"/>
+                        <c:richTextContainer aura:id="richTextContainer" contentBody="{!v.contentData.Body__c}" />
+                        
+                        <!--Start Date-->
+                        <br/>
+                        <lightning:input label="{!$Label.c.EventContentDetailEventStartDate}" aura:id="eventStartDate" type="datetime-local" value="{!v.contentData.EventStartDate__c}" required="true" />
+                        
+                        <!--End Date-->
+                        <br/>
+                        <lightning:input label="{!$Label.c.EventContentDetailEventEndDate}" aura:id="eventEndDate" type="datetime-local" value="{!v.contentData.EventEndDate__c}" />
+
+
+                        <!--Location Information-->
+                        <ui:inputTextArea label="{!$Label.c.EventContentDetailEventLocationInformation}" aura:id="eventLocation" value="{!v.contentData.Location__c}" rows="4"/>     
+
+                        <br/>
+                                
+                        <!--Feature Image-->
+                        <ui:outputText value="{!$Label.c.EventContentDetailFeatureImage}"/>
+                        <br/>
+                        <c:MediaElementSearcher />
+                        <aura:if isTrue="{!v.imageUrl}">
+                            <img style="height:200px" src="{!v.imageUrl}" />
+                        </aura:if>
+                        
+                        <br/><br/>
+
+                        <!--Choose Layout-->
+                        <ui:outputText value="{!$Label.c.EventContentDetailChooseLayout}"/>
+                        <div>
+                            <aura:if isTrue="{!v.layoutOptions.length > 0}">
+                                <c:ContentLayoutPicker selectedValue="{!v.contentData.Layout__c}" layoutOptions="{!v.layoutOptions}" />
+                            </aura:if>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>       
+</aura:component>

@@ -30,7 +30,7 @@
                 <name>parentLookupName</name>
                 <value>RecordListLayout__c</value>
             </componentInstanceProperties>
-            <componentName>TranslationComponent</componentName>
+            <componentName>Translation</componentName>
         </componentInstances>
         <name>Facet-8ec7e179-ec8a-472c-ae58-d838d807943c</name>
         <type>Facet</type>

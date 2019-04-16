@@ -1,3 +1,0 @@
-<design:component label="CG FAQ">
-	<design:attribute name="componentExternalId" label="Component External Id" datasource="apex://CG_DynamicPicklistFAQ"/>
-</design:component>

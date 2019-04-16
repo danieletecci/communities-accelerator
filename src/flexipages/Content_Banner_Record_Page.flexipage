@@ -20,7 +20,7 @@
                 <name>parentLookupName</name>
                 <value>Content__c</value>
             </componentInstanceProperties>
-            <componentName>TranslationComponent</componentName>
+            <componentName>Translation</componentName>
         </componentInstances>
         <name>Facet-e8a8a2d2-ee92-433d-a0b7-b4b29b7ace65</name>
         <type>Facet</type>

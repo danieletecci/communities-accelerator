@@ -834,7 +834,7 @@
     </labels>
     <labels>
         <fullName>FieldsValues</fullName>
-        <categories>TranslationComponent.cmp</categories>
+        <categories>Translation.cmp</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Fields Values</shortDescription>
@@ -1146,7 +1146,7 @@
     </labels>
     <labels>
         <fullName>Language</fullName>
-        <categories>TranslationComponent.cmp</categories>
+        <categories>Translation.cmp</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Language</shortDescription>
@@ -1449,7 +1449,7 @@
     </labels>
     <labels>
         <fullName>SelectLanguage</fullName>
-        <categories>TranslationComponent.cmp</categories>
+        <categories>Translation.cmp</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Select language</shortDescription>

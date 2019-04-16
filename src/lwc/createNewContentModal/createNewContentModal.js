@@ -12,9 +12,9 @@ import errorMessageLabel from '@salesforce/label/c.NewContentErrorMessage';
 import templateLabel from '@salesforce/label/c.Template';
 import requiredFieldMessage from '@salesforce/label/c.RequiredField';
 import ClusterLookupPlaceholder from '@salesforce/label/c.ClusterLookupPlaceholder';
-import getRecordTypeName from '@salesforce/apex/CreateNewContentModalController.getRecordTypeName';
-import createNewContent from '@salesforce/apex/CreateNewContentModalController.createNewContent';
-import getClusters from '@salesforce/apex/CreateNewContentModalController.getClusters';
+import getRecordTypeName from '@salesforce/apex/ContentCreateModalController.getRecordTypeName';
+import createNewContent from '@salesforce/apex/ContentCreateModalController.createNewContent';
+import getClusters from '@salesforce/apex/ContentCreateModalController.getClusters';
 
 import { CurrentPageReference,NavigationMixin } from 'lightning/navigation';
 import { registerListener, unregisterAllListeners } from 'c/pubsub';

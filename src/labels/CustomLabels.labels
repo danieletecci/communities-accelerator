@@ -834,7 +834,7 @@
     </labels>
     <labels>
         <fullName>FieldsValues</fullName>
-        <categories>TranslationComponent.cmp</categories>
+        <categories>Translation.cmp</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Fields Values</shortDescription>
@@ -1146,7 +1146,7 @@
     </labels>
     <labels>
         <fullName>Language</fullName>
-        <categories>TranslationComponent.cmp</categories>
+        <categories>Translation.cmp</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Language</shortDescription>
@@ -1210,7 +1210,7 @@
     </labels>
     <labels>
         <fullName>NewsContentDetailChooseLayout</fullName>
-        <categories>ContentNewsRecordEdit.cmp</categories>
+        <categories>ArticleContentRecordEdit.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>NewsContentDetailChooseLayout</shortDescription>
@@ -1274,7 +1274,7 @@
     </labels>
     <labels>
         <fullName>NewsContentDetailTitleBottom</fullName>
-        <categories>ContentNewsRecordEdit.cmp</categories>
+        <categories>ArticleContentRecordEdit.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>NewsContentDetailTitleBottom</shortDescription>
@@ -1282,7 +1282,7 @@
     </labels>
     <labels>
         <fullName>NewsContentDetailTitleMiddle</fullName>
-        <categories>ContentNewsRecordEdit.cmp</categories>
+        <categories>ArticleContentRecordEdit.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>NewsContentDetailTitleMiddle</shortDescription>
@@ -1290,7 +1290,7 @@
     </labels>
     <labels>
         <fullName>NewsContentDetailTitleTop</fullName>
-        <categories>ContentNewsRecordEdit.cmp</categories>
+        <categories>ArticleContentRecordEdit.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>NewsContentDetailTitleTop</shortDescription>
@@ -1449,7 +1449,7 @@
     </labels>
     <labels>
         <fullName>SelectLanguage</fullName>
-        <categories>TranslationComponent.cmp</categories>
+        <categories>Translation.cmp</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Select language</shortDescription>
@@ -1569,7 +1569,7 @@
     </labels>
     <labels>
         <fullName>NewsContentDetailTemplateDescription</fullName>
-        <categories>ContentNewsRecordEdit.cmp</categories>
+        <categories>ArticleContentRecordEdit.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>NewsContentDetailTemplateDescription</shortDescription>
@@ -1705,7 +1705,7 @@
     </labels>
     <labels>
         <fullName>UnassignImage</fullName>
-        <categories>ContentNewsRecordEdit</categories>
+        <categories>ArticleContentRecordEdit</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>UnassignImage</shortDescription>

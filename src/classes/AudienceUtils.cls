@@ -9,7 +9,7 @@ public with sharing class AudienceUtils {
     */
     public static void filterRecords(Id userId, List<SObject> records, String audienceLookupApiName){
         //Get user audiences
-        set<String> userAudiences = CMS.getUserAudiences(userId);
+        Set<String> userAudiences = CMSUserSettingsUtils.getUserAudiences(userId);
         
         //Loop records to be filtered
         for(Integer i=0; i < records.size(); i++){
@@ -92,10 +92,10 @@ public with sharing class AudienceUtils {
         Contact contact;
         SObject acRelation;
         SObject customRecord;
-        set<String> accountFieldsSet = new set<String>();
-        set<String> contactFieldsSet = new set<String>();
-        set<String> acRelationFieldsSet = new set<String>();
-        set<String> customObjectFieldsSet = new set<String>();
+        Set<String> accountFieldsSet = new Set<String>();
+        Set<String> contactFieldsSet = new Set<String>();
+        Set<String> acRelationFieldsSet = new Set<String>();
+        Set<String> customObjectFieldsSet = new Set<String>();
 
         //Get the SObject Type from the customRecordId
         String customObjectType;
@@ -179,7 +179,7 @@ public with sharing class AudienceUtils {
                 for(Integer audcNumber: criterionNumberApplyMap.keySet()){
                     aud.AudienceCriteria__c = aud.AudienceCriteria__c.replace(String.ValueOf(audcNumber), String.valueOf(criterionNumberApplyMap.get(audcNumber)).toUpperCase());
                 }
-                applyAudience = BooleanExpression.eval(aud.AudienceCriteria__c);
+                applyAudience = BooleanExpressionUtils.eval(aud.AudienceCriteria__c);
             }
             
             //If the Audience apply add it to the list

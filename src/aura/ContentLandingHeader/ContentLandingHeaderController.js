@@ -4,7 +4,7 @@
 		helper.getStatusValues(component, component.get("v.sObjectName"), "Status__c");
 	},
 	onKeyUp : function(component, event, helper){
-		var appEvent 	= $A.get("e.c:SetContentLandingHeaderFilters");
+		var appEvent 	= $A.get("e.c:ContentLandingSearchEvent");
 		appEvent.setParams({
 			"searchedString"	: searchedString,
     		"status" 			: component.get("v.selectedStatus")

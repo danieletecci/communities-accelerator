@@ -1,3 +1,0 @@
-<design:component label="CG Events - Related">
-	<design:attribute name="componentExternalId" label="Component External Id" datasource="apex://CG_DynamicPicklistEventsRelated"/>
-</design:component>

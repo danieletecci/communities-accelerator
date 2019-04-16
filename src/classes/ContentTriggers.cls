@@ -71,7 +71,7 @@ public with sharing class ContentTriggers extends TriggersHandler {
     public override void dataPreparing() {
         if(excecuteTrigger){
             if(!recordList.isEmpty()){
-                ObjectSharingUtil.SharingWrapper sharingWrapper = ObjectSharingUtil.generateSharingForRecordsOnCluster(recordList, 'Cluster__c', 'Content__Share', 'Clustering__c', false);
+                SharingUtils.SharingWrapper sharingWrapper = SharingUtils.generateSharingForRecordsOnCluster(recordList, 'Cluster__c', 'Content__Share', 'Clustering__c', false);
                 if(sharingWrapper.objectIdToMessageErrosMap.size()>0){
                     objectIdToMessageErrosMap = sharingWrapper.objectIdToMessageErrosMap;
                     excecuteTrigger = false;

@@ -1,4 +1,4 @@
-<aura:component controller="CG_NavigationController" extends="c:CG_BaseComponent" implements="forceCommunity:availableForAllPageTypes" access="global">
+<aura:component controller="MenuController" extends="c:CG_BaseComponent" implements="forceCommunity:availableForAllPageTypes" access="global">
     <!-- extends="c:CG_BaseComponent" 
     -->
 	<!-- GENERAL VARIABLES --> 

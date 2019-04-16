@@ -1,3 +1,0 @@
-<design:component label="CG Datatable">
-	<design:attribute name="componentExternalId" label="Component External Id" datasource="apex://FE_DynamicPicklistDatatable"/>
-</design:component>

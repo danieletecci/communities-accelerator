@@ -506,7 +506,7 @@
     </labels>
     <labels>
         <fullName>ContentModalScheduledMessage</fullName>
-        <categories>BE_ContentModalPublish.cmp</categories>
+        <categories>ContentPublishModal.cmp</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>ContentModalScheduledMessage</shortDescription>
@@ -1577,7 +1577,7 @@
     </labels>
     <labels>
         <fullName>PublishModalTitle</fullName>
-        <categories>BE_ContentModalPublish.cmp</categories>
+        <categories>ContentPublishModal.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Publish Modal Title</shortDescription>
@@ -1585,7 +1585,7 @@
     </labels>
     <labels>
         <fullName>PublishModalSubtitle</fullName>
-        <categories>BE_ContentModalPublish.cmp</categories>
+        <categories>ContentPublishModal.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Publish Modal Subtitle</shortDescription>
@@ -1593,7 +1593,7 @@
     </labels>
     <labels>
         <fullName>ModalStartPublication</fullName>
-        <categories>BE_ContentModalPublish.cmp</categories>
+        <categories>ContentPublishModal.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Publish Modal Start Publication Field Label</shortDescription>
@@ -1601,7 +1601,7 @@
     </labels>
     <labels>
         <fullName>PublishModalRadioPublishNow</fullName>
-        <categories>BE_ContentModalPublish.cmp</categories>
+        <categories>ContentPublishModal.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Publish Modal Radio Button Publish Now</shortDescription>
@@ -1609,7 +1609,7 @@
     </labels>
     <labels>
         <fullName>PublishModalCheckboxExpire</fullName>
-        <categories>BE_ContentModalPublish.cmp</categories>
+        <categories>ContentPublishModal.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Publish Modal Checkbox Expire</shortDescription>
@@ -1617,7 +1617,7 @@
     </labels>
     <labels>
         <fullName>PublishModalRadioSchedulePublication</fullName>
-        <categories>BE_ContentModalPublish.cmp</categories>
+        <categories>ContentPublishModal.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Publish Modal Radio Button Schedule Publication</shortDescription>
@@ -1625,7 +1625,7 @@
     </labels>
     <labels>
         <fullName>PublishModalFutureStartDate</fullName>
-        <categories>BE_ContentModalPublish.cmp</categories>
+        <categories>ContentPublishModal.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>PublishModalFutureStartDate</shortDescription>
@@ -1633,7 +1633,7 @@
     </labels>
     <labels>
         <fullName>PublishModalFutureEndDate</fullName>
-        <categories>BE_ContentModalPublish.cmp</categories>
+        <categories>ContentPublishModal.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>PublishModalFutureEndDate</shortDescription>
@@ -1641,7 +1641,7 @@
     </labels>
     <labels>
         <fullName>PublishModalWrongEndDate</fullName>
-        <categories>BE_ContentModalPublish.cmp</categories>
+        <categories>ContentPublishModal.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>PublishModalFutureStartDate</shortDescription>

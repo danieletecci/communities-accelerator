@@ -1114,7 +1114,7 @@
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
-        <recordType>Component__c.RelatedArticle</recordType>
+        <recordType>Component__c.RelatedArticles</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>

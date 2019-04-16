@@ -139,7 +139,7 @@ public class ContentUtilsTest {
 
         // Given
         List<Cluster__c> clusterRootList = [SELECT Id FROM Cluster__c];
-        List<Component__c> componentList = MockupFactory.createComponent('Articles Related', 1, clusterRootList[0]);
+        List<Component__c> componentList = MockupFactory.createComponent('ArticlesRelated', 1, clusterRootList[0]);
         Component__c comp = componentList[0];
         comp.Datasource__c = 'ParentContentTags';
         update comp;

@@ -43,8 +43,8 @@ public with sharing class CG_BaseComponentController {
 		if(componentType == 'ArticlesRelated' || componentType == 'EventsRelated'){
 			//Busqueda del componente padre
 			String parentComponentType;
-			if(componentType == 'ArticlesRelated'){parentComponentType = 'Article';}
-			if(componentType == 'EventsRelated'){parentComponentType = 'Event';}
+			if(componentType == 'ArticlesRelated'){parentComponentType = 'ArticleList';}
+			if(componentType == 'EventsRelated'){parentComponentType = 'EventList';}
 
 			parentComponent = ComponentUtils.getComponent(parentComponentId, getComponentFieldSetByComponentType(parentComponentType, device), device);
 
@@ -75,7 +75,7 @@ public with sharing class CG_BaseComponentController {
 					}
 				}
 			}else{
-				if(componentType == 'Banner' || componentType == 'Article' || componentType == 'Event' || 
+				if(componentType == 'Banner' || componentType == 'ArticleList' || componentType == 'EventList' || 
 				componentType == 'AdvanceContent' || componentType == 'FAQ' || 
 				componentType == 'ArticleDetail' || componentType == 'EventDetail' || componentType == 'ArticlesRelated' ||
 				componentType == 'EventsRelated'){
@@ -160,8 +160,8 @@ public with sharing class CG_BaseComponentController {
     private static set<String> getComponentFieldSetByComponentType(String componentType, String device){
         set<String> setFields;
         if(componentType == 'Banner'){			setFields = new set<String>{'BannerFrameType__c','Orientation__c','BannerType__c','ShowBullets__c','AutomaticTransition__c','BannerTransitionTime__c','Loop__c','Direction__c'};}
-        if(componentType == 'Article'){			setFields = new set<String>{'ArticleType__c', 'PagingType__c', 'LinkDetail__r.URL__c', 'ExternalId__c'};}
-        if(componentType == 'Event'){			setFields = new set<String>{'EventsType__c', 'ExcludePastEvents__c', 'PagingType__c', 'LinkDetail__r.URL__c', 'ExternalId__c'};}
+        if(componentType == 'ArticleList'){			setFields = new set<String>{'ArticleType__c', 'PagingType__c', 'LinkDetail__r.URL__c', 'ExternalId__c'};}
+        if(componentType == 'EventList'){			setFields = new set<String>{'EventsType__c', 'ExcludePastEvents__c', 'PagingType__c', 'LinkDetail__r.URL__c', 'ExternalId__c'};}
         if(componentType == 'AdvanceContent'){	setFields = new set<String>{};}
         if(componentType == 'FAQ'){				setFields = new set<String>{};}
         if(componentType == 'ArticleDetail'){		setFields = new set<String>{};}
@@ -192,8 +192,8 @@ public with sharing class CG_BaseComponentController {
     	
         set<String> setFields;
         if(componentType == 'Banner'){			setFields = new set<String>{'LinkDetail__r.URL__c','OverlayQuadrant__c', 'Title__c', 'Extract__c', 'ButtonLabel__c','BannerFrameType__c'};}
-        if(componentType == 'Article'){			setFields = new set<String>{'Title__c','Body__c', 'Extract__c', 'LinkDetail__r.URL__c', 'ExternalId__c'};}
-        if(componentType == 'Event'){			setFields = new set<String>{'Title__c','Body__c', 'Extract__c', 'EventStartDate__c', 'EventEndDate__c', 'Location__c', 'LinkDetail__r.URL__c', 'ExternalId__c'};}
+        if(componentType == 'ArticleList'){			setFields = new set<String>{'Title__c','Body__c', 'Extract__c', 'LinkDetail__r.URL__c', 'ExternalId__c'};}
+        if(componentType == 'EventList'){			setFields = new set<String>{'Title__c','Body__c', 'Extract__c', 'EventStartDate__c', 'EventEndDate__c', 'Location__c', 'LinkDetail__r.URL__c', 'ExternalId__c'};}
         if(componentType == 'AdvanceContent'){	setFields = new set<String>{'HTMLContent__c'};}
         if(componentType == 'FAQ'){				setFields = new set<String>{'Title__c', 'Body__c'};}
         if(componentType == 'ArticleDetail'){		setFields = new set<String>{'Title__c', 'Extract__c','Body__c','Layout__c'};}

@@ -52,7 +52,7 @@ public with sharing class MenuTriggers extends TriggersHandler{
     public override void dataPreparing() {
         if(!recordList.isEmpty() && excecuteTrigger){
             
-            ObjectSharingUtil.SharingWrapper sharingWrapper = ObjectSharingUtil.generateSharingForRecordsOnCluster(recordList, 'Cluster__c', 'Menu__Share', 'Clustering__c',false);
+            SharingUtils.SharingWrapper sharingWrapper = SharingUtils.generateSharingForRecordsOnCluster(recordList, 'Cluster__c', 'Menu__Share', 'Clustering__c',false);
             if(sharingWrapper.objectIdToMessageErrosMap.size()>0){
                 objectIdToMessageErrosMap = sharingWrapper.objectIdToMessageErrosMap;
                 excecuteTrigger = false;

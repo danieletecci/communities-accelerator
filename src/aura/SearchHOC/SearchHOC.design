@@ -1,0 +1,3 @@
+<design:component label="CG Search">
+	<design:attribute name="componentExtId" label="Component" datasource="apex://SearchDynamicPicklist"	/>
+</design:component>

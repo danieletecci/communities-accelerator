@@ -1,7 +1,7 @@
-public with sharing class SearchDetailTriggers extends TriggersHandler{
+public with sharing class SearchSettingTriggers extends TriggersHandler{
     private Boolean hasError = false;
 
-    public SearchDetailTriggers (List<SObject> p_triggerNew, List<SObject> p_triggerOld){
+    public SearchSettingTriggers (List<SObject> p_triggerNew, List<SObject> p_triggerOld){
         super(p_triggerNew, p_triggerOld);
 
         allow_masterLoop_BeforeInsert = true;

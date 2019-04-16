@@ -122,7 +122,7 @@ public with sharing class AudienceTriggers extends TriggersHandler{
             }
         }else{
             if(recNew.RecordTypeId == AudienceUtils.rtAudience && recNew.MatchCriteria__c == 'Custom'){
-                if(audienceCiteriaMap.containsKey(recNew.Id) && !BooleanExpression.validateExpression(recNew.AudienceCriteria__c, audienceCiteriaMap.get(recNew.Id))){
+                if(audienceCiteriaMap.containsKey(recNew.Id) && !BooleanExpressionUtils.validateExpression(recNew.AudienceCriteria__c, audienceCiteriaMap.get(recNew.Id))){
                     recNew.addError(Label.CustomCriteriaValidation);
                 }
             }

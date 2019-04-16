@@ -1,0 +1,118 @@
+<template>
+    <div class="datatable"> 
+        <h1>{table.title}</h1>
+        <div class="search-element">
+            <input class="searchInput" placeholder=" " type="search" onsearch={searchEvent} onfocus={focusFilter}/>
+            <div class="icons-group">
+                <template if:true={showCancelSearch}>
+                    <button class="cancelSearch" onclick={cancelFilter}>Cancel</button>
+                </template>
+                <template if:true={showFilterIcon}>
+                    <img class="filterIcon" src={filterIcon} onclick={openFilterModal}>
+                </template>
+            </div>
+        </div>
+        <template if:true={appliedFilters}>
+            <template for:each={table.appliedFilters} for:item="filters">
+                <div class="pills-container" key={filters.filter.name}>
+                    <span class="slds-pill">
+                        <span class="slds-pill__label">{filters.value1}</span>
+                        <img src={closeIcon} data-name={filters.filter.name} data-value={filters.value1} onclick={deleteFilter}>
+                    </span>
+                </div>
+            </template>
+        </template>
+        <template if:true={showFilterModal}>
+            <div class="modal">
+                <div class="modal__header">
+                    <img class="slds-modal__close closeModal" src={closeIcon} onclick={closeFilterModal}>
+                </div>
+                <div class="modal__content">
+                    <template for:each={setDateFilter} for:item="col">
+                        <div key={col.fieldName} class="slds-grid slds-wrap slds-gutters_x-small">
+                            <template if:true={col.filtrable}>
+                                <div class="filter-title slds-col slds-size_4-of-4 slds-grid">
+                                    <h2 class="slds-col slds-size_3-of-4">{col.label}</h2>
+                                </div>
+                                <template for:each={col.filtrableValues} for:item="filter">
+                                    <div key={filter} class="slds-col slds-size_2-of-4">  
+                                        <button class="filter" 
+                                                data-column={col.fieldName} 
+                                                data-type={col.type} 
+                                                data-value={filter}
+                                                onclick={filterActive}>{filter}
+                                        </button>
+                                    </div>
+                                </template>
+                            </template>
+                        </div>
+                    </template>
+                    <template if:true={isCustomDate}>
+                        <h2 class="slds-col slds-size_3-of-4">Select Dates</h2>
+                        <input type="date" name="from-day" max="2019-04-12" class="datefrom">
+                        <input type="date" name="to-day" max="2019-04-12" class="dateto">
+                    </template>
+                    <template if:true={showFooterModal}>
+                        <div class="bottom-spacer">&nbsp;</div>
+                    </template>
+                </div>
+                <template if:true={showFooterModal}>
+                    <div class="modal__footer slds-grid slds-wrap">
+                        <button onclick={filterRemove} class="slds-col slds-size_1-of-1">Remove All Filters</button>
+                        <button class="applyFilter slds-col slds-size_1-of-1" onclick={dataFilter}>Apply</button>
+                    </div>
+                </template>
+            </div>
+        </template>
+        <template for:each={table.tableData} for:item="row">    
+            <article key={row.Id} class="slds-card">   
+                <div class="slds-grid slds-wrap" onclick={openDetailModal} data-key={row.Id}>
+                    <template for:each={columnsToShow} for:item="col">
+                        <div key={col.label} class={columnClass}>
+                            <c-datatable-row colname={col.label} column={col.fieldName} row={row}></c-datatable-row>
+                        </div> 
+                    </template>
+                </div>
+                <footer class="slds-card__footer slds-grid slds-wrap">
+                    <template for:each={rowAction} for:item="action">
+                            <div key={action.label} class="slds-no-flex slds-col slds-size_1-of-4">
+                                <img src={action.icon} 
+                                     data-id={row.Id} 
+                                     data-component={action.component} 
+                                     data-modal={action.showAsModal}
+                                     data-navigation={action.navigation} 
+                                     onclick={rowActionEvent}>
+                            </div>
+                    </template> 
+                    <!-- <div class="slds-no-flex slds-col slds-size_1-of-4">
+                        <img src={moreIcon} onclick={openActionModal}>
+                    </div> -->
+                </footer>
+            </article>
+        </template>
+        <template if:true={appliedFilters}>
+            <div class="table__footer">
+                <button class="remove-filter-btn" onclick={filterRemove}>Remove All Filters</button>
+            </div>
+        </template>
+        <!--                MODALS                 -->
+        <template if:true={showDetailModal}>
+            <c-datatable-modals  type="detailModal"
+                                    table={table} 
+                                    rowkey={clickRow}
+                                    rowaction={rowAction}
+                                    closeicon={closeIcon}
+                                    onclose={closeDetailModal}>
+            </c-datatable-modals>
+        </template>
+        <template if:true={showActionModal}>
+            <c-datatable-modals  type="actionModal"
+                                    table={table} 
+                                    rowaction={rowAction}
+                                    rowkey={clickRow}
+                                    closeicon={closeIcon}
+                                    onclose={closeActionModal}>
+            </c-datatable-modals>
+        </template>
+    </div>
+</template>

@@ -1,7 +1,7 @@
 <aura:component controller="SearchController" implements="forceCommunity:availableForAllPageTypes,forceCommunity:searchInterface" access="global" >
     <aura:registerEvent name="appEventRecordList" type="c:SetRecordList"/>
 
-	<aura:handler event="c:SetSearchDetails" action="{!c.handleSearchDetails}"/>
+	<aura:handler event="c:SearchSettingFindEvent" action="{!c.handleSearchDetails}"/>
 
     <aura:attribute name="searchDetails" 	type="List" 		/>
 	<aura:attribute name="component" 		type="Component__c" />

@@ -57,7 +57,7 @@
 	},
 	getSearchResults: function (component, searchedString) {
        	if(!component.get("v.component").LinkDetail__r || this.isSearchPage(component)){
-            var appEvent 	= $A.get("e.c:SetSearchDetails");
+            var appEvent 	= $A.get("e.c:SearchSettingFindEvent");
 		    appEvent.setParams({
 				"searchedString"	: searchedString,
     			"searchDetails" 	: component.get("v.searchDetails"),

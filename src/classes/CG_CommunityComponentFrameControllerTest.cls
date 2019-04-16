@@ -9,7 +9,7 @@ private class CG_CommunityComponentFrameControllerTest
 
 		// When
 		test.startTest();
-		CG_CommunityComponentFrameController.ContentRecordTypeWrapper crtw = CG_CommunityComponentFrameController.getContentRecordtypeId('RelatedNews');
+		CG_CommunityComponentFrameController.ContentRecordTypeWrapper crtw = CG_CommunityComponentFrameController.getContentRecordtypeId('ArticlesRelated');
 		test.stopTest();
 
 

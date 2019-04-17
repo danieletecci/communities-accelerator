@@ -82,7 +82,7 @@ public with sharing class ClusterUtils {
 				if(!clusterRoot.isEmpty()){
 					List<SObject> rec = Database.query('SELECT Id, ' + clusterRoot[0].MappingObjectField__c + ' FROM ' + clusterRoot[0].MappingObject__c + ' WHERE Id =: recordId');
 					if(!rec.isEmpty()){
-						List<Cluster__c> clusterRet = Database.query('SELECT Id FROM Cluster__c WHERE RecordType.DeveloperName = \'ClusterLeaf\' AND ' + clusterRoot[0].MappingClusterField__c + ' = \'' + GeneralUtils.getFieldValue(rec[0], clusterRoot[0].MappingObjectField__c) + '\' LIMIT 1');
+						List<Cluster__c> clusterRet = Database.query(GeneralUtils.prefix('SELECT Id FROM [CMS]Cluster__c WHERE RecordType.DeveloperName = \'ClusterLeaf\' AND ')+ clusterRoot[0].MappingClusterField__c + ' = \'' + GeneralUtils.getFieldValue(rec[0], clusterRoot[0].MappingObjectField__c) + '\' LIMIT 1');
 						if(!clusterRet.isEmpty()){
 							mapMappingKeyCluster.put(mappingKey, clusterRet[0].Id);
 						}

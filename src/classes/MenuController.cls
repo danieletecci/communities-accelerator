@@ -35,7 +35,7 @@ public class MenuController {
 	@auraEnabled
 	public static ComponentWrapper getNavWrapper(String componentExternalId, String clusterId, String device) {
 		// List of fields
-  		set<String> setFields = new set<String>{'Id','Name', 'ExternalId__c','Recordtype.Developername','NavigationMode__c','HasDelay__c', 'DelayTime__c', 'Cluster__c'};
+  		set<String> setFields = new set<String>{'Id','Name', GeneralUtils.prefix('[CMS]ExternalId__c'),'Recordtype.Developername', GeneralUtils.prefix('[CMS]NavigationMode__c'), GeneralUtils.prefix('[CMS]HasDelay__c'), GeneralUtils.prefix('[CMS]DelayTime__c'), GeneralUtils.prefix('[CMS]Cluster__c')};
   		if(clusterId == null || clusterId.trim() == ''){
 			clusterId = ClusterUtils.getClusterIdFromMappingObject(UserInfo.getUserId(), Network.getNetworkId());
 		}
@@ -47,10 +47,7 @@ public class MenuController {
 		ComponentWrapper cw = new ComponentWrapper();
 		//verificar los custom permisions
 		if(!cw.isEnabledCommunityEditFrame){
-			System.debug('MenuController isEnabledCommunityEditFrame: ' + cw.isEnabledCommunityEditFrame);
-			System.debug('MenuController component.RecordType.DeveloperName: ' + component.RecordType.DeveloperName);
 			if(FeatureManagement.checkPermission(component.RecordType.DeveloperName + 'EditFrame')){
-				System.debug('RecordType.DeveloperName: ' + component.RecordType.DeveloperName + 'EditFrame');
 				cw.isEnabledCommunityEditFrame = true;
 			}else{
 				cw.isEnabledCommunityEditFrame = false;
@@ -58,10 +55,7 @@ public class MenuController {
 		}
 
 		if (!cw.isEnabledCommunityViewFrame){
-			System.debug('MenuController isEnabledCommunityViewFrame: ' + cw.isEnabledCommunityViewFrame);
-			System.debug('MenuController component.RecordType.DeveloperName: ' + component.RecordType.DeveloperName);
 			if(FeatureManagement.checkPermission(component.RecordType.DeveloperName + 'ViewFrame')){
-				System.debug('RecordType.DeveloperName: ' + component.RecordType.DeveloperName + 'ViewFrame');
 				cw.isEnabledCommunityViewFrame = true;
 			}else{
 				cw.isEnabledCommunityViewFrame = false;

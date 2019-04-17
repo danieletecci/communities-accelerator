@@ -20,7 +20,7 @@ public with sharing class CG_CommunityComponentFrameController {
 
 		String contentRecordType = ContentUtils.getRecordTypeContentFromRTComponent(componentRecordType);
 
-		RecordType recordType = [select Id, Name from RecordType where sObjectType = 'Content__c' and Name = :contentRecordType LIMIT 1]; 
+		RecordType recordType = [select Id, Name from RecordType where sObjectType =: GeneralUtils.prefix('[CMS]Content__c') and Name = :contentRecordType LIMIT 1]; 
 		
 		if(recordType != null){
 			contentRecordTypeWP.contentRecordTypeId = String.valueOf(recordType.Id);

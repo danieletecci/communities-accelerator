@@ -20,7 +20,7 @@ private class GeneralUtilsTest {
 		//When
 		Test.startTest();
 		String result = GeneralUtils.replaceDynamicFields(GeneralUtils.prefix('[![CMS]cluster__c.name]'), GeneralUtils.prefix('[CMS]Cluster__c'), (String)sObjectList[0].get('id'), false);
-		String result2 = GeneralUtils.replaceDynamicFields(GeneralUtils.prefix('[![CMS]cluster__c.name]', GeneralUtils.prefix('[CMS]Cluster__c'), (String)sObjectList[0].get('id'), true);
+		String result2 = GeneralUtils.replaceDynamicFields(GeneralUtils.prefix('[![CMS]cluster__c.name]'), GeneralUtils.prefix('[CMS]Cluster__c'), (String)sObjectList[0].get('id'), true);
 		Test.stopTest();
 
 		//Then

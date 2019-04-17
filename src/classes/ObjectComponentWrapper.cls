@@ -1,4 +1,4 @@
-public class ComponentWrapper {
+public class ObjectComponentWrapper {
     
     public String id;
     public String Name;
@@ -41,8 +41,9 @@ public class ComponentWrapper {
     public String Status;
     public String StatusApprovalProcess;
     public String TagCriteria;
+    public String RecordtypeDeveloperName;
     
-    public ComponentWrapper(Component__c component){
+    public ObjectComponentWrapper(Component__c component){
         this.id= component.Id;
         this.Name = component.Name;
         this.ArticleType = component.ArticleType__c;
@@ -83,6 +84,7 @@ public class ComponentWrapper {
         this.Status = component.Status__c;
         this.StatusApprovalProcess = component.StatusApprovalProcess__c;
         this.TagCriteria = component.TagCriteria__c;
+        this.RecordtypeDeveloperName = component.Recordtype.DeveloperName;
     }
 
 }

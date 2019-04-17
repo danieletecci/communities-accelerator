@@ -44,6 +44,7 @@ public class ObjectContentWrapper {
     public String URLRedirect;
 
     public String LinkDetailURL;
+    public String ClusterName;
 
     public List<MediaElementAssignment> MediaElementAssignments;
 
@@ -96,6 +97,7 @@ public class ObjectContentWrapper {
         try{this.URLRedirect = content.URLRedirect__c;}catch(Exception e){}
 
         try{this.LinkDetailURL = content.LinkDetail__r.URL__c;}catch(Exception e){}
+        try{this.ClusterName = content.Cluster__r.Name;}catch(Exception e){}
 
         try{
             this.MediaElementAssignments = new List<MediaElementAssignment>();

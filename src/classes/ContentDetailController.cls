@@ -1,14 +1,14 @@
 public with sharing class ContentDetailController {
     //DATA WRAPPER
     public class DataWrapper{
-        @AuraEnabled public Content__c                      content;
+        @AuraEnabled public ObjectContentWrapper            content;
         @AuraEnabled public List<VisibilitySelectorWrapper> visibilitySelectors;
         @AuraEnabled public String                          timeZone;
         @AuraEnabled public SecurityWrapper                 security;
         @AuraEnabled public List<String>                    bannerFrameTypes;
         
         public DataWrapper(Content__c content, SecurityWrapper security, List<VisibilitySelectorWrapper> visibilitySelectors, String timeZone, List<String> bannerFrameTypes){
-            this.content                = content;
+            this.content                = new ObjectContentWrapper(content);
             this.visibilitySelectors    = visibilitySelectors;
             this.security               = security;
             this.timeZone               = timeZone;
@@ -190,14 +190,16 @@ public with sharing class ContentDetailController {
     }
 
     @AuraEnabled
-    public static Boolean saveContent(Content__c content, String visibilitySelectorsString, String mediaElementId, String status, List<TagAssignment__c> contentOldTagAssignments){
+    public static Boolean saveContent(ObjectContentWrapper content, String visibilitySelectorsString, String mediaElementId, String status, List<ObjectContentWrapper.TagAssignment> contentOldTagAssignments){
         Savepoint sp = Database.setSavepoint();
+        Content__c contentVar = content.parse();
+
         try{
             List<VisibilitySelectorWrapper> visibilitySelectors = (List<VisibilitySelectorWrapper>)JSON.deserialize(visibilitySelectorsString, List<VisibilitySelectorWrapper>.class);
-            updateAudienceAssignments(content, getSelectorByApiName(visibilitySelectors, GeneralUtils.prefix('[CMS]Audience__c')));
-            content = updateContent(content, visibilitySelectors, status);
-            updateTagAssignments(content, getSelectorByApiName(visibilitySelectors, GeneralUtils.prefix('[CMS]Tag__c')), contentOldTagAssignments);
-            updateMediaElementAssignment(content, mediaElementId);
+            updateAudienceAssignments(contentVar, getSelectorByApiName(visibilitySelectors, GeneralUtils.prefix('[CMS]Audience__c')));
+            contentVar = updateContent(contentVar, visibilitySelectors, status);
+            updateTagAssignments(contentVar, getSelectorByApiName(visibilitySelectors, GeneralUtils.prefix('[CMS]Tag__c')), contentOldTagAssignments);
+            updateMediaElementAssignment(contentVar, mediaElementId);
             return true;
         }catch(DMLException e){
             Database.rollback(sp);
@@ -243,13 +245,13 @@ public with sharing class ContentDetailController {
         
     }
 
-    private static void updateTagAssignments(Content__c content, VisibilitySelectorWrapper tagVisibility, List<TagAssignment__c> contentOldTagAssignments){
+    private static void updateTagAssignments(Content__c content, VisibilitySelectorWrapper tagVisibility, List<ObjectContentWrapper.TagAssignment> contentOldTagAssignments){
         Map<String, String> tagToTagAssignment = new Map<String, String>();
         List<TagAssignment__c> tagAssignmentsToDelete = new List<TagAssignment__c>();
         List<TagAssignment__c> tagAssignmentsToCreate = new List<tagAssignment__c>();
         if(contentOldTagAssignments != null){
-            for(TagAssignment__c tagAssignment : contentOldTagAssignments){
-                tagToTagAssignment.put(tagAssignment.Tag__c, tagAssignment.Id);
+            for(ObjectContentWrapper.TagAssignment tagAssignment : contentOldTagAssignments){
+                tagToTagAssignment.put(tagAssignment.Tag, tagAssignment.Id);
             }
         }
         
@@ -262,7 +264,7 @@ public with sharing class ContentDetailController {
             }else{
                 //If a tag was removed from the content
                 if(tagToTagAssignment.get(tagOption.value) != null){
-                    tagAssignmentsToDelete.add(new TagAssignment__c(id=tagToTagAssignment.get(tagOption.value)));
+                    tagAssignmentsToDelete.add(new TagAssignment__c(id = tagToTagAssignment.get(tagOption.value)));
                 }
             }
         }

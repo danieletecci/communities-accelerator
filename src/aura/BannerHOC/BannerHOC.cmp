@@ -11,7 +11,7 @@
     <aura:attribute name="aspectRatios" type="Object"/>
     <aura:attribute name="isLoading" type="boolean" default="true"/>
     <aura:attribute name="bannerHeight" type="String" access="private"/>
-	<aura:attribute name="heightValue" type="String" access="private" default="{!if(and(v.componentWrapper.meta.component.Orientation__c == 'Horizontal-Landscape', v.componentWrapper.meta.component.BannerFrameType__c == 'Hero'), v.aspectRatios.height1_3, '') + if(and(v.componentWrapper.meta.component.Orientation__c == 'Horizontal-Landscape', v.componentWrapper.meta.component.BannerFrameType__c == 'Page'), v.aspectRatios.height1_6, '') + if(and(v.componentWrapper.meta.component.Orientation__c == 'Vertical-Portrait', 	v.componentWrapper.meta.component.BannerFrameType__c == 'Hero'), v.aspectRatios.height3_1, '') + if(and(v.componentWrapper.meta.component.Orientation__c == 'Vertical-Portrait', 	v.componentWrapper.meta.component.BannerFrameType__c == 'Page'), v.aspectRatios.height6_1, '') + if(v.componentWrapper.meta.component.BannerFrameType__c == 'Square', v.aspectRatios.height1_1, '')}"/>
+	<aura:attribute name="heightValue" type="String" access="private" default="{!if(and(v.componentWrapper.meta.component.Orientation == 'Horizontal-Landscape', v.componentWrapper.meta.component.BannerFrameType == 'Hero'), v.aspectRatios.height1_3, '') + if(and(v.componentWrapper.meta.component.Orientation == 'Horizontal-Landscape', v.componentWrapper.meta.component.BannerFrameType == 'Page'), v.aspectRatios.height1_6, '') + if(and(v.componentWrapper.meta.component.Orientation == 'Vertical-Portrait', 	v.componentWrapper.meta.component.BannerFrameType == 'Hero'), v.aspectRatios.height3_1, '') + if(and(v.componentWrapper.meta.component.Orientation == 'Vertical-Portrait', 	v.componentWrapper.meta.component.BannerFrameType == 'Page'), v.aspectRatios.height6_1, '') + if(v.componentWrapper.meta.component.BannerFrameType == 'Square', v.aspectRatios.height1_1, '')}"/>
                       
     <!-- MAIN COMPONENT -->
     <div aura:id="cg_component">
@@ -19,7 +19,7 @@
             <c:bannerMobile bannerData="{!v.elements}"/>
             <aura:set attribute="else">
                 <!-- TOOL BOX COMPONENT -->
-                <c:ComponentToolBox componentType="Banner" componentExternalId="{!v.componentExternalId}" componentWrapper="{!v.componentWrapper}" salesforceDomain="{!v.componentWrapper.acceleratorSettings.SalesforceDomain__c}" isLoading="{!v.isLoading}">
+                <c:ComponentToolBox componentType="Banner" componentExternalId="{!v.componentExternalId}" componentWrapper="{!v.componentWrapper}" salesforceDomain="{!v.componentWrapper.acceleratorSettings.SalesforceDomain}" isLoading="{!v.isLoading}">
                     
                     <!-- BANNER LOC COMPONENT -->
                     <c:Banner

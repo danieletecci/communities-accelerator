@@ -8,7 +8,7 @@
 	<aura:attribute name="componentWrapper" type="Object"/>
 	
 	<!-- FAQs COMPONENT -->
-	<c:ComponentToolBox componentType="FAQ" componentExternalId="{!v.componentExternalId}" componentWrapper="{!v.componentWrapper}" salesforceDomain="{!v.componentWrapper.acceleratorSettings.SalesforceDomain__c}" isLoading="{!v.isLoading}">
+	<c:ComponentToolBox componentType="FAQ" componentExternalId="{!v.componentExternalId}" componentWrapper="{!v.componentWrapper}" salesforceDomain="{!v.componentWrapper.acceleratorSettings.SalesforceDomain}" isLoading="{!v.isLoading}">
         <!-- FAQs LOC COMPONENT -->
         <c:FAQ
             dataWrapper="{!v.componentWrapper.data}"

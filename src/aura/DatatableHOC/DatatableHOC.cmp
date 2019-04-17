@@ -16,7 +16,7 @@
     <div aura:id="cg_component">
         
         <!-- BASE COMPONENT -->
-        <c:ComponentToolBox componentType="Datatable" componentExternalId="{!v.componentExternalId}" componentWrapper="{!v.componentWrapper}" salesforceDomain="{!v.componentWrapper.acceleratorSettings.SalesforceDomain__c}" isLoading="{!v.isLoading}">
+        <c:ComponentToolBox componentType="Datatable" componentExternalId="{!v.componentExternalId}" componentWrapper="{!v.componentWrapper}" salesforceDomain="{!v.componentWrapper.acceleratorSettings.SalesforceDomain}" isLoading="{!v.isLoading}">
             <!-- DATATABLE COMPONENT -->
                 <aura:renderIf isTrue="{! v.showDatatable}">
                     <c:datatable table="{!v.componentWrapper.data}" onfilter="{!c.doHandleFilter}" onclearfilter="{!c.doHandleClearFilters}" onsearch="{!c.doHandleSearch}" onaction="{!c.doHandleCustomRowAction}"/>

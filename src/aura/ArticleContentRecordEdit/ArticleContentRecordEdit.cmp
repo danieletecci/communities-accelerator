@@ -27,28 +27,6 @@
                         </div>
                     </aura:if>
                 </div>
-                <!--<div class="slds-col slds-p-bottom_small">
-                    <aura:if isTrue="{!not(v.isExtIdEdit)}">
-                        <div class="slds-form" role="list">
-                            <div class="slds-form__row">
-                                <div class="slds-form__item" role="listitem">
-                                    <div class="slds-form-element slds-form-element_edit slds-form-element_readonly slds-form-element_stacked slds-hint-parent">
-                                        <span class="slds-form-element__label">{!$Label.c.ArticleContentDetailExternalId}</span>
-                                        <div class="slds-form-element__control">
-                                            <div class="slds-form-element__static" ondblclick="{!c.editExternalId}">{!v.contentData.ExternalId}</div>
-                                            <lightning:buttonIcon iconName="utility:edit" size="medium" variant="bare" alternativeText="Edit" class="slds-button__icon_hint" onclick="{!c.editExternalId}"/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <aura:set attribute="else">
-                            <div onkeyup="{!c.onExternalIdKeyUp}">
-                                <lightning:input label="{!$Label.c.ArticleContentDetailExternalId}" aura:id="externalid-input" value="{!v.contentData.ExternalId}" maxlength="80" onblur="{!c.onExternalIdInputBlur}"/>
-                            </div>
-                        </aura:set>
-                    </aura:if>
-                </div>-->
                 <div class="slds-col slds-p-bottom_small">
                     <lightning:input label="{!$Label.c.ArticleContentDetailTitle}" name="contentName" value="{!v.contentData.Title}" aura:id="contentName" maxlength="255"/>
                 </div>

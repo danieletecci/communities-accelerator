@@ -1,5 +1,5 @@
 <aura:event type="APPLICATION" description="Event template" >
 	<aura:attribute name="searchedString"	type="String" 		/>
     <aura:attribute name="searchDetails" 	type="List" 		/>
-	<aura:attribute name="component" 		type="Component__c" />
+	<aura:attribute name="component" 		type="Component" />
 </aura:event>

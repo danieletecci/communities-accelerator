@@ -26,24 +26,24 @@
                 helper.saveFileAndUpdateMedia(component, helper, fileId, '', fileName, device, image.width, image.height);
                 if(device == 'Desktop'){
                 	if(String(component.find("resizeForTable").get('v.value')) == 'true'){
-                		component.set("v.oldFileTablet", component.get("v.mediaElementWrapper.mediaElement.FileURLTablet__c"));
+                		component.set("v.oldFileTablet", component.get("v.mediaElementWrapper.mediaElement.FileURLTablet"));
                 		var tabletImg = new Image;
 						tabletImg.src = "data:image/gif;base64," + imgStr;
 						tabletImg.onload = function() {
-							var widthResize = component.get("v.mediaElementWrapper.acceleratorSettings.MaxSizeTablet__c");
-							var heightResize = component.get("v.mediaElementWrapper.acceleratorSettings.MaxSizeTablet__c");
+							var widthResize = component.get("v.mediaElementWrapper.acceleratorSettings.MaxSizeTablet");
+							var heightResize = component.get("v.mediaElementWrapper.acceleratorSettings.MaxSizeTablet");
 							var t_base64String = helper.resizeImg(tabletImg, widthResize, heightResize, 0);
 
 							helper.saveFileAndUpdateMedia(component, helper, '', t_base64String, '[TABLET]_' + fileName, 'Tablet', 500, 500);
 						}
                 	}
                 	if(String(component.find("resizeForMobile").get('v.value')) == 'true'){
-                		component.set("v.oldFileMobile", component.get("v.mediaElementWrapper.mediaElement.FileURLMobile__c"));
+                		component.set("v.oldFileMobile", component.get("v.mediaElementWrapper.mediaElement.FileURLMobile"));
                 		var mobileImg = new Image;
 						mobileImg.src = "data:image/gif;base64," + imgStr;
 						mobileImg.onload = function() {
-							var widthResize = component.get("v.mediaElementWrapper.acceleratorSettings.MaxSizeMobile__c");
-							var heightResize = component.get("v.mediaElementWrapper.acceleratorSettings.MaxSizeMobile__c");
+							var widthResize = component.get("v.mediaElementWrapper.acceleratorSettings.MaxSizeMobile");
+							var heightResize = component.get("v.mediaElementWrapper.acceleratorSettings.MaxSizeMobile");
 							var m_base64String = helper.resizeImg(mobileImg, widthResize, heightResize, 0);
 
 							helper.saveFileAndUpdateMedia(component, helper, '', m_base64String, '[MOBILE]_' + fileName, 'Mobile', 500, 500);
@@ -208,15 +208,15 @@
 
     	if(selected=='Edit_Desktop'){
     		component.set("v.showEditDesktop", true);
-    		component.set("v.oldFileDesktop", component.get("v.mediaElementWrapper.mediaElement.FileURLDesktop__c"));
+    		component.set("v.oldFileDesktop", component.get("v.mediaElementWrapper.mediaElement.FileURLDesktop"));
     	}
     	if(selected=='Edit_Tablet'){
     		component.set("v.showEditTablet", true);
-    		component.set("v.oldFileTablet", component.get("v.mediaElementWrapper.mediaElement.FileURLTablet__c"));
+    		component.set("v.oldFileTablet", component.get("v.mediaElementWrapper.mediaElement.FileURLTablet"));
     	}
     	if(selected=='Edit_Mobile'){
     		component.set("v.showEditMobile", true);
-    		component.set("v.oldFileMobile", component.get("v.mediaElementWrapper.mediaElement.FileURLMobile__c"));
+    		component.set("v.oldFileMobile", component.get("v.mediaElementWrapper.mediaElement.FileURLMobile"));
     	}
     	if(selected=='Delete_Desktop'){
     		var action = component.get("c.deleteFileDesktop");

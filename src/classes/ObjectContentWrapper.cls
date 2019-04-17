@@ -19,8 +19,8 @@ public class ObjectContentWrapper {
     public String EventDates;
     public Datetime EventEndDate;
     public Datetime EventStartDate;
-    public Datetime EventStartDay;
-    public Datetime EventStartMonth;
+    public String EventStartDay;
+    public String EventStartMonth;
     public String ExternalId;
     public String Extract;
     public String HTMLContent;
@@ -32,7 +32,7 @@ public class ObjectContentWrapper {
     public Decimal Order;
     public String OverlayQuadrant;
     public Datetime PublishEndDate;
-    public String PublishStartDate;
+    public Datetime PublishStartDate;
     public String RedirectType;
     public String Status;
     public String StatusApprovalProcess;
@@ -49,6 +49,7 @@ public class ObjectContentWrapper {
         try{this.RecordTypeId = content.RecordTypeId;}catch(Exception e){}
         try{this.RecordTypeName = content.RecordType.Name;}catch(Exception e){}
         try{this.RecordTypeDeveloperName = content.RecordType.DeveloperName;}catch(Exception e){}
+        
         try{this.PublishedDate = content.PublishedDate__c;}catch(Exception e){}
         try{this.Audience = content.Audience__c;}catch(Exception e){}
         try{this.BannerFrameType = content.BannerFrameType__c;}catch(Exception e){}

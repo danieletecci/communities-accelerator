@@ -32,21 +32,21 @@
         		<h4>{!$Label.c.Desktop}</h4>
             </div>
 
-	        <aura:if isTrue="{!v.mediaElementWrapper.mediaElement.FileURLDesktop__c == null || v.showEditDesktop}">
+	        <aura:if isTrue="{!v.mediaElementWrapper.mediaElement.FileURLDesktop == null || v.showEditDesktop}">
 	            <div class="slds-col slds-size_10-of-12">
 	        		<lightning:fileUpload name="fileUploader" multiple="false" accept="{!v.acceptedFiletypes}" disabled="false" recordId="{!v.recordId}" onuploadfinished="{! c.handleUploadFinishedDesktop }"/>
 
-	        		<aura:if isTrue="{!v.mediaElementWrapper.acceleratorSettings.EnableMediaElementAutomaticResize__c}">
-		        		<ui:inputCheckbox aura:id="resizeForTable" label="{!'Automatic resize for Tablet (up to ' + v.mediaElementWrapper.acceleratorSettings.MaxSizeTablet__c + 'px)'}"/>
-		        		<ui:inputCheckbox aura:id="resizeForMobile" label="{!'Automatic resize for Mobile (up to ' + v.mediaElementWrapper.acceleratorSettings.MaxSizeMobile__c + 'px)'}"/>
+	        		<aura:if isTrue="{!v.mediaElementWrapper.acceleratorSettings.EnableMediaElementAutomaticResize}">
+		        		<ui:inputCheckbox aura:id="resizeForTable" label="{!'Automatic resize for Tablet (up to ' + v.mediaElementWrapper.acceleratorSettings.MaxSizeTablet + 'px)'}"/>
+		        		<ui:inputCheckbox aura:id="resizeForMobile" label="{!'Automatic resize for Mobile (up to ' + v.mediaElementWrapper.acceleratorSettings.MaxSizeMobile + 'px)'}"/>
 		        	</aura:if>
 	            </div>
 	            <aura:set attribute="else">
                     <div class="slds-col slds-size_10-of-12">
-                        <img src="{!v.mediaElementWrapper.mediaElement.FileURLDesktop__c }" width="50" style="margin-right: 5px;"/> 
+                        <img src="{!v.mediaElementWrapper.mediaElement.FileURLDesktop }" width="50" style="margin-right: 5px;"/> 
                         <a href="{!v.mediaElementWrapper.urlViewDesktop }" target="_blank" style="margin-right: 5px;">
-	                   {!v.mediaElementWrapper.mediaElement.FileNameDesktop__c }</a>
-                       {!v.mediaElementWrapper.lastModifiedDesktop} . {!v.mediaElementWrapper.fileSizeDesktop} . {!v.mediaElementWrapper.mediaElement.DesktopFileExtension__c}
+	                   {!v.mediaElementWrapper.mediaElement.FileNameDesktop }</a>
+                       {!v.mediaElementWrapper.lastModifiedDesktop} . {!v.mediaElementWrapper.fileSizeDesktop} . {!v.mediaElementWrapper.mediaElement.DesktopFileExtension}
                         <lightning:buttonMenu aura:id="menu" onselect="{! c.handleSelect }" alternativeText="Show menu">
                             <lightning:menuItem value="Edit_Desktop" label="{!$Label.c.General_Edit}" />
                             <lightning:menuItem value="Delete_Desktop" label="{!$Label.c.General_Delete}" />
@@ -64,14 +64,14 @@
                 {!$Label.c.Tablet}
             </div>
 
-	        <aura:if isTrue="{!v.mediaElementWrapper.mediaElement.FileURLTablet__c == null || v.showEditTablet}">
+	        <aura:if isTrue="{!v.mediaElementWrapper.mediaElement.FileURLTablet == null || v.showEditTablet}">
 	            <div class="slds-col slds-size_10-of-12">
 	        		<lightning:fileUpload  name="fileUploader" multiple="{!v.multiple}" accept="{!v.acceptedFiletypes}" disabled="{!v.disabled}" recordId="{!v.recordId}" onuploadfinished="{!c.handleUploadFinishedTablet}"/>
 	            </div>
 	            <aura:set attribute="else">
                     <div class="slds-col slds-size_10-of-12">
-                        <img src="{!v.mediaElementWrapper.mediaElement.FileURLTablet__c }" width="50" style="margin-right: 5px;"/> <a href="{!v.mediaElementWrapper.urlViewTablet }" target="_blank" style="margin-right: 5px;">
-                	   {!v.mediaElementWrapper.mediaElement.FileNameTablet__c}</a> . {!v.mediaElementWrapper.lastModifiedTablet} . {!v.mediaElementWrapper.fileSizeTablet} . {!v.mediaElementWrapper.mediaElement.TabletFileExtension__c}
+                        <img src="{!v.mediaElementWrapper.mediaElement.FileURLTablet }" width="50" style="margin-right: 5px;"/> <a href="{!v.mediaElementWrapper.urlViewTablet }" target="_blank" style="margin-right: 5px;">
+                	   {!v.mediaElementWrapper.mediaElement.FileNameTablet}</a> . {!v.mediaElementWrapper.lastModifiedTablet} . {!v.mediaElementWrapper.fileSizeTablet} . {!v.mediaElementWrapper.mediaElement.TabletFileExtension}
                         <lightning:buttonMenu aura:id="menu" onselect="{! c.handleSelect }" alternativeText="Show menu">
                             <lightning:menuItem value="Edit_Tablet" label="{!$Label.c.General_Edit}" />
                             <lightning:menuItem value="Delete_Tablet" label="{!$Label.c.General_Delete}" />
@@ -89,15 +89,15 @@
                 <h4>{!$Label.c.Mobile}</h4>
             </div>
 
-            <aura:if isTrue="{!v.mediaElementWrapper.mediaElement.FileURLMobile__c == null || v.showEditMobile}">
+            <aura:if isTrue="{!v.mediaElementWrapper.mediaElement.FileURLMobile == null || v.showEditMobile}">
 	            <div class="slds-col slds-size_10-of-12">
 	        		<lightning:fileUpload  name="fileUploader" multiple="{!v.multiple}" accept="{!v.acceptedFiletypes}" disabled="{!v.disabled}" recordId="{!v.recordId}" onuploadfinished="{!c.handleUploadFinishedMobile}"/>
 	            </div>
 		        <aura:set attribute="else">
                     <div class="slds-col slds-size_10-of-12">
-                        <img src="{!v.mediaElementWrapper.mediaElement.FileURLMobile__c }" width="50" style="margin-right: 5px;"/>  <a href="{!v.mediaElementWrapper.urlViewMobile }" target="_blank" style="margin-right: 5px;">  
-	                   {!v.mediaElementWrapper.mediaElement.FileNameMobile__c}</a> . 
-                       {!v.mediaElementWrapper.lastModifiedMobile} . {!v.mediaElementWrapper.fileSizeMobile} . {!v.mediaElementWrapper.mediaElement.MobileFileExtension__c}
+                        <img src="{!v.mediaElementWrapper.mediaElement.FileURLMobile }" width="50" style="margin-right: 5px;"/>  <a href="{!v.mediaElementWrapper.urlViewMobile }" target="_blank" style="margin-right: 5px;">  
+	                   {!v.mediaElementWrapper.mediaElement.FileNameMobile}</a> . 
+                       {!v.mediaElementWrapper.lastModifiedMobile} . {!v.mediaElementWrapper.fileSizeMobile} . {!v.mediaElementWrapper.mediaElement.MobileFileExtension}
                         <lightning:buttonMenu aura:id="menu" onselect="{! c.handleSelect }" alternativeText="Show menu">
                             <lightning:menuItem value="Edit_Mobile" label="{!$Label.c.General_Edit}" />
                             <lightning:menuItem value="Delete_Mobile" label="{!$Label.c.General_Delete}" />

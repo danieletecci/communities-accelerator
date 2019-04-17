@@ -5,7 +5,7 @@
             <componentName>ComponentBehaviour</componentName>
         </componentInstances>
         <componentInstances>
-            <componentName>ContentAdvanceContentRecordEdit</componentName>
+            <componentName>AdvanceContentRecordEdit</componentName>
         </componentInstances>
         <name>Facet-adc36bb6-7f9d-4ad8-af37-dbd6e7a0f2c9</name>
         <type>Facet</type>

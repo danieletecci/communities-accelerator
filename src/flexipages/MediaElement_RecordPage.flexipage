@@ -16,7 +16,7 @@
             <componentName>force:detailPanel</componentName>
         </componentInstances>
         <componentInstances>
-            <componentName>MediaElementUploader</componentName>
+            <componentName>MediaElementUpload</componentName>
         </componentInstances>
         <name>Facet-9a938f7a-51ce-4b60-a1bc-7c6856df6895</name>
         <type>Facet</type>

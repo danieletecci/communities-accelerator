@@ -6,7 +6,7 @@
     <aura:attribute name="searchStr"                type="String"            />
     <aura:attribute name="communityPreviewDomain"   type="String"            />
     <aura:attribute name="navigation"               type="String"            />
-    <aura:attribute name="clusterLeafs"             type="Cluster[]"      />
+    <aura:attribute name="clusterLeafs"             type="Object[]"      />
     <aura:attribute name="clusterId"                type="String"            />
     <aura:attribute name="url"                      type="String"            />
     <aura:attribute name="homeUrl"                  type="String"            />

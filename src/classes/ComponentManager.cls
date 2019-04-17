@@ -4,6 +4,7 @@ public without sharing virtual class ComponentManager {
     public String componentExternalId;
     public String clusterId;
     public String device;
+    public Component__c componentRecord;
     public String componentId;
     public String navigationUrl;
 
@@ -94,7 +95,8 @@ public without sharing virtual class ComponentManager {
         defaultComponentFieldSet.add('[CMS]TagCriteria__c');
         defaultComponentFieldSet.add('[CMS]PageSize__c');
         defaultComponentFieldSet.addAll(componentFieldSet);
-        mw.component = new ObjectComponentWrapper(ComponentUtils.getComponent(componentExternalId, defaultComponentFieldSet, device));
+        componentRecord = ComponentUtils.getComponent(componentExternalId, defaultComponentFieldSet, device);
+        mw.component = new ObjectComponentWrapper(componentRecord);
         mw.navId = GeneralUtils.getNavigationId(navigationUrl);
         return mw;
     }

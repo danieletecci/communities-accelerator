@@ -5,12 +5,12 @@ const formatContent = (content, type) => {
         if (type === 'Event') {
             formatedContent = {
                 id: content.content.Id,
-                externalId: content.content.ExternalId__c,
+                externalId: content.content.ExternalId,
                 type: type,
-                headerText: content.content.EventStartDate__c,
-                title: content.content.Title__c,
-                bodyText: content.content.Extract__c,
-                imgSrc: temp.FileURLDesktop__c,
+                headerText: content.content.EventStartDate,
+                title: content.content.Title,
+                bodyText: content.content.Extract,
+                imgSrc: temp.FileURLDesktop,
                 footer: {
                     description: {
                         descPrimary: content.content.Name,
@@ -22,11 +22,11 @@ const formatContent = (content, type) => {
         else {
             formatedContent = {
                 id: content.content.Id,
-                externalId: content.content.ExternalId__c,
+                externalId: content.content.ExternalId,
                 headerText: null,
-                title: content.content.Title__c,
-                bodyText: content.content.Extract__c,
-                imgSrc: temp.FileURLDesktop__c,
+                title: content.content.Title,
+                bodyText: content.content.Extract,
+                imgSrc: temp.FileURLDesktop,
                 footer: {
                     description: {
                         descPrimary: content.content.Name,
@@ -46,22 +46,22 @@ const formatContentCompressed = (content, type) => {
         if (type === 'Event') {
             formatedContent = {
                 id: content.content.Id,
-                externalId: content.content.ExternalId__c,
+                externalId: content.content.ExternalId,
                 type: type,
-                headerText: content.content.EventStartDate__c.slice(0, 10),
-                title: content.content.Title__c,
-                imgSrc: temp.FileURLDesktop__c,
+                headerText: content.content.EventStartDate.slice(0, 10),
+                title: content.content.Title,
+                imgSrc: temp.FileURLDesktop,
                 description: content.content.Name
             };
         }
         else {
             formatedContent = {
                 id: content.content.Id,
-                externalId: content.content.ExternalId__c,
+                externalId: content.content.ExternalId,
                 type: type,
                 headerText: null,
-                title: content.content.Title__c,
-                imgSrc: temp.FileURLDesktop__c,
+                title: content.content.Title,
+                imgSrc: temp.FileURLDesktop,
                 description: null
             };
         }

@@ -150,7 +150,7 @@ public with sharing class CG_BaseComponentController {
     	List<ContentWrapper> contentWrapper = new List<ContentWrapper>();
     	for(ContentUtils.ContentDataWrapper cdw: contentDataWrapper){
     		ContentWrapper cw = new ContentWrapper();
-    		cw.content = new ObjectContentWrapper(cdw.content);
+    		cw.content = cdw.content;
     		cw.mediaElements = cdw.mediaElements;
     		contentWrapper.add(cw);
     	}

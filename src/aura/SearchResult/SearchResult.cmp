@@ -4,7 +4,7 @@
 	<aura:handler event="c:SearchSettingFindEvent" action="{!c.handleSearchDetails}"/>
 
     <aura:attribute name="searchDetails" 	type="List" 		/>
-	<aura:attribute name="component" 		type="Component"    />
+	<aura:attribute name="component" 		type="Object"       />
 	<aura:attribute name="results" 			type="Map[]" 		/>
 	<aura:attribute name="selectedItem" 	type="String" 		/>
 	<aura:attribute name="searchedString" 	type="String" 		/>

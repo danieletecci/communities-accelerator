@@ -11,7 +11,7 @@ public with sharing class ContentManager {
         @auraEnabled public List<ObjectMediaElementWrapper> mediaElements;
     }
 
-    public static CMSContent getCMSContent(String clusterId, Component__c component, Set<String> contentSetFields, String device) {
+    public static CMSContent getCMSContent(String clusterId, ObjectComponentWrapper component, Set<String> contentSetFields, String device) {
         ContentManager.CMSContent cmsContent = new ContentManager.CMSContent();
 
         Set<String> setClusterIds = ClusterUtils.getClustersParents(clusterId);
@@ -42,7 +42,7 @@ public with sharing class ContentManager {
         List<ContentWrapper> contentWrapper = new List<ContentWrapper>();
         for(ContentUtils.ContentDataWrapper cdw: contentDataWrapper){
             ContentWrapper cw = new ContentWrapper();
-            cw.content = new ObjectContentWrapper(cdw.content);
+            cw.content = cdw.content;
             cw.mediaElements = cdw.mediaElements;
             contentWrapper.add(cw);
         }

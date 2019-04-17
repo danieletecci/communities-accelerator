@@ -10,8 +10,8 @@
 	<aura:method name="show" action="{!c.doShow}" />
 	<aura:method name="hide" action="{!c.doHide}" />
 
-    <!-- ATTRIBUTES -->
-    <aura:attribute name="content"				type="Content"					/>
+    <!-- ATTRIBUTES -->   
+    <aura:attribute name="content"				type="Object"		     			/>
 	<aura:attribute name="options" 				type="List" 						/>
     <aura:attribute name="action"  				type="String"  	default="publish" 	/>
     <aura:attribute name="expire"  				type="Boolean" 	default="false"		/>

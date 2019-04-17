@@ -11,7 +11,7 @@ public class ComponentPreviewControllerTest {
 		
 		//When
 		Test.startTest();
-        Id testComponentId = ComponentPreviewController.getRecord(String.valueOf(testRecord.Id));
+        Id testComponentId = ComponentPreviewController.getRecord(String.valueOf(testRecord.Id)).Id;
 		Test.stopTest();
 
 		//Then

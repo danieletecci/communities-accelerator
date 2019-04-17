@@ -1,4 +1,3 @@
-@isTest
 public class ComponentWrapper {
     
     public String id;

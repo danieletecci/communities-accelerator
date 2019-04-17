@@ -1,4 +1,3 @@
-@isTest
 public class CustomSettingWrapper {
     
     public String clusterFieldForPublicGroups;

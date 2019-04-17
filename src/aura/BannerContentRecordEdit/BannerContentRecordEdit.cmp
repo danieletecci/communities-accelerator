@@ -49,7 +49,7 @@
                         value="{!v.contentData.ButtonLabel}" />
                     <br />
                     <!--Link-->
-                    <c:LookupInput objectAPIName="Navigation" IconName="standard:link"
+                    <c:LookupInput objectAPIName="[CMS]Navigation__c" IconName="standard:link"
                         selectedRecordId="{!v.contentData.LinkDetail}" label="{!$Label.c.BannerContentDetailLink}" />
                     <br />
                     <ui:outputText value="{!$Label.c.BannerContentDetailLayout}" /><br />

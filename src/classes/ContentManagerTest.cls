@@ -24,7 +24,7 @@ private class ContentManagerTest {
 		
 		//When
 		Test.startTest();
-		ComponentManager.DataWrapper data = ContentManager.getCMSContent(componentList[0].Cluster__c, componentList[0], contentSetFields, device);
+		ComponentManager.DataWrapper data = ContentManager.getCMSContent(componentList[0].Cluster__c, new ObjectComponentWrapper(componentList[0]), contentSetFields, device);
 		Test.stopTest();
 
 		//Then

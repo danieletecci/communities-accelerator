@@ -37,7 +37,7 @@ public with sharing class BannerController extends ComponentManager{
             '[CMS]BannerFrameType__c'
         };
         
-        return ContentManager.getCMSContent(clusterId, component, contentSetFields, device);
+        return ContentManager.getCMSContent(clusterId, cw.meta.component, contentSetFields, device);
     }
 
 }

@@ -82,7 +82,8 @@ public without sharing virtual class ContentUtils {
                 query += 'WHERE (Id IN: contentIdList OR [CMS]Category__c IN: setCategoriesIds) AND (Id NOT IN: setContentToExclude) AND ([CMS]ExternalId__c NOT IN: setContentToExclude) AND [CMS]Cluster__c IN: setClusterIds AND Recordtype.DeveloperName =: contentTypeToSearch ';
             }
 
-            if(component.RecordTypeDevelopername == 'EventList' || component.RecordTypeDeveloperName == 'EventsRelated'){
+            if(component.RecordtypeDevelopername == 'EventList' || component.RecordtypeDeveloperName == 'EventsRelated'){
+
                 if (component.ExcludePastEvents){
                     Datetime dateAndTime = System.today();
                     query += 'AND ([CMS]EventEndDate__c >: dateAndTime) ';

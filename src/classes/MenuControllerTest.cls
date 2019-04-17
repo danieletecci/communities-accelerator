@@ -28,7 +28,7 @@ public class MenuControllerTest {
         test.stopTest();
         //Then
         System.assertNotEquals(null, componentWrapper);
-        System.assertEquals(component[0].ExternalId__c, componentWrapper.component.ExternalId__c);
+        System.assertEquals(component[0].ExternalId__c, componentWrapper.component.ExternalId);
         System.assertEquals(cluster.id, componentWrapper.clusterId);
         System.assertEquals('DESKTOP', componentWrapper.device);
     }

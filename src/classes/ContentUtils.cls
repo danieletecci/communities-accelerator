@@ -15,8 +15,8 @@ public without sharing virtual class ContentUtils {
     }
     
     public class ContentDataWrapper{
-        public Content__c content;
-        public List<MediaElement__c> mediaElements;
+        public ObjectContentWrapper content;
+        public List<ObjectMediaElementWrapper> mediaElements;
     }
 
     public static ContentWrapper getContentFromComponent(Component__c component, Set<String> fieldSet, Set<String> setContentDirect, Set<String> setContentToExclude, Set<String> setClusterIds, String device){
@@ -35,19 +35,19 @@ public without sharing virtual class ContentUtils {
         String query = '';
 
         //SELECT
-        fieldSet.add('Audience__r.ReferenceAudienceExternalIds__c');
-        query += 'SELECT ' + GeneralUtils.joinFields(fieldSet) + ', (SELECT Id, MediaElement__c, Placement__c FROM MediaElementAssignments__r WHERE Placement__c = \''+ getPlaceForRTComponent(component.RecordType.Developername) +'\') ';     
+        fieldSet.add('[CMS]Audience__r.[CMS]ReferenceAudienceExternalIds__c');
+        query += 'SELECT ' + GeneralUtils.joinFields(fieldSet) + ', (SELECT Id, [CMS]MediaElement__c, [CMS]Placement__c FROM [CMS]MediaElementAssignments__r WHERE [CMS]Placement__c = \''+ getPlaceForRTComponent(component.RecordType.Developername) +'\') ';     
         
         //FROM
-        query += 'FROM Content__c ';
+        query += 'FROM [CMS]Content__c ';
 
         //WHERE
         String contentTypeToSearch = getRecordTypeContentFromRTComponent(component.RecordType.DeveloperName);
         
         if(setContentDirect != null){
             //Busqueda de contenido por parametro
-            query += 'WHERE (Id IN: setContentDirect OR ExternalId__c IN: setContentDirect) AND Recordtype.DeveloperName =: contentTypeToSearch ';
-            query += contentTypeToSearch == 'Banner' ? ' AND BannerFrameType__c = \'' + component.BannerFrameType__c + '\' ' : '';
+            query += 'WHERE (Id IN: setContentDirect OR [CMS]ExternalId__c IN: setContentDirect) AND Recordtype.DeveloperName =: contentTypeToSearch ';
+            query += contentTypeToSearch == 'Banner' ? ' AND [CMS]BannerFrameType__c = \'' + component.BannerFrameType__c + '\' ' : '';
 
         }else{
             if(component.Datasource__c != null){
@@ -76,23 +76,23 @@ public without sharing virtual class ContentUtils {
             }
 
             if(component.Datasource__c != null && (component.Datasource__c == 'All Articles' || component.Datasource__c == 'All Events') ){
-                query += 'WHERE Id NOT IN: setContentToExclude AND ExternalId__c NOT IN: setContentToExclude AND Cluster__c IN: setClusterIds AND Recordtype.DeveloperName =: contentTypeToSearch ';
+                query += 'WHERE Id NOT IN: setContentToExclude AND [CMS]ExternalId__c NOT IN: setContentToExclude AND [CMS]Cluster__c IN: setClusterIds AND Recordtype.DeveloperName =: contentTypeToSearch ';
             }else{
 
-                query += 'WHERE (Id IN: contentIdList OR Category__c IN: setCategoriesIds) AND (Id NOT IN: setContentToExclude) AND (ExternalId__c NOT IN: setContentToExclude) AND Cluster__c IN: setClusterIds AND Recordtype.DeveloperName =: contentTypeToSearch ';
+                query += 'WHERE (Id IN: contentIdList OR [CMS]Category__c IN: setCategoriesIds) AND (Id NOT IN: setContentToExclude) AND ([CMS]ExternalId__c NOT IN: setContentToExclude) AND [CMS]Cluster__c IN: setClusterIds AND Recordtype.DeveloperName =: contentTypeToSearch ';
             }
 
             if(component.Recordtype.Developername == 'EventList' || component.Recordtype.DeveloperName == 'EventsRelated'){
                 if (component.ExcludePastEvents__c){
                     Datetime dateAndTime = System.today();
-                    query += 'AND (EventEndDate__c >: dateAndTime) ';
+                    query += 'AND ([CMS]EventEndDate__c >: dateAndTime) ';
                 }
             }
 
-            query += contentTypeToSearch == 'Banner' ? ' AND BannerFrameType__c = \'' + component.BannerFrameType__c + '\' ' : '';
+            query += contentTypeToSearch == 'Banner' ? ' AND [CMS]BannerFrameType__c = \'' + component.BannerFrameType__c + '\' ' : '';
         }
         
-        query += ' AND Status__c = \'Published\' AND IsTemplate__c = false ';
+        query += ' AND [CMS]Status__c = \'Published\' AND [CMS]IsTemplate__c = false ';
 
         //ORDER
         if((component.OrderBy__c != null && component.OrderBy__c != 'Custom Sorting' && component.OrderBy__c != 'Manual Order') || (component.OrderBy__c != null && component.OrderBy__c == 'Custom Sorting' && component.OrderByAdvance__c != null) ){
@@ -100,11 +100,11 @@ public without sharing virtual class ContentUtils {
         }
         
         if(component.HierarchicalOrderBy__c != null){
-            query = query.replace('ORDER BY', 'ORDER BY Cluster__r.ClusterLevel__c ' + component.HierarchicalOrderBy__c + ', ');
+            query = query.replace('ORDER BY', 'ORDER BY [CMS]Cluster__r.[CMS]ClusterLevel__c ' + component.HierarchicalOrderBy__c + ', ');
         }       
         
         ContentWrapper cw = new ContentWrapper();
-        Map<Id, Content__c> mapContent = new Map<Id, Content__c>((List<Content__c>)Database.query(query));
+        Map<Id, Content__c> mapContent = new Map<Id, Content__c>((List<Content__c>)Database.query(GeneralUtil.prefix(query)));
 
         if(!mapContent.isEmpty()){
             //Manual Order del contenido
@@ -124,7 +124,7 @@ public without sharing virtual class ContentUtils {
                 
                 //Application of audiences
                 try{
-                    AudienceUtils.filterRecords(UserInfo.getUserId(), contentList, 'Audience__c');
+                    AudienceUtils.filterRecords(UserInfo.getUserId(), contentList, '[CMS]Audience__c');
                 }catch(Exception e){
                     contentList = new List<Content__c>();
                 }
@@ -145,7 +145,7 @@ public without sharing virtual class ContentUtils {
                     }
                 }
                 //Translate content records
-                TranslationUtils.getTranslated(firstPage, UserInfo.getLanguage(), 'Content__c');
+                TranslationUtils.getTranslated(firstPage, UserInfo.getLanguage(), '[CMS]Content__c');
 
                 //Replace User information on Advance Content
                 if(component.Recordtype.DeveloperName == 'AdvanceContent'){
@@ -161,21 +161,21 @@ public without sharing virtual class ContentUtils {
 
     public static List<ContentDataWrapper> getContentPage(set<String> setAllContentIds, set<String> fieldSet, Integer page, Integer pageSize, String orderBy, String device, String componentType){
         String query = '';
-        query += 'SELECT ' + GeneralUtils.joinFields(fieldSet) + ', (SELECT Id, MediaElement__c, Placement__c FROM MediaElementAssignments__r WHERE Placement__c = \''+ getPlaceForRTComponent(componentType) +'\') ';
-        query += 'FROM Content__c ';
+        query += 'SELECT ' + GeneralUtils.joinFields(fieldSet) + ', (SELECT Id, [CMS]MediaElement__c, [CMS]Placement__c FROM [CMS]MediaElementAssignments__r WHERE [CMS]Placement__c = \''+ getPlaceForRTComponent(componentType) +'\') ';
+        query += 'FROM [CMS]Content__c ';
         query += 'WHERE Id IN: setAllContentIds ';
         query += 'ORDER BY ' + orderBy + ' ';
-        query = query.replace('ORDER BY', 'ORDER BY Cluster__r.ClusterLevel__c ASC, ');
+        query = query.replace('ORDER BY', 'ORDER BY [CMS]Cluster__r.[CMS]ClusterLevel__c ASC, ');
         query += 'LIMIT ' + pageSize + ' ';
 
         Decimal offSet = (page-1) * pageSize;
 
         query += 'OFFSET ' + offSet;
         
-        List<Content__c> listContentPage = Database.query(query);
+        List<Content__c> listContentPage = Database.query(GeneralUtil.prefix(query));
 
         //Translate content records
-        TranslationUtils.getTranslated(listContentPage, UserInfo.getLanguage(), 'Content__c');
+        TranslationUtils.getTranslated(listContentPage, UserInfo.getLanguage(), '[CMS]Content__c');
 
         List<ContentDataWrapper> contentDataPage = createContentDataWrappers(listContentPage);
         return contentDataPage;
@@ -183,12 +183,12 @@ public without sharing virtual class ContentUtils {
     
     private static List<Id> getContentIdsByAssignment(Id componentId, Boolean isManualOrder){
         List<Id> contentIdList = new List<Id>();
-        String queryContentAssignment = 'SELECT Id, Content__c FROM ContentAssignment__c WHERE Component__c =: componentId';
+        String queryContentAssignment = 'SELECT Id, [CMS]Content__c FROM [CMS]ContentAssignment__c WHERE [CMS]Component__c =: componentId';
         if(isManualOrder){
-            queryContentAssignment += ' ORDER BY Order__c';
+            queryContentAssignment += ' ORDER BY [CMS]Order__c';
         }
 
-        for(ContentAssignment__c ca: Database.query(queryContentAssignment)){
+        for(ContentAssignment__c ca: Database.query(GeneralUtil.prefix(queryContentAssignment))){
             if(!contentIdList.contains(ca.Content__c)) contentIdList.add(ca.Content__c);
         }
         return contentIdList;
@@ -291,11 +291,11 @@ public without sharing virtual class ContentUtils {
         for(Content__c c: contents){
             ContentDataWrapper cdw = new ContentDataWrapper();
             c = externalIdToUrl(c);
-            cdw.content = c;
+            cdw.content = new ObjectContentWrapper(c);
             cdw.mediaElements = new List<MediaElement__c>();
             for(MediaElementAssignment__c m: c.MediaElementAssignments__r){
                 if(mapMediaElements != null && mapMediaElements.containsKey(m.MediaElement__c)){
-                    cdw.mediaElements.add(mapMediaElements.get(m.MediaElement__c));    
+                    cdw.mediaElements.add(new ObjectMediaElementWrapper(mapMediaElements.get(m.MediaElement__c)));    
                 }
             }
             listCDW.add(cdw);
@@ -352,8 +352,8 @@ public without sharing virtual class ContentUtils {
     @auraEnabled
     public static String createFromTemplate(Id templateId, String recordName, String clusterId){
 
-        Set<String> fieldNames = GeneralUtils.getObjectFieldNames('Content__c');
-        Content__c template = Database.query('SELECT ' +  String.join(new List<String>(fieldNames), ',') + ' FROM Content__c WHERE Id =: templateId');
+        Set<String> fieldNames = GeneralUtils.getObjectFieldNames('[CMS]Content__c');
+        Content__c template = Database.query(GeneralUtils.prefix('SELECT ' +  String.join(new List<String>(fieldNames), ',') + ' FROM [CMS]Content__c WHERE Id =: templateId'));
 
         if(template.IsTemplate__c && template.Status__c == 'Published'){
             Content__c newContent = template.clone(false,false,false,false);

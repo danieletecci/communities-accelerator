@@ -23,26 +23,26 @@ public class ObjectMediaElementWrapper {
     public String WidthTablet;
     
     public ObjectMediaElementWrapper(MediaElement__c mediaElement){
-        this.Id = content.Id;
-        this.Name = content.Name;
-        this.Description = mediaElement.Description__c;
-        this.DesktopFileExtension = mediaElement.DesktopFileExtension__c;
-        this.ExternalId = mediaElement.ExternalId__c;
-        this.FileNameDesktop = mediaElement.FileNameDesktop__c;
-        this.FileNameMobile = mediaElement.FileNameMobile__c;
-        this.FileNameTablet = mediaElement.FileNameTablet__c;
-        this.FileURLDesktop = mediaElement.FileURLDesktop__c;
-        this.FileURLMobile = mediaElement.FileURLMobile__c;
-        this.FileURLTablet = mediaElement.FileURLTablet__c;
-        this.HeightDesktop = mediaElement.HeightDesktop__c;
-        this.HeightMobile = mediaElement.HeightMobile__c;
-        this.HeightTablet = mediaElement.HeightTablet__c;
-        this.MobileFileExtension = mediaElement.MobileFileExtension__c;
-        this.Status = mediaElement.Status__c;
-        this.TabletFileExtension = mediaElement.TabletFileExtension__c;
-        this.WidthDesktop = mediaElement.WidthDesktop__c;
-        this.WidthMobile = mediaElement.WidthMobile__c;
-        this.WidthTablet = mediaElement.WidthTablet__c;
+        try{this.Id = content.Id;}catch(Exception e){}
+        try{this.Name = content.Name;}catch(Exception e){}
+        try{this.Description = mediaElement.Description__c;}catch(Exception e){}
+        try{this.DesktopFileExtension = mediaElement.DesktopFileExtension__c;}catch(Exception e){}
+        try{this.ExternalId = mediaElement.ExternalId__c;}catch(Exception e){}
+        try{this.FileNameDesktop = mediaElement.FileNameDesktop__c;}catch(Exception e){}
+        try{this.FileNameMobile = mediaElement.FileNameMobile__c;}catch(Exception e){}
+        try{this.FileNameTablet = mediaElement.FileNameTablet__c;}catch(Exception e){}
+        try{this.FileURLDesktop = mediaElement.FileURLDesktop__c;}catch(Exception e){}
+        try{this.FileURLMobile = mediaElement.FileURLMobile__c;}catch(Exception e){}
+        try{this.FileURLTablet = mediaElement.FileURLTablet__c;}catch(Exception e){}
+        try{this.HeightDesktop = mediaElement.HeightDesktop__c;}catch(Exception e){}
+        try{this.HeightMobile = mediaElement.HeightMobile__c;}catch(Exception e){}
+        try{this.HeightTablet = mediaElement.HeightTablet__c;}catch(Exception e){}
+        try{this.MobileFileExtension = mediaElement.MobileFileExtension__c;}catch(Exception e){}
+        try{this.Status = mediaElement.Status__c;}catch(Exception e){}
+        try{this.TabletFileExtension = mediaElement.TabletFileExtension__c;}catch(Exception e){}
+        try{this.WidthDesktop = mediaElement.WidthDesktop__c;}catch(Exception e){}
+        try{this.WidthMobile = mediaElement.WidthMobile__c;}catch(Exception e){}
+        try{this.WidthTablet = mediaElement.WidthTablet__c;}catch(Exception e){}
     }
 
 }

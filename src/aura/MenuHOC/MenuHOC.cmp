@@ -11,6 +11,6 @@
     <aura:attribute name="isLivePreview" type="Boolean" default="false"/>
 
 		    <div class="slds-text-longform">
-				<c:Menu menus="{!v.componentWrapper.navWrapper}" device="{! v.componentWrapper.device}" navMode="{!v.componentWrapper.component.NavigationMode__c}" component="{!v.componentWrapper.component}"/>
+				<c:Menu menus="{!v.componentWrapper.navWrapper}" device="{! v.componentWrapper.device}" navMode="{!v.componentWrapper.component.NavigationMode}" component="{!v.componentWrapper.component}"/>
 			</div>
 </aura:component>

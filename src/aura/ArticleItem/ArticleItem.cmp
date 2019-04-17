@@ -12,15 +12,15 @@
         <!-- LANDSCAPE -->
         <aura:if isTrue="{!v.type == 'Landscape'}" >
             <div class="landscape-item" style="{! 'height: ' + v.height }">
-                <div class="landscape-div-img" style="{! 'background-image: url(' + v.contentWrapper.mediaElements[0].FileURLDesktop__c + ');' }"></div>
+                <div class="landscape-div-img" style="{! 'background-image: url(' + v.contentWrapper.mediaElements[0].FileURLDesktop + ');' }"></div>
                 
                 <div class="landscape-div-title">
-                	<h2 class="slds-align_absolute-center h2-19-black-bold">{!v.contentWrapper.content.Title__c}</h2>
+                	<h2 class="slds-align_absolute-center h2-19-black-bold">{!v.contentWrapper.content.Title}</h2>
                 </div>
                 
                 <div class="landscape-div-body">
                     <p class="align_absolute-center p-15-black-regular" >
-                        <aura:unescapedHtml value="{!v.contentWrapper.content.Extract__c}"/>
+                        <aura:unescapedHtml value="{!v.contentWrapper.content.Extract}"/>
                     </p>
                 </div>
 
@@ -36,17 +36,17 @@
             <lightning:layout class="portrait-layout">
                 
                 <lightning:layoutitem size="5" class="info-container info-detail portrait-container-image">
-                    <img class="portrait-img" src="{!v.contentWrapper.mediaElements[0].FileURLDesktop__c}"/>
+                    <img class="portrait-img" src="{!v.contentWrapper.mediaElements[0].FileURLDesktop}"/>
                 </lightning:layoutitem>
 
                 <lightning:layoutitem size="7" class="info-container info-detail portrait-container-body">
                     <div class="portrait-div-title">
-                        <h2 class="h2-19-black-bold" >{!v.contentWrapper.content.Title__c}</h2>
+                        <h2 class="h2-19-black-bold" >{!v.contentWrapper.content.Title}</h2>
                     </div>
                     
                     <div class="portrait-div-body">
                         <p class="p-15-black-regular" >
-                            <aura:unescapedHtml value="{!v.contentWrapper.content.Extract__c}"/>
+                            <aura:unescapedHtml value="{!v.contentWrapper.content.Extract}"/>
                         </p>
                     </div>
                     

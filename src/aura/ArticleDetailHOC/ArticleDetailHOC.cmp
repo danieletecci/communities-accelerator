@@ -8,38 +8,38 @@
 		<aura:set attribute="else">
 			<!-- Article DETAIL TITLE TOP -->
 
-			<aura:if isTrue="{!v.componentWrapper.contentWrapper[0].content.Layout__c == 'Title Top'}">
+			<aura:if isTrue="{!v.componentWrapper.contentWrapper[0].content.Layout == 'Title Top'}">
 			<!-- TITLE -->
 			<div class="title">
-				{!v.componentWrapper.contentWrapper[0].content.Title__c}
+				{!v.componentWrapper.contentWrapper[0].content.Title}
 			</div>
 			<br/>
 
 
 			<!-- EXTRACT -->
 			<div class="extract">
-				<aura:unescapedHtml value="{!v.componentWrapper.contentWrapper[0].content.Extract__c}"/>
+				<aura:unescapedHtml value="{!v.componentWrapper.contentWrapper[0].content.Extract}"/>
 			</div>
 			<br/>
 
 			<!-- IMAGE -->
-				<img src="{!v.componentWrapper.contentWrapper[0].mediaElements[0].FileURLDesktop__c}" class="detailImage"/>
+				<img src="{!v.componentWrapper.contentWrapper[0].mediaElements[0].FileURLDesktop}" class="detailImage"/>
 			<br/>
 
 			<!-- DESCRIPTION -->
 			<div class="detail">
-				<aura:unescapedHtml value="{!v.componentWrapper.contentWrapper[0].content.Body__c}"/>
+				<aura:unescapedHtml value="{!v.componentWrapper.contentWrapper[0].content.Body}"/>
 			</div>
 			</aura:if>
 
 
 			<!-- Article DETAIL TITLE MIDDLE -->
-			<aura:if isTrue="{!v.componentWrapper.contentWrapper[0].content.Layout__c == 'Title Middle'}">
+			<aura:if isTrue="{!v.componentWrapper.contentWrapper[0].content.Layout == 'Title Middle'}">
 				<!-- TITLE AND IMAGE -->
 				<div class="container">
 
-					<img src="{!v.componentWrapper.contentWrapper[0].mediaElements[0].FileURLDesktop__c}" class="detailImage"/>
-					<div class="text-block">{!v.componentWrapper.contentWrapper[0].content.Title__c}</div>
+					<img src="{!v.componentWrapper.contentWrapper[0].mediaElements[0].FileURLDesktop}" class="detailImage"/>
+					<div class="text-block">{!v.componentWrapper.contentWrapper[0].content.Title}</div>
 					
 				</div>
 				<br/>
@@ -47,38 +47,38 @@
 
 				<!-- EXTRACT -->
 				<div class="extract">
-					<aura:unescapedHtml value="{!v.componentWrapper.contentWrapper[0].content.Extract__c}"/>
+					<aura:unescapedHtml value="{!v.componentWrapper.contentWrapper[0].content.Extract}"/>
 				</div>
 				<br/>
 
 				<!-- DESCRIPTION -->
 				<div class="detail">
-					<aura:unescapedHtml value="{!v.componentWrapper.contentWrapper[0].content.Body__c}"/>
+					<aura:unescapedHtml value="{!v.componentWrapper.contentWrapper[0].content.Body}"/>
 				</div>
 			</aura:if>
 
 			<!-- Article DETAIL TITLE BOTTOM -->
-			<aura:if isTrue="{!v.componentWrapper.contentWrapper[0].content.Layout__c == 'Title Bottom'}">
+			<aura:if isTrue="{!v.componentWrapper.contentWrapper[0].content.Layout == 'Title Bottom'}">
 				<!-- IMAGE -->
-					<img src="{!v.componentWrapper.contentWrapper[0].mediaElements[0].FileURLDesktop__c}" class="detailImage"/>
+					<img src="{!v.componentWrapper.contentWrapper[0].mediaElements[0].FileURLDesktop}" class="detailImage"/>
 				<br/>
 
 				<!-- TITLE -->
 				<div class="title">
-					{!v.componentWrapper.contentWrapper[0].content.Title__c}
+					{!v.componentWrapper.contentWrapper[0].content.Title}
 				</div>
 				<br/>
 
 
 				<!-- EXTRACT -->
 				<div class="extract">
-					<aura:unescapedHtml value="{!v.componentWrapper.contentWrapper[0].content.Extract__c}"/>
+					<aura:unescapedHtml value="{!v.componentWrapper.contentWrapper[0].content.Extract}"/>
 				</div>
 				<br/>
 
 				<!-- DESCRIPTION -->
 				<div class="detail">
-					<aura:unescapedHtml value="{!v.componentWrapper.contentWrapper[0].content.Body__c}"/>
+					<aura:unescapedHtml value="{!v.componentWrapper.contentWrapper[0].content.Body}"/>
 				</div>
 			</aura:if>
 		</aura:set>

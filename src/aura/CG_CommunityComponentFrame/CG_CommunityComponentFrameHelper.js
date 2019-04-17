@@ -1,7 +1,7 @@
 ({
 	viewComponent : function(component, event, helper) {
 		var cWrapper = component.get('v.componentWrapper');
-		var sfDomain  = cWrapper.acceleratorSettings.SalesforceDomain__c;
+		var sfDomain  = cWrapper.acceleratorSettings.SalesforceDomain;
 		window.open(((sfDomain === undefined || sfDomain == '') ? './detail' : sfDomain) + '/' + cWrapper.component.Id, '_blank');
 	},
 	viewContent : function(component, event, helper) {
@@ -15,7 +15,7 @@
 	newContent : function(component, event, helper) {
 		
 		var cWrapper = component.get('v.componentWrapper');
-		var componentRecordTypeId = cWrapper.component.RecordType.DeveloperName;
+		var componentRecordTypeId = cWrapper.component.RecordTypeDeveloperName;
 		var navUrl = window.location.pathname;
 		var navId;
 
@@ -36,7 +36,7 @@
             if(f.getState() === "SUCCESS") {
             	var contntRecordTypeWp = action.getReturnValue();
 
-				var sfDomain  = cWrapper.acceleratorSettings.SalesforceDomain__c;
+				var sfDomain  = cWrapper.acceleratorSettings.SalesforceDomain;
 				if(contntRecordTypeWp.haveContentRecordType){
 
 					var url = ((sfDomain === undefined || sfDomain == '') ? './detail' : sfDomain) + '/lightning/n/NewContent' + '?RecordTypeId=' + contntRecordTypeWp.contentRecordTypeId + '&ComponentId=' + cWrapper.component.Id + '&NavigationId=' + navId;

@@ -2,10 +2,10 @@ public with sharing class CG_BaseComponentController {
     
     //WRAPPERS
     public class ComponentWrapper{
-		@auraEnabled public AcceleratorSettings__c acceleratorSettings;
+		@auraEnabled public CustomSettingWrapper acceleratorSettings;
 		@auraEnabled public Boolean isEnabledCommunityEditFrame;
 		@auraEnabled public Boolean isEnabledCommunityViewFrame;
-        @auraEnabled public Component__c component;
+        @auraEnabled public ObjectComponentWrapper component;
 		@auraEnabled public List<String> listAllContentIds;
 		@auraEnabled public List<ContentWrapper> contentWrapper;
 		@auraEnabled public List<Integer> pagesNumbers;
@@ -13,15 +13,15 @@ public with sharing class CG_BaseComponentController {
 		@auraEnabled public List<Tag__c> tags;
 		@auraEnabled public String clusterId;
 		public ComponentWrapper(){
-			this.acceleratorSettings = AcceleratorSettings__c.getInstance();
+			this.acceleratorSettings = new CustomSettingWrapper(CMSSettings__c.getInstance(), CMSContentSettings__c.getInstance(), CMSMediaElementSettings__c.getInstance());
             this.isEnabledCommunityEditFrame = FeatureManagement.checkPermission('CommunityEditFrame');
             this.isEnabledCommunityViewFrame = FeatureManagement.checkPermission('CommunityViewFrame');
 		}
 	}
     
     public class ContentWrapper{
-        @auraEnabled public Content__c content;
-        @auraEnabled public List<MediaElement__c> mediaElements;
+        @auraEnabled public ObjectContentWrapper content;
+        @auraEnabled public List<ObjectMediaElementWrapper> mediaElements;
     }
 
     @auraEnabled
@@ -29,14 +29,14 @@ public with sharing class CG_BaseComponentController {
 
 		Component__c component;
 		Component__c parentComponent;
-		set<String> setContentDirect;
-		set<String> setContentToExclude;
+		Set<String> setContentDirect;
+		Set<String> setContentToExclude;
 
 		//Si no se parametrizan Clusters busco los default
 		if(clusterId == null || clusterId.trim() == ''){
 			clusterId = ClusterUtils.getClusterIdFromMappingObject(UserInfo.getUserId(), Network.getNetworkId());
 		}
-		set<String> setClusterIds = ClusterUtils.getClustersParents(clusterId);
+		Set<String> setClusterIds = ClusterUtils.getClustersParents(clusterId);
 		//Busqueda de componente
 		component = ComponentUtils.getComponent(componentExternalId, getComponentFieldSetByComponentType(componentType, device), device);
 		
@@ -102,7 +102,7 @@ public with sharing class CG_BaseComponentController {
 
 
 
-		cw.component = component;
+		cw.component = new ObjectComponentWrapper(component);
 		cw.clusterId = clusterId;
 
 		cw.listAllContentIds = new List<String>();
@@ -150,7 +150,7 @@ public with sharing class CG_BaseComponentController {
     	List<ContentWrapper> contentWrapper = new List<ContentWrapper>();
     	for(ContentUtils.ContentDataWrapper cdw: contentDataWrapper){
     		ContentWrapper cw = new ContentWrapper();
-    		cw.content = cdw.content;
+    		cw.content = new ObjectContentWrapper(cdw.content);
     		cw.mediaElements = cdw.mediaElements;
     		contentWrapper.add(cw);
     	}

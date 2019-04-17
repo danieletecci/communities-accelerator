@@ -2,7 +2,7 @@ import { LightningElement, api } from 'lwc';
 import { formatContentCompressed } from 'c/contentFormatter'
 
 
-export default class CardCompressedHoc extends LightningElement {
+export default class CardCompressedFormatter extends LightningElement {
     @api content;
     @api formatedContent;
     @api type;

@@ -39,7 +39,11 @@ public with sharing class SharingUtils{
             }
         }
 
-        Map<String,String> fieldNamesAndSecLevel = new Map<String,String>{'PublicGroupRWName__c' => 'Edit', 'PublicGroupROUpName__c' => 'Read', 'PublicGroupRODownName__c' => 'Read'};
+        Map<String,String> fieldNamesAndSecLevel = new Map<String,String>{
+            GeneralUtils.prefix('[CMS]PublicGroupRWName__c') => 'Edit',
+            GeneralUtils.prefix('[CMS]PublicGroupROUpName__c') => 'Read',
+            GeneralUtils.prefix('[CMS]PublicGroupRODownName__c') => 'Read'
+        };
         
         
         for(Id clusterId : mapRecordsByCluster.keySet()){
@@ -86,7 +90,6 @@ public with sharing class SharingUtils{
         List<String> groupNameList = new List<String>();
         List<SObject> listOfSharesToInsert = new List<SObject>();
 
-        System.debug('TagTriggers dataPreparing records: ' + records);
         for(Sobject recordItem: records){
             groupNameList.add( ((Cluster__c) recordItem).PublicGroupRWName__c);
             groupNameList.add( ((Cluster__c) recordItem).PublicGroupRODownName__c);
@@ -102,22 +105,23 @@ public with sharing class SharingUtils{
             }
         }
 
-        Map<String,String> fieldNamesAndSecLevel = new Map<String,String>{'PublicGroupRWName__c' => 'Edit', 'PublicGroupROUpName__c' => 'Read', 'PublicGroupRODownName__c' => 'Read'};
+        Map<String,String> fieldNamesAndSecLevel = new Map<String,String>{
+            GeneralUtils.prefix('[CMS]PublicGroupRWName__c') => 'Edit',
+            GeneralUtils.prefix('[CMS]PublicGroupROUpName__c') => 'Read',
+            GeneralUtils.prefix('[CMS]PublicGroupRODownName__c') => 'Read'
+        };
         for(SObject record: records){
             for(String fieldName: fieldNamesAndSecLevel.keySet()){
-                System.debug('record.get(fieldName)'+record.get(fieldName));
-                    String shareObjectName = nameObjectShare;
-                    Schema.SObjectType shareType = Schema.getGlobalDescribe().get(shareObjectName);
-                    SObject shareRecord = shareType.newSObject();
-                    shareRecord.put('ParentId', record.Id);
-                    shareRecord.put('UserOrGroupId', groupNameToGroupIdMap.get( (String) record.get(fieldName)) );
-                    shareRecord.put('RowCause', sharingReason);
-                    shareRecord.put('AccessLevel', fieldNamesAndSecLevel.get(fieldName));
-                    listOfSharesToInsert.add(shareRecord);
+                String shareObjectName = nameObjectShare;
+                Schema.SObjectType shareType = Schema.getGlobalDescribe().get(shareObjectName);
+                SObject shareRecord = shareType.newSObject();
+                shareRecord.put('ParentId', record.Id);
+                shareRecord.put('UserOrGroupId', groupNameToGroupIdMap.get( (String) record.get(fieldName)) );
+                shareRecord.put('RowCause', sharingReason);
+                shareRecord.put('AccessLevel', fieldNamesAndSecLevel.get(fieldName));
+                listOfSharesToInsert.add(shareRecord);
             }
         }
-
-
 
         SharingWrapper sharingWrapper = new SharingWrapper(objectIdToMessageErrosMap, listOfSharesToInsert);
         return sharingWrapper;

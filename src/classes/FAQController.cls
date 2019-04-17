@@ -19,8 +19,8 @@ public with sharing class FAQController extends ComponentManager{
     public override DataWrapper getData() {
         
         Set<String> contentSetFields = new Set<String>{
-            'Title__c',
-            'Body__c'
+            '[CMS]Title__c',
+            '[CMS]Body__c'
         };
         
         return ContentManager.getCMSContent(clusterId, cw.meta.component, contentSetFields, device);

@@ -64,7 +64,7 @@ public with sharing class CategoryTriggers extends TriggersHandler {
 
         if(!recordList.isEmpty() && toContinueTrigger){
             List<SObject> listSO = new List<SObject>();
-            SharingUtils.SharingWrapper sharingWrapper = SharingUtils.generateSharingForRecordsOnCluster(recordList, 'Cluster__c', 'Category__Share', 'Clustering__c', false);           
+            SharingUtils.SharingWrapper sharingWrapper = SharingUtils.generateSharingForRecordsOnCluster(recordList, '[CMS]Cluster__c', '[CMS]Category__Share', '[CMS]Clustering__c', false);           
             if(sharingWrapper.objectIdToMessageErrosMap.size()>0){
                 objectIdToMessageErrosMap = sharingWrapper.objectIdToMessageErrosMap;
                 toContinueTrigger = false;
@@ -217,7 +217,7 @@ public with sharing class CategoryTriggers extends TriggersHandler {
 
         if(isMaster){
             Map<String, Schema.SObjectType> sharing = Schema.getGlobalDescribe();
-            if(sharing.containsKey('Category__Share')) {
+            if(sharing.containsKey(GeneralUtils.prefix('[CMS]Category__Share'))) {
 
                 if(recOld != null){
                     if(recNew.Cluster__c !=  recOld.Cluster__c){

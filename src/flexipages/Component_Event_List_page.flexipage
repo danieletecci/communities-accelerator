@@ -62,11 +62,11 @@
         <componentInstances>
             <componentInstanceProperties>
                 <name>junctionObjectAPIName</name>
-                <value>ContentAssignment__c</value>
+                <value>[CMS]ContentAssignment__c</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>parentLookup</name>
-                <value>Component__c</value>
+                <value>[CMS]Component__c</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>relationTitle</name>
@@ -74,11 +74,11 @@
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>secondaryLookup</name>
-                <value>Content__c</value>
+                <value>[CMS]Content__c</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>whereCondition</name>
-                <value>WHERE RecordType.DeveloperName = [!rec.RecordType.DeveloperName] AND ClusterRootExternalId__c = [!rec.ClusterExternalId__c]</value>
+                <value>WHERE RecordType.DeveloperName = [!rec.RecordType.DeveloperName] AND [CMS]ClusterRootExternalId__c = [!rec.[CMS]ClusterExternalId__c]</value>
             </componentInstanceProperties>
             <componentName>JunctionObjectManager</componentName>
             <visibilityRule>
@@ -92,11 +92,11 @@
         <componentInstances>
             <componentInstanceProperties>
                 <name>junctionObjectAPIName</name>
-                <value>CategoryAssignment__c</value>
+                <value>[CMS]CategoryAssignment__c</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>parentLookup</name>
-                <value>Component__c</value>
+                <value>[CMS]Component__c</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>relationTitle</name>
@@ -104,7 +104,7 @@
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>secondaryLookup</name>
-                <value>Category__c</value>
+                <value>[CMS]Category__c</value>
             </componentInstanceProperties>
             <componentName>JunctionObjectManager</componentName>
             <visibilityRule>

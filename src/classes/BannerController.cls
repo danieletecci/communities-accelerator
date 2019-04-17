@@ -6,14 +6,14 @@ public with sharing class BannerController extends ComponentManager{
         ctrl.customPermissionEdit = 'Banner Edit Frame';
         ctrl.customPermissionView = 'Banner View Frame';
         ctrl.componentFieldSet = new Set<String>{
-            'BannerFrameType__c',
-            'Orientation__c',
-            'BannerType__c',
-            'ShowBullets__c',
-            'AutomaticTransition__c',
-            'BannerTransitionTime__c',
-            'Loop__c',
-            'Direction__c'
+            '[CMS]BannerFrameType__c',
+            '[CMS]Orientation__c',
+            '[CMS]BannerType__c',
+            '[CMS]ShowBullets__c',
+            '[CMS]AutomaticTransition__c',
+            '[CMS]BannerTransitionTime__c',
+            '[CMS]Loop__c',
+            '[CMS]Direction__c'
         };
         
         ctrl.componentExternalId = componentExternalId;
@@ -29,12 +29,12 @@ public with sharing class BannerController extends ComponentManager{
         Set<String> contentSetFields = new Set<String>{
             'Id',
             'Name',
-            'LinkDetail__r.URL__c',
-            'OverlayQuadrant__c',
-            'Title__c',
-            'Extract__c',
-            'ButtonLabel__c',
-            'BannerFrameType__c'
+            '[CMS]LinkDetail__r.[CMS]URL__c',
+            '[CMS]OverlayQuadrant__c',
+            '[CMS]Title__c',
+            '[CMS]Extract__c',
+            '[CMS]ButtonLabel__c',
+            '[CMS]BannerFrameType__c'
         };
         
         return ContentManager.getCMSContent(clusterId, cw.meta.component, contentSetFields, device);

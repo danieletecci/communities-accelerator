@@ -1209,14 +1209,14 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Component__c-Component%3A ClusterSelector - Page Layout</layout>
-        <recordType>Component__c.Cluster_Selector</recordType>
+        <recordType>Component__c.ClusterSelector</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Component__c-Component%3A Events - Page Layout</layout>
+        <layout>Component__c-Component%3A Event List - Page Layout</layout>
         <recordType>Component__c.EventList</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Component__c-Component%3A Events Detail - Page Layout</layout>
+        <layout>Component__c-Component%3A Event Detail - Page Layout</layout>
         <recordType>Component__c.EventDetail</recordType>
     </layoutAssignments>
     <layoutAssignments>
@@ -1225,7 +1225,7 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Component__c-Component%3A Language Selector - Page Layout</layout>
-        <recordType>Component__c.Language_Selector</recordType>
+        <recordType>Component__c.LanguageSelector</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Component__c-Component%3A Menu - Page Layout</layout>
@@ -1266,7 +1266,7 @@
         <recordType>Content__c.Banner</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Content__c-Content%3A Events - Page Layout</layout>
+        <layout>Content__c-Content%3A Event - Page Layout</layout>
         <recordType>Content__c.Event</recordType>
     </layoutAssignments>
     <layoutAssignments>
@@ -1587,7 +1587,7 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
-        <recordType>Component__c.Language_Selector</recordType>
+        <recordType>Component__c.LanguageSelector</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
@@ -1633,7 +1633,7 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
-        <recordType>Component__c.Cluster_Selector</recordType>
+        <recordType>Component__c.ClusterSelector</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>

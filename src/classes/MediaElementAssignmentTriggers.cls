@@ -29,7 +29,7 @@ public with sharing class MediaElementAssignmentTriggers extends TriggersHandler
         if(!canMethod('setExternalId')){return;}
 
         if(recNew.ExternalID__c == null){
-        	recordSelfUpdate(recNew.id, 'ExternalID__c', recNew.Name);
+        	recordSelfUpdate(recNew.id, GeneralUtils.prefix('[CMS]ExternalID__c'), recNew.Name);
     	}
 	}
 }

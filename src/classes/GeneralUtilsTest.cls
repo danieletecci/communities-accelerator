@@ -15,12 +15,12 @@ private class GeneralUtilsTest {
 	@isTest
 	static void replaceDynamicFieldsTest() {
 		//Given
-		List<SObject> sObjectList = Database.query('SELECT Id, name FROM Cluster__c');
+		List<SObject> sObjectList = Database.query(GeneralUtils.prefix('SELECT Id, name FROM [CMS]Cluster__c'));
 
 		//When
 		Test.startTest();
-		String result = GeneralUtils.replaceDynamicFields('[!cluster__c.name]', 'Cluster__c', (String)sObjectList[0].get('id'), false);
-		String result2 = GeneralUtils.replaceDynamicFields('[!cluster__c.name]', 'Cluster__c', (String)sObjectList[0].get('id'), true);
+		String result = GeneralUtils.replaceDynamicFields(GeneralUtils.prefix('[![CMS]cluster__c.name]'), GeneralUtils.prefix('[CMS]Cluster__c'), (String)sObjectList[0].get('id'), false);
+		String result2 = GeneralUtils.replaceDynamicFields(GeneralUtils.prefix('[![CMS]cluster__c.name]', GeneralUtils.prefix('[CMS]Cluster__c'), (String)sObjectList[0].get('id'), true);
 		Test.stopTest();
 
 		//Then
@@ -61,8 +61,8 @@ private class GeneralUtilsTest {
 
 		//When
 		Test.startTest();
-		Boolean result = GeneralUtils.isSafeField('Cluster__c', 'name', true);
-		Boolean result2 = GeneralUtils.isSafeField('Test__c', 'id', true);
+		Boolean result = GeneralUtils.isSafeField(GeneralUtils.prefix('[CMS]Cluster__c'), 'name', true);
+		Boolean result2 = GeneralUtils.isSafeField(GeneralUtils.prefix('[CMS]Test__c'), 'id', true);
 		Test.stopTest();
 
 		//Then
@@ -76,8 +76,8 @@ private class GeneralUtilsTest {
 
 		//When
 		Test.startTest();
-		Boolean result = GeneralUtils.isSafeObject('Cluster__c', true);
-		Boolean result2 = GeneralUtils.isSafeObject('Test__c', true);
+		Boolean result = GeneralUtils.isSafeObject(GeneralUtils.prefix('[CMS]Cluster__c'), true);
+		Boolean result2 = GeneralUtils.isSafeObject(GeneralUtils.prefix('[CMS]Test__c'), true);
 		Test.stopTest();
 
 		//Then
@@ -132,7 +132,7 @@ private class GeneralUtilsTest {
     @isTest
 	static void getFieldValueTest() {
 		//Given
-		List<SObject> sObjectList = Database.query('SELECT Id, name FROM Cluster__c');
+		List<SObject> sObjectList = Database.query(GeneralUtils.prefix('[CMS]SELECT Id, name FROM Cluster__c'));
 
 		//When
 		Test.startTest();
@@ -186,7 +186,7 @@ private class GeneralUtilsTest {
 		String test2 = GeneralUtils.generateExternalId(name2, null, null);
 		String test3 = GeneralUtils.generateExternalId(name3, null, null);
 		String test4 = GeneralUtils.generateExternalId(name4, clusterC.id, null);
-		String test5 = GeneralUtils.generateExternalId(name5, clusterC.id, 'Content__c');
+		String test5 = GeneralUtils.generateExternalId(name5, clusterC.id, GeneralUtils.prefix('[CMS]Content__c'));
 		Test.stopTest();
 		String dateString = String.valueOf(datetime.now());
                  
@@ -223,7 +223,7 @@ private class GeneralUtilsTest {
 
 		//When
 		Test.startTest();
-		Set<String> result = GeneralUtils.getObjectFieldNames('Cluster__c');
+		Set<String> result = GeneralUtils.getObjectFieldNames(GeneralUtils.prefix('[CMS]Cluster__c'));
 		Test.stopTest();
 
 		//Then

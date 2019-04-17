@@ -11,7 +11,7 @@ global class LanguageSelectorDynamicPicklist extends VisualEditor.DynamicPickLis
 		VisualEditor.DataRow nullValue = new VisualEditor.DataRow('--None--','');
 		picklistValues.addRow(nullValue); 
 
-		List<Component__c> idsToDisplay = [SELECT Name, ExternalId__c, RecordType.Name FROM Component__c WHERE RecordType.Name = 'Language Selector'];
+		List<Component__c> idsToDisplay = [SELECT Name, ExternalId__c, RecordType.Name FROM Component__c WHERE RecordType.DeveloperName = 'LanguageSelector'];
 		for(Component__c cIds : idsToDisplay){
 			picklistValues.addRow(new VisualEditor.DataRow(cIds.Name,cIds.ExternalId__c));
 		}

@@ -1,5 +1,5 @@
 @isTest
-public with sharing class SearchDetailTriggerTest {
+public with sharing class SearchSettingTriggersTest {
     
     @testSetup
     static void setup(){

@@ -20,7 +20,7 @@ public class MediaElementsManagerControllerTest {
 		insert new MediaElementAssignment__c (MediaElement__c = medElement[0].id, Content__c = content[0].id , Placement__c = 'big');
 		// When
 		Test.startTest();
-		list<MediaElementsManagerController.RecordsWrapper> rw = MediaElementsManagerController.getRecord(content[0].id, 'icon, big', 'Content__c', 'MediaElementAssignment__c');
+		list<MediaElementsManagerController.RecordsWrapper> rw = MediaElementsManagerController.getRecord(content[0].id, 'icon, big', GeneralUtils.prefix('[CMS]Content__c'), GeneralUtils.prefix('[CMS]MediaElementAssignment__c'));
 		Test.stopTest();
 		// Then
 		System.assertEquals(2 ,rw.size());
@@ -84,7 +84,7 @@ public class MediaElementsManagerControllerTest {
 		List<MediaElement__c> medElement = MockupFactory.createMediaElement(1);
 		// When
 		Test.startTest();
-		MediaElementsManagerController.assignMediaElementToId (content[0].Id, 'icon', 'Content__c','MediaElementAssignment__c', medElement[0].Id);
+		MediaElementsManagerController.assignMediaElementToId (content[0].Id, 'icon', GeneralUtils.prefix('[CMS]Content__c'), GeneralUtils.prefix('[CMS]MediaElementAssignment__c'), medElement[0].Id);
 		Test.stopTest();
 
 		List<MediaElementAssignment__c> junctionObjectRecord = [SELECT id, Placement__c FROM MediaElementAssignment__c WHERE Content__c = :content[0].Id AND MediaElement__c = :medElement[0].Id];
@@ -104,7 +104,7 @@ public class MediaElementsManagerControllerTest {
 		insert junctionObjectRecord;
 		// When
 		Test.startTest();
-		MediaElementsManagerController.deleteJunctionObject(junctionObjectRecord.Id, 'MediaElementAssignment__c');
+		MediaElementsManagerController.deleteJunctionObject(junctionObjectRecord.Id, GeneralUtils.prefix('[CMS]MediaElementAssignment__c'));
 		Test.stopTest();
 		// Then
 		System.assertEquals( 0, [SELECT id FROM MediaElementAssignment__c].size()); 

@@ -98,13 +98,13 @@ public class TriggersHandlerManagerTest {
         //Comment: 
         
         //Given
-        TriggersHandlerManager.triggerOld = Database.query('SELECT Id, ParentCluster__c, name FROM Cluster__c WHERE name LIKE \'%Cluster%\'');
+        TriggersHandlerManager.triggerOld = Database.query(GeneralUtils.prefix('SELECT Id, [CMS]ParentCluster__c, name FROM [CMS]Cluster__c WHERE name LIKE \'%Cluster%\''));
 
-        TriggersHandlerManager.triggerNew = Database.query('SELECT Id, ParentCluster__c, name FROM Cluster__c WHERE name LIKE \'%Cluster%\'');
+        TriggersHandlerManager.triggerNew = Database.query(GeneralUtils.prefix('SELECT Id, [CMS]ParentCluster__c, name FROM [CMS]Cluster__c WHERE name LIKE \'%Cluster%\'');
 
         //When
         TriggersHandlerManager.TriggerFiltered filteredResultName = TriggersHandlerManager.getTriggerListFiltered('name');
-        TriggersHandlerManager.TriggerFiltered filteredResultParentCluster = TriggersHandlerManager.getTriggerListFiltered('ParentCluster__c');
+        TriggersHandlerManager.TriggerFiltered filteredResultParentCluster = TriggersHandlerManager.getTriggerListFiltered(GeneralUtils.prefix('[CMS]ParentCluster__c'));
         TriggersHandlerManager.TriggerFiltered filteredResultNull = TriggersHandlerManager.getTriggerListFiltered(null);
 
         //Then

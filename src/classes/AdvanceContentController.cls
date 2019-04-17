@@ -26,7 +26,7 @@ public with sharing class AdvanceContentController extends ComponentManager{
     public override DataWrapper getData() {
         
         Set<String> contentSetFields = new Set<String>{
-            'HTMLContent__c'
+            '[CMS]HTMLContent__c'
         };
         
         return ContentManager.getCMSContent(clusterId, cw.meta.component, contentSetFields, device);

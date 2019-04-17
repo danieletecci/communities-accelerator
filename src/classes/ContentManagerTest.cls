@@ -19,7 +19,7 @@ private class ContentManagerTest {
 		List<Component__c> componentList = [SELECT Id, ExternalId__c, Cluster__c, Recordtype.DeveloperName, Recordtype.Id, Datasource__c, OrderBy__c, OrderByAdvance__c, HierarchicalOrderBy__c, TagCriteria__c, PageSize__c  FROM Component__c LIMIT 1];
 
 		Set<String> contentSetFields = new Set<String>{
-            'HTMLContent__c'
+            '[CMS]HTMLContent__c'
         };
 		
 		//When

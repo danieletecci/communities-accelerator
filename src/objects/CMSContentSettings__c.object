@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>Hierarchy</customSettingsType>
+    <description>Settings to be configured by the CMS implementator for object Content.</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>ContentLandingColumnFields__c</fullName>
+        <externalId>false</externalId>
+        <label>Content Landing Column Fields</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ContentLandingRecordTypes__c</fullName>
+        <externalId>false</externalId>
+        <label>Content Landing RecordTypes</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ContentTemplateRecordTypes__c</fullName>
+        <externalId>false</externalId>
+        <label>Content Template RecordTypes</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>CMS Content Settings</label>
+    <visibility>Public</visibility>
+</CustomObject>

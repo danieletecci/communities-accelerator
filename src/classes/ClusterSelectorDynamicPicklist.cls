@@ -11,7 +11,7 @@ global class ClusterSelectorDynamicPicklist extends VisualEditor.DynamicPickList
 		VisualEditor.DataRow nullValue = new VisualEditor.DataRow('--None--','');
 		picklistValues.addRow(nullValue); 
 
-		List<Component__c> idsToDisplay = [SELECT Name, ExternalId__c, RecordType.Name FROM Component__c WHERE RecordType.Name = 'Cluster Selector'];
+		List<Component__c> idsToDisplay = [SELECT Name, ExternalId__c, RecordType.Name FROM Component__c WHERE RecordType.DeveloperName = 'ClusterSelector'];
 		for(Component__c cIds : idsToDisplay){
 			picklistValues.addRow(new VisualEditor.DataRow(cIds.Name,cIds.ExternalId__c));
 		}

@@ -15,10 +15,10 @@
 					component.set("v.timeZone", 			data.timeZone);
 					component.set("v.visibilitySelectors", 	data.visibilitySelectors);
 					component.set("v.security", 			data.security);
-					if(data.content.MediaElementAssignments__r != null){
-						component.set('v.imageUrl', data.content.MediaElementAssignments__r[0].MediaElement__r.FileURLDesktop__c);
-                        component.set('v.mediaElementName', data.content.MediaElementAssignments__r[0].MediaElement__r.Name);
-                        component.set('v.mediaElementId', data.content.MediaElementAssignments__r[0].MediaElement__r.Id);
+					if(data.content.MediaElementAssignments != null){
+						component.set('v.imageUrl', data.content.MediaElementAssignments[0].MediaElement.FileURLDesktop);
+                        component.set('v.mediaElementName', data.content.MediaElementAssignments[0].MediaElement.Name);
+                        component.set('v.mediaElementId', data.content.MediaElementAssignments[0].MediaElement.Id);
 					}
                     helper.setLayoutOptions(component);
 					component.find("RichTextContainer").setContentBody();
@@ -44,12 +44,12 @@
 			{value:"Title Bottom", imageUrl:"/ContentLayouts/Event-Layouts/TitleBottom.png", label:$A.get("$Label.c.EventContentDetailTitleBottom")}
 		];
 		component.set('v.layoutOptions', layoutOptions);
-        component.set('v.contentData.Layout__c', component.get('v.contentData.Layout__c') == null ? 'Title Top' : component.get('v.contentData.Layout__c'));  
+        component.set('v.contentData.Layout', component.get('v.contentData.Layout') == null ? 'Title Top' : component.get('v.contentData.Layout'));  
     },
     updateContent : function(component, status){
     	var helper				   = this;
 		var content 			   = component.get('v.contentData');
-		var previousStatus		   = content.Status__c;
+		var previousStatus		   = content.Status;
 		var visibilitySelectors    = component.get('v.visibilitySelectors');
 		var mediaElementId 		   = component.get('v.mediaElementId');
 		var action 				   = component.get('c.saveContent');        
@@ -58,7 +58,7 @@
 			visibilitySelectorsString : JSON.stringify(visibilitySelectors),
 			mediaElementId : mediaElementId,
 			status : status,
-			contentOldTagAssignments : content.Tags__r
+			contentOldTagAssignments : content.Tags
         });
 		action.setCallback(this, function(response){
 			var state = response.getState();

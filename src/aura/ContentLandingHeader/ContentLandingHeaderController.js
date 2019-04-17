@@ -1,7 +1,7 @@
 ({
 	onInit : function(component, event, helper) {
 		helper.getObjectLabel(component, component.get("v.sObjectName"));
-		helper.getStatusValues(component, component.get("v.sObjectName"), "Status__c");
+		helper.getStatusValues(component, component.get("v.sObjectName"), "Status");
 	},
 	onKeyUp : function(component, event, helper){
 		var appEvent 	= $A.get("e.c:ContentLandingSearchEvent");

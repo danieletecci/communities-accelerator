@@ -24,37 +24,37 @@
             <div class="slds-grid slds-grid_vertical">
                 <div class="slds-col slds-p-bottom_small">
 
-                    <aura:if isTrue="{!v.contentData.IsTemplate__c}">
+                    <aura:if isTrue="{!v.contentData.IsTemplate}">
                         <div style="background-color:#EEEEEE;padding:10px;">
-                            <lightning:textarea label="{!$Label.c.EventContentDetailTemplateDescription}" name="templateDescription" value="{!v.contentData.TemplateDescription__c}" required="true" aura:id="templateDescription"/>
+                            <lightning:textarea label="{!$Label.c.EventContentDetailTemplateDescription}" name="templateDescription" value="{!v.contentData.TemplateDescription}" required="true" aura:id="templateDescription"/>
                          </div>
                     
                     </aura:if>
                     <div style="padding:10px">
 
                         <!--Title-->
-                        <lightning:input label="{!$Label.c.EventContentDetailTitle}" aura:id="eventTitle" value="{!v.contentData.Title__c}" required="true"/>
+                        <lightning:input label="{!$Label.c.EventContentDetailTitle}" aura:id="eventTitle" value="{!v.contentData.Title}" required="true"/>
                         
                         
                         <!--Extract-->
-                        <ui:inputTextArea label="{!$Label.c.EventContentDetailExtract}" aura:id="eventExtract" value="{!v.contentData.Extract__c}" rows="4" required="true"/>
+                        <ui:inputTextArea label="{!$Label.c.EventContentDetailExtract}" aura:id="eventExtract" value="{!v.contentData.Extract}" rows="4" required="true"/>
                         
                         <br/>
                         <!--Body -->
                         <ui:outputText value="{!$Label.c.EventContentDetailBody}"/>
-                        <c:RichTextContainer aura:id="RichTextContainer" contentBody="{!v.contentData.Body__c}" />
+                        <c:RichTextContainer aura:id="RichTextContainer" contentBody="{!v.contentData.Body}" />
                         
                         <!--Start Date-->
                         <br/>
-                        <lightning:input label="{!$Label.c.EventContentDetailEventStartDate}" aura:id="eventStartDate" type="datetime-local" value="{!v.contentData.EventStartDate__c}" required="true" />
+                        <lightning:input label="{!$Label.c.EventContentDetailEventStartDate}" aura:id="eventStartDate" type="datetime-local" value="{!v.contentData.EventStartDate}" required="true" />
                         
                         <!--End Date-->
                         <br/>
-                        <lightning:input label="{!$Label.c.EventContentDetailEventEndDate}" aura:id="eventEndDate" type="datetime-local" value="{!v.contentData.EventEndDate__c}" />
+                        <lightning:input label="{!$Label.c.EventContentDetailEventEndDate}" aura:id="eventEndDate" type="datetime-local" value="{!v.contentData.EventEndDate}" />
 
 
                         <!--Location Information-->
-                        <ui:inputTextArea label="{!$Label.c.EventContentDetailEventLocationInformation}" aura:id="eventLocation" value="{!v.contentData.Location__c}" rows="4"/>     
+                        <ui:inputTextArea label="{!$Label.c.EventContentDetailEventLocationInformation}" aura:id="eventLocation" value="{!v.contentData.Location}" rows="4"/>     
 
                         <br/>
                                 
@@ -72,7 +72,7 @@
                         <ui:outputText value="{!$Label.c.EventContentDetailChooseLayout}"/>
                         <div>
                             <aura:if isTrue="{!v.layoutOptions.length > 0}">
-                                <c:ContentLayoutPicker selectedValue="{!v.contentData.Layout__c}" layoutOptions="{!v.layoutOptions}" />
+                                <c:ContentLayoutPicker selectedValue="{!v.contentData.Layout}" layoutOptions="{!v.layoutOptions}" />
                             </aura:if>
                         </div>
                     </div>

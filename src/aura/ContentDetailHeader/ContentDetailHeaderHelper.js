@@ -77,8 +77,8 @@
 			if (state === "SUCCESS") {
 				var status = response.getReturnValue();
 				var contentData = component.get("v.contentData");
-				helper.showCorrectMessage(component, contentData.Status__c, status);
-				contentData.Status__c = status;
+				helper.showCorrectMessage(component, contentData.Status, status);
+				contentData.Status = status;
 				component.set("v.contentData", contentData);
 			} else if (state === "ERROR") {
 				let errors = response.getError();
@@ -182,18 +182,18 @@
     },
     setTooltips : function(component){
     	try{
-    		if(component.get("v.contentData").PublishStartDate__c && component.get("v.contentData").Status__c == $A.get("$Label.c.ContentDetailScheduled")){
+    		if(component.get("v.contentData").PublishStartDate && component.get("v.contentData").Status == $A.get("$Label.c.ContentDetailScheduled")){
 	        	moment.locale(component.get("v.locale"));
-		    	var publishStartDate = moment(component.get("v.contentData").PublishStartDate__c).format('LLL');
+		    	var publishStartDate = moment(component.get("v.contentData").PublishStartDate).format('LLL');
 				component.set("v.scheduledTooltip", this.stringFormat($A.get("$Label.c.ContentPendingPublication"), publishStartDate));
 	    	}
 	    } catch(e){
 	    	console.log(e.message);
 	    }
 	    try{
-	    	if(component.get("v.contentData").PublishEndDate__c && component.get("v.contentData").Status__c == $A.get("$Label.c.ContentDetailPublished")){
+	    	if(component.get("v.contentData").PublishEndDate && component.get("v.contentData").Status == $A.get("$Label.c.ContentDetailPublished")){
 	        	var gmtOffset = component.get("v.gmtOffset");
-	        	var pedMoment = moment(component.get("v.contentData").PublishEndDate__c).zone(gmtOffset);
+	        	var pedMoment = moment(component.get("v.contentData").PublishEndDate).zone(gmtOffset);
 		    	var publishEndDate = pedMoment.format('LLL');
 		    	component.set("v.publishedTooltip", this.stringFormat($A.get("$Label.c.ContentPublishedUntil"), publishEndDate));
 	    	}

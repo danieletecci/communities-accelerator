@@ -14,7 +14,7 @@ public with sharing class MediaElementUploadController {
         @auraEnabled public String urlViewTablet;
         @auraEnabled public String urlViewMobile;
         public MediaElementWrapper(){
-			this.acceleratorSettings = new CustomSettingWrapper(CMSSettings__c.getInstance(), CMSContentSettings__c.getInstance(), CMSMediaElementSettings__c.getInstance());;
+			this.acceleratorSettings = new CustomSettingWrapper(CMSSettings__c.getInstance(), CMSContentSettings__c.getInstance(), CMSMediaElementSettings__c.getInstance());
 		}
 	}
 

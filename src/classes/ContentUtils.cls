@@ -19,7 +19,7 @@ public without sharing virtual class ContentUtils {
         public List<ObjectMediaElementWrapper> mediaElements;
     }
 
-    public static ContentWrapper getContentFromComponent(Component__c component, Set<String> fieldSet, Set<String> setContentDirect, Set<String> setContentToExclude, Set<String> setClusterIds, String device){
+    public static ContentWrapper getContentFromComponent(ObjectComponentWrapper component, Set<String> fieldSet, Set<String> setContentDirect, Set<String> setContentToExclude, Set<String> setClusterIds, String device){
         system.debug('ContentUtils: component: ' + component);
         system.debug('ContentUtils: fieldSet: ' + fieldSet);
         system.debug('ContentUtils: setContentDirect: ' + setContentDirect);
@@ -42,40 +42,40 @@ public without sharing virtual class ContentUtils {
         query += 'FROM [CMS]Content__c ';
 
         //WHERE
-        String contentTypeToSearch = getRecordTypeContentFromRTComponent(component.RecordType.DeveloperName);
+        String contentTypeToSearch = getRecordTypeContentFromRTComponent(component.RecordTypeDeveloperName);
         
         if(setContentDirect != null){
             //Busqueda de contenido por parametro
             query += 'WHERE (Id IN: setContentDirect OR [CMS]ExternalId__c IN: setContentDirect) AND Recordtype.DeveloperName =: contentTypeToSearch ';
-            query += contentTypeToSearch == 'Banner' ? ' AND [CMS]BannerFrameType__c = \'' + component.BannerFrameType__c + '\' ' : '';
+            query += contentTypeToSearch == 'Banner' ? ' AND [CMS]BannerFrameType__c = \'' + component.BannerFrameType + '\' ' : '';
 
         }else{
-            if(component.Datasource__c != null){
+            if(component.Datasource != null){
                 //Busqueda de contenido por Datasource
-                if(component.Datasource__c.contains('ParentContent')){
+                if(component.Datasource.contains('ParentContent')){
                     if(!setContentToExclude.isEmpty()){
                         Content__c parentContent = [SELECT Id, Category__c FROM Content__c WHERE (Id IN: setContentToExclude OR ExternalId__c IN: setContentToExclude) LIMIT 1];
-                        if(component.Datasource__c.contains('Categories') && parentContent.Category__c != null){
+                        if(component.Datasource.contains('Categories') && parentContent.Category__c != null){
                             setCategoriesIds.add(parentContent.Category__c);
                         }
-                        if(component.Datasource__c.contains('Tags')){
-                            contentIdList.addAll(getContentIdsByTags(parentContent.Id, contentTypeToSearch, component.TagCriteria__c));
+                        if(component.Datasource.contains('Tags')){
+                            contentIdList.addAll(getContentIdsByTags(parentContent.Id, contentTypeToSearch, component.TagCriteria));
                         }
                     }
                 }else{
-                    if(component.Datasource__c.contains('ManualAssignment')){
-                        contentIdList.addAll(getContentIdsByAssignment(component.Id, (component.OrderBy__c != null && component.OrderBy__c == 'Manual Order')));
+                    if(component.Datasource.contains('ManualAssignment')){
+                        contentIdList.addAll(getContentIdsByAssignment(component.Id, (component.OrderBy != null && component.OrderBy == 'Manual Order')));
                     }
-                    if(component.Datasource__c.contains('Categories')){
+                    if(component.Datasource.contains('Categories')){
                         setCategoriesIds.addAll(getContentIdsByCategories(component.Id));
                     }
-                    if(component.Datasource__c.contains('Tags')){
-                        contentIdList.addAll(getContentIdsByTags(component.Id, contentTypeToSearch, component.TagCriteria__c));
+                    if(component.Datasource.contains('Tags')){
+                        contentIdList.addAll(getContentIdsByTags(component.Id, contentTypeToSearch, component.TagCriteria));
                     }
                 }
             }
 
-            if(component.Datasource__c != null && (component.Datasource__c == 'All Articles' || component.Datasource__c == 'All Events') ){
+            if(component.Datasource != null && (component.Datasource == 'All Articles' || component.Datasource == 'All Events') ){
                 query += 'WHERE Id NOT IN: setContentToExclude AND [CMS]ExternalId__c NOT IN: setContentToExclude AND [CMS]Cluster__c IN: setClusterIds AND Recordtype.DeveloperName =: contentTypeToSearch ';
             }else{
 
@@ -83,32 +83,32 @@ public without sharing virtual class ContentUtils {
             }
 
             if(component.Recordtype.Developername == 'EventList' || component.Recordtype.DeveloperName == 'EventsRelated'){
-                if (component.ExcludePastEvents__c){
+                if (component.ExcludePastEvents){
                     Datetime dateAndTime = System.today();
                     query += 'AND ([CMS]EventEndDate__c >: dateAndTime) ';
                 }
             }
 
-            query += contentTypeToSearch == 'Banner' ? ' AND [CMS]BannerFrameType__c = \'' + component.BannerFrameType__c + '\' ' : '';
+            query += contentTypeToSearch == 'Banner' ? ' AND [CMS]BannerFrameType__c = \'' + component.BannerFrameType + '\' ' : '';
         }
         
         query += ' AND [CMS]Status__c = \'Published\' AND [CMS]IsTemplate__c = false ';
 
         //ORDER
-        if((component.OrderBy__c != null && component.OrderBy__c != 'Custom Sorting' && component.OrderBy__c != 'Manual Order') || (component.OrderBy__c != null && component.OrderBy__c == 'Custom Sorting' && component.OrderByAdvance__c != null) ){
-            query += 'ORDER BY ' + (component.OrderBy__c == 'Custom Sorting' ? component.OrderByAdvance__c : component.OrderBy__c);
+        if((component.OrderBy != null && component.OrderBy != 'Custom Sorting' && component.OrderBy != 'Manual Order') || (component.OrderBy != null && component.OrderBy == 'Custom Sorting' && component.OrderByAdvance != null) ){
+            query += 'ORDER BY ' + (component.OrderBy == 'Custom Sorting' ? component.OrderByAdvance : component.OrderBy);
         }
         
-        if(component.HierarchicalOrderBy__c != null){
-            query = query.replace('ORDER BY', 'ORDER BY [CMS]Cluster__r.[CMS]ClusterLevel__c ' + component.HierarchicalOrderBy__c + ', ');
+        if(component.HierarchicalOrderBy != null){
+            query = query.replace('ORDER BY', 'ORDER BY [CMS]Cluster__r.[CMS]ClusterLevel__c ' + component.HierarchicalOrderBy + ', ');
         }       
         
         ContentWrapper cw = new ContentWrapper();
-        Map<Id, Content__c> mapContent = new Map<Id, Content__c>((List<Content__c>)Database.query(GeneralUtil.prefix(query)));
+        Map<Id, Content__c> mapContent = new Map<Id, Content__c>((List<Content__c>)Database.query(GeneralUtils.prefix(query)));
 
         if(!mapContent.isEmpty()){
             //Manual Order del contenido
-            if(component.Datasource__c == 'ManualAssignment' && component.OrderBy__c == 'Manual Order' && contentIdList.size() > 0){
+            if(component.Datasource == 'ManualAssignment' && component.OrderBy == 'Manual Order' && contentIdList.size() > 0){
                 Map<Id, Content__c> mapContentOrdered = new Map<Id, Content__c>();
                 for(Id contentId : contentIdList){
                     mapContentOrdered.put(contentId, mapContent.get(contentId));
@@ -133,13 +133,13 @@ public without sharing virtual class ContentUtils {
                 cw.setAllContentIds = (Set<String>)JSON.deserialize(JSON.serialize(contentIdsSet), Set<String>.class);
 
                 //Calculo el total de paginas
-                cw.totalPages = component.PageSize__c != null ? Integer.valueOf((contentList.size() / component.PageSize__c).round(RoundingMode.UP)) : 1;
+                cw.totalPages = component.PageSize != null ? Integer.valueOf((contentList.size() / component.PageSize).round(RoundingMode.UP)) : 1;
                 //Content Data Wrapper
                 List<Content__c> firstPage = new List<Content__c>();
-                if(component.PageSize__c == null){
+                if(component.PageSize == null){
                     firstPage = contentList;
                 }else{
-                    Decimal limitSize = component.PageSize__c < contentList.size() ? component.PageSize__c : contentList.size();
+                    Decimal limitSize = component.PageSize < contentList.size() ? component.PageSize : contentList.size();
                     for(Integer i = 0; i < limitSize; i++){
                         firstPage.add(contentList[i]);
                     }
@@ -148,7 +148,7 @@ public without sharing virtual class ContentUtils {
                 TranslationUtils.getTranslated(firstPage, UserInfo.getLanguage(), '[CMS]Content__c');
 
                 //Replace User information on Advance Content
-                if(component.Recordtype.DeveloperName == 'AdvanceContent'){
+                if(component.RecordtypeDeveloperName == 'AdvanceContent'){
                     replaceDynamicFieldsOnContent(firstPage);
                 }
 
@@ -172,7 +172,7 @@ public without sharing virtual class ContentUtils {
 
         query += 'OFFSET ' + offSet;
         
-        List<Content__c> listContentPage = Database.query(GeneralUtil.prefix(query));
+        List<Content__c> listContentPage = Database.query(GeneralUtils.prefix(query));
 
         //Translate content records
         TranslationUtils.getTranslated(listContentPage, UserInfo.getLanguage(), '[CMS]Content__c');
@@ -188,7 +188,7 @@ public without sharing virtual class ContentUtils {
             queryContentAssignment += ' ORDER BY [CMS]Order__c';
         }
 
-        for(ContentAssignment__c ca: Database.query(GeneralUtil.prefix(queryContentAssignment))){
+        for(ContentAssignment__c ca: Database.query(GeneralUtils.prefix(queryContentAssignment))){
             if(!contentIdList.contains(ca.Content__c)) contentIdList.add(ca.Content__c);
         }
         return contentIdList;
@@ -292,7 +292,7 @@ public without sharing virtual class ContentUtils {
             ContentDataWrapper cdw = new ContentDataWrapper();
             c = externalIdToUrl(c);
             cdw.content = new ObjectContentWrapper(c);
-            cdw.mediaElements = new List<MediaElement__c>();
+            cdw.mediaElements = new List<ObjectMediaElementWrapper>();
             for(MediaElementAssignment__c m: c.MediaElementAssignments__r){
                 if(mapMediaElements != null && mapMediaElements.containsKey(m.MediaElement__c)){
                     cdw.mediaElements.add(new ObjectMediaElementWrapper(mapMediaElements.get(m.MediaElement__c)));    

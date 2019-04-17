@@ -14,11 +14,11 @@
         <componentInstances>
             <componentInstanceProperties>
                 <name>fieldSet</name>
-                <value>Title__c,Extract__c,ButtonLabel__c</value>
+                <value>[CMS]Title__c,[CMS]Extract__c,[CMS]ButtonLabel__c</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>parentLookupName</name>
-                <value>Content__c</value>
+                <value>[CMS]Content__c</value>
             </componentInstanceProperties>
             <componentName>Translation</componentName>
         </componentInstances>

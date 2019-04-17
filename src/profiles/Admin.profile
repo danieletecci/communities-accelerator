@@ -1209,7 +1209,7 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Component__c-Component%3A ClusterSelector - Page Layout</layout>
-        <recordType>Component__c.Cluster_Selector</recordType>
+        <recordType>Component__c.ClusterSelector</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Component__c-Component%3A Event List - Page Layout</layout>
@@ -1225,7 +1225,7 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Component__c-Component%3A Language Selector - Page Layout</layout>
-        <recordType>Component__c.Language_Selector</recordType>
+        <recordType>Component__c.LanguageSelector</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Component__c-Component%3A Menu - Page Layout</layout>
@@ -1587,7 +1587,7 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
-        <recordType>Component__c.Language_Selector</recordType>
+        <recordType>Component__c.LanguageSelector</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
@@ -1633,7 +1633,7 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
-        <recordType>Component__c.Cluster_Selector</recordType>
+        <recordType>Component__c.ClusterSelector</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>

@@ -12,7 +12,7 @@ public class LookupControllerTest {
 	static void fetchLookUpValuesTest() {
 		//When
         String searchKeyword = 'testNav';
-        String objectApiName = 'Navigation__c';
+        String objectApiName = '[CMS]Navigation__c';
 		//Given
 		List<sObject> listObject = LookupController.fetchLookUpValues(searchKeyword, objectApiName);
 		//Then
@@ -23,7 +23,7 @@ public class LookupControllerTest {
 		//When
         Navigation__c nav = [SELECT id FROM Navigation__c LIMIT 1];
         String recordId = nav.id;
-        String objectApiName = 'Navigation__c';
+        String objectApiName = '[CMS]Navigation__c';
 		//Given
 		sObject obj = LookupController.getInitialValue(recordId, objectApiName);
 		//Then

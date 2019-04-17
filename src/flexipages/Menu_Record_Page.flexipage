@@ -32,11 +32,11 @@
         <componentInstances>
             <componentInstanceProperties>
                 <name>objectName</name>
-                <value>Menu__c</value>
+                <value>[CMS]Menu__c</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>parentLookUp</name>
-                <value>ParentMenu__c</value>
+                <value>[CMS]ParentMenu__c</value>
             </componentInstanceProperties>
             <componentName>TreePreview</componentName>
         </componentInstances>

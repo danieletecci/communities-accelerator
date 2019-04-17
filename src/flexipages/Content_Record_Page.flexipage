@@ -28,55 +28,55 @@
         <componentInstances>
             <componentInstanceProperties>
                 <name>junctionObjectAPIName</name>
-                <value>ContentAssignment__c</value>
+                <value>[CMS]ContentAssignment__c</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>parentLookup</name>
-                <value>Content__c</value>
+                <value>[CMS]Content__c</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>relationTitle</name>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>secondaryLookup</name>
-                <value>Component__c</value>
+                <value>[CMS]Component__c</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>whereCondition</name>
-                <value>WHERE RecordType.DeveloperName = [!rec.RecordType.DeveloperName] AND ClusterExternalId__c = [!rec.ClusterRootExternalId__c]</value>
+                <value>WHERE RecordType.DeveloperName = [!rec.RecordType.DeveloperName] AND [CMS]ClusterExternalId__c = [!rec.[CMS]ClusterRootExternalId__c]</value>
             </componentInstanceProperties>
             <componentName>JunctionObjectManager</componentName>
         </componentInstances>
         <componentInstances>
             <componentInstanceProperties>
                 <name>junctionObjectAPIName</name>
-                <value>MediaElementAssignment__c</value>
+                <value>[CMS]MediaElementAssignment__c</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>parentLookup</name>
-                <value>Content__c</value>
+                <value>[CMS]Content__c</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>secondaryLookup</name>
-                <value>MediaElement__c</value>
+                <value>[CMS]MediaElement__c</value>
             </componentInstanceProperties>
             <componentName>JunctionObjectManager</componentName>
         </componentInstances>
         <componentInstances>
             <componentInstanceProperties>
                 <name>junctionObjectAPIName</name>
-                <value>TagAssignment__c</value>
+                <value>[CMS]TagAssignment__c</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>parentLookup</name>
-                <value>Content__c</value>
+                <value>[CMS]Content__c</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>relationTitle</name>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>secondaryLookup</name>
-                <value>Tag__c</value>
+                <value>[CMS]Tag__c</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>whereCondition</name>

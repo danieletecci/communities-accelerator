@@ -7,7 +7,7 @@ public class LookupController {
       
         // Create a Dynamic SOQL Query For Fetch Record List with LIMIT 5   
         String sQuery =  'select id, Name from ' +ObjectName + ' where Name LIKE: searchKey order by createdDate DESC limit 5';
-        List < sObject > lstOfRecords = Database.query(sQuery);
+        List < sObject > lstOfRecords = Database.query(GeneralUtils.prefix(sQuery));
         
         for (sObject obj: lstOfRecords) {
             returnList.add(obj);
@@ -18,7 +18,7 @@ public class LookupController {
     @AuraEnabled
     public static sObject getInitialValue(String recordId, String ObjectName) {
         String sQuery =  'select id, Name from ' +ObjectName + ' where Id = :recordId';
-        List < sObject > lstOfRecords = Database.query(sQuery);
+        List < sObject > lstOfRecords = Database.query(GeneralUtils.prefix(sQuery));
         
         if(!lstOfRecords.isEmpty()){
             return lstOfRecords.get(0);

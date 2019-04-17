@@ -191,17 +191,6 @@ public with sharing class CG_BaseComponentController {
     	if(componentType == 'ArticlesRelated'){componentType = 'Article';}
     	
         set<String> setFields;
-<<<<<<< Updated upstream
-        if(componentType == 'Banner'){			setFields = new set<String>{'LinkDetail__r.URL__c','OverlayQuadrant__c', 'Title__c', 'Extract__c', 'ButtonLabel__c','BannerFrameType__c'};}
-        if(componentType == 'ArticleList'){			setFields = new set<String>{'Title__c','Body__c', 'Extract__c', 'LinkDetail__r.URL__c', 'ExternalId__c'};}
-        if(componentType == 'EventList'){			setFields = new set<String>{'Title__c','Body__c', 'Extract__c', 'EventStartDate__c', 'EventEndDate__c', 'Location__c', 'LinkDetail__r.URL__c', 'ExternalId__c'};}
-        if(componentType == 'AdvanceContent'){	setFields = new set<String>{'HTMLContent__c'};}
-        if(componentType == 'FAQ'){				setFields = new set<String>{'Title__c', 'Body__c'};}
-        if(componentType == 'ArticleDetail'){		setFields = new set<String>{'Title__c', 'Extract__c','Body__c','Layout__c'};}
-        if(componentType == 'EventDetail'){		setFields = new set<String>{'Title__c', 'Extract__c','Body__c', 'EventStartDate__c', 'EventEndDate__c', 'Location__c','Layout__c'};}
-        if(componentType == 'ClusterSelector'){	setFields = new set<String>{};}
-		if(componentType == 'LanguageSelector'){	setFields = new set<String>{};}
-=======
         if(componentType == 'Banner'){			setFields = new set<String>{'[CMS]LinkDetail__r.[CMS]URL__c','[CMS]OverlayQuadrant__c', '[CMS]Title__c', '[CMS]Extract__c', '[CMS]ButtonLabel__c','[CMS]BannerFrameType__c'};}
         if(componentType == 'ArticleList'){			setFields = new set<String>{'[CMS]Title__c','[CMS]Body__c', '[CMS]Extract__c', '[CMS]LinkDetail__r.URL__c', '[CMS]ExternalId__c'};}
         if(componentType == 'EventList'){			setFields = new set<String>{'[CMS]Title__c','[CMS]Body__c', '[CMS]Extract__c', '[CMS]EventStartDate__c', '[CMS]EventEndDate__c', '[CMS]Location__c', '[CMS]LinkDetail__r.[CMS]URL__c', '[CMS]ExternalId__c'};}
@@ -211,7 +200,6 @@ public with sharing class CG_BaseComponentController {
         if(componentType == 'EventDetail'){		setFields = new set<String>{'[CMS]Title__c', '[CMS]Extract__c','[CMS]Body__c', '[CMS]EventStartDate__c', '[CMS]EventEndDate__c', '[CMS]Location__c','[CMS]Layout__c'};}
         if(componentType == 'Cluster_Selector'){	setFields = new set<String>{};}
 		if(componentType == 'Language_Selector'){	setFields = new set<String>{};}
->>>>>>> Stashed changes
         if(componentType == 'Navigation'){	setFields = new set<String>{};}
         setFields.add('Id');
         setFields.add('Name');

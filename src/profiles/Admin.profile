@@ -630,11 +630,6 @@
         <field>Content__c.Description__c</field>
         <readable>true</readable>
     </fieldPermissions>
-        <fieldPermissions>
-        <editable>true</editable>
-        <field>Content__c.AssetType__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Content__c.Body__c</field>
@@ -1265,10 +1260,6 @@
     <layoutAssignments>
         <layout>Content__c-Content%3A Advance Content - Page Layout</layout>
         <recordType>Content__c.AdvanceContent</recordType>
-    </layoutAssignments>
-     <layoutAssignments>
-        <layout>Content__c-Content%3A Asset - Page Layout</layout>
-        <recordType>Content__c.Asset</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Content__c-Content%3A Banner - Page Layout</layout>

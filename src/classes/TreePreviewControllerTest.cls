@@ -26,7 +26,7 @@ public with sharing class TreePreviewControllerTest {
 
 		//When
 		Test.startTest();
-			TreePreviewController.ItemWrapper wrap = TreePreviewController.getTree(catList[5].Id, 'Category__c', 'ParentCategory__c');
+			TreePreviewController.ItemWrapper wrap = TreePreviewController.getTree(catList[5].Id, '[CMS]Category__c', '[CMS]ParentCategory__c');
 		Test.stopTest();
 
 		//Then

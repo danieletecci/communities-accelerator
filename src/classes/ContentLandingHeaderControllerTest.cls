@@ -3,11 +3,11 @@ public with sharing class ContentLandingHeaderControllerTest {
 	
 	@isTest 
 	static void getObjectLabel() {
-		ContentLandingHeaderController.getObjectLabel('Content__c');
+		ContentLandingHeaderController.getObjectLabel('[CMS]Content__c');
 	}
 
 	@isTest 
 	static void getPicklistValues() {
-		ContentLandingHeaderController.getPicklistValues('Content__c','Status__c');
+		ContentLandingHeaderController.getPicklistValues('[CMS]Content__c','[CMS]Status__c');
 	}
 }

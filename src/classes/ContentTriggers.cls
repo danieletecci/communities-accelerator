@@ -71,7 +71,7 @@ public with sharing class ContentTriggers extends TriggersHandler {
     public override void dataPreparing() {
         if(excecuteTrigger){
             if(!recordList.isEmpty()){
-                SharingUtils.SharingWrapper sharingWrapper = SharingUtils.generateSharingForRecordsOnCluster(recordList, 'Cluster__c', 'Content__Share', 'Clustering__c', false);
+                SharingUtils.SharingWrapper sharingWrapper = SharingUtils.generateSharingForRecordsOnCluster(recordList, GeneralUtils.prefix('[CMS]Cluster__c'), GeneralUtils.prefix('[CMS]Content__Share'), GeneralUtils.prefix('[CMS]Clustering__c'), false);
                 if(sharingWrapper.objectIdToMessageErrosMap.size()>0){
                     objectIdToMessageErrosMap = sharingWrapper.objectIdToMessageErrosMap;
                     excecuteTrigger = false;
@@ -155,7 +155,7 @@ public with sharing class ContentTriggers extends TriggersHandler {
 
         if(isMaster){
             Map<String, Schema.SObjectType> sharing = Schema.getGlobalDescribe();
-            if(sharing.containsKey('Content__Share')) {
+            if(sharing.containsKey(GeneralUtils.prefix('[CMS]Content__Share'))) {
                 
                 if(recOld != null){
                     if(recNew.Cluster__c !=  recOld.Cluster__c){

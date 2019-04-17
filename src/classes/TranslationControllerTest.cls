@@ -21,7 +21,7 @@ private class TranslationControllerTest {
 	static void getLanguagesTest() {
 		Content__c cont = [SELECT id from Content__c where Cluster__c!=null LIMIT 1];
 		Test.startTest();
-		TranslationController.RecordsWrapper rw = TranslationController.getLanguages('Content__c', 'Description__c, Name', cont.id);
+		TranslationController.RecordsWrapper rw = TranslationController.getLanguages('[CMS}Content__c', '[CMS]Description__c, Name', cont.id);
 		Test.stopTest();
 		System.assertNotEquals(rw, null);
 	}
@@ -32,8 +32,8 @@ private class TranslationControllerTest {
         Map<String,String> apiNameTypeMap = new Map<String,String>();
         apiNameTypeMap.put('Name','Text');
         MockUpFactory.createTranslation(cont, apiNameTypeMap, 'it');
-		String parentLookupName = 'Content__c';
-		TranslationController.RecordsWrapper rw = TranslationController.getLanguages(parentLookupName, 'Description__c, Name', cont.id);
+		String parentLookupName = '[CMS]Content__c';
+		TranslationController.RecordsWrapper rw = TranslationController.getLanguages(parentLookupName, '[CMS]Description__c, Name', cont.id);
 		String queryStr = 'SELECT id FROM ' + parentLookupName + ' LIMIT 1';
 		sObject sobj = Database.query(queryStr);
 
@@ -47,8 +47,8 @@ private class TranslationControllerTest {
 	@isTest 
 	static void saveTranslationTest() {
 		Content__c cont = [SELECT id from Content__c where Cluster__c!=null LIMIT 1];		
-		String parentLookupName = 'Content__c';
-		String fieldSet = 'Description__c, Name,Extract__c';
+		String parentLookupName = '[CMS]Content__c';
+		String fieldSet = '[CMS]Description__c, Name,[CMS]Extract__c';
 		TranslationController.RecordsWrapper rw = TranslationController.getLanguages(parentLookupName, fieldSet, cont.id);
 		String queryStr = 'SELECT id FROM ' + parentLookupName + ' LIMIT 1';
 		sObject sobj = Database.query(queryStr);

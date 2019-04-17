@@ -39,6 +39,7 @@ public class ContentSearchFiltersController {
 
     @AuraEnabled(cacheable=true)
     public static FilterWrapper getFilters (String sObjectType){
+        sObjectType = GeneralUtils.prefix(sObjectType);
         Set<Id> clusterIds = getCurrentUserClusterTree();
         List<Cluster__c> clusterList = [SELECT Id, Name FROM Cluster__c WHERE id IN :clusterIds];
         List<RecordType> contentTypeList = [SELECT Id, Name FROM RecordType WHERE sObjectType = :sObjectType AND IsActive = true];
@@ -51,10 +52,10 @@ public class ContentSearchFiltersController {
         List<FilterOptionWrapper> tagOptions = getTagWrapperList(tagList);
 
         List<FilterSelectorWrapper> filterSelectorList = new List<FilterSelectorWrapper>();
-        filterSelectorList.add(new FilterSelectorWrapper(System.Label.SearchContentClusterFilter, false, clusterOptions, 'Cluster__c'));
+        filterSelectorList.add(new FilterSelectorWrapper(System.Label.SearchContentClusterFilter, false, clusterOptions, ClusterUtils.prefix('[CMS]Cluster__c')));
         filterSelectorList.add(new FilterSelectorWrapper(System.Label.SearchContentTypeFilter, false, contentTypeOptions, 'RecordType'));
-        filterSelectorList.add(new FilterSelectorWrapper(System.Label.SearchContentCategoryFilter, false, categoryOptions, 'Category__c'));
-        filterSelectorList.add(new FilterSelectorWrapper(System.Label.SearchContentTagFilter, true, tagOptions, 'Tag__c'));
+        filterSelectorList.add(new FilterSelectorWrapper(System.Label.SearchContentCategoryFilter, false, categoryOptions, ClusterUtils.prefix('[CMS]Category__c')));
+        filterSelectorList.add(new FilterSelectorWrapper(System.Label.SearchContentTagFilter, true, tagOptions, ClusterUtils.prefix('[CMS]Tag__c')));
         FilterWrapper filters = new FilterWrapper(filterSelectorList);
         return filters;
     }

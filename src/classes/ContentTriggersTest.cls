@@ -64,7 +64,7 @@ public with sharing class ContentTriggersTest {
 		Test.stopTest();
 
 		// Then
-		List<Content__Share> shareList = [SELECT Id, ParentId FROM Content__Share WHERE ParentId = :contentList[0].Id AND RowCause = 'Clustering__c'];
+		List<Content__Share> shareList = [SELECT Id, ParentId FROM Content__Share WHERE ParentId = :contentList[0].Id AND RowCause = :GeneralUtils.prefix('[CMS]Clustering__c')];
 
 		System.assertEquals(3, shareList.size());
 
@@ -95,7 +95,7 @@ public with sharing class ContentTriggersTest {
 		System.debug('ClusterTriggersTest method contenToUpdateList: '+contenToUpdateList);
 
 		// Then
-		List<Content__Share> shareList = [SELECT Id, ParentId FROM Content__Share WHERE ParentId = :contenToUpdateList[0].Id AND RowCause = 'Clustering__c'];
+		List<Content__Share> shareList = [SELECT Id, ParentId FROM Content__Share WHERE ParentId = :contenToUpdateList[0].Id AND RowCause = :GeneralUtils.prefix('[CMS]Clustering__c')];
 		System.debug('ClusterTriggersTest method shareList: '+shareList);
 
 		System.assertEquals(6, shareList.size());

@@ -110,7 +110,7 @@ public with sharing class ComponentTriggers extends TriggersHandler {
             List<SObject> listSO = new List<SObject>();
 
             //listSO = SharingUtils.generateSharingForRecordsOnCluster(recordList, 'Cluster__c');
-            SharingUtils.SharingWrapper sharingWrapper = SharingUtils.generateSharingForRecordsOnCluster(recordList, 'Cluster__c', 'Component__Share', 'Clustering__c', false);           
+            SharingUtils.SharingWrapper sharingWrapper = SharingUtils.generateSharingForRecordsOnCluster(recordList, GeneralUtils.prefix('[CMS]Cluster__c'), GeneralUtils.prefix('[CMS]Component__Share'), GeneralUtils.prefix('[CMS]Clustering__c'), false);           
             if(sharingWrapper.objectIdToMessageErrosMap.size()>0){
                 objectIdToMessageErrosMap = sharingWrapper.objectIdToMessageErrosMap;
                 excecuteTrigger = false;
@@ -175,7 +175,7 @@ public with sharing class ComponentTriggers extends TriggersHandler {
         if(recNew.OrderBy__c == 'Custom Sorting' && recNew.OrderByAdvance__c != null && Limits.getQueries() < 50){
             if(trigger.isInsert || (trigger.isUpdate && (recNew.OrderByAdvance__c != recOld.OrderByAdvance__c) || recNew.OrderBy__c != recOld.OrderBy__c)){
                 try{
-                    Database.query('SELECT Id FROM Content__c ORDER BY ' + recNew.OrderByAdvance__c + ' LIMIT 1');
+                    Database.query(GeneralUtils.prefix('SELECT Id FROM [CMS]Content__c ORDER BY ' + recNew.OrderByAdvance__c + ' LIMIT 1'));
                 }catch(Exception e){
                     recNew.OrderByAdvance__c.AddError(Label.OrderByInvalidFormat + ' ' + e.getMessage());
                 }
@@ -207,7 +207,7 @@ public with sharing class ComponentTriggers extends TriggersHandler {
         
         if(isMaster){
             Map<String, Schema.SObjectType> sharing = Schema.getGlobalDescribe();
-            if(sharing.containsKey('Component__Share')) {
+            if(sharing.containsKey(GeneralUtils.prefix('[CMS]Component__Share'))) {
 
                 if(recOld != null){
 

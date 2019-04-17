@@ -61,7 +61,7 @@ public with sharing class TagTriggers extends TriggersHandler {
     
     public override void dataPreparing() {
         if(!recordList.isEmpty() && toContinueTrigger){
-            SharingUtils.SharingWrapper sharingWrapper = SharingUtils.generateSharingForRecordsOnCluster(recordList, 'Cluster__c', 'Tag__Share', 'Clustering__c', false);           
+            SharingUtils.SharingWrapper sharingWrapper = SharingUtils.generateSharingForRecordsOnCluster(recordList, '[CMS]Cluster__c', '[CMS]Tag__Share', '[CMS]Clustering__c', false);           
             if(sharingWrapper.objectIdToMessageErrosMap.size()>0){
                 objectIdToMessageErrosMap = sharingWrapper.objectIdToMessageErrosMap;
                 toContinueTrigger = false;
@@ -136,7 +136,7 @@ public with sharing class TagTriggers extends TriggersHandler {
 
         if(isMaster){
             Map<String, Schema.SObjectType> sharing = Schema.getGlobalDescribe();
-            if(sharing.containsKey('Tag__Share')) {
+            if(sharing.containsKey(GeneralUtils.prefix('[CMS]Tag__Share'))) {
 
                 if(recOld != null){
                     if(recNew.Cluster__c !=  recOld.Cluster__c){

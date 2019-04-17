@@ -3,7 +3,7 @@ public with sharing class SearchDetailTriggerTest {
     
     @testSetup
     static void setup(){
-        SearchSetting__c rll = createSearchDetail('Banner','banner','Content__c','Name','Name,Description__c','Banner');
+        SearchSetting__c rll = createSearchDetail('Banner','banner',GeneralUtils.prefix('[CMS]Content__c'),'Name',GeneralUtils.prefix('Name,[CMS]Description__c'),'Banner');
         update rll;
     }
 

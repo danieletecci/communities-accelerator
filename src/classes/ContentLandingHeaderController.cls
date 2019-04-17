@@ -2,13 +2,13 @@ public with sharing class ContentLandingHeaderController {
 
 	@AuraEnabled(cacheable=true)
     public static String getObjectLabel(String sObjectType){
-    	return Schema.getGlobalDescribe().get(sObjectType).getDescribe().getLabel();
+    	return Schema.getGlobalDescribe().get(GeneralUtils.prefix(sObjectType)).getDescribe().getLabel();
     }
 
     @AuraEnabled(cacheable=true)
     public static List<Map<String,String>> getPicklistValues(String sObjectType, String fieldApiName){
     	List<Map<String,String>>	picklistValues 	= new List<Map<String,String>>();
-		List<Schema.PicklistEntry> 	pleList 		= Schema.getGlobalDescribe().get(sObjectType).getDescribe().fields.getMap().get(fieldApiName).getDescribe().getPicklistValues();
+		List<Schema.PicklistEntry> 	pleList 		= Schema.getGlobalDescribe().get(GeneralUtils.prefix(sObjectType)).getDescribe().fields.getMap().get(GeneralUtils.prefix(fieldApiName)).getDescribe().getPicklistValues();
 
 		for( Schema.PicklistEntry pickListVal : pleList){
 			if(pickListVal.isActive()){

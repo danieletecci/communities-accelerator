@@ -111,8 +111,8 @@ public with sharing class ContentDetailController {
 
     private static Content__c getContentData(String recordId){
         String contentFields = getContentFields();
-        Content__c content = Database.query('SELECT (SELECT Tag__c FROM Tags__r),(SELECT MediaElement__r.FileURLDesktop__c,MediaElement__r.Name FROM MediaElementAssignments__r),RecordType.Name,RecordType.DeveloperName,Audience__r.ReferenceAudienceExternalIds__c,' 
-                                            + contentFields + ' FROM Content__c WHERE id = :recordId');
+        Content__c content = Database.query(GeneralUtils.prefix('SELECT (SELECT [CMS]Tag__c FROM [CMS]Tags__r),(SELECT [CMS]MediaElement__r.[CMS]FileURLDesktop__c,[CMS]MediaElement__r.Name FROM [CMS]MediaElementAssignments__r),RecordType.Name,RecordType.DeveloperName,[CMS]Audience__r.[CMS]ReferenceAudienceExternalIds__c,' 
+                                            + contentFields + ' FROM [CMS]Content__c WHERE id = :recordId'));
         content.Body__c = externalIdToUrl(content.Body__c);
         return content;
     }
@@ -131,7 +131,7 @@ public with sharing class ContentDetailController {
             }
             categoryWrapperList.add(categoryWrapper);
         }
-        VisibilitySelectorWrapper categorySelectorWrapper = new VisibilitySelectorWrapper('Category', 'Category__c', false, categoryWrapperList, selectedValue, Label.ComboboxCategoryPlaceholder);
+        VisibilitySelectorWrapper categorySelectorWrapper = new VisibilitySelectorWrapper('Category', GeneralUtils.prefix('[CMS]Category__c'), false, categoryWrapperList, selectedValue, Label.ComboboxCategoryPlaceholder);
         return categorySelectorWrapper;
     }
 
@@ -152,7 +152,7 @@ public with sharing class ContentDetailController {
             }
             tagWrapperList.add(tagWrapper);
         }
-        VisibilitySelectorWrapper categorySelectorWrapper = new VisibilitySelectorWrapper('Tags', 'Tag__c', true, tagWrapperList, null, Label.MultiComboboxTagPlaceholder);
+        VisibilitySelectorWrapper categorySelectorWrapper = new VisibilitySelectorWrapper('Tags', GeneralUtils.prefix('[CMS]Tag__c'), true, tagWrapperList, null, Label.MultiComboboxTagPlaceholder);
         return categorySelectorWrapper;
     }
 
@@ -173,7 +173,7 @@ public with sharing class ContentDetailController {
             }
             audienceWrapperList.add(audienceWrapper);
         }
-        VisibilitySelectorWrapper categorySelectorWrapper = new VisibilitySelectorWrapper('Audiences', 'Audience__c', true, audienceWrapperList, null, Label.MultiComboboxAudiencePlaceholder);
+        VisibilitySelectorWrapper categorySelectorWrapper = new VisibilitySelectorWrapper('Audiences', GeneralUtils.prefix('[CMS]Audience__c'), true, audienceWrapperList, null, Label.MultiComboboxAudiencePlaceholder);
         return categorySelectorWrapper;
     }
 
@@ -184,7 +184,7 @@ public with sharing class ContentDetailController {
 
     private static String getContentFields(){
         String commaSeparatedFields = '';
-        Set<String> fieldNames = GeneralUtils.getObjectFieldNames('Content__c');
+        Set<String> fieldNames = GeneralUtils.getObjectFieldNames(GeneralUtils.prefix('[CMS]Content__c'));
         commaSeparatedFields = String.join(new List<String>(fieldNames), ',');
         return commaSeparatedFields;
     }
@@ -194,9 +194,9 @@ public with sharing class ContentDetailController {
         Savepoint sp = Database.setSavepoint();
         try{
             List<VisibilitySelectorWrapper> visibilitySelectors = (List<VisibilitySelectorWrapper>)JSON.deserialize(visibilitySelectorsString, List<VisibilitySelectorWrapper>.class);
-            updateAudienceAssignments(content, getSelectorByApiName(visibilitySelectors, 'Audience__c'));
+            updateAudienceAssignments(content, getSelectorByApiName(visibilitySelectors, GeneralUtils.prefix('[CMS]Audience__c')));
             content = updateContent(content, visibilitySelectors, status);
-            updateTagAssignments(content, getSelectorByApiName(visibilitySelectors, 'Tag__c'), contentOldTagAssignments);
+            updateTagAssignments(content, getSelectorByApiName(visibilitySelectors, GeneralUtils.prefix('[CMS]Tag__c')), contentOldTagAssignments);
             updateMediaElementAssignment(content, mediaElementId);
             return true;
         }catch(DMLException e){
@@ -286,7 +286,7 @@ public with sharing class ContentDetailController {
     }
 
     private static Content__c updateContent(Content__c content, List<VisibilitySelectorWrapper> visibilitySelectors, String status){
-        VisibilitySelectorWrapper categorySelector = getSelectorByApiName(visibilitySelectors, 'Category__c');
+        VisibilitySelectorWrapper categorySelector = getSelectorByApiName(visibilitySelectors, GeneralUtils.prefix('[CMS]Category__c'));
         
         for(VisibilityOptionWrapper category : categorySelector.values){
             if(category.isSelected){

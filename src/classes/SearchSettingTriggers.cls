@@ -29,7 +29,7 @@ public with sharing class SearchSettingTriggers extends TriggersHandler{
         Boolean exist = false;
         for (Schema.SObjectType sObjectType : Schema.getGlobalDescribe().values() ) {
             String sobjName = String.valueOf(sObjectType);
-            if (sobjName.equalsIgnoreCase(recNew.ObjectAPIName__c) ) {
+            if (sobjName.equalsIgnoreCase(GeneralUtils.prefix(recNew.ObjectAPIName__c)) ) {
                 exist = true;
             }
         }
@@ -45,7 +45,7 @@ public with sharing class SearchSettingTriggers extends TriggersHandler{
             List<String>                        fieldsToShow    = recNew.FieldsToShow__c.split(',');
             List<String>                        fieldsToSearch  = recNew.FieldsToSearch__c.split(',');
             Map<String, Schema.SObjectType>     schemaMap       = Schema.getGlobalDescribe();
-            Schema.SObjectType                  objectSchema    = schemaMap.get(recNew.ObjectAPIName__c);
+            Schema.SObjectType                  objectSchema    = schemaMap.get(GeneralUtils.prefix(recNew.ObjectAPIName__c));
             Map<String, Schema.SObjectField>    objectFieldsMap = objectSchema.getDescribe().fields.getMap();
             Set<String>                         objectFields    = objectFieldsMap.keySet();
 
@@ -76,12 +76,12 @@ public with sharing class SearchSettingTriggers extends TriggersHandler{
 
             String                              urlParameterField   = recNew.URLParameterField__c;
             Map<String, Schema.SObjectType>     schemaMap           = Schema.getGlobalDescribe();
-            Schema.SObjectType                  objectSchema        = schemaMap.get(recNew.ObjectAPIName__c);
+            Schema.SObjectType                  objectSchema        = schemaMap.get(GeneralUtils.prefix(recNew.ObjectAPIName__c));
             Map<String, Schema.SObjectField>    objectFieldsMap     = objectSchema.getDescribe().fields.getMap();
             Set<String>                         objectFields        = objectFieldsMap.keySet();
 
             if(!objectFields.contains(urlParameterField.toLowerCase())) {
-                recNew.addError(String.format(Label.GlobalSearchWrongField, new List<String> {urlParameterField, recNew.ObjectAPIName__c}));
+                recNew.addError(String.format(Label.GlobalSearchWrongField, new List<String> {urlParameterField, GeneralUtils.prefix(recNew.ObjectAPIName__c)}));
                 hasError = true;
                 return;
             }
@@ -91,9 +91,9 @@ public with sharing class SearchSettingTriggers extends TriggersHandler{
     private void checkRecordTypeDevName(SearchSetting__c recNew){
         if(!String.isBlank(recNew.RecordTypeDevName__c) && !hasError){
             Map<String, Schema.SObjectType>     schemaMap   = Schema.getGlobalDescribe();
-            Map<String,Schema.RecordTypeInfo>   recordTypes = schemaMap.get(recNew.ObjectAPIName__c).getDescribe().getRecordTypeInfosByDeveloperName();
+            Map<String,Schema.RecordTypeInfo>   recordTypes = schemaMap.get(GeneralUtils.prefix(recNew.ObjectAPIName__c)).getDescribe().getRecordTypeInfosByDeveloperName();
             if(!recordTypes.containsKey(recNew.RecordTypeDevName__c)){
-                    recNew.addError(String.format(Label.GlobalSearchWrongRT, new List<String> {recNew.RecordTypeDevName__c, recNew.ObjectAPIName__c}));
+                    recNew.addError(String.format(Label.GlobalSearchWrongRT, new List<String> {recNew.RecordTypeDevName__c, GeneralUtils.prefix(recNew.ObjectAPIName__c)}));
             }
         }
     }

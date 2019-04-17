@@ -15,13 +15,13 @@ public class ContentSearchFiltersControllerTest {
         
 		//When
 		Test.startTest();
-		ContentSearchFiltersController.FilterWrapper filterWrapper = ContentSearchFiltersController.getFilters('Content__c');
+		ContentSearchFiltersController.FilterWrapper filterWrapper = ContentSearchFiltersController.getFilters('[CMS]Content__c');
 		Test.stopTest();
 
 		//Then
 		System.assertEquals(filterWrapper.filters.size(), 4);
         System.assertEquals(filterWrapper.filters.get(0).values.size(), 4);
-        List<RecordType> contentRecordTypes = [SELECT id FROM RecordType WHERE SObjectType = 'Content__c'];
+        List<RecordType> contentRecordTypes = [SELECT id FROM RecordType WHERE SObjectType = :GeneralUtils.prefix('[CMS]Content__c')];
         System.assertEquals(filterWrapper.filters.get(1).values.size(), contentRecordTypes.size());
         System.assertEquals(filterWrapper.filters.get(2).values.size(), 2);
         System.assertEquals(filterWrapper.filters.get(3).values.size(), 2);

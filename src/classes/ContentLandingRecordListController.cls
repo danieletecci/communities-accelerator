@@ -131,14 +131,14 @@ public class ContentLandingRecordListController {
                                                               
     static List<Content__c> getRecords(FilterWrapper wrapper, Integer recordOffset, Integer recordLimit){      
         String columnSet = getColumnSet();
-        columnSet += columnSet.contains('Status__c') ? '' : ', Status__c';
-        columnSet += columnSet.contains('isTemplate__c') ? '' : ', isTemplate__c';                                                                                      
-        String queryInString = 'SELECT Id, ' + columnSet + ' FROM Content__c ';
+        columnSet += columnSet.contains(GeneralUtils.prefix('[CMS]Status__c')) ? '' : GeneralUtils.prefix(', [CMS]Status__c'));
+        columnSet += columnSet.contains(GeneralUtils.prefix('[CMS]isTemplate__c')) ? '' : GeneralUtils.prefix(', [CMS]isTemplate__c');                                                                                      
+        String queryInString = 'SELECT Id, ' + columnSet + ' FROM [CMS]Content__c ';
         List<String> queryConditions = getQueryConditions(wrapper);
         // Si no recibe filtros, trae los 10 registros modificados mas recientemente
         if(queryConditions.size() <= 1){
             if(wrapper.searchText == null || wrapper.searchText == ''){
-                queryInString += 'WHERE isTemplate__c = ' + wrapper.isTemplate + ' ';
+                queryInString += 'WHERE [CMS]isTemplate__c = ' + wrapper.isTemplate + ' ';
                 queryInString = setDefaultCondition(queryInString, recordOffset, recordLimit);
             } else {
                 queryInString = setSearchCondition(queryInString, wrapper.searchText, recordOffset, recordLimit);
@@ -150,7 +150,7 @@ public class ContentLandingRecordListController {
         
         // Devuelve los registros filtrados
         System.debug('queryInString: ' + queryInString);
-        List<Content__c> records = Database.query(queryInString);
+        List<Content__c> records = Database.query(GeneralUtils.prefix(queryInString));
         return records;
     }
 
@@ -207,16 +207,16 @@ public class ContentLandingRecordListController {
     static List<String> getQueryConditions(FilterWrapper wrapper){
         List<String> queryConditions = new List<String>();
         // Agrega los filtros recibidos a una lista de Query Conditions
-        if(wrapper.contentTypeId != null)   queryConditions.add('RecordTypeId = \'' + wrapper.contentTypeId + '\'');
-        if(wrapper.clusterId != null)       queryConditions.add('Cluster__c = \'' + wrapper.clusterId + '\'');
-        if(wrapper.categoryId != null)      queryConditions.add('Category__c = \'' + wrapper.categoryId + '\'');
-        if(wrapper.isTemplate != null)      queryConditions.add('isTemplate__c = ' + wrapper.isTemplate);
+        if(wrapper.contentTypeId != null)   queryConditions.add('[CMS]RecordTypeId = \'' + wrapper.contentTypeId + '\'');
+        if(wrapper.clusterId != null)       queryConditions.add('[CMS]Cluster__c = \'' + wrapper.clusterId + '\'');
+        if(wrapper.categoryId != null)      queryConditions.add('[CMS]Category__c = \'' + wrapper.categoryId + '\'');
+        if(wrapper.isTemplate != null)      queryConditions.add('[CMS]isTemplate__c = ' + wrapper.isTemplate);
         if(wrapper.tagIds != null && ! wrapper.tagIds.isEmpty()){
             // Trae los IDs de los Contenidos asociados a las Tags recibidas
             String tagedContentIds = getTagedContentIds(wrapper.tagIds);
             if(tagedContentIds != null) queryConditions.add('Id IN ' + tagedContentIds);
         }
-        if(wrapper.status != null && wrapper.status.toLowerCase() != 'all') queryConditions.add('Status__c = \'' + wrapper.status + '\'');
+        if(wrapper.status != null && wrapper.status.toLowerCase() != 'all') queryConditions.add('[CMS]Status__c = \'' + wrapper.status + '\'');
         return queryConditions;
     }
 

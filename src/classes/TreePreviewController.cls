@@ -18,6 +18,8 @@ public with sharing class TreePreviewController {
      
     @AuraEnabled
     public static ItemWrapper getTree (String recordId, String objectName, String parentLookUP){
+			objectName = GeneralUtils.prefix(objectName);
+			parentLookUP = GeneralUtils.prefix(parentLookUP);
     	String referentLookUP= parentLookUP.replace('__c', '__r'); 
 
     	ItemWrapper root;
@@ -52,7 +54,7 @@ public with sharing class TreePreviewController {
     	query +=referentLookUP+'.'+referentLookUP+'.'+referentLookUP+'.'+referentLookUP+'.'+parentLookUP+', '+referentLookUP+'.'+referentLookUP+'.'+referentLookUP+'.'+referentLookUP+'.'+referentLookUP+'.name ';
     	query +='FROM '+objectName+' WHERE Id =:recordId';
 
-  		SObject rec = Database.query(query);
+  		SObject rec = Database.query(GeneralUtils.prefix(query));
 
 		setMapTree(mapTree, new ItemWrapper(rec.Id, 
 											(String)GeneralUtils.getFieldValue(rec, 'Name'), 
@@ -113,7 +115,7 @@ public with sharing class TreePreviewController {
     	query +=' OR '+referentLookUP+'.'+referentLookUP+'.'+referentLookUP+'.'+parentLookUP+' =: recordId';
     	query +=' OR '+referentLookUP+'.'+referentLookUP+'.'+referentLookUP+'.'+referentLookUP+'.'+parentLookUP+' =: recordId';
 
-    	for (SObject rec : Database.query(query)){
+    	for (SObject rec : Database.query(GeneralUtils.prefix(query))){
     		
 			setMapTree(mapTree, 
     					new ItemWrapper(rec.Id, 

@@ -9,7 +9,7 @@ public class ComponentBehaviourController {
 
     private static String getBehaviourMessage(String componentId){
         //Get DataSource
-        Component__c component = [SELECT Id, RecordType.DeveloperName, BannerFrameType__c, dataSource__c, TagCriteria__c FROM Component__c WHERE Id =: componentId];
+        Component__c component = [SELECT Id, RecordType.DeveloperName, BannerFrameType__c, DataSource__c, TagCriteria__c FROM Component__c WHERE Id =: componentId];
         String dataSource = component.dataSource__c;
         Boolean isBanner = component.RecordType.DeveloperName == 'Banner';
         //Get records related to DataSource

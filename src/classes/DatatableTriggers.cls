@@ -33,21 +33,17 @@ public class DatatableTriggers extends TriggersHandler {
     
 
     public override void masterLoop_BeforeInsert(SObject recNew) {
-        System.debug('CG - masterLoop_BeforeInsert');
         setExternalId((Datatable__c)recNew);
         validateObjectApiName((Datatable__c)recNew);
     }
 
     public override void masterLoop_BeforeUpdate(SObject recNew, SObject recOld) {
-        System.debug('CG - masterLoop_BeforeUpdate');
         setExternalId((Datatable__c)recNew);
         validateObjectApiName((Datatable__c)recNew);
         validateObjectApiNameChange((Datatable__c)recNew, (Datatable__c)recOld);
     }
     
     public override void finalLoop_BeforeUpdate(SObject recNew, SObject recOld) {
-        System.debug('CG - finalLoop_BeforeUpdate');
-
         System.debug('CG objectApiNameChangedWithElementsList - ');
         System.debug(objectApiNameChangedWithElementsList);
 
@@ -67,8 +63,7 @@ public class DatatableTriggers extends TriggersHandler {
     }
 
     private void validateObjectApiNameChange(Datatable__c recNew, Datatable__c recOld) {
-        System.debug('CG - validateObjectApiNameChange');
-        
+         
         objectApiNameChangedList = new List<Datatable__c>();
 
         if((recNew != null && recOld != null) && (recNew.ObjectApiName__c != recOld.ObjectApiName__c)) {

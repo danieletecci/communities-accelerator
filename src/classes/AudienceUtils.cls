@@ -16,7 +16,7 @@ public with sharing class AudienceUtils {
             
             //Get audiences of each record
             String audiencesExternalIds;
-            try{audiencesExternalIds = String.ValueOf(GeneralUtils.getFieldValue(records[i], audienceLookupApiName.removeEndIgnoreCase('__c') + '__r.ReferenceAudienceExternalIds__c'));}catch(Exception e){}
+            try{audiencesExternalIds = String.ValueOf(GeneralUtils.getFieldValue(records[i], audienceLookupApiName.removeEndIgnoreCase('__c') + '__r.[CMS]ReferenceAudienceExternalIds__c'));}catch(Exception e){}
             
             if(audiencesExternalIds != null){
                 for(String audExtId: audiencesExternalIds.split(';')){
@@ -130,16 +130,16 @@ public with sharing class AudienceUtils {
 
         //Query for each main objects
         if(!accountFieldsSet.isEmpty()){
-            account = Database.query('SELECT Id, ' + GeneralUtils.joinFields(accountFieldsSet) + ' FROM Account WHERE Id =: accountId');
+            account = Database.query(GeneralUtils.prefix('SELECT Id, ' + GeneralUtils.joinFields(accountFieldsSet) + ' FROM Account WHERE Id =: accountId'));
         }
         if(!contactFieldsSet.isEmpty()){
-            contact = Database.query('SELECT Id, ' + GeneralUtils.joinFields(contactFieldsSet) + ' FROM Contact WHERE Id =: contactId');
+            contact = Database.query(GeneralUtils.prefix('SELECT Id, ' + GeneralUtils.joinFields(contactFieldsSet) + ' FROM Contact WHERE Id =: contactId'));
         }
         if(Schema.getGlobalDescribe().get('AccountContactRelation') != null && !acRelationFieldsSet.isEmpty()){
-            acRelation = Database.query('SELECT Id, ' + GeneralUtils.joinFields(acRelationFieldsSet) + ' FROM AccountContactRelation WHERE Id =: acRelationId');
+            acRelation = Database.query(GeneralUtils.prefix('SELECT Id, ' + GeneralUtils.joinFields(acRelationFieldsSet) + ' FROM AccountContactRelation WHERE Id =: acRelationId'));
         }
         if(!customObjectFieldsSet.isEmpty()){
-            customRecord = Database.query('SELECT Id, ' + GeneralUtils.joinFields(customObjectFieldsSet) + ' FROM ' + customObjectType + ' WHERE Id =: customRecordId');
+            customRecord = Database.query(GeneralUtils.prefix('SELECT Id, ' + GeneralUtils.joinFields(customObjectFieldsSet) + ' FROM ' + customObjectType + ' WHERE Id =: customRecordId'));
         }
 
         //Loop audience records to check if it apply for the main objects according to the criteria

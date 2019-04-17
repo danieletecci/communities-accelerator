@@ -41,12 +41,13 @@ public with sharing class ContentCreateModalController {
     @AuraEnabled(cacheable=true)
     public static String getClusters(){
         // Prepare results
-        List<LookupWrapper>    results     = new List<LookupWrapper>();
-        List<Cluster__c>            clusters    = ClusterUtils.getClustersBelowList(getClusterUserId());
-        String                      clusterIcon = 'custom:custom26';
+        List<LookupWrapper> results     = new List<LookupWrapper>();
+        List<Cluster__c> clusters    = ClusterUtils.getClustersBelowList(getClusterUserId());
+        String clusterIcon = 'custom:custom26';
+        String sobjectName = GeneralUtils.prefix('[CMS]Cluster__c');
 
         for (Cluster__c cluster : clusters) {
-            results.add(new LookupWrapper(cluster.Id, 'Cluster__c', clusterIcon, cluster.Name, cluster.ExternalId__c + ' • '+ cluster.RecordType.Name));
+            results.add(new LookupWrapper(cluster.Id, sobjectName, clusterIcon, cluster.Name, cluster.ExternalId__c + ' • '+ cluster.RecordType.Name));
         }
 
         return JSON.serialize(results);

@@ -62,7 +62,7 @@ public with sharing class CG_BaseComponentController {
 		if(component != null)
 		{
 			if (component.Datasource__c == 'ParentComponentBehaviour'){
-				contentWrapper = ContentUtils.getContentFromComponent(parentComponent, getContentFieldSetByComponentType(parentComponent.Recordtype.Developername, device), setContentDirect, setContentToExclude, setClusterIds, device);
+				contentWrapper = ContentUtils.getContentFromComponent(new ObjectComponentWrapper(parentComponent), getContentFieldSetByComponentType(parentComponent.Recordtype.Developername, device), setContentDirect, setContentToExclude, setClusterIds, device);
 				for (String fieldApiName: getComponentFieldSetByComponentType(component.RecordType.DeveloperName, device)){
 					if (fieldApiName != 'Id' && fieldApiName != GeneralUtils.prefix('[CMS]ExternalId__c') && fieldApiName != 'Recordtype.Developername'){
 						if (fieldApiName == GeneralUtils.prefix('[CMS]PageSize__c')){
@@ -79,7 +79,7 @@ public with sharing class CG_BaseComponentController {
 				componentType == 'AdvanceContent' || componentType == 'FAQ' || 
 				componentType == 'ArticleDetail' || componentType == 'EventDetail' || componentType == 'ArticlesRelated' ||
 				componentType == 'EventsRelated'){
-					contentWrapper = ContentUtils.getContentFromComponent(component, getContentFieldSetByComponentType(component.Recordtype.Developername, device), setContentDirect, setContentToExclude, setClusterIds, device);
+					contentWrapper = ContentUtils.getContentFromComponent(new ObjectComponentWrapper(component), getContentFieldSetByComponentType(component.Recordtype.Developername, device), setContentDirect, setContentToExclude, setClusterIds, device);
 				}
 			}
 		}

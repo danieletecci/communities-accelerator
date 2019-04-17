@@ -5,7 +5,7 @@
 
     <!-- ATTRIBUTES -->
 	<aura:attribute name="recordId" 			type="String" 						/>
-	<aura:attribute name="contentData" 			type="Content" 					/>
+	<aura:attribute name="contentData" 			type="Object" 		     			/>
 	<aura:attribute name="timeZone" 			type="String" 						/>
 	<aura:attribute name="gmtOffset"	 		type="String" 						/>
 	<aura:attribute name="hasDetailComponent"	type="Boolean" 						/>

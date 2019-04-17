@@ -15,8 +15,8 @@
 		        if(response.getState() === "SUCCESS") {
 		           	var componentRecord = response.getReturnValue();
 					component.set("v.component", componentRecord);
-		           	if(componentRecord.SearchPlaceholder__c)
-		           		helper.setPlaceholder(component, componentRecord.SearchPlaceholder__c);
+		           	if(componentRecord.SearchPlaceholder)
+		           		helper.setPlaceholder(component, componentRecord.SearchPlaceholder);
 			    }
 			});
 			    
@@ -37,8 +37,8 @@
 		           	var searchDetailsWrapper = response.getReturnValue();
 		           	component.set("v.component", searchDetailsWrapper.component);
 		           	component.set("v.searchDetails", searchDetailsWrapper.searchDetails);
-		           	if(searchDetailsWrapper.component.SearchPlaceholder__c)
-		           		helper.setPlaceholder(component, searchDetailsWrapper.component.SearchPlaceholder__c);
+		           	if(searchDetailsWrapper.component.SearchPlaceholder)
+		           		helper.setPlaceholder(component, searchDetailsWrapper.component.SearchPlaceholder);
 		           	if(searchedString){
 		           		helper.setValue(component, searchedString);
 		           		helper.getSearchResults(component, searchedString);
@@ -56,7 +56,7 @@
         }
 	},
 	getSearchResults: function (component, searchedString) {
-       	if(!component.get("v.component").LinkDetail__r || this.isSearchPage(component)){
+       	if(!component.get("v.component").LinkDetail || this.isSearchPage(component)){
             var appEvent 	= $A.get("e.c:SearchSettingFindEvent");
 		    appEvent.setParams({
 				"searchedString"	: searchedString,
@@ -67,13 +67,13 @@
         } else {
         	var urlEvent = $A.get("e.force:navigateToURL");
 		    urlEvent.setParams({
-		      	"url": "/" + component.get("v.component").LinkDetail__r.URL__c + "?q=" + encodeURI(searchedString)
+		      	"url": "/" + component.get("v.component").LinkDetailURL + "?q=" + encodeURI(searchedString)
 		    });
 		    urlEvent.fire();
         }
     },
     managePredictiveResults : function(component, helper, searchString){
-    	if(component.get("v.component").PredictiveSearchEnabled__c){
+    	if(component.get("v.component").PredictiveSearchEnabled){
 			component.set("v.searchLength", searchString.length);
 			if(searchString.length > 1){
 				helper.getPredictiveResults(component, searchString);
@@ -126,10 +126,10 @@
 		return page;
     },
     isSearchPage : function(component){
-    	return (component.get("v.component").LinkDetail__r && component.get("v.component").LinkDetail__r.URL__c == this.getCurrentPageName());
+    	return (component.get("v.component").LinkDetail && component.get("v.component").LinkDetailURL == this.getCurrentPageName());
     },
     isNotSearchPage : function(component){
-    	return (component.get("v.component").LinkDetail__r && component.get("v.component").LinkDetail__r.URL__c != this.getCurrentPageName());
+    	return (component.get("v.component").LinkDetail && component.get("v.component").LinkDetailURL != this.getCurrentPageName());
     },
     setRecordNumber : function(component, results){
     	var recordsNumber = 0;

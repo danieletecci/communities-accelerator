@@ -47,13 +47,13 @@
 		                        details.type = recordType === 'EventDetail' ? 'Event' : 'Article';
 								if(cWrapper.contentWrapper.length > 0){
 			                        var content = cWrapper.contentWrapper[0].content;
-			                        details.date = content.EventStartDate__c;
+			                        details.date = content.EventStartDate;
 									details.location = {};
-			                        details.location.name = content.Location__c;
-			                        details.location.href = 'https://www.google.com/maps/search/' + content.Location__c;
-			                        details.title = content.Title__c;
-			                        details.imgSrc = cWrapper.contentWrapper[0].mediaElements[0].FileURLDesktop__c;
-			                        details.body = content.Body__c;
+			                        details.location.name = content.Location;
+			                        details.location.href = 'https://www.google.com/maps/search/' + content.Location;
+			                        details.title = content.Title;
+			                        details.imgSrc = cWrapper.contentWrapper[0].mediaElements[0].FileURLDesktop;
+			                        details.body = content.Body;
 								}
 								cWrapper.details = details;
 							}
@@ -86,13 +86,13 @@
 
 			var componentWrapper = component.get("v.componentWrapper");
 			var device = $A.get("$Browser.formFactor");
-			var orderBy = componentWrapper.component.OrderBy__c == 'Custom Sorting' ? componentWrapper.component.OrderByAdvance__c : componentWrapper.component.OrderBy__c;
+			var orderBy = componentWrapper.component.OrderBy == 'Custom Sorting' ? componentWrapper.component.OrderByAdvance : componentWrapper.component.OrderBy;
 
 			var action = component.get("c.getPage");
 			action.setParams({
 				listAllContentIds: componentWrapper.listAllContentIds,
 				componentType: componentWrapper.component.RecordType.DeveloperName,
-				pageSize: String(componentWrapper.component.PageSize__c),
+				pageSize: String(componentWrapper.component.PageSize),
 				pageNumber: String(pageNumber),
 				orderBy: orderBy,
 				device: device

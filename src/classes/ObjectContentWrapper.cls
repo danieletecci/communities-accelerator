@@ -44,11 +44,19 @@ public class ObjectContentWrapper {
     public String URLRedirect;
 
     public String LinkDetailURL;
+    public String ClusterName;
 
     public List<MediaElementAssignment> MediaElementAssignments;
 
+    public List<TagAssignment> Tags;
+
     public class MediaElementAssignment{
-        ObjectMediaElementWrapper MediaElement;
+        public ObjectMediaElementWrapper MediaElement;
+    }
+
+    public class TagAssignment{
+        public String tag;
+        public String id;
     }
     
     public ObjectContentWrapper(Content__c content){
@@ -96,7 +104,9 @@ public class ObjectContentWrapper {
         try{this.URLRedirect = content.URLRedirect__c;}catch(Exception e){}
 
         try{this.LinkDetailURL = content.LinkDetail__r.URL__c;}catch(Exception e){}
+        try{this.ClusterName = content.Cluster__r.Name;}catch(Exception e){}
 
+        //Media Element Assignment
         try{
             this.MediaElementAssignments = new List<MediaElementAssignment>();
             for(MediaElementAssignment__c mea: content.MediaElementAssignments__r){
@@ -105,6 +115,19 @@ public class ObjectContentWrapper {
                 this.MediaElementAssignments.add(meas);
             }
         }catch(Exception e){}
+        
+        //Tag Assignment
+        try{
+            this.Tags= new List<TagAssignment>();
+            for(TagAssignment__c taga: content.Tags__r){
+                TagAssignment tagas = new TagAssignment();
+                try{tagas.tag = taga.Tag__c;}catch(Exception e){}
+                try{tagas.id = taga.Id;}catch(Exception e){}
+                
+                this.Tags.add(tagas);
+            }
+        }catch(Exception e){}
+        
     }
 
 }

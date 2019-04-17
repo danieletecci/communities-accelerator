@@ -12,31 +12,31 @@
         <!-- LANDSCAPE -->
         <aura:if isTrue="{!v.type == 'Landscape'}" >
             <div class="landscape-item" style="{! 'height: ' + v.height }">
-                <div class="landscape-div-img" style="{! 'background-image: url(' + v.contentWrapper.mediaElements[0].FileURLDesktop__c + ');' }"></div>
+                <div class="landscape-div-img" style="{! 'background-image: url(' + v.contentWrapper.mediaElements[0].FileURLDesktop + ');' }"></div>
                 
                 <div class="landscape-div-title">
-                    <h2 class="slds-align_absolute-center h2-19-black-bold">{!v.contentWrapper.content.Title__c}</h2>
+                    <h2 class="slds-align_absolute-center h2-19-black-bold">{!v.contentWrapper.content.Title}</h2>
                 </div>
                 
                 <div class="landscape-div-body">
-                    <aura:if isTrue="{!not(v.contentWrapper.content.EventStartDate__c == null)}" >
+                    <aura:if isTrue="{!not(v.contentWrapper.content.EventStartDate == null)}" >
                         <p class="align_absolute-center event_date">
-                            <aura:if isTrue="{!not(v.contentWrapper.content.Location__c == null)}" >
-                                <a target="_blank" href="{! 'https://www.google.com.ar/maps/place/' + v.contentWrapper.content.Location__c}" class="align_absolute-center">
+                            <aura:if isTrue="{!not(v.contentWrapper.content.Location == null)}" >
+                                <a target="_blank" href="{! 'https://www.google.com.ar/maps/place/' + v.contentWrapper.content.Location}" class="align_absolute-center">
                                     <lightning:icon iconName="utility:checkin" size="small" class="mapIcon"/>
                                 </a>
                             </aura:if>
 
-                            <ui:outputDate value="{!v.contentWrapper.content.EventStartDate__c}"/>
-                            <aura:if isTrue="{!and(v.contentWrapper.content.EventStartDate__c != v.contentWrapper.content.EventEndDate__c, not(v.contentWrapper.content.EventEndDate__c == null))}" >
+                            <ui:outputDate value="{!v.contentWrapper.content.EventStartDate}"/>
+                            <aura:if isTrue="{!and(v.contentWrapper.content.EventStartDate != v.contentWrapper.content.EventEndDate, not(v.contentWrapper.content.EventEndDate == null))}" >
                                 <ui:outputText value=" - "/>
-                                <ui:outputDate value="{!v.contentWrapper.content.EventEndDate__c}"/>
+                                <ui:outputDate value="{!v.contentWrapper.content.EventEndDate}"/>
                             </aura:if>
                         </p>
                     </aura:if>
                     
                     <p class="align_absolute-center p-15-black-regular landscape_description" >
-                        <aura:unescapedHtml value="{!v.contentWrapper.content.Extract__c}"/>
+                        <aura:unescapedHtml value="{!v.contentWrapper.content.Extract}"/>
                     </p>
                 </div>
 
@@ -52,33 +52,33 @@
             <lightning:layout class="portrait-layout">
                 
                 <lightning:layoutitem size="5" class="info-container info-detail portrait-container-image">
-                    <img class="portrait-img" src="{!v.contentWrapper.mediaElements[0].FileURLDesktop__c}"/>
+                    <img class="portrait-img" src="{!v.contentWrapper.mediaElements[0].FileURLDesktop}"/>
                 </lightning:layoutitem>
 
                 <lightning:layoutitem size="7" class="info-container info-detail portrait-container-body">
                     <div class="portrait-div-title">
-                        <h2 class="h2-19-black-bold" >{!v.contentWrapper.content.Title__c}</h2>
+                        <h2 class="h2-19-black-bold" >{!v.contentWrapper.content.Title}</h2>
                     </div>
                     
                     <div class="portrait-div-body">
                         <p class="p-15-black-regular" >
-                            <aura:unescapedHtml value="{!v.contentWrapper.content.Extract__c}"/>
+                            <aura:unescapedHtml value="{!v.contentWrapper.content.Extract}"/>
                         </p>
                     </div>
 
-                    <aura:if isTrue="{!not(v.contentWrapper.content.EventStartDate__c == null)}" >
+                    <aura:if isTrue="{!not(v.contentWrapper.content.EventStartDate == null)}" >
                         <p class="event_date">
-                            <ui:outputDate value="{!v.contentWrapper.content.EventStartDate__c}"/>
-                            <aura:if isTrue="{!and(v.contentWrapper.content.EventStartDate__c != v.contentWrapper.content.EventEndDate__c, not(v.contentWrapper.content.EventEndDate__c == null))}" >
+                            <ui:outputDate value="{!v.contentWrapper.content.EventStartDate}"/>
+                            <aura:if isTrue="{!and(v.contentWrapper.content.EventStartDate != v.contentWrapper.content.EventEndDate, not(v.contentWrapper.content.EventEndDate == null))}" >
                                 <ui:outputText value=" - "/>
-                                <ui:outputDate value="{!v.contentWrapper.content.EventEndDate__c}"/>
+                                <ui:outputDate value="{!v.contentWrapper.content.EventEndDate}"/>
                             </aura:if>
                         </p>
                     </aura:if>
-                    <aura:if isTrue="{!not(v.contentWrapper.content.Location__c == null)}" >
+                    <aura:if isTrue="{!not(v.contentWrapper.content.Location == null)}" >
                         <p class="event_location">
-                            <a target="_blank" href="{! 'https://www.google.com.ar/maps/place/' + v.contentWrapper.content.Location__c}">
-                                <lightning:icon iconName="utility:checkin" size="small" class="mapIcon"/>{!v.contentWrapper.content.Location__c}
+                            <a target="_blank" href="{! 'https://www.google.com.ar/maps/place/' + v.contentWrapper.content.Location}">
+                                <lightning:icon iconName="utility:checkin" size="small" class="mapIcon"/>{!v.contentWrapper.content.Location}
                             </a>
                         </p>
                     </aura:if>

@@ -22,13 +22,13 @@ public class DatatableController extends ComponentManager {
         System.debug(componentWrapper);
 
         DatatableController.DatatableWrapper wrapper = (DatatableController.DatatableWrapper)JSON.deserialize(componentWrapper, DatatableController.DatatableWrapper.class);
-        Datatable__c datatable = FE_DatatableUtils.getDatatableInfo(wrapper.componentExternalId);
+        Datatable__c datatable = DatatableUtils.getDatatableInfo(wrapper.componentExternalId);
 
         Integer offSet = wrapper.recordsPerPage * actualPage;
 
-        List<SObject> records = FE_DatatableUtils.doGetRecords(datatable, offSet, wrapper);
+        List<SObject> records = DatatableUtils.doGetRecords(datatable, offSet, wrapper);
 
-        return JSON.serialize(FE_DatatableUtils.mapDatatableDataToWrappers(records, wrapper.columns));
+        return JSON.serialize(DatatableUtils.mapDatatableDataToWrappers(records, wrapper.columns));
     }
 
     @AuraEnabled
@@ -50,11 +50,11 @@ public class DatatableController extends ComponentManager {
         DatatableController.DatatableWrapper wrapper = (DatatableController.DatatableWrapper)JSON.deserialize(componentWrapper, DatatableController.DatatableWrapper.class);
         wrapper.orderBy = fieldName + ' ' + direction;
 
-        Datatable__c datatable = FE_DatatableUtils.getDatatableInfo(wrapper.componentExternalId);
+        Datatable__c datatable = DatatableUtils.getDatatableInfo(wrapper.componentExternalId);
         datatable.OrderBy__c = wrapper.orderBy;
 
-        List<SObject> records = FE_DatatableUtils.doGetRecords(datatable, 0, wrapper);
-        return JSON.serialize(FE_DatatableUtils.mapDatatableDataToWrappers(records, wrapper.columns));
+        List<SObject> records = DatatableUtils.doGetRecords(datatable, 0, wrapper);
+        return JSON.serialize(DatatableUtils.mapDatatableDataToWrappers(records, wrapper.columns));
     }
 
     @AuraEnabled
@@ -67,11 +67,11 @@ public class DatatableController extends ComponentManager {
         System.debug(wrapper);
         System.debug('    wrapper ###');
 
-        Datatable__c datatable = FE_DatatableUtils.getDatatableInfo(wrapper.componentExternalId);
+        Datatable__c datatable = DatatableUtils.getDatatableInfo(wrapper.componentExternalId);
         datatable.OrderBy__c = wrapper.orderBy;
 
-        List<SObject> records = FE_DatatableUtils.doGetRecords(datatable, 0, wrapper);
-        return JSON.serialize(FE_DatatableUtils.mapDatatableDataToWrappers(records, wrapper.columns));
+        List<SObject> records = DatatableUtils.doGetRecords(datatable, 0, wrapper);
+        return JSON.serialize(DatatableUtils.mapDatatableDataToWrappers(records, wrapper.columns));
     }
     /* Aura Methods - END */
 
@@ -89,21 +89,21 @@ public class DatatableController extends ComponentManager {
     public override DataWrapper getData() {
         System.debug('in DatatableController.getData() - externalId: ' + this.componentExternalId);
 
-        Datatable__c datatable = FE_DatatableUtils.getDatatableInfo(this.componentExternalId);
+        Datatable__c datatable = DatatableUtils.getDatatableInfo(this.componentExternalId);
 
         if(datatable != null) {
             
             System.debug('datatable: ' + datatable);
-            DatatableWrapper datatableWrapper = FE_DatatableUtils.mapDatatableToWrapper(datatable);
+            DatatableWrapper datatableWrapper = DatatableUtils.mapDatatableToWrapper(datatable);
             datatableWrapper.componentExternalId = this.componentExternalId;
             datatableWrapper.searchTerm = '';
 
-            datatableWrapper.columns = FE_DatatableUtils.mapDatatableElementsToWrappers(datatable.DatatableElements__r);
-            datatableWrapper.actions = FE_DatatableUtils.mapDatatableActionsToWrappers(datatable.DatatableActions__r);
+            datatableWrapper.columns = DatatableUtils.mapDatatableElementsToWrappers(datatable.DatatableElements__r);
+            datatableWrapper.actions = DatatableUtils.mapDatatableActionsToWrappers(datatable.DatatableActions__r);
             
-            List<SObject> records = FE_DatatableUtils.doGetRecords(datatable, 0, datatableWrapper);
+            List<SObject> records = DatatableUtils.doGetRecords(datatable, 0, datatableWrapper);
 
-            datatableWrapper.tableData = FE_DatatableUtils.mapDatatableDataToWrappers(records, datatableWrapper.columns);
+            datatableWrapper.tableData = DatatableUtils.mapDatatableDataToWrappers(records, datatableWrapper.columns);
 
             return datatableWrapper;
         }else {

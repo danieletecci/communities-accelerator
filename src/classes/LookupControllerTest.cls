@@ -14,7 +14,7 @@ public class LookupControllerTest {
         String searchKeyword = 'testNav';
         String objectApiName = 'Navigation__c';
 		//Given
-		List<sObject> listObject = LookupInputController.fetchLookUpValues(searchKeyword, objectApiName);
+		List<sObject> listObject = LookupController.fetchLookUpValues(searchKeyword, objectApiName);
 		//Then
 		System.assertEquals(listObject.size(), 2);
 	}
@@ -25,7 +25,7 @@ public class LookupControllerTest {
         String recordId = nav.id;
         String objectApiName = 'Navigation__c';
 		//Given
-		sObject obj = LookupInputController.getInitialValue(recordId, objectApiName);
+		sObject obj = LookupController.getInitialValue(recordId, objectApiName);
 		//Then
 		system.assertEquals(((Navigation__c)obj).name, 'testNav0');
 	}

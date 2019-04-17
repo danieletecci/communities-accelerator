@@ -1105,13 +1105,13 @@
         <label>Event Details</label>
     </listViews>
     <listViews>
-        <fullName>Events</fullName>
+        <fullName>Event_List</fullName>
         <columns>NAME</columns>
         <filterScope>Mine</filterScope>
         <filters>
             <field>RECORDTYPE</field>
             <operation>equals</operation>
-            <value>Component__c.Event</value>
+            <value>Component__c.EventList</value>
         </filters>
         <label>Events</label>
     </listViews>
@@ -1149,13 +1149,13 @@
         <label>Menus</label>
     </listViews>
     <listViews>
-        <fullName>Article</fullName>
+        <fullName>Article_List</fullName>
         <columns>NAME</columns>
         <filterScope>Mine</filterScope>
         <filters>
             <field>RECORDTYPE</field>
             <operation>equals</operation>
-            <value>Component__c.Article</value>
+            <value>Component__c.ArticleList</value>
         </filters>
         <label>Article</label>
     </listViews>

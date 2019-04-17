@@ -169,7 +169,7 @@ public class DatatableControllerTest {
           
         // When   
         Test.startTest();      	
-        String result = FE_DatatableUtils.processAppliedFilters(appliedFilters);
+        String result = DatatableUtils.processAppliedFilters(appliedFilters);
         Test.stopTest();
         // Then
         System.assertNotEquals(result, null);
@@ -186,7 +186,7 @@ public class DatatableControllerTest {
 
         // When   
         Test.startTest();      	
-        List<DatatableController.DatatableActionWrapper> result = FE_DatatableUtils.mapDatatableActionsToWrappers(actionList);
+        List<DatatableController.DatatableActionWrapper> result = DatatableUtils.mapDatatableActionsToWrappers(actionList);
         Test.stopTest();
         // Then
         System.assertNotEquals(result, null); 
@@ -204,7 +204,7 @@ public class DatatableControllerTest {
         
         // When   
         Test.startTest();
-        List<Map<String,String>> result = FE_DatatableUtils.mapDatatableDataToWrappers(SOlist, listDataw);
+        List<Map<String,String>> result = DatatableUtils.mapDatatableDataToWrappers(SOlist, listDataw);
         Test.stopTest();
         // Then
         System.assertNotEquals(result, null); 

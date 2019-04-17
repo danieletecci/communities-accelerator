@@ -18,7 +18,7 @@ public class AudienceCriteriaControllerTest {
         audienceTest.Status__c = 'Active';
         update audienceTest;
 
-        CMS.updateUserSettings(u.Id, clusterLeaf[0].Id, null, null, u.Id);
+        CMSUserSettingsUtils.updateUserSettings(u.Id, clusterLeaf[0].Id, null, null, u.Id);
     }
 
     @isTest 

@@ -36,7 +36,7 @@ public without sharing virtual class ContentUtils {
 
         //SELECT
         fieldSet.add('[CMS]Audience__r.[CMS]ReferenceAudienceExternalIds__c');
-        query += 'SELECT ' + GeneralUtils.joinFields(fieldSet) + ', (SELECT Id, [CMS]MediaElement__c, [CMS]Placement__c FROM [CMS]MediaElementAssignments__r WHERE [CMS]Placement__c = \''+ getPlaceForRTComponent(component.RecordType.Developername) +'\') ';     
+        query += 'SELECT ' + GeneralUtils.joinFields(fieldSet) + ', (SELECT Id, [CMS]MediaElement__c, [CMS]Placement__c FROM [CMS]MediaElementAssignments__r WHERE [CMS]Placement__c = \''+ getPlaceForRTComponent(component.RecordTypeDevelopername) +'\') ';     
         
         //FROM
         query += 'FROM [CMS]Content__c ';
@@ -82,7 +82,7 @@ public without sharing virtual class ContentUtils {
                 query += 'WHERE (Id IN: contentIdList OR [CMS]Category__c IN: setCategoriesIds) AND (Id NOT IN: setContentToExclude) AND ([CMS]ExternalId__c NOT IN: setContentToExclude) AND [CMS]Cluster__c IN: setClusterIds AND Recordtype.DeveloperName =: contentTypeToSearch ';
             }
 
-            if(component.Recordtype.Developername == 'EventList' || component.Recordtype.DeveloperName == 'EventsRelated'){
+            if(component.RecordTypeDevelopername == 'EventList' || component.RecordTypeDeveloperName == 'EventsRelated'){
                 if (component.ExcludePastEvents){
                     Datetime dateAndTime = System.today();
                     query += 'AND ([CMS]EventEndDate__c >: dateAndTime) ';

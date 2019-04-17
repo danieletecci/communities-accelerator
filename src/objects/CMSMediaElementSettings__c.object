@@ -1,41 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <customSettingsType>Hierarchy</customSettingsType>
-    <description>Settings to be configured by the Accelerator implementator.</description>
+    <description>Settings to be configured by the CMS implementator for object Media Element.</description>
     <enableFeeds>false</enableFeeds>
-    <fields>
-        <fullName>ClusterFieldForPublicGroups__c</fullName>
-        <defaultValue>&quot;ExternalId__c&quot;</defaultValue>
-        <description>When a cluster is created, a public group is created. This field determines which cluster field will be used as the name of the public group that is created for the cluster.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>When a cluster is created, a public group is created. This field determines which cluster field will be used as the name of the public group that is created for the cluster.</inlineHelpText>
-        <label>Cluster Field for Public Groups</label>
-        <length>80</length>
-        <required>true</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>ContentLandingColumnFields__c</fullName>
-        <externalId>false</externalId>
-        <label>Content Landing Column Fields</label>
-        <length>255</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>ContentLandingRecordTypes__c</fullName>
-        <externalId>false</externalId>
-        <label>ContentLandingRecordTypes</label>
-        <length>255</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
     <fields>
         <fullName>EnableMediaElementAutomaticResize__c</fullName>
         <defaultValue>true</defaultValue>
@@ -86,16 +53,6 @@
         <type>Number</type>
         <unique>false</unique>
     </fields>
-    <fields>
-        <fullName>SalesforceDomain__c</fullName>
-        <externalId>false</externalId>
-        <label>Salesforce Domain</label>
-        <length>255</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <label>Accelerator Settings</label>
+    <label>CMS Media Element Settings</label>
     <visibility>Public</visibility>
 </CustomObject>

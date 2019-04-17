@@ -1,4 +1,4 @@
-global class CG_DynamicPicklistEventsDetail extends VisualEditor.DynamicPickList{
+global class EventDetailDynamicPicklist extends VisualEditor.DynamicPickList{
 	// Default value -- The one that appears at the top
 	global override VisualEditor.DataRow getDefaultValue(){
 		VisualEditor.DataRow defaultValue = new VisualEditor.DataRow('--None--','');

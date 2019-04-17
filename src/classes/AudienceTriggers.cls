@@ -74,7 +74,7 @@ public with sharing class AudienceTriggers extends TriggersHandler{
         
         if(recNew.RecordTypeId == AudienceUtils.rtAudienceGroup && (recNew.Name == String.ValueOf(recNew.Id).substring(0, 15) || (recNew.ExternalId__c == null) )){
             recordSelfUpdate(recNew.id, 'Name', 'AG-' + recNew.AudienceNumber__c);
-            recordSelfUpdate(recNew.id, 'ExternalId__c', GeneralUtils.generateExternalId('AG-' + recNew.AudienceNumber__c, recNew.Cluster__c, recNew.getSObjectType().getDescribe().getName()));
+            recordSelfUpdate(recNew.id, GeneralUtils.prefix('[CMS]ExternalId__c'), GeneralUtils.generateExternalId('AG-' + recNew.AudienceNumber__c, recNew.Cluster__c, recNew.getSObjectType().getDescribe().getName()));
         }
     }
 

@@ -4,18 +4,14 @@ public class DatatableUtilsTest {
     static void generateCustomSettings(){
         MockupFactory.generateAcceleratorSetting();
         List<Cluster__c> clusterRootList = MockupFactory.createCluster('ClusterRootTest', null, 1, 'ClusterRoot', 'DRC');
-        List<Datatable__c> datatableList = MockupFactory.createDatatables('Table Test', 'TableTest', 'Component__c', 1, clusterRootList[0].Id);
-        
-        System.debug('datatableExternalId: ' + datatableList.get(0).ExternalId__c);
-        
+        List<Datatable__c> datatableList = MockupFactory.createDatatables('Table Test', 'TableTest', GeneralUtils.prefix('[CMS]Component__c'), 1, clusterRootList[0].Id);
         List<DatatableElement__c> dataElementList = MockupFactory.createDatatableElements('Name', 'DataElementExternalId', 2, datatableList[0].Id);
     }
     
     @isTest
     public static void processSearchTermTest01() {
         Test.startTest();
-        Datatable__c datatable = DatatableUtils.getDatatableInfo('TableTest_0');
-        
+        Datatable__c datatable = DatatableUtils.getDatatableInfo('TableTest_0');        
         datatable.NumberOfColumns__c = '10';
         update datatable;
         
@@ -30,10 +26,8 @@ public class DatatableUtilsTest {
         elems.add(ele);
         insert elems;
         
-        datatable = DatatableUtils.getDatatableInfo('TableTest_0');
-        
-        String searchTerm = 'test';
-            
+        datatable = DatatableUtils.getDatatableInfo('TableTest_0');        
+        String searchTerm = 'test';            
         DatatableUtils.processSearchTerm(datatable, searchTerm);
         
         Test.stopTest();
@@ -47,8 +41,7 @@ public class DatatableUtilsTest {
         
         Datatable__c datatable = new Datatable__c();
         datatable.Name = 'DummyDatatable';
-        datatable.ObjectApiName__c = 'User';
-        
+        datatable.ObjectApiName__c = 'User';        
         datatable.Cluster__c = clus.Id;
         datatable.RecordsPerPage__c = 2;
         datatable.NumberOfColumns__c = '2';
@@ -68,10 +61,8 @@ public class DatatableUtilsTest {
                                 , RecordsPerPage__c
                                 , (SELECT Id, FieldApiName__c, Navigation__c FROM DatatableElements__r) 
                             FROM Datatable__c WHERE Name = 'DummyDatatable'];
-        DatatableController.DatatableWrapper wrapper = new DatatableController.DatatableWrapper();
-        
-        DatatableUtils.doGetRecords(d, 0, wrapper);
-        
+        DatatableController.DatatableWrapper wrapper = new DatatableController.DatatableWrapper();        
+        DatatableUtils.doGetRecords(d, 0, wrapper);        
         Test.stopTest();
     }
     
@@ -83,8 +74,7 @@ public class DatatableUtilsTest {
         
         Datatable__c datatable = new Datatable__c();
         datatable.Name = 'DummyDatatable';
-        datatable.ObjectApiName__c = 'User';
-        
+        datatable.ObjectApiName__c = 'User';        
         datatable.Cluster__c = clus.Id;
         datatable.RecordsPerPage__c = 2;
         datatable.NumberOfColumns__c = '2';
@@ -111,8 +101,6 @@ public class DatatableUtilsTest {
         insert elem;
         
         List<User> users = [SELECT Id, Username, CreatedDate, DigestFrequency FROM User];
-        
-        System.debug('users: ' + users);
         
         Datatable__c d = [SELECT Id, WhereCondition__c, ObjectApiName__c, OrderBy__c
                                 , RecordsPerPage__c
@@ -145,7 +133,6 @@ public class DatatableUtilsTest {
         Test.startTest();
         
         List<DatatableAction__c> actions = new List<DatatableAction__c>();
-        
         List<DatatableController.DatatableActionWrapper> daw = DatatableUtils.mapDatatableActionsToWrappers(actions);
         
         Test.stopTest();
@@ -180,15 +167,12 @@ public class DatatableUtilsTest {
         af = new DatatableController.DatatableFilterWrapper();
         af.value1 = String.valueOf(5);
         filt = new DatatableController.DatatableFilterFieldWrapper();
-        filt.name = 'NumbOfDays__c';
+        filt.name = '[CMS]NumbOfDays__c';
         filt.type = String.valueOf(Schema.DisplayType.INTEGER);
         af.filter = filt;
         
         appliedFilters.add(af);
-        
-            
-        DatatableUtils.processAppliedFilters(appliedFilters);
-        
+        DatatableUtils.processAppliedFilters(appliedFilters);        
         Test.stopTest();
     }
     
@@ -223,7 +207,7 @@ public class DatatableUtilsTest {
         af.value1 = String.valueOf(5);
         af.value2 = String.valueOf(8);
         filt = new DatatableController.DatatableFilterFieldWrapper();
-        filt.name = 'NumbOfDays__c';
+        filt.name = '[CMS]NumbOfDays__c';
         filt.type = String.valueOf(Schema.DisplayType.INTEGER);
         af.filter = filt;
         
@@ -263,7 +247,7 @@ public class DatatableUtilsTest {
         af = new DatatableController.DatatableFilterWrapper();
         af.value2 = String.valueOf(5);
         filt = new DatatableController.DatatableFilterFieldWrapper();
-        filt.name = 'NumbOfDays__c';
+        filt.name = '[CMS]NumbOfDays__c';
         filt.type = String.valueOf(Schema.DisplayType.INTEGER);
         af.filter = filt;
         

@@ -12,9 +12,9 @@ public class ContentCreateModalControllerTest {
 
     @isTest
     static void getRecordTypeName(){
-
         //Given
-        RecordType rt = [SELECT Id FROM RecordType WHERE SobjectType = 'Content__c' AND DeveloperName = 'Banner'];
+        String sobjectTypeName = GeneralUtils.prefix('[CMS]Content__c');
+        RecordType rt = [SELECT Id FROM RecordType WHERE SobjectType =: sobjectTypeName AND DeveloperName = 'Banner'];
         String recordTypeLabel = Schema.SObjectType.Content__c.getRecordTypeInfosById().get(rt.Id).getName();
 
         //When
@@ -40,8 +40,9 @@ public class ContentCreateModalControllerTest {
     static void createNewContent(){
 
         //Given
+        String sobjectTypeName = GeneralUtils.prefix('[CMS]Content__c');
         Component__c component = [SELECT id FROM Component__c LIMIT 1];
-        RecordType rt = [SELECT Id FROM RecordType WHERE SobjectType = 'Content__c' AND DeveloperName = 'FAQ'];
+        RecordType rt = [SELECT Id FROM RecordType WHERE SobjectType =: sobjectTypeName AND DeveloperName = 'FAQ'];
         Cluster__c cluster = [SELECT id FROM Cluster__c LIMIT 1];
 
         //When
@@ -59,7 +60,8 @@ public class ContentCreateModalControllerTest {
     static void createNewContentFail(){
 
         //Given
-        RecordType rt = [SELECT Id FROM RecordType WHERE SobjectType = 'Content__c' AND DeveloperName = 'FAQ'];
+        String sobjectTypeName = GeneralUtils.prefix('[CMS]Content__c');
+        RecordType rt = [SELECT Id FROM RecordType WHERE SobjectType =: sobjectTypeName AND DeveloperName = 'FAQ'];
         Cluster__c cluster = [SELECT id FROM Cluster__c LIMIT 1];
 
         String response = '';

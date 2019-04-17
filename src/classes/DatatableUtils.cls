@@ -21,7 +21,7 @@ public with sharing class DatatableUtils {
 
         System.debug('count query: ' + query);
         
-        Integer totalRows = Database.countQuery(query);
+        Integer totalRows = Database.countQuery(GeneralUtils.prefix(query));
 
         if(totalRows > 0) {
             wrapper.totalRows = totalRows;
@@ -37,7 +37,7 @@ public with sharing class DatatableUtils {
             
             System.debug('query: ' + query);
 
-            rows = Database.query(query);
+            rows = Database.query(GeneralUtils.prefix(query));
         }
 
         return rows;
@@ -59,7 +59,6 @@ public with sharing class DatatableUtils {
             whereCondition = whereCondition.replace('WHERE', '');
         }
 
-        System.debug('generateDatatableRecordsQuery - whereCondition: ' + whereCondition);
         /*
         replaceDynamicFieldsOnWhereCondition(whereCondition, true);
         */
@@ -272,7 +271,6 @@ public with sharing class DatatableUtils {
     }
 
     public static String processAppliedFilters(List<DatatableController.DatatableFilterWrapper> appliedFilters) {
-        System.debug('in DatatableController.processAppliedFilters() method.');
         Boolean newFilter = false;
         String filterCondition = '';
         String result = '';

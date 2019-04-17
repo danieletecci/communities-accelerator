@@ -229,7 +229,7 @@ public with sharing class AudienceCriteriaController {
     //This method receives a list of paths and get the describe of each one
     private static void completeFieldOptions(List<FieldSelectOption> fields, String fieldCommaSeparated, String mainObject){
         if(mainObject != null && fieldCommaSeparated != null){
-            fields.add(new FieldSelectOption(null, Schema.getGlobalDescribe().get(mainObject).getDescribe().getLabel() + ' ' + Label.ObjectFieldsLabel, null, null, true));
+            fields.add(new FieldSelectOption(null, Schema.getGlobalDescribe().get(GeneralUtils.prefix(mainObject)).getDescribe().getLabel() + ' ' + Label.ObjectFieldsLabel, null, null, true));
             for(String fieldPath: fieldCommaSeparated.split(',')){
                 FieldPathDescribe fDesc = getFieldPathDescribe(fieldPath.replace(' ',''), mainObject);
                 if(fDesc != null){
@@ -249,11 +249,11 @@ public with sharing class AudienceCriteriaController {
     private static FieldPathDescribe getFieldPathDescribe(String fieldPath, String mainObject){
         FieldPathDescribe fDescribe = new FieldPathDescribe();
         try{
-            fDescribe.fieldPathLabel = Schema.getGlobalDescribe().get(mainObject).getDescribe().getLabel();
+            fDescribe.fieldPathLabel = Schema.getGlobalDescribe().get(GeneralUtils.prefix(mainObject)).getDescribe().getLabel();
             fieldPath = fieldPath.replace('__r.', '__c.');
 
             for(String field: fieldPath.split('\\.')){
-                Map<String, Schema.SObjectField> mapFields = Schema.getGlobalDescribe().get(mainObject).getDescribe().fields.getMap();
+                Map<String, Schema.SObjectField> mapFields = Schema.getGlobalDescribe().get(GeneralUtils.prefix(mainObject)).getDescribe().fields.getMap();
                 Schema.DescribeFieldResult fDesc;
                 if(mapFields.containsKey(field)){
                     fDesc = mapFields.get(field).getDescribe();

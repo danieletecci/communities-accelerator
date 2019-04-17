@@ -47,8 +47,9 @@ public with sharing class TagCriteriaController {
     @auraEnabled
     public static RecordsWrapper getRecords(String recordId){
         RecordsWrapper rw = new RecordsWrapper();
-        rw.fieldNameLabel =  Schema.getGlobalDescribe().get('Tag__c').getDescribe().fields.getMap().get('name').getDescribe().getLabel();
-        rw.secondaryObjectLabelPlural =  Schema.getGlobalDescribe().get('Tag__c').getDescribe().getLabelPlural();
+        String sobjectName = GeneralUtils.prefix('[CMS]Tag__c');
+        rw.fieldNameLabel =  Schema.getGlobalDescribe().get(sobjectName).getDescribe().fields.getMap().get('name').getDescribe().getLabel();
+        rw.secondaryObjectLabelPlural =  Schema.getGlobalDescribe().get(sobjectName).getDescribe().getLabelPlural();
 
         List<Component__c> comp = [SELECT Id, MatchCriteria__c, TagCriteria__c FROM Component__c WHERE Id =: recordId LIMIT 1];
         rw.tagCriteria = comp[0].TagCriteria__c;
@@ -57,17 +58,17 @@ public with sharing class TagCriteriaController {
         //Query to Junction Object
         Map<Id, String> mapSelectedRecords = new Map<Id, String>();
 
-        String joQuery = 'SELECT Id, Tag__c, Tag__r.Name, Order__c FROM TagAssignment__c WHERE Component__c =: recordId ORDER BY Order__c';
+        String joQuery = GeneralUtils.prefix('SELECT Id, [CMS]Tag__c, [CMS]Tag__r.Name, [CMS]Order__c FROM [CMS]TagAssignment__c WHERE [CMS]Component__c =: recordId ORDER BY [CMS]Order__c');
     
         
         for(SObject rec: Database.query(joQuery)){
-            mapSelectedRecords.put(String.valueOf(rec.get('Tag__c')), String.valueOf(rec.get('Order__c')) + ',' + rec.get('id'));
-            rw.recordsSelected.add(new SecondaryObjectWrapper(String.valueOf(rec.get('Tag__c')), String.valueOf(rec.getSObject('Tag__r').get('Name')), String.valueOf(rec.get('Order__c')), String.valueOf(rec.get('Id'))));
+            mapSelectedRecords.put(String.valueOf(rec.get(sobjectName)), String.valueOf(rec.get(GeneralUtils.prefix('[CMS]Order__c'))) + ',' + rec.get('id'));
+            rw.recordsSelected.add(new SecondaryObjectWrapper(String.valueOf(rec.get(sobjectName)), String.valueOf(rec.getSObject(GeneralUtils.prefix('[CMS]Tag__r')).get('Name')), String.valueOf(rec.get(GeneralUtils.prefix('[CMS]Order__c'))), String.valueOf(rec.get('Id'))));
         }
         Set<Id> idSelectedRecordSet = new Set<Id>();
         idSelectedRecordSet = mapSelectedRecords.keySet();
         
-        String relatedRecQuery = 'SELECT Id, Name FROM Tag__c WHERE (Id NOT IN: idSelectedRecordSet) ORDER BY Name';
+        String relatedRecQuery = GeneralUtils.prefix('SELECT Id, Name FROM [CMS]Tag__c WHERE (Id NOT IN: idSelectedRecordSet) ORDER BY Name');
 
         for(SObject rec: Database.query(relatedRecQuery)){
             rw.recordsToSelect.add(new SecondaryObjectWrapper(String.valueOf(rec.get('Id')), String.valueOf(rec.get('Name')), '', ''));
@@ -75,7 +76,7 @@ public with sharing class TagCriteriaController {
 
 
         rw.matchOptions = new List<String>();
-        List<Schema.PicklistEntry> picklistValues = Schema.getGlobalDescribe().get('Component__c').getDescribe().fields.getMap().get('MatchCriteria__c').getDescribe().getPickListValues();
+        List<Schema.PicklistEntry> picklistValues = Schema.getGlobalDescribe().get(GeneralUtils.prefix('[CMS]Component__c')).getDescribe().fields.getMap().get(GeneralUtils.prefix('[CMS]MatchCriteria__c')).getDescribe().getPickListValues();
         for(Schema.PicklistEntry pickListVal : picklistValues){
             rw.matchOptions.add(pickListVal.getValue());
         }        
@@ -101,7 +102,8 @@ public with sharing class TagCriteriaController {
         List<SObject> recToDelete = new List<SObject>();
         List<TagAssignment__c> recToInsert = new List<TagAssignment__c>();
         List<SObject> recToUpdate = new List<SObject>();
-        
+        String sobjectName = GeneralUtils.prefix('[CMS]Tag__c');
+
         tagCriteria = tagCriteria != null ? tagCriteria.toUpperCase() : '';
         String tempCriteria = tagCriteria;
         Integer quantity = listSelectedIds.size(); //Save the quantity of tags selected to check it out later.
@@ -140,19 +142,19 @@ public with sharing class TagCriteriaController {
         }
             
        
-        String joQuery = 'SELECT Id, Tag__c, Order__c FROM TagAssignment__c WHERE Component__c =: recordId ORDER BY Order__c';          
+        String joQuery = GeneralUtils.prefix('SELECT Id, [CMS]Tag__c, [CMS]Order__c FROM [CMS]TagAssignment__c WHERE [CMS]Component__c =: recordId ORDER BY [CMS]Order__c';          
         List<SObject> junctionObjectList = Database.query(joQuery);
         for(SObject rec: junctionObjectList){
-            if(!selectedIds.contains(String.valueOf(rec.get('Tag__c')))){
+            if(!selectedIds.contains(String.valueOf(rec.get(sobjectName)))){
                 recToDelete.add(rec);
             }else{
                 recToUpdate.add(rec);
-                selectedIds.remove(String.valueOf(rec.get('Tag__c')));
+                selectedIds.remove(String.valueOf(rec.get(sobjectName)));
             }
         }        
         
         for(lastOrderBy = 0; lastOrderBy < recToUpdate.size(); lastOrderBy++){
-            recToUpdate.get(lastOrderBy).put('Order__c', lastOrderBy + 1);
+            recToUpdate.get(lastOrderBy).put(GeneralUtils.prefix('[CMS]Order__c'), lastOrderBy + 1);
         }
         
         

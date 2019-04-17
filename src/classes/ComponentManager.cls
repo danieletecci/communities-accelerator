@@ -55,7 +55,7 @@ public without sharing virtual class ComponentManager {
         
         String contentRTDevName = ContentUtils.rtComponentToContent.get(cw.meta.component.Recordtype.DeveloperName);
         if(contentRTDevName != null){
-            cw.contentRecordTypeId = Schema.SObjectType.Content__c.getRecordTypeInfosByDeveloperName().get(contentRTDevName).getRecordTypeId();
+            cw.contentRecordTypeId = Schema.SObjectType.Content__c.getRecordTypeInfosByDeveloperName().get(GeneralUtils.prefix(contentRTDevName)).getRecordTypeId();
         }
         
         cw.data = getData();
@@ -87,12 +87,12 @@ public without sharing virtual class ComponentManager {
         defaultComponentFieldSet.add('Name');
         defaultComponentFieldSet.add('Recordtype.DeveloperName');        
         defaultComponentFieldSet.add('Recordtype.Id');
-        defaultComponentFieldSet.add('Datasource__c');
-        defaultComponentFieldSet.add('OrderBy__c');        
-        defaultComponentFieldSet.add('OrderByAdvance__c');
-        defaultComponentFieldSet.add('HierarchicalOrderBy__c');
-        defaultComponentFieldSet.add('TagCriteria__c');
-        defaultComponentFieldSet.add('PageSize__c');
+        defaultComponentFieldSet.add('[CMS]Datasource__c');
+        defaultComponentFieldSet.add('[CMS]OrderBy__c');        
+        defaultComponentFieldSet.add('[CMS]OrderByAdvance__c');
+        defaultComponentFieldSet.add('[CMS]HierarchicalOrderBy__c');
+        defaultComponentFieldSet.add('[CMS]TagCriteria__c');
+        defaultComponentFieldSet.add('[CMS]PageSize__c');
         defaultComponentFieldSet.addAll(componentFieldSet);
         mw.component = ComponentUtils.getComponent(componentExternalId, defaultComponentFieldSet, device);
         mw.navId = GeneralUtils.getNavigationId(navigationUrl);

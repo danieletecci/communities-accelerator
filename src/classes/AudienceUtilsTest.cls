@@ -61,7 +61,7 @@ public class AudienceUtilsTest {
 
         //When
         Test.startTest();
-        AudienceUtils.filterRecords(UserInfo.getUserId(), contentListToFilter, 'Audience__c');
+        AudienceUtils.filterRecords(UserInfo.getUserId(), contentListToFilter, '[CMS]Audience__c');
         Test.stopTest();
 
         //Then

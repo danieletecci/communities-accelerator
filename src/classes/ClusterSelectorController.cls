@@ -31,7 +31,7 @@ public with sharing class ClusterSelectorController extends ComponentManager{
         ctrl.customPermissionEdit = 'Cluster Selector Edit Frame';
         ctrl.customPermissionView = 'Cluster Selector View Frame';        
         ctrl.componentFieldSet = new Set<String>{
-            'Datasource__c'
+            '[CMS]Datasource__c'
         };
         ctrl.componentExternalId = componentExternalId;
         ctrl.componentId = componentId;

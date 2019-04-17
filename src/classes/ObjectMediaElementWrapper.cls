@@ -12,19 +12,20 @@ public class ObjectMediaElementWrapper {
     public String FileURLDesktop;
     public String FileURLMobile;
     public String FileURLTablet;
-    public String HeightDesktop;
-    public String HeightMobile;
-    public String HeightTablet;
+    public Decimal HeightDesktop;
+    public Decimal HeightMobile;
+    public Decimal HeightTablet;
     public String MobileFileExtension;
     public String Status;
     public String TabletFileExtension;
-    public String WidthDesktop;
-    public String WidthMobile;
-    public String WidthTablet;
+    public Decimal WidthDesktop;
+    public Decimal WidthMobile;
+    public Decimal WidthTablet;
     
     public ObjectMediaElementWrapper(MediaElement__c mediaElement){
-        try{this.Id = content.Id;}catch(Exception e){}
-        try{this.Name = content.Name;}catch(Exception e){}
+        try{this.Id = mediaElement.Id;}catch(Exception e){}
+        try{this.Name = mediaElement.Name;}catch(Exception e){}
+        
         try{this.Description = mediaElement.Description__c;}catch(Exception e){}
         try{this.DesktopFileExtension = mediaElement.DesktopFileExtension__c;}catch(Exception e){}
         try{this.ExternalId = mediaElement.ExternalId__c;}catch(Exception e){}

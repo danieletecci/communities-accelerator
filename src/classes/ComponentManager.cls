@@ -18,7 +18,7 @@ public without sharing virtual class ComponentManager {
 
     //WRAPPERS
     public class ComponentWrapper{
-        @auraEnabled public AcceleratorSettings__c acceleratorSettings;
+        @auraEnabled public CustomSettingWrapper acceleratorSettings;
         @auraEnabled public String clusterId;
         @auraEnabled public PermissionsWrapper permissions;
         @auraEnabled public MetaWrapper meta;
@@ -32,7 +32,7 @@ public without sharing virtual class ComponentManager {
     }
 
     public virtual class MetaWrapper{
-        @auraEnabled public Component__c component;
+        @auraEnabled public ObjectComponentWrapper component;
         @auraEnabled public String objectId;
         @auraEnabled public String name;
         @auraEnabled public String navId;
@@ -48,12 +48,12 @@ public without sharing virtual class ComponentManager {
             clusterId = ClusterUtils.getClusterIdFromMappingObject(UserInfo.getUserId(), Network.getNetworkId());
         }
 
-        cw.acceleratorSettings = AcceleratorSettings__c.getInstance();
+        cw.acceleratorSettings = new CustomSettingWrapper(CMSSettings__c.getInstance(), CMSContentSettings__c.getInstance(), CMSMediaElementSettings__c.getInstance());
         cw.clusterId = clusterId;
         cw.permissions = getPermissionWrapper();
         cw.meta = getMeta();
         
-        String contentRTDevName = ContentUtils.rtComponentToContent.get(cw.meta.component.Recordtype.DeveloperName);
+        String contentRTDevName = ContentUtils.rtComponentToContent.get(cw.meta.component.RecordtypeDeveloperName);
         if(contentRTDevName != null){
             cw.contentRecordTypeId = Schema.SObjectType.Content__c.getRecordTypeInfosByDeveloperName().get(GeneralUtils.prefix(contentRTDevName)).getRecordTypeId();
         }
@@ -94,7 +94,7 @@ public without sharing virtual class ComponentManager {
         defaultComponentFieldSet.add('[CMS]TagCriteria__c');
         defaultComponentFieldSet.add('[CMS]PageSize__c');
         defaultComponentFieldSet.addAll(componentFieldSet);
-        mw.component = ComponentUtils.getComponent(componentExternalId, defaultComponentFieldSet, device);
+        mw.component = new ObjectComponentWrapper(ComponentUtils.getComponent(componentExternalId, defaultComponentFieldSet, device));
         mw.navId = GeneralUtils.getNavigationId(navigationUrl);
         return mw;
     }

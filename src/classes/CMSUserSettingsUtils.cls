@@ -1,7 +1,5 @@
 public with sharing class CMSUserSettingsUtils {
-
-    public static String prefix = '';
-
+    
     //This methods updates the CMS User Settings with the audiences calculation
     public static void updateUserSettings(Id userId, Id clusterId, Id accountId, Id contactId, Id customRecordId){
         User user;

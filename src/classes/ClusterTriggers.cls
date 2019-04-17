@@ -67,7 +67,7 @@ public with sharing class ClusterTriggers extends TriggersHandler {
         if(!recordList.isEmpty() && toContinueTrigger){
 
 
-            SharingUtils.SharingWrapper sharingWrapper = SharingUtils.generateSharingForCluster(recordList, 'Cluster__c', 'Cluster__Share', 'Clustering__c', true);           
+            SharingUtils.SharingWrapper sharingWrapper = SharingUtils.generateSharingForCluster(recordList, '[CMS]Cluster__c', '[CMS]Cluster__Share', '[CMS]Clustering__c', true);           
             if(sharingWrapper.objectIdToMessageErrosMap.size()>0){
                 objectIdToMessageErrosMap = sharingWrapper.objectIdToMessageErrosMap;
                 toContinueTrigger = false;
@@ -494,7 +494,7 @@ public with sharing class ClusterTriggers extends TriggersHandler {
 
         String groupName = '';
         
-        Map<String,Schema.SObjectField> sobjectDescribeMap = Schema.getGlobalDescribe().get('Cluster__c').getDescribe().fields.getMap();
+        Map<String,Schema.SObjectField> sobjectDescribeMap = Schema.getGlobalDescribe().get(GeneralUtils.prefix('[CMS]Cluster__c')).getDescribe().fields.getMap();
         try{        
             String fieldName = acceleratorSettings.ClusterFieldForPublicGroups__c;
             Schema.DescribeFieldResult fieldDescribe = sobjectDescribeMap.get(fieldName).getDescribe();
@@ -551,9 +551,6 @@ public with sharing class ClusterTriggers extends TriggersHandler {
     private void addLanguages(Cluster__c recNew, Cluster__c recOld){
 
         if(!canMethod('addLanguages')){return;}
-        
-        System.debug('recOld.OtherLanguages__c: ' + recNew.DefaultLanguage__c);
-        System.debug('recNew.OtherLanguages__c: ' + recNew.OtherLanguages__c);
 
         String developerName = recNew.name;
         string recordtypename = Schema.SObjectType.Cluster__c.getRecordTypeInfosById().get(recNew.recordtypeid).getname();
@@ -659,10 +656,9 @@ public with sharing class ClusterTriggers extends TriggersHandler {
 
         if(isMaster){
             Map<String, Schema.SObjectType> sharing = Schema.getGlobalDescribe();
-            if(sharing.containsKey('Cluster__Share')) {
+            if(sharing.containsKey(GeneralUtils.prefix('[CMS]Cluster__Share'))) {
 
                 if(recNew.PublicGroupRWName__c!= recOld.PublicGroupRWName__c || recNew.PublicGroupROUpName__c!= recOld.PublicGroupROUpName__c || recNew.PublicGroupRODownName__c!= recOld.PublicGroupRODownName__c){
-                    System.debug('Insdert custom object is private or public read only');
                     recordList.add(recNew);
                 }
 

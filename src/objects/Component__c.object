@@ -1083,13 +1083,13 @@
         <label>Banners</label>
     </listViews>
     <listViews>
-        <fullName>Cluster_Selector</fullName>
+        <fullName>ClusterSelector</fullName>
         <columns>NAME</columns>
         <filterScope>Mine</filterScope>
         <filters>
             <field>RECORDTYPE</field>
             <operation>equals</operation>
-            <value>Component__c.Cluster_Selector</value>
+            <value>Component__c.ClusterSelector</value>
         </filters>
         <label>Cluster Selector</label>
     </listViews>
@@ -1127,13 +1127,13 @@
         <label>FAQs</label>
     </listViews>
     <listViews>
-        <fullName>Language_Selectors</fullName>
+        <fullName>LanguageSelectors</fullName>
         <columns>NAME</columns>
         <filterScope>Mine</filterScope>
         <filters>
             <field>RECORDTYPE</field>
             <operation>equals</operation>
-            <value>Component__c.Language_Selector</value>
+            <value>Component__c.LanguageSelector</value>
         </filters>
         <label>Language Selectors</label>
     </listViews>
@@ -1732,7 +1732,7 @@
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>Cluster_Selector</fullName>
+        <fullName>ClusterSelector</fullName>
         <active>true</active>
         <description>input Cluster External ID to load a cluster list</description>
         <label>Cluster Selector</label>
@@ -2884,7 +2884,7 @@
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>Language_Selector</fullName>
+        <fullName>LanguageSelector</fullName>
         <active>true</active>
         <label>Language Selector</label>
         <picklistValues>

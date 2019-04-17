@@ -7,8 +7,8 @@ public class MockupFactory {
             MaxSizeDesktop__c = 1280, 
             MaxSizeMobile__c = 480, 
             MaxSizeTablet__c = 768,
-            ClusterFieldForPublicGroups__c = 'ExternalId__c',
-            ContentLandingColumnFields__c = 'RecordType.Name,Name,Category__r.Name,Status__c',
+            ClusterFieldForPublicGroups__c = '[CMS]ExternalId__c',
+            ContentLandingColumnFields__c = 'RecordType.Name,Name,[CMS]Category__r.Name,[CMS]Status__c',
             ContentLandingRecordTypes__c = 'Article,Event'
             );
         insert acceleratorSetting;
@@ -29,7 +29,7 @@ public class MockupFactory {
 
    public static List<Cluster__c> createCluster(String clusterName, List<String> parentClusterIdList, Integer quantity, String clusterType, String defaultLanguage, String otherLangeuage, String externalId){
         List<Cluster__c> clusterList = new List<Cluster__c>();
-        RecordType rtGroup = [SELECT Id FROM RecordType WHERE SobjectType = 'Cluster__c' AND DeveloperName =: clusterType];
+        RecordType rtGroup = [SELECT Id FROM RecordType WHERE SobjectType =: GeneralUtils.prefix('[CMS]Cluster__c') AND DeveloperName =: clusterType];
         System.debug('MockupFactorycreateCluster parentClusterIdList: ' + parentClusterIdList);
         Cluster__c clusterl = new Cluster__c();
         String externalIdName;
@@ -190,7 +190,7 @@ public class MockupFactory {
     //Create Component__c by RecordTypeName
     public static List<Component__c> createComponent(String nameRecordType, Integer quantity, Cluster__c cluster){
         List<Component__c> componentList= new List<Component__c>();
-        RecordType recordT = [SELECT id FROM RecordType WHERE SobjectType = 'Component__c' AND Name =: nameRecordType LIMIT 1];
+        RecordType recordT = [SELECT id FROM RecordType WHERE SobjectType =: GeneralUtils.prefix('[CMS]Component__c') AND Name =: nameRecordType LIMIT 1];
 
         if(nameRecordType != 'Banner'){
 
@@ -222,7 +222,7 @@ public class MockupFactory {
     //Create Content__c by RecordTypeName
     public static List<Content__c> createContent(String nameRecordType, Cluster__c clusterArg, Integer quantity){
         List<Content__c> contentList = new List<Content__c>();
-        RecordType recordT = [SELECT id FROM RecordType WHERE SobjectType = 'Content__c' AND Name =: nameRecordType LIMIT 1];
+        RecordType recordT = [SELECT id FROM RecordType WHERE SobjectType =: GeneralUtils.prefix('[CMS]Content__c') AND Name =: nameRecordType LIMIT 1];
 
         if (nameRecordType != 'Banner'){
            for(Integer i = 0; i < quantity; i++){
@@ -252,7 +252,7 @@ public class MockupFactory {
 
     //Create Banner Content__c related to a Component
     public static Content__c createBannerContentRelatedToComponent(Cluster__c clusterArg, Component__c component){
-        RecordType recordT = [SELECT Id FROM RecordType WHERE SobjectType = 'Content__c' AND Name = 'Banner' LIMIT 1];
+        RecordType recordT = [SELECT Id FROM RecordType WHERE SobjectType =: GeneralUtils.prefix('[CMS]Content__c') AND Name = 'Banner' LIMIT 1];
         Content__c content = new Content__c(
             Name = 'Banner',
             ExternalId__c = 'BannerContent',

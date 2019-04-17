@@ -1,9 +1,9 @@
 public with sharing class ComponentPreviewController {
 	
 	@AuraEnabled
-    public static Component__c getRecord(String recordId){
+    public static ObjectComponentWrapper getRecord(String recordId){
         Component__c comp = [SELECT Id, Name, ExternalId__c, RecordType.DeveloperName FROM Component__c WHERE Id =: recordId];
-        return comp;
+        return new ObjectComponentWrapper(comp);
     }
     
     @AuraEnabled

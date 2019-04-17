@@ -6,9 +6,9 @@ public class CustomSettingWrapper {
     public String contentLandingColumnFields;
     public String contentLandingRecordTypes;
     public String contentTemplateRecordTypes;
-    public Integer maxSizeDesktop;
-    public Integer maxSizeMobile;
-    public Integer maxSizeTablet;
+    public Decimal maxSizeDesktop;
+    public Decimal maxSizeMobile;
+    public Decimal maxSizeTablet;
     public Boolean enableMediaElementAutomaticResize;
     
     public CustomSettingWrapper(CMSSettings__c cmsSetting, CMSContentSettings__c contentSetting, CMSMediaElementSettings__c meSetting){

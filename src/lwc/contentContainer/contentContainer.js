@@ -85,7 +85,7 @@ export default class ContentContainer extends NavigationMixin(LightningElement) 
     }
 
     // Get Status filters from APEX CLASS
-    @wire(getPicklistValues, { sObjectType: '$objectApiName', fieldApiName:"Status__c"})
+    @wire(getPicklistValues, { sObjectType: '$objectApiName', fieldApiName:"[CMS]Status__c"})
     wiredFilterStatus({ error, data }) {
         if (error) {
             this.filtersStatus = null;

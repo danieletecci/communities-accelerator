@@ -4,12 +4,12 @@ public class MockupFactory {
     public static void generateAcceleratorSetting(){
 
         CMSSettings__c cmsSetting  = new CMSSettings__c( 
-            ClusterFieldForPublicGroups__c = '[CMS]ExternalId__c'
+            ClusterFieldForPublicGroups__c = GeneralUtils.prefix('[CMS]ExternalId__c')
             );
         insert cmsSetting;
 
         CMSContentSettings__c contentSetting  = new CMSContentSettings__c( 
-            ContentLandingColumnFields__c = 'RecordType.Name,Name,[CMS]Category__r.Name,[CMS]Status__c',
+            ContentLandingColumnFields__c = GeneralUtils.prefix('RecordType.Name,Name,[CMS]Category__r.Name,[CMS]Status__c'),
             ContentLandingRecordTypes__c = 'Article,Event',
             ContentTemplateRecordTypes__c = ''
             );

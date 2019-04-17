@@ -1,3 +1,3 @@
 <design:component label="CG Article Detail">
-	<design:attribute name="componentExternalId" label="Component External Id" datasource="apex://ArticleDynamicPicklistDetail"/>
+	<design:attribute name="componentExternalId" label="Component External Id" datasource="apex://ArticleDynamicPicklist"/>
 </design:component>

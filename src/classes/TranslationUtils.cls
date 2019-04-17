@@ -9,7 +9,7 @@ global with sharing class TranslationUtils{
         map<String, String> retMap = new map<String, String>();
         set<Id> setIdRecords = mapIdRecord.keySet();
         
-        for(Translation__c tra: Database.query('SELECT Id, Name, ' + parentLookup + ', FieldType__c, LanguageCode__c, FieldApiName__c, TranslationText__c, TranslationTextArea__c, TranslationEmail__c, TranslationURL__c, TranslationTextAreaRich__c FROM Translation__c WHERE ' + parentLookup + ' IN: setIdRecords AND LanguageCode__c =: lang ORDER BY FieldApiName__c')){
+        for(Translation__c tra: Database.query(GeneralUtils.prefix('SELECT Id, Name, ' + parentLookup + ', [CMS]FieldType__c, [CMS]LanguageCode__c, [CMS]FieldApiName__c, [CMS]TranslationText__c, [CMS]TranslationTextArea__c, [CMS]TranslationEmail__c, [CMS]TranslationURL__c, [CMS]TranslationTextAreaRich__c FROM [CMS]Translation__c WHERE ' + parentLookup + ' IN: setIdRecords AND [CMS]LanguageCode__c =: lang ORDER BY [CMS]FieldApiName__c'))){
             SObject obj = mapIdRecord.get(String.ValueOf(tra.get(parentLookup)));
 
             try{

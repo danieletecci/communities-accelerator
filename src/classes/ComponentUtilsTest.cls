@@ -12,9 +12,9 @@ public class ComponentUtilsTest {
         
 		set<String> bannerFieldSet = new set<String>();
         bannerFieldSet.add('Name');
-        bannerFieldSet.add('ExternalId__c');
-        bannerFieldSet.add('Datasource__c');
-        bannerFieldSet.add('Status__c');
+        bannerFieldSet.add('[CMS]ExternalId__c');
+        bannerFieldSet.add('[CMS]Datasource__c');
+        bannerFieldSet.add('[CMS]Status__c');
         bannerFieldSet.add('RecordTypeId');
 		
 		//When
@@ -38,9 +38,9 @@ public class ComponentUtilsTest {
 		Id componentId1 = component1[0].Id;
 		set<String> bannerFieldSet = new set<String>();
         bannerFieldSet.add('Name');
-        bannerFieldSet.add('ExternalId__c');
-        bannerFieldSet.add('Datasource__c');
-        bannerFieldSet.add('Status__c');
+        bannerFieldSet.add('[CMS]ExternalId__c');
+        bannerFieldSet.add('[CMS]Datasource__c');
+        bannerFieldSet.add('[CMS]Status__c');
         bannerFieldSet.add('RecordTypeId');
 		
 		

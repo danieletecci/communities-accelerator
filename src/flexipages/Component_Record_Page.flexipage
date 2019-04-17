@@ -106,7 +106,7 @@
             <componentName>JunctionObjectManager</componentName>
         </componentInstances>
         <componentInstances>
-            <componentName>BE_TagCriteriaManager</componentName>
+            <componentName>TagCriteria</componentName>
             <visibilityRule>
                 <booleanFilter>1 OR 2</booleanFilter>
                 <criteria>

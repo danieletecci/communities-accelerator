@@ -9,23 +9,23 @@
 		<aura:set attribute="else">
 
 			<!-- Event DETAIL Title Top-->
-			<aura:if isTrue="{!v.componentWrapper.contentWrapper[0].content.Layout__c == 'Title Top'}">
+			<aura:if isTrue="{!v.componentWrapper.contentWrapper[0].content.Layout == 'Title Top'}">
 
 				<!-- DATE AND LOCATION -->
-				<aura:if isTrue="{!not(v.componentWrapper.contentWrapper[0].content.EventStartDate__c == null)}" >
+				<aura:if isTrue="{!not(v.componentWrapper.contentWrapper[0].content.EventStartDate == null)}" >
 					<p class="event_date">
-						<ui:outputDate value="{!v.componentWrapper.contentWrapper[0].content.EventStartDate__c}"/>
-						<aura:if isTrue="{!not(v.componentWrapper.contentWrapper[0].content.EventEndDate__c == null)}" >
+						<ui:outputDate value="{!v.componentWrapper.contentWrapper[0].content.EventStartDate}"/>
+						<aura:if isTrue="{!not(v.componentWrapper.contentWrapper[0].content.EventEndDate == null)}" >
 							<ui:outputText value=" - "/>
-							<ui:outputDate value="{!v.componentWrapper.contentWrapper[0].content.EventEndDate__c}"/>
+							<ui:outputDate value="{!v.componentWrapper.contentWrapper[0].content.EventEndDate}"/>
 						</aura:if>
 					</p>
 				</aura:if>
-				<aura:if isTrue="{!not(v.componentWrapper.contentWrapper[0].content.Location__c == null)}" >
+				<aura:if isTrue="{!not(v.componentWrapper.contentWrapper[0].content.Location == null)}" >
 					<p class="event_location">
-						<a target="_blank" href="{! 'https://www.google.com.ar/maps/place/' + v.componentWrapper.contentWrapper[0].content.Location__c}" class="LocationText">
+						<a target="_blank" href="{! 'https://www.google.com.ar/maps/place/' + v.componentWrapper.contentWrapper[0].content.Location}" class="LocationText">
 							<lightning:icon iconName="utility:checkin" size="small" class="mapIcon"/>
-							{!v.componentWrapper.contentWrapper[0].content.Location__c}
+							{!v.componentWrapper.contentWrapper[0].content.Location}
 						</a>
 					</p>
 				</aura:if>
@@ -33,55 +33,55 @@
 
 				<!-- TITLE -->
 				<div class="title">
-					{!v.componentWrapper.contentWrapper[0].content.Title__c}
+					{!v.componentWrapper.contentWrapper[0].content.Title}
 				</div>
 				<br/>
 
 				<!-- EXTRACT -->
 				<div class="extract">
-					<aura:unescapedHtml value="{!v.componentWrapper.contentWrapper[0].content.Extract__c}"/>
+					<aura:unescapedHtml value="{!v.componentWrapper.contentWrapper[0].content.Extract}"/>
 				</div>
 				<br/>
 				<!-- IMAGE -->
-				<img src="{!v.componentWrapper.contentWrapper[0].mediaElements[0].FileURLDesktop__c}" class="detailImage"/>
+				<img src="{!v.componentWrapper.contentWrapper[0].mediaElements[0].FileURLDesktop}" class="detailImage"/>
 				<br/>
 
 				<!-- DETAIL -->
 				<div class="detail">
-					<aura:unescapedHtml value="{!v.componentWrapper.contentWrapper[0].content.Body__c}"/>
+					<aura:unescapedHtml value="{!v.componentWrapper.contentWrapper[0].content.Body}"/>
 				</div>
 			
 			</aura:if>
 
 			<!-- Event DETAIL Title Middle-->
-			<aura:if isTrue="{!v.componentWrapper.contentWrapper[0].content.Layout__c == 'Title Middle'}">
+			<aura:if isTrue="{!v.componentWrapper.contentWrapper[0].content.Layout == 'Title Middle'}">
 
 				<div class="container">
 					<!-- IMAGE -->
-					<img src="{!v.componentWrapper.contentWrapper[0].mediaElements[0].FileURLDesktop__c}" class="detailImage"/>
+					<img src="{!v.componentWrapper.contentWrapper[0].mediaElements[0].FileURLDesktop}" class="detailImage"/>
 
 					<div class="text-block">
 						<!-- DATE AND LOCATION -->
-						<aura:if isTrue="{!not(v.componentWrapper.contentWrapper[0].content.EventStartDate__c == null)}" >
+						<aura:if isTrue="{!not(v.componentWrapper.contentWrapper[0].content.EventStartDate == null)}" >
 							<p class="event_date">
-								<ui:outputDate value="{!v.componentWrapper.contentWrapper[0].content.EventStartDate__c}"/>
-								<aura:if isTrue="{!not(v.componentWrapper.contentWrapper[0].content.EventEndDate__c == null)}" >
+								<ui:outputDate value="{!v.componentWrapper.contentWrapper[0].content.EventStartDate}"/>
+								<aura:if isTrue="{!not(v.componentWrapper.contentWrapper[0].content.EventEndDate == null)}" >
 									<ui:outputText value=" - "/>
-									<ui:outputDate value="{!v.componentWrapper.contentWrapper[0].content.EventEndDate__c}"/>
+									<ui:outputDate value="{!v.componentWrapper.contentWrapper[0].content.EventEndDate}"/>
 								</aura:if>
 							</p>
 						</aura:if>
-						<aura:if isTrue="{!not(v.componentWrapper.contentWrapper[0].content.Location__c == null)}" >
+						<aura:if isTrue="{!not(v.componentWrapper.contentWrapper[0].content.Location == null)}" >
 							<p class="event_location">
-								<a target="_blank" href="{! 'https://www.google.com.ar/maps/place/' + v.componentWrapper.contentWrapper[0].content.Location__c}" class="LocationText">
+								<a target="_blank" href="{! 'https://www.google.com.ar/maps/place/' + v.componentWrapper.contentWrapper[0].content.Location}" class="LocationText">
 									<lightning:icon iconName="utility:checkin" size="small" class="mapIcon"/>
-									{!v.componentWrapper.contentWrapper[0].content.Location__c}
+									{!v.componentWrapper.contentWrapper[0].content.Location}
 								</a>
 							</p>
 						</aura:if>
 						<!-- TITLE -->
 						<div class="title">
-							{!v.componentWrapper.contentWrapper[0].content.Title__c}
+							{!v.componentWrapper.contentWrapper[0].content.Title}
 						</div>
 					</div>
 				
@@ -90,12 +90,12 @@
 
 				<!-- EXTRACT -->
 				<div class="extract">
-					<aura:unescapedHtml value="{!v.componentWrapper.contentWrapper[0].content.Extract__c}"/>
+					<aura:unescapedHtml value="{!v.componentWrapper.contentWrapper[0].content.Extract}"/>
 				</div>
 				<br/>
 				<!-- DETAIL -->
 				<div class="detail">
-					<aura:unescapedHtml value="{!v.componentWrapper.contentWrapper[0].content.Body__c}"/>
+					<aura:unescapedHtml value="{!v.componentWrapper.contentWrapper[0].content.Body}"/>
 				</div>
 				
 			</aura:if>
@@ -103,26 +103,26 @@
 
 
 			<!-- Event DETAIL Title Bottom-->
-			<aura:if isTrue="{!v.componentWrapper.contentWrapper[0].content.Layout__c == 'Title Bottom'}">
+			<aura:if isTrue="{!v.componentWrapper.contentWrapper[0].content.Layout == 'Title Bottom'}">
 					<!-- IMAGE -->
-				<img src="{!v.componentWrapper.contentWrapper[0].mediaElements[0].FileURLDesktop__c}" class="detailImage"/>
+				<img src="{!v.componentWrapper.contentWrapper[0].mediaElements[0].FileURLDesktop}" class="detailImage"/>
 				<br/>
 
 				<!-- DATE AND LOCATION -->
-				<aura:if isTrue="{!not(v.componentWrapper.contentWrapper[0].content.EventStartDate__c == null)}" >
+				<aura:if isTrue="{!not(v.componentWrapper.contentWrapper[0].content.EventStartDate == null)}" >
 					<p class="event_date">
-						<ui:outputDate value="{!v.componentWrapper.contentWrapper[0].content.EventStartDate__c}"/>
-						<aura:if isTrue="{!not(v.componentWrapper.contentWrapper[0].content.EventEndDate__c == null)}" >
+						<ui:outputDate value="{!v.componentWrapper.contentWrapper[0].content.EventStartDate}"/>
+						<aura:if isTrue="{!not(v.componentWrapper.contentWrapper[0].content.EventEndDate == null)}" >
 							<ui:outputText value=" - "/>
-							<ui:outputDate value="{!v.componentWrapper.contentWrapper[0].content.EventEndDate__c}"/>
+							<ui:outputDate value="{!v.componentWrapper.contentWrapper[0].content.EventEndDate}"/>
 						</aura:if>
 					</p>
 				</aura:if>
-				<aura:if isTrue="{!not(v.componentWrapper.contentWrapper[0].content.Location__c == null)}" >
+				<aura:if isTrue="{!not(v.componentWrapper.contentWrapper[0].content.Location == null)}" >
 					<p class="event_location">
-						<a target="_blank" href="{! 'https://www.google.com.ar/maps/place/' + v.componentWrapper.contentWrapper[0].content.Location__c}" class="LocationText">
+						<a target="_blank" href="{! 'https://www.google.com.ar/maps/place/' + v.componentWrapper.contentWrapper[0].content.Location}" class="LocationText">
 							<lightning:icon iconName="utility:checkin" size="small" class="mapIcon"/>
-							{!v.componentWrapper.contentWrapper[0].content.Location__c}
+							{!v.componentWrapper.contentWrapper[0].content.Location}
 						</a>
 					</p>
 				</aura:if>
@@ -130,20 +130,20 @@
 
 				<!-- TITLE -->
 				<div class="title">
-					{!v.componentWrapper.contentWrapper[0].content.Title__c}
+					{!v.componentWrapper.contentWrapper[0].content.Title}
 				</div>
 				<br/>
 
 
 				<!-- EXTRACT -->
 				<div class="extract">
-					<aura:unescapedHtml value="{!v.componentWrapper.contentWrapper[0].content.Extract__c}"/>
+					<aura:unescapedHtml value="{!v.componentWrapper.contentWrapper[0].content.Extract}"/>
 				</div>
 				<br/>
 
 				<!-- DETAIL -->
 				<div class="detail">
-					<aura:unescapedHtml value="{!v.componentWrapper.contentWrapper[0].content.Body__c}"/>
+					<aura:unescapedHtml value="{!v.componentWrapper.contentWrapper[0].content.Body}"/>
 				</div>
 
 				

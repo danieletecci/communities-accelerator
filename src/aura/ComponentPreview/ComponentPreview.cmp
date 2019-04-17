@@ -43,19 +43,19 @@
                     <lightning:buttonIcon iconName="utility:refresh" alternativeText="{!$Label.c.General_Refresh}" onclick="{!c.doInit}" size="medium"/>                
                     <div class="div_render_components">
                         <aura:if isTrue="{!v.record.RecordType.DeveloperName == 'Banner'}">
-                            <c:BannerHOC componentExternalId="{!v.record.ExternalId__c}"/>
+                            <c:BannerHOC componentExternalId="{!v.record.ExternalId}"/>
                         </aura:if>
                         <aura:if isTrue="{!v.record.RecordType.DeveloperName == 'Article'}">
-                            <c:ArticleListHOC componentExternalId="{!v.record.ExternalId__c}"/>
+                            <c:ArticleListHOC componentExternalId="{!v.record.ExternalId}"/>
                         </aura:if>
                         <aura:if isTrue="{!v.record.RecordType.DeveloperName == 'Event'}">
-                            <c:EventListHOC componentExternalId="{!v.record.ExternalId__c}"/>
+                            <c:EventListHOC componentExternalId="{!v.record.ExternalId}"/>
                         </aura:if>
                         <aura:if isTrue="{!v.record.RecordType.DeveloperName == 'FAQ'}">
-                            <c:BannerHOC componentExternalId="{!v.record.ExternalId__c}"/>
+                            <c:BannerHOC componentExternalId="{!v.record.ExternalId}"/>
                         </aura:if>
                         <aura:if isTrue="{!v.record.RecordType.DeveloperName == 'AdvanceContent'}">
-                            <c:AdvanceContentHOC componentExternalId="{!v.record.ExternalId__c}"/>
+                            <c:AdvanceContentHOC componentExternalId="{!v.record.ExternalId}"/>
                         </aura:if>
                     </div>
                 </div>

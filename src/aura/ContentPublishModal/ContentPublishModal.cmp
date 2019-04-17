@@ -11,7 +11,7 @@
 	<aura:method name="hide" action="{!c.doHide}" />
 
     <!-- ATTRIBUTES -->
-    <aura:attribute name="content"				type="Content__c"					/>
+    <aura:attribute name="content"				type="Content"					/>
 	<aura:attribute name="options" 				type="List" 						/>
     <aura:attribute name="action"  				type="String"  	default="publish" 	/>
     <aura:attribute name="expire"  				type="Boolean" 	default="false"		/>

@@ -7,10 +7,10 @@
         if (parentComponentType == 'EventsRelatedHOC'){
             parentComponentId = component.get("v.parentComponentId");
         } else {
-            parentComponentId = component.get("v.componentWrapper.component.ExternalId__c");
+            parentComponentId = component.get("v.componentWrapper.component.ExternalId");
         }
         if(!values.url) {
-            url = component.get("v.componentWrapper.component.LinkDetail__r.URL__c");
+            url = component.get("v.componentWrapper.component.LinkDetailURL");
         } else {
             url = values.url;
         }

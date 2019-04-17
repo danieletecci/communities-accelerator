@@ -16,14 +16,14 @@
 					component.set("v.visibilitySelectors", 	data.visibilitySelectors);
 					component.set("v.security", 			data.security);
 					component.set("v.bannerFrameTypes",		data.bannerFrameTypes);
-					if(data.content.MediaElementAssignments__r != null){
-						component.set('v.imageUrl', data.content.MediaElementAssignments__r[0].MediaElement__r.FileURLDesktop__c);
-                        component.set('v.mediaElementName', data.content.MediaElementAssignments__r[0].MediaElement__r.Name);
-                        component.set('v.mediaElementId', data.content.MediaElementAssignments__r[0].MediaElement__r.Id);
+					if(data.content.MediaElementAssignments != null){
+						component.set('v.imageUrl', data.content.MediaElementAssignments[0].MediaElement.FileURLDesktop);
+                        component.set('v.mediaElementName', data.content.MediaElementAssignments[0].MediaElement.Name);
+                        component.set('v.mediaElementId', data.content.MediaElementAssignments[0].MediaElement.Id);
 					}
                     helper.setLayoutOptions(component);
                     console.log("hola");
-                    console.log(component.get("v.contentData.BannerFrameType__c"));
+                    console.log(component.get("v.contentData.BannerFrameType"));
 				//	component.find("RichTextContainer").setContentBody();
 				}else{
 					helper.displayErrorMessage($A.get("$Label.c.ArticleContentDetailLoadError"));
@@ -47,12 +47,12 @@
 			{value:"Middle-Right", imageUrl:"/ContentLayouts/Banner-OverlayQuadrant/Middle-Right.png", label:$A.get("$Label.c.BannerContentDetailRightAlign")}
 		];
 		component.set('v.layoutOptions', layoutOptions);
-		component.set('v.contentData.OverlayQuadrant__c', component.get('v.contentData.OverlayQuadrant__c') == null ? 'Middle-Left' : component.get('v.contentData.OverlayQuadrant__c')); 
+		component.set('v.contentData.OverlayQuadrant', component.get('v.contentData.OverlayQuadrant') == null ? 'Middle-Left' : component.get('v.contentData.OverlayQuadrant')); 
     },
     updateContent : function(component, status){
     	var helper				   = this;
 		var content 			   = component.get('v.contentData');
-		var previousStatus		   = content.Status__c;
+		var previousStatus		   = content.Status;
 		var visibilitySelectors    = component.get('v.visibilitySelectors');
 		var mediaElementId 		   = component.get('v.mediaElementId');
 		var action 				   = component.get('c.saveContent');        
@@ -61,7 +61,7 @@
 			visibilitySelectorsString : JSON.stringify(visibilitySelectors),
 			mediaElementId : mediaElementId,
 			status : status,
-			contentOldTagAssignments : content.Tags__r
+			contentOldTagAssignments : content.Tags
         });
 		action.setCallback(this, function(response){
 			var state = response.getState();

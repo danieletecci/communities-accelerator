@@ -26,9 +26,9 @@
                     
                     <!--Banner Type-->
                     <lightning:select name="bannerType" label="{!$Label.c.BannerContentDetailType}"
-                        value="{!v.contentData.BannerFrameType__c}">
+                        value="{!v.contentData.BannerFrameType}">
                         <aura:iteration items="{!v.bannerFrameTypes}" var="bannerFrameType">
-                            <option text="{!bannerFrameType}" value="{!bannerFrameType}" selected="{! if(bannerFrameType == v.contentData.BannerFrameType__c, true, false)}" />
+                            <option text="{!bannerFrameType}" value="{!bannerFrameType}" selected="{! if(bannerFrameType == v.contentData.BannerFrameType, true, false)}" />
                         </aura:iteration>
                     </lightning:select>
                     <!--Feature Image-->
@@ -38,25 +38,25 @@
                         <img style="height:200px" src="{!v.imageUrl}" />
                     </aura:if>
                     <!--Title-->
-                    <lightning:input label="{!$Label.c.BannerContentDetailTitle}" name="contentName" value="{!v.contentData.Title__c}"
+                    <lightning:input label="{!$Label.c.BannerContentDetailTitle}" name="contentName" value="{!v.contentData.Title}"
                         required="true" aura:id="contentName" />
                     <!--Extract-->
                     <lightning:input label="{!$Label.c.BannerContentDetailExtract}" name="contentExtract"
-                        value="{!v.contentData.Extract__c}" />
+                        value="{!v.contentData.Extract}" />
                     <br />
                     <!--Booton-->
                     <lightning:input label="{!$Label.c.BannerContentDetailButton}" name="buttonLabel"
-                        value="{!v.contentData.ButtonLabel__c}" />
+                        value="{!v.contentData.ButtonLabel}" />
                     <br />
                     <!--Link-->
-                    <c:LookupInput objectAPIName="Navigation__c" IconName="standard:link"
-                        selectedRecordId="{!v.contentData.LinkDetail__c}" label="{!$Label.c.BannerContentDetailLink}" />
+                    <c:LookupInput objectAPIName="Navigation" IconName="standard:link"
+                        selectedRecordId="{!v.contentData.LinkDetail}" label="{!$Label.c.BannerContentDetailLink}" />
                     <br />
                     <ui:outputText value="{!$Label.c.BannerContentDetailLayout}" /><br />
                     <!--Choose Layout-->
                     <div>
                         <aura:if isTrue="{!v.layoutOptions.length > 0}">
-                            <c:ContentLayoutPicker selectedValue="{!v.contentData.OverlayQuadrant__c}"
+                            <c:ContentLayoutPicker selectedValue="{!v.contentData.OverlayQuadrant}"
                                 layoutOptions="{!v.layoutOptions}" />
                         </aura:if>
                     </div>

@@ -2,8 +2,8 @@ public with sharing class MediaElementUploadController {
 
 	//WRAPPERS
     public class MediaElementWrapper{
-		@auraEnabled public AcceleratorSettings__c acceleratorSettings;
-		@auraEnabled public MediaElement__c mediaElement;
+		@auraEnabled public CustomSettingWrapper acceleratorSettings;
+		@auraEnabled public ObjectMediaElementWrapper mediaElement;
         @auraEnabled public Date lastModifiedDesktop;
         @auraEnabled public Date lastModifiedTablet;
         @auraEnabled public Date lastModifiedMobile;
@@ -14,7 +14,7 @@ public with sharing class MediaElementUploadController {
         @auraEnabled public String urlViewTablet;
         @auraEnabled public String urlViewMobile;
         public MediaElementWrapper(){
-			this.acceleratorSettings = AcceleratorSettings__c.getInstance();
+			this.acceleratorSettings = new CustomSettingWrapper(CMSSettings__c.getInstance(), CMSContentSettings__c.getInstance(), CMSMediaElementSettings__c.getInstance());;
 		}
 	}
 
@@ -35,7 +35,7 @@ public with sharing class MediaElementUploadController {
         MediaElement__c me = MediaElementUploadController.getMedia(recordId);
         
         MediaElementWrapper mew = new MediaElementWrapper();
-        mew.mediaElement = me;
+        mew.mediaElement = new ObjectMediaElementWrapper(me);
 
         MediaElementUploadController.retrieveLastModifiedAndSize(mew);
 
@@ -49,26 +49,26 @@ public with sharing class MediaElementUploadController {
         ContentDocument document;
         String idFile;
 
-        if(mediaW.mediaElement.FileURLDesktop__c!=null){
-            idFile= getIDFromUrl(mediaW.mediaElement.FileURLDesktop__c);
+        if(mediaW.mediaElement.FileURLDesktop!=null){
+            idFile= getIDFromUrl(mediaW.mediaElement.FileURLDesktop);
             document = [SELECT LastModifiedDate, ContentSize FROM ContentDocument where Id=:idFile];
             mediaW.lastModifiedDesktop= Date.newInstance(document.LastModifiedDate.year(), document.LastModifiedDate.month(), document.LastModifiedDate.day());
             mediaW.fileSizeDesktop= (document.ContentSize/1000) + 'KB ';
-            mediaW.urlViewDesktop= AcceleratorSettings__c.getInstance().SalesforceDomain__c + '/lightning/r/ContentDocument/' + idFile+'/view';
+            mediaW.urlViewDesktop = CMSSettings__c.getInstance().SalesforceDomain__c + '/lightning/r/ContentDocument/' + idFile+'/view';
         }
-        if(mediaW.mediaElement.FileURLTablet__c!=null){
-            idFile= getIDFromUrl(mediaW.mediaElement.FileURLTablet__c);
+        if(mediaW.mediaElement.FileURLTablet!=null){
+            idFile= getIDFromUrl(mediaW.mediaElement.FileURLTablet);
             document = [SELECT LastModifiedDate, ContentSize FROM ContentDocument where Id=:idFile];
             mediaW.lastModifiedTablet= Date.newInstance(document.LastModifiedDate.year(), document.LastModifiedDate.month(), document.LastModifiedDate.day());
             mediaW.fileSizeTablet= (document.ContentSize/1000) + 'KB ';
-            mediaW.urlViewTablet= AcceleratorSettings__c.getInstance().SalesforceDomain__c + '/lightning/r/ContentDocument/' + idFile+'/view';
+            mediaW.urlViewTablet = CMSSettings__c.getInstance().SalesforceDomain__c + '/lightning/r/ContentDocument/' + idFile+'/view';
         }
-        if(mediaW.mediaElement.FileURLMobile__c!=null){
-            idFile= getIDFromUrl(mediaW.mediaElement.FileURLMobile__c);
+        if(mediaW.mediaElement.FileURLMobile!=null){
+            idFile= getIDFromUrl(mediaW.mediaElement.FileURLMobile);
             document = [SELECT LastModifiedDate, ContentSize FROM ContentDocument where Id=:idFile];
             mediaW.lastModifiedMobile= Date.newInstance(document.LastModifiedDate.year(), document.LastModifiedDate.month(), document.LastModifiedDate.day());
             mediaW.fileSizeMobile= (document.ContentSize/1000) + 'KB ';
-            mediaW.urlViewMobile= AcceleratorSettings__c.getInstance().SalesforceDomain__c + '/lightning/r/ContentDocument/' + idFile+'/view';
+            mediaW.urlViewMobile = CMSSettings__c.getInstance().SalesforceDomain__c + '/lightning/r/ContentDocument/' + idFile+'/view';
         }
     }
 
@@ -105,7 +105,7 @@ public with sharing class MediaElementUploadController {
 			);
     	}
         
-        String url = AcceleratorSettings__c.getInstance().SalesforceDomain__c + '/sfc/servlet.shepherd/document/download/' + contv.ContentDocumentId;
+        String url = CMSSettings__c.getInstance().SalesforceDomain__c + '/sfc/servlet.shepherd/document/download/' + contv.ContentDocumentId;
         
         MediaElement__c media = new MediaElement__c(Id = recordId);
         if(device == 'Desktop'){

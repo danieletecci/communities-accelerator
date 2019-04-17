@@ -6,7 +6,7 @@
     <aura:registerEvent name="appEvent" type="c:SearchSettingFindEvent"/>
 
     <aura:attribute name="componentExtId" 	    type="String"                           access="global"/>
-    <aura:attribute name="component"		    type="Component__c"                     />
+    <aura:attribute name="component"		    type="Component"                     />
     <aura:attribute name="searchDetails"	    type="List" 		                    />
     <aura:attribute name="predictiveResults"    type="List"                             />
     <aura:attribute name="searchLength"         type="Integer"        default="0"       />
@@ -30,7 +30,7 @@
             </button>
         </div>
     </div>
-    <aura:if isTrue="{!and(v.predictiveResults.length > 0, v.component.PredictiveSearchEnabled__c) }">
+    <aura:if isTrue="{!and(v.predictiveResults.length > 0, v.component.PredictiveSearchEnabled) }">
             <div aura:id="predictiveSearchContainer" class="slds-p-vertical--xx-small" style="position: absolute; transform: translateY(0);clip: rect(0px, 2000px, 2000px, -10px);transition: opacity .2s ease-in-out,transform .2s ease-in-out,clip .2s ease-in-out;border: 1px solid rgb(221, 219, 218);border-radius: 4px;background-color: rgb(255, 255, 255);box-shadow: 0 2px 7px rgba(0, 0, 0, .07);z-index: 7000;overflow: hidden;margin-top: 1px; right: 1.75rem; left: 1.75rem;">
                 <div class="listContent">
                     <ul class="lookup__list visible" role="presentation">

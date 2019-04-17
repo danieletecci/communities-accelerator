@@ -3,6 +3,6 @@
     <aura:handler name="change" value="{!v.pageReference}" action="{!c.reInit}" />
 
     <div class="container">
-        <c:contentContainer aura:id="container" objectApiName="Content__c" />
+        <c:contentContainer aura:id="container" objectApiName="Content" />
     </div>
 </aura:component>

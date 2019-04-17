@@ -7,13 +7,13 @@
 		var contentId = event.getParam("contentId");
 		var recordId = component.get("v.contentData.Id");
 		var content = component.get('v.contentData');
-		content.PublishStartDate__c = event.getParam("publishStartDate");
-		content.PublishEndDate__c = event.getParam("publishEndDate");
+		content.PublishStartDate = event.getParam("publishStartDate");
+		content.PublishEndDate = event.getParam("publishEndDate");
 		component.set('v.contentData', content);
 		if(recordId == contentId){
 			var content = component.get("v.contentData");
-			content.PublishStartDate__c = event.getParam("publishStartDate");
-			content.PublishEndDate__c = event.getParam("publishEndDate");
+			content.PublishStartDate = event.getParam("publishStartDate");
+			content.PublishEndDate = event.getParam("publishEndDate");
 			component.set("v.contentData", content);
 			event.stopPropagation();
 			helper.updateContent(component, status);
@@ -35,14 +35,14 @@
 			component.set("v.isExtIdEdit", false);
         }
         if(isEscapeKey){
-        	contentData.ExternalId__c = component.get("v.oldExtId");
+        	contentData.ExternalId = component.get("v.oldExtId");
         	component.set("v.contentData", contentData);
             component.set("v.isExtIdEdit", false);
         }
 	},
 	editExternalId : function(component, event, helper){
 		component.set("v.isExtIdEdit", true);
-		component.set("v.oldExtId", component.get("v.contentData").ExternalId__c);
+		component.set("v.oldExtId", component.get("v.contentData").ExternalId);
 		setTimeout(function(){
             var input = component.find("externalid-input");
             input.focus();

@@ -1,7 +1,7 @@
 ({
 	doInit : function(component, event, helper) {
-		var startDate = component.get("v.content").PublishStartDate__c;
-		var endDate = component.get("v.content").PublishEndDate__c;
+		var startDate = component.get("v.content").PublishStartDate;
+		var endDate = component.get("v.content").PublishEndDate;
 		const options = [
 		    {'label': $A.get("$Label.c.PublishModalRadioPublishNow"), 'value': 'publish'},
 		    {'label': $A.get("$Label.c.PublishModalRadioSchedulePublication"), 'value': 'schedule'}

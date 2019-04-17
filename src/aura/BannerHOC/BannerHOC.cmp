@@ -16,7 +16,7 @@
     <!-- MAIN COMPONENT -->
     <div aura:id="cg_component">
         <aura:if isTrue="{!and($Browser.isPhone, !v.isLoading)}">
-            <c:banner bannerData="{!v.elements}"/>
+            <c:bannerMobile bannerData="{!v.elements}"/>
             <aura:set attribute="else">
                 <!-- TOOL BOX COMPONENT -->
                 <c:ComponentToolBox componentType="Banner" componentExternalId="{!v.componentExternalId}" componentWrapper="{!v.componentWrapper}" salesforceDomain="{!v.componentWrapper.acceleratorSettings.SalesforceDomain__c}" isLoading="{!v.isLoading}">

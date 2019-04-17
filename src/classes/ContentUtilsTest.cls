@@ -61,7 +61,7 @@ public class ContentUtilsTest {
         
         // When
         Test.startTest();
-        ContentUtils.ContentWrapper cw = ContentUtils.getContentFromComponent(componentList[0], fieldSet, null, null, setClusterIds, 'Desktop');
+        ContentUtils.ContentWrapper cw = ContentUtils.getContentFromComponent(new ObjectComponentWrapper(componentList[0]), fieldSet, null, null, setClusterIds, 'Desktop');
         Test.stopTest();
 
         // Then     
@@ -93,7 +93,7 @@ public class ContentUtilsTest {
         
         // When
         Test.startTest();
-        ContentUtils.ContentWrapper cw = ContentUtils.getContentFromComponent(componentList[0], fieldSet, null, null, setClusterIds, 'Desktop');
+        ContentUtils.ContentWrapper cw = ContentUtils.getContentFromComponent(new ObjectComponentWrapper(componentList[0]), fieldSet, null, null, setClusterIds, 'Desktop');
         Test.stopTest();
 
         // Then     
@@ -125,7 +125,7 @@ public class ContentUtilsTest {
         
         // When
         Test.startTest();
-        ContentUtils.ContentWrapper cw = ContentUtils.getContentFromComponent(componentList[0], fieldSet, null, null, setClusterIds, 'Desktop');
+        ContentUtils.ContentWrapper cw = ContentUtils.getContentFromComponent(new ObjectComponentWrapper(componentList[0]), fieldSet, null, null, setClusterIds, 'Desktop');
         Test.stopTest();
 
         // Then     
@@ -162,7 +162,7 @@ public class ContentUtilsTest {
 
         // When
         Test.startTest();
-        ContentUtils.ContentWrapper cw = ContentUtils.getContentFromComponent(componentList[0], fieldSet, null, setContentToExclude, setClusterIds, 'Desktop');
+        ContentUtils.ContentWrapper cw = ContentUtils.getContentFromComponent(new ObjectComponentWrapper(componentList[0]), fieldSet, null, setContentToExclude, setClusterIds, 'Desktop');
         Test.stopTest();
 
         // Then     
@@ -191,7 +191,7 @@ public class ContentUtilsTest {
 
         // When
         Test.startTest();
-        ContentUtils.ContentWrapper cw = ContentUtils.getContentFromComponent(componentList[0], fieldSet, setContentDirect, null, setClusterIds, 'Desktop');
+        ContentUtils.ContentWrapper cw = ContentUtils.getContentFromComponent(new ObjectComponentWrapper(componentList[0]), fieldSet, setContentDirect, null, setClusterIds, 'Desktop');
         Test.stopTest();
 
         // Then     
@@ -225,7 +225,7 @@ public class ContentUtilsTest {
         
         // When
         Test.startTest();
-        ContentUtils.ContentWrapper cw = ContentUtils.getContentFromComponent(componentList[0], fieldSet, null, null, setClusterIds, 'Desktop');
+        ContentUtils.ContentWrapper cw = ContentUtils.getContentFromComponent(new ObjectComponentWrapper(componentList[0]), fieldSet, null, null, setClusterIds, 'Desktop');
         Test.stopTest();
 
         // Then
@@ -263,7 +263,7 @@ public class ContentUtilsTest {
         
         // When
         Test.startTest();
-        ContentUtils.ContentWrapper cw = ContentUtils.getContentFromComponent(componentList[0], fieldSet, null, null, setClusterIds, 'Desktop');
+        ContentUtils.ContentWrapper cw = ContentUtils.getContentFromComponent(new ObjectComponentWrapper(componentList[0]), fieldSet, null, null, setClusterIds, 'Desktop');
         Test.stopTest();
 
         // Then     

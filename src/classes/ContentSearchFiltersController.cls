@@ -52,10 +52,10 @@ public class ContentSearchFiltersController {
         List<FilterOptionWrapper> tagOptions = getTagWrapperList(tagList);
 
         List<FilterSelectorWrapper> filterSelectorList = new List<FilterSelectorWrapper>();
-        filterSelectorList.add(new FilterSelectorWrapper(System.Label.SearchContentClusterFilter, false, clusterOptions, ClusterUtils.prefix('[CMS]Cluster__c')));
+        filterSelectorList.add(new FilterSelectorWrapper(System.Label.SearchContentClusterFilter, false, clusterOptions, GeneralUtils.prefix('[CMS]Cluster__c')));
         filterSelectorList.add(new FilterSelectorWrapper(System.Label.SearchContentTypeFilter, false, contentTypeOptions, 'RecordType'));
-        filterSelectorList.add(new FilterSelectorWrapper(System.Label.SearchContentCategoryFilter, false, categoryOptions, ClusterUtils.prefix('[CMS]Category__c')));
-        filterSelectorList.add(new FilterSelectorWrapper(System.Label.SearchContentTagFilter, true, tagOptions, ClusterUtils.prefix('[CMS]Tag__c')));
+        filterSelectorList.add(new FilterSelectorWrapper(System.Label.SearchContentCategoryFilter, false, categoryOptions, GeneralUtils.prefix('[CMS]Category__c')));
+        filterSelectorList.add(new FilterSelectorWrapper(System.Label.SearchContentTagFilter, true, tagOptions, GeneralUtils.prefix('[CMS]Tag__c')));
         FilterWrapper filters = new FilterWrapper(filterSelectorList);
         return filters;
     }

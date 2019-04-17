@@ -353,7 +353,7 @@ public class MockupFactory {
                             ContentDocumentId = contentDocument,
                             LinkedEntityId = mediaElement.Id,
                             ShareType = 'V' ));
-            mediaElement.FileURLDesktop__c =AcceleratorSettings__c.getInstance().SalesforceDomain__c + '/sfc/servlet.shepherd/document/download/' + cv.ContentDocumentId;
+            mediaElement.FileURLDesktop__c = CMSSettings__c.getInstance().SalesforceDomain__c + '/sfc/servlet.shepherd/document/download/' + cv.ContentDocumentId;
         }
         update mediaElementList;
         insert contentDocumentLinkList;

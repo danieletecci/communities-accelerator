@@ -171,7 +171,7 @@ public class ContentLandingRecordListController {
 
     static String getColumnSet(){
         // Trae las columnas seteadas en Custom Settings
-        AcceleratorSettings__c settings = [SELECT Id, ContentLandingColumnFields__c FROM AcceleratorSettings__c LIMIT 1];
+        CMSContentSettings__c settings = [SELECT Id, ContentLandingColumnFields__c FROM CMSContentSettings__c LIMIT 1];
         return settings.ContentLandingColumnFields__c;
     }
 

@@ -1341,10 +1341,6 @@
         <visibility>DefaultOff</visibility>
     </tabVisibilities>
     <tabVisibilities>
-        <tab>ContentLanding</tab>
-        <visibility>DefaultOn</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
         <tab>MediaElementAssignment__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
@@ -1374,10 +1370,6 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>SearchSetting__c</tab>
-        <visibility>DefaultOn</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
-        <tab>Sitemap</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>

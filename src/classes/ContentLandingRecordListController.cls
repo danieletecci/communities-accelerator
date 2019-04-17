@@ -132,7 +132,7 @@ public class ContentLandingRecordListController {
     static List<Content__c> getRecords(FilterWrapper wrapper, Integer recordOffset, Integer recordLimit){      
         String columnSet = getColumnSet();
         columnSet += columnSet.contains(GeneralUtils.prefix('[CMS]Status__c') ? '' : GeneralUtils.prefix(', [CMS]Status__c'));
-        columnSet += columnSet.contains(GeneralUtils.prefix('[CMS]isTemplate__c') ? '' : GeneralUtils.prefix(', [CMS]isTemplate__c'));
+        columnSet += columnSet.contains(GeneralUtils.prefix('[CMS]isTemplate__c')) ? '' : GeneralUtils.prefix(', [CMS]isTemplate__c'));
         String queryInString = 'SELECT Id, ' + columnSet + ' FROM [CMS]Content__c ';
         List<String> queryConditions = getQueryConditions(wrapper);
         // Si no recibe filtros, trae los 10 registros modificados mas recientemente

@@ -9,7 +9,7 @@
     </flexiPageRegions>
     <flexiPageRegions>
         <componentInstances>
-            <componentName>CommunityComponentPreview</componentName>
+            <componentName>ComponentPreview</componentName>
         </componentInstances>
         <name>Facet-8e71962e-b4c0-4f3d-a0a3-a4201189be7b</name>
         <type>Facet</type>
@@ -122,7 +122,7 @@
             </visibilityRule>
         </componentInstances>
         <componentInstances>
-            <componentName>BE_TagCriteriaManager</componentName>
+            <componentName>TagCriteria</componentName>
             <visibilityRule>
                 <booleanFilter>1 OR 2</booleanFilter>
                 <criteria>

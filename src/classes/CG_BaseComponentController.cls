@@ -64,10 +64,10 @@ public with sharing class CG_BaseComponentController {
 			if (component.Datasource__c == 'ParentComponentBehaviour'){
 				contentWrapper = ContentUtils.getContentFromComponent(parentComponent, getContentFieldSetByComponentType(parentComponent.Recordtype.Developername, device), setContentDirect, setContentToExclude, setClusterIds, device);
 				for (String fieldApiName: getComponentFieldSetByComponentType(component.RecordType.DeveloperName, device)){
-					if (fieldApiName != 'Id' && fieldApiName != 'ExternalId__c' && fieldApiName != 'Recordtype.Developername'){
-						if (fieldApiName == 'PageSize__c'){
+					if (fieldApiName != 'Id' && fieldApiName != GeneralUtils.prefix('[CMS]ExternalId__c') && fieldApiName != 'Recordtype.Developername'){
+						if (fieldApiName == GeneralUtils.prefix('[CMS]PageSize__c'){
 							component.PageSize__c = parentComponent.PageSize__c;
-                        }else if(fieldApiName == 'LinkDetail__r.URL__c'){
+                        }else if(fieldApiName == GeneralUtils.prefix('[CMS]LinkDetail__r.[CMS]URL__c'){
                             component.LinkDetail__r = parentComponent.LinkDetail__r;
                         } else {
 							component.put(fieldApiName, (String)GeneralUtils.getFieldValue(parentComponent, fieldApiName));
@@ -159,29 +159,29 @@ public with sharing class CG_BaseComponentController {
 
     private static set<String> getComponentFieldSetByComponentType(String componentType, String device){
         set<String> setFields;
-        if(componentType == 'Banner'){			setFields = new set<String>{'BannerFrameType__c','Orientation__c','BannerType__c','ShowBullets__c','AutomaticTransition__c','BannerTransitionTime__c','Loop__c','Direction__c'};}
-        if(componentType == 'ArticleList'){			setFields = new set<String>{'ArticleType__c', 'PagingType__c', 'LinkDetail__r.URL__c', 'ExternalId__c'};}
-        if(componentType == 'EventList'){			setFields = new set<String>{'EventsType__c', 'ExcludePastEvents__c', 'PagingType__c', 'LinkDetail__r.URL__c', 'ExternalId__c'};}
+        if(componentType == 'Banner'){			setFields = new set<String>{'[CMS]BannerFrameType__c','[CMS]Orientation__c','[CMS]BannerType__c','[CMS]ShowBullets__c','[CMS]AutomaticTransition__c','[CMS]BannerTransitionTime__c','[CMS]Loop__c','[CMS]Direction__c'};}
+        if(componentType == 'ArticleList'){			setFields = new set<String>{'[CMS]ArticleType__c', '[CMS]PagingType__c', '[CMS]LinkDetail__r.[CMS]URL__c', '[CMS]ExternalId__c'};}
+        if(componentType == 'EventList'){			setFields = new set<String>{'[CMS]EventsType__c', '[CMS]ExcludePastEvents__c', '[CMS]PagingType__c', '[CMS]LinkDetail__r.[CMS]URL__c', '[CMS]ExternalId__c'};}
         if(componentType == 'AdvanceContent'){	setFields = new set<String>{};}
         if(componentType == 'FAQ'){				setFields = new set<String>{};}
         if(componentType == 'ArticleDetail'){		setFields = new set<String>{};}
         if(componentType == 'EventDetail'){		setFields = new set<String>{};}
-        if(componentType == 'ArticlesRelated'){		setFields = new set<String>{'ArticleType__c', 'PagingType__c', 'LinkDetail__r.URL__c', 'ExternalId__c'};}
-        if(componentType == 'EventsRelated'){	setFields = new set<String>{'EventsType__c', 'ExcludePastEvents__c', 'PagingType__c', 'LinkDetail__r.URL__c', 'ExternalId__c'};}
-        if(componentType == 'ClusterSelector'){	setFields = new set<String>{};}
-        if(componentType == 'LanguageSelector'){	setFields = new set<String>{};}
+        if(componentType == 'ArticlesRelated'){		setFields = new set<String>{'[CMS]ArticleType__c', '[CMS]PagingType__c', '[CMS]LinkDetail__r.URL__c', '[CMS]ExternalId__c'};}
+        if(componentType == 'EventsRelated'){	setFields = new set<String>{'[CMS]EventsType__c', '[CMS]ExcludePastEvents__c', '[CMS]PagingType__c', '[CMS]LinkDetail__r.[CMS]URL__c', '[CMS]ExternalId__c'};}
+        if(componentType == 'Cluster_Selector'){	setFields = new set<String>{};}
+        if(componentType == 'Language_Selector'){	setFields = new set<String>{};}
         if(componentType == 'Navigation'){	setFields = new set<String>{};}
         
         //Default fields
         setFields.add('Id');
         setFields.add('Name');
         setFields.add('Recordtype.Developername');
-        setFields.add('Datasource__c');
-        setFields.add('OrderBy__c');
-        setFields.add('OrderByAdvance__c');
-        setFields.add('PageSize__c');
-        setFields.add('HierarchicalOrderBy__c');
-        setFields.add('TagCriteria__c');
+        setFields.add('[CMS]Datasource__c');
+        setFields.add('[CMS]OrderBy__c');
+        setFields.add('[CMS]OrderByAdvance__c');
+        setFields.add('[CMS]PageSize__c');
+        setFields.add('[CMS]HierarchicalOrderBy__c');
+        setFields.add('[CMS]TagCriteria__c');
 
         return setFields;
     }
@@ -191,15 +191,15 @@ public with sharing class CG_BaseComponentController {
     	if(componentType == 'ArticlesRelated'){componentType = 'Article';}
     	
         set<String> setFields;
-        if(componentType == 'Banner'){			setFields = new set<String>{'LinkDetail__r.URL__c','OverlayQuadrant__c', 'Title__c', 'Extract__c', 'ButtonLabel__c','BannerFrameType__c'};}
-        if(componentType == 'ArticleList'){			setFields = new set<String>{'Title__c','Body__c', 'Extract__c', 'LinkDetail__r.URL__c', 'ExternalId__c'};}
-        if(componentType == 'EventList'){			setFields = new set<String>{'Title__c','Body__c', 'Extract__c', 'EventStartDate__c', 'EventEndDate__c', 'Location__c', 'LinkDetail__r.URL__c', 'ExternalId__c'};}
-        if(componentType == 'AdvanceContent'){	setFields = new set<String>{'HTMLContent__c'};}
-        if(componentType == 'FAQ'){				setFields = new set<String>{'Title__c', 'Body__c'};}
-        if(componentType == 'ArticleDetail'){		setFields = new set<String>{'Title__c', 'Extract__c','Body__c','Layout__c'};}
-        if(componentType == 'EventDetail'){		setFields = new set<String>{'Title__c', 'Extract__c','Body__c', 'EventStartDate__c', 'EventEndDate__c', 'Location__c','Layout__c'};}
-        if(componentType == 'ClusterSelector'){	setFields = new set<String>{};}
-		if(componentType == 'LanguageSelector'){	setFields = new set<String>{};}
+        if(componentType == 'Banner'){			setFields = new set<String>{'[CMS]LinkDetail__r.[CMS]URL__c','[CMS]OverlayQuadrant__c', '[CMS]Title__c', '[CMS]Extract__c', '[CMS]ButtonLabel__c','[CMS]BannerFrameType__c'};}
+        if(componentType == 'ArticleList'){			setFields = new set<String>{'[CMS]Title__c','[CMS]Body__c', '[CMS]Extract__c', '[CMS]LinkDetail__r.URL__c', '[CMS]ExternalId__c'};}
+        if(componentType == 'EventList'){			setFields = new set<String>{'[CMS]Title__c','[CMS]Body__c', '[CMS]Extract__c', '[CMS]EventStartDate__c', '[CMS]EventEndDate__c', '[CMS]Location__c', '[CMS]LinkDetail__r.[CMS]URL__c', '[CMS]ExternalId__c'};}
+        if(componentType == 'AdvanceContent'){	setFields = new set<String>{'[CMS]HTMLContent__c'};}
+        if(componentType == 'FAQ'){				setFields = new set<String>{'[CMS]Title__c', '[CMS]Body__c'};}
+        if(componentType == 'ArticleDetail'){		setFields = new set<String>{'[CMS]Title__c', '[CMS]Extract__c','[CMS]Body__c','[CMS]Layout__c'};}
+        if(componentType == 'EventDetail'){		setFields = new set<String>{'[CMS]Title__c', '[CMS]Extract__c','[CMS]Body__c', '[CMS]EventStartDate__c', '[CMS]EventEndDate__c', '[CMS]Location__c','[CMS]Layout__c'};}
+        if(componentType == 'Cluster_Selector'){	setFields = new set<String>{};}
+		if(componentType == 'Language_Selector'){	setFields = new set<String>{};}
         if(componentType == 'Navigation'){	setFields = new set<String>{};}
         setFields.add('Id');
         setFields.add('Name');

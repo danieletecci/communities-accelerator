@@ -15,15 +15,15 @@ public with sharing class CG_BaseComponentControllerTest {
         //Navigation Record
         Navigation__c nav = new Navigation__c(Name = 'Nav', URL__c = 'https:google.com');
         //Component Article Record
-        String recordTypeId = [SELECt id, name, SobjectType FROM RecordType WHERE SobjectType = 'Component__c' AND DeveloperName = 'ArticleList' LIMIT 1].id;
+        String recordTypeId = [SELECt id, name, SobjectType FROM RecordType WHERE SobjectType =: GeneralUtils.prefix('[CMS]Component__c') AND DeveloperName = 'ArticleList' LIMIT 1].id;
         Component__c componentArticle = new Component__c (Name='Article', ExternalId__c='Article', RecordTypeId = recordTypeId, Datasource__c = 'ManualAssignment',HierarchicalOrderBy__c = 'ASC', LinkDetail__c = nav.id);
         insert componentArticle;
         //Content Article Record
-        String RTArticleId = [SELECt id, name, SobjectType FROM RecordType WHERE SobjectType = 'Content__c' AND DeveloperName = 'ArticleList'].id;
+        String RTArticleId = [SELECt id, name, SobjectType FROM RecordType WHERE SobjectType =: GeneralUtils.prefix('[CMS]Content__c') AND DeveloperName = 'ArticleList'].id;
         Content__c contentArticle = new Content__c(Name = 'Article1', RecordTypeId = RTArticleId);
         insert contentArticle;
         //Component Related Article Record
-        recordTypeId = [SELECt id, name, SobjectType FROM RecordType WHERE SobjectType = 'Component__c' AND DeveloperName = 'ArticlesRelated' LIMIT 1].id;
+        recordTypeId = [SELECt id, name, SobjectType FROM RecordType WHERE SobjectType =: GeneralUtils.prefix('[CMS]Component__c') AND DeveloperName = 'ArticlesRelated' LIMIT 1].id;
         Component__c componentRN = new Component__c (Name='RN', ExternalId__c='RN', RecordTypeId = recordTypeId, Datasource__c = 'ParentComponentBehaviour', ArticleType__c = 'Landscape', PageSize__c = 1,HierarchicalOrderBy__c = 'ASC', LinkDetail__c = nav.id);
         insert componentRN;
         //When
@@ -42,11 +42,11 @@ public with sharing class CG_BaseComponentControllerTest {
         //Given
         String clusterId = [SELECT id FROM Cluster__c LIMIT 1].Id;
         //Component Banner Record
-        String recordTypeId = [SELECt id, name, SobjectType FROM RecordType WHERE SobjectType = 'Component__c' AND DeveloperName = 'Banner' LIMIT 1].id;
+        String recordTypeId = [SELECt id, name, SobjectType FROM RecordType WHERE SobjectType =: GeneralUtils.prefix('[CMS]Component__c') AND DeveloperName = 'Banner' LIMIT 1].id;
         Component__c componentBanner = new Component__c (Name='Article', ExternalId__c='Article', RecordTypeId = recordTypeId, Datasource__c = 'ManualAssignment',HierarchicalOrderBy__c = 'ASC');
         insert componentBanner;
         //Content Banner Record
-        String RTBannerId = [SELECt id, name, SobjectType FROM RecordType WHERE SobjectType = 'Content__c' AND DeveloperName = 'Banner'].id;
+        String RTBannerId = [SELECt id, name, SobjectType FROM RecordType WHERE SobjectType =: GeneralUtils.prefix('[CMS]Content__c') AND DeveloperName = 'Banner'].id;
         Content__c contentBanner = new Content__c(Name = 'Article1', RecordTypeId = RTBannerId);
         insert contentBanner;
         // Component Content Junction Record
@@ -72,7 +72,7 @@ public with sharing class CG_BaseComponentControllerTest {
         }
         //When
         test.startTest();
-        List<CG_BaseComponentController.ContentWrapper> listContentWrapper = CG_BaseComponentController.getPage(listContentId, 'ArticleList', '1', '1', 'ExternalId__c', 'DESKTOP');
+        List<CG_BaseComponentController.ContentWrapper> listContentWrapper = CG_BaseComponentController.getPage(listContentId, 'ArticleList', '1', '1', GeneralUtils.prefix('[CMS]ExternalId__c'), 'DESKTOP');
         test.stopTest();
         //Then
         system.assertNotEquals(null, listContentWrapper);

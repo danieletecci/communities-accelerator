@@ -26,7 +26,7 @@ private class MenuTriggersTest
 		System.debug('ClusterTriggersTest method tagList: '+tagList);
 
 		// Then
-		List<Menu__Share> shareList = [SELECT Id, ParentId FROM Menu__Share WHERE ParentId = :tagList[0].Id AND RowCause = 'Clustering__c'];
+		List<Menu__Share> shareList = [SELECT Id, ParentId FROM Menu__Share WHERE ParentId = :tagList[0].Id AND RowCause =: GeneralUtils.prefix('[CMS]Clustering__c')];
 		System.debug('ClusterTriggersTest method shareList: '+shareList);
 
 		System.assertEquals(3, shareList.size());
@@ -52,7 +52,7 @@ private class MenuTriggersTest
 		System.debug('ClusterTriggersTest method tagList: '+tagList);
 
 		// Then
-		List<Menu__Share> shareList = [SELECT Id, ParentId FROM Menu__Share WHERE ParentId = :tagList[0].Id AND RowCause = 'Clustering__c'];
+		List<Menu__Share> shareList = [SELECT Id, ParentId FROM Menu__Share WHERE ParentId = :tagList[0].Id AND RowCause =: GeneralUtils.prefix('[CMS]Clustering__c')];
 		System.debug('ClusterTriggersTest method shareList: '+shareList);
 
 		System.assertEquals(0, shareList.size());
@@ -87,7 +87,7 @@ private class MenuTriggersTest
 		System.debug('ClusterTriggersTest method menuToInsert: '+menuToInsert);
 
 		// Then
-		List<Menu__Share> shareList = [SELECT Id, ParentId FROM Menu__Share WHERE ParentId = :menuToInsert[0].Id AND RowCause = 'Clustering__c'];
+		List<Menu__Share> shareList = [SELECT Id, ParentId FROM Menu__Share WHERE ParentId = :menuToInsert[0].Id AND RowCause =: GeneralUtils.prefix('[CMS]Clustering__c')];
 		System.debug('ClusterTriggersTest method shareList: '+shareList);
 
 		System.assertEquals(6, shareList.size());
@@ -122,7 +122,7 @@ private class MenuTriggersTest
 		System.debug('ClusterTriggersTest method menuToInsert: '+menuToInsert);
 
 		// Then
-		List<Menu__Share> shareList = [SELECT Id, ParentId FROM Menu__Share WHERE ParentId = :menuToInsert[0].Id AND RowCause = 'Clustering__c'];
+		List<Menu__Share> shareList = [SELECT Id, ParentId FROM Menu__Share WHERE ParentId = :menuToInsert[0].Id AND RowCause =: GeneralUtils.prefix('[CMS]Clustering__c')];
 		System.debug('ClusterTriggersTest method shareList: '+shareList);
 
 		System.assertEquals(3, shareList.size());

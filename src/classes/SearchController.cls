@@ -49,21 +49,21 @@ public with sharing class SearchController {
     }
 
     public class SearchDetailWrapper {
-        @AuraEnabled public Component__c                    component;
+        @AuraEnabled public ObjectComponentWrapper           component;
         @AuraEnabled public List<SearchSetting__c>           searchDetails;
 
         public SearchDetailWrapper(Component__c component, List<SearchSetting__c> searchDetails){
-            this.component          = component;
+            this.component          = new ObjectComponentWrapper(component);
             this.searchDetails      = searchDetails;
         }
     }
 
     @AuraEnabled
-    public static Component__c getComponent(String externalId){
+    public static ObjectComponentWrapper getComponent(String externalId){
         List<Component__c> component = [SELECT Name, ExternalId__c, SearchPlaceholder__c, LinkDetail__r.URL__c, LinkDetail__r.URLMask__c, PredictiveSearchEnabled__c
                                                     FROM Component__c WHERE ExternalId__c = :externalId];
         
-        return (component.isEmpty()) ? null : component.get(0);
+        return (component.isEmpty()) ? null : new ObjectComponentWrapper(component.get(0));
     }
 
     @AuraEnabled

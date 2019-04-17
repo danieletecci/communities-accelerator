@@ -90,11 +90,11 @@
         <componentInstances>
             <componentInstanceProperties>
                 <name>objectName</name>
-                <value>Cluster__c</value>
+                <value>[CMS]Cluster__c</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>parentLookUp</name>
-                <value>ParentCluster__c</value>
+                <value>[CMS]ParentCluster__c</value>
             </componentInstanceProperties>
             <componentName>TreePreview</componentName>
         </componentInstances>

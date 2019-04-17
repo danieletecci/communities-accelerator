@@ -14,11 +14,11 @@
         <componentInstances>
             <componentInstanceProperties>
                 <name>fieldSet</name>
-                <value>HTMLContent__c</value>
+                <value>[CMS]HTMLContent__c</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>parentLookupName</name>
-                <value>Content__c</value>
+                <value>[CMS]Content__c</value>
             </componentInstanceProperties>
             <componentName>Translation</componentName>
         </componentInstances>

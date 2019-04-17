@@ -28,7 +28,7 @@
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>parentLookupName</name>
-                <value>SearchSetting__c</value>
+                <value>[CMS]SearchSetting__c</value>
             </componentInstanceProperties>
             <componentName>Translation</componentName>
         </componentInstances>

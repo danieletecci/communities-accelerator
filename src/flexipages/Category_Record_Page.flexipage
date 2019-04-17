@@ -22,11 +22,11 @@
         <componentInstances>
             <componentInstanceProperties>
                 <name>objectName</name>
-                <value>Category__c</value>
+                <value>[CMS]Category__c</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>parentLookUp</name>
-                <value>ParentCategory__c</value>
+                <value>[CMS]ParentCategory__c</value>
             </componentInstanceProperties>
             <componentName>TreePreview</componentName>
         </componentInstances>

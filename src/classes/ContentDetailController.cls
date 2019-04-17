@@ -1,14 +1,14 @@
 public with sharing class ContentDetailController {
     //DATA WRAPPER
     public class DataWrapper{
-        @AuraEnabled public Content__c                      content;
+        @AuraEnabled public ObjectContentWrapper            content;
         @AuraEnabled public List<VisibilitySelectorWrapper> visibilitySelectors;
         @AuraEnabled public String                          timeZone;
         @AuraEnabled public SecurityWrapper                 security;
         @AuraEnabled public List<String>                    bannerFrameTypes;
         
         public DataWrapper(Content__c content, SecurityWrapper security, List<VisibilitySelectorWrapper> visibilitySelectors, String timeZone, List<String> bannerFrameTypes){
-            this.content                = content;
+            this.content                = new ObjectContentWrapper(content);
             this.visibilitySelectors    = visibilitySelectors;
             this.security               = security;
             this.timeZone               = timeZone;

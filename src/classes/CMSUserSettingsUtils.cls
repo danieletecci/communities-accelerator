@@ -37,10 +37,10 @@ public with sharing class CMSUserSettingsUtils {
     }
 
     //This methods returns the CMS User Settings from a User Id
-    private static map<Id, CMSUserSettings__c> CMSUsersSettingsMap;
+    private static Map<Id, CMSUserSettings__c> CMSUsersSettingsMap;
     public static CMSUserSettings__c getUserSettings(Id userId){
         if(CMSUsersSettingsMap == null){
-            CMSUsersSettingsMap = new map<Id, CMSUserSettings__c>();
+            CMSUsersSettingsMap = new Map<Id, CMSUserSettings__c>();
         }
         if(!CMSUsersSettingsMap.containsKey(userId)){
             try{CMSUsersSettingsMap.put(userId, [SELECT Id, User__c, Cluster__c, Audiences__c FROM CMSUserSettings__c WHERE User__c =: userId]);}catch(Exception e){}
@@ -50,8 +50,8 @@ public with sharing class CMSUserSettingsUtils {
     }
 
     //This methods returns a set of Audiences External Ids of a User
-    public static set<String> getUserAudiences(Id userId){
-        set<String> userAudiencesSet = new set<String>();
+    public static Set<String> getUserAudiences(Id userId){
+        Set<String> userAudiencesSet = new Set<String>();
         if(getUserSettings(userId).Audiences__c != null){
             userAudiencesSet.addAll(getUserSettings(userId).Audiences__c.split(';'));
         }

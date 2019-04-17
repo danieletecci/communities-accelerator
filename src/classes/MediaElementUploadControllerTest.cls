@@ -1,5 +1,5 @@
 @isTest(seeAllData = false)
-public class MediaElementUploadController {
+public class MediaElementUploadControllerTest {
 	
 	@isTest 
 	static void getMediaElementTest(){

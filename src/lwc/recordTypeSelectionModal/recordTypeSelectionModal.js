@@ -1,6 +1,6 @@
 import { LightningElement, api, track, wire } from 'lwc';
-import getContentRecordTypes from	'@salesforce/apex/ModalRecordTypeController.getContentRecordTypes';
-import getTemplateRecordTypes from	'@salesforce/apex/ModalRecordTypeController.getTemplateRecordTypes';
+import getContentRecordTypes from	'@salesforce/apex/ContentRecordTypeModalController.getContentRecordTypes';
+import getTemplateRecordTypes from	'@salesforce/apex/ContentRecordTypeModalController.getTemplateRecordTypes';
 import Create from '@salesforce/label/c.Create';
 import TemplateLabel from '@salesforce/label/c.Template';
 import General_Close from '@salesforce/label/c.General_Close';

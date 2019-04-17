@@ -1218,7 +1218,7 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Component__c-Component%3A Events - Page Layout</layout>
-        <recordType>Component__c.Event</recordType>
+        <recordType>Component__c.EventList</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Component__c-Component%3A Events Detail - Page Layout</layout>
@@ -1655,7 +1655,7 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
-        <recordType>Component__c.Event</recordType>
+        <recordType>Component__c.EventList</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>

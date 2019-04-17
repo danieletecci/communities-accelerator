@@ -67,7 +67,7 @@ public with sharing class ClusterTriggers extends TriggersHandler {
         if(!recordList.isEmpty() && toContinueTrigger){
 
 
-            SharingUtils﻿.SharingWrapper sharingWrapper = SharingUtils﻿.generateSharingForCluster(recordList, 'Cluster__c', 'Cluster__Share', 'Clustering__c', true);           
+            SharingUtils.SharingWrapper sharingWrapper = SharingUtils.generateSharingForCluster(recordList, 'Cluster__c', 'Cluster__Share', 'Clustering__c', true);           
             if(sharingWrapper.objectIdToMessageErrosMap.size()>0){
                 objectIdToMessageErrosMap = sharingWrapper.objectIdToMessageErrosMap;
                 toContinueTrigger = false;

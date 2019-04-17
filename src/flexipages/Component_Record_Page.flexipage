@@ -22,7 +22,7 @@
     </flexiPageRegions>
     <flexiPageRegions>
         <componentInstances>
-            <componentName>CommunityComponentPreview</componentName>
+            <componentName>ComponentPreview</componentName>
         </componentInstances>
         <name>Facet-f23bbf51-76a7-49cc-95a9-9f964f242e53</name>
         <type>Facet</type>

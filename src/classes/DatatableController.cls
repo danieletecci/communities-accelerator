@@ -111,7 +111,7 @@ public class DatatableController extends ComponentManager {
         }
     }
 
-    public class DatatableWrapper extends FE_ComponentManager.DataWrapper {
+    public class DatatableWrapper extends ComponentManager.DataWrapper {
         public String componentExternalId {get;set;}
         public String id {get;set;}
         public String name {get;set;}

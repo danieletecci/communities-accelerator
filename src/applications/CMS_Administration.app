@@ -160,7 +160,7 @@
         <content>Component_Event_List_page</content>
         <formFactor>Large</formFactor>
         <pageOrSobjectType>Component__c</pageOrSobjectType>
-        <recordType>Component__c.Event</recordType>
+        <recordType>Component__c.EventList</recordType>
         <type>Flexipage</type>
         <profile>Admin</profile>
     </profileActionOverrides>

@@ -5,7 +5,7 @@
             <componentName>ComponentBehaviour</componentName>
         </componentInstances>
         <componentInstances>
-            <componentName>ContentFAQRecordEdit</componentName>
+            <componentName>FAQContentRecordEdit</componentName>
         </componentInstances>
         <name>Facet-8633bc9f-86df-40b9-a04d-4907b883f62f</name>
         <type>Facet</type>

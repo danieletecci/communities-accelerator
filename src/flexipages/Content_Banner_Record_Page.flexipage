@@ -5,7 +5,7 @@
             <componentName>ComponentBehaviour</componentName>
         </componentInstances>
         <componentInstances>
-            <componentName>ContentBannerRecordEdit</componentName>
+            <componentName>BannerContentRecordEdit</componentName>
         </componentInstances>
         <name>Facet-c24813c8-908c-4fa6-93ff-98a10bd086a6</name>
         <type>Facet</type>

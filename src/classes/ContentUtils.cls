@@ -83,6 +83,7 @@ public without sharing virtual class ContentUtils {
             }
 
             if(component.RecordtypeDevelopername == 'EventList' || component.RecordtypeDeveloperName == 'EventsRelated'){
+
                 if (component.ExcludePastEvents){
                     Datetime dateAndTime = System.today();
                     query += 'AND ([CMS]EventEndDate__c >: dateAndTime) ';

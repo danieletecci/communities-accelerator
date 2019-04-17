@@ -42,6 +42,9 @@ public class ObjectContentWrapper {
     public String TemplateUsed;
     public String Title;
     public String URLRedirect;
+
+    public String LinkDetailURL;
+
     public List<MediaElementAssignment> MediaElementAssignments;
 
     public class MediaElementAssignment{
@@ -91,6 +94,8 @@ public class ObjectContentWrapper {
         try{this.TemplateUsed = content.TemplateUsed__c;}catch(Exception e){}
         try{this.Title = content.Title__c;}catch(Exception e){}
         try{this.URLRedirect = content.URLRedirect__c;}catch(Exception e){}
+
+        try{this.LinkDetailURL = content.LinkDetail__r.URL__c;}catch(Exception e){}
 
         try{
             this.MediaElementAssignments = new List<MediaElementAssignment>();

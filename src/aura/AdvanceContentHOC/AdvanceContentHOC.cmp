@@ -11,7 +11,7 @@
     <!-- MAIN COMPONENT -->
     <div>        
         <!-- TOOL BOX COMPONENT -->
-        <c:ComponentToolBox componentType="AdvanceContent" componentExternalId="{!v.componentExternalId}" componentWrapper="{!v.componentWrapper}" salesforceDomain="{!v.componentWrapper.acceleratorSettings.SalesforceDomain__c}" isLoading="{!v.isLoading}">
+        <c:ComponentToolBox componentType="AdvanceContent" componentExternalId="{!v.componentExternalId}" componentWrapper="{!v.componentWrapper}" salesforceDomain="{!v.componentWrapper.acceleratorSettings.SalesforceDomain}" isLoading="{!v.isLoading}">
             <!-- ADVANCE CONTENT LOC COMPONENT -->
             <c:AdvanceContent
                 contentWrapper="{!v.componentWrapper.data.contentWrapper}"

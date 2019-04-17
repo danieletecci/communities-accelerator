@@ -11,10 +11,10 @@
 		
 	        <div style="{!'height: ' + v.heightValue}">
 
-				<c:Carousel showTotal="false" seeBullet="{!v.componentWrapper.ShowBullets__c}" automaticTransition="{!v.componentWrapper.AutomaticTransition__c}" transitionTime="{!v.componentWrapper.BannerTransitionTime__c}" loop="{!v.componentWrapper.Loop__c}" direction="{!v.componentWrapper.Direction__c}" fadeInMode="{!v.componentWrapper.BannerType__c == 'Fade'}" heightValue="{!v.heightValue}">
+				<c:Carousel showTotal="false" seeBullet="{!v.componentWrapper.ShowBullets}" automaticTransition="{!v.componentWrapper.AutomaticTransition}" transitionTime="{!v.componentWrapper.BannerTransitionTime}" loop="{!v.componentWrapper.LoopField}" direction="{!v.componentWrapper.Direction}" fadeInMode="{!v.componentWrapper.BannerType == 'Fade'}" heightValue="{!v.heightValue}">
 				    <aura:iteration items="{!v.dataWrapper.contentWrapper}" var="wrapper">
 						<aura:iteration items="{!wrapper.mediaElements}" var="element">
-					    	<c:CarouselItem imgSrc="{!element.FileURLDesktop__c}" imgHref="{!wrapper.content.LinkDetail__r.URL__c}" title="{!wrapper.content.ListTitle__c}" description="{!wrapper.content.ListDescription__c}" buttonLabel="{!wrapper.content.ButtonLabel__c}" overLapLocation="{!wrapper.content.OverlayQuadrant__c}" heightValue="{!v.heightValue}"/> 
+					    	<c:CarouselItem imgSrc="{!element.FileURLDesktop}" imgHref="{!wrapper.content.LinkDetailURL}" title="{!wrapper.content.ListTitle}" description="{!wrapper.content.ListDescription}" buttonLabel="{!wrapper.content.ButtonLabel}" overLapLocation="{!wrapper.content.OverlayQuadrant}" heightValue="{!v.heightValue}"/> 
 						</aura:iteration>
 					</aura:iteration>
 				</c:Carousel>

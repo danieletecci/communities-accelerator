@@ -3,15 +3,25 @@ public class MockupFactory {
     // Before to create first cluster, run just one time.
     public static void generateAcceleratorSetting(){
 
-        AcceleratorSettings__c acceleratorSetting  = new AcceleratorSettings__c ( 
+        CMSSettings__c cmsSetting  = new CMSSettings__c( 
+            ClusterFieldForPublicGroups__c = '[CMS]ExternalId__c'
+            );
+        insert cmsSetting;
+
+        CMSContentSettings__c contentSetting  = new CMSContentSettings__c( 
+            ContentLandingColumnFields__c = 'RecordType.Name,Name,[CMS]Category__r.Name,[CMS]Status__c',
+            ContentLandingRecordTypes__c = 'Article,Event',
+            ContentTemplateRecordTypes__c = ''
+            );
+        insert contentSetting;
+
+        CMSMediaElementSettings__c meSetting  = new CMSMediaElementSettings__c( 
             MaxSizeDesktop__c = 1280, 
             MaxSizeMobile__c = 480, 
             MaxSizeTablet__c = 768,
-            ClusterFieldForPublicGroups__c = '[CMS]ExternalId__c',
-            ContentLandingColumnFields__c = 'RecordType.Name,Name,[CMS]Category__r.Name,[CMS]Status__c',
-            ContentLandingRecordTypes__c = 'Article,Event'
+            EnableMediaElementAutomaticResize__c = true
             );
-        insert acceleratorSetting;
+        insert meSetting;
     }
     
     //Create Cluster__c, sure to call generateAcceleratorSetting() one time before

@@ -55,8 +55,8 @@ public class ClusterUtilsTest {
         //Given
         ClusterUtils.testNetworkName = 'https://www.salesforce.com';
 
-        RecordType rtRoot = [SELECT Id FROM RecordType WHERE SobjectType = GeneralUtils.prefix('[CMS]Cluster__c') AND DeveloperName = 'ClusterRoot'];
-        RecordType rtLeaf = [SELECT Id FROM RecordType WHERE SobjectType = GeneralUtils.prefix('[CMS]Cluster__c') AND DeveloperName = 'ClusterLeaf'];
+        RecordType rtRoot = [SELECT Id FROM RecordType WHERE SobjectType = :GeneralUtils.prefix('[CMS]Cluster__c') AND DeveloperName = 'ClusterRoot'];
+        RecordType rtLeaf = [SELECT Id FROM RecordType WHERE SobjectType = :GeneralUtils.prefix('[CMS]Cluster__c') AND DeveloperName = 'ClusterLeaf'];
 
         User u = [SELECT Id, LanguageLocaleKey FROM User WHERE Id =: UserInfo.getUserId()];
 

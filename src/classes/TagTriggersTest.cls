@@ -62,7 +62,7 @@ public with sharing class TagTriggersTest {
 		Test.stopTest();
 
 		// Then
-		List<Tag__Share> shareList = [SELECT Id, ParentId FROM Tag__Share WHERE ParentId = :tagList[0].Id AND RowCause = GeneralUtils.prefix('[CMS]Clustering__c')];
+		List<Tag__Share> shareList = [SELECT Id, ParentId FROM Tag__Share WHERE ParentId = :tagList[0].Id AND RowCause = :GeneralUtils.prefix('[CMS]Clustering__c')];
 
 		System.assertEquals(3, shareList.size());
 
@@ -92,7 +92,7 @@ public with sharing class TagTriggersTest {
 		System.debug('ClusterTriggersTest method tagToUpdateList: '+tagToUpdateList);
 
 		// Then
-		List<Tag__Share> shareList = [SELECT Id, ParentId FROM Tag__Share WHERE ParentId = :tagToUpdateList[0].Id AND RowCause = GeneralUtils.prefix('[CMS]Clustering__c')];
+		List<Tag__Share> shareList = [SELECT Id, ParentId FROM Tag__Share WHERE ParentId = :tagToUpdateList[0].Id AND RowCause = :GeneralUtils.prefix('[CMS]Clustering__c')];
 		System.debug('ClusterTriggersTest method shareList: '+shareList);
 
 		System.assertEquals(6, shareList.size());

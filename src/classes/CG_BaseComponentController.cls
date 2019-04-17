@@ -65,9 +65,9 @@ public with sharing class CG_BaseComponentController {
 				contentWrapper = ContentUtils.getContentFromComponent(parentComponent, getContentFieldSetByComponentType(parentComponent.Recordtype.Developername, device), setContentDirect, setContentToExclude, setClusterIds, device);
 				for (String fieldApiName: getComponentFieldSetByComponentType(component.RecordType.DeveloperName, device)){
 					if (fieldApiName != 'Id' && fieldApiName != GeneralUtils.prefix('[CMS]ExternalId__c') && fieldApiName != 'Recordtype.Developername'){
-						if (fieldApiName == GeneralUtils.prefix('[CMS]PageSize__c'){
+						if (fieldApiName == GeneralUtils.prefix('[CMS]PageSize__c')){
 							component.PageSize__c = parentComponent.PageSize__c;
-                        }else if(fieldApiName == GeneralUtils.prefix('[CMS]LinkDetail__r.[CMS]URL__c'){
+                        }else if(fieldApiName == GeneralUtils.prefix('[CMS]LinkDetail__r.[CMS]URL__c')){
                             component.LinkDetail__r = parentComponent.LinkDetail__r;
                         } else {
 							component.put(fieldApiName, (String)GeneralUtils.getFieldValue(parentComponent, fieldApiName));

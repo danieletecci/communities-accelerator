@@ -142,7 +142,7 @@ public with sharing class TagCriteriaController {
         }
             
        
-        String joQuery = GeneralUtils.prefix('SELECT Id, [CMS]Tag__c, [CMS]Order__c FROM [CMS]TagAssignment__c WHERE [CMS]Component__c =: recordId ORDER BY [CMS]Order__c';          
+        String joQuery = GeneralUtils.prefix('SELECT Id, [CMS]Tag__c, [CMS]Order__c FROM [CMS]TagAssignment__c WHERE [CMS]Component__c =: recordId ORDER BY [CMS]Order__c');          
         List<SObject> junctionObjectList = Database.query(joQuery);
         for(SObject rec: junctionObjectList){
             if(!selectedIds.contains(String.valueOf(rec.get(sobjectName)))){

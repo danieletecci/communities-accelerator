@@ -35,8 +35,8 @@ public with sharing class LanguageSelectorController {
 
     	MenuWrapper wrapper = new MenuWrapper();
 
-		Schema.DescribeSObjectResult sobjectDescribe = Schema.getGlobalDescribe().get('Translation__c').getDescribe();
-		for (Schema.PicklistEntry entry : sobjectDescribe.fields.getMap().get('LanguageCode__c').getDescribe().getPickListValues()){
+		Schema.DescribeSObjectResult sobjectDescribe = Schema.getGlobalDescribe().get(GeneralUtils.prefix('[CMS]Translation__c')).getDescribe();
+		for (Schema.PicklistEntry entry : sobjectDescribe.fields.getMap().get(GeneralUtils.prefix('[CMS]LanguageCode__c')).getDescribe().getPickListValues()){
 			if(langs.contains(entry.getValue()) && entry.isActive()){	
 				LanguageWrapper lang= new LanguageWrapper(entry.getLabel(), entry.getValue());
 				wrapper.languages.add(lang);

@@ -16,7 +16,7 @@ public class GeneralUtils{
             if (Pattern.compile( '[a-zA-Z0-9]{15}|[a-zA-Z0-9]{18}' ).matcher(clusterID).matches() ){
                 Cluster__c cluster = [SELECT Id, ExternalID__c FROM Cluster__c WHERE Id =: clusterID];
 
-                if(String.isNotEmpty(sobjectType) && sobjectType.equalsIgnoreCase('Content__c')){
+                if(String.isNotEmpty(sobjectType) && sobjectType.equalsIgnoreCase(GeneralUtils.prefix('[CMS]Content__c'))){
                    
                     String dateString = String.valueOf(datetime.now());
                  

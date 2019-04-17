@@ -26,11 +26,11 @@ public class MediaElementsManagerController {
 			placesList.add(place.trim());
 		}
 		// busco y me fijo si existe un registro del Objeto junctionObject que se relacione a las places e ids
-		String joQuery = 'SELECT Id, Placement__c, MediaElement__r.FileURLDesktop__c, ' + parentLookup + ' FROM ' + junctionObject + ' WHERE Placement__c IN :placesList AND '+ parentLookup + '= \'' + recordId + '\'';
+		String joQuery = GeneralUtils.prefix('SELECT Id, [CMS]Placement__c, [CMS]MediaElement__r.[CMS]FileURLDesktop__c, ') + parentLookup + ' FROM ' + junctionObject + ' WHERE Placement__c IN :placesList AND '+ parentLookup + '= \'' + recordId + '\'';
 		for(SObject rec: Database.query(joQuery)){
 			for(RecordsWrapper rw :rwList){
 				system.debug(rw);
-				if(rw.place == rec.get('Placement__c')){
+				if(rw.place == rec.get(GeneralUtils.prefix('[CMS]Placement__c')){
 					system.debug('entre');
 					rw.junctionObject = rec;
 				}
@@ -52,16 +52,16 @@ public class MediaElementsManagerController {
 			whereClause += ' WHERE Name LIKE \'' + likeValue + '\'';
 		}
         
-        Integer totalRows = Database.countQuery('SELECT count() FROM MediaElement__c' + whereClause);
+        Integer totalRows = Database.countQuery(GeneralUtils.prefix('SELECT count() FROM [CMS]MediaElement__c') + whereClause);
         
         if(intOffset >= 0 && intOffset <= totalRows){
 
             list<MediaElement__c> mediaElementsList = new list<MediaElement__c>();
-            String queryMediaElement = 'SELECT Id, Name, FileURLDesktop__c, LastModifiedDate FROM MediaElement__c' + whereClause;    
+            String queryMediaElement = 'SELECT Id, Name, [CMS]FileURLDesktop__c, LastModifiedDate FROM [CMS]MediaElement__c' + whereClause;    
             queryMediaElement += ' ORDER BY LastModifiedDate DESC LIMIT ' + elementPerPages + ' OFFSET ' + intOffset;
 		
             Set<String> contentSet = new Set<String>();
-            for(MediaElement__c me : Database.query(queryMediaElement)){
+            for(MediaElement__c me : Database.query(GeneralUtils.prefix(queryMediaElement))){
                 ContentWrapper cw = new ContentWrapper();
                 cw.idME = me.Id;
                 cw.name = me.Name;
@@ -108,11 +108,11 @@ public class MediaElementsManagerController {
 		sObject sObj = Schema.getGlobalDescribe().get(junctionObject).newSObject();
 
 		sObj.put(parentLookup, recordId);
-		sObj.put('MediaElement__c', mediaElementId);
-		sObj.put('Placement__c', place);
+		sObj.put(GeneralUtils.prefix('[CMS]MediaElement__c'), mediaElementId);
+		sObj.put(GeneralUtils.prefix('[CMS]Placement__c'), place);
 		
 		list<sObject> listToDelete = new list<sObject> ();
-		for(SObject rec: Database.query('SELECT Id, Placement__c, MediaElement__r.FileURLDesktop__c, ' + parentLookup + ' FROM ' + junctionObject + ' WHERE Placement__c = \'' + place + '\' AND '+ parentLookup + '= \'' + recordId + '\'')){
+		for(SObject rec: Database.query(GeneralUtils.prefix('SELECT Id, [CMS]Placement__c, [CMS]MediaElement__r.[CMS]FileURLDesktop__c, ' + parentLookup + ' FROM ' + junctionObject + ' WHERE [CMS]Placement__c = \'' + place + '\' AND '+ parentLookup + '= \'' + recordId + '\''))){
 			listToDelete.add(rec);
 		}
 

@@ -14,7 +14,7 @@ public with sharing class JunctionObjectManagerControllerTest {
 
 		//When 
 		Test.startTest();
-		JunctionObjectManagerController.RecordsWrapper rw = JunctionObjectManagerController.getRecords(comp[0].Id, 'ContentAssignment__c',  'Component__c', 'Content__c', null, 'Name');
+		JunctionObjectManagerController.RecordsWrapper rw = JunctionObjectManagerController.getRecords(comp[0].Id, GeneralUtils.prefix('[CMS]ContentAssignment__c'), GeneralUtils.prefix('[CMS]Component__c'), GeneralUtils.prefix('[CMS]Content__c'), null, 'Name');
 		Test.stopTest();
 
 		//Then
@@ -35,7 +35,7 @@ public with sharing class JunctionObjectManagerControllerTest {
 	
 		// When 
 		Test.startTest();
-		JunctionObjectManagerController.RecordsWrapper rw = JunctionObjectManagerController.getRecords(comp[0].id, 'ContentAssignment__c',  'Component__c', 'Content__c', 'WHERE ExternalId__c = \''+ comp[0].ExternalId__c + '\'', 'Name');
+		JunctionObjectManagerController.RecordsWrapper rw = JunctionObjectManagerController.getRecords(comp[0].id, GeneralUtils.prefix('[CMS]ContentAssignment__c'),  GeneralUtils.prefix('[CMS]Component__c'), GeneralUtils.prefix('[CMS]Content__c'), GeneralUtils.prefix('WHERE [CMS]ExternalId__c = \'')+ comp[0].ExternalId__c + '\'', 'Name');
 		Test.stopTest();
    
 		// Then 
@@ -60,7 +60,7 @@ public with sharing class JunctionObjectManagerControllerTest {
 
 		// When 
 		Test.startTest();
-		String response = JunctionObjectManagerController.saveRelationships(comp[0].Id, 'MenuAssignment__c', 'Component__c', 'Menu__c', listSelectedIds, 'order__c', 'false');
+		String response = JunctionObjectManagerController.saveRelationships(comp[0].Id, GeneralUtils.prefix('[CMS]MenuAssignment__c'), GeneralUtils.prefix('[CMS]Component__c'), GeneralUtils.prefix('[CMS]Menu__c'), listSelectedIds, GeneralUtils.prefix('[CMS]order__c'), 'false');
 		Test.stopTest();
 
 		// Then
@@ -85,7 +85,7 @@ public with sharing class JunctionObjectManagerControllerTest {
 
 		// When 
 		Test.startTest();
-		String response = JunctionObjectManagerController.saveRelationships(comp[0].Id, 'MenuAssignment__c', 'Component__c', 'Menu__c', listSelectedIds, 'order__c', 'true');
+		String response = JunctionObjectManagerController.saveRelationships(comp[0].Id, GeneralUtils.prefix('[CMS]MenuAssignment__c'), GeneralUtils.prefix('[CMS]Component__c'), GeneralUtils.prefix('[CMS]Menu__c'), listSelectedIds, GeneralUtils.prefix('[CMS]order__c'), 'true');
 		Test.stopTest();
 
 		// Then

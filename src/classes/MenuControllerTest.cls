@@ -12,7 +12,7 @@ public class MenuControllerTest {
         //Given
         Cluster__c cluster = [SELECT id FROM Cluster__c LIMIT 1][0];
         List<Component__c> component = MockupFactory.createComponent('Menu',1,cluster);
-        List<RecordType> menuRTs = [SELECT Id FROM RecordType WHERE SObjectType = 'Menu__c' ORDER BY Name ASC];
+        List<RecordType> menuRTs = [SELECT Id FROM RecordType WHERE SObjectType =: GeneralUtils.prefix('[CMS]Menu__c') ORDER BY Name ASC];
         Menu__c mainMenu = MockupFactory.createMenu('mainMenu', 1, cluster.Id)[0]; 
         mainMenu.RecordTypeId = menuRTs[0].Id; update mainMenu;
         Menu__c subMenu1 = MockupFactory.createMenu('subMenu1', 1, cluster.Id)[0]; 

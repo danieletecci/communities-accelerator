@@ -42,6 +42,15 @@ public class ObjectContentWrapper {
     public String TemplateUsed;
     public String Title;
     public String URLRedirect;
+
+    public String LinkDetailURL;
+    public String ClusterName;
+
+    public List<MediaElementAssignment> MediaElementAssignments;
+
+    public class MediaElementAssignment{
+        ObjectMediaElementWrapper MediaElement;
+    }
     
     public ObjectContentWrapper(Content__c content){
         try{this.Id = content.Id;}catch(Exception e){}
@@ -86,6 +95,18 @@ public class ObjectContentWrapper {
         try{this.TemplateUsed = content.TemplateUsed__c;}catch(Exception e){}
         try{this.Title = content.Title__c;}catch(Exception e){}
         try{this.URLRedirect = content.URLRedirect__c;}catch(Exception e){}
+
+        try{this.LinkDetailURL = content.LinkDetail__r.URL__c;}catch(Exception e){}
+        try{this.ClusterName = content.Cluster__r.Name;}catch(Exception e){}
+
+        try{
+            this.MediaElementAssignments = new List<MediaElementAssignment>();
+            for(MediaElementAssignment__c mea: content.MediaElementAssignments__r){
+                MediaElementAssignment meas = new MediaElementAssignment();
+                meas.MediaElement = new ObjectMediaElementWrapper(mea.MediaElement__r);
+                this.MediaElementAssignments.add(meas);
+            }
+        }catch(Exception e){}
     }
 
 }

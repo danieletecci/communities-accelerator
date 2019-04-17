@@ -490,7 +490,7 @@ public with sharing class ClusterTriggers extends TriggersHandler {
     List<Group> groupsList = new List<Group>();
     private void createGroups(Cluster__c recNew){
         if(!canMethod('createGroups')){return;}
-        AcceleratorSettings__c acceleratorSettings = AcceleratorSettings__c.getOrgDefaults();
+        CMSSettings__c acceleratorSettings = CMSSettings__c.getOrgDefaults();
 
         String groupName = '';
         

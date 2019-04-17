@@ -42,7 +42,7 @@
 	},
 	editExternalId : function(component, event, helper){
 		component.set("v.isExtIdEdit", true);
-		component.set("v.oldExtId", component.get("v.contentData").ExternalId__c);
+		component.set("v.oldExtId", component.get("v.contentData").ExternalId);
 		setTimeout(function(){
             var input = component.find("externalid-input");
             input.focus();

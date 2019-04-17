@@ -8,9 +8,9 @@
     doSave: function (component, event, helper) {
         helper.updateContent(
             component, 
-            component.get("v.contentData").Status__c, 
-            component.get("v.contentData").PublishStartDate__c,
-            component.get("v.contentData").PublishEndDate__c
+            component.get("v.contentData").Status, 
+            component.get("v.contentData").PublishStartDate,
+            component.get("v.contentData").PublishEndDate
         );
     },
     doPublishContent: function (component, event, helper) {

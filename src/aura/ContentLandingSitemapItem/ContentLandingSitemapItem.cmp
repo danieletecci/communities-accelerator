@@ -1,7 +1,7 @@
 <aura:component >
 
 	<aura:attribute name="menu" 		type="Object" 					/>
-	<aura:attribute name="navObj" 		type="Navigation__c"			/>
+	<aura:attribute name="navObj" 		type="Navigation"    			/>
 	<aura:attribute name="isOpen" 		type="Boolean"	default="false" />
 	<aura:attribute name="level" 		type="Integer" 					/>
     <aura:attribute name="navigation"	type="String"   				/>

@@ -2,8 +2,8 @@ public class MenuController {
 
 	//WRAPPERS
     public class ComponentWrapper{
-		@auraEnabled public AcceleratorSettings__c acceleratorSettings;
-        @auraEnabled public Component__c component;
+		@auraEnabled public CustomSettingWrapper acceleratorSettings;
+        @auraEnabled public ObjectComponentWrapper component;
 		@auraEnabled public String clusterId;
 		@auraEnabled public List<NavWrapper> navWrapper;
 		@auraEnabled public String device;
@@ -11,7 +11,7 @@ public class MenuController {
 		@auraEnabled public Boolean isEnabledCommunityViewFrame;
 
 		public ComponentWrapper (){
-			this.acceleratorSettings = AcceleratorSettings__c.getInstance();
+			this.acceleratorSettings = new CustomSettingWrapper(CMSSettings__c.getInstance(), CMSContentSettings__c.getInstance(), CMSMediaElementSettings__c.getInstance());
 			this.isEnabledCommunityEditFrame = FeatureManagement.checkPermission('CommunityEditFrame');
 			this.isEnabledCommunityViewFrame = FeatureManagement.checkPermission('CommunityViewFrame');
 			this.navWrapper = new List<NavWrapper>();
@@ -19,13 +19,13 @@ public class MenuController {
 	}
 
 	public class NavWrapper {
-        @auraEnabled public Menu__c menu {get;set;}
+        @auraEnabled public ObjectMenuWrapper menu {get;set;}
         @auraEnabled public List<NavWrapper> subMenus {get;set;}
         @auraEnabled public String behaviour {get;set;}
         @auraEnabled public String iconName {get;set;}
 
         public NavWrapper(Menu__c menu) {
-            this.menu = menu;
+            this.menu = new ObjectMenuWrapper(menu);
             this.subMenus = new List<NavWrapper>();
             this.behaviour = menu.Behaviour__c == 'New Tab' ? '_blank' : '_self';
             this.iconName = menu.MenuIcon__c;
@@ -61,7 +61,7 @@ public class MenuController {
 				cw.isEnabledCommunityViewFrame = false;
 			}
 		}
-		cw.component = component;
+		cw.component = new ObjectComponentWrapper(component);
 		cw.clusterId = clusterId;
 		cw.device = device;
 

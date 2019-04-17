@@ -3,15 +3,15 @@
         var values = JSON.parse(event.getParam("values"))
         var url;
         var parentComponentId;
-        var parentComponentType = component.get("v.componentWrapper.component.RecordType.DeveloperName");
+        var parentComponentType = component.get("v.componentWrapper.component.RecordTypeDeveloperName");
         if (parentComponentType == 'ArticlesRelatedHOC'){
             parentComponentId = component.get("v.parentComponentId");
         } else {
-            parentComponentId = component.get("v.componentWrapper.component.ExternalId__c");
+            parentComponentId = component.get("v.componentWrapper.component.ExternalId");
         }
 
         if(!values.url) {
-            url = component.get("v.componentWrapper.component.LinkDetail__r.URL__c");
+            url = component.get("v.componentWrapper.component.LinkDetailURL");
         } else {
             url = values.url;
         }

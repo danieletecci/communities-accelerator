@@ -20,7 +20,7 @@
 
                 <!-- Component Name -->
                 <div class="componentNamePanel borderColorBlue hidden">
-            		{#v.componentWrapper.component.RecordType.DeveloperName + ' - ' + v.componentWrapper.component.Name}
+            		{#v.componentWrapper.component.RecordTypeDeveloperName + ' - ' + v.componentWrapper.component.Name}
             	</div>
 
                 <!-- Buttons -->
@@ -30,9 +30,9 @@
                     <aura:if isTrue="{!v.componentWrapper.isEnabledCommunityEditFrame}">
 
                         <aura:if isTrue="{!or(
-                            and(v.componentWrapper.component.RecordType.DeveloperName == 'AdvanceContent',
+                            and(v.componentWrapper.component.RecordTypeDeveloperName == 'AdvanceContent',
                                 or(v.componentWrapper.contentWrapper == null, 0 >= v.componentWrapper.contentWrapper.length)),
-                            v.componentWrapper.component.RecordType.DeveloperName != 'AdvanceContent')}">
+                            v.componentWrapper.component.RecordTypeDeveloperName != 'AdvanceContent')}">
 
                             <lightning:buttonIcon iconName="utility:insert_template" class="buttonsPanelIcons" title="Add content" alternativeText="Add content" onclick="{!c.doNewContent}" size="medium"/>
                         </aura:if>

@@ -13,13 +13,13 @@
             <div class="{! if(v.item.subMenus.length > 0, ' has-child ', '') }" >
                 
 
-                <aura:if isTrue="{!and(v.item.menu.Navigation__r != null, v.item.menu.Navigation__r.URL__c != null)}">
-                    <a href="{!v.item.menu.Navigation__r.URL__c}" target="{!v.item.behaviour}">
+                <aura:if isTrue="{!and(v.item.menu.Navigation != null, v.item.menu.NavigationURL != null)}">
+                    <a href="{!v.item.menu.NavigationURL}" target="{!v.item.behaviour}">
                         <aura:if isTrue="{!v.item.iconName != null}">
                             <lightning:icon iconName="{!v.item.iconName}" size="small"/> &nbsp;
                         </aura:if>
-                        <aura:if isTrue="{!v.item.menu.MenuLabel__c != null}">
-                            {!v.item.menu.MenuLabel__c}
+                        <aura:if isTrue="{!v.item.menu.MenuLabel != null}">
+                            {!v.item.menu.MenuLabel}
                         </aura:if>  
                     </a>
                     <aura:set attribute="else">
@@ -27,8 +27,8 @@
                             <aura:if isTrue="{!v.item.iconName != null}">
                                 <lightning:icon iconName="{!v.item.iconName}" size="small"/> &nbsp;
                             </aura:if>
-                            <aura:if isTrue="{!v.item.menu.MenuLabel__c != null}">
-                                {!v.item.menu.MenuLabel__c}
+                            <aura:if isTrue="{!v.item.menu.MenuLabel != null}">
+                                {!v.item.menu.MenuLabel}
                             </aura:if>                            
                         </a>
                     </aura:set>
@@ -44,106 +44,4 @@
             </div>
         </li>
     </span>
-
-<!--    ORIGINAL
-    <!- ***** DESKTOP ***** ->
-    <aura:if isTrue="{! !v.mobileFormat}">
-                       
-        <!- COMUNNITY PAGE / EXTERNAL URL ->
-        <aura:if isTrue="{!or(v.item.menuType == 'CommunityPage',v.item.menuType == 'ExternalURL')}">
-            <span>
-                <aura:if isTrue="{!!v.isLogOut}">
-                    <a href="" onclick="{!c.redirect}" target="{!v.urlTarget}">
-                        <aura:if isTrue="{!v.item.menu.MenuIcon__c != null}">
-                            <i class="{!v.item.menu.MenuIcon__c}"/>
-                        </aura:if>
-                        <span>{!v.item.label}</span>
-                    </a>
-                    <aura:set attribute="else">
-                        <a href="{!v.item.menu.CommunityPageURL__c}" target="_self">
-                            <aura:if isTrue="{!v.item.menu.MenuIcon__c != null}">
-                                <i class="{!v.item.menu.MenuIcon__c}"/>
-                            </aura:if>
-                            <span>{!v.item.label}</span>
-                        </a>
-                    </aura:set> 
-                </aura:if>
-            </span>
-        </aura:if>
-        
-        <!- GROUP ->
-        <aura:if isTrue="{!v.item.menuType == 'Group'}">
-            <span class="no-action">
-                <aura:if isTrue="{!v.item.menu.MenuIcon__c != null}">
-                    <i class="{!v.item.menu.MenuIcon__c}"/>
-                </aura:if>
-                {!v.item.label}
-            </span>
-        </aura:if>
-        
-        <!- CUSTOM COMPONENT ->
-        <aura:if isTrue="{!v.item.menuType == 'Custom'}">
-             <span id="{!v.item.menu.Id}">
-                 {!v.dynamicComponent}
-             </span>
-        </aura:if>
-        
-    </aura:if>
-    <aura:if isTrue="{!v.item.subMenus.length > 0}">
-        <div class="{! 'div-ul div-' + v.menuLevel + '-' + v.index}">
-            <ul class="{!'ul-level-'+ v.menuLevel + ' sub-' + v.menuLevel + '-' + v.index + if(v.mobileFormat, ' slds-hide', '')}" aura:id="{!'ulLevel'+ v.menuLevel}">
-                {!v.body}
-            </ul>
-        </div>
-    </aura:if>
-
-    <!- ***** MOBILE ***** ->
-   
-    <aura:if isTrue="{!v.mobileFormat}">
-        <div class="slds-grid slds-grid_align-spread slds-grid_vertical-align-center">
-            <div class="slds-col">
-                
-                <!- COMUNNITY PAGE / EXTERNAL URL ->
-                <aura:if isTrue="{!or(v.item.menuType == 'CommunityPage',v.item.menuType == 'ExternalURL')}">
-                    <span>
-                        <aura:if isTrue="{!v.item.menu.MenuIcon__c != null}">
-                            <i class="{!v.item.menu.MenuIcon__c}"/>
-                        </aura:if>
-                        <aura:if isTrue="{!v.item.subMenus.length == 0}">
-                            <aura:if isTrue="{!!v.isLogOut}">
-                                <a href="" onclick="{!c.redirect}" target="{!v.urlTarget}">{!v.item.label}</a>
-                                <aura:set attribute="else">
-                                    <a href="{!v.item.menu.CommunityPageURL__c}" target="_self">{!v.item.label}</a>
-                                </aura:set> 
-                            </aura:if>                                        
-                            <aura:set attribute="else">
-                                {!v.item.label}
-                            </aura:set>
-                        </aura:if>
-                    </span>
-                </aura:if>
-                
-                <!- GROUP ->
-                <aura:if isTrue="{!v.item.menuType == 'Group'}">
-                    <span>
-                        <aura:if isTrue="{!v.item.menu.MenuIcon__c != null}">
-                            <i class="{!v.item.menu.MenuIcon__c}"/>
-                        </aura:if>
-                        {!v.item.label}
-                    </span>
-                </aura:if>
-                
-                <!- CUSTOM COMPONENT ->
-                <aura:if isTrue="{!v.item.menuType == 'Custom'}">
-                    <div id="{!v.item.menu.Id}">
-                        {!v.dynamicComponent}
-                    </div>
-                </aura:if>
-            </div>
-            <div class="slds-col slds-hide_medium">
-                <i class="{!'fas fa-angle-' + if(v.item.subMenus.length > 0, if(v.isActive, 'up', 'down'), 'right')}"></i>
-            </div>
-        </div>
-    </aura:if>
-           -->
 </aura:component>

@@ -15,7 +15,7 @@
 					component.set("v.timeZone", 			data.timeZone);
 					component.set("v.visibilitySelectors", 	data.visibilitySelectors);
 					component.set("v.security", 			data.security);
-					if(data.content.MediaElementAssignments__r != null){
+					if(data.content.MediaElementAssignments != null){
 						component.set('v.imageUrl', data.content.MediaElementAssignments[0].MediaElement.FileURLDesktop);
 						component.set('v.mediaElementName', data.content.MediaElementAssignments[0].MediaElement.Name);
                         component.set('v.mediaElementId', data.content.MediaElementAssignments[0].MediaElement.Id);
@@ -44,7 +44,7 @@
 			{value:"Title Bottom", 	imageUrl:"/ContentLayouts/Article-Layouts/TitleBottom.png", 	label:$A.get("$Label.c.ArticleContentDetailTitleBottom")}
 		];
 		component.set('v.layoutOptions', layoutOptions);
-        component.set('v.contentData.Layout__c', component.get('v.contentData.Layout__c') == null ? 'Title Top' : component.get('v.contentData.Layout')); 
+        component.set('v.contentData.Layout', component.get('v.contentData.Layout') == null ? 'Title Top' : component.get('v.contentData.Layout')); 
     },
     updateContent : function(component, status){
     	var helper				   = this;

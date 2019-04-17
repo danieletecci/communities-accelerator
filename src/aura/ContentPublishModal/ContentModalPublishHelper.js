@@ -38,7 +38,7 @@
 			var cmpEvent = $A.get("e.c:ContentUpsertEvent");
 	        cmpEvent.setParams({
 				"contentId" 		: contentId,
-				"status" 			: status,
+				"status" 			: status,	
 				"publishStartDate"	: component.get("v.startDate"),
 				"publishEndDate"	: component.get("v.endDate")
 			});
@@ -56,9 +56,9 @@
 			component.set("v.startDate", new Date());
 		}
 
-		content.PublishStartDate__c = component.get("v.startDate");
-		content.PublishStartDate__c = component.get("v.endDate");
-		content.PublishStartDate__c = status;
+		content.PublishStartDate = component.get("v.startDate");
+		content.PublishStartDate = component.get("v.endDate");
+		content.PublishStartDate = status;
 
 		action.setParams({
 			content : content

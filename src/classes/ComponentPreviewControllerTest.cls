@@ -11,11 +11,11 @@ public class ComponentPreviewControllerTest {
 		
 		//When
 		Test.startTest();
-        Component__c testComponent = ComponentPreviewController.getRecord(String.valueOf(testRecord.Id));
+        Id testComponentId = ComponentPreviewController.getRecord(String.valueOf(testRecord.Id));
 		Test.stopTest();
 
 		//Then
-		System.assertEquals(testRecord.Id, testComponent.Id);
+		System.assertEquals(testRecord.Id, testComponentId);
 	}
     
     @isTest static void getClusterNameTest(){

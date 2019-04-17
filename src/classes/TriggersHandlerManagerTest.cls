@@ -100,7 +100,7 @@ public class TriggersHandlerManagerTest {
         //Given
         TriggersHandlerManager.triggerOld = Database.query(GeneralUtils.prefix('SELECT Id, [CMS]ParentCluster__c, name FROM [CMS]Cluster__c WHERE name LIKE \'%Cluster%\''));
 
-        TriggersHandlerManager.triggerNew = Database.query(GeneralUtils.prefix('SELECT Id, [CMS]ParentCluster__c, name FROM [CMS]Cluster__c WHERE name LIKE \'%Cluster%\'');
+        TriggersHandlerManager.triggerNew = Database.query(GeneralUtils.prefix('SELECT Id, [CMS]ParentCluster__c, name FROM [CMS]Cluster__c WHERE name LIKE \'%Cluster%\''));
 
         //When
         TriggersHandlerManager.TriggerFiltered filteredResultName = TriggersHandlerManager.getTriggerListFiltered('name');

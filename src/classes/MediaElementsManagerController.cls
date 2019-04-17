@@ -30,8 +30,7 @@ public class MediaElementsManagerController {
 		for(SObject rec: Database.query(joQuery)){
 			for(RecordsWrapper rw :rwList){
 				system.debug(rw);
-				if(rw.place == rec.get(GeneralUtils.prefix('[CMS]Placement__c')){
-					system.debug('entre');
+				if(rw.place == rec.get(GeneralUtils.prefix('[CMS]Placement__c')) ){
 					rw.junctionObject = rec;
 				}
 			}

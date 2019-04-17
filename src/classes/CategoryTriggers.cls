@@ -64,8 +64,7 @@ public with sharing class CategoryTriggers extends TriggersHandler {
 
         if(!recordList.isEmpty() && toContinueTrigger){
             List<SObject> listSO = new List<SObject>();
-            //listSO = SharingUtils﻿.generateSharingForRecordsOnCluster(recordList, 'Cluster__c');
-            SharingUtils﻿.SharingWrapper sharingWrapper = SharingUtils﻿.generateSharingForRecordsOnCluster(recordList, 'Cluster__c', 'Category__Share', 'Clustering__c', false);           
+            SharingUtils.SharingWrapper sharingWrapper = SharingUtils.generateSharingForRecordsOnCluster(recordList, 'Cluster__c', 'Category__Share', 'Clustering__c', false);           
             if(sharingWrapper.objectIdToMessageErrosMap.size()>0){
                 objectIdToMessageErrosMap = sharingWrapper.objectIdToMessageErrosMap;
                 toContinueTrigger = false;

@@ -3,7 +3,7 @@
     <div class={containerClass}>
         <template for:each={contents} for:item="content" for:index="index">
             <div key={content.content.Id} class={cardWrapperClass}>
-                <c-card-hoc content={content} type={type}></c-card-hoc>
+                <c-card-formatter content={content} type={type}></c-card-formatter>
                 <div class="spacer"></div>
             </div>
         </template>

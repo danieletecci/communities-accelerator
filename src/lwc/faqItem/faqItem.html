@@ -2,11 +2,11 @@
     <div class="accordion">
         <button onclick={openAccordion} class="slds-button slds-button_reset btn-accordion">
             <p class="title">
-                {items.Title__c}
+                {items.Title}
             </p>
         </button>
         <div class="slds-accordion_content scale-out-ver-top content-accordion">
-            <lightning-formatted-rich-text value={items.Body__c}></lightning-formatted-rich-text>
+            <lightning-formatted-rich-text value={items.Body}></lightning-formatted-rich-text>
         </div>   
     </div> 
 </template>

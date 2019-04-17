@@ -48,10 +48,8 @@ public with sharing class TranslationController {
 		RecordsWrapper rw = new RecordsWrapper();		
 		List<String> langs= new List<String>();
 		SObject content = Database.query(GeneralUtils.prefix('SELECT id, [CMS]Cluster__r.[CMS]DefaultLanguage__c, [CMS]Cluster__r.[CMS]OtherLanguages__c  FROM ' + getLookupObjectName(parentLookupName, GeneralUtils.prefix('[CMS]Translation__c')) + ' WHERE id=: recordId'));
-		System.debug('Query: ' + GeneralUtils.prefix('SELECT id, [CMS]Cluster__r.[CMS]DefaultLanguage__c, [CMS]Cluster__r.[CMS]OtherLanguages__c  FROM ' + getLookupObjectName(parentLookupName, GeneralUtils.prefix('[CMS]Translation__c')) + ' WHERE id=: recordId'));
-		System.debug('Object: ' + JSON.serialize(content));
-		//Content__c content = [SELECT id, Cluster__r.DefaultLanguage__c, Cluster__r.OtherLanguages__c  FROM Content__c where id=: recordId];
-		langs.add((String)content.getSobject('Cluster__r').get('DefaultLanguage__c'));
+		
+		langs.add((String)content.getSobject(GeneralUtils.prefix('[CMS]Cluster__r')).get(GeneralUtils.prefix('[CMS]DefaultLanguage__c')));
 		if(content.getSobject(GeneralUtils.prefix('[CMS]Cluster__r')).get(GeneralUtils.prefix('[CMS]OtherLanguages__c'))!=null){
 			String[] tmpString = ((String) content.getSobject(GeneralUtils.prefix('[CMS]Cluster__r')).get(GeneralUtils.prefix('[CMS]OtherLanguages__c'))).split(';');
 			langs.addAll(tmpString);

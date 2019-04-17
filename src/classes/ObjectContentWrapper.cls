@@ -130,4 +130,43 @@ public class ObjectContentWrapper {
         
     }
 
+    public Content__c parse(){
+        Content__c content = new Content__c(Id = this.Id);
+        try{content.Name = this.Name;}catch(Exception e){}
+        try{content.RecordTypeId = this.RecordTypeId;}catch(Exception e){}
+        
+        try{content.PublishedDate__c = this.PublishedDate;}catch(Exception e){}
+        try{content.Audience__c = this.Audience;}catch(Exception e){}
+        try{content.BannerFrameType__c = this.BannerFrameType;}catch(Exception e){}
+        try{content.Body__c = this.Body;}catch(Exception e){}
+        try{content.ButtonLabel__c = this.ButtonLabel;}catch(Exception e){}
+        try{content.Category__c = this.Category;}catch(Exception e){}
+        try{content.Cluster__c = this.Cluster;}catch(Exception e){}
+        try{content.ContentRedirect__c = this.ContentRedirect;}catch(Exception e){}
+        try{content.Description__c = this.Description;}catch(Exception e){}
+        try{content.EventEndDate__c = this.EventEndDate;}catch(Exception e){}
+        try{content.EventStartDate__c = this.EventStartDate;}catch(Exception e){}
+        try{content.ExternalId__c = this.ExternalId;}catch(Exception e){}
+        try{content.Extract__c = this.Extract;}catch(Exception e){}
+        try{content.HTMLContent__c = this.HTMLContent;}catch(Exception e){}
+        try{content.IsTemplate__c = this.IsTemplate;}catch(Exception e){}
+        try{content.Layout__c = this.Layout;}catch(Exception e){}
+        try{content.LinkDetail__c = this.LinkDetail;}catch(Exception e){}
+        try{content.Location__c = this.Location;}catch(Exception e){}
+        try{content.Order__c = this.Order;}catch(Exception e){}
+        try{content.OverlayQuadrant__c = this.OverlayQuadrant;}catch(Exception e){}
+        try{content.PublishEndDate__c = this.PublishEndDate;}catch(Exception e){}
+        try{content.PublishStartDate__c = this.PublishStartDate;}catch(Exception e){}
+        try{content.RedirectType__c = this.RedirectType;}catch(Exception e){}
+        try{content.Status__c = this.Status;}catch(Exception e){}
+        try{content.StatusApprovalProcess__c = this.StatusApprovalProcess;}catch(Exception e){}
+        try{content.StructureComponent__c = this.StructureComponent;}catch(Exception e){}
+        try{content.StructureNavigation__c = this.StructureNavigation;}catch(Exception e){}
+        try{content.TemplateDescription__c = this.TemplateDescription;}catch(Exception e){}
+        try{content.TemplateUsed__c = this.TemplateUsed;}catch(Exception e){}
+        try{content.Title__c = this.Title;}catch(Exception e){}
+        try{content.URLRedirect__c = this.URLRedirect;}catch(Exception e){}
+        return content;
+    }
+
 }

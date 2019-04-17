@@ -45,6 +45,8 @@ public class ObjectComponentWrapper {
     public String Status;
     public String StatusApprovalProcess;
     public String TagCriteria;
+
+    public String LinkDetailURL;
     
     public ObjectComponentWrapper(Component__c component){
         try{this.Id = component.Id;}catch(Exception e){}
@@ -92,6 +94,8 @@ public class ObjectComponentWrapper {
         try{this.StatusApprovalProcess = component.StatusApprovalProcess__c;}catch(Exception e){}
         try{this.TagCriteria = component.TagCriteria__c;}catch(Exception e){}
         try{this.RecordtypeDeveloperName = component.Recordtype.DeveloperName;}catch(Exception e){}
+
+        try{this.LinkDetailURL = component.LinkDetail__r.URL__c;}catch(Exception e){}
     }
 
 }

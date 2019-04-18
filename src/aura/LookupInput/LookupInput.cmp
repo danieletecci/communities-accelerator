@@ -1,4 +1,4 @@
-<aura:component controller="LookupController" access="global">
+<aura:component controller="LookupController" >
     <!--declare attributes--> 
     <aura:attribute name="selectedRecordId" type="String" />
     <aura:attribute name="selectedRecord" type="sObject" default="{}" description="Use,for store SELECTED sObject Record"/>

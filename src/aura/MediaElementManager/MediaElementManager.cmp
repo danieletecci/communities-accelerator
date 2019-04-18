@@ -1,4 +1,4 @@
-<aura:component controller="MediaElementsManagerController" access="global">
+<aura:component controller="MediaElementsManagerController" >
 	<!-- External -->
 	<aura:attribute name="iconName" type="String"/>
     <aura:attribute name="hasButton" type="boolean" default="true"/>

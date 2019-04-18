@@ -1,18 +1,18 @@
-<aura:component access="global" implements="lightning:isUrlAddressable">
+<aura:component implements="lightning:isUrlAddressable">
     
     <!-- CONSTRUCTOR -->
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
 
     <!-- PUBLIC ATTRIBUTES -->
-    <aura:attribute name="componentType" 		type="String" 	access="global"					/>
-    <aura:attribute name="componentExternalId" 	type="String" 	access="global"					/>
-	<aura:attribute name="componentWrapper" 	type="Object" 	access="global"					/>
-	<aura:attribute name="salesforceDomain" 	type="String" 	access="global"					/>
-    <aura:attribute name="isLoading" 			type="Boolean" 	access="global" default="true" 	/>
-    <aura:attribute name="showComponentFrame" 	type="Boolean" 	access="global" default="true"	/>
-    <aura:attribute name="isTemplate" 			type="Boolean" 					default="false" />
-	<aura:attribute name="contentActivated" 	type="Boolean" 					default="false"	/>
-	<aura:attribute name="navigationURL"		type="String"					default="false" />
+    <aura:attribute name="componentType" 		type="String" 					/>
+    <aura:attribute name="componentExternalId" 	type="String" 					/>
+	<aura:attribute name="componentWrapper" 	type="Object" 					/>
+	<aura:attribute name="salesforceDomain" 	type="String" 					/>
+    <aura:attribute name="isLoading" 			type="Boolean" 	default="true" 	/>
+    <aura:attribute name="showComponentFrame" 	type="Boolean" 	default="true"	/>
+    <aura:attribute name="isTemplate" 			type="Boolean" 	default="false" />
+	<aura:attribute name="contentActivated" 	type="Boolean" 	default="false"	/>
+	<aura:attribute name="navigationURL"		type="String"	default="false" />
     	
     <!-- COMPONENT -->
     <aura:if isTrue="{!or(not(v.componentWrapper == null), not(v.componentWrapper.meta.component == null))}">

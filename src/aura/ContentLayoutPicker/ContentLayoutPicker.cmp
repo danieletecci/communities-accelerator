@@ -1,4 +1,4 @@
-<aura:component access="global">
+<aura:component >
     <aura:attribute name="layoutOptions" type="List" />
     <aura:attribute name="selectedValue" type="String" />
 

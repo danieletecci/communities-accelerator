@@ -1,8 +1,8 @@
-<aura:component access="global">
+<aura:component >
     
-    <aura:attribute name="componentWrapper" type="Object" access="global"/>
-    <aura:attribute name="dataWrapper" type="Object" access="global"/>
-	<aura:attribute name="heightValue" type="String" access="global"/>
+    <aura:attribute name="componentWrapper" type="Object" />
+    <aura:attribute name="dataWrapper" type="Object" />
+	<aura:attribute name="heightValue" type="String" />
 	
 	<!-- CAROUSEL / FADE -->
 	<aura:if isTrue="{!not(v.componentWrapper == null)}">

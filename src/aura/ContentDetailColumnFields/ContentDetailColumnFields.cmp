@@ -1,4 +1,4 @@
-<aura:component access="global">
+<aura:component >
 
 	<aura:attribute name="objectWrapper" type="Object"/>
 

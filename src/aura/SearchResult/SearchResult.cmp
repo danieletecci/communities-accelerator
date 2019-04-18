@@ -1,4 +1,4 @@
-<aura:component controller="SearchController" implements="forceCommunity:availableForAllPageTypes,forceCommunity:searchInterface" >
+<aura:component controller="SearchController" implements="forceCommunity:availableForAllPageTypes,forceCommunity:searchInterface" access="global">
     <aura:registerEvent name="appEventRecordList" type="c:RecordListSetEvent"/>
 
 	<aura:handler event="c:SearchSettingFindEvent" action="{!c.handleSearchDetails}"/>

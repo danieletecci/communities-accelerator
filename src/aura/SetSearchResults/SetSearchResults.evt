@@ -1,4 +1,0 @@
-<aura:event type="APPLICATION" description="Event template" >
-	<aura:attribute name="results" type="Map[]" />
-	<aura:attribute name="selectedItem" type="String" />
-</aura:event>

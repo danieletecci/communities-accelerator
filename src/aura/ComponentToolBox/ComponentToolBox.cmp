@@ -1,4 +1,4 @@
-<aura:component access="global" implements="lightning:isUrlAddressable" access="global">
+<aura:component access="global" implements="lightning:isUrlAddressable">
     
     <!-- CONSTRUCTOR -->
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />

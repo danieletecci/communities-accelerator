@@ -1,4 +1,4 @@
-<aura:component >
+<aura:component access="global">
 
     <!-- GENERAL VARIABLES  -->
     <aura:attribute name="tree" type="Object" />

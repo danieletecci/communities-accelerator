@@ -1,4 +1,4 @@
-<aura:component>
+<aura:component access="global">
 
 	<!-- GENERAL VARIABLES --> 
     <aura:attribute name="dataWrapper" type="Object" access="global"/>

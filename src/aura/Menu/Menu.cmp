@@ -1,4 +1,4 @@
-<aura:component  >
+<aura:component access="global">
     <aura:attribute name="menus" type="Object[]"/>
     <aura:attribute name="device" type="String"/>
     <aura:attribute name="opened" type="Boolean" default="false"/> <!-- QUE ES? -->

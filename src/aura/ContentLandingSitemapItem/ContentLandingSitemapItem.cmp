@@ -1,4 +1,4 @@
-<aura:component >
+<aura:component access="global">
 
 	<aura:attribute name="menu" 		type="Object" 					/>
 	<aura:attribute name="navObj" 		type="Object"    	    		/>

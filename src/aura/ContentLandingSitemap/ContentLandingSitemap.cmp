@@ -1,4 +1,4 @@
-<aura:component controller="ContentLandingStructureController">
+<aura:component controller="ContentLandingStructureController" access="global">
 
     <!-- ATTRIBUTES -->
     <aura:attribute name="sitemapBackup"            type="Object" 	         />

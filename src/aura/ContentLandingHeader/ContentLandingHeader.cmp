@@ -1,4 +1,4 @@
-<aura:component controller="ContentLandingHeaderController">
+<aura:component controller="ContentLandingHeaderController" access="global">
 
     <aura:registerEvent name="appEvent" type="c:ContentLandingSearchEvent"/>
 

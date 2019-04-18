@@ -33,7 +33,7 @@ public with sharing class ContentDetailControllerTest {
         Content__c content = [SELECT id FROM Content__c LIMIT 1];
         Tag__c tag = [SELECT id FROM Tag__c LIMIT 1];
         insert new MediaElementAssignment__c(Content__c = content.id, MediaElement__c = me.id);
-        insert new TagAssignment__c(Content__c = content.id, Tag__c = tag.id);
+        //insert new TagAssignment__c(Content__c = content.id, Tag__c = tag.id);
         ContentDetailController.DataWrapper dataWrapper= ContentDetailController.getData(content.Id);
         //When
         Boolean saveSuccess = ContentDetailController.saveContent(dataWrapper.content, JSON.serialize(dataWrapper.visibilitySelectors), me.id, 'Published', dataWrapper.content.Tags);

@@ -54,9 +54,11 @@ public without sharing virtual class ComponentManager {
         cw.permissions = getPermissionWrapper();
         cw.meta = getMeta();
         
-        String contentRTDevName = ContentUtils.rtComponentToContent.get(cw.meta.component.RecordtypeDeveloperName);
-        if(contentRTDevName != null){
-            cw.contentRecordTypeId = Schema.SObjectType.Content__c.getRecordTypeInfosByDeveloperName().get(GeneralUtils.prefix(contentRTDevName)).getRecordTypeId();
+        if(cw.meta.component != null){
+            String contentRTDevName = ContentUtils.rtComponentToContent.get(cw.meta.component.RecordtypeDeveloperName);
+            if(contentRTDevName != null){
+                cw.contentRecordTypeId = Schema.SObjectType.Content__c.getRecordTypeInfosByDeveloperName().get(GeneralUtils.prefix(contentRTDevName)).getRecordTypeId();
+            }
         }
         
         cw.data = getData();

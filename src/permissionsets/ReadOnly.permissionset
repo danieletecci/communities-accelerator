@@ -1086,10 +1086,6 @@
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
-        <recordType>Content__c.Product</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
         <recordType>Menu__c.Menu</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>

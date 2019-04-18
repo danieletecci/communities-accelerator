@@ -1253,10 +1253,6 @@
     <layoutAssignments>
         <layout>Content__c-Content Layout</layout>
     </layoutAssignments>    
-        <layoutAssignments>
-        <layout>Content__c-Content%3A Product - Page Layout</layout>
-        <recordType>Content__c.Product</recordType>
-    </layoutAssignments>
     <layoutAssignments>
         <layout>Content__c-Content%3A Advance Content - Page Layout</layout>
         <recordType>Content__c.AdvanceContent</recordType>

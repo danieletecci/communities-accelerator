@@ -718,17 +718,6 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
         </filters>
         <label>Article</label>
     </listViews>
-    <listViews>
-        <fullName>Products</fullName>
-        <columns>NAME</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>RECORDTYPE</field>
-            <operation>equals</operation>
-            <value>Content__c.Product</value>
-        </filters>
-        <label>Products</label>
-    </listViews>
     <nameField>
         <label>Name</label>
         <trackHistory>false</trackHistory>
@@ -1268,118 +1257,6 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
                 <default>false</default>
             </values>
         </picklistValues>
-        <picklistValues>
-            <picklist>Layout__c</picklist>
-            <values>
-                <fullName>Title Bottom</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Title Middle</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Title Top</fullName>
-                <default>true</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>OverlayQuadrant__c</picklist>
-            <values>
-                <fullName>Bottom-Center</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Bottom-Left</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Bottom-Right</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Middle-Center</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Middle-Left</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Middle-Right</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Top-Center</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Top-Left</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Top-Right</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>RedirectType__c</picklist>
-            <values>
-                <fullName>Event</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Article</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>URL</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>StatusApprovalProcess__c</picklist>
-            <values>
-                <fullName>Approved</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pending</fullName>
-                <default>true</default>
-            </values>
-            <values>
-                <fullName>In Approval</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Rejected</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Status__c</picklist>
-            <values>
-                <fullName>Archived</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Draft</fullName>
-                <default>true</default>
-            </values>
-            <values>
-                <fullName>Published</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Scheduled</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-    </recordTypes>
-    <recordTypes>
-        <fullName>Product</fullName>
-        <active>true</active>
-        <label>Product</label>
         <picklistValues>
             <picklist>Layout__c</picklist>
             <values>

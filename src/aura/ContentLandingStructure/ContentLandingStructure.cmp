@@ -1,4 +1,4 @@
-<aura:component controller="ContentLandingStructureController" implements="force:appHostable" >
+<aura:component controller="ContentLandingStructureController" implements="force:appHostable" access="global">
 
     <!-- HANDLERS -->
     <aura:handler name="init" value="{!this}" action="{!c.onInit}" />

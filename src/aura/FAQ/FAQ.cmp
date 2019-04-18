@@ -1,7 +1,7 @@
-<aura:component access="global">
+<aura:component >
 
 	<!-- GENERAL VARIABLES --> 
-    <aura:attribute name="dataWrapper" type="Object" access="global"/>
+    <aura:attribute name="dataWrapper" type="Object"/>
 
 	<!-- FAQs COMPONENT -->
 	<aura:if isTrue="{!v.dataWrapper.listAllContentIds.length > 0}">

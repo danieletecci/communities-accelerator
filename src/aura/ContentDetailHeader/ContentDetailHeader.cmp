@@ -8,7 +8,7 @@
 	<aura:attribute name="contentData" 			type="Object" 		     			/>
 	<aura:attribute name="timeZone" 			type="String" 						/>
 	<aura:attribute name="gmtOffset"	 		type="String" 						/>
-	<aura:attribute name="hasDetailComponent"	type="Boolean" 						/>
+	<aura:attribute name="hasDetailComponent"	type="Boolean"	access="global"		/>
 	<aura:attribute name="temporaryName"		type="String"						/>
 	<aura:attribute name="isNameEdit"			type="Boolean"		default="false"	/>
 	<aura:attribute name="confirmationModal"	type="Aura.Component"				/>

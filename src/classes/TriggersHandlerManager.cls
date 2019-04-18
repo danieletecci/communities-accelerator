@@ -36,7 +36,7 @@ public without sharing class TriggersHandlerManager {
         if(triggersBypassed.contains(triggerName)){
         	return false;
         }
-        return getUser().TriggersDebugs__c != null ? (getUser().TriggersDebugs__c.contains(triggerName)) : true;
+        return getUser().TriggersDebugs__c != null ? (getUser().TriggersDebugs__c.contains(triggerName)) : false;
     }
 
     public static Boolean canTrigger(String triggerName){

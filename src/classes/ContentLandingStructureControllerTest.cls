@@ -1,12 +1,13 @@
 @isTest
 public class ContentLandingStructureControllerTest {
 
-	@testSetup
+    @testSetup
     static void setup(){
-    	Network net = [SELECT Id, Name FROM Network LIMIT 1];
+        Network net;
+        try{net = [SELECT Id, Name FROM Network LIMIT 1];}catch(Exception e){}
         MockupFactory.generateAcceleratorSetting();
         List<Cluster__c> clusterRoot = MockupFactory.createCluster('CRootTest', null, 1, 'ClusterRoot', 'CRT');
-        clusterRoot[0].CommunityName__c = net.Name;
+        clusterRoot[0].CommunityName__c = net != null ? net.Name : 'TestNet';
         update clusterRoot;
         List<Cluster__c> clustersLevel2 = MockupFactory.createCluster('CL2Test', clusterRoot.get(0).Id, 2, 'ClusterGroup', 'CGT');
         Set<Id> level2Ids = (new Map<Id, SObject>(clustersLevel2)).keySet();
@@ -16,15 +17,15 @@ public class ContentLandingStructureControllerTest {
 
         List<Navigation__c> navs = MockupFactory.createNavigation('testNav', 'testUrl', 3, clusterRoot.get(0).Id);
         for(Navigation__c n : navs)
-        	n.Type__c = 'Internal';
+            n.Type__c = 'Internal';
         update navs;
 
         Menu__c mainMenu = MockupFactory.createMenu('mainMenu', 1, clusterRoot.get(0).Id)[0]; 
         mainMenu.RecordTypeId = Schema.SObjectType.Menu__c.getRecordTypeInfosByDeveloperName().get('Menu').getRecordTypeId();
-    	mainMenu.Navigation__c = navs.get(0).Id;
-    	update mainMenu;
-       	
-       	Menu__c subMenu1 = MockupFactory.createMenu('subMenu1', 1, clusterRoot.get(0).Id)[0]; 
+        mainMenu.Navigation__c = navs.get(0).Id;
+        update mainMenu;
+        
+        Menu__c subMenu1 = MockupFactory.createMenu('subMenu1', 1, clusterRoot.get(0).Id)[0]; 
         subMenu1.RecordTypeId = Schema.SObjectType.Menu__c.getRecordTypeInfosByDeveloperName().get('SubMenu').getRecordTypeId();
         subMenu1.ParentMenu__c = mainMenu.Id; 
         subMenu1.Navigation__c = navs.get(1).Id;
@@ -43,24 +44,24 @@ public class ContentLandingStructureControllerTest {
 
     @isTest
     public static void getMenus(){
-    	ContentLandingStructureController.getMenus();
+        ContentLandingStructureController.getMenus();
     }
 
     @isTest
     public static void getGeneralData(){
         List<user> userForTesting = [SELECT Id FROM User WHERE Id = :UserInfo.getUserId() LIMIT 1];
-    	system.runAs(userForTesting[0]) {
+        system.runAs(userForTesting[0]) {
             try{
                 ContentLandingStructureController.getGeneralData();
             } catch (AuraException e){
                 System.assert(e.getMessage() == 'The site does not exist' || e.getMessage() == 'The community does not exist', 'error');
             }
-    	}
+        }
     }
 
     @isTest
     public static void getSiteId(){
-    	List<Cluster__c> clRoot = [SELECT Id FROM Cluster__c WHERE RecordType.DeveloperName = 'ClusterRoot'];
+        List<Cluster__c> clRoot = [SELECT Id FROM Cluster__c WHERE RecordType.DeveloperName = 'ClusterRoot'];
         try{
             ContentLandingStructureController.getSiteId(clRoot.get(0).Id);
         } catch (AuraException e){

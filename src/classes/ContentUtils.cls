@@ -306,8 +306,8 @@ public without sharing virtual class ContentUtils {
 
     public static String getRecordTypeContentFromRTComponent(String componentRT){
         String contentTypeToSearch;
-        if(componentRT == 'ArticlesRelated' || componentRT == 'ArticleDetail'){contentTypeToSearch = 'ArticleList';}
-        else if(componentRT == 'EventsRelated' || componentRT == 'EventDetail'){contentTypeToSearch = 'EventList';}
+        if(componentRT == 'ArticlesRelated' || componentRT == 'ArticleDetail'){contentTypeToSearch = 'Article';}
+        else if(componentRT == 'EventsRelated' || componentRT == 'EventDetail'){contentTypeToSearch = 'Event';}
         else{
             contentTypeToSearch = componentRT;
         }
@@ -353,7 +353,7 @@ public without sharing virtual class ContentUtils {
     @auraEnabled
     public static String createFromTemplate(Id templateId, String recordName, String clusterId){
 
-        Set<String> fieldNames = GeneralUtils.getObjectFieldNames('[CMS]Content__c');
+        Set<String> fieldNames = GeneralUtils.getObjectFieldNames(GeneralUtils.prefix('[CMS]Content__c'));
         Content__c template = Database.query(GeneralUtils.prefix('SELECT ' +  String.join(new List<String>(fieldNames), ',') + ' FROM [CMS]Content__c WHERE Id =: templateId'));
 
         if(template.IsTemplate__c && template.Status__c == 'Published'){

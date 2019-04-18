@@ -5,14 +5,14 @@ public class DatatableControllerTest {
     static void generateCustomSettings(){
         MockupFactory.generateAcceleratorSetting();
         List<Cluster__c> clusterRootList = MockupFactory.createCluster('ClusterRootTest', null, 1, 'ClusterRoot', 'DRC');
-        List<Datatable__c> datatableList = MockupFactory.createDatatables('Table Test', 'TableTest', 'Component__c', 1, clusterRootList[0].Id);
-    	List<DatatableElement__c> dataElementList = MockupFactory.createDatatableElements('Name', 'DataElementExternalId', 2, datatableList[0].Id);
+        List<Datatable__c> datatableList = MockupFactory.createDatatables('Table Test', 'TableTest', GeneralUtils.prefix('[CMS]Component__c'), 1, clusterRootList[0].Id);
+        List<DatatableElement__c> dataElementList = MockupFactory.createDatatableElements('Name', 'DataElementExternalId', 2, datatableList[0].Id);
     }
     
     @isTest
     static void testDoInit(){       
         // Given
-		Datatable__c data = [Select ExternalId__c from Datatable__c where ExternalId__c like'TableTest%' Limit 1];
+        Datatable__c data = [Select ExternalId__c from Datatable__c where ExternalId__c like'TableTest%' Limit 1];
         // When
         Test.startTest();
         String jsonTest = DatatableController.doInit(data.ExternalId__c);
@@ -48,7 +48,7 @@ public class DatatableControllerTest {
         String jsonComponentWrapper = DatatableController.doInit(data.ExternalId__c);
         // When
         Test.startTest();
-       	List<Id> ids=new List<Id>();
+        List<Id> ids=new List<Id>();
         String jsonTest = DatatableController.handleDelete(jsonComponentWrapper, ids);
         Test.stopTest();
         // Then
@@ -65,7 +65,7 @@ public class DatatableControllerTest {
         jsonWrapper.pagingType = 'Bottom';
         jsonWrapper.numberOfColumns = 3;
         jsonWrapper.recordsPerPage = 2;
-		
+        
         jsonWrapper.name ='Test';
         jsonWrapper.totalRows = 1;
         DatatableController.DatatableRowWrapper row = new DatatableController.DatatableRowWrapper();
@@ -84,9 +84,9 @@ public class DatatableControllerTest {
         System.assertNotEquals(jsonTest, null);
     }
 
-	@isTest
+    @isTest
     static void testhandleSort(){ 
-	
+    
      // Given
         Datatable__c data = [Select ExternalId__c from Datatable__c where ExternalId__c like'TableTest%' Limit 1];
         
@@ -98,14 +98,14 @@ public class DatatableControllerTest {
         
         // When   
         Test.startTest();
-       	
+        
         String jsonTest = DatatableController.handleSort(JSON.serialize(jsonWrapper), 'Name', 'ASC');
         Test.stopTest();
         // Then
         System.assertNotEquals(jsonTest, null);
     }
 
-	@isTest
+    @isTest
     static void TestprocessAppliedFilters(){   
         
         //Given
@@ -168,7 +168,7 @@ public class DatatableControllerTest {
         appliedFilters.add(dataFilterWrDateV2);
           
         // When   
-        Test.startTest();      	
+        Test.startTest();       
         String result = DatatableUtils.processAppliedFilters(appliedFilters);
         Test.stopTest();
         // Then
@@ -176,27 +176,27 @@ public class DatatableControllerTest {
         
     }
     
- 	@isTest
+    @isTest
     static void TestmapDatatableActionsToWrappers(){ 
         
         //Given
         Datatable__c data = [Select id, ExternalId__c from Datatable__c where ExternalId__c like'TableTest%' Limit 1];
-        RecordType recordT = [SELECT id FROM RecordType WHERE SobjectType = 'DatatableAction__c' AND DeveloperName = 'RowAction' LIMIT 1];
+        RecordType recordT = [SELECT id FROM RecordType WHERE SobjectType =: GeneralUtils.prefix('[CMS]DatatableAction__c') AND DeveloperName = 'RowAction' LIMIT 1];
         List<DatatableAction__c> actionList = MockupFactory.createDatatableActions('testAction', 'testActionExternalId', 1, data.Id, recordT.Id);
 
         // When   
-        Test.startTest();      	
+        Test.startTest();       
         List<DatatableController.DatatableActionWrapper> result = DatatableUtils.mapDatatableActionsToWrappers(actionList);
         Test.stopTest();
         // Then
         System.assertNotEquals(result, null); 
     }
 
- 	@isTest
+    @isTest
     static void TestmapDatatableDataToWrappers(){ 
         
         //Given
-		DatatableController.DatatableElementWrapper dataW = new DatatableController.DatatableElementWrapper();
+        DatatableController.DatatableElementWrapper dataW = new DatatableController.DatatableElementWrapper();
         dataw.fieldName = 'Name';
         List<DatatableController.DatatableElementWrapper> listDataw= new List<DatatableController.DatatableElementWrapper>();
         listDataw.add(dataw);

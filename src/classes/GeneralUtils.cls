@@ -2,7 +2,7 @@ public class GeneralUtils{
     
     public static String nameSpace = 'DiageoCMS';
     public static String prefix(String stringToReplace){
-        return stringToReplace.replace('[CMS]', nameSpace + '__');
+        return stringToReplace.replace('[cms]', '[CMS]').replace('[CMS]', nameSpace + '__');
     }
 
     public static String generateExternalId(String name, String clusterID, String sobjectType){

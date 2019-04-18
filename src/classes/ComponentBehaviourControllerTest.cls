@@ -8,10 +8,10 @@ public class ComponentBehaviourControllerTest {
         List<Cluster__c> clusterRoot = MockupFactory.createCluster('CRoot', '', 1, 'ClusterRoot', 'CRT');
         List<Cluster__c> clusterGroup = MockupFactory.createCluster('CGroup', clusterRoot.get(0).id, 1, 'ClusterGroup', 'CGT');
         List<Cluster__c> clusterLeaf = MockupFactory.createCluster('CLeaf', clusterGroup.get(0).id, 2, 'ClusterLeaf', 'CLT');
-        List<Component__c> components = MockupFactory.createComponent('Advance Content', 1, clusterRoot.get(0));
+        List<Component__c> components = MockupFactory.createComponent('AdvanceContent', 1, clusterRoot.get(0));
         components.get(0).DataSource__c = 'ManualAssignment'; 
         update components;
-        List<Content__c> contents = MockupFactory.createContent('Advance Content', clusterLeaf.get(0), 1);
+        List<Content__c> contents = MockupFactory.createContent('AdvanceContent', clusterLeaf.get(0), 1);
         contents.get(0).StructureComponent__c = components.get(0).Id;
         update contents;
 

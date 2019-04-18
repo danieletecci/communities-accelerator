@@ -92,7 +92,7 @@ public with sharing class ComponentTriggersTest {
 		System.debug('ClusterTriggersTest method contentListTest: '+contentListTest);
 
 		// Then
-		List<Component__Share> shareList = [SELECT Id, ParentId FROM Component__Share WHERE ParentId = :contentListTest[0].Id AND RowCause = '[CMS]Clustering__c'];
+		List<Component__Share> shareList = [SELECT Id, ParentId FROM Component__Share WHERE ParentId = :contentListTest[0].Id AND RowCause =: GeneralUtils.prefix('[CMS]Clustering__c')];
 		System.debug('ClusterTriggersTest method shareList: '+shareList);
 
 		System.assertEquals(3, shareList.size());
@@ -127,7 +127,7 @@ public with sharing class ComponentTriggersTest {
 		System.debug('ClusterTriggersTest method componentToUpdateList: '+componentToUpdateList);
 
 		// Then
-		List<Component__Share> shareList = [SELECT Id, ParentId FROM Component__Share WHERE ParentId = :componentToUpdateList[0].Id AND RowCause = '[CMS]Clustering__c'];
+		List<Component__Share> shareList = [SELECT Id, ParentId FROM Component__Share WHERE ParentId = :componentToUpdateList[0].Id AND RowCause =: GeneralUtils.prefix('[CMS]Clustering__c')];
 		System.debug('ClusterTriggersTest method shareList: '+shareList);
 
 		System.assertEquals(6, shareList.size());

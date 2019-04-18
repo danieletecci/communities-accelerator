@@ -21,7 +21,7 @@ private class TranslationControllerTest {
 	static void getLanguagesTest() {
 		Content__c cont = [SELECT id from Content__c where Cluster__c!=null LIMIT 1];
 		Test.startTest();
-		TranslationController.RecordsWrapper rw = TranslationController.getLanguages('[CMS}Content__c', '[CMS]Description__c, Name', cont.id);
+		TranslationController.RecordsWrapper rw = TranslationController.getLanguages('[CMS]Content__c', '[CMS]Description__c, Name', cont.id);
 		Test.stopTest();
 		System.assertNotEquals(rw, null);
 	}
@@ -35,7 +35,7 @@ private class TranslationControllerTest {
 		String parentLookupName = '[CMS]Content__c';
 		TranslationController.RecordsWrapper rw = TranslationController.getLanguages(parentLookupName, '[CMS]Description__c, Name', cont.id);
 		String queryStr = 'SELECT id FROM ' + parentLookupName + ' LIMIT 1';
-		sObject sobj = Database.query(queryStr);
+		sObject sobj = Database.query(GeneralUtils.prefix(queryStr));
 
 		Test.startTest();
 		rw = TranslationController.changeLanguage(parentLookupName, 'it', (String)sobj.get('Id'), JSON.serialize(rw));
@@ -51,7 +51,7 @@ private class TranslationControllerTest {
 		String fieldSet = '[CMS]Description__c, Name,[CMS]Extract__c';
 		TranslationController.RecordsWrapper rw = TranslationController.getLanguages(parentLookupName, fieldSet, cont.id);
 		String queryStr = 'SELECT id FROM ' + parentLookupName + ' LIMIT 1';
-		sObject sobj = Database.query(queryStr);
+		sObject sobj = Database.query(GeneralUtils.prefix(queryStr));
 
 		rw = TranslationController.changeLanguage(parentLookupName, 'it', (String)sobj.get('Id'), JSON.serialize(rw));
 		for(Integer i = 0 ; i < rw.dataObject.size(); i++){

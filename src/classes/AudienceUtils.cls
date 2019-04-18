@@ -16,7 +16,7 @@ public with sharing class AudienceUtils {
             
             //Get audiences of each record
             String audiencesExternalIds;
-            try{audiencesExternalIds = String.ValueOf(GeneralUtils.getFieldValue(records[i], audienceLookupApiName.removeEndIgnoreCase('__c') + '__r.[CMS]ReferenceAudienceExternalIds__c'));}catch(Exception e){}
+            try{audiencesExternalIds = String.ValueOf(GeneralUtils.getFieldValue(records[i], GeneralUtils.prefix(audienceLookupApiName.removeEndIgnoreCase('__c') + '__r.[CMS]ReferenceAudienceExternalIds__c')));}catch(Exception e){}
             
             if(audiencesExternalIds != null){
                 for(String audExtId: audiencesExternalIds.split(';')){

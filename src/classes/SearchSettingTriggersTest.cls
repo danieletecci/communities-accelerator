@@ -54,12 +54,12 @@ public with sharing class SearchSettingTriggersTest {
             System.AssertEquals(expectedExceptionThrown, true);
         }
 
-        rll.FieldsToSearch__c = 'Name,Description__c';
+        rll.FieldsToSearch__c = GeneralUtils.prefix('Name,[CMS]Description__c');
         rll.FieldsToShow__c = 'Name';
         try{
             update rll;
         } catch(Exception e){
-            Boolean expectedExceptionThrown =  (e.getMessage().contains(String.format(Label.GlobalSearchFieldNotFilterable, new List<String> {'Description__c', rll.ObjectAPIName__c}))) ? true : false;
+            Boolean expectedExceptionThrown =  (e.getMessage().contains(String.format(Label.GlobalSearchFieldNotFilterable, new List<String> {GeneralUtils.prefix('[CMS]Description__c'), rll.ObjectAPIName__c}))) ? true : false;
             System.AssertEquals(expectedExceptionThrown, true);
         }
 

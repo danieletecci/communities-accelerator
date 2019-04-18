@@ -25,12 +25,12 @@ public class ContentUtilsTest {
         List<MediaElement__c> mediaElementList = MockupFactory.createMediaElement(1);
         List<MediaElementAssignment__c> mediaElementAssigList = MockupFactory.createMediaElementAssignment(contentList, mediaElementList);
 
-        Set<String> fieldSet =  new Set<String>{'ExternalId__c'};
+        Set<String> fieldSet =  new Set<String>{'[CMS]ExternalId__c'};
         Set<String> setContentIds = new Set<String>{contentList[0].Id};
         
         // When
         Test.startTest();
-        List<ContentUtils.ContentDataWrapper> cdwList = ContentUtils.getContentPage(setContentIds, fieldSet, 1, 1, 'ExternalId__c', 'Desktop', 'BannerImage');
+        List<ContentUtils.ContentDataWrapper> cdwList = ContentUtils.getContentPage(setContentIds, fieldSet, 1, 1, '[CMS]ExternalId__c', 'Desktop', 'BannerImage');
         Test.stopTest();
 
         // Then     
@@ -43,7 +43,7 @@ public class ContentUtilsTest {
 
         // Given
         List<Cluster__c> clusterRootList = [SELECT Id FROM Cluster__c];
-        List<Component__c> componentList = MockupFactory.createComponent('Event', 1);
+        List<Component__c> componentList = MockupFactory.createComponent('EventList', 1);
         Component__c comp = componentList[0];
         comp.ExcludePastEvents__c = true;
         update comp;
@@ -56,7 +56,7 @@ public class ContentUtilsTest {
         List<MediaElement__c> mediaElementList = MockupFactory.createMediaElement(1);
         List<MediaElementAssignment__c> mediaElementAssigList = MockupFactory.createMediaElementAssignment(contentList, mediaElementList);
 
-        Set<String> fieldSet =  new Set<String>{'ExternalId__c'};
+        Set<String> fieldSet =  new Set<String>{'[CMS]ExternalId__c'};
         Set<String> setClusterIds = new Set<String>{clusterRootList[0].Id};
         
         // When
@@ -88,7 +88,7 @@ public class ContentUtilsTest {
         List<MediaElement__c> mediaElementList = MockupFactory.createMediaElement(1);
         List<MediaElementAssignment__c> mediaElementAssigList = MockupFactory.createMediaElementAssignment(contentList, mediaElementList);
 
-        Set<String> fieldSet =  new Set<String>{'ExternalId__c','BannerFrameType__c'};
+        Set<String> fieldSet =  new Set<String>{'[CMS]ExternalId__c','[CMS]BannerFrameType__c'};
         Set<String> setClusterIds = new Set<String>{clusterRootList[0].Id};
         
         // When
@@ -120,7 +120,7 @@ public class ContentUtilsTest {
         List<MediaElement__c> mediaElementList = MockupFactory.createMediaElement(1);
         List<MediaElementAssignment__c> mediaElementAssigList = MockupFactory.createMediaElementAssignment(contentList, mediaElementList);
 
-        Set<String> fieldSet =  new Set<String>{'ExternalId__c','BannerFrameType__c'};
+        Set<String> fieldSet =  new Set<String>{'[CMS]ExternalId__c','[CMS]BannerFrameType__c'};
         Set<String> setClusterIds = new Set<String>{clusterRootList[0].Id};
         
         // When
@@ -151,7 +151,7 @@ public class ContentUtilsTest {
         List<CategoryAssignment__c> categoryAssignmentList = MockupFactory.createCategoryAssignment(categoryList, componentList);   
         List<Content__c> contentList = MockupFactory.createContent('Event', clusterRootList[0], 1);
 
-        Set<String> fieldSet =  new Set<String>{'ExternalId__c'};
+        Set<String> fieldSet =  new Set<String>{'[CMS]ExternalId__c'};
         Set<String> setClusterIds = new Set<String>{clusterRootList[0].Id};
         
         List<Content__c> contentListExclude = MockupFactory.createContent('Banner', clusterRootList[0], 1);
@@ -180,7 +180,7 @@ public class ContentUtilsTest {
         componentList = [SELECT Name, TagCriteria__c, ExternalId__c, Datasource__c,BannerFrameType__c, Status__c, RecordTypeId, RecordType.DeveloperName, Cluster__c, ExcludePastEvents__c, OrderBy__c, HierarchicalOrderBy__c, PageSize__c
                 FROM Component__c WHERE Id =: comp.ID];
         
-        Set<String> fieldSet =  new Set<String>{'ExternalId__c','BannerFrameType__c'};
+        Set<String> fieldSet =  new Set<String>{'[CMS]ExternalId__c','[CMS]BannerFrameType__c'};
         Set<String> setClusterIds = new Set<String>{clusterRootList[0].Id};
         
         List<Content__c> contentListDirect = MockupFactory.createContent('Banner', clusterRootList[0], 1);
@@ -220,7 +220,7 @@ public class ContentUtilsTest {
         List<MediaElement__c> mediaElementList = MockupFactory.createMediaElement(1);
         List<MediaElementAssignment__c> mediaElementAssigList = MockupFactory.createMediaElementAssignment(contentList, mediaElementList);
 
-        Set<String> fieldSet =  new Set<String>{'ExternalId__c','BannerFrameType__c'};
+        Set<String> fieldSet =  new Set<String>{'[CMS]ExternalId__c','[CMS]BannerFrameType__c'};
         Set<String> setClusterIds = new Set<String>{clusterRootList[0].Id};
         
         // When
@@ -258,7 +258,7 @@ public class ContentUtilsTest {
         List<MediaElement__c> mediaElementList = MockupFactory.createMediaElement(1);
         List<MediaElementAssignment__c> mediaElementAssigList = MockupFactory.createMediaElementAssignment(contentList, mediaElementList);
 
-        Set<String> fieldSet =  new Set<String>{'ExternalId__c','BannerFrameType__c'};
+        Set<String> fieldSet =  new Set<String>{'[CMS]ExternalId__c','[CMS]BannerFrameType__c'};
         Set<String> setClusterIds = new Set<String>{clusterRootList[0].Id};
         
         // When

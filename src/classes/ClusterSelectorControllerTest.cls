@@ -7,7 +7,7 @@ private class ClusterSelectorControllerTest {
 		List<Cluster__c> clusterRoot = MockupFactory.createCluster('Cluster Root', '', 1, 'ClusterRoot', 'CRT');
         List<Cluster__c> clusterGroup = MockupFactory.createCluster('Cluster Group', clusterRoot.get(0).id, 1, 'ClusterGroup', 'CGT');
         List<Cluster__c> clusterLeaf = MockupFactory.createCluster('Cluster Leaf', clusterGroup.get(0).id, 2, 'ClusterLeaf', 'CLT');
-        List<Component__c> componentList = MockupFactory.createComponent('Cluster Selector', 1, clusterRoot[0]);
+        List<Component__c> componentList = MockupFactory.createComponent('ClusterSelector', 1, clusterRoot[0]);
 		
 	}
 

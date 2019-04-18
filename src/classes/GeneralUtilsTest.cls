@@ -19,8 +19,8 @@ private class GeneralUtilsTest {
 
 		//When
 		Test.startTest();
-		String result = GeneralUtils.replaceDynamicFields(GeneralUtils.prefix('[![CMS]cluster__c.name]'), GeneralUtils.prefix('[CMS]Cluster__c'), (String)sObjectList[0].get('id'), false);
-		String result2 = GeneralUtils.replaceDynamicFields(GeneralUtils.prefix('[![CMS]cluster__c.name]'), GeneralUtils.prefix('[CMS]Cluster__c'), (String)sObjectList[0].get('id'), true);
+		String result = GeneralUtils.replaceDynamicFields(GeneralUtils.prefix('[![CMS]cluster__c.name]').toLowerCase(), GeneralUtils.prefix('[CMS]Cluster__c'), (String)sObjectList[0].get('id'), false);
+		String result2 = GeneralUtils.replaceDynamicFields(GeneralUtils.prefix('[![CMS]cluster__c.name]').toLowerCase(), GeneralUtils.prefix('[CMS]Cluster__c'), (String)sObjectList[0].get('id'), true);
 		Test.stopTest();
 
 		//Then
@@ -132,7 +132,7 @@ private class GeneralUtilsTest {
     @isTest
 	static void getFieldValueTest() {
 		//Given
-		List<SObject> sObjectList = Database.query(GeneralUtils.prefix('[CMS]SELECT Id, name FROM Cluster__c'));
+		List<SObject> sObjectList = Database.query(GeneralUtils.prefix('SELECT Id, Name FROM [CMS]Cluster__c'));
 
 		//When
 		Test.startTest();

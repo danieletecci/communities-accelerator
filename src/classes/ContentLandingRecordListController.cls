@@ -53,7 +53,7 @@ public class ContentLandingRecordListController {
         Boolean isTemplate;
         // Wrapper para agrupar los criterios de filtro recibidos
         FilterWrapper(String contentTypeId, String clusterId, String categoryId, List<String> tagIds, String status, String searchText, Boolean isTemplate){
-            this.contentTypeName = contentTypeId != null ? [SELECT Id, Name FROM RecordType WHERE SObjectType = 'Content__c' AND Id =: contentTypeId LIMIT 1].Name : 'Last Modified';
+            this.contentTypeName = contentTypeId != null ? [SELECT Id, Name FROM RecordType WHERE Id =: contentTypeId LIMIT 1].Name : 'Last Modified';
             this.contentTypeId = contentTypeId;
             this.clusterId = clusterId;
             this.categoryId = categoryId;
@@ -130,9 +130,11 @@ public class ContentLandingRecordListController {
     }                                                                                  
                                                               
     static List<Content__c> getRecords(FilterWrapper wrapper, Integer recordOffset, Integer recordLimit){      
+        
         String columnSet = getColumnSet();
-        columnSet += columnSet.contains(GeneralUtils.prefix('[CMS]Status__c')) ? '' : GeneralUtils.prefix('[CMS]Status__c');
-        columnSet += columnSet.contains(GeneralUtils.prefix('[CMS]isTemplate__c')) ? '' : GeneralUtils.prefix('[CMS]isTemplate__c');
+        columnSet += columnSet.contains(GeneralUtils.prefix('[CMS]Status__c')) ? '' : ','+GeneralUtils.prefix('[CMS]Status__c');
+        columnSet += columnSet.contains(GeneralUtils.prefix('[CMS]isTemplate__c')) ? '' : ','+GeneralUtils.prefix('[CMS]isTemplate__c');
+        
         String queryInString = 'SELECT Id, ' + columnSet + ' FROM [CMS]Content__c ';
         List<String> queryConditions = getQueryConditions(wrapper);
         // Si no recibe filtros, trae los 10 registros modificados mas recientemente
@@ -207,7 +209,7 @@ public class ContentLandingRecordListController {
     static List<String> getQueryConditions(FilterWrapper wrapper){
         List<String> queryConditions = new List<String>();
         // Agrega los filtros recibidos a una lista de Query Conditions
-        if(wrapper.contentTypeId != null)   queryConditions.add('[CMS]RecordTypeId = \'' + wrapper.contentTypeId + '\'');
+        if(wrapper.contentTypeId != null)   queryConditions.add('RecordTypeId = \'' + wrapper.contentTypeId + '\'');
         if(wrapper.clusterId != null)       queryConditions.add('[CMS]Cluster__c = \'' + wrapper.clusterId + '\'');
         if(wrapper.categoryId != null)      queryConditions.add('[CMS]Category__c = \'' + wrapper.categoryId + '\'');
         if(wrapper.isTemplate != null)      queryConditions.add('[CMS]isTemplate__c = ' + wrapper.isTemplate);

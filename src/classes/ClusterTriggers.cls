@@ -468,7 +468,6 @@ public with sharing class ClusterTriggers extends TriggersHandler {
 
         if(!tagShareList.isEmpty() && toContinueTrigger){
             try{
-
                 insert tagShareList;
             }catch(Exception e){
                 objectIdToMessageErrosMap.put(recordList[0].Id,Label.SharingWithOutReason);

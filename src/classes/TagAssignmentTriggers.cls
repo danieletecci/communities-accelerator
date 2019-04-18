@@ -29,7 +29,8 @@ public with sharing class TagAssignmentTriggers extends TriggersHandler {
         if(!canMethod('setExternalId')){return;}
 
         if(recNew.ExternalID__c == null){
-        	recordSelfUpdate(recNew.id, '[CMS]ExternalID__c', recNew.Name);
+            system.debug('TOKEN recNew.Name: ' + recNew.Name);
+        	recordSelfUpdate(recNew.id, GeneralUtils.prefix('[CMS]ExternalId__c'), recNew.Name);
     	}
 	}
 }

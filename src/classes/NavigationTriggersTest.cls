@@ -1,6 +1,5 @@
 @isTest
-private class NavigationTriggersTest
-{
+private class NavigationTriggersTest{
 
 	@testSetup
 	static void generateCustomSettings(){
@@ -8,10 +7,7 @@ private class NavigationTriggersTest
 	}
 	
 	@isTest
-	static void insertNavigationSharing()
-	{
-		
-
+	static void insertNavigationSharing(){
 		// Given
 		//List<String> clustersList = new List<String>();
 		List<Cluster__c> clusterRootList = MockupFactory.createCluster('ClusterRootTest', null, 1, 'ClusterRoot', 'CRT');
@@ -27,14 +23,10 @@ private class NavigationTriggersTest
 		List<Navigation__Share> shareList = [SELECT Id, ParentId FROM Navigation__Share WHERE ParentId = :tagList[0].Id AND RowCause =: GeneralUtils.prefix('[CMS]Clustering__c')];
 		
 		System.assertEquals(3, shareList.size());
-
 	}
 
 	@isTest
-	static void insertNavigationSharingWithoutClusterId()
-	{
-		
-
+	static void insertNavigationSharingWithoutClusterId(){
 		// Given
 		//List<String> clustersList = new List<String>();
 		List<Cluster__c> clusterRootList = MockupFactory.createCluster('ClusterRootTest', null, 1, 'ClusterRoot', 'CRT');
@@ -50,14 +42,10 @@ private class NavigationTriggersTest
 		List<Navigation__Share> shareList = [SELECT Id, ParentId FROM Navigation__Share WHERE ParentId = :tagList[0].Id AND RowCause =: GeneralUtils.prefix('[CMS]Clustering__c')];
 		
 		System.assertEquals(0, shareList.size());
-
 	}
 
 	@isTest
-	static void updateNavigationSharing()
-	{
-		
-
+	static void updateNavigationSharing(){
 		// Given
 		//List<String> clustersList = new List<String>();
 		List<Cluster__c> clusterRootList = MockupFactory.createCluster('ClusterRootTest', null, 2, 'ClusterRoot', 'CRT');
@@ -82,10 +70,7 @@ private class NavigationTriggersTest
 	}
 
 	@isTest
-	static void updateNavigationSharingWithoutClusterId()
-	{
-		
-
+	static void updateNavigationSharingWithoutClusterId(){
 		// Given
 		//List<String> clustersList = new List<String>();
 		List<Cluster__c> clusterRootList = MockupFactory.createCluster('ClusterRootTest', null, 2, 'ClusterRoot', 'CRT');

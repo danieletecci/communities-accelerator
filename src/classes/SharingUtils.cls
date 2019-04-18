@@ -1,6 +1,10 @@
 public with sharing class SharingUtils{
     
     public static SharingWrapper generateSharingForRecordsOnCluster(List<SObject> records, String lookupField, String nameObjectShare, String sharingReason, Boolean isCluster){
+        
+        lookupField = GeneralUtils.prefix(lookupField);
+        nameObjectShare = GeneralUtils.prefix(nameObjectShare);
+        sharingReason = GeneralUtils.prefix(sharingReason);
 
         Map<Id,String> objectIdToMessageErrosMap = new Map<Id,String>();
         Boolean excecuteTrigger = true;
@@ -82,6 +86,10 @@ public with sharing class SharingUtils{
     }
 
     public static SharingWrapper generateSharingForCluster(List<SObject> records, String lookupField, String nameObjectShare, String sharingReason, Boolean isCluster){
+
+        lookupField = GeneralUtils.prefix(lookupField);
+        nameObjectShare = GeneralUtils.prefix(nameObjectShare);
+        sharingReason = GeneralUtils.prefix(sharingReason);
 
         Map<Id,String> objectIdToMessageErrosMap = new Map<Id,String>();
         Boolean excecuteTrigger = true;

@@ -82,7 +82,7 @@ public with sharing class NavigationTriggers extends TriggersHandler{
         
         if(isMaster){
             Map<String, Schema.SObjectType> sharing = Schema.getGlobalDescribe();
-            if(sharing.containsKey('[CMS]Navigation__Share')) {
+            if(sharing.containsKey(GeneralUtils.prefix('[CMS]Navigation__Share'))) {
                 
                 if(recOld != null){
                     if(recNew.Cluster__c !=  recOld.Cluster__c){

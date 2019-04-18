@@ -19,7 +19,7 @@ public with sharing class CG_BaseComponentControllerTest {
         Component__c componentArticle = new Component__c (Name='Article', ExternalId__c='Article', RecordTypeId = recordTypeId, Datasource__c = 'ManualAssignment',HierarchicalOrderBy__c = 'ASC', LinkDetail__c = nav.id);
         insert componentArticle;
         //Content Article Record
-        String RTArticleId = [SELECt id, name, SobjectType FROM RecordType WHERE SobjectType =: GeneralUtils.prefix('[CMS]Content__c') AND DeveloperName = 'ArticleList'].id;
+        String RTArticleId = [SELECt id, name, SobjectType FROM RecordType WHERE SobjectType =: GeneralUtils.prefix('[CMS]Content__c') AND DeveloperName = 'Article'].id;
         Content__c contentArticle = new Content__c(Name = 'Article1', RecordTypeId = RTArticleId);
         insert contentArticle;
         //Component Related Article Record
@@ -67,7 +67,7 @@ public with sharing class CG_BaseComponentControllerTest {
         //Given
         Cluster__c cluster = [SELECT id FROM Cluster__c LIMIT 1];
         List<String> listContentId = new List<String>();
-        for(Content__c con : MockupFactory.createContent('ArticleList', cluster, 3)){
+        for(Content__c con : MockupFactory.createContent('Article', cluster, 3)){
             listContentId.add(con.Id);
         }
         //When

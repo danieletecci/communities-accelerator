@@ -127,7 +127,7 @@
     <sharingModel>ControlledByParent</sharingModel>
     <validationRules>
         <fullName>ValidateRecordTypeContentComponent</fullName>
-        <active>true</active>
+        <active>false</active>
         <errorConditionFormula>Content__r.RecordType.DeveloperName != Component__r.RecordType.DeveloperName</errorConditionFormula>
         <errorMessage>Content record type doesn&apos;t match with the Component record type</errorMessage>
     </validationRules>

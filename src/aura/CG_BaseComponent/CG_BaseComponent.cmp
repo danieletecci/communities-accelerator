@@ -1,4 +1,4 @@
-<aura:component extensible="true" abstract="true" controller="CG_BaseComponentController" access="global">
+<aura:component extensible="true" abstract="true" controller="CG_BaseComponentController" >
     
     <!-- CONSTRUCTOR -->
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />

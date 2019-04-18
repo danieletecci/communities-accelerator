@@ -1,4 +1,4 @@
-<aura:component access="global" controller="CG_CommunityComponentFrameController" >
+<aura:component  controller="CG_CommunityComponentFrameController" >
     
     <!-- CONSTRUCTOR -->
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />

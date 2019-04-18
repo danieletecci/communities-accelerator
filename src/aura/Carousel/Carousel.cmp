@@ -1,4 +1,4 @@
-<aura:component access="global">
+<aura:component>
     
     <!-- GENERAL VARIABLES --> 
     <aura:handler name="init" value="{!this}" action="{!c.onInit}"/>

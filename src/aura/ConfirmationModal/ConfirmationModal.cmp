@@ -1,4 +1,4 @@
-<aura:component access="global">
+<aura:component>
     
     <!-- ATTRIBUTES -->
     <aura:attribute name="title"            type="String" 		/>

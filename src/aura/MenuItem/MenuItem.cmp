@@ -1,4 +1,4 @@
-<aura:component access="global">
+<aura:component >
     <aura:attribute name="menuLevel" required="true" type="Integer"/>
     <aura:attribute name="item" required="true" type="Object"/>
     <aura:attribute name="index" required="true" type="Integer"/>

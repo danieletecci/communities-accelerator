@@ -1,4 +1,4 @@
-<aura:component access="global">
+<aura:component >
 	<aura:handler event="c:RecordListSetEvent" action="{!c.handleRecordList}"/>
 
 	<aura:attribute name="title" type="String" />

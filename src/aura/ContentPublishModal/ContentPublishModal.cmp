@@ -1,4 +1,4 @@
-<aura:component controller="ContentPublishModalController" access="global">
+<aura:component controller="ContentPublishModalController">
 
     <!-- HANDLERS -->
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />

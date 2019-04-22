@@ -70,7 +70,7 @@
         <label>Cluster</label>
         <referenceTo>Cluster__c</referenceTo>
         <relationshipLabel>Search Settings</relationshipLabel>
-        <relationshipName>Search_Settings</relationshipName>
+        <relationshipName>Search_Details</relationshipName>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -91,7 +91,7 @@
         </lookupFilter>
         <referenceTo>Component__c</referenceTo>
         <relationshipLabel>Search Settings</relationshipLabel>
-        <relationshipName>Search_Settings</relationshipName>
+        <relationshipName>Search_Details</relationshipName>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -162,7 +162,7 @@ Ex: &quot;utility:user&quot;</inlineHelpText>
         <label>Navigation</label>
         <referenceTo>Navigation__c</referenceTo>
         <relationshipLabel>Search Settings</relationshipLabel>
-        <relationshipName>Search_Settings</relationshipName>
+        <relationshipName>Search_Details</relationshipName>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>

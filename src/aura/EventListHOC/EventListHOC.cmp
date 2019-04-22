@@ -2,13 +2,13 @@
 
     <!-- GENERAL VARIABLES --> 
     <aura:attribute name="componentExternalId" type="String"  access="global"/>
-    <aura:attribute name="componentType" type="String" default="Event"/>
+    <aura:attribute name="componentType" type="String" default="Event List"/>
     <aura:attribute name="componentWrapper" type="Object" />
     <aura:attribute name="showPaging" type="Boolean" default="{!v.componentWrapper.listAllContentIds.length > v.componentWrapper.contentWrapper.length}"/>
 
     <aura:if isTrue="{!v.componentWrapper.listAllContentIds.length > 0}">
         <h2 class="list-header">{!v.componentWrapper.component.title}</h2>
-        <aura:if isTrue="{!v.componentWrapper.component.RecordTypeDeveloperName == 'Event'}">
+        <aura:if isTrue="{!v.componentWrapper.component.RecordTypeDeveloperName == 'EventList'}">
             <c:cardList 
             onnavigatetodetail="{!c.handleNavigateToDetail}" 
             contents="{!v.componentWrapper.contentWrapper}" 

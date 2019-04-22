@@ -69,8 +69,8 @@
         <externalId>false</externalId>
         <label>Cluster</label>
         <referenceTo>Cluster__c</referenceTo>
-        <relationshipLabel>Search Details</relationshipLabel>
-        <relationshipName>Search_Details</relationshipName>
+        <relationshipLabel>Search Settings</relationshipLabel>
+        <relationshipName>Search_Settings</relationshipName>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -90,8 +90,8 @@
             <isOptional>false</isOptional>
         </lookupFilter>
         <referenceTo>Component__c</referenceTo>
-        <relationshipLabel>Search Details</relationshipLabel>
-        <relationshipName>Search_Details</relationshipName>
+        <relationshipLabel>Search Settings</relationshipLabel>
+        <relationshipName>Search_Settings</relationshipName>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -161,8 +161,8 @@ Ex: &quot;utility:user&quot;</inlineHelpText>
         <externalId>false</externalId>
         <label>Navigation</label>
         <referenceTo>Navigation__c</referenceTo>
-        <relationshipLabel>Search Details</relationshipLabel>
-        <relationshipName>Search_Details</relationshipName>
+        <relationshipLabel>Search Settings</relationshipLabel>
+        <relationshipName>Search_Settings</relationshipName>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -226,17 +226,17 @@ Ex: &quot;utility:user&quot;</inlineHelpText>
         <type>Text</type>
         <unique>false</unique>
     </fields>
-    <label>Search Detail</label>
+    <label>Search Setting</label>
     <listViews>
         <fullName>All</fullName>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
     <nameField>
-        <label>Search Detail Name</label>
+        <label>Search Setting Name</label>
         <type>Text</type>
     </nameField>
-    <pluralLabel>Search Details</pluralLabel>
+    <pluralLabel>Search Settings</pluralLabel>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
     <validationRules>

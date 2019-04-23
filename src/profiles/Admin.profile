@@ -5,7 +5,7 @@
         <field>CMSUserSettings__c.AudienceAccount__c</field>
         <readable>true</readable>
     </fieldPermissions>
-	<fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Cluster__c.AudienceCustomObjectType__c</field>
         <readable>true</readable>
@@ -30,7 +30,7 @@
         <field>Cluster__c.AudienceFieldsCustomObject__c</field>
         <readable>true</readable>
     </fieldPermissions>
-	<fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>AudienceCriterion__c.ExternalId__c</field>
         <readable>true</readable>
@@ -40,7 +40,7 @@
         <field>AudienceCriterion__c.Value__c</field>
         <readable>true</readable>
     </fieldPermissions>
-	<fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Audience__c.AudienceCriteria__c</field>
         <readable>true</readable>
@@ -50,12 +50,12 @@
         <field>Audience__c.AudienceNumber__c</field>
         <readable>true</readable>
     </fieldPermissions>
-	<fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Content__c.Audience__c</field>
         <readable>true</readable>
     </fieldPermissions>
-	<fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Navigation__c.Audience__c</field>
         <readable>false</readable>
@@ -425,7 +425,7 @@
         <field>Component__c.MatchCriteria__c</field>
         <readable>true</readable>
     </fieldPermissions>
-	<fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Component__c.TagCriteria__c</field>
         <readable>true</readable>
@@ -1161,7 +1161,7 @@
         <visible>true</visible>
     </applicationVisibilities>
     <custom>false</custom>
-	<layoutAssignments>
+    <layoutAssignments>
         <layout>Audience__c-Audience Group Layout</layout>
         <recordType>Audience__c.AudienceGroup</recordType>
     </layoutAssignments>
@@ -1172,7 +1172,7 @@
         <layout>Audience__c-Audience Layout</layout>
         <recordType>Audience__c.Audience</recordType>
     </layoutAssignments>
-	<layoutAssignments>
+    <layoutAssignments>
         <layout>CMSUserSettings__c-CMS User Settings Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -1295,7 +1295,7 @@
         <layout>DatatableAction__c-List View Action Layout</layout>
         <recordType>DatatableAction__c.GlobalAction</recordType>
     </layoutAssignments>
-	<layoutAssignments>
+    <layoutAssignments>
         <layout>AudienceCriterion__c-Audience Criterion Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -1308,7 +1308,7 @@
     <layoutAssignments>
         <layout>Datatable__c-List View Layout</layout>
     </layoutAssignments>
-	<tabVisibilities>
+    <tabVisibilities>
         <tab>Audience__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
@@ -1332,7 +1332,7 @@
         <tab>ContentAssignment__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
-	<tabVisibilities>
+    <tabVisibilities>
         <tab>CMSUserSettings__c</tab>
         <visibility>DefaultOff</visibility>
     </tabVisibilities>
@@ -1372,6 +1372,14 @@
         <tab>Datatable__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
+    <tabVisibilities>
+        <tab>ContentLanding</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>Sitemap</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
     <userLicense>Salesforce</userLicense>
     <objectPermissions>
         <allowCreate>true</allowCreate>
@@ -1382,7 +1390,7 @@
         <object>MenuAssignment__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
-	<objectPermissions>
+    <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>
         <allowEdit>true</allowEdit>
@@ -1391,7 +1399,7 @@
         <object>AudienceCriterion__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
-	<objectPermissions>
+    <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>
         <allowEdit>true</allowEdit>
@@ -1400,7 +1408,7 @@
         <object>Audience__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
-	<objectPermissions>
+    <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>
         <allowEdit>true</allowEdit>
@@ -1571,7 +1579,7 @@
         <object>Datatable__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
-	<recordTypeVisibilities>
+    <recordTypeVisibilities>
         <default>true</default>
         <recordType>Audience__c.Audience</recordType>
         <visible>true</visible>

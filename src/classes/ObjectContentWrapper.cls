@@ -1,62 +1,64 @@
 public class ObjectContentWrapper {
     
-    public String Id;
-    public String Name;
-    public String RecordTypeId;
-    public String RecordTypeName;
-    public String RecordTypeDeveloperName;
+    @AuraEnabled public String Id;
+    @AuraEnabled public String Name;
+    @AuraEnabled public String RecordTypeId;
+    @AuraEnabled public String RecordTypeName;
+    @AuraEnabled public String RecordTypeDeveloperName;
 
-    public Datetime PublishedDate;
-    public String Audience;
-    public String BannerFrameType;
-    public String Body;
-    public String ButtonLabel;
-    public String Category;
-    public String Cluster;
-    public String ClusterRootExternalId;
-    public String ContentRedirect;
-    public String Description;
-    public String EventDates;
-    public Datetime EventEndDate;
-    public Datetime EventStartDate;
-    public String EventStartDay;
-    public String EventStartMonth;
-    public String ExternalId;
-    public String Extract;
-    public String HTMLContent;
-    public Boolean IsActive;
-    public Boolean IsTemplate;
-    public String Layout;
-    public String LinkDetail;
-    public String Location;
-    public Decimal Order;
-    public String OverlayQuadrant;
-    public Datetime PublishEndDate;
-    public Datetime PublishStartDate;
-    public String RedirectType;
-    public String Status;
-    public String StatusApprovalProcess;
-    public String StructureComponent;
-    public String StructureNavigation;
-    public String TemplateDescription;
-    public String TemplateUsed;
-    public String Title;
-    public String URLRedirect;
+    @AuraEnabled public Datetime PublishedDate;
+    @AuraEnabled public String Audience;
+    @AuraEnabled public String BannerFrameType;
+    @AuraEnabled public String Body;
+    @AuraEnabled public String ButtonLabel;
+    @AuraEnabled public String Category;
+    @AuraEnabled public String Cluster;
+    @AuraEnabled public String ClusterRootExternalId;
+    @AuraEnabled public String ContentRedirect;
+    @AuraEnabled public String Description;
+    @AuraEnabled public String EventDates;
+    @AuraEnabled public Datetime EventEndDate;
+    @AuraEnabled public Datetime EventStartDate;
+    @AuraEnabled public String EventStartDay;
+    @AuraEnabled public String EventStartMonth;
+    @AuraEnabled public String ExternalId;
+    @AuraEnabled public String Extract;
+    @AuraEnabled public String HTMLContent;
+    @AuraEnabled public Boolean IsActive;
+    @AuraEnabled public Boolean IsTemplate;
+    @AuraEnabled public String Layout;
+    @AuraEnabled public String LinkDetail;
+    @AuraEnabled public String Location;
+    @AuraEnabled public Decimal Order;
+    @AuraEnabled public String OverlayQuadrant;
+    @AuraEnabled public Datetime PublishEndDate;
+    @AuraEnabled public Datetime PublishStartDate;
+    @AuraEnabled public String RedirectType;
+    @AuraEnabled public String Status;
+    @AuraEnabled public String StatusApprovalProcess;
+    @AuraEnabled public String StructureComponent;
+    @AuraEnabled public String StructureNavigation;
+    @AuraEnabled public String TemplateDescription;
+    @AuraEnabled public String TemplateUsed;
+    @AuraEnabled public String Title;
+    @AuraEnabled public String URLRedirect;
+    @AuraEnabled public Datetime LastModifiedDate;
+    @AuraEnabled public String CreatedByName;
 
-    public String LinkDetailURL;
-    public String ClusterName;
+    @AuraEnabled public String LinkDetailURL;
+    @AuraEnabled public String ClusterName;
 
-    public List<MediaElementAssignment> MediaElementAssignments;
+    @AuraEnabled public List<MediaElementAssignment> MediaElementAssignments;
 
-    public List<TagAssignment> Tags;
+    @AuraEnabled public List<TagAssignment> Tags;
 
     public class MediaElementAssignment{
-        public ObjectMediaElementWrapper MediaElement;
+        @AuraEnabled public ObjectMediaElementWrapper MediaElement;
     }
 
     public class TagAssignment{
-        public String tag;
-        public String id;
+        @AuraEnabled public String tag;
+        @AuraEnabled public String id;
     }
     
     public ObjectContentWrapper(Content__c content){
@@ -102,6 +104,8 @@ public class ObjectContentWrapper {
         try{this.TemplateUsed = content.TemplateUsed__c;}catch(Exception e){}
         try{this.Title = content.Title__c;}catch(Exception e){}
         try{this.URLRedirect = content.URLRedirect__c;}catch(Exception e){}
+        try{this.LastModifiedDate = content.LastModifiedDate;}catch(Exception e){}
+        try{this.CreatedByName = content.CreatedBy.Name;}catch(Exception e){}
 
         try{this.LinkDetailURL = content.LinkDetail__r.URL__c;}catch(Exception e){}
         try{this.ClusterName = content.Cluster__r.Name;}catch(Exception e){}

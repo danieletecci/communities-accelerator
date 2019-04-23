@@ -15,7 +15,7 @@
     </fields>
     <fields>
         <fullName>ClusterFieldForPublicGroups__c</fullName>
-        <defaultValue>&quot;ExternalId__c&quot;</defaultValue>
+        <defaultValue>&quot;[CMS]ExternalId__c&quot;</defaultValue>
         <description>When a cluster is created, a public group is created. This field determines which cluster field will be used as the name of the public group that is created for the cluster.</description>
         <externalId>false</externalId>
         <inlineHelpText>When a cluster is created, a public group is created. This field determines which cluster field will be used as the name of the public group that is created for the cluster.</inlineHelpText>

@@ -5,6 +5,7 @@
     <enableFeeds>false</enableFeeds>
     <fields>
         <fullName>ContentLandingColumnFields__c</fullName>
+        <defaultValue>&quot;RecordType.Name,Name,[CMS]Category__r.Name,Owner.Name,[CMS]Status__c&quot;</defaultValue>
         <externalId>false</externalId>
         <label>Content Landing Column Fields</label>
         <length>255</length>
@@ -15,6 +16,7 @@
     </fields>
     <fields>
         <fullName>ContentLandingRecordTypes__c</fullName>
+        <defaultValue>&quot;Article,Event&quot;</defaultValue>
         <externalId>false</externalId>
         <label>Content Landing RecordTypes</label>
         <length>255</length>
@@ -25,6 +27,7 @@
     </fields>
     <fields>
         <fullName>ContentTemplateRecordTypes__c</fullName>
+        <defaultValue>&quot;Article,Event,AdvanceContent&quot;</defaultValue>
         <externalId>false</externalId>
         <label>Content Template RecordTypes</label>
         <length>255</length>

@@ -135,8 +135,12 @@ public with sharing class DatatableUtils {
 
                 if(de.type == String.valueOf(Schema.DisplayType.DATE) || 
                     de.type == String.valueOf(Schema.DisplayType.DATETIME)) {
-                    Datetime fieldDate = (Datetime)record.get(fieldApiName);
-                    value  = fieldDate.format();
+                    	Datetime fieldDate = (Datetime)record.get(fieldApiName);
+                        
+                        if(fieldDate != null) {
+                            value  = fieldDate.format();
+                        }
+                    
                 }else {
                     value = String.valueOf(record.get(fieldApiName));
                 }

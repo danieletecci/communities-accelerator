@@ -1,6 +1,7 @@
 public class GeneralUtils{
     
-    public static String nameSpace = 'DiageoCMS__';
+    public static String nameSpace = '';//'DiageoCMS__'
+    
     public static String prefix(String stringToReplace){
         return stringToReplace.replace('[cms]', '[CMS]').replace('[CMS]', nameSpace);
     }

@@ -30,7 +30,7 @@
 	                    <div class="slds-page-header__name">
 	                        <div class="slds-page-header__name-title">
 	                            <h1>
-	                                <span>{!v.contentData.RecordType.Name + if(v.contentData.IsTemplate, ' ' + $Label.c.General_Template,'')}</span>
+	                                <span>{!v.contentData.RecordTypeName + if(v.contentData.IsTemplate, ' ' + $Label.c.General_Template,'')}</span>
 									<aura:if isTrue="{!v.isNameEdit}">
 										<div onkeyup="{!c.onKeyUp}">
 											<lightning:input aura:id="name-input" name="input1" label="" value="{!v.temporaryName}" variant="label-hidden" maxlength="80" />

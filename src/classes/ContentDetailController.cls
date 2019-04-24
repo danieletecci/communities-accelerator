@@ -190,9 +190,10 @@ public with sharing class ContentDetailController {
     }
 
     @AuraEnabled
-    public static Boolean saveContent(ObjectContentWrapper content, String visibilitySelectorsString, String mediaElementId, String status, List<ObjectContentWrapper.TagAssignment> contentOldTagAssignments){
+    public static Boolean saveContent(Object content, String visibilitySelectorsString, String mediaElementId, String status, List<ObjectContentWrapper.TagAssignment> contentOldTagAssignments){
+        ObjectContentWrapper ocw = (ObjectContentWrapper) JSON.deserialize(JSON.serialize(content), ObjectContentWrapper.class);
         Savepoint sp = Database.setSavepoint();
-        Content__c contentVar = content.parse();
+        Content__c contentVar = ocw.parse();
 
         try{
             List<VisibilitySelectorWrapper> visibilitySelectors = (List<VisibilitySelectorWrapper>)JSON.deserialize(visibilitySelectorsString, List<VisibilitySelectorWrapper>.class);

@@ -39,9 +39,10 @@
 	},
     setLayoutOptions : function(component) {
         var layoutOptions = [
-			{value:"Title Top", imageUrl:"/ContentLayouts/Event-Layouts/TitleTop.png", label:$A.get("$Label.c.EventContentDetailTitleTop")},
-			{value:"Title Middle", imageUrl:"/ContentLayouts/Event-Layouts/TitleMiddle.png", label:$A.get("$Label.c.EventContentDetailTitleMiddle")},
-			{value:"Title Bottom", imageUrl:"/ContentLayouts/Event-Layouts/TitleBottom.png", label:$A.get("$Label.c.EventContentDetailTitleBottom")}
+			{value:"Title Top", imageUrl:"/ContentLayouts/Event-Layouts/TitleTop.png", 			label:$A.get("$Label.c.EventContentDetailTitleTop")},
+			{value:"Title Middle", imageUrl:"/ContentLayouts/Event-Layouts/TitleMiddle.png", 	label:$A.get("$Label.c.EventContentDetailTitleMiddle")},
+			{value:"Title Bottom", imageUrl:"/ContentLayouts/Event-Layouts/TitleBottom.png", 	label:$A.get("$Label.c.EventContentDetailTitleBottom")},
+			{value:"Body Only", 	imageUrl:"/ContentLayouts/Event-Layouts/BodyOnly.png", 		label:$A.get("$Label.c.EventContentDetailBodyOnly")}
 		];
 		component.set('v.layoutOptions', layoutOptions);
         component.set('v.contentData.Layout', component.get('v.contentData.Layout') == null ? 'Title Top' : component.get('v.contentData.Layout'));  

@@ -67,7 +67,7 @@
 				var navEvt = $A.get("e.force:navigateToSObject");
 				navEvt.setParams({
 					"recordId": content.Id,
-					 });
+				});
 				navEvt.fire();
 			} else if (state === "ERROR") {
 				let errors = response.getError();
@@ -81,7 +81,7 @@
 		$A.enqueueAction(action);
 	},
 	showCorrectMessage : function(component, content, previousStatus, actualStatus){
-		var recordTypeName 	= content.RecordType.Name;
+		var recordTypeName 	= content.RecordTypeName;
 		var recordName 		= content.Name;
 		var helper 			= this;
 

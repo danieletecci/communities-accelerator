@@ -97,6 +97,39 @@
         <unique>true</unique>
     </fields>
     <fields>
+        <fullName>FileIdDesktop__c</fullName>
+        <externalId>false</externalId>
+        <label>File Id Desktop</label>
+        <length>18</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FileIdMobile__c</fullName>
+        <externalId>false</externalId>
+        <label>File Id Mobile</label>
+        <length>18</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FileIdTablet__c</fullName>
+        <externalId>false</externalId>
+        <label>File Id Tablet</label>
+        <length>18</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>FileNameDesktop__c</fullName>
         <description>Indicates file name for desktop image.</description>
         <externalId>false</externalId>

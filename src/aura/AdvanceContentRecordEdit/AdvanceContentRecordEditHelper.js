@@ -71,7 +71,7 @@
 		$A.enqueueAction(action);
 	},
 	showCorrectMessage : function(component, content, previousStatus, actualStatus){
-		var recordTypeName 	= content.RecordType.Name;
+		var recordTypeName 	= content.RecordTypeName;
 		var recordName 		= content.Name;
 		var helper 			= this;
 

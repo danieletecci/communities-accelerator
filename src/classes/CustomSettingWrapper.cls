@@ -1,14 +1,14 @@
 public class CustomSettingWrapper {
     
-    public String ClusterFieldForPublicGroups;
-    public String SalesforceDomain;
-    public String ContentLandingColumnFields;
-    public String ContentLandingRecordTypes;
-    public String ContentTemplateRecordTypes;
-    public Decimal MaxSizeDesktop;
-    public Decimal MaxSizeMobile;
-    public Decimal MaxSizeTablet;
-    public Boolean EnableMediaElementAutomaticResize;
+    @AuraEnabled public String ClusterFieldForPublicGroups;
+    @AuraEnabled public String SalesforceDomain;
+    @AuraEnabled public String ContentLandingColumnFields;
+    @AuraEnabled public String ContentLandingRecordTypes;
+    @AuraEnabled public String ContentTemplateRecordTypes;
+    @AuraEnabled public Decimal MaxSizeDesktop;
+    @AuraEnabled public Decimal MaxSizeMobile;
+    @AuraEnabled public Decimal MaxSizeTablet;
+    @AuraEnabled public Boolean EnableMediaElementAutomaticResize;
     
     public CustomSettingWrapper(CMSSettings__c cmsSetting, CMSContentSettings__c contentSetting, CMSMediaElementSettings__c meSetting){
         this.ClusterFieldForPublicGroups = cmsSetting.ClusterFieldForPublicGroups__c;

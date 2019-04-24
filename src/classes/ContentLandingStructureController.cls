@@ -118,8 +118,9 @@ public class ContentLandingStructureController {
 	@AuraEnabled(cacheable=true)
 	public static String getSiteId(String clusterId){
 		String networkName = getClusterRoot(clusterId).CommunityName__c;
-		String siteName1   = networkName.replace(' ', '_') + '1';
-		String siteName_C  = networkName.replace(' ', '_') + '_C';
+		String siteName1   = networkName.replaceAll('[^a-zA-Z0-9]', '_') + '1';
+		String siteName_C  = networkName.replaceAll('[^a-zA-Z0-9]', '_') + '_C';
+
 		List<Site> site = [SELECT Id, Name FROM Site WHERE Name =: siteName1 OR Name =: siteName_C];
 		if(!site.isEmpty())
 			return String.valueOf(site.get(0).Id).substring(0, 15);

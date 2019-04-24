@@ -295,7 +295,7 @@
     </recordTypes>
     <recordTypes>
         <fullName>Navigation_variant</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Navigation points referred to page variants in community. Also have a relationship with a audience user.</description>
         <label>Navigation variant</label>
         <picklistValues>

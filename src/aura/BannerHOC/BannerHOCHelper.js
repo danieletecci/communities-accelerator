@@ -34,9 +34,9 @@
                                 id: c.content.Id,
                                 class: index == 0 ? 'carousel-item active' : 'carousel-item',
                                 indicatorClass: index == 0 ? 'active' : '',
-                                imgSrc: c.mediaElements.length > 0  ? c.mediaElements[0].FileURLDesktop__c : '',
-                                title: c.content.Title__c,
-                                description: c.content.Extract__c
+                                imgSrc: c.mediaElements.length > 0  ? c.mediaElements[0].FileURLDesktop : '',
+                                title: c.content.Title,
+                                description: c.content.Extract
                             }
                         })
                     }

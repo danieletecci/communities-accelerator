@@ -16,7 +16,7 @@
     <!-- MAIN COMPONENT -->
     <div>        
         <!-- TOOL BOX COMPONENT -->
-        <c:ComponentToolBox componentType="ClusterSelector" componentExternalId="{!v.componentExternalId}" componentWrapper="{!v.componentWrapper}" salesforceDomain="{!v.componentWrapper.acceleratorSettings.SalesforceDomain__c}" isLoading="{!v.isLoading}">
+        <c:ComponentToolBox componentType="ClusterSelector" componentExternalId="{!v.componentExternalId}" componentWrapper="{!v.componentWrapper}" salesforceDomain="{!v.componentWrapper.acceleratorSettings.SalesforceDomain}" isLoading="{!v.isLoading}">
             <!-- CLUSTER SELECTOR LOC COMPONENT -->
             <c:ClusterSelector
                 tree="{!v.componentWrapper.data}"

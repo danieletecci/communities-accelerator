@@ -1,0 +1,16 @@
+<template>
+    <div class="datatableFilters"> 
+        <div>
+            <button class="filter" 
+                    data-value={filter}
+                    onclick={filterEvent}>{filter}
+            </button>
+        </div>
+        <template if:true={isCustomDate}>
+            <div>
+                <lightning-input class="datefrom" type="date" name="from-day" max={seletedDateTo} onchange={changeDatepickerFrom} placeholder="From"></lightning-input>
+                <lightning-input class="dateto" type="date" name="to-day" min={seletedDateFrom} onchange={changeDatepickerTo} placeholder="To" ></lightning-input>
+            </div>
+        </template>
+    </div>
+</template>

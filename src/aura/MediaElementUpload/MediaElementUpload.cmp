@@ -66,7 +66,7 @@
 
 	        <aura:if isTrue="{!v.mediaElementWrapper.mediaElement.FileURLTablet == null || v.showEditTablet}">
 	            <div class="slds-col slds-size_10-of-12">
-	        		<lightning:fileUpload  name="fileUploader" multiple="{!v.multiple}" accept="{!v.acceptedFiletypes}" disabled="{!v.disabled}" recordId="{!v.recordId}" onuploadfinished="{!c.handleUploadFinishedTablet}"/>
+	        		<lightning:fileUpload  name="fileUploader" multiple="false" accept="{!v.acceptedFiletypes}" disabled="{!v.disabled}" recordId="{!v.recordId}" onuploadfinished="{!c.handleUploadFinishedTablet}"/>
 	            </div>
 	            <aura:set attribute="else">
                     <div class="slds-col slds-size_10-of-12">
@@ -91,7 +91,7 @@
 
             <aura:if isTrue="{!v.mediaElementWrapper.mediaElement.FileURLMobile == null || v.showEditMobile}">
 	            <div class="slds-col slds-size_10-of-12">
-	        		<lightning:fileUpload  name="fileUploader" multiple="{!v.multiple}" accept="{!v.acceptedFiletypes}" disabled="{!v.disabled}" recordId="{!v.recordId}" onuploadfinished="{!c.handleUploadFinishedMobile}"/>
+	        		<lightning:fileUpload  name="fileUploader" multiple="false" accept="{!v.acceptedFiletypes}" disabled="{!v.disabled}" recordId="{!v.recordId}" onuploadfinished="{!c.handleUploadFinishedMobile}"/>
 	            </div>
 		        <aura:set attribute="else">
                     <div class="slds-col slds-size_10-of-12">

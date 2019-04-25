@@ -85,7 +85,7 @@
 		$A.enqueueAction(action);
 	},
 	showCorrectMessage : function(component, content, status){
-		var recordTypeName 	= content.RecordType.Name;
+		var recordTypeName 	= content.RecordTypeName;
 		var recordName 		= content.Name;
 
 		if(status === 'Scheduled'){

@@ -37,7 +37,7 @@
 
 	                <!-- Component Name -->
 	                <div class="componentNamePanel borderColorBlue hidden">
-	                    {#v.componentWrapper.meta.component.RecordType.DeveloperName + ' - ' + v.componentWrapper.meta.component.Name}
+	                    {#v.componentWrapper.meta.component.RecordTypeDeveloperName + ' - ' + v.componentWrapper.meta.component.Name}
 	                </div>
 
 	                <!-- Buttons -->

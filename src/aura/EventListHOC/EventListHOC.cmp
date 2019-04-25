@@ -2,7 +2,7 @@
 
     <!-- GENERAL VARIABLES --> 
     <aura:attribute name="componentExternalId" type="String"  access="global"/>
-    <aura:attribute name="componentType" type="String" default="Event List"/>
+    <aura:attribute name="componentType" type="String" default="EventList"/>
     <aura:attribute name="componentWrapper" type="Object" />
     <aura:attribute name="showPaging" type="Boolean" default="{!v.componentWrapper.listAllContentIds.length > v.componentWrapper.contentWrapper.length}"/>
 

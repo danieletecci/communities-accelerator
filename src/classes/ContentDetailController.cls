@@ -216,7 +216,7 @@ public with sharing class ContentDetailController {
     }
 
     private static void updateMediaElementAssignment(Content__c content, String mediaElementId){
-
+        content = [SELECT Id, RecordType.DeveloperName FROM Content__c WHERE Id =: content.Id];
         String placement = content.RecordType.DeveloperName + 'Image';
         
         if(mediaElementId == null){

@@ -1302,6 +1302,11 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Menu__c-Menu Layout</layout>
+        <recordType>Menu__c.Menu</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Menu__c-SubMenu Layout</layout>
+        <recordType>Menu__c.SubMenu</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>DatatableAction__c-List View Action Layout</layout>

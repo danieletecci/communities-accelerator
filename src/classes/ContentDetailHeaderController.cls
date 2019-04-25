@@ -28,7 +28,7 @@ public with sharing class ContentDetailHeaderController {
         }
     }
 
-    @AuraEnabled(cacheable=true)
+    @AuraEnabled(cacheable=false)
     public static DataWrapper getData(String recordId){
         Content__c content = getContentData(recordId);
         UserRecordAccess ura = getRecordAccess(recordId);
@@ -42,14 +42,14 @@ public with sharing class ContentDetailHeaderController {
         );
     }
 
-    @AuraEnabled
+    @AuraEnabled(cacheable=false)
     public static String setName(String recordId, String name){
         Content__c c = new Content__c(Id=recordId, Name=name);
         update c;
         return c.Name;
     }
 
-    @AuraEnabled
+    @AuraEnabled(cacheable=false)
     public static String setStatus(String recordId, String status, DateTime publishStartDate, DateTime publishEndDate){
         Content__c c = new Content__c(
             Id                  = recordId, 
@@ -65,7 +65,7 @@ public with sharing class ContentDetailHeaderController {
         return c.Status__c;
     }
 
-    @AuraEnabled
+    @AuraEnabled(cacheable=false)
     public static void deleteContent(String recordId){
         Content__c c = new Content__c(
             Id                  = recordId
@@ -77,7 +77,7 @@ public with sharing class ContentDetailHeaderController {
         }
     }
     
-    @AuraEnabled
+    @AuraEnabled(cacheable=false)
     public static String createFromTemplate(String recordId){
         return null; //ContentUtils.createFromTemplate(recordId);
     }

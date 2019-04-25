@@ -25,7 +25,7 @@ public with sharing class JunctionObjectManagerController {
 		}
 	}
 	
-	@auraEnabled
+	@auraEnabled(cacheable=false)
 	public static RecordsWrapper getRecords(String recordId, String junctionObjectAPIName, String parentLookup, String secondaryLookup, String whereCondition, String orderBy){
 		
 		junctionObjectAPIName = GeneralUtils.prefix(junctionObjectAPIName);
@@ -91,7 +91,7 @@ public with sharing class JunctionObjectManagerController {
 		return rw;
 	}
 
-	@auraEnabled
+	@auraEnabled(cacheable=false)
 	public static String saveRelationships(String recordId, String junctionObjectAPIName, String parentLookup, String secondaryLookup, List<String> listSelectedIds, String orderBy, String isReorder){
 		
 		junctionObjectAPIName = GeneralUtils.prefix(junctionObjectAPIName);

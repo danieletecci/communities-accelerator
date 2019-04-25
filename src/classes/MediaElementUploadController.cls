@@ -31,7 +31,7 @@ public with sharing class MediaElementUploadController {
         return media;      
     }
 
-    @AuraEnabled
+    @AuraEnabled(cacheable=false)
     public static MediaElementWrapper getRecord(String recordId){
         MediaElement__c me = MediaElementUploadController.getMedia(recordId);
         MediaElementWrapper mew = new MediaElementWrapper();
@@ -64,13 +64,13 @@ public with sharing class MediaElementUploadController {
         }
     }
 
-    @AuraEnabled
+    @AuraEnabled(cacheable=false)
     public static String getFileById(String contentDocumentId){
         ContentVersion contv = [SELECT Id, VersionData FROM ContentVersion WHERE ContentDocumentId =: contentDocumentId];
         return EncodingUtil.base64Encode(contv.VersionData);
     }
     
-    @AuraEnabled
+    @AuraEnabled(cacheable=false)
     public static String createFile(String recordId, String fileId, String base64Str, String fileName, String width, String height, String device){ 
         ContentVersion contv;
 
@@ -139,13 +139,13 @@ public with sharing class MediaElementUploadController {
         return media.Id;
     }
 
-    @AuraEnabled
+    @AuraEnabled(cacheable=false)
     public static void deleteDocument(String urlDocument){
         ContentDocument document = new ContentDocument(Id = urlDocument);
         delete document;
     }
 
-    @AuraEnabled
+    @AuraEnabled(cacheable=false)
     public static void deleteFileDesktop(String recordId){
         MediaElement__c media = MediaElementUploadController.getMedia(recordId);
         MediaElementUploadController.deleteDocument(media.FileIdDesktop__c);
@@ -159,7 +159,7 @@ public with sharing class MediaElementUploadController {
         update media;
     }
 
-    @AuraEnabled
+    @AuraEnabled(cacheable=false)
     public static void deleteFileTablet(String recordId){
         MediaElement__c media = MediaElementUploadController.getMedia(recordId);
         MediaElementUploadController.deleteDocument(media.FileIdTablet__c);
@@ -173,7 +173,7 @@ public with sharing class MediaElementUploadController {
         update media;
     }
 
-    @AuraEnabled
+    @AuraEnabled(cacheable=false)
     public static void deleteFileMobile(String recordId){
         MediaElement__c media = MediaElementUploadController.getMedia(recordId);
         MediaElementUploadController.deleteDocument(media.FileIdMobile__c);

@@ -16,7 +16,7 @@ public with sharing class TreePreviewController {
         }   		
    	}
      
-    @AuraEnabled
+    @AuraEnabled(cacheable=false)
     public static ItemWrapper getTree (String recordId, String objectName, String parentLookUP){
 			objectName = GeneralUtils.prefix(objectName);
 			parentLookUP = GeneralUtils.prefix(parentLookUP);

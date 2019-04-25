@@ -1,12 +1,12 @@
 public class ContentRecordTypeModalController {
 
-    @AuraEnabled(cacheable=true)
+    @AuraEnabled(cacheable=false)
     public static String getObjectLabel(String sObjectType){
         sObjectType = GeneralUtils.prefix(sObjectType);
         return Schema.getGlobalDescribe().get(sObjectType).getDescribe().getLabel();
     }
 
-    @AuraEnabled(cacheable=true)
+    @AuraEnabled(cacheable=false)
     public static List<RecordType> getContentRecordTypes(String sObjectType){
         sObjectType = GeneralUtils.prefix(sObjectType);
         CMSContentSettings__c contentSetting = [SELECT Id, ContentLandingRecordTypes__c FROM CMSContentSettings__c];
@@ -14,7 +14,7 @@ public class ContentRecordTypeModalController {
         return getSortedRecordTypes(sObjectType, recordTypeNames);
     }
 
-    @AuraEnabled(cacheable=true)
+    @AuraEnabled(cacheable=false)
     public static List<RecordType> getTemplateRecordTypes(String sObjectType){
         sObjectType = GeneralUtils.prefix(sObjectType);
         CMSContentSettings__c contentSetting = [SELECT Id, ContentTemplateRecordTypes__c FROM CMSContentSettings__c];

@@ -27,9 +27,7 @@ public with sharing class TranslationController {
 	}
 
 	private static String getLookupObjectName(String parentLookupName, String objectName){
-		system.debug('TOKEN1: parentLookupName ' + parentLookupName);
-		system.debug('TOKEN1: objectName ' + objectName);
-
+		
 		Schema.DescribeFieldResult f = Schema.getGlobalDescribe()
 		    .get(GeneralUtils.prefix(objectName))
 		    .getDescribe()
@@ -44,7 +42,7 @@ public with sharing class TranslationController {
 		return null;
 	}
 	
-	@auraEnabled
+	@auraEnabled(cacheable=false)
 	public static RecordsWrapper getLanguages(String parentLookupName, String fieldSet, String recordId){
 		parentLookupName = GeneralUtils.prefix(parentLookupName);
 		fieldSet = GeneralUtils.prefix(fieldSet);
@@ -97,7 +95,7 @@ public with sharing class TranslationController {
 		return rw;
 	}
 
-	@auraEnabled
+	@auraEnabled(cacheable=false)
 	public static RecordsWrapper changeLanguage(String parentLookupName, String language, String recordId, String recordsWr){
 		parentLookupName = GeneralUtils.prefix(parentLookupName);
 		RecordsWrapper rw = (RecordsWrapper)JSON.deserialize(recordsWr, RecordsWrapper.class);
@@ -136,7 +134,7 @@ public with sharing class TranslationController {
 		return rw;
 	}
 
-	@auraEnabled
+	@auraEnabled(cacheable=false)
 	public static RecordsWrapper saveTranslation(String parentLookupName, String recordId, String recordsWr){
 		parentLookupName = GeneralUtils.prefix(parentLookupName);
 		RecordsWrapper rw = (RecordsWrapper)JSON.deserialize(recordsWr, RecordsWrapper.class);

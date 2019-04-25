@@ -1,6 +1,6 @@
 public class ComponentBehaviourController {
 
-    @auraEnabled
+    @auraEnabled(cacheable=false)
     public static String getComponentBehaviour(String contentId){
         Content__c content = [SELECT Id, RecordTypeId, StructureComponent__c FROM Content__c WHERE Id =: contentId];
         String componentId = content.StructureComponent__c;

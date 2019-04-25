@@ -61,7 +61,7 @@ public with sharing class ContentDetailController {
         }
     }
 
-    @AuraEnabled (Cacheable = false)
+    @AuraEnabled(cacheable=false)
     public static DataWrapper getData(String recordId){
         DataWrapper data;
         try{
@@ -189,7 +189,7 @@ public with sharing class ContentDetailController {
         return commaSeparatedFields;
     }
 
-    @AuraEnabled
+    @AuraEnabled(cacheable=false)
     public static Boolean saveContent(Object content, String visibilitySelectorsString, String mediaElementId, String status, List<ObjectContentWrapper.TagAssignment> contentOldTagAssignments){
         ObjectContentWrapper ocw = (ObjectContentWrapper) JSON.deserialize(JSON.serialize(content), ObjectContentWrapper.class);
         Savepoint sp = Database.setSavepoint();

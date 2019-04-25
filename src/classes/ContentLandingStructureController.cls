@@ -45,18 +45,18 @@ public class ContentLandingStructureController {
 		}
 	}
 
-	@AuraEnabled(cacheable=true)
+	@AuraEnabled(cacheable=false)
 	public static GeneralWrapper getGeneralData(){
 		Cluster__c croot = getClusterRoot(getClusterUserId());
 		return new GeneralWrapper(getOrgId(), croot.CommunityName__c.toLowerCase(), croot.CommunityPreviewDomain__c, getClusterLeafs(), getUrlPathPrefix(getClusterUserId()));
 	}
 
-	@AuraEnabled(cacheable=true)
+	@AuraEnabled(cacheable=false)
 	public static String getCommunityName(){
 		return getClusterRoot(getClusterUserId()).CommunityName__c.toLowerCase();
 	}
 
-	@AuraEnabled(cacheable=true)
+	@AuraEnabled(cacheable=false)
 	public static SitemapWrapper getMenus(){
 		Map<Id, Set<Id>> 		fatherChilds 	= new Map<Id, Set<Id>>();
 		Map<Id, MenuWrapper> 	menuWrapperMap 	= new Map<Id, MenuWrapper>();
@@ -110,12 +110,12 @@ public class ContentLandingStructureController {
 		return [SELECT Id, Name, URL__c FROM Navigation__c WHERE Type__c = 'Internal' AND Id NOT IN :notIncludedNavigations];
 	}
 
-	@AuraEnabled(cacheable=true)
+	@AuraEnabled(cacheable=false)
 	public static String getOrgId(){
 		return String.valueOf(UserInfo.getOrganizationId()).substring(0, 15);
 	}
 
-	@AuraEnabled(cacheable=true)
+	@AuraEnabled(cacheable=false)
 	public static String getSiteId(String clusterId){
 		String networkName = getClusterRoot(clusterId).CommunityName__c;
 		String siteName1   = networkName.replaceAll('[^a-zA-Z0-9]', '_') + '1';
@@ -137,7 +137,7 @@ public class ContentLandingStructureController {
 		return net[0].UrlPathPrefix;
 	}
 
-	@AuraEnabled(cacheable=true)
+	@AuraEnabled(cacheable=false)
 	public static List<Cluster__c> getClusterLeafs(){
 		return getSubordinateClusterLeafs(getClusterUserId());
 	}

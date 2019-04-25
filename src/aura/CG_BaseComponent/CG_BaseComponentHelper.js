@@ -40,25 +40,26 @@
 		            if(f.getState() === "SUCCESS") {
 						var cWrapper = action.getReturnValue();
 						//mobile cast
-	                    if($A.get("$Browser.isPhone")){
-							var recordType = cWrapper.component.RecordType.DeveloperName;
+	                    if($A.get("$Browser.isPhone")){
+							var recordType = cWrapper.component.RecordTypeDeveloperName;
 							if(recordType === 'EventDetail' || recordType === 'ArticleDetail'){
-		                        var details = {};
-		                        details.type = recordType === 'EventDetail' ? 'Event' : 'Article';
+		                        var details = {};
+		                        details.type = recordType === 'EventDetail' ? 'Event' : 'Article';
 								if(cWrapper.contentWrapper.length > 0){
-			                        var content = cWrapper.contentWrapper[0].content;
-			                        details.date = content.EventStartDate;
+			                        var content = cWrapper.contentWrapper[0].content;
+			                        details.date = content.EventStartDate;
 									details.location = {};
-			                        details.location.name = content.Location;
-			                        details.location.href = 'https://www.google.com/maps/search/' + content.Location;
-			                        details.title = content.Title;
-			                        details.imgSrc = cWrapper.contentWrapper[0].mediaElements[0].FileURLDesktop;
-			                        details.body = content.Body;
+			                        details.location.name = content.Location;
+			                        details.location.href = 'https://www.google.com/maps/search/' + content.Location;
+			                        details.title = content.Title;
+			                        details.imgSrc = cWrapper.contentWrapper[0].mediaElements[0].FileURLDesktop;
+									details.body = content.Body;
+									details.layout = content.Layout;
 								}
 								cWrapper.details = details;
 							}
-	                    }
-	               		//end mobile cast
+	                    }
+	               		//end mobile cast
 		            	component.set("v.componentWrapper", cWrapper);
 		                
 		                if( !(cWrapper.component == null) ){
@@ -91,7 +92,7 @@
 			var action = component.get("c.getPage");
 			action.setParams({
 				listAllContentIds: componentWrapper.listAllContentIds,
-				componentType: componentWrapper.component.RecordType.DeveloperName,
+				componentType: componentWrapper.component.RecordTypeDeveloperName,
 				pageSize: String(componentWrapper.component.PageSize),
 				pageNumber: String(pageNumber),
 				orderBy: orderBy,

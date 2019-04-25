@@ -1,12 +1,13 @@
-public class BooleanExpressionUtils {
-    static Map<String, String> logicTypes = new Map<String, String>();
-    static Map<String, Map<String, String>> expressionLogic = new Map<String, Map<String, String>>();
+global class BooleanExpressionUtils {
+
+    private static Map<String, String> logicTypes = new Map<String, String>();
+    private static Map<String, Map<String, String>> expressionLogic = new Map<String, Map<String, String>>();
     
     /**
     * Validate a boolean expression 
     *  
     */
-    public static Boolean validateExpression(String expression, Set<Integer> validNumberSet){
+    global static Boolean validateExpression(String expression, Set<Integer> validNumberSet){
         if(expression == null || expression == '' || validNumberSet == null || validNumberSet.isEmpty()){
             return false;
         }
@@ -36,7 +37,7 @@ public class BooleanExpressionUtils {
     * Evaluate a boolean expreassion 
     * 
     */
-    public static Boolean eval(String expression) {        
+    global static Boolean eval(String expression) {        
         // If expression contains all TRUE or FALSE
         if(expression.containsNone('FALSE')) { return TRUE; }        
         if(expression.containsNone('TRUE')) { return FALSE; }
@@ -51,7 +52,7 @@ public class BooleanExpressionUtils {
     * Evaluate the expression
     * 
     */
-    public static String evaluateExpression(String expression, Integer limite) {        
+    private static String evaluateExpression(String expression, Integer limite) {        
         
             for(String logicType : logicTypes.keySet()) {
                 if(limite < 100){
@@ -75,7 +76,7 @@ public class BooleanExpressionUtils {
      * Simplify the expression
      * 
      */
-    public static string simplifyExpression(String expression, String LogicType, Integer limite){
+    private static string simplifyExpression(String expression, String LogicType, Integer limite){
         Map<String, String> Logic = new Map<String, String>(expressionLogic.get(LogicType));
         for(String key : Logic.keySet()) {
             if(limite < 100){
@@ -90,7 +91,7 @@ public class BooleanExpressionUtils {
     * Fill AND and OR Logic
     * 
     */
-    public static void fillLogic() {
+    private static void fillLogic() {
         Map<String, String> ANDLogic = new Map<String, String>();
         Map<String, String> ORLogic = new Map<String, String>();
         Map<String, String> BRACELogic = new Map<String, String>();

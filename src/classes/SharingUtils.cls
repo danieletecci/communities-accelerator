@@ -1,6 +1,6 @@
-public with sharing class SharingUtils{
+global with sharing class SharingUtils{
     
-    public static SharingWrapper generateSharingForRecordsOnCluster(List<SObject> records, String lookupField, String nameObjectShare, String sharingReason, Boolean isCluster){
+    global static SharingWrapper generateSharingForRecordsOnCluster(List<SObject> records, String lookupField, String nameObjectShare, String sharingReason, Boolean isCluster){
         
         lookupField = GeneralUtils.prefix(lookupField);
         nameObjectShare = GeneralUtils.prefix(nameObjectShare);
@@ -135,17 +135,13 @@ public with sharing class SharingUtils{
         return sharingWrapper;
     }
 
-    public class SharingWrapper{
-
-        public Map<Id,String> objectIdToMessageErrosMap{get;set;}
-
-        public List<SObject> listOfSharesToInsert{get;set;}
-
-        public SharingWrapper(Map<Id,String> objectIdToMessageErrosMap, List<SObject> listOfSharesToInsert){
+    global class SharingWrapper{
+        global Map<Id,String> objectIdToMessageErrosMap{get;set;}
+        global List<SObject> listOfSharesToInsert{get;set;}
+        global SharingWrapper(Map<Id,String> objectIdToMessageErrosMap, List<SObject> listOfSharesToInsert){
             this.objectIdToMessageErrosMap = objectIdToMessageErrosMap;
             this.listOfSharesToInsert = listOfSharesToInsert;
         }
-
     }
 
 }

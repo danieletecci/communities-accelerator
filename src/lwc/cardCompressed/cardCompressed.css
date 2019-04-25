@@ -5,9 +5,6 @@
   color: #C0C0C0;
   max-height: 140px;
 }
-.container-info {
-  padding-left: 14px;
-}
 .img-container {
   height: 100%;
 }
@@ -15,9 +12,19 @@
   height: 100%;
   width: auto;
 }
+@media screen and (min-width: 768px) {
+  .img-container .img {
+    height: 100px;
+  }
+}
 .header {
   font-family: 'Roboto';
-  padding: 0 5px;
+  margin-bottom: 5px;
+}
+@media screen and (max-width: 768px) {
+  .header {
+    padding: 0 5px;
+  }
 }
 .head-event {
   background-color: #333333;

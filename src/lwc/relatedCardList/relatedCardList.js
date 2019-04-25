@@ -4,6 +4,7 @@ export default class RelatedCardList extends LightningElement {
     @api contents;
     @api type;
     @track orientation;
+    mobile = navigator.userAgent.toLowerCase().includes('mobi');
 
     constructor() {
         super();
@@ -26,7 +27,7 @@ export default class RelatedCardList extends LightningElement {
     }
 
     get columnWidth() {
-        return this.orientation ? 'slds-col slds-size_4-of-4' : 'slds-col slds-size_2-of-4 column-spacer'
+        return this.mobile ? this.orientation ? 'slds-col slds-size_4-of-4' : 'slds-col slds-size_2-of-4 column-spacer' : 'slds-col slds-size_1-of-4 card-padding';
     }
 
     get typeWrapper() {

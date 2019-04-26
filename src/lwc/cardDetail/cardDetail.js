@@ -25,4 +25,8 @@ export default class CardDetail extends LightningElement {
     get eventClass() {
         return this.isEvent ? 'date-container event' : 'date-container';
     }
+
+    get bodyOnly() {
+        return this.details.layout === 'Body Only';
+    }
 }

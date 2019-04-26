@@ -1959,4 +1959,20 @@
         <shortDescription>FAQ_Title</shortDescription>
         <value>FAQ</value>
     </labels>
+    <labels>
+        <fullName>ArticleContentDetailBodyOnly</fullName>
+        <categories>ArticleContentRecordEdit.cmp</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>ArticleContentDetailBodyOnly</shortDescription>
+        <value>Body Only</value>
+    </labels>
+    <labels>
+        <fullName>EventContentDetailBodyOnly</fullName>
+        <categories>ArticleContentRecordEdit.cmp</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>EventContentDetailBodyOnly</shortDescription>
+        <value>Body Only</value>
+    </labels>
 </CustomLabels>

@@ -2,7 +2,7 @@ const formatContent = (content, type) => {
     let formatedContent;
     let temp = content.mediaElements.length > 0 ? content.mediaElements[0] : {};
     if (content.content !== null && !formatedContent) {
-        if (type === 'Event') {
+        if (type === 'EventList') {
             formatedContent = {
                 id: content.content.Id,
                 externalId: content.content.ExternalId,
@@ -43,7 +43,7 @@ const formatContentCompressed = (content, type) => {
     let formatedContent;
     let temp = content.mediaElements.length > 0 ? content.mediaElements[0] : {};
     if (content.content !== null && !formatedContent) {
-        if (type === 'Event') {
+        if (type === 'EventList') {
             formatedContent = {
                 id: content.content.Id,
                 externalId: content.content.ExternalId,

@@ -52,7 +52,7 @@ export default class Card extends LightningElement {
     }
 
     get isEvent() {
-        return this.config.type === 'Event'
+        return this.config.type === 'EventList'
     }
 
     get headerClass() {

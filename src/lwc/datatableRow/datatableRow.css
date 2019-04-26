@@ -7,7 +7,7 @@
   padding-right: 10px;
 }
 .DatatableRow .rowdata p {
-  overflow: hidden;
+  overflow-x: hidden;
   max-height: 19px;
   font-weight: 500;
   font-size: 16px;
@@ -18,4 +18,13 @@
 .DatatableRow .rowdata p.value {
   color: #0B0B0B;
   margin-top: 10px;
+}
+.DatatableRow[data-is-desktop=true],
+.DatatableRow[data-is-desktop=true] .rowdata,
+.DatatableRow[data-is-desktop=true] .rowdata p.value {
+  padding: 0px;
+  margin: 0px;
+}
+.DatatableRow[data-is-desktop=true] p {
+  line-height: 20px;
 }

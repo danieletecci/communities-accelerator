@@ -209,6 +209,7 @@ global class MockupFactory {
                                         Datasource__c = 'ManualAssignment',
                                         RecordTypeId = recordT.Id,
                                         Cluster__c = cluster == null ? null : cluster.Id,
+                                        Title__c = nameRecordType + cluster,
                                         Status__c='Inactive'));
             }
 

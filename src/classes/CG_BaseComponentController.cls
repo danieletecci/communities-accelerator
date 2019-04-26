@@ -165,8 +165,8 @@ public with sharing class CG_BaseComponentController {
     private static set<String> getComponentFieldSetByComponentType(String componentType, String device){
         set<String> setFields;
         if(componentType == 'Banner'){			setFields = new set<String>{'[CMS]BannerFrameType__c','[CMS]Orientation__c','[CMS]BannerType__c','[CMS]ShowBullets__c','[CMS]AutomaticTransition__c','[CMS]BannerTransitionTime__c','[CMS]Loop__c','[CMS]Direction__c'};}
-        if(componentType == 'ArticleList'){			setFields = new set<String>{'[CMS]ArticleType__c', '[CMS]PagingType__c', '[CMS]LinkDetail__r.[CMS]URL__c', '[CMS]ExternalId__c'};}
-        if(componentType == 'EventList'){			setFields = new set<String>{'[CMS]EventsType__c', '[CMS]ExcludePastEvents__c', '[CMS]PagingType__c', '[CMS]LinkDetail__r.[CMS]URL__c', '[CMS]ExternalId__c'};}
+        if(componentType == 'ArticleList'){			setFields = new set<String>{'[CMS]ArticleType__c', '[CMS]PagingType__c', '[CMS]LinkDetail__r.[CMS]URL__c', '[CMS]ExternalId__c', '[CMS]Title__c', '[CMS]NumberOfColumns__c'};}
+        if(componentType == 'EventList'){			setFields = new set<String>{'[CMS]EventsType__c', '[CMS]ExcludePastEvents__c', '[CMS]PagingType__c', '[CMS]LinkDetail__r.[CMS]URL__c', '[CMS]ExternalId__c', '[CMS]Title__c', '[CMS]NumberOfColumns__c'};}
         if(componentType == 'AdvanceContent'){	setFields = new set<String>{};}
         if(componentType == 'FAQ'){				setFields = new set<String>{};}
         if(componentType == 'ArticleDetail'){		setFields = new set<String>{};}

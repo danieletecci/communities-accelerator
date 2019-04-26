@@ -7,7 +7,7 @@
     <aura:attribute name="showPaging" type="Boolean" default="{!v.componentWrapper.listAllContentIds.length > v.componentWrapper.contentWrapper.length}"/>
 
     <aura:if isTrue="{!v.componentWrapper.listAllContentIds.length > 0}">
-        <h2 class="list-header">{!v.componentWrapper.component.title}</h2>
+        <h2 class="list-header">{!v.componentWrapper.component.Title}</h2>
         <aura:if isTrue="{!v.componentWrapper.component.RecordTypeDeveloperName == 'EventList'}">
             <c:cardList 
             onnavigatetodetail="{!c.handleNavigateToDetail}" 

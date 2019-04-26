@@ -6,7 +6,6 @@
         top: 0;
         width: 100%;
         z-index: 1;
-        overflow: scroll;
         .filterModal {
             background-color: #F8F8F8;
             .modal__header{
@@ -136,12 +135,20 @@
     }
     
     &[data-is-desktop="true"]{
-        position: relative;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
         .modal{
             position: absolute;
             top: 0px;
-            width: 100%;
             margin-top: 70px;
+            .detailmodal{
+                .modal__footer{
+                    position: relative;
+                }
+            } 
         }
+        
     }
 }

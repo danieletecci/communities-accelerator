@@ -1,18 +1,18 @@
 <template>
     <div class="datatable" data-is-desktop={isDesktop}>
         <div class="header">
-                <h1>{table.title}</h1>
-                <div class="search-element" >
-                    <input class="searchInput" placeholder="Search" type="search" onsearch={searchEvent} onfocus={focusFilter}/>
-                    <div class="icons-group">
-                        <template if:true={showCancelSearch}>
-                            <button class="cancelSearch" onclick={cancelFilter}>Cancel</button>
-                        </template>
-                        <template if:true={showFilterIcon}>
-                            <img class="filterIcon" src={filterIcon} onclick={openFilterModal}>
-                        </template>
-                    </div>
+            <h1>{table.title}</h1>
+            <div class="search-element" >
+                <input class="searchInput" placeholder="Search" type="search" onsearch={searchEvent} onfocus={focusFilter}/>
+                <div class="icons-group">
+                    <template if:true={showCancelSearch}>
+                        <button class="cancelSearch" onclick={cancelFilter}>Cancel</button>
+                    </template>
+                    <template if:true={showFilterIcon}>
+                        <img class="filterIcon" src={filterIcon} onclick={openFilterModal}>
+                    </template>
                 </div>
+            </div>
         </div>
         <template if:true={appliedFilters}>
             <template for:each={table.appliedFilters} for:item="filters">

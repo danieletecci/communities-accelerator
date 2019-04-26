@@ -52,7 +52,7 @@
                 </lightning:layout>
             </div>
             <aura:set attribute="else">
-                <aura:if isTrue="{!and(not(v.componentType == v.componentWrapper.component.RecordType.DeveloperName), v.componentType != 'Navigation')}">
+                <aura:if isTrue="{!and(not(v.componentType == v.componentWrapper.component.RecordTypeDeveloperName), v.componentType != 'Menu')}">
                     <div class="slds-page-header" style="text-align: center;">
                         <lightning:layout horizontalAlign="left">
                             <lightning:layoutItem size="12" flexibility="auto" padding="around-small">

@@ -156,15 +156,6 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
         <label>Navigation</label>
-        <lookupFilter>
-            <active>true</active>
-            <filterItems>
-                <field>$Source.Cluster__c</field>
-                <operation>equals</operation>
-                <valueField>Navigation__c.Cluster__c</valueField>
-            </filterItems>
-            <isOptional>false</isOptional>
-        </lookupFilter>
         <referenceTo>Navigation__c</referenceTo>
         <relationshipLabel>Menus</relationshipLabel>
         <relationshipName>Navigations</relationshipName>

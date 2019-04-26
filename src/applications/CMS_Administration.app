@@ -223,12 +223,11 @@
     <tabs>MediaElement__c</tabs>
     <tabs>Category__c</tabs>
     <tabs>Tag__c</tabs>
-    <tabs>Translation__c</tabs>
     <tabs>Navigation__c</tabs>
     <tabs>Menu__c</tabs>
-    <tabs>SearchSetting__c</tabs>
     <tabs>Datatable__c</tabs>
     <tabs>Audience__c</tabs>
     <tabs>CMSUserSettings__c</tabs>
+    <tabs>Form__c</tabs>
     <uiType>Lightning</uiType>
 </CustomApplication>

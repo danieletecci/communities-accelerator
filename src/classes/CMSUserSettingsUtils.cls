@@ -1,7 +1,7 @@
-public with sharing class CMSUserSettingsUtils {
+global with sharing class CMSUserSettingsUtils {
     
     //This methods updates the CMS User Settings with the audiences calculation
-    public static void updateUserSettings(Id userId, Id clusterId, Id accountId, Id contactId, Id customRecordId){
+    global static void updateUserSettings(Id userId, Id clusterId, Id accountId, Id contactId, Id customRecordId){
         User user;
         try{user = [SELECT Id, UserName FROM User WHERE Id =: userId];}catch(Exception e){}
         
@@ -38,7 +38,7 @@ public with sharing class CMSUserSettingsUtils {
 
     //This methods returns the CMS User Settings from a User Id
     private static Map<Id, CMSUserSettings__c> CMSUsersSettingsMap;
-    public static CMSUserSettings__c getUserSettings(Id userId){
+    global static CMSUserSettings__c getUserSettings(Id userId){
         if(CMSUsersSettingsMap == null){
             CMSUsersSettingsMap = new Map<Id, CMSUserSettings__c>();
         }
@@ -50,7 +50,7 @@ public with sharing class CMSUserSettingsUtils {
     }
 
     //This methods returns a set of Audiences External Ids of a User
-    public static Set<String> getUserAudiences(Id userId){
+    global static Set<String> getUserAudiences(Id userId){
         Set<String> userAudiencesSet = new Set<String>();
         if(getUserSettings(userId).Audiences__c != null){
             userAudiencesSet.addAll(getUserSettings(userId).Audiences__c.split(';'));

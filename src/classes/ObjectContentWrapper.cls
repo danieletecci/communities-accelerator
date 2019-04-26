@@ -25,7 +25,7 @@ public class ObjectContentWrapper {
     @AuraEnabled public String Extract;
     @AuraEnabled public String HTMLContent;
     @AuraEnabled public Boolean IsActive;
-    @AuraEnabled public Boolean IsTemplate;
+    @AuraEnabled public Boolean IsTemplate = false;
     @AuraEnabled public String Layout;
     @AuraEnabled public String LinkDetail;
     @AuraEnabled public String Location;

@@ -109,7 +109,7 @@
 				helper.displaySuccessMessage(
 					helper.stringFormat(
 						$A.get("$Label.c.ContentDetailDeletedMessage"), 
-						component.get("v.contentData").RecordType.Name, 
+						component.get("v.contentData").RecordTypeName, 
 						component.get("v.contentData").Name
 					)
 				);
@@ -131,7 +131,7 @@
 		$A.enqueueAction(action);
 	},
 	showCorrectMessage : function(component, previousStatus, actualStatus){
-		var recordTypeName 	= component.get("v.contentData").recordType.Name;
+		var recordTypeName 	= component.get("v.contentData").RecordTypeName;
 		var recordName 		= component.get("v.contentData").Name;
 		var helper 			= this;
 

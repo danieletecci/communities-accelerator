@@ -10,13 +10,14 @@
     <aura:attribute name="componentExternalId" type="String" access="global"/>
     <aura:attribute name="componentId" type="Id"/>
     <aura:attribute name="isBackend" type="Boolean" default="false"/>
+    <aura:attribute name="isLoading" type="boolean" default="false"/>
 
     <aura:attribute name="componentWrapper" type="Object"/>
 
     <!-- MAIN COMPONENT -->
     <div>        
         <!-- TOOL BOX COMPONENT -->
-        <c:ComponentToolBox componentType="ClusterSelector" componentExternalId="{!v.componentExternalId}" componentWrapper="{!v.componentWrapper}" salesforceDomain="{!v.componentWrapper.acceleratorSettings.SalesforceDomain__c}" isLoading="{!v.isLoading}">
+        <c:ComponentToolBox componentType="ClusterSelector" componentExternalId="{!v.componentExternalId}" componentWrapper="{!v.componentWrapper}" salesforceDomain="{!v.componentWrapper.acceleratorSettings.SalesforceDomain}" isLoading="{!v.isLoading}">
             <!-- CLUSTER SELECTOR LOC COMPONENT -->
             <c:ClusterSelector
                 tree="{!v.componentWrapper.data}"

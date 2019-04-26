@@ -2,13 +2,13 @@
 
 	<!-- GENERAL VARIABLES --> 
 	<aura:attribute name="componentExternalId" type="String" access="global"/>
-	<aura:attribute name="componentType" type="String" default="Article List"/>
+	<aura:attribute name="componentType" type="String" default="ArticleList"/>
     <aura:attribute name="componentWrapper" type="Object" />
     <aura:attribute name="showPaging" type="Boolean" default="{!v.componentWrapper.listAllContentIds.length > v.componentWrapper.contentWrapper.length}"/>
 
     <aura:if isTrue="{!v.componentWrapper.listAllContentIds.length > 0}">
         <h2 class="list-header">{!v.componentWrapper.component.title}</h2>
-        <aura:if isTrue="{!v.componentWrapper.component.RecordType.DeveloperName == 'ArticleList'}">
+        <aura:if isTrue="{!v.componentWrapper.component.RecordTypeDeveloperName == 'ArticleList'}">
             <c:cardList 
             onnavigatetodetail="{!c.handleNavigateToDetail}" 
             contents="{!v.componentWrapper.contentWrapper}" 
@@ -16,7 +16,7 @@
             numberofcards="{!v.componentWrapper.component.PageSize}"
             />
             <aura:set attribute="else">
-                    <c:relatedCardList onnavigatetodetail="{!c.handleNavigateToDetail}" contents="{!v.componentWrapper.contentWrapper}" type="{!v.componentWrapper.component.RecordType.DeveloperName}"/>
+                    <c:relatedCardList onnavigatetodetail="{!c.handleNavigateToDetail}" contents="{!v.componentWrapper.contentWrapper}" type="{!v.componentWrapper.component.RecordTypeDeveloperName}"/>
             </aura:set>
         </aura:if>
     </aura:if>

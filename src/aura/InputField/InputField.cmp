@@ -1,0 +1,142 @@
+<aura:component access="global">
+    <aura:attribute name="formData" type="sObject" description="data of the form which is being displayed"/>
+    <aura:attribute name="fieldConfiguration" type="Object" description="field object which is being rendered"/>
+    <aura:attribute name="inputValue" type="Object" description="value of the field to be displayed"/>
+    <aura:attribute name="confirmationInputValue" type="Object" description="value of the confirmation field"/>
+    <aura:attribute name="multiPicklistSelectedValues" type="String[]" description="The selected values of the multipicklist"/>
+    <aura:attribute name="multiPicklistValues" type="List" default="[]" description="All the possible values for the multipicklist"/>
+    <aura:attribute name="previousValidationError" type="String" description="Contains the type of the error the field had before. If previously it had no errors then it is empty possible values: formatErrors, confirmationErrors, requiredFieldErrors, empty" default=""/>
+    <aura:attribute name="validationErrors" type="Object" description="An object that contains all the validation errors the form has"/>
+    <aura:attribute name="onError" type="Boolean" default="false" description="boolean used to style the input with an error"/>
+    <aura:attribute name="onConfirmationError" type="Boolean" default="false" description="boolean used to style the confirmationfield with an error"/>
+    <aura:attribute name="lastFieldModified" type="String" description="Used to let parent component know which field was the last one modified"/>
+    <aura:attribute name="confirmationHasBeenModified" type="Boolean" default="false" description="This attribute is used so that the error message in the confirmation field is displayed only if the user has modified it"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler name="change" value="{!v.inputValue}" action="{!c.phoneChanged}" />
+    
+    <aura:method name="validateWithoutErrorMessage" action="{!c.validateWithoutErrorMessage}" access="PUBLIC" description="used to validate the field without styling the errors"/>
+    <aura:method name="validate" action="{!c.validate}" access="PUBLIC" description="used to validate the field styling the errors"/>
+    <div>
+        
+        <!-- INPUT TEXT -->
+        <aura:if isTrue="{!and(v.fieldConfiguration.helpText != null, v.fieldConfiguration.helpText != '')}">
+            <div class="help-text-div" id="help-text-div">
+                <lightning:helptext aura:id="help-text" content="{!v.fieldConfiguration.helpText}" class="helptext-register"/>
+            </div>
+        </aura:if>
+        <aura:if isTrue="{!v.fieldConfiguration.displayType == 'Text'}">
+            <div class="{!'form-group border-lable-flt ' + if (or(v.fieldConfiguration.helpText == null, v.fieldConfiguration.helpText == ''), 'without-help-text' , '' )}">
+                <ui:inputText class="{!'form-control ' + v.fieldConfiguration.styleClass + ' ' + if ( v.onError, 'error' , '' )}" value="{!v.inputValue}" aura:id="inputText" placeholder="{!v.fieldConfiguration.placeHolder + if(v.fieldConfiguration.isRequired, ' *')}" blur="{!c.validate}"  updateOn="keyup, change" keyup="{!c.validateOnChange}" disabled="{!v.fieldConfiguration.readOnly}"/>
+                <aura:if isTrue="{!and(v.fieldConfiguration.label != '', v.fieldConfiguration.label != null)}">    
+                    <label class="{!if ( v.onError, 'error' , '' )}" for="inputText">{!v.fieldConfiguration.label + if(v.fieldConfiguration.isRequired, ' *')}</label>
+                </aura:if>
+                <span class="error-msg" aura:id="error-msg"></span>
+            </div>
+            <!-- CONFIRMATION -->
+            <aura:if isTrue="{!v.fieldConfiguration.hasConfirmation == true}">
+                <div class="form-group confirmation border-lable-flt">
+                    <ui:inputText class="{!'form-control ' + v.fieldConfiguration.styleClass + ' ' + if ( v.onConfirmationError, 'error' , '' )}" value="{!v.confirmationInputValue}" aura:id="confirmationInputText" placeholder="{!v.fieldConfiguration.confirmationPlaceholder + if(v.fieldConfiguration.isRequired, ' *')}" updateOn="keyup, change" keyup="{!c.validateOnChange}" blur="{!c.validateConfirmationOnBlur}"/>
+                    <aura:if isTrue="{!and(v.fieldConfiguration.confirmationLabel != '', v.fieldConfiguration.confirmationLabel != null)}">
+                        <label class="{!if ( v.onConfirmationError, 'error' , '' )}" for="inputText">{! v.fieldConfiguration.confirmationLabel + if(v.fieldConfiguration.isRequired, ' *')}</label>
+                    </aura:if>
+                    <span class="error-msg" aura:id="confirmation-error-msg"></span>
+                </div>
+            </aura:if>
+        </aura:if>
+        <!-- NUMERIC -->
+        <aura:if isTrue="{!v.fieldConfiguration.displayType == 'Numeric'}">
+            <div class="form-group border-lable-flt">
+                <ui:inputText disabled="{!v.fieldConfiguration.readOnly}" class="{!'form-control ' + v.fieldConfiguration.styleClass + ' ' + if ( v.onError, 'error' , '' )}" value="{!v.inputValue}" aura:id="inputText" placeholder="{!v.fieldConfiguration.placeHolder + if(v.fieldConfiguration.isRequired, ' *')}" blur="{!c.validate}" updateOn="keyup, change" keyup="{!c.validateOnChange}"/>
+                <aura:if isTrue="{!and(v.fieldConfiguration.label != '', v.fieldConfiguration.label != null)}">
+                    <label class="{!if ( v.onError, 'error' , '' )}" for="inputText">{!v.fieldConfiguration.label + if(v.fieldConfiguration.isRequired, ' *')}</label>
+                </aura:if>
+                <span class="error-msg" aura:id="error-msg"></span>
+            </div>
+        </aura:if>
+        <!-- DATE -->
+        <aura:if isTrue="{!v.fieldConfiguration.displayType == 'Date'}">
+            <div class="form-group border-lable-flt">
+                <ui:inputDate class="{!'form-control ' + v.fieldConfiguration.styleClass + ' ' + if ( v.onError, 'error' , '' )}" value="{!v.inputValue}" displayDatePicker="true" aura:id="inputText"  blur="{!c.validate}" disabled="{!v.fieldConfiguration.readOnly}"/>
+                <a class="datePicker-openIcon display icon-only-for-mobile" aria-haspopup="true" data-aura-rendered-by="311:86;a" href="javascript:void(0);"><span class="assistiveText" data-aura-rendered-by="312:86;a">Date Picker</span></a>
+                <aura:if isTrue="{!and(v.fieldConfiguration.label != '', v.fieldConfiguration.label != null)}">
+                    <label class="{!if ( v.onError, 'error' , '' )}" for="inputText">{!v.fieldConfiguration.label + if(v.fieldConfiguration.isRequired, ' *')}</label>
+                </aura:if>
+                <span class="error-msg" aura:id="error-msg"></span>
+            </div>
+        </aura:if>
+        <!-- PICKLIST -->
+        <aura:if isTrue="{!v.fieldConfiguration.displayType == 'Picklist'}">
+            <div class="form-group border-lable-flt">
+                <ui:inputSelect class="{!'form-control ' + v.fieldConfiguration.styleClass + ' ' + if ( v.onError, 'error' , '' )}"  aura:id="inputText" disabled="{!v.fieldConfiguration.readOnly}" blur="{!c.validate}" value="{!v.inputValue}">
+                    <aura:iteration items="{!v.fieldConfiguration.picklistValues}" var="picklistValue" >
+                        <ui:inputSelectOption text="{!picklistValue}"/>
+                    </aura:iteration>
+                </ui:inputSelect>   
+                <aura:if isTrue="{!and(v.fieldConfiguration.label != '', v.fieldConfiguration.label != null)}">
+                    <label class="{!if ( v.onError, 'error' , '' )}" for="inputText">{!v.fieldConfiguration.label + if(v.fieldConfiguration.isRequired, ' *')}</label>
+                </aura:if>
+                <span class="error-msg" aura:id="error-msg"></span>
+            </div>
+        </aura:if>
+        <!-- MULTI-PICKLIST -->
+        <aura:if isTrue="{!v.fieldConfiguration.displayType == 'Multi-Picklist'}">
+            <div class="form-group border-lable-flt multipicklist">
+                <lightning:dualListbox aura:id="inputText" name="Select Options"
+                                       sourceLabel="Available Options" 
+                                       selectedLabel="Selected Options" 
+                                       options="{! v.multiPicklistValues }"
+                                       value="{! v.multiPicklistSelectedValues }"
+                                       onchange="{!c.validate}"
+                                       />
+                <aura:if isTrue="{!and(v.fieldConfiguration.label != '', v.fieldConfiguration.label != null)}">
+                    <label class="{!if ( v.onError, 'error' , '' )}" for="inputText">{!v.fieldConfiguration.label + if(v.fieldConfiguration.isRequired, ' *')}</label>
+                </aura:if>
+                <span class="error-msg" aura:id="error-msg"></span>
+            </div>
+        </aura:if>
+        <!-- RADIOBUTTON -->
+        <aura:if isTrue="{!v.fieldConfiguration.displayType == 'Radio Button'}">
+            <aura:if isTrue="{!and(v.fieldConfiguration.label != '', v.fieldConfiguration.label != null)}">
+                <label class="{!if ( v.onError, 'error ' , '' ) + 'radio-label'}" for="inputText">{!v.fieldConfiguration.label + if(v.fieldConfiguration.isRequired, ' *')}</label>
+            </aura:if>
+            <aura:iteration items="{!v.fieldConfiguration.picklistValues}" var="picklistValue">
+                <ui:inputRadio name="{!v.fieldConfiguration.objApiName + '.' + v.fieldConfiguration.apiName}" label="{!picklistValue}" change="{!c.changeRadioButton}" value="{!if(v.inputValue == picklistValue, true)}"/>
+            </aura:iteration>
+            <span class="error-msg input-group-error-msg" aura:id="error-msg"></span>
+        </aura:if>
+        <!-- CHECKBOX -->
+        <aura:if isTrue="{!v.fieldConfiguration.displayType == 'Multi-Checkbox'}">
+            <aura:if isTrue="{!and(v.fieldConfiguration.label != '', v.fieldConfiguration.label != null)}">
+                <label class="{!if ( v.onError, 'error ' , '' ) + 'radio-label'}" for="inputText">{!v.fieldConfiguration.label + if(v.fieldConfiguration.isRequired, ' *')}</label>
+            </aura:if>
+            <lightning:checkboxGroup aura:id="inputText"
+                                     name="Select Options"
+                                     options="{! v.multiPicklistValues }"
+                                     value="{! v.multiPicklistSelectedValues }"
+                                     onchange="{!c.validate}"/>
+            <span class="error-msg input-group-error-msg" aura:id="error-msg"></span>
+        </aura:if>
+        <!-- TEXT AREA -->
+        <aura:if isTrue="{!v.fieldConfiguration.displayType == 'TextArea'}">
+            
+            <div class="form-group border-lable-flt textarea-input">
+                <ui:inputTextArea  value="{! v.inputValue}" disabled="{!v.fieldConfiguration.readOnly}" class="{!'form-control ' + v.fieldConfiguration.styleClass + ' ' + if ( v.onError, 'error' , '' )}" aura:id="inputText" placeholder="{!v.fieldConfiguration.placeHolder + if(v.fieldConfiguration.isRequired, ' *')}" maxlength="500" resizable="false" rows="{!v.fieldConfiguration.textAreaRows}" updateOn="keyup" keyup="{!c.validateOnChange}" blur="{!c.validate}"/>
+                <aura:if isTrue="{!and(v.fieldConfiguration.label != '', v.fieldConfiguration.label != null)}">
+                    <label class="{!if ( v.onError, 'error' , '' )}" for="inputText">{!v.fieldConfiguration.label + if(v.fieldConfiguration.isRequired, ' *')}</label>
+                </aura:if>
+                <span class=" textarea-error error-msg" aura:id="error-msg"></span>
+            </div>
+        </aura:if>
+        <!-- PHONE -->
+        <aura:if isTrue="{!v.fieldConfiguration.displayType == 'Phone'}">
+            <div class="{!'form-group border-lable-flt ' + if (or(v.fieldConfiguration.helpText == null, v.fieldConfiguration.helpText == ''), 'without-help-text' , '' )}">
+            <c:CountrySelector inputNumber="{!v.inputValue}"></c:CountrySelector>
+            	<aura:if isTrue="{!and(v.fieldConfiguration.label != '', v.fieldConfiguration.label != null)}">    
+                    <label class="{!if ( v.onError, 'error' , '' )}" for="inputText">{!v.fieldConfiguration.label + if(v.fieldConfiguration.isRequired, ' *')}</label>
+                </aura:if>
+                <span class="error-msg" aura:id="error-msg"></span>
+            </div>
+        </aura:if>
+    </div>
+</aura:component>

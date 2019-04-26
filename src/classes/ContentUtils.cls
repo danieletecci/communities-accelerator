@@ -106,6 +106,7 @@ public without sharing virtual class ContentUtils {
         
         ContentWrapper cw = new ContentWrapper();
         Map<Id, Content__c> mapContent = new Map<Id, Content__c>((List<Content__c>)Database.query(GeneralUtils.prefix(query)));
+        system.debug('content size: ' + mapContent.size());
 
         if(!mapContent.isEmpty()){
             //Manual Order del contenido
@@ -209,7 +210,7 @@ public without sharing virtual class ContentUtils {
         List<String> tagList = new List<String>();
         List<String> visitedList = new List<String>();
         Map<String, String> orderTagMap = new Map<String, Id>();
-        System.debug(contentTypeToSearch + ' - ' + tagCriteria);
+        
         if(String.isNotBlank(tagCriteria)){
             tagCriteria = tagCriteria.deleteWhitespace().toUpperCase();
             orderList = tagCriteria.split('\\(|\\)|AND|OR');
@@ -306,8 +307,8 @@ public without sharing virtual class ContentUtils {
 
     public static String getRecordTypeContentFromRTComponent(String componentRT){
         String contentTypeToSearch;
-        if(componentRT == 'ArticlesRelated' || componentRT == 'ArticleDetail'){contentTypeToSearch = 'Article';}
-        else if(componentRT == 'EventsRelated' || componentRT == 'EventDetail'){contentTypeToSearch = 'Event';}
+        if(componentRT == 'ArticlesRelated' || componentRT == 'ArticleDetail' || componentRT == 'ArticleList'){contentTypeToSearch = 'Article';}
+        else if(componentRT == 'EventsRelated' || componentRT == 'EventDetail' || componentRT == 'EventList'){contentTypeToSearch = 'Event';}
         else{
             contentTypeToSearch = componentRT;
         }

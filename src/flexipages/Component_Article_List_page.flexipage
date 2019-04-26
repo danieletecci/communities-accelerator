@@ -78,7 +78,7 @@
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>whereCondition</name>
-                <value>WHERE RecordType.DeveloperName = [!rec.RecordType.DeveloperName] AND [CMS]ClusterRootExternalId__c = [!rec.[CMS]ClusterExternalId__c]</value>
+                <value>WHERE RecordType.DeveloperName = &apos;Article&apos; AND [CMS]ClusterRootExternalId__c = [!rec.[CMS]ClusterExternalId__c]</value>
             </componentInstanceProperties>
             <componentName>JunctionObjectManager</componentName>
             <visibilityRule>

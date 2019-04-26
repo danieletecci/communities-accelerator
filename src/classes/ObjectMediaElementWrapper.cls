@@ -1,26 +1,29 @@
 public class ObjectMediaElementWrapper {
     
-    public String Id;
-    public String Name;
+    @AuraEnabled public String Id;
+    @AuraEnabled public String Name;
 
-    public String Description;
-    public String DesktopFileExtension;
-    public String ExternalId;
-    public String FileNameDesktop;
-    public String FileNameMobile;
-    public String FileNameTablet;
-    public String FileURLDesktop;
-    public String FileURLMobile;
-    public String FileURLTablet;
-    public Decimal HeightDesktop;
-    public Decimal HeightMobile;
-    public Decimal HeightTablet;
-    public String MobileFileExtension;
-    public String Status;
-    public String TabletFileExtension;
-    public Decimal WidthDesktop;
-    public Decimal WidthMobile;
-    public Decimal WidthTablet;
+    @AuraEnabled public String Description;
+    @AuraEnabled public String DesktopFileExtension;
+    @AuraEnabled public String ExternalId;
+    @AuraEnabled public String FileNameDesktop;
+    @AuraEnabled public String FileNameMobile;
+    @AuraEnabled public String FileNameTablet;
+    @AuraEnabled public String FileURLDesktop;
+    @AuraEnabled public String FileURLMobile;
+    @AuraEnabled public String FileURLTablet;
+    @AuraEnabled public String FileIdDesktop;
+    @AuraEnabled public String FileIdMobile;
+    @AuraEnabled public String FileIdTablet;
+    @AuraEnabled public Decimal HeightDesktop;
+    @AuraEnabled public Decimal HeightMobile;
+    @AuraEnabled public Decimal HeightTablet;
+    @AuraEnabled public String MobileFileExtension;
+    @AuraEnabled public String Status;
+    @AuraEnabled public String TabletFileExtension;
+    @AuraEnabled public Decimal WidthDesktop;
+    @AuraEnabled public Decimal WidthMobile;
+    @AuraEnabled public Decimal WidthTablet;
     
     public ObjectMediaElementWrapper(MediaElement__c mediaElement){
         try{this.Id = mediaElement.Id;}catch(Exception e){}
@@ -35,6 +38,9 @@ public class ObjectMediaElementWrapper {
         try{this.FileURLDesktop = mediaElement.FileURLDesktop__c;}catch(Exception e){}
         try{this.FileURLMobile = mediaElement.FileURLMobile__c;}catch(Exception e){}
         try{this.FileURLTablet = mediaElement.FileURLTablet__c;}catch(Exception e){}
+        try{this.FileIdDesktop = mediaElement.FileIdDesktop__c;}catch(Exception e){}
+        try{this.FileIdMobile = mediaElement.FileIdMobile__c;}catch(Exception e){}
+        try{this.FileIdTablet = mediaElement.FileIdTablet__c;}catch(Exception e){}
         try{this.HeightDesktop = mediaElement.HeightDesktop__c;}catch(Exception e){}
         try{this.HeightMobile = mediaElement.HeightMobile__c;}catch(Exception e){}
         try{this.HeightTablet = mediaElement.HeightTablet__c;}catch(Exception e){}

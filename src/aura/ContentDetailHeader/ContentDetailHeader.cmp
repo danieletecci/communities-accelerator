@@ -55,7 +55,7 @@
 						        <lightning:button label="{!$Label.c.General_Save}" onclick="{! c.doSave}" />
 						    </aura:if>
 					        <!-- <lightning:button label="{!$Label.c.ContentDetailSchedule}" /> -->
-		                	<aura:if isTrue="{!and(v.contentData.IsTemplate__c,v.contentData.Status == ($Label.c.ContentDetailPublished))}">
+		                	<aura:if isTrue="{!and(v.contentData.IsTemplate,v.contentData.Status == ($Label.c.ContentDetailPublished))}">
 						        <lightning:button label="{!$Label.c.CreateFromTemplateButton}"  onclick="{! c.doCreateFromTemplate}" />
 						    </aura:if>
 						    <aura:if isTrue="{!(v.contentData.Status) == ($Label.c.ContentDetailArchived)}">
@@ -128,7 +128,7 @@
 	{!v.confirmationModal}
 
     <aura:if isTrue="{!v.contentData.Id != null}">
-    	<c:createNewContentModal aura:id="newContentModal" oncontentcreated="{!c.doGoToContent}" recordTypeId="{!v.contentData.RecordType.Id}" templateId="{!v.contentData.Id}"></c:createNewContentModal>
+    	<c:createNewContentModal aura:id="newContentModal" oncontentcreated="{!c.doGoToContent}" recordTypeId="{!v.contentData.RecordTypeId}" templateId="{!v.contentData.Id}"></c:createNewContentModal>
     </aura:if>
     
 </aura:component>

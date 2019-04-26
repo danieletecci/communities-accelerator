@@ -26,7 +26,7 @@
                 helper.saveFileAndUpdateMedia(component, helper, fileId, '', fileName, device, image.width, image.height);
                 if(device == 'Desktop'){
                 	if(String(component.find("resizeForTable").get('v.value')) == 'true'){
-                		component.set("v.oldFileTablet", component.get("v.mediaElementWrapper.mediaElement.FileURLTablet"));
+                		component.set("v.oldFileTablet", component.get("v.mediaElementWrapper.mediaElement.FileIdTablet"));
                 		var tabletImg = new Image;
 						tabletImg.src = "data:image/gif;base64," + imgStr;
 						tabletImg.onload = function() {
@@ -38,7 +38,7 @@
 						}
                 	}
                 	if(String(component.find("resizeForMobile").get('v.value')) == 'true'){
-                		component.set("v.oldFileMobile", component.get("v.mediaElementWrapper.mediaElement.FileURLMobile"));
+                		component.set("v.oldFileMobile", component.get("v.mediaElementWrapper.mediaElement.FileIdMobile"));
                 		var mobileImg = new Image;
 						mobileImg.src = "data:image/gif;base64," + imgStr;
 						mobileImg.onload = function() {
@@ -208,15 +208,15 @@
 
     	if(selected=='Edit_Desktop'){
     		component.set("v.showEditDesktop", true);
-    		component.set("v.oldFileDesktop", component.get("v.mediaElementWrapper.mediaElement.FileURLDesktop"));
+    		component.set("v.oldFileDesktop", component.get("v.mediaElementWrapper.mediaElement.FileIdDesktop"));
     	}
     	if(selected=='Edit_Tablet'){
     		component.set("v.showEditTablet", true);
-    		component.set("v.oldFileTablet", component.get("v.mediaElementWrapper.mediaElement.FileURLTablet"));
+    		component.set("v.oldFileTablet", component.get("v.mediaElementWrapper.mediaElement.FileIdTablet"));
     	}
     	if(selected=='Edit_Mobile'){
     		component.set("v.showEditMobile", true);
-    		component.set("v.oldFileMobile", component.get("v.mediaElementWrapper.mediaElement.FileURLMobile"));
+    		component.set("v.oldFileMobile", component.get("v.mediaElementWrapper.mediaElement.FileIdMobile"));
     	}
     	if(selected=='Delete_Desktop'){
     		var action = component.get("c.deleteFileDesktop");

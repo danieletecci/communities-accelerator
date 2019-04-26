@@ -2,7 +2,7 @@
 
 	<!-- GENERAL VARIABLES --> 
 	<aura:attribute name="componentExternalId" type="String" access="global"/>
-	<aura:attribute name="componentType" type="String" default="Related Articles"/>
+	<aura:attribute name="componentType" type="String" default="ArticlesRelated"/>
 	<aura:attribute name="recordType" type="String" default="Article"/>
 
 	<aura:if isTrue="{!not(v.componentWrapper == null)}" >

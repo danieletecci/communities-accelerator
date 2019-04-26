@@ -1,11 +1,16 @@
 public with sharing class ContentPublishModalController {
+	
 	@auraEnabled
-	public static ObjectContentWrapper schedulePublication(Content__c content){
+	public static ObjectContentWrapper schedulePublication(Object content){
+		ObjectContentWrapper ocw = (ObjectContentWrapper) JSON.deserialize(JSON.serialize(content), ObjectContentWrapper.class);
+        Savepoint sp = Database.setSavepoint();
+        Content__c contentVar = ocw.parse();
+
 		try{
-			update content;
+			update contentVar;
 		} catch(Exception e){
 			throw new AuraHandledException(e.getMessage());
 		}
-		return new ObjectContentWrapper(content);
+		return new ObjectContentWrapper(contentVar);
 	}
 }

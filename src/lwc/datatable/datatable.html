@@ -66,6 +66,7 @@
                 </template>
             </div>
         </template> -->
+<<<<<<< HEAD
 
         <template if:true={isDesktop}>
             <!---->
@@ -134,6 +135,33 @@
                     </footer>
                 </article>
             </template>
+=======
+        <template for:each={table.tableData} for:item="row">    
+            <article key={row.Id} class="slds-card">   
+                <div class="slds-grid slds-wrap" onclick={openDetailModal} data-key={row.Id}>
+                    <template for:each={columnsToShow} for:item="col">
+                        <div key={col.label} class={columnClass}>
+                            <c-datatable-row colname={col.label} column={col.fieldName} row={row}></c-datatable-row>
+                        </div> 
+                    </template>
+                </div>
+                <footer class="slds-card__footer slds-grid slds-wrap">
+                    <template for:each={rowAction} for:item="action">
+                            <div key={action.label} class="slds-no-flex slds-col slds-size_1-of-4">
+                                <img src={action.icon} 
+                                     data-id={row.Id} 
+                                     data-component={action.component} 
+                                     data-modal={action.showAsModal}
+                                     data-navigation={action.navigation} 
+                                     onclick={rowActionEvent}>
+                            </div>
+                    </template> 
+                    <div class="slds-no-flex slds-col slds-size_1-of-4">
+                        <img src={moreIcon} onclick={openActionModal}>
+                    </div>
+                </footer>
+            </article>
+>>>>>>> 30da3c52ab4a057a1551d8cd6cbca75cdedad65c
         </template>
         <template if:true={appliedFilters}>
             <div class="table__footer">
@@ -147,8 +175,12 @@
                                     rowkey={clickRow}
                                     rowaction={rowAction}
                                     closeicon={closeIcon}
+<<<<<<< HEAD
                                     onclose={closeFilterModal}
                                     is-desktop={isDesktop}>
+=======
+                                    onclose={closeFilterModal}>
+>>>>>>> 30da3c52ab4a057a1551d8cd6cbca75cdedad65c
             </c-datatable-modals>
         </template>
         <template if:true={showDetailModal}>

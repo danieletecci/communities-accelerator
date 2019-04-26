@@ -43,27 +43,6 @@
   background: none;
   background-size: 23px 23px;
 }
-.datatable .modal {
-  height: 100%;
-  left: 0;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background-color: white;
-  z-index: 1;
-}
-.datatable .modal .modal__content {
-  position: absolute;
-  height: 100vh;
-  width: 100%;
-}
-.datatable .modal .modal__footer {
-  bottom: 0;
-  position: absolute;
-}
-.datatable .modal .filter.active {
-  background-color: aqua;
-}
 .datatable footer.slds-card__footer {
   padding: 0;
   width: 100%;

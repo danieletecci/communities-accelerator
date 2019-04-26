@@ -49,13 +49,10 @@ export default class DatatableModals extends LightningElement {
 
     get setFilters() {   
         var columns = JSON.parse(JSON.stringify(this.table.columns));
-        var filterValues = ["Last Week", "Last Month", "Last Year", "Custom Range"];
-        var isNumber = ["number"];
+        var filterValues = ["Last Week", "Last Month", "Last Year", "Custom Range"]; 
         columns.forEach(col => {
             if(col.filtrable && (col.type === "DATE" || col.type === "DATETIME")) {
                 col.filtrableValues = filterValues;
-            } else if (col.filtrable && (col.type === "DOUBLE")) {
-                col.filtrableValues = isNumber;
             }
         });
         return columns;

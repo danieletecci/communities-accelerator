@@ -50,9 +50,9 @@
     <description>Each content is a collection of data that ultimately will be shown in a Component. That data (Its kind and quantity) depends on the Content record type</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>false</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
-    <enableLicensing>false</enableLicensing>
     <enableReports>false</enableReports>
     <enableSearch>true</enableSearch>
     <enableSharing>false</enableSharing>
@@ -365,6 +365,11 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
                     <default>false</default>
                     <label>Title Bottom</label>
                 </value>
+                <value>
+                    <fullName>Body Only</fullName>
+                    <default>false</default>
+                    <label>Body Only</label>
+                </value>
             </valueSetDefinition>
         </valueSet>
     </fields>
@@ -675,6 +680,17 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
         <label>All</label>
     </listViews>
     <listViews>
+        <fullName>Article</fullName>
+        <columns>NAME</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Content__c.Article</value>
+        </filters>
+        <label>Article</label>
+    </listViews>
+    <listViews>
         <fullName>Banners</fullName>
         <columns>NAME</columns>
         <filterScope>Mine</filterScope>
@@ -707,17 +723,6 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
         </filters>
         <label>FAQs</label>
     </listViews>
-    <listViews>
-        <fullName>Article</fullName>
-        <columns>NAME</columns>
-        <filterScope>Mine</filterScope>
-        <filters>
-            <field>RECORDTYPE</field>
-            <operation>equals</operation>
-            <value>Content__c.Article</value>
-        </filters>
-        <label>Article</label>
-    </listViews>
     <nameField>
         <label>Name</label>
         <trackHistory>false</trackHistory>
@@ -730,7 +735,7 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
         <active>true</active>
         <description>Configure a new Advance Content.</description>
         <label>Advance Content</label>
-		<picklistValues>
+        <picklistValues>
             <picklist>BannerFrameType__c</picklist>
             <values>
                 <fullName>Hero</fullName>
@@ -802,11 +807,11 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
         <picklistValues>
             <picklist>RedirectType__c</picklist>
             <values>
-                <fullName>Event</fullName>
+                <fullName>Article</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Article</fullName>
+                <fullName>Event</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -821,396 +826,12 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
                 <default>false</default>
             </values>
             <values>
-                <fullName>Pending</fullName>
-                <default>true</default>
-            </values>
-            <values>
                 <fullName>In Approval</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Rejected</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Status__c</picklist>
-            <values>
-                <fullName>Archived</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Draft</fullName>
-                <default>true</default>
-            </values>
-            <values>
-                <fullName>Published</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Scheduled</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-    </recordTypes>
-    <recordTypes>
-        <fullName>Banner</fullName>
-        <active>true</active>
-        <description>Configure a new Banner content. This content will scroll or appear-fade inside a Banner. The data this type of content allows are Media elements</description>
-        <label>Banner</label>
-		<picklistValues>
-            <picklist>BannerFrameType__c</picklist>
-            <values>
-                <fullName>Hero</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Page</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Square</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Layout__c</picklist>
-            <values>
-                <fullName>Title Bottom</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Title Middle</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Title Top</fullName>
-                <default>true</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>OverlayQuadrant__c</picklist>
-            <values>
-                <fullName>Bottom-Center</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Bottom-Left</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Bottom-Right</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Middle-Center</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Middle-Left</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Middle-Right</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Top-Center</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Top-Left</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Top-Right</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>RedirectType__c</picklist>
-            <values>
-                <fullName>Event</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Article</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>URL</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>StatusApprovalProcess__c</picklist>
-            <values>
-                <fullName>Approved</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Pending</fullName>
                 <default>true</default>
-            </values>
-            <values>
-                <fullName>In Approval</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Rejected</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Status__c</picklist>
-            <values>
-                <fullName>Archived</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Draft</fullName>
-                <default>true</default>
-            </values>
-            <values>
-                <fullName>Published</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Scheduled</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-    </recordTypes>
-    <recordTypes>
-        <fullName>Event</fullName>
-        <active>true</active>
-        <description>Configure a new Event content. This content will be shown inside an Event. The data this type of content allows are Media elements and Event metadata such as event date, event capacity, etc.</description>
-        <label>Event</label>
-		<picklistValues>
-            <picklist>BannerFrameType__c</picklist>
-            <values>
-                <fullName>Hero</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Page</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Square</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Layout__c</picklist>
-            <values>
-                <fullName>Title Bottom</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Title Middle</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Title Top</fullName>
-                <default>true</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>OverlayQuadrant__c</picklist>
-            <values>
-                <fullName>Bottom-Center</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Bottom-Left</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Bottom-Right</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Middle-Center</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Middle-Left</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Middle-Right</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Top-Center</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Top-Left</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Top-Right</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>RedirectType__c</picklist>
-            <values>
-                <fullName>Event</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Article</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>URL</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>StatusApprovalProcess__c</picklist>
-            <values>
-                <fullName>Approved</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pending</fullName>
-                <default>true</default>
-            </values>
-            <values>
-                <fullName>In Approval</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Rejected</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Status__c</picklist>
-            <values>
-                <fullName>Archived</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Draft</fullName>
-                <default>true</default>
-            </values>
-            <values>
-                <fullName>Published</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Scheduled</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-    </recordTypes>
-    <recordTypes>
-        <fullName>FAQ</fullName>
-        <active>true</active>
-        <description>Configure a new FAQ content. This content will be shown inside a FAQ list. The data this type of content allows are Texts for questions and answers</description>
-        <label>FAQ</label>
-		 <picklistValues>
-            <picklist>BannerFrameType__c</picklist>
-            <values>
-                <fullName>Hero</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Page</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Square</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Layout__c</picklist>
-            <values>
-                <fullName>Title Bottom</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Title Middle</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Title Top</fullName>
-                <default>true</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>OverlayQuadrant__c</picklist>
-            <values>
-                <fullName>Bottom-Center</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Bottom-Left</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Bottom-Right</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Middle-Center</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Middle-Left</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Middle-Right</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Top-Center</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Top-Left</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Top-Right</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>RedirectType__c</picklist>
-            <values>
-                <fullName>Event</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Article</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>URL</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>StatusApprovalProcess__c</picklist>
-            <values>
-                <fullName>Approved</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pending</fullName>
-                <default>true</default>
-            </values>
-            <values>
-                <fullName>In Approval</fullName>
-                <default>false</default>
             </values>
             <values>
                 <fullName>Rejected</fullName>
@@ -1242,7 +863,139 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
         <active>true</active>
         <description>Configure a new Article content. This content will be shown inside an Article. The data this type of content allows are Media elements and Article metadata such as title, article description, etc.</description>
         <label>Article</label>
-		<picklistValues>
+        <picklistValues>
+            <picklist>BannerFrameType__c</picklist>
+            <values>
+                <fullName>Hero</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Page</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Square</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Layout__c</picklist>
+            <values>
+                <fullName>Body Only</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Title Bottom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Title Middle</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Title Top</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>OverlayQuadrant__c</picklist>
+            <values>
+                <fullName>Bottom-Center</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bottom-Left</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bottom-Right</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Middle-Center</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Middle-Left</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Middle-Right</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Top-Center</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Top-Left</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Top-Right</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>RedirectType__c</picklist>
+            <values>
+                <fullName>Article</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Event</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>URL</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>StatusApprovalProcess__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Archived</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Draft</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Published</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Scheduled</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Banner</fullName>
+        <active>true</active>
+        <description>Configure a new Banner content. This content will scroll or appear-fade inside a Banner. The data this type of content allows are Media elements</description>
+        <label>Banner</label>
+        <picklistValues>
             <picklist>BannerFrameType__c</picklist>
             <values>
                 <fullName>Hero</fullName>
@@ -1314,11 +1067,11 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
         <picklistValues>
             <picklist>RedirectType__c</picklist>
             <values>
-                <fullName>Event</fullName>
+                <fullName>Article</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Article</fullName>
+                <fullName>Event</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1333,12 +1086,400 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
                 <default>false</default>
             </values>
             <values>
+                <fullName>In Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Pending</fullName>
                 <default>true</default>
             </values>
             <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Archived</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Draft</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Published</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Scheduled</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Block</fullName>
+        <active>true</active>
+        <description>Configure a new Block content. This content will be shown inside a Block. The data type of content allows are Media elements and Block Metadata such as title, extract, etc.</description>
+        <label>Block</label>
+        <picklistValues>
+            <picklist>BannerFrameType__c</picklist>
+            <values>
+                <fullName>Hero</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Page</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Square</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Layout__c</picklist>
+            <values>
+                <fullName>Title Bottom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Title Middle</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Title Top</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>OverlayQuadrant__c</picklist>
+            <values>
+                <fullName>Bottom-Center</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bottom-Left</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bottom-Right</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Middle-Center</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Middle-Left</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Middle-Right</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Top-Center</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Top-Left</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Top-Right</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>RedirectType__c</picklist>
+            <values>
+                <fullName>Article</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Event</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>URL</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>StatusApprovalProcess__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>In Approval</fullName>
                 <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Archived</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Draft</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Published</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Scheduled</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Event</fullName>
+        <active>true</active>
+        <description>Configure a new Event content. This content will be shown inside an Event. The data this type of content allows are Media elements and Event metadata such as event date, event capacity, etc.</description>
+        <label>Event</label>
+        <picklistValues>
+            <picklist>BannerFrameType__c</picklist>
+            <values>
+                <fullName>Hero</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Page</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Square</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Layout__c</picklist>
+            <values>
+                <fullName>Body Only</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Title Bottom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Title Middle</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Title Top</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>OverlayQuadrant__c</picklist>
+            <values>
+                <fullName>Bottom-Center</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bottom-Left</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bottom-Right</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Middle-Center</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Middle-Left</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Middle-Right</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Top-Center</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Top-Left</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Top-Right</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>RedirectType__c</picklist>
+            <values>
+                <fullName>Article</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Event</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>URL</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>StatusApprovalProcess__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Archived</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Draft</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Published</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Scheduled</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>FAQ</fullName>
+        <active>true</active>
+        <description>Configure a new FAQ content. This content will be shown inside a FAQ list. The data this type of content allows are Texts for questions and answers</description>
+        <label>FAQ</label>
+        <picklistValues>
+            <picklist>BannerFrameType__c</picklist>
+            <values>
+                <fullName>Hero</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Page</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Square</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Layout__c</picklist>
+            <values>
+                <fullName>Title Bottom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Title Middle</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Title Top</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>OverlayQuadrant__c</picklist>
+            <values>
+                <fullName>Bottom-Center</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bottom-Left</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bottom-Right</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Middle-Center</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Middle-Left</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Middle-Right</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Top-Center</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Top-Left</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Top-Right</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>RedirectType__c</picklist>
+            <values>
+                <fullName>Article</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Event</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>URL</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>StatusApprovalProcess__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending</fullName>
+                <default>true</default>
             </values>
             <values>
                 <fullName>Rejected</fullName>

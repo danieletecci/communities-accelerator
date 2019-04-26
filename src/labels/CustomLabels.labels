@@ -17,44 +17,20 @@
         <value>Add Media</value>
     </labels>
     <labels>
-        <fullName>MultiComboboxMoreAudiencesSelected</fullName>
-        <categories>ContentDetailColumnFields.cmp</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Text showed when more audiences are selected</shortDescription>
-        <value>{0} audiences selected</value>
-    </labels>
-	<labels>
-        <fullName>MultiComboboxOneAudienceSelected</fullName>
-        <categories>ContentDetailColumnFields.cmp</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Text showed when only a audience is selected</shortDescription>
-        <value>{0} audience selected</value>
-    </labels>
-	<labels>
-        <fullName>CustomCriteriaValidation</fullName>
-        <categories>AudienceTriggers.cls</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Custom Criteria Validation</shortDescription>
-        <value>Invalid custom logic expression. You only can use &quot;(&quot;, &quot;)&quot;, &quot;AND&quot;, &quot;OR&quot; and the criteria numbers</value>
-    </labels>
-	<labels>
-        <fullName>MultiComboboxAudiencePlaceholder</fullName>
-        <categories>ContentDetailController.apxc</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>MultiComboboxAudiencePlaceholder</shortDescription>
-        <value>Select audiences...</value>
-    </labels>
-    <labels>
         <fullName>AddNew</fullName>
         <categories>AudienceCriteria.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Add New</shortDescription>
         <value>Add new</value>
+    </labels>
+    <labels>
+        <fullName>AddTag</fullName>
+        <categories>Tags</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>AddTag</shortDescription>
+        <value>Add Tags</value>
     </labels>
     <labels>
         <fullName>AdvanceContentContentDetailBody</fullName>
@@ -87,6 +63,158 @@
         <protected>true</protected>
         <shortDescription>Title__c field</shortDescription>
         <value>Title</value>
+    </labels>
+    <labels>
+        <fullName>AdvanceContentDetailTemplateDescription</fullName>
+        <categories>ContentAdvanceArticleContentRecordEdit.cmp</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AdvanceContentDetailTemplateDescription</shortDescription>
+        <value>Template Description</value>
+    </labels>
+    <labels>
+        <fullName>ArticleContentDetailBody</fullName>
+        <categories>ContentDetailContainer.cmp</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Body__c field</shortDescription>
+        <value>Body</value>
+    </labels>
+    <labels>
+        <fullName>ArticleContentDetailChooseLayout</fullName>
+        <categories>ArticleContentRecordEdit.cmp</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ArticleContentDetailChooseLayout</shortDescription>
+        <value>Choose Layout</value>
+    </labels>
+    <labels>
+        <fullName>ArticleContentDetailError</fullName>
+        <categories>ContentDetailContainer.cmp</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Unexpected error while saving a Article content</shortDescription>
+        <value>There was an error while saving.</value>
+    </labels>
+    <labels>
+        <fullName>ArticleContentDetailExternalId</fullName>
+        <categories>ContentDetailContainer.cmp</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>ExternalId__c field</shortDescription>
+        <value>External Id</value>
+    </labels>
+    <labels>
+        <fullName>ArticleContentDetailExtract</fullName>
+        <categories>ContentDetailContainer.cmp</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description__c field</shortDescription>
+        <value>Extract</value>
+    </labels>
+    <labels>
+        <fullName>ArticleContentDetailImage</fullName>
+        <categories>ContentDetailContainer.cmp</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Feature image</shortDescription>
+        <value>Feature Image</value>
+    </labels>
+    <labels>
+        <fullName>ArticleContentDetailLoadError</fullName>
+        <categories>ContentDetailContainer.cmp</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Unexpected error while loading content detail</shortDescription>
+        <value>Error while loading content.</value>
+    </labels>
+    <labels>
+        <fullName>ArticleContentDetailRequiredField</fullName>
+        <categories>ContentDetailContainer.cmp</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>NoClusterSelected</shortDescription>
+        <value>All required fields must be completed.</value>
+    </labels>
+    <labels>
+        <fullName>ArticleContentDetailTemplateDescription</fullName>
+        <categories>ArticleContentRecordEdit.cmp</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ArticleContentDetailTemplateDescription</shortDescription>
+        <value>Template Description</value>
+    </labels>
+    <labels>
+        <fullName>ArticleContentDetailTitle</fullName>
+        <categories>ContentDetailContainer.cmp</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title__c field</shortDescription>
+        <value>Title</value>
+    </labels>
+    <labels>
+        <fullName>ArticleContentDetailTitleBottom</fullName>
+        <categories>ArticleContentRecordEdit.cmp</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ArticleContentDetailTitleBottom</shortDescription>
+        <value>Title Bottom</value>
+    </labels>
+    <labels>
+        <fullName>ArticleContentDetailTitleMiddle</fullName>
+        <categories>ArticleContentRecordEdit.cmp</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ArticleContentDetailTitleMiddle</shortDescription>
+        <value>Title Middle</value>
+    </labels>
+    <labels>
+        <fullName>ArticleContentDetailTitleTop</fullName>
+        <categories>ArticleContentRecordEdit.cmp</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ArticleContentDetailTitleTop</shortDescription>
+        <value>Title Top</value>
+    </labels>
+    <labels>
+        <fullName>AssetDetailsFeaturing</fullName>
+        <categories>CG_AssetDetail</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Asset Details Featuring</shortDescription>
+        <value>Featuring</value>
+    </labels>
+    <labels>
+        <fullName>AssetDetailsIngredients</fullName>
+        <categories>CG_AssetDetail</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Asset Details Ingredients</shortDescription>
+        <value>INGREDIENTS</value>
+    </labels>
+    <labels>
+        <fullName>AssetDetailsInstructions</fullName>
+        <categories>CG_AssetDetail</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Asset Details Instructions</shortDescription>
+        <value>INSTRUCTIONS</value>
+    </labels>
+    <labels>
+        <fullName>AssetDetailsRelatedTags</fullName>
+        <categories>CG_AssetDetail</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Asset Details Related Tags</shortDescription>
+        <value>Related Tags</value>
+    </labels>
+    <labels>
+        <fullName>AssetDetailsTitle</fullName>
+        <categories>CG Asset Detail</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>AssetDetailsTitle</shortDescription>
+        <value>Asset Details</value>
     </labels>
     <labels>
         <fullName>AudienceValidationOnStatusActivate</fullName>
@@ -209,6 +337,22 @@
         <value>The selected Cluster have one or mor groups in blanks or with wrong values</value>
     </labels>
     <labels>
+        <fullName>ClusterLookupPlaceholder</fullName>
+        <categories>createNewContentModal.lwc</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ClusterLookupPlaceholder</shortDescription>
+        <value>Search Cluster...</value>
+    </labels>
+    <labels>
+        <fullName>ComboboxCategoryPlaceholder</fullName>
+        <categories>ContentDetailController.apxc</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>ComboboxCategoryPlaceholder</shortDescription>
+        <value>Select a category...</value>
+    </labels>
+    <labels>
         <fullName>ComponentBehaviourCategories</fullName>
         <categories>ContentDetailController.apxc</categories>
         <language>en_US</language>
@@ -233,46 +377,6 @@
         <value>To see this content in the component, the following tags should be assigned:</value>
     </labels>
     <labels>
-        <fullName>MultiComboboxTagPlaceholder</fullName>
-        <categories>ContentDetailController.apxc</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>MultiComboboxTagPlaceholder</shortDescription>
-        <value>Select tags...</value>
-    </labels>
-    <labels>
-        <fullName>CreateFromTemplateButton</fullName>
-        <categories>Content Button</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>CreateFromTemplateButton</shortDescription>
-        <value>Create from template</value>
-    </labels>
-    <labels>
-        <fullName>ComboboxCategoryPlaceholder</fullName>
-        <categories>ContentDetailController.apxc</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>ComboboxCategoryPlaceholder</shortDescription>
-        <value>Select a category...</value>
-    </labels>
-    <labels>
-        <fullName>MultiComboboxOneTagSelected</fullName>
-        <categories>Multi Select Combobox</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Text showed when only a tag is selected</shortDescription>
-        <value>{0} tag selected</value>
-    </labels>
-    <labels>
-        <fullName>MultiComboboxMoreTagsSelected</fullName>
-        <categories>Multi Select Combobox</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Text showed when more tags are selected</shortDescription>
-        <value>{0} tags selected</value>
-    </labels>
-    <labels>
         <fullName>ComponentEmpty</fullName>
         <categories>CG_BaseComponent.cmp</categories>
         <language>en_US</language>
@@ -289,92 +393,28 @@
         <value>contains</value>
     </labels>
     <labels>
-        <fullName>ContentDetailContent</fullName>
-        <categories>Content Detail</categories>
+        <fullName>ContentCreated</fullName>
+        <categories>CreateNewContentModal</categories>
         <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>ContentDetailContent</shortDescription>
-        <value>CONTENT</value>
+        <protected>false</protected>
+        <shortDescription>ContentCreated</shortDescription>
+        <value>Content &quot;{0}&quot; was created</value>
     </labels>
     <labels>
-        <fullName>ContentDetailPublishMessage</fullName>
-        <categories>Content Detail</categories>
+        <fullName>ContentCreatedFromTemplate</fullName>
+        <categories>ContentDetailHeader.cmp</categories>
         <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>ContentDetailPublishMessage</shortDescription>
-        <value>{0} "{1}" was published.</value>
+        <protected>false</protected>
+        <shortDescription>ContentCreatedFromTemplate</shortDescription>
+        <value>A new Content was created based on {0} template</value>
     </labels>
     <labels>
-        <fullName>ContentDetailUnpublishMessage</fullName>
-        <categories>Content Detail</categories>
+        <fullName>ContentDeletingMessage</fullName>
+        <categories>ContentDetailHeader.cmp</categories>
         <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>ContentDetailUnpublishMessage</shortDescription>
-        <value>{0} "{1}" was unpublished and saved as draft.</value>
-    </labels>
-    <labels>
-        <fullName>ContentDetailDraftMessage</fullName>
-        <categories>Content Detail</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>ContentDetailDraftMessage</shortDescription>
-        <value>{0} "{1}" was saved as draft.</value>
-    </labels>
-    <labels>
-        <fullName>ContentDetailSchedule</fullName>
-        <categories>Content Detail</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>ContentDetailSchedule</shortDescription>
-        <value>Schedule</value>
-    </labels>
-    <labels>
-        <fullName>ContentDetailPreview</fullName>
-        <categories>Content Detail</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>ContentDetailPreview</shortDescription>
-        <value>Preview</value>
-    </labels>
-    <labels>
-        <fullName>ContentDetailCreatedBy</fullName>
-        <categories>Content Detail</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Content Detail Created By</shortDescription>
-        <value>Created By:</value>
-    </labels>
-    <labels>
-        <fullName>ContentDetailDraft</fullName>
-        <categories>Content Detail</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Content Detail Draft</shortDescription>
-        <value>Draft</value>
-    </labels>
-    <labels>
-        <fullName>ContentDetailScheduled</fullName>
-        <categories>Content Detail</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Content Detail Scheduled</shortDescription>
-        <value>Scheduled</value>
-    </labels>
-    <labels>
-        <fullName>ContentDetailUnschedule</fullName>
-        <categories>Content Detail</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Content Detail Unschedule</shortDescription>
-        <value>Unschedule</value>
-    </labels>
-    <labels>
-        <fullName>ContentDetailArchived</fullName>
-        <categories>Content Detail</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Content Detail Archived</shortDescription>
-        <value>Archived</value>
+        <protected>false</protected>
+        <shortDescription>ContentDeletingMessage</shortDescription>
+        <value>This is an irreversible action. Do you want to continue?</value>
     </labels>
     <labels>
         <fullName>ContentDetailArchive</fullName>
@@ -385,20 +425,68 @@
         <value>Archive</value>
     </labels>
     <labels>
-        <fullName>ContentDetailUnarchive</fullName>
+        <fullName>ContentDetailArchived</fullName>
         <categories>Content Detail</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Content Detail Unarchive</shortDescription>
-        <value>Unarchive</value>
+        <shortDescription>Content Detail Archived</shortDescription>
+        <value>Archived</value>
     </labels>
     <labels>
-        <fullName>ContentDetailPublished</fullName>
+        <fullName>ContentDetailContent</fullName>
         <categories>Content Detail</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Content Detail Published</shortDescription>
-        <value>Published</value>
+        <shortDescription>ContentDetailContent</shortDescription>
+        <value>CONTENT</value>
+    </labels>
+    <labels>
+        <fullName>ContentDetailCreatedBy</fullName>
+        <categories>Content Detail</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Content Detail Created By</shortDescription>
+        <value>Created By:</value>
+    </labels>
+    <labels>
+        <fullName>ContentDetailDeletedMessage</fullName>
+        <categories>Content Detail</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Content Detail Deleted Message</shortDescription>
+        <value>{0} &quot;{1}&quot; was deleted</value>
+    </labels>
+    <labels>
+        <fullName>ContentDetailDraft</fullName>
+        <categories>Content Detail</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Content Detail Draft</shortDescription>
+        <value>Draft</value>
+    </labels>
+    <labels>
+        <fullName>ContentDetailDraftMessage</fullName>
+        <categories>Content Detail</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>ContentDetailDraftMessage</shortDescription>
+        <value>{0} &quot;{1}&quot; was saved as draft.</value>
+    </labels>
+    <labels>
+        <fullName>ContentDetailExtract</fullName>
+        <categories>ContentRecordEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Content Detail Extract</shortDescription>
+        <value>Extract</value>
+    </labels>
+    <labels>
+        <fullName>ContentDetailFeatureImage</fullName>
+        <categories>ContentRecordEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Content Detail Feature Image</shortDescription>
+        <value>Feature Image</value>
     </labels>
     <labels>
         <fullName>ContentDetailLastSave</fullName>
@@ -407,6 +495,22 @@
         <protected>true</protected>
         <shortDescription>Content Detail Last Save</shortDescription>
         <value>Last Save:</value>
+    </labels>
+    <labels>
+        <fullName>ContentDetailLink</fullName>
+        <categories>ContentRecordEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Link field used in record page</shortDescription>
+        <value>Link</value>
+    </labels>
+    <labels>
+        <fullName>ContentDetailLoadError</fullName>
+        <categories>ContentDetailContainer</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Unexpected error while loading content detail</shortDescription>
+        <value>Error while loading content.</value>
     </labels>
     <labels>
         <fullName>ContentDetailNever</fullName>
@@ -425,6 +529,14 @@
         <value>New</value>
     </labels>
     <labels>
+        <fullName>ContentDetailPreview</fullName>
+        <categories>Content Detail</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>ContentDetailPreview</shortDescription>
+        <value>Preview</value>
+    </labels>
+    <labels>
         <fullName>ContentDetailPublicationStatus</fullName>
         <categories>Content Detail</categories>
         <language>en_US</language>
@@ -441,12 +553,92 @@
         <value>Publish</value>
     </labels>
     <labels>
+        <fullName>ContentDetailPublishMessage</fullName>
+        <categories>Content Detail</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>ContentDetailPublishMessage</shortDescription>
+        <value>{0} &quot;{1}&quot; was published.</value>
+    </labels>
+    <labels>
+        <fullName>ContentDetailPublished</fullName>
+        <categories>Content Detail</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Content Detail Published</shortDescription>
+        <value>Published</value>
+    </labels>
+    <labels>
         <fullName>ContentDetailSaveDraft</fullName>
         <categories>Content Detail</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Content Detail Save Draft</shortDescription>
         <value>Save Draft</value>
+    </labels>
+    <labels>
+        <fullName>ContentDetailSchedule</fullName>
+        <categories>Content Detail</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>ContentDetailSchedule</shortDescription>
+        <value>Schedule</value>
+    </labels>
+    <labels>
+        <fullName>ContentDetailScheduled</fullName>
+        <categories>Content Detail</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Content Detail Scheduled</shortDescription>
+        <value>Scheduled</value>
+    </labels>
+    <labels>
+        <fullName>ContentDetailTemplateDescription</fullName>
+        <categories>ContentRecordEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Content Detail Template Description</shortDescription>
+        <value>Template Description</value>
+    </labels>
+    <labels>
+        <fullName>ContentDetailTitle</fullName>
+        <categories>ContentDetail</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title field</shortDescription>
+        <value>Title</value>
+    </labels>
+    <labels>
+        <fullName>ContentDetailTitleBottom</fullName>
+        <categories>ContentRecordEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Content Detail Title Bottom</shortDescription>
+        <value>Title Bottom</value>
+    </labels>
+    <labels>
+        <fullName>ContentDetailTitleMiddle</fullName>
+        <categories>ContentRecordEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Content Detail Title Middle</shortDescription>
+        <value>Title Middle</value>
+    </labels>
+    <labels>
+        <fullName>ContentDetailTitleTop</fullName>
+        <categories>ContentRecordEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Content Detail Title Top</shortDescription>
+        <value>Title Top</value>
+    </labels>
+    <labels>
+        <fullName>ContentDetailUnarchive</fullName>
+        <categories>Content Detail</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Content Detail Unarchive</shortDescription>
+        <value>Unarchive</value>
     </labels>
     <labels>
         <fullName>ContentDetailUnpublish</fullName>
@@ -457,76 +649,20 @@
         <value>Unpublish</value>
     </labels>
     <labels>
-        <fullName>ContentDetailDeletedMessage</fullName>
+        <fullName>ContentDetailUnpublishMessage</fullName>
         <categories>Content Detail</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Content Detail Deleted Message</shortDescription>
-        <value>{0} "{1}" was deleted</value>
+        <shortDescription>ContentDetailUnpublishMessage</shortDescription>
+        <value>{0} &quot;{1}&quot; was unpublished and saved as draft.</value>
     </labels>
     <labels>
-        <fullName>ContentModalScheduledMessage</fullName>
-        <categories>ContentPublishModal.cmp</categories>
+        <fullName>ContentDetailUnschedule</fullName>
+        <categories>Content Detail</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>ContentModalScheduledMessage</shortDescription>
-        <value>The publication of the {0} "{1}" was scheduled</value>
-    </labels>
-    <labels>
-        <fullName>ContentLandingStructurePromptTitle</fullName>
-        <categories>Content Landing Structure</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Content Landing Structure Prompt Title</shortDescription>
-        <value>Cluster not selected</value>
-    </labels>
-    <labels>
-        <fullName>ContentLandingStructureMissingConfiguration</fullName>
-        <categories>Content Landing Structure</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Content Landing Structure Missing Configuration</shortDescription>
-        <value>Some configurations in Cluster root is missing.</value>
-    </labels>
-    <labels>
-        <fullName>ContentLandingStructurePromptDescription</fullName>
-        <categories>Content Landing Structure</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Content Landing Structure Prompt Description</shortDescription>
-        <value>Choose a cluster to start navigating through the sitemap.</value>
-    </labels>
-    <labels>
-        <fullName>ContentLandingStructureNavigation</fullName>
-        <categories>Content Landing Structure</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Content Landing Structure Navigation title</shortDescription>
-        <value>Navigations</value>
-    </labels>
-    <labels>
-        <fullName>ContentLandingStructureOtherNavigations</fullName>
-        <categories>Content Landing Structure</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Content Landing Structure Other Navigations</shortDescription>
-        <value>Other navigations</value>
-    </labels>
-    <labels>
-        <fullName>ContentLandingStructureCluster</fullName>
-        <categories>Content Landing Structure</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Content Landing Structure Select Cluster</shortDescription>
-        <value>Select Cluster...</value>
-    </labels>
-    <labels>
-        <fullName>ContentLandingStructureSitemap</fullName>
-        <categories>Content Landing Structure</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Content Landing Structure Sitemap Navigation</shortDescription>
-        <value>Sitemap Navigation</value>
+        <shortDescription>Content Detail Unschedule</shortDescription>
+        <value>Unschedule</value>
     </labels>
     <labels>
         <fullName>ContentLandingAll</fullName>
@@ -569,12 +705,76 @@
         <value>Create Content</value>
     </labels>
     <labels>
+        <fullName>ContentLandingNewFromTemplate</fullName>
+        <categories>ContentLandingRecordListController</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ContentLandingNewFromTemplate</shortDescription>
+        <value>New from template</value>
+    </labels>
+    <labels>
         <fullName>ContentLandingNone</fullName>
         <categories>Content Landing</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>ContentLandingNone</shortDescription>
         <value>None</value>
+    </labels>
+    <labels>
+        <fullName>ContentLandingStructureCluster</fullName>
+        <categories>Content Landing Structure</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Content Landing Structure Select Cluster</shortDescription>
+        <value>Select Cluster...</value>
+    </labels>
+    <labels>
+        <fullName>ContentLandingStructureMissingConfiguration</fullName>
+        <categories>Content Landing Structure</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Content Landing Structure Missing Configuration</shortDescription>
+        <value>Some configurations in Cluster root is missing.</value>
+    </labels>
+    <labels>
+        <fullName>ContentLandingStructureNavigation</fullName>
+        <categories>Content Landing Structure</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Content Landing Structure Navigation title</shortDescription>
+        <value>Navigations</value>
+    </labels>
+    <labels>
+        <fullName>ContentLandingStructureOtherNavigations</fullName>
+        <categories>Content Landing Structure</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Content Landing Structure Other Navigations</shortDescription>
+        <value>Other navigations</value>
+    </labels>
+    <labels>
+        <fullName>ContentLandingStructurePromptDescription</fullName>
+        <categories>Content Landing Structure</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Content Landing Structure Prompt Description</shortDescription>
+        <value>Choose a cluster to start navigating through the sitemap.</value>
+    </labels>
+    <labels>
+        <fullName>ContentLandingStructurePromptTitle</fullName>
+        <categories>Content Landing Structure</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Content Landing Structure Prompt Title</shortDescription>
+        <value>Cluster not selected</value>
+    </labels>
+    <labels>
+        <fullName>ContentLandingStructureSitemap</fullName>
+        <categories>Content Landing Structure</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Content Landing Structure Sitemap Navigation</shortDescription>
+        <value>Sitemap Navigation</value>
     </labels>
     <labels>
         <fullName>ContentLandingTags</fullName>
@@ -593,6 +793,14 @@
         <value>Create Template</value>
     </labels>
     <labels>
+        <fullName>ContentModalScheduledMessage</fullName>
+        <categories>ContentPublishModal.cmp</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>ContentModalScheduledMessage</shortDescription>
+        <value>The publication of the {0} &quot;{1}&quot; was scheduled</value>
+    </labels>
+    <labels>
         <fullName>ContentNameInput</fullName>
         <categories>createNewContentModal.lwc</categories>
         <language>en_US</language>
@@ -601,12 +809,60 @@
         <value>Name</value>
     </labels>
     <labels>
-        <fullName>ClusterLookupPlaceholder</fullName>
-        <categories>createNewContentModal.lwc</categories>
+        <fullName>ContentPendingPublication</fullName>
+        <categories>ContentDetailHeader.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>ClusterLookupPlaceholder</shortDescription>
-        <value>Search Cluster...</value>
+        <shortDescription>ContentPendingPublication</shortDescription>
+        <value>Pending publication on {0}</value>
+    </labels>
+    <labels>
+        <fullName>ContentPublishedUntil</fullName>
+        <categories>ContentDetailHeader.cmp</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ContentPublishedUntil</shortDescription>
+        <value>Published until {0}</value>
+    </labels>
+    <labels>
+        <fullName>Create</fullName>
+        <categories>recordTypeSelectionModal</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Create</shortDescription>
+        <value>Create</value>
+    </labels>
+    <labels>
+        <fullName>CreateFromTemplateButton</fullName>
+        <categories>Content Button</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>CreateFromTemplateButton</shortDescription>
+        <value>Create from template</value>
+    </labels>
+    <labels>
+        <fullName>Criteria</fullName>
+        <categories>Tags</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Criteria</shortDescription>
+        <value>Criteria</value>
+    </labels>
+    <labels>
+        <fullName>CriteriaListInBlank</fullName>
+        <categories>Tags</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>CriteriaListInBlank</shortDescription>
+        <value>Please complete the Criteria List.</value>
+    </labels>
+    <labels>
+        <fullName>CustomCriteriaValidation</fullName>
+        <categories>AudienceTriggers.cls</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Custom Criteria Validation</shortDescription>
+        <value>Invalid custom logic expression. You only can use &quot;(&quot;, &quot;)&quot;, &quot;AND&quot;, &quot;OR&quot; and the criteria numbers</value>
     </labels>
     <labels>
         <fullName>Desktop</fullName>
@@ -695,6 +951,14 @@
         <protected>false</protected>
         <shortDescription>EventContentDetailFeatureImage</shortDescription>
         <value>Feature Image</value>
+    </labels>
+    <labels>
+        <fullName>EventContentDetailTemplateDescription</fullName>
+        <categories>EventContentRecordEdit.cmp</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EventContentDetailTemplateDescription</shortDescription>
+        <value>Template Description</value>
     </labels>
     <labels>
         <fullName>EventContentDetailTitle</fullName>
@@ -825,14 +1089,6 @@
         <value>Are you sure?</value>
     </labels>
     <labels>
-        <fullName>General_Template</fullName>
-        <categories>General</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Template</shortDescription>
-        <value>Template</value>
-    </labels>
-    <labels>
         <fullName>General_Cancel</fullName>
         <categories>General</categories>
         <language>en_US</language>
@@ -849,12 +1105,20 @@
         <value>Close</value>
     </labels>
     <labels>
-        <fullName>General_Loading</fullName>
+        <fullName>General_CompleteThisField</fullName>
         <categories>General</categories>
         <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Loading</shortDescription>
-        <value>Loading...</value>
+        <protected>false</protected>
+        <shortDescription>General_CompleteThisField</shortDescription>
+        <value>Complete this field</value>
+    </labels>
+    <labels>
+        <fullName>General_Confirm</fullName>
+        <categories>General</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Confirm</shortDescription>
+        <value>Confirm</value>
     </labels>
     <labels>
         <fullName>General_Delete</fullName>
@@ -889,20 +1153,20 @@
         <value>The formula can only has numbers, parentesis, AND, OR. Example: (1 AND 2) OR 3</value>
     </labels>
     <labels>
+        <fullName>General_Loading</fullName>
+        <categories>General</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Loading</shortDescription>
+        <value>Loading...</value>
+    </labels>
+    <labels>
         <fullName>General_Next</fullName>
         <categories>General</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Next</shortDescription>
         <value>Next</value>
-    </labels>
-    <labels>
-        <fullName>General_Confirm</fullName>
-        <categories>General</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Confirm</shortDescription>
-        <value>Confirm</value>
     </labels>
     <labels>
         <fullName>General_Order</fullName>
@@ -953,6 +1217,14 @@
         <value>Search</value>
     </labels>
     <labels>
+        <fullName>General_ShowMore</fullName>
+        <categories>General</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>General_ShowMore</shortDescription>
+        <value>Show More</value>
+    </labels>
+    <labels>
         <fullName>General_Success</fullName>
         <categories>General</categories>
         <language>en_US</language>
@@ -961,12 +1233,12 @@
         <value>Success</value>
     </labels>
     <labels>
-        <fullName>General_CompleteThisField</fullName>
+        <fullName>General_Template</fullName>
         <categories>General</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>General_CompleteThisField</shortDescription>
-        <value>Complete this field</value>
+        <shortDescription>Template</shortDescription>
+        <value>Template</value>
     </labels>
     <labels>
         <fullName>General_View</fullName>
@@ -1057,14 +1329,6 @@
         <value>The inserted SObject API Name does not exist</value>
     </labels>
     <labels>
-        <fullName>HeaderComponentTitle</fullName>
-        <categories>Header title</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>HeaderComponentTitle</shortDescription>
-        <value>Landing</value>
-	</labels>
-	<labels>
         <fullName>GreaterOrEqualThan</fullName>
         <categories>AudienceCriteriaController.cls</categories>
         <language>en_US</language>
@@ -1079,6 +1343,14 @@
         <protected>false</protected>
         <shortDescription>Greater than</shortDescription>
         <value>greater than</value>
+    </labels>
+    <labels>
+        <fullName>HeaderComponentTitle</fullName>
+        <categories>Header title</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>HeaderComponentTitle</shortDescription>
+        <value>Landing</value>
     </labels>
     <labels>
         <fullName>ImageUploader</fullName>
@@ -1121,6 +1393,22 @@
         <value>less or equal than</value>
     </labels>
     <labels>
+        <fullName>LessTagOnCriteriaPlural</fullName>
+        <categories>Tags</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>LessTagOnCriteriaPlural</shortDescription>
+        <value>tags are missing on the criteria list.</value>
+    </labels>
+    <labels>
+        <fullName>LessTagOnCriteriaSingular</fullName>
+        <categories>Tags</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>LessTagOnCriteriaSingular</shortDescription>
+        <value>tag is missing on the criteria list.</value>
+    </labels>
+    <labels>
         <fullName>LessThan</fullName>
         <categories>AudienceCriteriaController.cls</categories>
         <language>en_US</language>
@@ -1153,6 +1441,70 @@
         <value>New</value>
     </labels>
     <labels>
+        <fullName>ModalStartPublication</fullName>
+        <categories>ContentPublishModal.cmp</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Publish Modal Start Publication Field Label</shortDescription>
+        <value>Start Publication</value>
+    </labels>
+    <labels>
+        <fullName>MoreTagsOnCriteria</fullName>
+        <categories>Tags</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>MoreTagsOnCriteria</shortDescription>
+        <value>Only the selected tags has to be on the criteria list.</value>
+    </labels>
+    <labels>
+        <fullName>MultiComboboxAudiencePlaceholder</fullName>
+        <categories>ContentDetailController.apxc</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>MultiComboboxAudiencePlaceholder</shortDescription>
+        <value>Select audiences...</value>
+    </labels>
+    <labels>
+        <fullName>MultiComboboxMoreAudiencesSelected</fullName>
+        <categories>ContentDetailColumnFields.cmp</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Text showed when more audiences are selected</shortDescription>
+        <value>{0} audiences selected</value>
+    </labels>
+    <labels>
+        <fullName>MultiComboboxMoreTagsSelected</fullName>
+        <categories>Multi Select Combobox</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Text showed when more tags are selected</shortDescription>
+        <value>{0} tags selected</value>
+    </labels>
+    <labels>
+        <fullName>MultiComboboxOneAudienceSelected</fullName>
+        <categories>ContentDetailColumnFields.cmp</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Text showed when only a audience is selected</shortDescription>
+        <value>{0} audience selected</value>
+    </labels>
+    <labels>
+        <fullName>MultiComboboxOneTagSelected</fullName>
+        <categories>Multi Select Combobox</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Text showed when only a tag is selected</shortDescription>
+        <value>{0} tag selected</value>
+    </labels>
+    <labels>
+        <fullName>MultiComboboxTagPlaceholder</fullName>
+        <categories>ContentDetailController.apxc</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>MultiComboboxTagPlaceholder</shortDescription>
+        <value>Select tags...</value>
+    </labels>
+    <labels>
         <fullName>NewContentErrorMessage</fullName>
         <categories>createNewContentModal.lwc</categories>
         <language>en_US</language>
@@ -1161,7 +1513,23 @@
         <value>Unable to create the record.</value>
     </labels>
     <labels>
-        <fullName>ArticleContentDetailBody</fullName>
+        <fullName>NewTemplateInvalidTemplate</fullName>
+        <categories>ContentUtils.cls</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NewTemplateInvalidTemplate</shortDescription>
+        <value>The record used as template is not marked as template.</value>
+    </labels>
+    <labels>
+        <fullName>NewTemplateNotPublished</fullName>
+        <categories>ContentUtils.cls</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NewTemplateNotPublished</shortDescription>
+        <value>Only published templates can be used to create new records.</value>
+    </labels>
+    <labels>
+        <fullName>NewsContentDetailBody</fullName>
         <categories>ContentDetailContainer.cmp</categories>
         <language>en_US</language>
         <protected>true</protected>
@@ -1169,23 +1537,23 @@
         <value>Body</value>
     </labels>
     <labels>
-        <fullName>ArticleContentDetailChooseLayout</fullName>
-        <categories>ArticleContentRecordEdit.cmp</categories>
+        <fullName>NewsContentDetailChooseLayout</fullName>
+        <categories>ContentNewsRecordEdit.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>ArticleContentDetailChooseLayout</shortDescription>
+        <shortDescription>NewsContentDetailChooseLayout</shortDescription>
         <value>Choose Layout</value>
     </labels>
     <labels>
-        <fullName>ArticleContentDetailError</fullName>
+        <fullName>NewsContentDetailError</fullName>
         <categories>ContentDetailContainer.cmp</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Unexpected error while saving a Article content</shortDescription>
+        <shortDescription>Unexpected error while saving a news content</shortDescription>
         <value>There was an error while saving.</value>
     </labels>
     <labels>
-        <fullName>ArticleContentDetailExternalId</fullName>
+        <fullName>NewsContentDetailExternalId</fullName>
         <categories>ContentDetailContainer.cmp</categories>
         <language>en_US</language>
         <protected>true</protected>
@@ -1193,7 +1561,7 @@
         <value>External Id</value>
     </labels>
     <labels>
-        <fullName>ArticleContentDetailExtract</fullName>
+        <fullName>NewsContentDetailExtract</fullName>
         <categories>ContentDetailContainer.cmp</categories>
         <language>en_US</language>
         <protected>true</protected>
@@ -1201,7 +1569,7 @@
         <value>Extract</value>
     </labels>
     <labels>
-        <fullName>ArticleContentDetailImage</fullName>
+        <fullName>NewsContentDetailImage</fullName>
         <categories>ContentDetailContainer.cmp</categories>
         <language>en_US</language>
         <protected>true</protected>
@@ -1209,7 +1577,7 @@
         <value>Feature Image</value>
     </labels>
     <labels>
-        <fullName>ArticleContentDetailLoadError</fullName>
+        <fullName>NewsContentDetailLoadError</fullName>
         <categories>ContentDetailContainer.cmp</categories>
         <language>en_US</language>
         <protected>true</protected>
@@ -1217,7 +1585,7 @@
         <value>Error while loading content.</value>
     </labels>
     <labels>
-        <fullName>ArticleContentDetailRequiredField</fullName>
+        <fullName>NewsContentDetailRequiredField</fullName>
         <categories>ContentDetailContainer.cmp</categories>
         <language>en_US</language>
         <protected>true</protected>
@@ -1225,7 +1593,15 @@
         <value>All required fields must be completed.</value>
     </labels>
     <labels>
-        <fullName>ArticleContentDetailTitle</fullName>
+        <fullName>NewsContentDetailTemplateDescription</fullName>
+        <categories>ContentNewsRecordEdit.cmp</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NewsContentDetailTemplateDescription</shortDescription>
+        <value>Template Description</value>
+    </labels>
+    <labels>
+        <fullName>NewsContentDetailTitle</fullName>
         <categories>ContentDetailContainer.cmp</categories>
         <language>en_US</language>
         <protected>true</protected>
@@ -1233,27 +1609,27 @@
         <value>Title</value>
     </labels>
     <labels>
-        <fullName>ArticleContentDetailTitleBottom</fullName>
-        <categories>ArticleContentRecordEdit.cmp</categories>
+        <fullName>NewsContentDetailTitleBottom</fullName>
+        <categories>ContentNewsRecordEdit.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>ArticleContentDetailTitleBottom</shortDescription>
+        <shortDescription>NewsContentDetailTitleBottom</shortDescription>
         <value>Title Bottom</value>
     </labels>
     <labels>
-        <fullName>ArticleContentDetailTitleMiddle</fullName>
-        <categories>ArticleContentRecordEdit.cmp</categories>
+        <fullName>NewsContentDetailTitleMiddle</fullName>
+        <categories>ContentNewsRecordEdit.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>ArticleContentDetailTitleMiddle</shortDescription>
+        <shortDescription>NewsContentDetailTitleMiddle</shortDescription>
         <value>Title Middle</value>
     </labels>
     <labels>
-        <fullName>ArticleContentDetailTitleTop</fullName>
-        <categories>ArticleContentRecordEdit.cmp</categories>
+        <fullName>NewsContentDetailTitleTop</fullName>
+        <categories>ContentNewsRecordEdit.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>ArticleContentDetailTitleTop</shortDescription>
+        <shortDescription>NewsContentDetailTitleTop</shortDescription>
         <value>Title Top</value>
     </labels>
     <labels>
@@ -1337,12 +1713,68 @@
         <value>Please select an option</value>
     </labels>
     <labels>
-        <fullName>RequiredField</fullName>
-        <categories>createNewContentModal.lwc</categories>
+        <fullName>PublishModalCheckboxExpire</fullName>
+        <categories>ContentPublishModal.cmp</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>RequiredField</shortDescription>
-        <value>Required field must be completed.</value>
+        <shortDescription>Publish Modal Checkbox Expire</shortDescription>
+        <value>Expire by date and time</value>
+    </labels>
+    <labels>
+        <fullName>PublishModalFutureEndDate</fullName>
+        <categories>ContentPublishModal.cmp</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PublishModalFutureEndDate</shortDescription>
+        <value>Expire Publication field must be in the future</value>
+    </labels>
+    <labels>
+        <fullName>PublishModalFutureStartDate</fullName>
+        <categories>ContentPublishModal.cmp</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PublishModalFutureStartDate</shortDescription>
+        <value>Start Publication field must be in the future</value>
+    </labels>
+    <labels>
+        <fullName>PublishModalRadioPublishNow</fullName>
+        <categories>ContentPublishModal.cmp</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Publish Modal Radio Button Publish Now</shortDescription>
+        <value>Publish Now</value>
+    </labels>
+    <labels>
+        <fullName>PublishModalRadioSchedulePublication</fullName>
+        <categories>ContentPublishModal.cmp</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Publish Modal Radio Button Schedule Publication</shortDescription>
+        <value>Schedule Publication</value>
+    </labels>
+    <labels>
+        <fullName>PublishModalSubtitle</fullName>
+        <categories>ContentPublishModal.cmp</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Publish Modal Subtitle</shortDescription>
+        <value>You can publish immediately or schedule for a feature date</value>
+    </labels>
+    <labels>
+        <fullName>PublishModalTitle</fullName>
+        <categories>ContentPublishModal.cmp</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Publish Modal Title</shortDescription>
+        <value>Publish Content</value>
+    </labels>
+    <labels>
+        <fullName>PublishModalWrongEndDate</fullName>
+        <categories>ContentPublishModal.cmp</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PublishModalFutureStartDate</shortDescription>
+        <value>Expire Publication field must be after Start Publication field</value>
     </labels>
     <labels>
         <fullName>RepeatedCategoryName</fullName>
@@ -1359,6 +1791,14 @@
         <protected>true</protected>
         <shortDescription>RepeatedTagName</shortDescription>
         <value>Tag name already exist in cluster branch</value>
+    </labels>
+    <labels>
+        <fullName>RequiredField</fullName>
+        <categories>createNewContentModal.lwc</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RequiredField</shortDescription>
+        <value>Required field must be completed.</value>
     </labels>
     <labels>
         <fullName>SaveAndNext</fullName>
@@ -1472,12 +1912,12 @@
         <value>Tablet</value>
     </labels>
     <labels>
-        <fullName>notReferClusterSelectorRecord</fullName>
-        <categories>CG_ClusterSelector.cmp</categories>
+        <fullName>TagValidation</fullName>
+        <categories>Tags</categories>
         <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>not refer ClusterSelector record</shortDescription>
-        <value>The External Id entered does not refer to a ClusterSelector record</value>
+        <protected>true</protected>
+        <shortDescription>TagValidation</shortDescription>
+        <value>The tag criteria doesn&apos;t match with tags selected.</value>
     </labels>
     <labels>
         <fullName>Template</fullName>
@@ -1486,182 +1926,6 @@
         <protected>false</protected>
         <shortDescription>Template</shortDescription>
         <value>Template</value>
-    </labels>
-    <labels>
-        <fullName>Create</fullName>
-        <categories>recordTypeSelectionModal</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Create</shortDescription>
-        <value>Create</value>
-    </labels>
-    <labels>
-        <fullName>NewTemplateInvalidTemplate</fullName>
-        <categories>ContentUtils.cls</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>NewTemplateInvalidTemplate</shortDescription>
-        <value>The record used as template is not marked as template.</value>
-    </labels>
-    <labels>
-        <fullName>NewTemplateNotPublished</fullName>
-        <categories>ContentUtils.cls</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>NewTemplateNotPublished</shortDescription>
-        <value>Only published templates can be used to create new records.</value>
-    </labels>
-    <labels>
-        <fullName>General_ShowMore</fullName>
-        <categories>General</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>General_ShowMore</shortDescription>
-        <value>Show More</value>
-    </labels>
-    <labels>
-        <fullName>ContentLandingNewFromTemplate</fullName>
-        <categories>ContentLandingRecordListController</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>ContentLandingNewFromTemplate</shortDescription>
-        <value>New from template</value>
-    </labels>
-    <labels>
-        <fullName>ArticleContentDetailTemplateDescription</fullName>
-        <categories>ArticleContentRecordEdit.cmp</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>ArticleContentDetailTemplateDescription</shortDescription>
-        <value>Template Description</value>
-    </labels>
-    <labels>
-        <fullName>PublishModalTitle</fullName>
-        <categories>ContentPublishModal.cmp</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Publish Modal Title</shortDescription>
-        <value>Publish Content</value>
-    </labels>
-    <labels>
-        <fullName>PublishModalSubtitle</fullName>
-        <categories>ContentPublishModal.cmp</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Publish Modal Subtitle</shortDescription>
-        <value>You can publish immediately or schedule for a feature date</value>
-    </labels>
-    <labels>
-        <fullName>ModalStartPublication</fullName>
-        <categories>ContentPublishModal.cmp</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Publish Modal Start Publication Field Label</shortDescription>
-        <value>Start Publication</value>
-    </labels>
-    <labels>
-        <fullName>PublishModalRadioPublishNow</fullName>
-        <categories>ContentPublishModal.cmp</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Publish Modal Radio Button Publish Now</shortDescription>
-        <value>Publish Now</value>
-    </labels>
-    <labels>
-        <fullName>PublishModalCheckboxExpire</fullName>
-        <categories>ContentPublishModal.cmp</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Publish Modal Checkbox Expire</shortDescription>
-        <value>Expire by date and time</value>
-    </labels>
-    <labels>
-        <fullName>PublishModalRadioSchedulePublication</fullName>
-        <categories>ContentPublishModal.cmp</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Publish Modal Radio Button Schedule Publication</shortDescription>
-        <value>Schedule Publication</value>
-    </labels>
-    <labels>
-        <fullName>PublishModalFutureStartDate</fullName>
-        <categories>ContentPublishModal.cmp</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>PublishModalFutureStartDate</shortDescription>
-        <value>Start Publication field must be in the future</value>
-    </labels>
-    <labels>
-        <fullName>PublishModalFutureEndDate</fullName>
-        <categories>ContentPublishModal.cmp</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>PublishModalFutureEndDate</shortDescription>
-        <value>Expire Publication field must be in the future</value>
-    </labels>
-    <labels>
-        <fullName>PublishModalWrongEndDate</fullName>
-        <categories>ContentPublishModal.cmp</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>PublishModalFutureStartDate</shortDescription>
-        <value>Expire Publication field must be after Start Publication field</value>
-    </labels>
-    <labels>
-        <fullName>ContentCreatedFromTemplate</fullName>
-        <categories>ContentDetailHeader.cmp</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>ContentCreatedFromTemplate</shortDescription>
-        <value>A new Content was created based on {0} template</value>
-    </labels>
-    <labels>
-        <fullName>ContentPendingPublication</fullName>
-        <categories>ContentDetailHeader.cmp</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>ContentPendingPublication</shortDescription>
-        <value>Pending publication on {0}</value>
-    </labels>
-    <labels>
-        <fullName>ContentPublishedUntil</fullName>
-        <categories>ContentDetailHeader.cmp</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>ContentPublishedUntil</shortDescription>
-        <value>Published until {0}</value>
-    </labels>
-    <labels>
-        <fullName>ContentDeletingMessage</fullName>
-        <categories>ContentDetailHeader.cmp</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>ContentDeletingMessage</shortDescription>
-        <value>This is an irreversible action. Do you want to continue?</value>
-    </labels>
-    <labels>
-        <fullName>ContentCreated</fullName>
-        <categories>CreateNewContentModal</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>ContentCreated</shortDescription>
-        <value>Content "{0}" was created</value>
-    </labels>
-    <labels>
-        <fullName>EventContentDetailTemplateDescription</fullName>
-        <categories>EventContentRecordEdit.cmp</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>EventContentDetailTemplateDescription</shortDescription>
-        <value>Template Description</value>
-    </labels>
-    <labels>
-        <fullName>AdvanceContentDetailTemplateDescription</fullName>
-        <categories>ContentAdvanceArticleContentRecordEdit.cmp</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>AdvanceContentDetailTemplateDescription</shortDescription>
-        <value>Template Description</value>
     </labels>
     <labels>
         <fullName>UnassignImage</fullName>
@@ -1680,35 +1944,11 @@
         <value>VALUES</value>
     </labels>
     <labels>
-        <fullName>CriteriaListInBlank</fullName>
-        <categories>Tags</categories>
+        <fullName>notReferClusterSelectorRecord</fullName>
+        <categories>CG_ClusterSelector.cmp</categories>
         <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>CriteriaListInBlank</shortDescription>
-        <value>Please complete the Criteria List.</value>
-    </labels>
-    <labels>
-        <fullName>TagValidation</fullName>
-        <categories>Tags</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>TagValidation</shortDescription>
-        <value>The tag criteria doesn't match with tags selected.</value>
-    </labels>
-    <labels>
-        <fullName>Criteria</fullName>
-        <categories>Tags</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Criteria</shortDescription>
-        <value>Criteria</value>
-    </labels>
-    <labels>
-        <fullName>AddTag</fullName>
-        <categories>Tags</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>AddTag</shortDescription>
-        <value>Add Tags</value>
+        <protected>false</protected>
+        <shortDescription>not refer ClusterSelector record</shortDescription>
+        <value>The External Id entered does not refer to a ClusterSelector record</value>
     </labels>
 </CustomLabels>

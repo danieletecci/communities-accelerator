@@ -1502,6 +1502,10 @@
         <recordType>Content__c.Article</recordType>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Content__c-Content%3A Block - Page Layout</layout>
+        <recordType>Content__c.Block</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Navigation__c-Navigation Layout</layout>
     </layoutAssignments>
     <layoutAssignments>

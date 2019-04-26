@@ -60,7 +60,7 @@
         <componentInstances>
             <componentInstanceProperties>
                 <name>hasDetailComponent</name>
-                <value>false</value>
+                <value>true</value>
             </componentInstanceProperties>
             <componentName>ContentDetailHeader</componentName>
         </componentInstances>

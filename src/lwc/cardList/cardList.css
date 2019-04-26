@@ -10,13 +10,37 @@
     margin: auto;
 }
 
+.left-arrow-div{
+    position: absolute;
+    top: 50%;
+    left: 0;
+    z-index: 1;
+}
+
+.right-arrow-div{
+    position: absolute;
+    top: 50%;
+    right: 0;
+    z-index: 1;
+}
+
+.slds-page-header.paging-bottom{
+    padding: 16px;
+}
+
+@media screen and (min-width: 480px) {
+    .list-container.carrousel{
+        padding-left: 35px;
+        padding-right: 35px;
+    }
+}
 
 @media screen and (min-width: 992px) {
     .spacer {
         border: none;
     }
     .list-container {
-        flex-flow: initial;
+        flex-flow: wrap;
         justify-content: flex-start;
     }
     .slds-col {

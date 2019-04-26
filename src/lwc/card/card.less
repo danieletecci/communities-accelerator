@@ -4,13 +4,33 @@
     margin: 20px auto;
     color: #C0C0C0;
     min-width: 300px;
+    @media (min-width: 768px){
+        height: 400px;
+        margin-bottom: 0;
+        margin-top: 0;
+    }
     > div {
         width: 80%;
+        @media (min-width: 768px){
+            width: 100%;
+        }
         margin: auto;
     }
     .img-container-portrait{
-        width: 100%;
+        @media (max-width: 768px){
+            width: 100%;
+        }
         margin: 0;
+    }
+    .title-container{
+        @media (min-width: 768px){
+            min-height: 60px;
+        }
+    }
+    .body-container{
+        @media (min-width: 768px){
+            min-height: 48px;
+        }
     }
 }
 
@@ -30,7 +50,12 @@
 
 .header {
     font-family: 'Roboto';
-    padding: 0 5px;
+    margin-bottom: 5px;
+    @media (max-width: 768px){
+        margin-bottom: 0;
+        padding: 0 5px;
+        height: 24px;
+    }
 }
 
 .head-event { 
@@ -79,15 +104,20 @@
 }
 
 .img-portrait {
-    width: 100%;
-    height: auto;
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
+    @media (max-width: 768px){
+        width: 100%;
+        height: auto;
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+    }
 }
 
 .footer {
     padding: 23px 0 0 0;
+    @media (min-width: 768px){
+        padding-top: 10px;
+    }
 }
 
 .description {
@@ -100,6 +130,7 @@
 .desc-normal {
     color: #C0C0C0;
     line-height: 17px;
+    margin-top: 10px;
 }
 
 .desc-highlight {

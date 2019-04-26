@@ -1,0 +1,16 @@
+.THIS .input-group .border-lable-flt {
+  display: table-cell;
+}
+.THIS .input-group .border-lable-flt .form-control {
+  margin-bottom: 30px;
+  border-radius: 0.25rem;
+}
+.THIS .input-group .border-lable-flt:not(:last-child),.THIS .input-group .border-lable-flt:not(:last-child) .form-control {
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+  border-right: 0;
+}
+.THIS .input-group .border-lable-flt:not(:first-child),.THIS .input-group .border-lable-flt:not(:first-child) .form-control {
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}

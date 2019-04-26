@@ -1,0 +1,48 @@
+<aura:component controller="CountrySelectorController">
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+	
+	    <!-- GENERAL VARIABLES  -->
+    <aura:attribute name="componentExternalId" type="String" access="global"/>
+    <aura:attribute name="componentType" type="String" default="CountrySelector"/>
+	<aura:attribute name="CountriesWrapper" type="Object"/>
+	<aura:attribute name="inputNumber" type="Object"/>
+
+	<aura:attribute name="rendercountryMenu" type="Boolean" default="false"/>
+	 
+	<div class="slds-list_horizontal">
+		<div class="slds-grid slds-gutters slds-dropdown-trigger slds-dropdown-trigger_click slds-is-open slds-grid slds-wrap  " >
+			<div class="slds-size_full slds-size_2-of-2">
+				<a class="slds-button slds-button_icon slds-button_icon-more countryBtn  slds-size_2-of-2 slds-align_absolute-center" aria-expanded="true" aria-haspopup="true" title="{!v.CountriesWrapper.selected.name}" onclick="{!c.showMenuItems}" onblur="{!c.hideMenuItems}">
+				
+					<img src="{!$Resource.Flags + '/' + v.CountriesWrapper.selected.iso + '.png'}" class="flag-icon flag-selected"/> 
+					<!--<aura:if isTrue="{!!$Browser.isPhone}">
+                        <p class="slds-truncate">{!v.CountriesWrapper.selected.name}</p>
+					</aura:if>-->
+
+					<lightning:icon class="slds-align_absolute-center" iconName="utility:down" size="xx-small" style="float:right;"/>
+				</a>
+			</div>
+			<div class="slds-dropdown slds-dropdown_left hideItems slds-size_2-of-2 dropdown_country"  aura:id="menuPhoneItems" >
+				<ul class="dropdown__list items dropdown_list_country" role="menu" >
+					<aura:iteration items="{!v.CountriesWrapper.countriesList}" var="countryCode">
+						<aura:if isTrue="{!v.CountriesWrapper.selected.iso != countryCode.iso}">
+							<li class="slds-dropdown__item items"  role="presentation" aura:id="{!countryCode.iso}"  >
+								<a href="javascript:void(0)" role="menuitem" tabindex="-1"  data-phoneValue="{!countryCode.phoneCode}" data-nameValue="{!countryCode.name}"  data-isoValue="{!countryCode.iso}" title="{!countryCode.name}" onmousedown="{!c.handleChanges}">
+									
+										<img src="{!$Resource.Flags + '/' + countryCode.iso + '.png'}" class="flag-icon"/>
+
+									<p class="slds-truncate" >{!countryCode.name} {!countryCode.phone}</p>
+								</a>
+							</li>
+						</aura:if>
+					</aura:iteration>
+				</ul>
+			</div>	
+		</div>
+		<div class="input-country-phone">
+			<ui:inputText value="{!v.inputNumber}"/>
+		</div>
+	</div>
+
+
+</aura:component>

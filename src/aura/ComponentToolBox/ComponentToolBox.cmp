@@ -15,8 +15,8 @@
 	<aura:attribute name="navigationURL"		type="String"	default="false" />
     	
     <!-- COMPONENT -->
-    <aura:if isTrue="{!or(not(v.componentWrapper == null), not(v.componentWrapper.meta.component == null))}">
-
+    <aura:if isTrue="{!not(empty(v.componentWrapper.meta.component.Id + v.componentWrapper.meta.objectId))}">
+    	
     	<aura:if isTrue="{!and(or(v.componentWrapper.permissions.isEnabledViewFrame, v.componentWrapper.permissions.isEnabledEditFrame), v.showComponentFrame)}">
         
 	        <div id="editFrame">
@@ -25,6 +25,9 @@
 	                <!-- Component Body -->
 	                <div class="componentBody">
 	                    <!-- COMMUNITY COMPONENT -->
+	                    <h2 class="list-header">
+	                    	{!v.componentWrapper.meta.component.Title}
+	                    </h2>
 			            <div class="body-container">
 			                {!v.body}
 			                
@@ -69,6 +72,9 @@
 
 	        <aura:set attribute="else">
 	            <!-- COMMUNITY COMPONENT -->
+	            <h2 class="list-header">
+                	{!v.componentWrapper.meta.component.Title}
+                </h2>
 	            <div class="body-container">
 	                {!v.body}
 	                
@@ -79,8 +85,7 @@
 	            </div>
 	        </aura:set>
 
-	    </aura:if>   
-            
+	    </aura:if> 
    
    		<!-- VALIDATIONS -->
         <aura:set attribute="else">

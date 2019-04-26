@@ -13,7 +13,7 @@ public class MediaElementsManagerController {
 		@auraEnabled public String size;
 	}
 
-	@auraEnabled(cacheable=false)
+	@auraEnabled
 	public static list<RecordsWrapper> getRecord(String recordId, String places, String parentLookup, String junctionObject){
 		list<RecordsWrapper> rwList = new list<RecordsWrapper>();
 
@@ -38,7 +38,7 @@ public class MediaElementsManagerController {
 		return rwList;
 	}
 	
-	@auraEnabled(cacheable=false)
+	@auraEnabled
     public static List<ContentWrapper> getData(String stringOffset, String searchText, String stringElementPerPage, String findContent){
         Map<String, ContentWrapper> contentWrMap = new Map<String, ContentWrapper>();
         String contentDocId;
@@ -101,7 +101,7 @@ public class MediaElementsManagerController {
         return contentWrMap.values();
     }
 
-	@auraEnabled(cacheable=false)
+	@auraEnabled
 	public static void assignMediaElementToId (String recordId, String place, String parentLookup, String junctionObject, String mediaElementId){
 
 		sObject sObj = Schema.getGlobalDescribe().get(junctionObject).newSObject();
@@ -125,7 +125,7 @@ public class MediaElementsManagerController {
 		}
 	}
 	
-	@auraEnabled(cacheable=false)
+	@auraEnabled
 	public static void deleteJunctionObject(String junctionObjectId, String junctionObjectApiName){
 
 		sObject sObj = Schema.getGlobalDescribe().get(junctionObjectApiName).newSObject();

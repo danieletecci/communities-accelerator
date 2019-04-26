@@ -44,7 +44,7 @@ public with sharing class TagCriteriaController {
     *@return RecordsWrapper
     *@throws NA
     */
-    @auraEnabled(cacheable=false)
+    @auraEnabled
     public static RecordsWrapper getRecords(String recordId){
         RecordsWrapper rw = new RecordsWrapper();
         String sobjectName = GeneralUtils.prefix('[CMS]Tag__c');
@@ -92,7 +92,7 @@ public with sharing class TagCriteriaController {
     *@return String
     *@throws NA
     */
-    @auraEnabled(cacheable=false)
+    @auraEnabled
     public static String saveRelationships(String recordId, List<String> listSelectedIds, String matchCriteria, String tagCriteria){
         Set<String> selectedIds = new Set<String>();
         selectedIds.addAll(listSelectedIds);
@@ -185,7 +185,7 @@ public with sharing class TagCriteriaController {
     *@return RecordsWrapper
     *@throws NA
     */
-    @auraEnabled(cacheable=false)
+    @auraEnabled
     public static RecordsWrapper getSelectedRecords(String data, List<String> listSelectedIds){
         RecordsWrapper rw = (RecordsWrapper)JSON.deserialize(data, RecordsWrapper.class);        
         Map<Id, Tag__c> selectedRecordMap = new Map<Id, Tag__c> ([SELECT Id, Name FROM Tag__c WHERE Id IN: listSelectedIds]);

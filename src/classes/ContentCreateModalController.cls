@@ -1,6 +1,6 @@
 public with sharing class ContentCreateModalController {
 
-    @AuraEnabled(cacheable=true)
+    @AuraEnabled(cacheable=false)
     public static String getRecordTypeName(String recordTypeId){
         if(String.isBlank(recordTypeId)){
             return null;
@@ -8,7 +8,7 @@ public with sharing class ContentCreateModalController {
         return Schema.SObjectType.Content__c.getRecordTypeInfosById().get(recordTypeId).getName();
     }
 
-    @AuraEnabled
+    @AuraEnabled(cacheable=false)
     public static String createNewContent(String recordTypeId, Boolean isTemplate, String componentId, String navigationUrl, String recordName, String clusterId, String templateId){
         try{
             String responseId;
@@ -38,7 +38,7 @@ public with sharing class ContentCreateModalController {
         } 
     }
 
-    @AuraEnabled(cacheable=true)
+    @AuraEnabled(cacheable=false)
     public static String getClusters(){
         // Prepare results
         List<LookupWrapper> results     = new List<LookupWrapper>();

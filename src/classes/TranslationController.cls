@@ -42,7 +42,7 @@ public with sharing class TranslationController {
 		return null;
 	}
 	
-	@auraEnabled(cacheable=false)
+	@auraEnabled
 	public static RecordsWrapper getLanguages(String parentLookupName, String fieldSet, String recordId){
 		parentLookupName = GeneralUtils.prefix(parentLookupName);
 		fieldSet = GeneralUtils.prefix(fieldSet);
@@ -95,7 +95,7 @@ public with sharing class TranslationController {
 		return rw;
 	}
 
-	@auraEnabled(cacheable=false)
+	@auraEnabled
 	public static RecordsWrapper changeLanguage(String parentLookupName, String language, String recordId, String recordsWr){
 		parentLookupName = GeneralUtils.prefix(parentLookupName);
 		RecordsWrapper rw = (RecordsWrapper)JSON.deserialize(recordsWr, RecordsWrapper.class);
@@ -134,7 +134,7 @@ public with sharing class TranslationController {
 		return rw;
 	}
 
-	@auraEnabled(cacheable=false)
+	@auraEnabled
 	public static RecordsWrapper saveTranslation(String parentLookupName, String recordId, String recordsWr){
 		parentLookupName = GeneralUtils.prefix(parentLookupName);
 		RecordsWrapper rw = (RecordsWrapper)JSON.deserialize(recordsWr, RecordsWrapper.class);

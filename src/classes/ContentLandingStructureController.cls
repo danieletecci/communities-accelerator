@@ -2,25 +2,28 @@ public class ContentLandingStructureController {
 
 	public class SitemapWrapper {
 		@AuraEnabled public List<MenuWrapper> menus;
-		@AuraEnabled public List<Navigation__c> navigations;
+		@AuraEnabled public List<ObjectNavigationWrapper> navigations;
 
 		public SitemapWrapper(List<MenuWrapper> menus, List<Navigation__c> navigations){
 			this.menus			= menus;
-			this.navigations 	= navigations;
+			this.navigations 	= new List<ObjectNavigationWrapper>();
+			for(Navigation__c nav: navigations){
+				this.navigations.add(new ObjectNavigationWrapper(nav));
+			}
 		}
 	}
 
 	public class MenuWrapper{
-		@AuraEnabled public Menu__c				menu;
+		@AuraEnabled public ObjectMenuWrapper	menu;
 		@AuraEnabled public List<MenuWrapper>	childsMenu;
 
 		public MenuWrapper(Menu__c menu, List<MenuWrapper> childsMenu){
-			this.menu 		= menu;
+			this.menu 		= new ObjectMenuWrapper(menu);
 			this.childsMenu = childsMenu;
 		}
 
 		public MenuWrapper(Menu__c menu){
-			this.menu 		= menu;
+			this.menu 		= new ObjectMenuWrapper(menu);
 			this.childsMenu = new List<MenuWrapper>();
 		}
 
@@ -45,18 +48,18 @@ public class ContentLandingStructureController {
 		}
 	}
 
-	@AuraEnabled(cacheable=false)
+	@AuraEnabled(cacheable=true)
 	public static GeneralWrapper getGeneralData(){
 		Cluster__c croot = getClusterRoot(getClusterUserId());
 		return new GeneralWrapper(getOrgId(), croot.CommunityName__c.toLowerCase(), croot.CommunityPreviewDomain__c, getClusterLeafs(), getUrlPathPrefix(getClusterUserId()));
 	}
 
-	@AuraEnabled(cacheable=false)
+	@AuraEnabled(cacheable=true)
 	public static String getCommunityName(){
 		return getClusterRoot(getClusterUserId()).CommunityName__c.toLowerCase();
 	}
 
-	@AuraEnabled(cacheable=false)
+	@AuraEnabled(cacheable=true)
 	public static SitemapWrapper getMenus(){
 		Map<Id, Set<Id>> 		fatherChilds 	= new Map<Id, Set<Id>>();
 		Map<Id, MenuWrapper> 	menuWrapperMap 	= new Map<Id, MenuWrapper>();
@@ -110,12 +113,12 @@ public class ContentLandingStructureController {
 		return [SELECT Id, Name, URL__c FROM Navigation__c WHERE Type__c = 'Internal' AND Id NOT IN :notIncludedNavigations];
 	}
 
-	@AuraEnabled(cacheable=false)
+	@AuraEnabled(cacheable=true)
 	public static String getOrgId(){
 		return String.valueOf(UserInfo.getOrganizationId()).substring(0, 15);
 	}
 
-	@AuraEnabled(cacheable=false)
+	@AuraEnabled(cacheable=true)
 	public static String getSiteId(String clusterId){
 		String networkName = getClusterRoot(clusterId).CommunityName__c;
 		String siteName1   = networkName.replaceAll('[^a-zA-Z0-9]', '_') + '1';
@@ -137,7 +140,7 @@ public class ContentLandingStructureController {
 		return net[0].UrlPathPrefix;
 	}
 
-	@AuraEnabled(cacheable=false)
+	@AuraEnabled(cacheable=true)
 	public static List<Cluster__c> getClusterLeafs(){
 		return getSubordinateClusterLeafs(getClusterUserId());
 	}
@@ -158,6 +161,7 @@ public class ContentLandingStructureController {
 	}
 
 	public static List<Cluster__c> getSubordinateClusterLeafs(Id clusterId){
+
 		List<Cluster__c> 	leafs 			= new List<Cluster__c>();
 		Set<Id> 			parentIds 		= new Set<Id>();
 		Set<Id> 			tempIds 		= new Set<Id>();
@@ -187,7 +191,7 @@ public class ContentLandingStructureController {
 
 			}
 		}
-
+		
 		return leafs;
 	}
 }

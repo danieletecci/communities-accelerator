@@ -98,7 +98,7 @@ public with sharing class AudienceCriteriaController {
         'STRING' => 'Text'
     };
 
-    @auraEnabled(cacheable=false)
+    @auraEnabled
     public static String getCriteria(String audienceId){
         AudienceWrapper aw = new AudienceWrapper();
 
@@ -139,7 +139,7 @@ public with sharing class AudienceCriteriaController {
         return JSON.serialize(aw);
     }
 
-    @auraEnabled(cacheable=false)
+    @auraEnabled
     public static void saveCriteria(String audienceId, String matchCriteria, String audienceCriteria, String criteriaWrapper){
         List<CriterionWrapper> criteria = (List<CriterionWrapper>)JSON.deserialize(criteriaWrapper, List<CriterionWrapper>.class);
         

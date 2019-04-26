@@ -63,7 +63,7 @@
 				var instance = component.get("v.instance");
 				if(oldSite != Articleite){
 					component.set("v.isLogin", true);
-					component.set("v.url", "https://" + communityPreviewDomain + "/?orgId=" + 
+					component.set("v.url", communityPreviewDomain + "/?orgId=" + 
 								component.get("v.orgId") + "&siteId=" + Articleite + "&language=en_US");
 					component.set("v.isLoading", true);
 				}

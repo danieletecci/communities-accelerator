@@ -3,18 +3,18 @@ import { loadStyle } from 'lightning/platformResourceLoader';
 
 import { LightningElement, api, track } from 'lwc';
 
-export default class datatable extends LightningElement {
+export default class Datatable extends LightningElement {
     @api table;
 
     @track orientation;
     @track columnsToShow;
     @track showFilterModal = false;
-    @track showFooterModal = false;
+    // @track showFooterModal = false;
     @track showDetailModal = false;
     @track showActionModal = false;
     @track showCancelSearch = false;
     @track showFilterIcon = false;
-    @track isCustomDate = false;
+    // @track isCustomDate = false;
     @track rowAction = [];
     @track globalAction = [];
     @track clickRow;
@@ -51,16 +51,16 @@ export default class datatable extends LightningElement {
         return (this.table.appliedFilters.length > 0) ? true : false;
     }
 
-    get setDateFilter() {   
-        var columns = JSON.parse(JSON.stringify(this.table.columns));
-        var filterValues = ["Last Week", "Last Month", "Last Year", "Custom Range"]; 
-        columns.forEach(col => {
-            if(col.filtrable && (col.type === "DATE" || col.type === "DATETIME")) {
-                col.filtrableValues = filterValues;
-            }
-        });
-        return columns;
-    }
+    // get setDateFilter() {   
+    //     var columns = JSON.parse(JSON.stringify(this.table.columns));
+    //     var filterValues = ["Last Week", "Last Month", "Last Year", "Custom Range"]; 
+    //     columns.forEach(col => {
+    //         if(col.filtrable && (col.type === "DATE" || col.type === "DATETIME")) {
+    //             col.filtrableValues = filterValues;
+    //         }
+    //     });
+    //     return columns;
+    // }
 
     openFilterModal() {
         this.showFilterModal = true;
@@ -85,7 +85,7 @@ export default class datatable extends LightningElement {
 
     closeActionModal() {
         this.showActionModal = false;
-        this.showDetailModal = false;
+        //this.showDetailModal = false;
     }
 
     typeActions() {
@@ -117,99 +117,90 @@ export default class datatable extends LightningElement {
     deleteFilter(event) {
         var name = event.currentTarget.dataset.name;
         var value = event.currentTarget.dataset.value;
-        var filters = JSON.parse(JSON.stringify(this.table));
-
-        this.table.appliedFilters.forEach(fil => {
+        var filters = JSON.parse(JSON.stringify(this.table.appliedFilters));
+        this.table.appliedFilters.forEach((fil, index) => {
             if (fil.filter.name === name && fil.value1 === value) {
-                filters.appliedFilters.splice(filters.appliedFilters.indexOf(fil), 1);
+                filters.splice(index, 1);
             }
-        });
-        this.table = filters;
-        const values = JSON.stringify(filters.appliedFilters);
-        this.filterEvent(values);
-    }
-
-    filterActive(event) {
-        event.currentTarget.classList.toggle("active");
-        this.showFooterModal = true;
-
-        if(event.currentTarget.dataset.value === "Custom Range") {
-            this.isCustomDate = true;
-        }
-    }
-
-    filterRemove() {
-        var button = this.template.querySelectorAll("button.active");
-        var tableFooter = this.template.querySelector("div.table__footer");
-        var filters = [];
-        button.forEach(fil =>{
-            fil.classList.remove("active");
-        });
-        if (this.table.appliedFilters.length > 0) {
-            const values = JSON.stringify(filters);
-            tableFooter.classList.toggle("hidden");
-            this.filterEvent(values);
-        }
-        this.showFooterModal = false;
-        this.showFilterIcon = false;
-    }
-
-    formatDate() {
-        var today = new Date();
-        var dates = [];
-        dates = {
-            now: today.getFullYear() + '-' + String(today.getMonth()+1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0'),
-            lastWeek: today.getFullYear() + '-' + String(today.getMonth()+1).padStart(2, '0') + '-' + String(today.getDate()-7).padStart(2, '0'),
-            lastMonth: today.getFullYear() + '-' + String((today.getMonth()+1)-1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0'),
-            lastYear: (today.getFullYear()-1) + '-' + String(today.getMonth()+1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0')
-        };
-        return dates;
-    }
-
-    dataFilter() {
-        var button = this.template.querySelectorAll("button.active");
-        var customDateFrom = this.template.querySelector("input[type='date'].datefrom");
-        var customDateTo = this.template.querySelector("input[type='date'].dateto");
-        var filters = [];   
-        var filter;
-        var dates = this.formatDate();
-        var value1;
-        var value2;
-
-        button.forEach(fil =>{
-            value1 = fil.dataset.value;
-            value2 = null;
-            if (fil.dataset.value === "Last Week") {
-                value1 = dates.lastWeek;  //value1 = menor
-                value2 = dates.now; //value2 = mayor
-            } else if (fil.dataset.value === "Last Month") {
-                    value1 = dates.lastMonth;
-                    value2 = dates.now;
-                } else if (fil.dataset.value === "Last Year") {
-                        value1 = dates.lastYear;
-                        value2 = dates.now;
-                    } else if (fil.dataset.value === "Custom Range") {
-                        value1 = customDateFrom.value;
-                        value2 = customDateTo.value;
-                    }
-
-            filter = {filter: {
-                            name: fil.dataset.column, 
-                            type: fil.dataset.type
-                        },
-                        value1: value1,
-                        value2: value2
-                    };
-            filters.push(filter);
         });
         const values = JSON.stringify(filters);
         this.filterEvent(values);
-        this.closeFilterModal();
-        this.showCancelSearch = false;
     }
 
+    // filterActive(event) {
+    //     event.currentTarget.classList.toggle("active");
+    //     this.showFooterModal = true;
+
+    //     if(event.currentTarget.dataset.value === "Custom Range") {
+    //         this.isCustomDate = true;
+    //     }
+    // }
+
+    filterAllRemove() {
+        var tableFooter = this.template.querySelector("div.table__footer");
+        var filters = [];
+        const values = JSON.stringify(filters);
+        tableFooter.classList.toggle("hidden");
+        this.filterEvent(values);
+        this.showFilterIcon = false;
+    }
+
+    // formatDate() {
+    //     var today = new Date();
+    //     var dates = [];
+    //     dates = {
+    //         now: today.getFullYear() + '-' + String(today.getMonth()+1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0'),
+    //         lastWeek: today.getFullYear() + '-' + String(today.getMonth()+1).padStart(2, '0') + '-' + String(today.getDate()-7).padStart(2, '0'),
+    //         lastMonth: today.getFullYear() + '-' + String((today.getMonth()+1)-1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0'),
+    //         lastYear: (today.getFullYear()-1) + '-' + String(today.getMonth()+1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0')
+    //     };
+    //     return dates;
+    // }
+
+    // dataFilter() {
+    //     var button = this.template.querySelectorAll("button.active");
+    //     var customDateFrom = this.template.querySelector("input[type='date'].datefrom");
+    //     var customDateTo = this.template.querySelector("input[type='date'].dateto");
+    //     var filters = [];   
+    //     var filter;
+    //     var dates = this.formatDate();
+    //     var value1;
+    //     var value2;
+
+    //     button.forEach(fil =>{
+    //         value1 = fil.dataset.value;
+    //         value2 = null;
+    //         if (fil.dataset.value === "Last Week") {
+    //             value1 = dates.lastWeek;  //value1 = menor
+    //             value2 = dates.now; //value2 = mayor
+    //         } else if (fil.dataset.value === "Last Month") {
+    //                 value1 = dates.lastMonth;
+    //                 value2 = dates.now;
+    //             } else if (fil.dataset.value === "Last Year") {
+    //                     value1 = dates.lastYear;
+    //                     value2 = dates.now;
+    //                 } else if (fil.dataset.value === "Custom Range") {
+    //                     value1 = customDateFrom.value;
+    //                     value2 = customDateTo.value;
+    //                 }
+
+    //         filter = {filter: {
+    //                         name: fil.dataset.column, 
+    //                         type: fil.dataset.type
+    //                     },
+    //                     value1: value1,
+    //                     value2: value2
+    //                 };
+    //         filters.push(filter);
+    //     });
+    //     const values = JSON.stringify(filters);
+    //     this.filterEvent(values);
+    //     this.closeFilterModal();
+    //     this.showCancelSearch = false;
+    // }
+
     filterEvent(values) {
-        const filterItemSelected = new CustomEvent('filter', { detail: {values}, });
+        const filterItemSelected = new CustomEvent('filter', { detail: {values} });
         this.dispatchEvent(filterItemSelected);
     }
 
@@ -228,14 +219,14 @@ export default class datatable extends LightningElement {
             } 
         } else {
             const values = JSON.stringify(actions);
-            const actionValue = new CustomEvent('action', { detail: {values}, });
+            const actionValue = new CustomEvent('action', { detail: {values} });
             this.dispatchEvent(actionValue);
         }
     }
 
     searchEvent(event) {
         const values = event.target.value;
-        const searchValue = new CustomEvent('search', { detail: {values}, });
+        const searchValue = new CustomEvent('search', { detail: {values} });
         this.dispatchEvent(searchValue);
     }
 

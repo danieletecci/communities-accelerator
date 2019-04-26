@@ -14,7 +14,7 @@
         </div>
         <template if:true={appliedFilters}>
             <template for:each={table.appliedFilters} for:item="filters">
-                <div class="pills-container" key={filters.filter.name}>
+                <div class="pills-container" key={filters.value1}>
                     <span class="slds-pill">
                         <span class="slds-pill__label">{filters.value1}</span>
                         <img src={closeIcon} data-name={filters.filter.name} data-value={filters.value1} onclick={deleteFilter}>
@@ -22,7 +22,7 @@
                 </div>
             </template>
         </template>
-        <template if:true={showFilterModal}>
+        <!-- <template if:true={showFilterModal}>
             <div class="modal">
                 <div class="modal__header">
                     <img class="slds-modal__close closeModal" src={closeIcon} onclick={closeFilterModal}>
@@ -63,7 +63,7 @@
                     </div>
                 </template>
             </div>
-        </template>
+        </template> -->
         <template for:each={table.tableData} for:item="row">    
             <article key={row.Id} class="slds-card">   
                 <div class="slds-grid slds-wrap" onclick={openDetailModal} data-key={row.Id}>
@@ -84,18 +84,27 @@
                                      onclick={rowActionEvent}>
                             </div>
                     </template> 
-                    <!-- <div class="slds-no-flex slds-col slds-size_1-of-4">
+                    <div class="slds-no-flex slds-col slds-size_1-of-4">
                         <img src={moreIcon} onclick={openActionModal}>
-                    </div> -->
+                    </div>
                 </footer>
             </article>
         </template>
         <template if:true={appliedFilters}>
             <div class="table__footer">
-                <button class="remove-filter-btn" onclick={filterRemove}>Remove All Filters</button>
+                <button class="remove-filter-btn" onclick={filterAllRemove}>Remove All Filters</button>
             </div>
         </template>
         <!--                MODALS                 -->
+        <template if:true={showFilterModal}>
+            <c-datatable-modals  type="filterModal"
+                                    table={table} 
+                                    rowkey={clickRow}
+                                    rowaction={rowAction}
+                                    closeicon={closeIcon}
+                                    onclose={closeFilterModal}>
+            </c-datatable-modals>
+        </template>
         <template if:true={showDetailModal}>
             <c-datatable-modals  type="detailModal"
                                     table={table} 

@@ -30,7 +30,8 @@ export default class Card extends LightningElement {
 
     connectedCallback() {
         window.addEventListener("orientationchange", () => this.handleOrientation());
-        loadStyle(this, Style + '/Assets/Styles/roboto.css')
+        loadStyle(this, Style + '/Assets/Styles/roboto.css');
+        loadStyle(this, 'sfsites/c/resource/Assets/Assets/Styles/roboto.css');
     }
     disconnectedCallback() {
         window.removeEventListener("orientationchange")

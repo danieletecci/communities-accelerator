@@ -1,0 +1,86 @@
+.THIS {
+    width: 100%;
+}
+.THIS .showItems{
+    display:block;
+}
+
+.THIS .hideItems{
+    display:none !important;
+    
+}
+
+.THIS .flag-icon{
+    width: 20px;
+}
+
+.THIS .flag-selected{
+    margin-right: 10px;
+}
+.THIS .countryBtn{
+    text-align: left;
+    font-size: 1rem;
+    line-height: 45px;
+    color: #707070;
+    background-color: #ffffff;
+    background-clip: padding-box;
+    padding-left: 10px;
+    height: 45px;
+    border-radius: 0;
+    border: .8px solid #b9b9b9;
+}
+
+.THIS .countryBtn p{
+    margin-right: 10px;
+}
+
+.THIS .countryBtn lightning-icon lightning-primitive-icon{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+.THIS .slds-dropdown__item > a {
+    justify-content: flex-start;
+}
+
+.THIS .slds-dropdown__item > a > span {
+    margin-left: 5px;
+}
+
+.THIS .slds-dropdown-trigger {
+    min-width: 22%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.THIS .dropdown_country{
+    min-width: 150px;
+    height: 300px;
+    overflow: hidden;
+}
+
+.THIS .dropdown_list_country{
+    height: 300px; 
+    overflow-y: scroll;
+}
+
+.THIS .dropdown_list_country li a{
+	text-align: left;
+    font-size: 1rem;
+    line-height: 45px;
+    color: #707070;
+    padding-left: 10px;
+    height: 45px;
+}
+
+.THIS .dropdown_list_country li a img{
+    margin-right: 10px;
+
+}
+
+.THIS .input-country-phone{
+    min-width: 76%;
+}

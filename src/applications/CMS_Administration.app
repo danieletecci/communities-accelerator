@@ -228,5 +228,6 @@
     <tabs>Datatable__c</tabs>
     <tabs>Audience__c</tabs>
     <tabs>CMSUserSettings__c</tabs>
+    <tabs>Form__c</tabs>
     <uiType>Lightning</uiType>
 </CustomApplication>

@@ -496,5 +496,21 @@ global class MockupFactory {
         insert datatableActionsToCreate;
         return datatableActionsToCreate;
     }    
+    
+    public static Form__c createForm(String formName, String externalId, String retrievalClass, String clusterId){
+        Form__c form = new Form__c(name=formName, ExternalID__c=externalId, RetrievalClass__c=retrievalClass, Status__c='Active', Cluster__c = clusterId);
+        insert form;
+        FormSection__c formSection = new FormSection__c(name='testSection', SectionTitle__c='testSection', ExternalID__c='testSection', Form__c=form.id);
+        insert formSection;
+        FormValidation__c formValidation = new FormValidation__c(name='testVal', errormessage__c= '');
+        insert formValidation;
+        FormElement__c formField = new FormElement__c(formvalidation__c = formValidation.id, name='testField', ExternalID__c='testField', FieldAPIName__c='Name', FieldLabel__c='testField', FieldType__c='Text', FormSection__c=formSection.id, Status__c='Active',
+                                                      HelpText__c='testField', ObjectAPIName__c='Account');
+        FormElement__c formField2 = new FormElement__c(formvalidation__c = formValidation.id, name='testField2', ExternalID__c='testField2', FieldAPIName__c='lastModifiedDate', FieldLabel__c='testField', FieldType__c='Text', FormSection__c=formSection.id, Status__c='Active',
+                                                      HelpText__c='testField', ObjectAPIName__c='Account');
+        insert new List<FormElement__c>{formField, formField2};
+        return form;
+        
+    }
 
 }

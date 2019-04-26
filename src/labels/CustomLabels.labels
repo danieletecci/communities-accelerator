@@ -1711,4 +1711,12 @@
         <shortDescription>AddTag</shortDescription>
         <value>Add Tags</value>
     </labels>
+    <labels>
+        <fullName>FAQ_Title</fullName>
+        <categories>FAQ</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>FAQ_Title</shortDescription>
+        <value>FAQ</value>
+    </labels>
 </CustomLabels>

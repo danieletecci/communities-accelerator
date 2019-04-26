@@ -71,7 +71,7 @@ public class ContentLandingRecordListController {
     }                                               
     
     //Cacheable = TRUE, used when the table is not updated
-    @auraEnabled(Cacheable = true)
+    @auraEnabled(cacheable=true)
     public static String getTableWrapper(String contentTypeId, String clusterId, String categoryId, List<String> tagIds, String status, String searchText, Boolean isTemplate, Integer recordOffset, Integer recordLimit){
         TableWrapper tableWrapper = buildTableWrapper(contentTypeId, clusterId, categoryId, tagIds, status, searchText, isTemplate, recordOffset, recordLimit);
         // El Wrapper es enviado al componente en forma de JSON
@@ -79,7 +79,7 @@ public class ContentLandingRecordListController {
     }
     
     //Cacheable = FALSE, used when the table is updated
-    @auraEnabled(Cacheable = false)
+    @auraEnabled(cacheable=false)
     public static String getUpdatedTableWrapper(String contentTypeId, String clusterId, String categoryId, List<String> tagIds, String status, String searchText, Boolean isTemplate, Integer recordOffset, Integer recordLimit){
         TableWrapper tableWrapper = buildTableWrapper(contentTypeId, clusterId, categoryId, tagIds, status, searchText, isTemplate, recordOffset, recordLimit);
         // El Wrapper es enviado al componente en forma de JSON

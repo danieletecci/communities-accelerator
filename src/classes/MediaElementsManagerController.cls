@@ -124,6 +124,7 @@ public class MediaElementsManagerController {
 			system.debug(e.getMessage());
 		}
 	}
+	
 	@auraEnabled
 	public static void deleteJunctionObject(String junctionObjectId, String junctionObjectApiName){
 

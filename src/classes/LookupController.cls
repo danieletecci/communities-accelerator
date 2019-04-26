@@ -1,5 +1,6 @@
 public class LookupController {
-    @AuraEnabled
+    
+    @AuraEnabled(cacheable=false)
     public static List < sObject > fetchLookUpValues(String searchKeyWord, String ObjectName) {
         String searchKey = searchKeyWord + '%';
         
@@ -15,7 +16,7 @@ public class LookupController {
         return returnList;
     }
 
-    @AuraEnabled
+    @AuraEnabled(cacheable=false)
     public static sObject getInitialValue(String recordId, String ObjectName) {
         String sQuery =  'select id, Name from ' +ObjectName + ' where Id = :recordId';
         List < sObject > lstOfRecords = Database.query(GeneralUtils.prefix(sQuery));

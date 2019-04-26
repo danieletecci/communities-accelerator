@@ -56,7 +56,7 @@ public class MediaElementsManagerController {
         if(intOffset >= 0 && intOffset <= totalRows){
 
             list<MediaElement__c> mediaElementsList = new list<MediaElement__c>();
-            String queryMediaElement = 'SELECT Id, Name, [CMS]FileURLDesktop__c, LastModifiedDate FROM [CMS]MediaElement__c' + whereClause;    
+            String queryMediaElement = 'SELECT Id, Name, [CMS]FileURLDesktop__c, [CMS]FileIdDesktop__c, LastModifiedDate FROM [CMS]MediaElement__c' + whereClause;    
             queryMediaElement += ' ORDER BY LastModifiedDate DESC LIMIT ' + elementPerPages + ' OFFSET ' + intOffset;
 		
             Set<String> contentSet = new Set<String>();
@@ -68,14 +68,13 @@ public class MediaElementsManagerController {
                 cw.lastModified = String.valueOf(me.LastModifiedDate);
     
                 if(String.isNotBlank(findContent) && findContent == 'true'){
-                    String str = me.FileURLDesktop__c.substringAfterLast('/');
-                    if (Pattern.compile('[a-zA-Z0-9]{15}|[a-zA-Z0-9]{18}').matcher(str).matches()){
-                        contentSet.add(str);
+                    if(me.FileIdDesktop__c != null){
+                        contentSet.add(me.FileIdDesktop__c);
                     } else {
                         cw.size = 'Web';
-                        cw.ext = str.substringAfter('.');
+                        cw.ext = me.FileURLDesktop__c.substringAfterLast('.');
                     }
-                    contentWrMap.put(str, cw);
+                    contentWrMap.put(me.FileIdDesktop__c, cw);
                 }else{
                     contentWrMap.put(me.Id, cw);
                 }
@@ -124,6 +123,7 @@ public class MediaElementsManagerController {
 			system.debug(e.getMessage());
 		}
 	}
+	
 	@auraEnabled
 	public static void deleteJunctionObject(String junctionObjectId, String junctionObjectApiName){
 

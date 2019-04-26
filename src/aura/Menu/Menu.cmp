@@ -29,25 +29,21 @@
                     </aura:iteration>
                 </ul>
             </nav>
+            <aura:set attribute="else">
+                <ul class="slds-hide_medium ul-level-0">
+                    <aura:iteration items="{!v.menus}" var="menu" indexVar="fistIndex">
+                        <c:MenuItem item="{!menu}" menuLevel="1" mobileFormat="true" index="{!fistIndex}">
+                            <aura:iteration items="{!menu.subMenus}" var="subM" indexVar="secondIndex">
+                                <c:MenuItem item="{!subM}" menuLevel="2" mobileFormat="true" index="{!secondIndex}">
+                                    <aura:iteration items="{!subM.subMenus}" var="subSubM" indexVar="thirdIndex">
+                                        <c:MenuItem item="{!subSubM}" menuLevel="3" mobileFormat="true" index="{!thirdIndex}"/>
+                                    </aura:iteration>
+                                </c:MenuItem>
+                            </aura:iteration>
+                        </c:MenuItem>
+                    </aura:iteration>
+                </ul>
+            </aura:set>
         </aura:if>
-        
-        <!-- MOBILE -->
-        <!-- 
-        <aura:if isTrue="{!v.mobileFormat}">
-            <ul class="slds-hide_medium ul-level-0">
-                <aura:iteration items="{!v.menus}" var="menu" indexVar="fistIndex">
-                    <c:CP_NavigationMenuItemComponent menuIsOpen="{!v.opened}" item="{!menu}" menuLevel="1" mobileFormat="{!v.mobileFormat}" index="{!fistIndex}">
-                        <aura:iteration items="{!menu.subMenus}" var="subM" indexVar="secondIndex">
-                            <c:CP_NavigationMenuItemComponent menuIsOpen="{!v.opened}" item="{!subM}" menuLevel="2" mobileFormat="{!v.mobileFormat}" index="{!secondIndex}">
-                                <aura:iteration items="{!subM.subMenus}" var="subSubM" indexVar="thirdIndex">
-                                    <c:CP_NavigationMenuItemComponent menuIsOpen="{!v.opened}" item="{!subSubM}" menuLevel="3" mobileFormat="{!v.mobileFormat}" index="{!thirdIndex}"/>
-                                </aura:iteration>
-                            </c:CP_NavigationMenuItemComponent>
-                        </aura:iteration>
-                    </c:CP_NavigationMenuItemComponent>
-                </aura:iteration>
-            </ul>
-        </aura:if>
-        -->
     </div>
 </aura:component>

@@ -1,0 +1,20 @@
+<aura:component access="global">
+	<!-- HANDLERS -->
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+	<!-- ATTRIBUTES -->
+	<aura:attribute name="namespace"	type="String" default="c"	/>
+	<aura:attribute name="iframeUrl" 	type="String"				/>
+	<aura:attribute name="contentBody"	type="String"				/>
+
+	<lightning:tabset selectedTabId="one">
+        <lightning:tab label="Formatted Text" id="one">
+			<iframe aura:id="KB_iframe" src="{!v.iframeUrl}" style="width:100%;height:20rem;" scrolling="no" frameborder="0"/>
+        </lightning:tab>
+        <lightning:tab label="HTML" id="two">
+        	<lightning:textarea name="htmlBody" variant="label-hidden" value="{!v.contentBody}" />
+        </lightning:tab>
+    </lightning:tabset>
+
+
+</aura:component>

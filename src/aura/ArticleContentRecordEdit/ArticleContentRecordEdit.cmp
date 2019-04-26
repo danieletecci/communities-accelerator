@@ -34,7 +34,9 @@
                     <lightning:textarea name="contentExtract" value="{!v.contentData.Extract}" label="{!$Label.c.ArticleContentDetailExtract}" maxlength="1500" />
                 </div>
                 <div class="slds-col slds-p-bottom_small">
-                    <c:RichTextContainer aura:id="RichTextContainer" label="{!$Label.c.ArticleContentDetailBody}" contentBody="{!v.contentData.Body}" />
+                    <aura:if isTrue="{!v.contentData}">
+                        <c:RichTextTinyMCE aura:id="rich" namespace="c" contentBody="{!v.contentData.Body}"/>
+                    </aura:if>
                 </div>
                 <div class="slds-col slds-p-bottom_small">
                     <ui:outputText value="{!$Label.c.ArticleContentDetailImage}"/>

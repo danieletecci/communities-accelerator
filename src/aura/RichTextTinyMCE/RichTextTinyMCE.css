@@ -1,0 +1,9 @@
+.THIS .slds-tabs_default__content{
+	padding: 0 !important;
+}
+.THIS .slds-tabs--default__content{
+	padding: 0 !important;
+}
+.THIS .slds-textarea{
+	height: 20rem;
+}

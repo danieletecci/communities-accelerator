@@ -5,7 +5,6 @@
         position: fixed;
         top: 0;
         width: 100%;
-        background-color: #F8F8F8;
         z-index: 1;
         overflow: scroll;
         .filterModal {
@@ -83,6 +82,9 @@
             } 
         }
         .detailmodal {
+            background-color: #FFFFFF;
+            height: 100%;
+            top: 155px;
             h1 {
                 font-size: 40px;
                 font-weight: 200;
@@ -107,14 +109,26 @@
                         }
                         &.value {
                             color: #0B0B0B;
-                            margin-top: 10px;   
+                            margin-top: 10px;  
+                            word-break: break-word; 
                         }
                     }
                 }
             }
             .modal__footer {
                 height: 50px;
+                bottom: 0;
+                position: fixed;
+                left: 0;
+                right: 0;
+                background-color: #F8F8F8;
+                padding-left: 56px;
                 padding-top: 15px;
+                padding-bottom: 15px; 
+                img {
+                    width: 25px;
+                    height: 25px;
+                } 
             }
 
         }

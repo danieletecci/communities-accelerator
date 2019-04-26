@@ -4,7 +4,6 @@
   position: fixed;
   top: 0;
   width: 100%;
-  background-color: #F8F8F8;
   z-index: 1;
   overflow: scroll;
 }
@@ -74,6 +73,11 @@
   color: #FDFDFD;
   background-color: #4B96E8;
 }
+.datatableModals .modal .detailmodal {
+  background-color: #FFFFFF;
+  height: 100%;
+  top: 155px;
+}
 .datatableModals .modal .detailmodal h1 {
   font-size: 40px;
   font-weight: 200;
@@ -102,8 +106,20 @@
 .datatableModals .modal .detailmodal .modal__content .detailcontent p.value {
   color: #0B0B0B;
   margin-top: 10px;
+  word-break: break-word;
 }
 .datatableModals .modal .detailmodal .modal__footer {
   height: 50px;
+  bottom: 0;
+  position: fixed;
+  left: 0;
+  right: 0;
+  background-color: #F8F8F8;
+  padding-left: 56px;
   padding-top: 15px;
+  padding-bottom: 15px;
+}
+.datatableModals .modal .detailmodal .modal__footer img {
+  width: 25px;
+  height: 25px;
 }

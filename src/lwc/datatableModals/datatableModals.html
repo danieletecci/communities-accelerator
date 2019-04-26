@@ -31,12 +31,14 @@
                                             </div>
                                         </template> -->
                                             <div key={filter} class="slds-col slds-size_2-of-4"> 
-                                                <c-datatable-filters key={filter} column={col.fieldName} type={col.type} filter={filter} onfilter={filterElement}></c-datatable-filters>
+                                                <c-datatable-filters column={col.fieldName} 
+                                                                     type={col.type} 
+                                                                     filter={filter} 
+                                                                     appliedfilters={table.appliedFilters} 
+                                                                     formartdate={formartDate}
+                                                                     onfilter={filterElement}>
+                                                </c-datatable-filters>
                                             </div>
-                                            <!-- <template if:true={isCustomDate} class="slds-grid slds-wrap slds-gutters_x-small">
-                                                <lightning-input key={filter} class="slds-col slds-size_2-of-4 datefrom" type="date" name="from-day" max={seletedDateTo} onchange={changeDatepickerFrom} placeholder="From"></lightning-input>
-                                                <lightning-input key={filter} class="slds-col slds-size_2-of-4 dateto" type="date" name="to-day" min={seletedDateFrom} onchange={changeDatepickerTo} placeholder="To" ></lightning-input>
-                                            </template> -->
                                         </template>
                                     </template>
                                 </div>
@@ -60,7 +62,6 @@
                 <!--                DETAIL'S MODAL                 -->
                 <div class="detailmodal">
                     <template if:true={detailModal}>
-                        <h1>{table.title}</h1>
                         <div class="modal__header">
                             <img class="closeModal" src={closeicon} onclick={closeModal}>
                         </div>
@@ -72,13 +73,13 @@
                                 </div>
                             </template>
                         </div>
-                        <!-- <div class="slds-grid slds-wrap modal__footer">
+                        <div class="modal__footer slds-grid slds-wrap">
                             <template for:each={rowaction} for:item="action">
                                     <div key={action.label} class="slds-no-flex slds-col slds-size_1-of-4">
                                         <img src={action.icon}>
                                     </div>
                             </template>
-                        </div> -->
+                        </div>
                     </template>
                 </div>
                 <!--                ACTION'S MODAL                 -->

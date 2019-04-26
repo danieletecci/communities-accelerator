@@ -7,33 +7,24 @@ export default class DatatableModals extends LightningElement {
     @api type;
     @api rowaction;
 
-    // @track isCustomDate = false;
     @track showFilterModalFooter = false;
-    //@track isCustomDate = false;
     @track rowData = [];
     @track activeFilters = [];
     @track actionModal;
     @track detailModal;
     @track filterModal;
-    @track seletedDateFrom;
-    @track seletedDateTo;
+    @track formartDate = this.formatDate();
 
     firstRender = true;
     removeAllFilters = false;
-    isLastWeek = false;
-    isLastMonth = false;
-    isLastYear = false;
-    isCustomRange = false;
     filterTypeDate;
 
     renderedCallback() {
         this.setTypeModal();
-        if (this.type === "detailModal" && this.rowData.length === 0) {
-            this.dataDetailModal();
-        }
-        if (this.type === "filterModal" && this.table.appliedFilters.length > 0 && !this.removeAllFilters && this.firstRender) {
+        if (this.type === "detailModal" && this.rowData.length === 0) { this.dataDetailModal(); }
+        if (this.type === "filterModal" && this.table.appliedFilters.length > 0) { 
             this.appliedFilters();
-            this.showFilterModalFooter = true;
+            this.showFilterModalFooter = true; 
         }
     }
 
@@ -65,14 +56,6 @@ export default class DatatableModals extends LightningElement {
         });
         return columns;
     }
-    
-    changeDatepickerFrom(event) {
-        this.seletedDateFrom = event.currentTarget.value;
-    }
-
-    changeDatepickerTo(event) {
-        this.seletedDateTo = event.currentTarget.value;
-    }
 
     formatDate() {
         var today = new Date();
@@ -100,96 +83,70 @@ export default class DatatableModals extends LightningElement {
     }
 
     appliedFilters() {
-        var filterButtons = this.template.querySelectorAll("button.filter");
+        var filterButtons = this.template.querySelectorAll('c-datatable-filters');
         var appliedFilters = JSON.parse(JSON.stringify(this.table.appliedFilters));
-        if(filterButtons.length !== 0) {
-            this.firstRender = false;
-        }
-        this.setAppliedFiltersForDate();
         filterButtons.forEach(button => {
             appliedFilters.forEach(filter => {
-               if (filter.value1 === button.innerText || 
-                    (filter.filter.type === "DATE" && (this.isLastWeek && button.innerText === "Last Week") || (this.isLastMonth && button.innerText === "Last Month") 
-                        || (this.isLastYear && button.innerText === "Last Year") || (this.isCustomRange && button.innerText === "Custom Range"))) {
-                    button.classList.toggle("active");
-               }
+                button.activeFilter(filter);
            })
         });
     }
 
     filterElement(event) {
-        // var button;
-        // var evt = event.currentTarget;
-        // evt.classList.toggle("active");
-        // button = this.template.querySelectorAll("button.active");
-        // if (evt.dataset.type === "DATE" || evt.dataset.type === "DATETIME") {
-        //     button.forEach(btn => {
-        //         if (evt.dataset.value !== btn.dataset.value && (btn.dataset.type === "DATE" || btn.dataset.type === "DATETIME")) { 
-        //             btn.classList.remove("active");
-        //         }
-        //     });
-        // }
-        // this.isCustomDate = (evt.dataset.value === "Custom Range" && evt.classList.contains("active")) ? true : false;
-        // this.showFilterModalFooter = (button.length === 0) ? false : true;
-        //var filter = JSON.parse(JSON.parse(JSON.stringify(event.detail)).value)
         const filter = JSON.parse(JSON.stringify(event.detail)).values;
         if (filter.active) {
             this.activeFilters.push(filter);
         } else {
-            let inactiveFilter = JSON.parse(JSON.stringify(this.activeFilters)).findIndex(f => (f.filter === filter.filter));
-            if (inactiveFilter) {
-                console.log(inactiveFilter);
-                console.log(JSON.parse(JSON.stringify(this.activeFilters)));
+            let inactiveIndexFilter = JSON.parse(JSON.stringify(this.activeFilters)).findIndex(f => (f.filter === filter.filter));
+            if (inactiveIndexFilter >= 0) {
+                this.activeFilters.splice(inactiveIndexFilter, 1);
             }
-            // this.table.appliedFilters.forEach((fil, index) => {
-            //     if (fil.filter.name === name && fil.value1 === value) {
-            //         filters.splice(index, 1);
         }
+        this.showFilterModalFooter = (this.activeFilters.length > 0) ? true : false;
     }
 
     filterAllRemove() {
-        var button = this.template.querySelectorAll("button.active");
-        button.forEach(fil =>{
-            fil.classList.remove("active");
-        });
+        var buttons = this.template.querySelectorAll('c-datatable-filters');
+        buttons.forEach(btn => { btn.removeFilters(); });
         this.removeAllFilters = true;
-        this.isCustomDate = false;
         this.showFilterModalFooter = false;
     }
 
     applyFilter() {
-        var button = this.template.querySelectorAll("button.active");
+        // var button = this.template.querySelectorAll("button.active");
+        var activeFilters = JSON.parse(JSON.stringify(this.activeFilters));
         var customDateFrom = this.template.querySelector("lightning-input.datefrom");
         var customDateTo = this.template.querySelector("lightning-input.dateto");
         var filters = [];   
         var filter;
         var dates = this.formatDate();
         
-        button.forEach(fil =>{
-            let value1 = fil.dataset.value;
+        activeFilters.forEach(fil =>{
+            let value1 = fil.filter;
             let value2 = null;
-            if (fil.dataset.value === "Last Week") {
+            if (fil.filter === "Last Week") {
                 value1 = dates.lastWeek;  //value1 = menor
                 value2 = dates.now; //value2 = mayor
-            } else if (fil.dataset.value === "Last Month") {
+            } else if (fil.filter === "Last Month") {
                     value1 = dates.lastMonth;
                     value2 = dates.now;
-                } else if (fil.dataset.value === "Last Year") {
+                } else if (fil.filter === "Last Year") {
                         value1 = dates.lastYear;
                         value2 = dates.now;
-                    } else if (fil.dataset.value === "Custom Range") {
+                    } else if (fil.filter === "Custom Range") {
                         value1 = customDateFrom.value;
                         value2 = customDateTo.value;
                     }
             filter = {filter: {
-                            name: fil.dataset.column, 
-                            type: fil.dataset.type
+                            name: fil.column, 
+                            type: fil.type
                         },
                         value1: value1,
                         value2: value2
                     };
             filters.push(filter);
         });
+        if (this.removeAllFilters) { filters = []; }
         const values = JSON.stringify(filters);
         this.filterEvent(values);
         this.closeModal();

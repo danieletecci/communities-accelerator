@@ -2,13 +2,13 @@
     <template if:true={orientation}>
         <div class="container-portrait" onclick={navigateToDetail}>
             <template if:true={config}>
-                <template if:true={config.headerText}>
+                <!-- <template if:true={config.headerText}> -->
                     <div class="header-container">
-                            <p class={headerClass}>
-                                    <lightning-formatted-date-time value={config.headerText} year="numeric" day="numeric" month="long" time-zone="UTC">{config.headerText}</lightning-formatted-date-time>
-                            </p>
+                        <p class={headerClass}>
+                            <lightning-formatted-date-time value={config.headerText} year="numeric" day="numeric" month="long" time-zone="UTC">{config.headerText}</lightning-formatted-date-time>
+                        </p>
                     </div>
-                </template>
+                <!-- </template> -->
                 <template if:true={config.title}>
                     <div class="title-container">
                         <h3 class="title">

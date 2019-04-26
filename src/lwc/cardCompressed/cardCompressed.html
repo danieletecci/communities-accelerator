@@ -1,18 +1,18 @@
 <template>
-    <div class="container slds-grid" onclick={navigateToDetail}>
-        <div class="slds-col slds-size_1-of-4">
+    <div class="container slds-grid slds-gutters" onclick={navigateToDetail}>
+        <div class="slds-col slds-size_1-of-3">
             <template if:true={config.imgSrc}>
                 <div class="img-container">
                     <img src={config.imgSrc} alt="" class="img">
                 </div>
             </template>
         </div>
-        <div class="slds-col slds-size_3-of-4 container-info">
-            <template if:true={config.headerText}>
+        <div class="slds-col slds-size_2-of-3">
+            <!-- <template if:true={config.headerText}> -->
                 <div class="header-container">
                     <p class={headerClass}>{config.headerText}</p>
                 </div>
-            </template>
+            <!-- </template> -->
             <template if:true={config.title}>
                 <div class="title-container">
                     <h3 class="title">

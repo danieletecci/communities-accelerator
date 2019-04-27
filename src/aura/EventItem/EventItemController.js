@@ -4,7 +4,7 @@
         var linkDetail = component.get("v.contentWrapper.content.LinkDetailURL");
         
         var parentComponentId;
-        var parentComponentType = component.get("v.componentWrapper.component.RecordType.DeveloperName");
+        var parentComponentType = component.get("v.componentWrapper.component.RecordTypeDeveloperName");
         if (parentComponentType == 'EventsRelatedHOC'){
             parentComponentId = component.get("v.parentComponentId");
         } else {

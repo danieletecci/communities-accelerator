@@ -1,6 +1,6 @@
 @isTest
 public with sharing class ContentPublishModalControllerTest {
-	@testSetup
+    @testSetup
     static void generateCustomSettings(){
         MockupFactory.generateAcceleratorSetting();
         List<Cluster__c> clusterRoot = MockupFactory.createCluster('Cluster Root', '', 1, 'ClusterRoot', 'CRT');
@@ -26,12 +26,11 @@ public with sharing class ContentPublishModalControllerTest {
 
     @isTest
     public static void schedulePublication(){
-        List<Content__c> contents = [SELECT id FROM Content__c];
-        ContentPublishModalController.schedulePublication(contents.get(0));
+        List<Content__c> contents = [SELECT id, Name, Status__c FROM Content__c];
+        ContentPublishModalController.schedulePublication(new ObjectContentWrapper(contents.get(0)));
         contents.get(0).Status__c = 'test';
         try{
-        ContentPublishModalController.schedulePublication(contents.get(0));
-            
+            ContentPublishModalController.schedulePublication(new ObjectContentWrapper(contents.get(0)));
         } catch(Exception e){
             System.assertEquals(e.getMessage(), 'Script-thrown exception');
         }

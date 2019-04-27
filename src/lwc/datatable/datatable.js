@@ -7,7 +7,11 @@ export default class Datatable extends LightningElement {
     @api table;
 
     @track orientation;
+    @track isPhone = false;
+    @track isTablet = false;
+    @track isDesktop = false;
     @track columnsToShow;
+    @track columnsToShowLength = 0;
     @track showFilterModal = false;
     // @track showFooterModal = false;
     @track showDetailModal = false;
@@ -23,10 +27,18 @@ export default class Datatable extends LightningElement {
     filterIcon = Assets + '/Assets/Icons/FilterIcon.svg';
     closeIcon = Assets + '/Assets/Icons/CloseIcon.svg';
     moreIcon = Assets + '/Assets/Icons/MoreIcon.svg';
+    sortIcon = Assets + '/Assets/Icons/SortIcon.svg';
 
     constructor() {
         super();
         this.handleOrientation();
+        this.setDevices();
+    }
+
+    setDevices(){
+        let currentDeviceType = eval("$A.get('$Browser.formFactor')");
+        let deviceTypeRef = 'is' + currentDeviceType[0] + currentDeviceType.slice(1).toLowerCase();
+        this[deviceTypeRef] = true;
     }
 
     connectedCallback() {
@@ -37,6 +49,7 @@ export default class Datatable extends LightningElement {
     renderedCallback() {
         if (this.table && !this.columnsToShow) {
             this.columnsToShow = this.table.columns.slice(0, this.numberOfColumns);
+            this.columnsToShowLength = this.columnsToShow.length;
         }
         if (this.table.actions.length > 0 && this.rowAction.length === 0 && this.globalAction.length === 0) {
             this.typeActions();
@@ -234,5 +247,10 @@ export default class Datatable extends LightningElement {
         const clearFilter = new CustomEvent('clearfilter');
         this.dispatchEvent(clearFilter);
         this.filterRemove();
+    }
+
+    sortByColumn(event){
+        console.log(event);
+        debugger;
     }
 }

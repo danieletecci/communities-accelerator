@@ -3,7 +3,7 @@
     <!-- HANDLERS -->
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     <aura:handler event="c:ContentUpsertEvent" action="{!c.handleUpsertEvent}"/>
-    <aura:handler name="URLEvent" event="c:ContentUpsertEvent" action="{!c.handleMediaElementEvent}"/>    
+    <aura:handler name="URLEvent" event="c:MediaElementManagerEvent" action="{!c.handleMediaElementEvent}"/>    
    
     <aura:attribute name="contentData"            type="Object"   />
     <aura:attribute name="imageUrl"               type="String"   />
@@ -25,13 +25,13 @@
             <div class="slds-grid slds-grid_vertical">
                 <div class="slds-col slds-p-bottom_small">
                     
-                    <aura:if isTrue="{!v.contentData.IsTemplate__c}">
+                    <aura:if isTrue="{!v.contentData.IsTemplate}">
                         <div style="background-color:#EEEEEE;padding:10px;">
-                            <lightning:textarea label="{!$Label.c.AdvanceContentDetailTemplateDescription}" name="templateDescription" value="{!v.contentData.TemplateDescription__c}" required="true" aura:id="templateDescription"/>
+                            <lightning:textarea label="{!$Label.c.AdvanceContentDetailTemplateDescription}" name="templateDescription" value="{!v.contentData.TemplateDescription}" required="true" aura:id="templateDescription"/>
                          </div>
                     </aura:if>
                     
-                    <lightning:textarea label="{!$Label.c.AdvanceContentContentDetailBody}" name="templateDescription" value="{!v.contentData.HTMLContent__c}"  aura:id="templateDescription" />
+                    <lightning:textarea label="{!$Label.c.AdvanceContentContentDetailBody}" name="templateDescription" value="{!v.contentData.HTMLContent}" aura:id="templateDescription" />
                 </div>
             </div>
         </div>

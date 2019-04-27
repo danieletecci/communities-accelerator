@@ -1,5 +1,5 @@
 <design:component label="CG Event Detail">
 
-	<design:attribute name="componentExternalId" label="Component External Id" datasource="apex://EventDynamicPicklist"/>
+	<design:attribute name="componentExternalId" label="Component External Id" datasource="apex://EventDetailDynamicPicklist"/>
 
 </design:component>

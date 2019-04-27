@@ -12,6 +12,7 @@ public with sharing class DatatableUtils {
         String fieldSetString = String.join(fieldSet, ', ');
 
         String whereCondition = datatable.WhereCondition__c != null ? datatable.WhereCondition__c : '';
+        whereCondition = GeneralUtils.replaceDynamicFields(whereCondition, 'User', UserInfo.getUserId(), true);
 
         String filtersWhereCondition = DatatableUtils.processAppliedFilters(wrapper.appliedFilters);
 

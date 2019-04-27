@@ -30,7 +30,7 @@
 	                    <div class="slds-page-header__name">
 	                        <div class="slds-page-header__name-title">
 	                            <h1>
-	                                <span>{!v.contentData.RecordType.Name + if(v.contentData.IsTemplate, ' ' + $Label.c.General_Template,'')}</span>
+	                                <span>{!v.contentData.RecordTypeName + if(v.contentData.IsTemplate, ' ' + $Label.c.General_Template,'')}</span>
 									<aura:if isTrue="{!v.isNameEdit}">
 										<div onkeyup="{!c.onKeyUp}">
 											<lightning:input aura:id="name-input" name="input1" label="" value="{!v.temporaryName}" variant="label-hidden" maxlength="80" />
@@ -55,7 +55,7 @@
 						        <lightning:button label="{!$Label.c.General_Save}" onclick="{! c.doSave}" />
 						    </aura:if>
 					        <!-- <lightning:button label="{!$Label.c.ContentDetailSchedule}" /> -->
-		                	<aura:if isTrue="{!and(v.contentData.IsTemplate__c,v.contentData.Status == ($Label.c.ContentDetailPublished))}">
+		                	<aura:if isTrue="{!and(v.contentData.IsTemplate,v.contentData.Status == ($Label.c.ContentDetailPublished))}">
 						        <lightning:button label="{!$Label.c.CreateFromTemplateButton}"  onclick="{! c.doCreateFromTemplate}" />
 						    </aura:if>
 						    <aura:if isTrue="{!(v.contentData.Status) == ($Label.c.ContentDetailArchived)}">
@@ -114,7 +114,7 @@
 	                </li>
 	                <li class="slds-page-header__detail-block">
 	                    <div class="slds-text-title slds-truncate" title="{!$Label.c.ContentDetailCreatedBy}">{!$Label.c.ContentDetailCreatedBy}</div>
-	                    <div class="slds-truncate" title="{!v.contentData.CreatedBy.Name}">{!v.contentData.CreatedBy.Name}</div>
+	                    <div class="slds-truncate" title="{!v.contentData.CreatedByName}">{!v.contentData.CreatedByName}</div>
 	                </li>
 	            </ul>
 	        </div>
@@ -128,7 +128,7 @@
 	{!v.confirmationModal}
 
     <aura:if isTrue="{!v.contentData.Id != null}">
-    	<c:createNewContentModal aura:id="newContentModal" oncontentcreated="{!c.doGoToContent}" recordTypeId="{!v.contentData.RecordType.Id}" templateId="{!v.contentData.Id}"></c:createNewContentModal>
+    	<c:createNewContentModal aura:id="newContentModal" oncontentcreated="{!c.doGoToContent}" recordTypeId="{!v.contentData.RecordTypeId}" templateId="{!v.contentData.Id}"></c:createNewContentModal>
     </aura:if>
     
 </aura:component>

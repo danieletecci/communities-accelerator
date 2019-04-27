@@ -66,13 +66,17 @@ public with sharing class CG_BaseComponentController {
 				for (String fieldApiName: getComponentFieldSetByComponentType(component.RecordType.DeveloperName, device)){
 					fieldApiName = GeneralUtils.prefix(fieldApiName);
 					if (fieldApiName != 'Id' && fieldApiName != GeneralUtils.prefix('[CMS]ExternalId__c') && fieldApiName != 'Recordtype.Developername'){
+						
 						if (fieldApiName == GeneralUtils.prefix('[CMS]PageSize__c')){
 							component.PageSize__c = parentComponent.PageSize__c;
                         }else if(fieldApiName == GeneralUtils.prefix('[CMS]LinkDetail__r.[CMS]URL__c')){
                             component.LinkDetail__r = parentComponent.LinkDetail__r;
+                        }else if (fieldApiName == GeneralUtils.prefix('[CMS]ExcludePastEvents__c')){
+                            component.ExcludePastEvents__c = parentComponent.ExcludePastEvents__c;
                         } else {
 							component.put(fieldApiName, (String)GeneralUtils.getFieldValue(parentComponent, fieldApiName));
 						}
+
 					}
 				}
 			}else{
@@ -171,7 +175,7 @@ public with sharing class CG_BaseComponentController {
         if(componentType == 'EventsRelated'){	setFields = new set<String>{'[CMS]EventsType__c', '[CMS]ExcludePastEvents__c', '[CMS]PagingType__c', '[CMS]LinkDetail__r.[CMS]URL__c', '[CMS]ExternalId__c'};}
         if(componentType == 'Cluster_Selector'){	setFields = new set<String>{};}
         if(componentType == 'Language_Selector'){	setFields = new set<String>{};}
-        if(componentType == 'Navigation'){	setFields = new set<String>{};}
+        if(componentType == 'Menu'){	setFields = new set<String>{};}
         
         //Default fields
         setFields.add('Id');
@@ -199,9 +203,7 @@ public with sharing class CG_BaseComponentController {
         if(componentType == 'FAQ'){				setFields = new set<String>{'[CMS]Title__c', '[CMS]Body__c'};}
         if(componentType == 'ArticleDetail'){		setFields = new set<String>{'[CMS]Title__c', '[CMS]Extract__c','[CMS]Body__c','[CMS]Layout__c'};}
         if(componentType == 'EventDetail'){		setFields = new set<String>{'[CMS]Title__c', '[CMS]Extract__c','[CMS]Body__c', '[CMS]EventStartDate__c', '[CMS]EventEndDate__c', '[CMS]Location__c','[CMS]Layout__c'};}
-        if(componentType == 'ClusterSelector'){	setFields = new set<String>{};}
-		if(componentType == 'LanguageSelector'){	setFields = new set<String>{};}
-        if(componentType == 'Navigation'){	setFields = new set<String>{};}
+
         setFields.add('Id');
         setFields.add('Name');
 

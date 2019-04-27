@@ -41,7 +41,7 @@
 						var cWrapper = action.getReturnValue();
 						//mobile cast
 	                    if($A.get("$Browser.isPhone")){
-							var recordType = cWrapper.component.RecordType.DeveloperName;
+							var recordType = cWrapper.component.RecordTypeDeveloperName;
 							if(recordType === 'EventDetail' || recordType === 'ArticleDetail'){
 		                        var details = {};
 		                        details.type = recordType === 'EventDetail' ? 'Event' : 'Article';
@@ -91,7 +91,7 @@
 			var action = component.get("c.getPage");
 			action.setParams({
 				listAllContentIds: componentWrapper.listAllContentIds,
-				componentType: componentWrapper.component.RecordType.DeveloperName,
+				componentType: componentWrapper.component.RecordTypeDeveloperName,
 				pageSize: String(componentWrapper.component.PageSize),
 				pageNumber: String(pageNumber),
 				orderBy: orderBy,

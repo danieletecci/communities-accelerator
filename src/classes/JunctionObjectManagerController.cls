@@ -27,6 +27,13 @@ public with sharing class JunctionObjectManagerController {
 	
 	@auraEnabled
 	public static RecordsWrapper getRecords(String recordId, String junctionObjectAPIName, String parentLookup, String secondaryLookup, String whereCondition, String orderBy){
+		
+		junctionObjectAPIName = GeneralUtils.prefix(junctionObjectAPIName);
+		parentLookup = GeneralUtils.prefix(parentLookup);
+		secondaryLookup = GeneralUtils.prefix(secondaryLookup);
+		whereCondition = GeneralUtils.prefix(whereCondition);
+		orderBy = GeneralUtils.prefix(orderBy);
+
 		RecordsWrapper rw = new RecordsWrapper();
 		String primaryObjectName = Schema.getGlobalDescribe().get(junctionObjectAPIName).getDescribe().fields.getMap().get(parentLookup).getDescribe().getReferenceTo()[0].getDescribe().getName();
 		String secondaryObjectName = Schema.getGlobalDescribe().get(junctionObjectAPIName).getDescribe().fields.getMap().get(secondaryLookup).getDescribe().getReferenceTo()[0].getDescribe().getName();
@@ -86,6 +93,12 @@ public with sharing class JunctionObjectManagerController {
 
 	@auraEnabled
 	public static String saveRelationships(String recordId, String junctionObjectAPIName, String parentLookup, String secondaryLookup, List<String> listSelectedIds, String orderBy, String isReorder){
+		
+		junctionObjectAPIName = GeneralUtils.prefix(junctionObjectAPIName);
+		parentLookup = GeneralUtils.prefix(parentLookup);
+		secondaryLookup = GeneralUtils.prefix(secondaryLookup);
+		orderBy = GeneralUtils.prefix(orderBy);
+
 		Set<String> selectedIds = new Set<String>();
 		selectedIds.addAll(listSelectedIds);
 		Integer lastOrderBy = 0;

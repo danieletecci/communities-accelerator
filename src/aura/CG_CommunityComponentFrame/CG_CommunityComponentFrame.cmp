@@ -49,7 +49,7 @@
                     <div aura:id="contentDetail" class="contentDetail borderColorBlue hidden">
                         <ul>
                             <aura:iteration items="{!v.componentWrapper.contentWrapper}" var="wrapper">
-                                <li><a href="{!v.componentWrapper.acceleratorSettings.SalesforceDomain__c + '/' + wrapper.content.Id}" target="_blank">{!wrapper.content.Name}</a></li>
+                                <li><a href="{!v.componentWrapper.acceleratorSettings.SalesforceDomain + '/' + wrapper.content.Id}" target="_blank">{!wrapper.content.Name}</a></li>
                             </aura:iteration>
                         </ul>
                     </div>

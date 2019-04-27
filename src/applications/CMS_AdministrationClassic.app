@@ -8,7 +8,6 @@
     <tabs>MediaElement__c</tabs>
     <tabs>Category__c</tabs>
     <tabs>Tag__c</tabs>
-    <tabs>Translation__c</tabs>
     <tabs>Navigation__c</tabs>
     <tabs>Menu__c</tabs>
     <tabs>Datatable__c</tabs>

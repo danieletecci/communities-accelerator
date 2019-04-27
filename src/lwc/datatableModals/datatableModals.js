@@ -7,11 +7,10 @@ export default class DatatableModals extends LightningElement {
     @api type;
     @api rowaction;
     @api isDesktop;
-
+    
     @track showFilterModalFooter = false;
     @track rowData = [];
     @track activeFilters = [];
-    @track testFilters = [];
     @track actionModal;
     @track detailModal;
     @track filterModal;

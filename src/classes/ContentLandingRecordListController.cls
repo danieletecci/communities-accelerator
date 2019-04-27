@@ -113,6 +113,8 @@ public class ContentLandingRecordListController {
     static ContentWrapper buildContentWrapper(Content__c content, List<String> columnSet){
         List<FieldWrapper> fieldWrappers = new List<FieldWrapper>();
         for(String column : columnSet){
+            column = GeneralUtils.prefix(column);
+            
             // Verifica si la Columna es un campo relacionado y si esta populado
             String value = getWrapperValue(content, column);
             // La Columna lleva un link al registro de Contenido

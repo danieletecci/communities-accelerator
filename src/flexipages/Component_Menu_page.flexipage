@@ -82,16 +82,9 @@
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>whereCondition</name>
-                <value>WHERE RecordType.DeveloperName = [!rec.RecordType.DeveloperName] AND [CMS]ClusterRootExternalId__c = [!rec.[CMS]ClusterExternalId__c]</value>
+                <value>WHERE RecordType.DeveloperName = &apos;Menu&apos; AND [CMS]ClusterRootExternalId__c = [!rec.[CMS]ClusterExternalId__c]</value>
             </componentInstanceProperties>
             <componentName>JunctionObjectManager</componentName>
-            <visibilityRule>
-                <criteria>
-                    <leftValue>{!Record.Datasource__c}</leftValue>
-                    <operator>EQUAL</operator>
-                    <rightValue>ManualAssignment</rightValue>
-                </criteria>
-            </visibilityRule>
         </componentInstances>
         <name>header</name>
         <type>Region</type>

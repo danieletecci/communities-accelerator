@@ -15,7 +15,7 @@
 					component.set("v.timeZone", 			data.timeZone);
 					component.set("v.visibilitySelectors", 	data.visibilitySelectors);
 					component.set("v.security", 			data.security);
-					if(data.content.MediaElementAssignments != null){
+					if(data.content.MediaElementAssignments != null && data.content.MediaElementAssignments.length > 0){
 						component.set('v.imageUrl', data.content.MediaElementAssignments[0].MediaElement.FileURLDesktop);
                         component.set('v.mediaElementName', data.content.MediaElementAssignments[0].MediaElement.Name);
                         component.set('v.mediaElementId', data.content.MediaElementAssignments[0].MediaElement.Id);
@@ -67,7 +67,7 @@
 				var navEvt = $A.get("e.force:navigateToSObject");
 				navEvt.setParams({
 					"recordId": content.Id,
-					 });
+				});
 				navEvt.fire();
 			} else if (state === "ERROR") {
 				let errors = response.getError();
@@ -81,7 +81,7 @@
 		$A.enqueueAction(action);
 	},
 	showCorrectMessage : function(component, content, previousStatus, actualStatus){
-		var recordTypeName 	= content.RecordType.Name;
+		var recordTypeName 	= content.RecordTypeName;
 		var recordName 		= content.Name;
 		var helper 			= this;
 

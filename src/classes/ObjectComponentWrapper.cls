@@ -1,52 +1,52 @@
 public class ObjectComponentWrapper {
     
-    public String Id;
-    public String Name;
-    public String RecordTypeId;
-    public String RecordTypeName;
-    public String RecordTypeDeveloperName;
+    @AuraEnabled public String Id;
+    @AuraEnabled public String Name;
+    @AuraEnabled public String RecordTypeId;
+    @AuraEnabled public String RecordTypeName;
+    @AuraEnabled public String RecordTypeDeveloperName;
 
-    public String ArticleType;
-    public Boolean AutomaticTransition;
-    public String BannerFrameType;
-    public Decimal BannerTransitionTime;
-    public String BannerType;
-    public String Cluster;
-    public String ClusterExternalId;
-    public String HierarchicalOrderBy;
-    public String Datasource;
-    public Decimal DelayTime;
-    public String Direction;
-    public String EventsType;
-    public Boolean ExcludePastEvents;
-    public String ExternalId;
-    public String FieldsToSearch;
-    public String FirstCluster;
-    public Boolean HasDelay;
-    public String LinkDetail;
+    @AuraEnabled public String ArticleType;
+    @AuraEnabled public Boolean AutomaticTransition;
+    @AuraEnabled public String BannerFrameType;
+    @AuraEnabled public Decimal BannerTransitionTime;
+    @AuraEnabled public String BannerType;
+    @AuraEnabled public String Cluster;
+    @AuraEnabled public String ClusterExternalId;
+    @AuraEnabled public String HierarchicalOrderBy;
+    @AuraEnabled public String Datasource;
+    @AuraEnabled public Decimal DelayTime;
+    @AuraEnabled public String Direction;
+    @AuraEnabled public String EventsType;
+    @AuraEnabled public Boolean ExcludePastEvents;
+    @AuraEnabled public String ExternalId;
+    @AuraEnabled public String FieldsToSearch;
+    @AuraEnabled public String FirstCluster;
+    @AuraEnabled public Boolean HasDelay;
+    @AuraEnabled public String LinkDetail;
     //Loop is a reserved word
-    public Boolean LoopField;
-    public String MatchCriteria;
-    public String Mode;
-    public String NavigationMode;
-    public Boolean OnlyClusterLeaf;
-    public String OrderBy;
-    public String OrderByAdvance;
-    public String Orientation;
-    public Decimal PageSize;
-    public String PagingType;
-    public Boolean PredictiveSearchEnabled;
-    public String SearchPlaceholder;
-    public Boolean ShowBullets;
-    public Boolean ShowDisplayMode;
-    public Boolean ShowFilters;
-    public Boolean ShowOrder;
-    public Boolean ShowSearch;
-    public String Status;
-    public String StatusApprovalProcess;
-    public String TagCriteria;
+    @AuraEnabled public Boolean LoopField;
+    @AuraEnabled public String MatchCriteria;
+    @AuraEnabled public String Mode;
+    @AuraEnabled public String NavigationMode;
+    @AuraEnabled public Boolean OnlyClusterLeaf;
+    @AuraEnabled public String OrderBy;
+    @AuraEnabled public String OrderByAdvance;
+    @AuraEnabled public String Orientation;
+    @AuraEnabled public Decimal PageSize;
+    @AuraEnabled public String PagingType;
+    @AuraEnabled public Boolean PredictiveSearchEnabled;
+    @AuraEnabled public String SearchPlaceholder;
+    @AuraEnabled public Boolean ShowBullets;
+    @AuraEnabled public Boolean ShowDisplayMode;
+    @AuraEnabled public Boolean ShowFilters;
+    @AuraEnabled public Boolean ShowOrder;
+    @AuraEnabled public Boolean ShowSearch;
+    @AuraEnabled public String Status;
+    @AuraEnabled public String StatusApprovalProcess;
+    @AuraEnabled public String TagCriteria;
 
-    public String LinkDetailURL;
+    @AuraEnabled public String LinkDetailURL;
     
     public ObjectComponentWrapper(Component__c component){
         try{this.Id = component.Id;}catch(Exception e){}

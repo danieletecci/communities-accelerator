@@ -1,24 +1,24 @@
 public class ObjectMenuWrapper {
     
-    public String Id;
-    public String Name;
-    public String RecordTypeId;
-    public String RecordTypeName;
-    public String RecordTypeDeveloperName;
+    @AuraEnabled public String Id;
+    @AuraEnabled public String Name;
+    @AuraEnabled public String RecordTypeId;
+    @AuraEnabled public String RecordTypeName;
+    @AuraEnabled public String RecordTypeDeveloperName;
 
-    public String Behaviour;
-    public String Cluster;
-    public String ClusterRootExternalId;
-    public String ComponentName;
-    public String ExternalId;
-    public String MenuIcon;
-    public String MenuLabel;
-    public String Navigation;
-    public String ParentMenu;
-    public String Status;
-    public String URLParameters;
+    @AuraEnabled public String Behaviour;
+    @AuraEnabled public String Cluster;
+    @AuraEnabled public String ClusterRootExternalId;
+    @AuraEnabled public String ComponentName;
+    @AuraEnabled public String ExternalId;
+    @AuraEnabled public String MenuIcon;
+    @AuraEnabled public String MenuLabel;
+    @AuraEnabled public String Navigation;
+    @AuraEnabled public String ParentMenu;
+    @AuraEnabled public String Status;
+    @AuraEnabled public String URLParameters;
     
-    public String NavigationURL;
+    @AuraEnabled public String NavigationURL;
     
     public ObjectMenuWrapper(Menu__c menu){
         try{this.Id = menu.Id;}catch(Exception e){}

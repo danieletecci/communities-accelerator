@@ -6,6 +6,7 @@
 	<!-- GENERAL VARIABLES --> 
 	<aura:attribute name="componentExternalId" type="String" access="global"/>
 	<aura:attribute name="componentWrapper" type="Object"/>
+    <aura:attribute name="isLoading" type="boolean" default="true"/>
 	
 	<!-- FAQs COMPONENT -->
 	<c:ComponentToolBox componentType="FAQ" componentExternalId="{!v.componentExternalId}" componentWrapper="{!v.componentWrapper}" salesforceDomain="{!v.componentWrapper.acceleratorSettings.SalesforceDomain}" isLoading="{!v.isLoading}">

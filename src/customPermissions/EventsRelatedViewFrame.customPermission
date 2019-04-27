@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomPermission xmlns="http://soap.sforce.com/2006/04/metadata">
     <description>Allow View all EventsRelated community components</description>
-    <label>EventsRelated View Frame</label>
+    <label>Events Related View Frame</label>
 </CustomPermission>

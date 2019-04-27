@@ -190,9 +190,10 @@ public with sharing class ContentDetailController {
     }
 
     @AuraEnabled
-    public static Boolean saveContent(ObjectContentWrapper content, String visibilitySelectorsString, String mediaElementId, String status, List<ObjectContentWrapper.TagAssignment> contentOldTagAssignments){
+    public static Boolean saveContent(Object content, String visibilitySelectorsString, String mediaElementId, String status, List<ObjectContentWrapper.TagAssignment> contentOldTagAssignments){
+        ObjectContentWrapper ocw = (ObjectContentWrapper) JSON.deserialize(JSON.serialize(content), ObjectContentWrapper.class);
         Savepoint sp = Database.setSavepoint();
-        Content__c contentVar = content.parse();
+        Content__c contentVar = ocw.parse();
 
         try{
             List<VisibilitySelectorWrapper> visibilitySelectors = (List<VisibilitySelectorWrapper>)JSON.deserialize(visibilitySelectorsString, List<VisibilitySelectorWrapper>.class);
@@ -215,7 +216,7 @@ public with sharing class ContentDetailController {
     }
 
     private static void updateMediaElementAssignment(Content__c content, String mediaElementId){
-
+        content = [SELECT Id, RecordType.DeveloperName FROM Content__c WHERE Id =: content.Id];
         String placement = content.RecordType.DeveloperName + 'Image';
         
         if(mediaElementId == null){

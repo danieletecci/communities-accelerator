@@ -3,10 +3,10 @@
 		this.superAfterRender();
 
 		var delayEndTime;
-		if( !component.get("v.component").HasDelay__c){
+		if( !component.get("v.component").HasDelay){
 			delayEndTime = 1;
 		} else{
-			delayEndTime = component.get('v.component').DelayTime__c;
+			delayEndTime = component.get('v.component').DelayTime;
 		}
 
 		if(component.get("v.item").subMenus.length > 0){

@@ -295,4 +295,17 @@ private class GeneralUtilsTest {
 		// Then
 		System.assertEquals(navId, '');
 	}
+    
+    @isTest
+	static void getNameSpaceTest() {
+		// Given 
+
+		// When
+		test.startTest();
+		String namespace = GeneralUtils.getNameSpace();
+		test.stopTest();
+
+		// Then
+		
+	}
 }

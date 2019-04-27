@@ -7,38 +7,106 @@ export default class DatatableCustomDateType extends LightningElement {
     @api appliedfilters;
     @api formartdate;
 
-    isRemoveAll = false;
-
     @api removeFilters(){
         var activeBtn = this.template.querySelector("button.filter");
-        activeBtn.classList.remove("active");
+        var numeroMin = this.template.querySelectorAll("input.min");
+        var numeroMax = this.template.querySelectorAll("input.max");
+        if (activeBtn) { activeBtn.classList.remove("active"); }
         this.isCustomDate = false;
     }
 
+    @api activeFilter(filter) {
+        var button = this.template.querySelector("button.filter");
+        var numeroMin = this.template.querySelectorAll("input.min");
+        var numeroMax = this.template.querySelectorAll("input.max");
+        if (button && (filter.value1 === button.dataset.value || 
+            (filter.filter.type === "DATE" && (this.isLastWeek && button.dataset.value === "Last Week") || (this.isLastMonth && button.dataset.value === "Last Month") 
+                || (this.isLastYear && button.dataset.value === "Last Year") || (this.isCustomRange && button.dataset.value === "Custom Range")))) {
+            button.classList.toggle("active");
+            this.filterArray(button);
+       }
+    }
+
+    @api valueSelect() {
+        var filterButton = this.template.querySelector("button.filter");
+        var numeroMin = this.template.querySelectorAll("input.min");
+        var numeroMax = this.template.querySelectorAll("input.max");
+        var filter;
+        if (filterButton && filterButton.classList.contains("active") && filterButton.dataset.value === "Custom Range") {
+            if (this.selectedDateFrom && this.selectedDateTo) {
+                filter = {  column: this.column,
+                            type: this.type,
+                            value1: this.selectedDateFrom,
+                            value2: this.selectedDateTo                      
+                        }
+            }
+        } else if (filterButton && filterButton.classList.contains("active")) {
+            filter = {      column: this.column,
+                            type: this.type,
+                            value1: this.filter,
+                            value2: null                    
+                        } 
+        } else if (this.typeIsNumber) {
+            if (this.selectedMin && this.selectedMax) {
+                filter = {  column: this.column,
+                            type: this.type,
+                            value1: this.selectedMin,
+                            value2: this.selectedMax                      
+                        }
+            } 
+        }  
+        return (filter) ? filter : false; 
+    }
+
     @track isCustomDate = false;
-    @track seletedDateFrom;
-    @track seletedDateTo;
+    @track typeIsNumber = false;
+    @track typeIsPicklist = false;
+    @track typeIsDate = false;
+    @track selectedDateFrom;
+    @track selectedDateTo;
+    @track selectedMin;
+    @track selectedMax;
 
     isLastWeek = false;
     isLastMonth = false;
     isLastYear = false;
     isCustomRange = false;
+    isRemoveAll = false;
+    
 
     renderedCallback() {
+        this.typeOfFilter();
         if (this.appliedfilters.length > 0) { 
-            if (this.type === "DATE" || this.type === "DATETIME") { this.setAppliedFiltersForDate(); }
-            //this.appliedFilters(); 
+            if (this.typeIsDate) { this.setAppliedFiltersForDate(); }
         }
     }
 
+    get showButton() {
+        return (this.typeIsPicklist || this.typeIsDate) ? true : false;
+    }
+
+    typeOfFilter() {
+        this.typeIsNumber = (this.type === "DOUBLE") ? true : false;
+        this.typeIsPicklist = (this.type === "PICKLIST") ? true : false;
+        this.typeIsDate = (this.type === "DATE" || this.type === "DATETIME") ? true : false;
+    }
+
     changeDatepickerFrom(event) {
-        this.seletedDateFrom = event.currentTarget.value;
+        this.selectedDateFrom = event.currentTarget.value;
     }
 
     changeDatepickerTo(event) {
-        this.seletedDateTo = event.currentTarget.value;
+        this.selectedDateTo = event.currentTarget.value;
     }
 
+    changeInputMin(event) {
+        this.selectedMin = event.currentTarget.value;
+    }
+
+    changeInputMax(event) {
+        this.selectedMax = event.currentTarget.value;
+    }
+    
     setAppliedFiltersForDate() {
         var dates = JSON.parse(JSON.stringify(this.formartdate));
         var appliedFilters = JSON.parse(JSON.stringify(this.appliedfilters));
@@ -52,40 +120,37 @@ export default class DatatableCustomDateType extends LightningElement {
         }); 
     }
 
-    @api activeFilter(filter) {
-        var button = this.template.querySelector("button.filter");
-        if (filter.value1 === button.innerText || 
-            (filter.filter.type === "DATE" && (this.isLastWeek && button.dataset.value === "Last Week") || (this.isLastMonth && button.dataset.value === "Last Month") 
-                || (this.isLastYear && button.dataset.value === "Last Year") || (this.isCustomRange && button.dataset.value === "Custom Range"))) {
-            button.classList.toggle("active");
-            this.filterArray(button);
-       }
-    }
-
     filterArray(button) {
         var filter;
         var isActive;
-        // var customDateFrom = this.template.querySelector("lightning-input.datefrom");
-        // var customDateTo = this.template.querySelector("lightning-input.dateto");
-        this.isCustomDate = (button.dataset.value === "Custom Range" && button.classList.contains("active") && this.type === "DATE") ? true : false;
+        this.isCustomDate = (button.dataset.value === "Custom Range" && button.classList.contains("active") && this.typeIsDate) ? true : false;
         isActive = (button.classList.contains("active")) ? true : false;
-        filter = { column: this.column,
-                   type: this.type,
-                   filter: this.filter,
-                   active: isActive
+        filter = { filter: button.dataset.value,
+                   isActive: isActive
                  }
         const values = filter;
         this.filterEvent(values);
-    }
-    
-    filterSelected() {
-        var filterButton = this.template.querySelector("button.filter");
-        filterButton.classList.toggle("active");
-        this.filterArray(filterButton);
     }
 
     filterEvent(values) {
         const filterValue = new CustomEvent('filter', { detail: {values} });
         this.dispatchEvent(filterValue);
     }
+
+    select () {
+        var filterButton = this.template.querySelector("button.filter");
+        var numeroMin = this.template.querySelectorAll("input.min");
+        var numeroMax = this.template.querySelectorAll("input.max");
+        var isActive;
+        var filter;
+        filterButton.classList.toggle("active");
+        isActive = (filterButton.classList.contains("active")) ? true : false;
+        this.isCustomDate = (filterButton.dataset.value === "Custom Range" && isActive && this.typeIsDate) ? true : false;
+        filter = {
+            filter: filterButton.dataset.value,
+            isActive: isActive,
+        }
+        const values = filter;
+        this.filterEvent(values);
+    }   
 }

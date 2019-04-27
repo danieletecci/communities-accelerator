@@ -1,19 +1,19 @@
-public without sharing class GeneralForm{
+global without sharing class GeneralForm{
     public FormSettings formSettings;
     public Map<String, SObject> formData{get;set;}
     
-    public GeneralForm(String formUniqueName, Set<Id> clusterIds){
+    global GeneralForm(String formUniqueName, Set<Id> clusterIds){
         generateGeneralFormData(formUniqueName, clusterIds);
     }
     
-    public GeneralForm(String formUniqueName, Set<Id> clusterIds, String recordId){
+    global GeneralForm(String formUniqueName, Set<Id> clusterIds, String recordId){
         generateGeneralFormData(formUniqueName, clusterIds);
         if(recordId != null && this.formSettings.retrievalClass != null){
             runMethod(this.formSettings.retrievalClass, this.formData, recordId);    
         }
     }
     
-    public void generateGeneralFormData(String formUniqueName, Set<Id> clusterIds){
+    global void generateGeneralFormData(String formUniqueName, Set<Id> clusterIds){
         if(clusterIds == null){
             clusterIds = new Set<Id>{null};
         }
@@ -70,7 +70,7 @@ public without sharing class GeneralForm{
         }
     }
     
-    public static FormResponseWrapper saveForm(String formSettingsString, Map<String, SObject> formData){
+    global static FormResponseWrapper saveForm(String formSettingsString, Map<String, SObject> formData){
         FormSettings formSettings = (FormSettings)JSON.deserialize(formSettingsString, FormSettings.class);
         if(!Test.isRunningTest()){
             Type t  = Type.forName(formSettings.saveClass);

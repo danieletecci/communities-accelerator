@@ -1,16 +1,97 @@
-.THIS{
-  background-color: black;
+.THIS.menu-top-opened{
+  background-color: #0B0B0B;
   position: absolute;
   height: 100vh;
   width: 100%;
 }
-.THIS ul.ul-level-0{
-  margin-top: 70px;
-  margin-left: 0;
-  padding-left: 35px;
-  padding-right: 35px;
+
+.THIS.menu-top-closed{
+  height: 50px;
+  background-color: #0b0b0b;
+  position: fixed;
+  width: 100%;
+  left: 0;
 }
 
-.THIS ul.ul-level-1{
-  margin-left: 70px;
+@media screen and (min-width: 768px) {
+  .THIS ul.ul-level-0{
+    display: flex;
+  }
+  
+}
+.THIS .nav-container{
+  padding: 14px;
+  margin-left: 50px;
+}
+
+.THIS .logo-container{
+  background-color: #F2B005;
+  height: 100%;
+  margin-left: 15px;
+  font-size: 19px;
+}
+
+.THIS ul.ul-level-1, .THIS ul.ul-level-2{
+  margin-left: 135px;
+}
+
+.THIS > div.slds-grid{
+  height: 50px;
+  margin-left: 0;
+}
+
+@media screen and (max-width: 768px) {
+  
+  .THIS.menu-top-closed{
+    position: absolute;
+  }
+  
+  .THIS ul.ul-level-0{
+    margin-top: 70px;
+    margin-left: 0;
+    padding-left: 35px;
+    padding-right: 35px;
+  }
+  
+  .THIS ul.ul-level-1{
+    margin-left: 70px;
+  }
+
+  .THIS ul.ul-level-2{
+    margin-left: 140px;
+  }
+  
+
+  .THIS.menu-top-opened .icons-container::after{
+    content: ' ';
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    top: 15px;
+    right: 30px;
+    -webkit-mask: url(sfsites/c/resource/Assets/Assets/Icons/CloseIcon.svg) no-repeat 50% 50%;
+    background-color: #D6EAFF;
+  }
+
+  .THIS .icons-container::before{
+    content: ' ';
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    top: 10px;
+    left: 35px;
+    -webkit-mask: url(sfsites/c/resource/Assets/Assets/Icons/BrandIcon.svg) no-repeat 50% 50%;
+    background-color: #D6EAFF;
+  }
+
+  .THIS.menu-top-closed .icons-container::after{
+    content: ' ';
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    top: 15px;
+    right: 30px;
+    -webkit-mask: url(sfsites/c/resource/Assets/Assets/Icons/SortIcon.svg) no-repeat 50% 50%;
+    background-color: #D6EAFF;
+  }
 }

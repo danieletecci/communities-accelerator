@@ -7,12 +7,9 @@
 
     <aura:attribute name="isActive" type="Boolean" default="false"/>
 
-    <ltng:require styles="{!$Resource.Assets + '/Assets/Styles/bannerExternalStyle.css'}" />
-
     <span  data-menu-level="{!v.menuLevel}" data-index="{!v.index}"> 
         <li class="{!'li-level-' + v.menuLevel + ' menu-a ' + if(v.index == 0, 'first-child ', '') + if(v.isActive, 'active', '')}" id="{!'li-level-' + v.menuLevel + '-' + v.index}" onclick="{!v.mobileFormat ? c.toggleActive : ''}">
             <div class="{! if(v.item.subMenus.length > 0, ' has-child ', '') }" >
-            
 
                 <aura:if isTrue="{!and(v.item.menu.Navigation != null, v.item.menu.NavigationURL != null)}">
                     <a href="{!v.item.menu.NavigationURL}" target="{!v.item.behaviour}">

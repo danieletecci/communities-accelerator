@@ -1,5 +1,5 @@
 <template>
-    <div class="datatableModals">
+    <div class="datatableModals" data-is-desktop={isDesktop}>
             <div class="modal">
                 <!--                FILTER'S MODAL                  -->
                 <template if:true={filterModal}>
@@ -15,21 +15,6 @@
                                             <h2 class="slds-col slds-size_3-of-4">{col.label}</h2>
                                         </div>
                                         <template for:each={col.filtrableValues} for:item="filter">
-                                            <!-- <div key={filter} class="slds-col slds-size_2-of-4">  
-                                                <button class="filter" 
-                                                        data-column={col.fieldName} 
-                                                        data-type={col.type} 
-                                                        data-value={filter}
-                                                        onclick={filterActive}>{filter}
-                                                </button>
-                                            </div>
-                                        </template>
-                                        <template if:true={showDatepickers}>
-                                            <div class="slds-grid slds-wrap slds-gutters_x-small">
-                                                <lightning-input class="slds-col slds-size_2-of-4 datefrom" type="date" name="from-day" max={seletedDateTo} onchange={changeDatepickerFrom} placeholder="From"></lightning-input>
-                                                <lightning-input class="slds-col slds-size_2-of-4 dateto" type="date" name="to-day" min={seletedDateFrom} onchange={changeDatepickerTo} placeholder="To" ></lightning-input>
-                                            </div>
-                                        </template> -->
                                             <div key={filter} class="slds-col slds-size_2-of-4"> 
                                                 <c-datatable-filters column={col.fieldName} 
                                                                      type={col.type} 
@@ -43,10 +28,6 @@
                                     </template>
                                 </div>
                             </template>
-                            <!-- <template if:true={isCustomDate} class="slds-grid slds-wrap slds-gutters_x-small">
-                                <lightning-input class="slds-col slds-size_2-of-4 datefrom" type="date" name="from-day" max={seletedDateTo} onchange={changeDatepickerFrom} placeholder="From"></lightning-input>
-                                <lightning-input class="slds-col slds-size_2-of-4 dateto" type="date" name="to-day" min={seletedDateFrom} onchange={changeDatepickerTo} placeholder="To" ></lightning-input>
-                            </template> -->
                             <template if:true={showFilterModalFooter}>
                                 <div class="bottom-spacer">&nbsp;</div>
                             </template>

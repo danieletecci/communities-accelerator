@@ -25,7 +25,6 @@
 }
 .datatable div.pills-container {
   height: 50px;
-  overflow-x: scroll;
   white-space: nowrap;
 }
 .datatable div.pills-container .slds-pill {
@@ -82,4 +81,33 @@
   padding: 0;
   width: 100%;
   text-align: left;
+}
+.datatable[data-is-desktop="true"] {
+  position: relative;
+}
+.datatable[data-is-desktop="true"] .header {
+  display: flex;
+  justify-content: space-between;
+}
+.datatable[data-is-desktop="true"] .search-element {
+  min-width: 0px;
+}
+.datatable[data-is-desktop="true"] .desktop-table tr {
+  height: 50px;
+  cursor: pointer;
+}
+.datatable[data-is-desktop="true"] .desktop-table tbody .slds-hint-parent:nth-child(odd) {
+  background-color: #F8F8F8;
+}
+.datatable[data-is-desktop="true"] .desktop-table .pagination td {
+  padding: 0px;
+  margin: 0px;
+  background: #4B96E8;
+  text-align: center;
+  color: #FDFDFD;
+  font-weight: bold;
+}
+.datatable[data-is-desktop="true"] .desktop-table .columnLabel {
+  display: flex;
+  justify-content: space-between;
 }

@@ -31,7 +31,6 @@
     div{
       &.pills-container{
         height: 50px;
-        overflow-x: scroll;
         white-space: nowrap;
         .slds-pill{
           width: 130px;
@@ -181,4 +180,40 @@
         width: 100%;
         text-align: left;
     }
-  }
+
+    // Only for desktop
+    &[data-is-desktop="true"]{
+       position: relative;
+        .header {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .search-element{
+            min-width: 0px;
+        } 
+
+        .desktop-table tr{
+            height: 50px;
+            cursor: pointer;
+        }
+
+        .desktop-table tbody .slds-hint-parent:nth-child(odd){
+            background-color: #F8F8F8;
+        }
+
+        .desktop-table .pagination td{
+            padding: 0px;
+            margin: 0px;
+            background: #4B96E8;
+            text-align: center;
+            color: #FDFDFD;
+            font-weight: bold;
+        }
+        .desktop-table .columnLabel{
+            display: flex;
+            justify-content: space-between;
+        }
+       
+    }
+}

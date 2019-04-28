@@ -6,7 +6,8 @@ export default class DatatableModals extends LightningElement {
     @api rowkey;
     @api type;
     @api rowaction;
-
+    @api isDesktop;
+    
     @track showFilterModalFooter = false;
     @track rowData = [];
     @track activeFilters = [];
@@ -17,7 +18,8 @@ export default class DatatableModals extends LightningElement {
 
     firstRender = true;
     removeAllFilters = false;
-    filterTypeDate;
+
+    isActive = [];
 
     renderedCallback() {
         this.setTypeModal();
@@ -48,10 +50,13 @@ export default class DatatableModals extends LightningElement {
 
     get setFilters() {   
         var columns = JSON.parse(JSON.stringify(this.table.columns));
-        var filterValues = ["Last Week", "Last Month", "Last Year", "Custom Range"]; 
+        var filterValues = ["Last Week", "Last Month", "Last Year", "Custom Range"];
+        var isNumber = ["number"];
         columns.forEach(col => {
             if(col.filtrable && (col.type === "DATE" || col.type === "DATETIME")) {
                 col.filtrableValues = filterValues;
+            } else if (col.filtrable && (col.type === "DOUBLE")) {
+                col.filtrableValues = isNumber;
             }
         });
         return columns;
@@ -69,19 +74,6 @@ export default class DatatableModals extends LightningElement {
         return dates;
     }
 
-    setAppliedFiltersForDate() {
-        var dates = this.formatDate();
-        var appliedFilters = JSON.parse(JSON.stringify(this.table.appliedFilters));
-        appliedFilters.forEach(filter =>{
-            if (filter.filter.type === "DATE" || filter.filter.type === "DATETIME") {
-                this.isLastWeek = (filter.value1 === dates.lastWeek && filter.value2 === dates.now) ? true : false;
-                this.isLastMonth = (filter.value1 === dates.lastMonth && filter.value2 === dates.now) ? true : false;
-                this.isLastYear = (filter.value1 === dates.lastYear && filter.value2 === dates.now) ? true : false;
-                this.isCustomRange = (!this.isLastWeek && !this.isLastMonth && !this.isLastYear) ? true : false;
-            } 
-        }); 
-    }
-
     appliedFilters() {
         var filterButtons = this.template.querySelectorAll('c-datatable-filters');
         var appliedFilters = JSON.parse(JSON.stringify(this.table.appliedFilters));
@@ -94,15 +86,15 @@ export default class DatatableModals extends LightningElement {
 
     filterElement(event) {
         const filter = JSON.parse(JSON.stringify(event.detail)).values;
-        if (filter.active) {
-            this.activeFilters.push(filter);
+        if (filter.isActive) {
+            this.isActive.push(filter);
         } else {
-            let inactiveIndexFilter = JSON.parse(JSON.stringify(this.activeFilters)).findIndex(f => (f.filter === filter.filter));
+            let inactiveIndexFilter = this.isActive.findIndex(f => (f.filter === filter.filter));
             if (inactiveIndexFilter >= 0) {
-                this.activeFilters.splice(inactiveIndexFilter, 1);
+                this.isActive.splice(inactiveIndexFilter, 1);
             }
         }
-        this.showFilterModalFooter = (this.activeFilters.length > 0) ? true : false;
+        this.showFilterModalFooter = (this.isActive.length > 0) ? true : false;
     }
 
     filterAllRemove() {
@@ -112,30 +104,38 @@ export default class DatatableModals extends LightningElement {
         this.showFilterModalFooter = false;
     }
 
+    filtersToApply() {
+        var filters = this.template.querySelectorAll('c-datatable-filters');
+        var values;
+        filters.forEach(filter => { 
+            values = (JSON.parse(JSON.stringify(filter.valueSelect())));
+            if (values) {this.activeFilters.push(values);}
+        });
+    }
+
     applyFilter() {
-        // var button = this.template.querySelectorAll("button.active");
-        var activeFilters = JSON.parse(JSON.stringify(this.activeFilters));
-        var customDateFrom = this.template.querySelector("lightning-input.datefrom");
-        var customDateTo = this.template.querySelector("lightning-input.dateto");
+        var activeFilters;
         var filters = [];   
         var filter;
         var dates = this.formatDate();
-        
+
+        this.filtersToApply();
+        activeFilters = JSON.parse(JSON.stringify(this.activeFilters));   
         activeFilters.forEach(fil =>{
-            let value1 = fil.filter;
-            let value2 = null;
-            if (fil.filter === "Last Week") {
+            let value1 = fil.value1;
+            let value2 = fil.value2;
+            if (fil.value1 === "Last Week") {
                 value1 = dates.lastWeek;  //value1 = menor
                 value2 = dates.now; //value2 = mayor
-            } else if (fil.filter === "Last Month") {
+            } else if (fil.value1 === "Last Month") {
                     value1 = dates.lastMonth;
                     value2 = dates.now;
-                } else if (fil.filter === "Last Year") {
+                } else if (fil.value1 === "Last Year") {
                         value1 = dates.lastYear;
                         value2 = dates.now;
-                    } else if (fil.filter === "Custom Range") {
-                        value1 = customDateFrom.value;
-                        value2 = customDateTo.value;
+                    } else if (fil.value1 && fil.value2 && fil.type === "DATE") {
+                        value1 = fil.value1;
+                        value2 = fil.value2;
                     }
             filter = {filter: {
                             name: fil.column, 

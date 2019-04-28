@@ -189,6 +189,18 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>CustomHeight__c</fullName>
+        <externalId>false</externalId>
+        <label>Custom Height</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Datasource__c</fullName>
         <externalId>false</externalId>
         <label>Datasource</label>
@@ -1045,9 +1057,31 @@
     </fields>
     <label>Component</label>
     <listViews>
+        <fullName>Active</fullName>
+        <columns>NAME</columns>
+        <columns>ExternalId__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>Cluster__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Active</value>
+        </filters>
+        <label>Active</label>
+    </listViews>
+    <listViews>
         <fullName>Advance_Content</fullName>
         <columns>NAME</columns>
-        <filterScope>Mine</filterScope>
+        <columns>ExternalId__c</columns>
+        <columns>Cluster__c</columns>
+        <columns>Status__c</columns>
+        <columns>Datasource__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
         <filters>
             <field>RECORDTYPE</field>
             <operation>equals</operation>
@@ -1061,13 +1095,21 @@
         <columns>ExternalId__c</columns>
         <columns>RECORDTYPE</columns>
         <columns>Cluster__c</columns>
+        <columns>Status__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
     <listViews>
         <fullName>Article_Details</fullName>
         <columns>NAME</columns>
-        <filterScope>Mine</filterScope>
+        <columns>ExternalId__c</columns>
+        <columns>Cluster__c</columns>
+        <columns>Status__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
         <filters>
             <field>RECORDTYPE</field>
             <operation>equals</operation>
@@ -1078,18 +1120,30 @@
     <listViews>
         <fullName>Article_List</fullName>
         <columns>NAME</columns>
-        <filterScope>Mine</filterScope>
+        <columns>ExternalId__c</columns>
+        <columns>Cluster__c</columns>
+        <columns>Status__c</columns>
+        <columns>Datasource__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
         <filters>
             <field>RECORDTYPE</field>
             <operation>equals</operation>
             <value>Component__c.ArticleList</value>
         </filters>
-        <label>Article</label>
+        <label>Article List</label>
     </listViews>
     <listViews>
         <fullName>ArticlesRelated</fullName>
         <columns>NAME</columns>
-        <filterScope>Mine</filterScope>
+        <columns>ExternalId__c</columns>
+        <columns>Cluster__c</columns>
+        <columns>Status__c</columns>
+        <columns>Datasource__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
         <filters>
             <field>RECORDTYPE</field>
             <operation>equals</operation>
@@ -1100,7 +1154,13 @@
     <listViews>
         <fullName>Banners</fullName>
         <columns>NAME</columns>
-        <filterScope>Mine</filterScope>
+        <columns>ExternalId__c</columns>
+        <columns>Cluster__c</columns>
+        <columns>Status__c</columns>
+        <columns>Datasource__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
         <filters>
             <field>RECORDTYPE</field>
             <operation>equals</operation>
@@ -1111,7 +1171,12 @@
     <listViews>
         <fullName>ClusterSelector</fullName>
         <columns>NAME</columns>
-        <filterScope>Mine</filterScope>
+        <columns>ExternalId__c</columns>
+        <columns>Cluster__c</columns>
+        <columns>Status__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
         <filters>
             <field>RECORDTYPE</field>
             <operation>equals</operation>
@@ -1122,7 +1187,12 @@
     <listViews>
         <fullName>Event_Details</fullName>
         <columns>NAME</columns>
-        <filterScope>Mine</filterScope>
+        <columns>ExternalId__c</columns>
+        <columns>Cluster__c</columns>
+        <columns>Status__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
         <filters>
             <field>RECORDTYPE</field>
             <operation>equals</operation>
@@ -1133,18 +1203,30 @@
     <listViews>
         <fullName>Event_List</fullName>
         <columns>NAME</columns>
-        <filterScope>Mine</filterScope>
+        <columns>ExternalId__c</columns>
+        <columns>Cluster__c</columns>
+        <columns>Status__c</columns>
+        <columns>Datasource__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
         <filters>
             <field>RECORDTYPE</field>
             <operation>equals</operation>
             <value>Component__c.EventList</value>
         </filters>
-        <label>Events</label>
+        <label>Event List</label>
     </listViews>
     <listViews>
         <fullName>EventsRelated</fullName>
         <columns>NAME</columns>
-        <filterScope>Mine</filterScope>
+        <columns>ExternalId__c</columns>
+        <columns>Cluster__c</columns>
+        <columns>Status__c</columns>
+        <columns>Datasource__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
         <filters>
             <field>RECORDTYPE</field>
             <operation>equals</operation>
@@ -1155,7 +1237,13 @@
     <listViews>
         <fullName>FAQs</fullName>
         <columns>NAME</columns>
-        <filterScope>Mine</filterScope>
+        <columns>ExternalId__c</columns>
+        <columns>Cluster__c</columns>
+        <columns>Status__c</columns>
+        <columns>Datasource__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
         <filters>
             <field>RECORDTYPE</field>
             <operation>equals</operation>
@@ -1164,9 +1252,30 @@
         <label>FAQs</label>
     </listViews>
     <listViews>
+        <fullName>Inactive</fullName>
+        <columns>NAME</columns>
+        <columns>ExternalId__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>Cluster__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Inactive</value>
+        </filters>
+        <label>Inactive</label>
+    </listViews>
+    <listViews>
         <fullName>LanguageSelectors</fullName>
         <columns>NAME</columns>
-        <filterScope>Mine</filterScope>
+        <columns>ExternalId__c</columns>
+        <columns>Cluster__c</columns>
+        <columns>Status__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
         <filters>
             <field>RECORDTYPE</field>
             <operation>equals</operation>
@@ -1177,7 +1286,12 @@
     <listViews>
         <fullName>Menus</fullName>
         <columns>NAME</columns>
-        <filterScope>Mine</filterScope>
+        <columns>ExternalId__c</columns>
+        <columns>Cluster__c</columns>
+        <columns>Status__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
         <filters>
             <field>RECORDTYPE</field>
             <operation>equals</operation>
@@ -1214,6 +1328,10 @@
         </picklistValues>
         <picklistValues>
             <picklist>BannerFrameType__c</picklist>
+            <values>
+                <fullName>Custom</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>Hero</fullName>
                 <default>false</default>
@@ -1464,6 +1582,10 @@
         </picklistValues>
         <picklistValues>
             <picklist>BannerFrameType__c</picklist>
+            <values>
+                <fullName>Custom</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>Hero</fullName>
                 <default>true</default>
@@ -1731,6 +1853,10 @@
         <picklistValues>
             <picklist>BannerFrameType__c</picklist>
             <values>
+                <fullName>Custom</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Hero</fullName>
                 <default>false</default>
             </values>
@@ -1992,6 +2118,10 @@
         </picklistValues>
         <picklistValues>
             <picklist>BannerFrameType__c</picklist>
+            <values>
+                <fullName>Custom</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>Hero</fullName>
                 <default>true</default>
@@ -2271,6 +2401,10 @@
         <picklistValues>
             <picklist>BannerFrameType__c</picklist>
             <values>
+                <fullName>Custom</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Hero</fullName>
                 <default>false</default>
             </values>
@@ -2520,6 +2654,10 @@
         </picklistValues>
         <picklistValues>
             <picklist>BannerFrameType__c</picklist>
+            <values>
+                <fullName>Custom</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>Hero</fullName>
                 <default>false</default>
@@ -2782,6 +2920,10 @@
         </picklistValues>
         <picklistValues>
             <picklist>BannerFrameType__c</picklist>
+            <values>
+                <fullName>Custom</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>Hero</fullName>
                 <default>true</default>
@@ -3073,6 +3215,10 @@
         <picklistValues>
             <picklist>BannerFrameType__c</picklist>
             <values>
+                <fullName>Custom</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Hero</fullName>
                 <default>true</default>
             </values>
@@ -3338,6 +3484,10 @@
         </picklistValues>
         <picklistValues>
             <picklist>BannerFrameType__c</picklist>
+            <values>
+                <fullName>Custom</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>Hero</fullName>
                 <default>false</default>
@@ -3608,6 +3758,10 @@
         </picklistValues>
         <picklistValues>
             <picklist>BannerFrameType__c</picklist>
+            <values>
+                <fullName>Custom</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>Hero</fullName>
                 <default>true</default>
@@ -3895,6 +4049,10 @@
         <picklistValues>
             <picklist>BannerFrameType__c</picklist>
             <values>
+                <fullName>Custom</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Hero</fullName>
                 <default>false</default>
             </values>
@@ -4152,6 +4310,10 @@
         </picklistValues>
         <picklistValues>
             <picklist>BannerFrameType__c</picklist>
+            <values>
+                <fullName>Custom</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>Hero</fullName>
                 <default>true</default>
@@ -4443,6 +4605,10 @@
         <picklistValues>
             <picklist>BannerFrameType__c</picklist>
             <values>
+                <fullName>Custom</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Hero</fullName>
                 <default>true</default>
             </values>
@@ -4733,6 +4899,10 @@
         <picklistValues>
             <picklist>BannerFrameType__c</picklist>
             <values>
+                <fullName>Custom</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Hero</fullName>
                 <default>true</default>
             </values>
@@ -5002,16 +5172,16 @@
     </recordTypes>
     <searchLayouts>
         <customTabListAdditionalFields>ExternalId__c</customTabListAdditionalFields>
-        <customTabListAdditionalFields>Cluster__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>RECORDTYPE</customTabListAdditionalFields>
-        <customTabListAdditionalFields>Datasource__c</customTabListAdditionalFields>
-        <customTabListAdditionalFields>CREATED_DATE</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Cluster__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Status__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>UPDATEDBY_USER</customTabListAdditionalFields>
         <customTabListAdditionalFields>LAST_UPDATE</customTabListAdditionalFields>
         <searchResultsAdditionalFields>ExternalId__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Cluster__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>RECORDTYPE</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Datasource__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>CREATED_DATE</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Cluster__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Status__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>UPDATEDBY_USER</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>LAST_UPDATE</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>Private</sharingModel>
@@ -5019,6 +5189,17 @@
         <fullName>Clustering__c</fullName>
         <label>Clustering</label>
     </sharingReasons>
+    <validationRules>
+        <fullName>CustomHeightRequired</fullName>
+        <active>true</active>
+        <errorConditionFormula>(
+ISPICKVAL(BannerFrameType__c, &apos;Custom&apos;)
+&amp;&amp;
+ISBLANK(CustomHeight__c)
+)</errorConditionFormula>
+        <errorDisplayField>CustomHeight__c</errorDisplayField>
+        <errorMessage>You must enter a Custom Height value</errorMessage>
+    </validationRules>
     <validationRules>
         <fullName>OrderByAdvanceRequired</fullName>
         <active>true</active>
@@ -5028,7 +5209,7 @@ ISPICKVAL(OrderBy__c, &apos;Custom Sorting&apos;)
 ISBLANK(OrderByAdvance__c)
 )</errorConditionFormula>
         <errorDisplayField>OrderByAdvance__c</errorDisplayField>
-        <errorMessage>You must enter a value</errorMessage>
+        <errorMessage>You must enter a Order By Advance value</errorMessage>
     </validationRules>
     <visibility>Public</visibility>
 </CustomObject>

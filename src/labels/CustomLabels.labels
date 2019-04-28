@@ -1711,4 +1711,28 @@
         <shortDescription>AddTag</shortDescription>
         <value>Add Tags</value>
     </labels>
+    <labels>
+        <fullName>NonExistentFieldName</fullName>
+        <categories>FormElementTriggers</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>NonExistentFieldName</shortDescription>
+        <value>Non existent field api name on specified object.</value>
+    </labels>
+    <labels>
+        <fullName>NonExistentObjectName</fullName>
+        <categories>FormElementTriggers</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>NonExistentObjectName</shortDescription>
+        <value>Non existent object api name.</value>
+    </labels>
+    <labels>
+        <fullName>MaxLengthErrorMessage</fullName>
+        <categories>InputField.cmp</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>MaxLengthErrorMessage</shortDescription>
+        <value>The maximum number of characters is</value>
+    </labels>
 </CustomLabels>

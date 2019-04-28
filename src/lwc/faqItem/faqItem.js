@@ -1,6 +1,6 @@
 import { LightningElement, api } from 'lwc';
 import { loadStyle } from 'lightning/platformResourceLoader';
-import Style from '@salesforce/resourceUrl/Assets';
+
 
 export default class faqItem extends LightningElement {
     @api items;

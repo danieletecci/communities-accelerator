@@ -210,6 +210,7 @@ global class MockupFactory {
                                         RecordTypeId = recordT.Id,
                                         Cluster__c = cluster == null ? null : cluster.Id,
                                         Title__c = nameRecordType + cluster,
+                                        NumberOfColumns__c = '4',
                                         Status__c='Inactive'));
             }
 

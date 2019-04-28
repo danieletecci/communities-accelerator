@@ -6,7 +6,8 @@ export default class faqItem extends LightningElement {
     @api items;
 
     renderedCallback() {
-        loadStyle(this, Style + '/Assets/Styles/roboto.css');
+        loadStyle(this, 'fsites/c/resource/Assets/Assets/Styles/faqItemExternalStyles.css');
+
     }
 
     openAccordion(){

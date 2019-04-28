@@ -1,4 +1,6 @@
 import { LightningElement, api, track } from 'lwc';
+import { loadStyle } from 'lightning/platformResourceLoader';
+
 
 export default class datatableModals extends LightningElement {
     @api table;
@@ -10,6 +12,10 @@ export default class datatableModals extends LightningElement {
     @track rowData = [];
     @track actionmodal;
     @track detailmodal;
+
+    connectedCallback() {
+        loadStyle(this, 'fsites/c/resource/Assets/Assets/Styles/datatableModalsExternalStyles.css');
+    }
 
     renderedCallback() {
         if (this.type === "detailModal" && this.rowData.length === 0) {

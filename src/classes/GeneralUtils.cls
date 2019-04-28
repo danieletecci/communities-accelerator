@@ -266,7 +266,6 @@ public class GeneralUtils{
     
     @AuraEnabled
     public static String getNameSpace() {
-    	return nameSpace;
+        return nameSpace;
     }
-    
 }

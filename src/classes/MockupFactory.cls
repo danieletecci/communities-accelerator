@@ -1,7 +1,7 @@
-public class MockupFactory {
+global class MockupFactory {
     
     // Before to create first cluster, run just one time.
-    public static void generateAcceleratorSetting(){
+    global static void generateAcceleratorSetting(){
 
         CMSSettings__c cmsSetting  = new CMSSettings__c( 
             ClusterFieldForPublicGroups__c = GeneralUtils.prefix('[CMS]ExternalId__c')
@@ -25,7 +25,7 @@ public class MockupFactory {
     }
     
     //Create Cluster__c, sure to call generateAcceleratorSetting() one time before
-    public static List<Cluster__c> createCluster(String clusterName, String parentClusterId, Integer quantity, String clusterType, String externalId){
+    global static List<Cluster__c> createCluster(String clusterName, String parentClusterId, Integer quantity, String clusterType, String externalId){
         
         List<String> parentClusterIdList = new List<String>();
         if(!String.isBlank(parentClusterId)){
@@ -37,10 +37,10 @@ public class MockupFactory {
         return clusterList;
     }
 
-   public static List<Cluster__c> createCluster(String clusterName, List<String> parentClusterIdList, Integer quantity, String clusterType, String defaultLanguage, String otherLangeuage, String externalId){
+   global static List<Cluster__c> createCluster(String clusterName, List<String> parentClusterIdList, Integer quantity, String clusterType, String defaultLanguage, String otherLangeuage, String externalId){
         List<Cluster__c> clusterList = new List<Cluster__c>();
         RecordType rtGroup = [SELECT Id FROM RecordType WHERE SobjectType =: GeneralUtils.prefix('[CMS]Cluster__c') AND DeveloperName =: clusterType];
-        System.debug('MockupFactorycreateCluster parentClusterIdList: ' + parentClusterIdList);
+
         Cluster__c clusterl = new Cluster__c();
         String externalIdName;
         if(externalId.length() >3){
@@ -76,14 +76,13 @@ public class MockupFactory {
                 clusterList.add(clusterOne);
             }
             j++;
-        }   
-       
-        System.debug('DEBUG | clusterList: ' + clusterList);
+        }
+        
         insert clusterList;
         return clusterList;
     }
 
-    public static List<Tag__c>  createTag(String tagName, String description, Integer quantity, Id clusterId){
+    global static List<Tag__c>  createTag(String tagName, String description, Integer quantity, Id clusterId){
         List<Tag__c> tagList = new List<Tag__c>();
         
         for(Integer i = 0;i<quantity;i++){
@@ -96,7 +95,7 @@ public class MockupFactory {
     }
 
         //Create TagAssignment__c by Category && Component
-    public static List<TagAssignment__c> createTagAssignment(List<Tag__c> tagList, List<Component__c> componentList, List<Content__c> contentList){
+    global static List<TagAssignment__c> createTagAssignment(List<Tag__c> tagList, List<Component__c> componentList, List<Content__c> contentList){
         List<TagAssignment__c> tagAssignmentList = new List<TagAssignment__c>();
         Integer quantity = 0;
         if(tagList != null && componentList != null){
@@ -111,7 +110,7 @@ public class MockupFactory {
     }
 
 
-    public static List<Category__c>  createCategory(String catName, Integer quantity, Id clusterId){
+    global static List<Category__c>  createCategory(String catName, Integer quantity, Id clusterId){
         List<Category__c> catList = new List<Category__c>();
         
         for(Integer i = 0;i<quantity;i++){
@@ -124,7 +123,7 @@ public class MockupFactory {
     }
 
     //Create CategoryAssignment__c by Category && Component
-    public static List<CategoryAssignment__c> createCategoryAssignment(List<Category__c> categoryList, List<Component__c> componentList){
+    global static List<CategoryAssignment__c> createCategoryAssignment(List<Category__c> categoryList, List<Component__c> componentList){
         List<CategoryAssignment__c> categoryAssignmentList = new List<CategoryAssignment__c>();
         Integer quantity = 0;
         if(categoryList != null && componentList != null){
@@ -139,7 +138,7 @@ public class MockupFactory {
     }
     
     //Create Cluster__c (Root) by names
-    /*public static List<Cluster__c> createClusterRoot(List<String> nameList){
+    /*global static List<Cluster__c> createClusterRoot(List<String> nameList){
         List<Cluster__c> clusterRootList = new List<Cluster__c>();
         RecordType rtRoot = [SELECT Id FROM RecordType WHERE SobjectType = 'Cluster__c' AND DeveloperName = 'ClusterRoot'];
 
@@ -153,7 +152,7 @@ public class MockupFactory {
     }
 */
     
-    public static User createUser(String username, String email){
+    global static User createUser(String username, String email){
         Profile profileTest = [SELECT Id, Name FROM Profile WHERE Name = 'System Administrator'];
         
         User user = new User(    
@@ -172,7 +171,7 @@ public class MockupFactory {
         return user;
     }
     
-    public static List<ClusterUser__c> createClusterUser(Id clusterId, Id userId, Integer quantity, String accessLevel){
+    global static List<ClusterUser__c> createClusterUser(Id clusterId, Id userId, Integer quantity, String accessLevel){
 
         //ClusterUser__c clusterUser = new ClusterUser__c(Cluster__c=clusterId, User__c=userId, AccessLevel__c=accessLevel);
         List<ClusterUser__c> clusterUserList = new List<ClusterUser__c>();
@@ -183,14 +182,14 @@ public class MockupFactory {
         return clusterUserList;
     }
 
-    public static void deleteClusterByName(String clusterName){
+    global static void deleteClusterByName(String clusterName){
 
         Cluster__c getClusterRoot = [SELECT Id FROM Cluster__c WHERE name = :clusterName LIMIT 1];
         delete getClusterRoot;
     }
 
     //Create Component__c by RecordTypeName
-    public static List<Component__c> createComponent(String nameRecordType, Integer quantity){
+    global static List<Component__c> createComponent(String nameRecordType, Integer quantity){
 
         List<Component__c> componentList = createComponent(nameRecordType, quantity, null);
         
@@ -198,7 +197,7 @@ public class MockupFactory {
     }
 
     //Create Component__c by RecordTypeName
-    public static List<Component__c> createComponent(String nameRecordType, Integer quantity, Cluster__c cluster){
+    global static List<Component__c> createComponent(String nameRecordType, Integer quantity, Cluster__c cluster){
         List<Component__c> componentList= new List<Component__c>();
         RecordType recordT = [SELECT id FROM RecordType WHERE SobjectType =: GeneralUtils.prefix('[CMS]Component__c') AND DeveloperName =: nameRecordType LIMIT 1];
 
@@ -210,6 +209,8 @@ public class MockupFactory {
                                         Datasource__c = 'ManualAssignment',
                                         RecordTypeId = recordT.Id,
                                         Cluster__c = cluster == null ? null : cluster.Id,
+                                        Title__c = nameRecordType + cluster,
+                                        NumberOfColumns__c = '4',
                                         Status__c='Inactive'));
             }
 
@@ -221,7 +222,6 @@ public class MockupFactory {
                                         RecordTypeId = recordT.id,
                                         Cluster__c = cluster == null ? null : cluster.Id,
                                         Status__c='Inactive',
-                                        NumberOfColumns__c = '4',
                                         BannerFrameType__c='Hero'));
             }
         }
@@ -231,7 +231,7 @@ public class MockupFactory {
     }
 
     //Create Content__c by RecordTypeName
-    public static List<Content__c> createContent(String nameRecordType, Cluster__c clusterArg, Integer quantity){
+    global static List<Content__c> createContent(String nameRecordType, Cluster__c clusterArg, Integer quantity){
         List<Content__c> contentList = new List<Content__c>();
         RecordType recordT = [SELECT id FROM RecordType WHERE SobjectType =: GeneralUtils.prefix('[CMS]Content__c') AND DeveloperName =: nameRecordType LIMIT 1];
 
@@ -262,7 +262,7 @@ public class MockupFactory {
     }
 
     //Create Banner Content__c related to a Component
-    public static Content__c createBannerContentRelatedToComponent(Cluster__c clusterArg, Component__c component){
+    global static Content__c createBannerContentRelatedToComponent(Cluster__c clusterArg, Component__c component){
         RecordType recordT = [SELECT Id FROM RecordType WHERE SobjectType =: GeneralUtils.prefix('[CMS]Content__c') AND DeveloperName = 'Banner' LIMIT 1];
         Content__c content = new Content__c(
             Name = 'Banner',
@@ -279,7 +279,7 @@ public class MockupFactory {
     }
 
     //Create ContentAssignment__c by Content && Component
-    public static List<ContentAssignment__c> createContentAssignment(List<Content__c> contentList, List<Component__c> componentList){
+    global static List<ContentAssignment__c> createContentAssignment(List<Content__c> contentList, List<Component__c> componentList){
         List<ContentAssignment__c> contentAssignmentList = new List<ContentAssignment__c>();
         Integer quantity = 0;
         if(contentList != null && componentList != null){
@@ -294,7 +294,7 @@ public class MockupFactory {
     }
 
     //Create MediaElement__c
-    public static List<MediaElement__c> createMediaElement(Integer quantity){
+    global static List<MediaElement__c> createMediaElement(Integer quantity){
         List<MediaElement__c> mediaElementList = new List<MediaElement__c>();
         
         for(Integer i = 0; i < quantity; i++){
@@ -306,7 +306,7 @@ public class MockupFactory {
     }
 
     //Create MediaElementAssignment__c of each Content__c
-    public static List<MediaElementAssignment__c> createMediaElementAssignment(List<Content__c> contentList, List<MediaElement__c> mediaElementList){
+    global static List<MediaElementAssignment__c> createMediaElementAssignment(List<Content__c> contentList, List<MediaElement__c> mediaElementList){
         List<MediaElementAssignment__c> mediaElementAssList = new List<MediaElementAssignment__c>();
         
         for(Integer i = 0; i < contentList.size(); i++){
@@ -318,7 +318,7 @@ public class MockupFactory {
     }
 
     //Create ContentDocument
-    public static List<ContentDocument> createContentDocument(String name, Integer quantity){
+    global static List<ContentDocument> createContentDocument(String name, Integer quantity){
         List<ContentVersion> contentVersionList = new List<ContentVersion>();
         
         for(Integer i = 0; i < quantity; i++){
@@ -337,7 +337,7 @@ public class MockupFactory {
     }
 
     //Create ContentDocumentLink
-    public static List<ContentDocumentLink> createContentDocumentLink(List<MediaElement__c> mediaElementList){
+    global static List<ContentDocumentLink> createContentDocumentLink(List<MediaElement__c> mediaElementList){
         List<ContentDocumentLink> contentDocumentLinkList = new List<ContentDocumentLink>();
         
         String base64Data = 'iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==';
@@ -362,7 +362,7 @@ public class MockupFactory {
     }
 
     //Create Translation__c
-    public static List<Translation__c> createTranslation(Content__c content, Map<String,String> apiNameTypeMap, String language){
+    global static List<Translation__c> createTranslation(Content__c content, Map<String,String> apiNameTypeMap, String language){
         List<Translation__c> translationList= new List<Translation__c>();
                 
         for(String key : apiNameTypeMap.keyset()){
@@ -399,7 +399,7 @@ public class MockupFactory {
     }
 
  
-    public static List<Navigation__c>  createNavigation(String navName, String url, Integer quantity, Id clusterId){
+    global static List<Navigation__c>  createNavigation(String navName, String url, Integer quantity, Id clusterId){
         List<Navigation__c> navList = new List<Navigation__c>();
        
         for(Integer i = 0;i<quantity;i++){
@@ -411,7 +411,7 @@ public class MockupFactory {
         return navList;
     }
 
-    public static List<Menu__c>  createMenu(String menuName, Integer quantity, Id clusterId){
+    global static List<Menu__c>  createMenu(String menuName, Integer quantity, Id clusterId){
         List<Menu__c> menuList = new List<Menu__c>();
         
         for(Integer i = 0;i<quantity;i++){
@@ -423,7 +423,7 @@ public class MockupFactory {
     }
 
         //Create MenuAssignment__c by Menu && Component
-    public static List<MenuAssignment__c> createMenuAssignment(List<Menu__c> menuList, List<Component__c> componentList){
+    global static List<MenuAssignment__c> createMenuAssignment(List<Menu__c> menuList, List<Component__c> componentList){
         List<MenuAssignment__c> menuAssignmentList = new List<MenuAssignment__c>();
         Integer quantity = 0;
         if(menuList != null && componentList != null){
@@ -438,7 +438,7 @@ public class MockupFactory {
     }
 
     
-    public static List<Datatable__c> createDatatables(String name, String externalId, String objectApiName, Integer quantity, Id clusterId) {
+    global static List<Datatable__c> createDatatables(String name, String externalId, String objectApiName, Integer quantity, Id clusterId) {
         List<Datatable__c> datatablesToCreate = new List<Datatable__c>();
         
         for(Integer i = 0 ; i < quantity ; i ++) {
@@ -458,7 +458,7 @@ public class MockupFactory {
         return datatablesToCreate;
     }
     
-    public static List<DatatableElement__c> createDatatableElements(String name, String externalId, Integer quantity, Id datatableId) {
+    global static List<DatatableElement__c> createDatatableElements(String name, String externalId, Integer quantity, Id datatableId) {
         List<DatatableElement__c> datatableElementsToCreate = new List<DatatableElement__c>();
         
         for(Integer i = 0 ; i < quantity ; i ++) {
@@ -478,7 +478,7 @@ public class MockupFactory {
         return datatableElementsToCreate;
     }
     
-    public static List<DatatableAction__c> createDatatableActions(String name, String externalId, Integer quantity, Id datatableId, Id recordtypeId) {
+    global static List<DatatableAction__c> createDatatableActions(String name, String externalId, Integer quantity, Id datatableId, Id recordtypeId) {
         List<DatatableAction__c> datatableActionsToCreate = new List<DatatableAction__c>();
         
         for(Integer i = 0 ; i < quantity ; i ++) {
@@ -498,5 +498,21 @@ public class MockupFactory {
         insert datatableActionsToCreate;
         return datatableActionsToCreate;
     }    
+    
+    public static Form__c createForm(String formName, String externalId, String retrievalClass, String clusterId){
+        Form__c form = new Form__c(name=formName, ExternalID__c=externalId, RetrievalClass__c=retrievalClass, Status__c='Active', Cluster__c = clusterId);
+        insert form;
+        FormSection__c formSection = new FormSection__c(name='testSection', SectionTitle__c='testSection', ExternalID__c='testSection', Form__c=form.id);
+        insert formSection;
+        FormValidation__c formValidation = new FormValidation__c(name='testVal', errormessage__c= '');
+        insert formValidation;
+        FormElement__c formField = new FormElement__c(formvalidation__c = formValidation.id, name='testField', ExternalID__c='testField', FieldAPIName__c='Name', FieldLabel__c='testField', FieldType__c='Text', FormSection__c=formSection.id, Status__c='Active',
+                                                      HelpText__c='testField', ObjectAPIName__c='Account');
+        FormElement__c formField2 = new FormElement__c(formvalidation__c = formValidation.id, name='testField2', ExternalID__c='testField2', FieldAPIName__c='lastModifiedDate', FieldLabel__c='testField', FieldType__c='Text', FormSection__c=formSection.id, Status__c='Active',
+                                                      HelpText__c='testField', ObjectAPIName__c='Account');
+        insert new List<FormElement__c>{formField, formField2};
+        return form;
+        
+    }
 
 }

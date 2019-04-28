@@ -22,42 +22,74 @@
         </div>
         <div class="slds-col slds-p-around_small" >
             <div class="slds-grid slds-grid_vertical">
+
+                <!--Banner Type-->
                 <div class="slds-col slds-p-bottom_small">
-                    
-                    <!--Banner Type-->
                     <lightning:select name="bannerType" label="{!$Label.c.BannerContentDetailType}"
                         value="{!v.contentData.BannerFrameType}">
                         <aura:iteration items="{!v.bannerFrameTypes}" var="bannerFrameType">
                             <option text="{!bannerFrameType}" value="{!bannerFrameType}" selected="{! if(bannerFrameType == v.contentData.BannerFrameType, true, false)}" />
                         </aura:iteration>
                     </lightning:select>
-                    <!--Feature Image-->
-                    <ui:outputText value="{!$Label.c.ArticleContentDetailImage}" /><br />
-                    <c:MediaElementManager />
-                    <aura:if isTrue="{!v.imageUrl}">
-                        <img style="height:200px" src="{!v.imageUrl}" />
-                    </aura:if>
-                    <!--Title-->
+                </div>
+
+                <!--Feature Image-->
+                <div class="slds-col slds-p-bottom_small">
+                    <ui:outputText value="{!$Label.c.ArticleContentDetailImage}" />
+                    <div class="slds-form-element__control slds-align_absolute-center div-add-media">
+                        <aura:if isTrue="{!v.imageUrl}">
+                            <div class="img-div">
+                                <img class="img-feature-selected" src="{!v.imageUrl}" />
+                                <p class="img-feature-selected-desc">
+                                    <span class="slds-truncate" title="{!v.mediaElementName}">{!v.mediaElementName}</span>
+                                    <lightning:buttonIcon
+                                                            iconName="utility:delete"
+                                                            size="large"
+                                                            variant="bare"
+                                                            title="{!$Label.c.UnassignImage}"
+                                                            iconClass="slds-button slds-button_icon"
+                                                            class="img-close"
+                                                            alternativeText="{!$Label.c.UnassignImage}"
+                                                            onclick="{!c.unassignFeatureImg}" />
+                                </p>
+                            </div>
+                            <aura:set attribute="else">
+                                <c:MediaElementManager />
+                            </aura:set>
+                        </aura:if>
+                    </div>
+                </div>
+
+                <!--Title-->
+                <div class="slds-col slds-p-bottom_small">
                     <lightning:input label="{!$Label.c.BannerContentDetailTitle}" name="contentName" value="{!v.contentData.Title}"
-                        required="true" aura:id="contentName" />
-                    <!--Extract-->
+                    aura:id="contentName" maxlength="255"/>
+                </div>
+
+                <!--Extract-->
+                <div class="slds-col slds-p-bottom_small">
                     <lightning:input label="{!$Label.c.BannerContentDetailExtract}" name="contentExtract"
-                        value="{!v.contentData.Extract}" />
-                    <br />
-                    <!--Booton-->
+                    value="{!v.contentData.Extract}" maxlength="1500"/>
+                </div>
+
+                <!--Booton-->
+                <div class="slds-col slds-p-bottom_small">
                     <lightning:input label="{!$Label.c.BannerContentDetailButton}" name="buttonLabel"
-                        value="{!v.contentData.ButtonLabel}" />
-                    <br />
-                    <!--Link-->
+                    value="{!v.contentData.ButtonLabel}" />
+                </div>
+
+                <!--Link-->
+                <div class="slds-col slds-p-bottom_small">
                     <c:LookupInput objectAPIName="[CMS]Navigation__c" IconName="standard:link"
-                        selectedRecordId="{!v.contentData.LinkDetail}" label="{!$Label.c.BannerContentDetailLink}" />
-                    <br />
-                    <ui:outputText value="{!$Label.c.BannerContentDetailLayout}" /><br />
-                    <!--Choose Layout-->
-                    <div>
+                    selectedRecordId="{!v.contentData.LinkDetail}" label="{!$Label.c.BannerContentDetailLink}" />
+                </div>
+                    
+                <!--Choose Layout-->
+                <div class="slds-col slds-p-bottom_small">
+                    <ui:outputText value="{!$Label.c.BannerContentDetailLayout}" />
+                    <div class="slds-form-element__control slds-align_absolute-center div-choose-layout">
                         <aura:if isTrue="{!v.layoutOptions.length > 0}">
-                            <c:ContentLayoutPicker selectedValue="{!v.contentData.OverlayQuadrant}"
-                                layoutOptions="{!v.layoutOptions}" />
+                            <c:ContentLayoutPicker selectedValue="{!v.contentData.OverlayQuadrant}" layoutOptions="{!v.layoutOptions}" />
                         </aura:if>
                     </div>
                 </div>

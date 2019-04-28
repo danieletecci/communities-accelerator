@@ -9,7 +9,7 @@
     doPrevious : function (component, event, helper){
 		helper.goPage(component, component.get('v.currentPageNumber') - 1);
     },
-    doGetPage : function(component, event, helper){        
-		helper.goPage(component, event.getSource().get('v.value'));
+    doGetPage : function(component, event, helper){       
+		helper.goPage(component, event.getParam("numberofpage"));
     }
 })

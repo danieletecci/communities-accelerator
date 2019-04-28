@@ -1,8 +1,8 @@
 <template>
-    <div class="DatatableRow">
+    <div class="DatatableRow" data-is-desktop={isDesktop}>
         <div class="rowdata">
-            <p class="column">{colname}</p>
-            <p class="value">{rowValue}</p>
+            <p class="column" if:false={hideColumns}>{colname}</p>
+            <p class="value" if:false={hideValues}>{rowValue}</p>
         </div>
     </div>
 </template>

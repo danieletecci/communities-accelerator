@@ -1,3 +1,3 @@
-public interface FormSaveInterface {
+global interface FormSaveInterface {
 	FormResponseWrapper execute(Map<String, sObject> formData); 
 }

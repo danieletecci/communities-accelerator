@@ -4,6 +4,84 @@
         <componentInstances>
             <componentName>force:detailPanel</componentName>
         </componentInstances>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>junctionObjectAPIName</name>
+                <value>[CMS]ContentAssignment__c</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>parentLookup</name>
+                <value>[CMS]Component__c</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>relationTitle</name>
+                <value>Contents</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>secondaryLookup</name>
+                <value>[CMS]Content__c</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>whereCondition</name>
+                <value>WHERE RecordType.DeveloperName = &apos;Article&apos; AND [CMS]ClusterRootExternalId__c = [!rec.[CMS]ClusterExternalId__c]</value>
+            </componentInstanceProperties>
+            <componentName>JunctionObjectManager</componentName>
+            <visibilityRule>
+                <criteria>
+                    <leftValue>{!Record.Datasource__c}</leftValue>
+                    <operator>EQUAL</operator>
+                    <rightValue>ManualAssignment</rightValue>
+                </criteria>
+            </visibilityRule>
+        </componentInstances>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>junctionObjectAPIName</name>
+                <value>[CMS]CategoryAssignment__c</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>parentLookup</name>
+                <value>[CMS]Component__c</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>relationTitle</name>
+                <value>Categories</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>secondaryLookup</name>
+                <value>[CMS]Category__c</value>
+            </componentInstanceProperties>
+            <componentName>JunctionObjectManager</componentName>
+            <visibilityRule>
+                <booleanFilter>1 OR 2</booleanFilter>
+                <criteria>
+                    <leftValue>{!Record.Datasource__c}</leftValue>
+                    <operator>EQUAL</operator>
+                    <rightValue>Categories</rightValue>
+                </criteria>
+                <criteria>
+                    <leftValue>{!Record.Datasource__c}</leftValue>
+                    <operator>EQUAL</operator>
+                    <rightValue>TagsCategories</rightValue>
+                </criteria>
+            </visibilityRule>
+        </componentInstances>
+        <componentInstances>
+            <componentName>TagCriteria</componentName>
+            <visibilityRule>
+                <booleanFilter>1 OR 2</booleanFilter>
+                <criteria>
+                    <leftValue>{!Record.Datasource__c}</leftValue>
+                    <operator>EQUAL</operator>
+                    <rightValue>Tags</rightValue>
+                </criteria>
+                <criteria>
+                    <leftValue>{!Record.Datasource__c}</leftValue>
+                    <operator>EQUAL</operator>
+                    <rightValue>TagsCategories</rightValue>
+                </criteria>
+            </visibilityRule>
+        </componentInstances>
         <name>Facet-f7417f35-b248-42a2-bc34-5d03e7377569</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -58,84 +136,6 @@
                 <value>Facet-e5e1ea42-bff6-475f-b980-86ea352a29c5</value>
             </componentInstanceProperties>
             <componentName>flexipage:tabset</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentInstanceProperties>
-                <name>junctionObjectAPIName</name>
-                <value>[CMS]ContentAssignment__c</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>parentLookup</name>
-                <value>[CMS]Component__c</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>relationTitle</name>
-                <value>Contents</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>secondaryLookup</name>
-                <value>[CMS]Content__c</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>whereCondition</name>
-                <value>WHERE RecordType.DeveloperName = &apos;Article&apos; AND [CMS]ClusterRootExternalId__c = [!rec.[CMS]ClusterExternalId__c]</value>
-            </componentInstanceProperties>
-            <componentName>JunctionObjectManager</componentName>
-            <visibilityRule>
-                <criteria>
-                    <leftValue>{!Record.Datasource__c}</leftValue>
-                    <operator>EQUAL</operator>
-                    <rightValue>ManualAssignment</rightValue>
-                </criteria>
-            </visibilityRule>
-        </componentInstances>
-        <componentInstances>
-            <componentInstanceProperties>
-                <name>junctionObjectAPIName</name>
-                <value>[CMS]CategoryAssignment__c</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>parentLookup</name>
-                <value>[CMS]Component__c</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>relationTitle</name>
-                <value>Categories</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>secondaryLookup</name>
-                <value>[CMS]Category__c</value>
-            </componentInstanceProperties>
-            <componentName>JunctionObjectManager</componentName>
-            <visibilityRule>
-                <booleanFilter>(1 OR 2)</booleanFilter>
-                <criteria>
-                    <leftValue>{!Record.Datasource__c}</leftValue>
-                    <operator>EQUAL</operator>
-                    <rightValue>Categories</rightValue>
-                </criteria>
-                <criteria>
-                    <leftValue>{!Record.Datasource__c}</leftValue>
-                    <operator>EQUAL</operator>
-                    <rightValue>TagsCategories</rightValue>
-                </criteria>
-            </visibilityRule>
-        </componentInstances>
-        <componentInstances>
-            <componentName>TagCriteria</componentName>
-            <visibilityRule>
-                <booleanFilter>1 OR 2</booleanFilter>
-                <criteria>
-                    <leftValue>{!Record.Datasource__c}</leftValue>
-                    <operator>EQUAL</operator>
-                    <rightValue>Tags</rightValue>
-                </criteria>
-                <criteria>
-                    <leftValue>{!Record.Datasource__c}</leftValue>
-                    <operator>EQUAL</operator>
-                    <rightValue>TagsCategories</rightValue>
-                </criteria>
-            </visibilityRule>
         </componentInstances>
         <name>header</name>
         <type>Region</type>

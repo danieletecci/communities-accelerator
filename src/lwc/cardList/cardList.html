@@ -1,10 +1,37 @@
 <template>
     <h2 class="list-title">{title}</h2>
     <div class={containerClass}>
+        <template if:true={isCarrousel} >
+            <div class="left-arrow-div" >
+                <lightning-button-icon variant="inverse" class="carousel-button" icon-name="utility:chevronleft" onclick={DispatchPrevEvent}></lightning-button-icon>
+            </div>
+        </template>
         <template for:each={contents} for:item="content" for:index="index">
             <div key={content.content.Id} class={cardWrapperClass}>
                 <c-card-formatter content={content} type={type}></c-card-formatter>
                 <div class="spacer"></div>
+            </div>
+        </template>
+        <template if:true={isCarrousel} >
+            <div class="right-arrow-div" >
+                <lightning-button-icon variant="inverse" class="carousel-button" icon-name="utility:chevronright" onclick={DispatchNextEvent}></lightning-button-icon>
+            </div>
+        </template>
+        <template if:true={isPagingBottom}>
+            <div class="slds-page-header paging-bottom slds-col slds-size_4-of-4 slds-align_absolute-center">
+                <div class="slds-media">
+                    <div class="slds-media__body">
+                        <div class="slds-text-heading_small slds-text-align_right pagination-a">
+                            <lightning-button-group class="slds-align_absolute-center" >
+                                <lightning-button-icon variant="inverse" class="pag-btn" icon-name="utility:chevronleft" onclick={DispatchPrevEvent}></lightning-button-icon>
+                                <template for:each={pagenumbers} for:item="page">
+                                    <lightning-button key={page} value={page} title={page} label={page} class="pag-num" onclick={DispatchGoToPageEvent} variant="neutral"></lightning-button>
+                                </template>
+                                <lightning-button-icon variant="inverse" class="pag-btn" icon-name="utility:chevronright" onclick={DispatchNextEvent}></lightning-button-icon>
+                            </lightning-button-group>
+                        </div>
+                    </div>
+                </div>
             </div>
         </template>
     </div>

@@ -16,7 +16,7 @@ public class GeneralFormTest {
         //when
         GeneralForm generalForm = new GeneralForm('testName', new Set<Id>{c.id}, acc.id);
         //then
-		System.assertEquals('testExternal', generalForm.formSettings.uniqueFormName);
+		System.assertEquals('testName', generalForm.formSettings.uniqueFormName);
         
     }
     

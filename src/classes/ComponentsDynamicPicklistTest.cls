@@ -226,4 +226,22 @@ public class ComponentsDynamicPicklistTest {
         
     }
 
+    @isTest 
+    static void setValuesInpicklistBlock(){
+        //Given
+        List<Component__c> componentList = MockupFactory.createComponent('Block',2);
+                            
+        //When
+        Test.startTest();
+        BlockDynamicPicklist picklistValues = new BlockDynamicPicklist();
+        picklistValues.getDefaultValue();
+        picklistValues.getValues();
+        Test.stopTest();
+                
+        //Then
+        System.assertEquals(true, picklistValues.getValues().get(1).getLabel().equals(componentList[0].Name));
+        System.assertEquals(true, picklistValues.getValues().get(2).getLabel().equals(componentList[1].Name));
+        
+    }
+
 }

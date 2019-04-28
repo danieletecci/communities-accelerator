@@ -4,18 +4,78 @@
   position: fixed;
   top: 0;
   width: 100%;
-  background-color: white;
   z-index: 1;
 }
-.datatableModals .modal .modal__content {
-  position: relative;
+.datatableModals .modal .filterModal {
+  background-color: #F8F8F8;
+}
+.datatableModals .modal .filterModal .modal__header .closeModal {
+  height: 17px;
+  width: 17px;
+  right: 37px;
+  top: 20px;
+  z-index: 100;
+}
+.datatableModals .modal .filterModal .modal__content {
+  position: absolute;
   height: 100vh;
   width: 100%;
+  padding: 30px;
 }
-.datatableModals .modal .modal__footer {
-  bottom: 0;
-  position: absolute;
+.datatableModals .modal .filterModal .modal__content .filter-title > div {
+  margin: auto;
+  text-align: right;
+}
+.datatableModals .modal .filterModal .modal__content .bottom-spacer {
+  margin-bottom: 100px;
+}
+.datatableModals .modal .filterModal .modal__content h2 {
+  font-family: 'Roboto';
+  font-size: 30px;
+  margin: 30px 0;
+}
+.datatableModals .modal .filterModal .modal__content button {
+  border-radius: 15px;
+  background-color: transparent;
+  border: solid 1px #D9D9D9;
   width: 100%;
+  margin-bottom: 10px;
+  height: 30px;
+}
+.datatableModals .modal .filterModal .modal__content button.filter.active {
+  background-color: #0B0B0B;
+  color: #EEEEEE;
+}
+.datatableModals .modal .filterModal .modal__content .currency p {
+  font-size: 30px;
+}
+.datatableModals .modal .filterModal .modal__content input[type="number"] {
+  border: none;
+  border-bottom: solid 2px #D9D9D9;
+  width: 100%;
+}
+.datatableModals .modal .filterModal .modal__footer {
+  bottom: 0;
+  position: fixed;
+  left: 0;
+  right: 0;
+}
+.datatableModals .modal .filterModal .modal__footer button {
+  width: 100%;
+  background-color: #D6EAFF;
+  color: #4B96E8;
+  border: none;
+  height: 50px;
+  font-size: 20px;
+}
+.datatableModals .modal .filterModal .modal__footer button:last-child {
+  color: #FDFDFD;
+  background-color: #4B96E8;
+}
+.datatableModals .modal .detailmodal {
+  background-color: #FFFFFF;
+  height: 100%;
+  top: 155px;
 }
 .datatableModals .modal .detailmodal h1 {
   font-size: 40px;
@@ -45,8 +105,34 @@
 .datatableModals .modal .detailmodal .modal__content .detailcontent p.value {
   color: #0B0B0B;
   margin-top: 10px;
+  word-break: break-word;
 }
 .datatableModals .modal .detailmodal .modal__footer {
   height: 50px;
+  bottom: 0;
+  position: fixed;
+  left: 0;
+  right: 0;
+  background-color: #F8F8F8;
+  padding-left: 56px;
   padding-top: 15px;
+  padding-bottom: 15px;
+}
+.datatableModals .modal .detailmodal .modal__footer img {
+  width: 25px;
+  height: 25px;
+}
+.datatableModals[data-is-desktop="true"] {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+.datatableModals[data-is-desktop="true"] .modal {
+  position: absolute;
+  top: 0px;
+  margin-top: 70px;
+}
+.datatableModals[data-is-desktop="true"] .modal .detailmodal .modal__footer {
+  position: relative;
 }

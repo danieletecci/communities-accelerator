@@ -1,7 +1,7 @@
-public class FormResponseWrapper {
- 		public String status{get;set;}
-        public String message{get;set;}
-        public String newUserId{get;set;}
+global class FormResponseWrapper {
+ 		global String status{get;set;}
+        global String message{get;set;}
+        global String newUserId{get;set;}
 
         public FormResponseWrapper() {
             this.status = 'new';

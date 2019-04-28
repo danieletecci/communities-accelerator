@@ -4,48 +4,31 @@
         <componentInstances>
             <componentName>force:detailPanel</componentName>
         </componentInstances>
-        <componentInstances>
-            <componentInstanceProperties>
-                <name>OrderFieldName</name>
-                <value>[CMS]Order__c</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>junctionObjectAPIName</name>
-                <value>[CMS]MenuAssignment__c</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>parentLookup</name>
-                <value>[CMS]Component__c</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>relationTitle</name>
-                <value>Menus</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>secondaryLookup</name>
-                <value>[CMS]Menu__c</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>whereCondition</name>
-                <value>WHERE RecordType.DeveloperName = &apos;Menu&apos; AND [CMS]ClusterRootExternalId__c = [!rec.[CMS]ClusterExternalId__c]</value>
-            </componentInstanceProperties>
-            <componentName>JunctionObjectManager</componentName>
-        </componentInstances>
-        <name>Facet-e14e60cb-c618-43d8-beed-2ceb3078b802</name>
+        <mode>Replace</mode>
+        <name>detailTabContent</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
         <componentInstances>
-            <componentName>ComponentPreview</componentName>
+            <componentInstanceProperties>
+                <name>relatedListComponentOverride</name>
+                <value>NONE</value>
+            </componentInstanceProperties>
+            <componentName>force:relatedListContainer</componentName>
         </componentInstances>
-        <name>Facet-053c1da3-4a07-46f8-967e-11a9a458d2e7</name>
+        <mode>Replace</mode>
+        <name>relatedTabContent</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
         <componentInstances>
+            <componentInstanceProperties>
+                <name>active</name>
+                <value>true</value>
+            </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>body</name>
-                <value>Facet-e14e60cb-c618-43d8-beed-2ceb3078b802</value>
+                <value>detailTabContent</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>title</name>
@@ -56,15 +39,16 @@
         <componentInstances>
             <componentInstanceProperties>
                 <name>body</name>
-                <value>Facet-053c1da3-4a07-46f8-967e-11a9a458d2e7</value>
+                <value>relatedTabContent</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>title</name>
-                <value>Standard.Tab.preview</value>
+                <value>Standard.Tab.relatedLists</value>
             </componentInstanceProperties>
             <componentName>flexipage:tab</componentName>
         </componentInstances>
-        <name>Facet-20faf14d-384e-44a2-9f40-a11444d692ed</name>
+        <mode>Replace</mode>
+        <name>maintabs</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -82,23 +66,27 @@
         <componentInstances>
             <componentInstanceProperties>
                 <name>tabs</name>
-                <value>Facet-20faf14d-384e-44a2-9f40-a11444d692ed</value>
+                <value>maintabs</value>
             </componentInstanceProperties>
             <componentName>flexipage:tabset</componentName>
         </componentInstances>
+        <mode>Replace</mode>
         <name>header</name>
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
+        <mode>Replace</mode>
         <name>main</name>
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
+        <mode>Replace</mode>
         <name>sidebar</name>
         <type>Region</type>
     </flexiPageRegions>
-    <masterLabel>Component Menu page</masterLabel>
-    <sobjectType>Component__c</sobjectType>
+    <masterLabel>Navigation Record Page</masterLabel>
+    <parentFlexiPage>flexipage__default_rec_L</parentFlexiPage>
+    <sobjectType>Navigation__c</sobjectType>
     <template>
         <name>flexipage:recordHomeTemplateDesktop</name>
     </template>

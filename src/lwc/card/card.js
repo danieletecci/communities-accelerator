@@ -1,6 +1,5 @@
 import { LightningElement, api, track } from 'lwc';
 import { loadStyle } from 'lightning/platformResourceLoader';
-import Style from '@salesforce/resourceUrl/Assets';
 
 export default class Card extends LightningElement {
     @api config; 

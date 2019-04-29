@@ -3,6 +3,7 @@ global class FormResponseWrapper {
         @AuraEnabled global String message{get;set;}
         @AuraEnabled global String newUserId{get;set;}
 
+
         global FormResponseWrapper() {
             this.status = 'new';
             this.message = null;

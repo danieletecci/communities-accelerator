@@ -1197,11 +1197,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>FormElement__c.FieldAPIName__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>FormElement__c.FieldLabel__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1228,11 +1223,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>FormElement__c.MaxLength__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>FormElement__c.ObjectAPIName__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

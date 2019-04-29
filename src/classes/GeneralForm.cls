@@ -1,5 +1,5 @@
 global without sharing class GeneralForm{
-    
+
     @AuraEnabled
     global FormSettings formSettings;
     @AuraEnabled
@@ -132,6 +132,7 @@ As a work around to add non editable fields to the form data, we serialize the o
         @AuraEnabled global Integer order;
         @AuraEnabled global List<Element> fields;
         @AuraEnabled global String sectionWidth;
+
         
         global Section(FormSection__c formSection){
             this.sectionTitle = formSection.SectionTitle__c;

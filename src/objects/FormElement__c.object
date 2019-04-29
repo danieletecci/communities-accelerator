@@ -125,7 +125,7 @@
         <inlineHelpText>Complete with the field name defined in the Wrapper Class</inlineHelpText>
         <label>Field API Name</label>
         <length>50</length>
-        <required>false</required>
+        <required>true</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
@@ -260,7 +260,7 @@
         <externalId>false</externalId>
         <label>Object API Name</label>
         <length>255</length>
-        <required>false</required>
+        <required>true</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>

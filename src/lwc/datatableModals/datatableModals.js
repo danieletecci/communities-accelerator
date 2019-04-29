@@ -14,7 +14,7 @@ export default class datatableModals extends LightningElement {
     @track detailmodal;
 
     connectedCallback() {
-        loadStyle(this, 'fsites/c/resource/Assets/Assets/Styles/datatableModalsExternalStyles.css');
+        loadStyle(this, 'sfsites/c/resource/Assets/Assets/Styles/datatableModalsExternalStyles.css');
     }
 
     renderedCallback() {

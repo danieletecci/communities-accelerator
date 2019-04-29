@@ -10,7 +10,7 @@ export default class CardList extends LightningElement {
     @api urlToNavigate;
 
     connectedCallback() {
-        loadStyle(this, 'fsites/c/resource/Assets/Assets/Styles/cardListExternalStyles.css');
+        loadStyle(this, 'sfsites/c/resource/Assets/Assets/Styles/cardListExternalStyles.css');
 
     }
 

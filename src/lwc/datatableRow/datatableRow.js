@@ -8,7 +8,7 @@ export default class datatableRow extends LightningElement {
     @api colname;
 
     connectedCallback() {
-        loadStyle(this, 'fsites/c/resource/Assets/Assets/Styles/datatableRowExternalStyles.css');
+        loadStyle(this, 'sfsites/c/resource/Assets/Assets/Styles/datatableRowExternalStyles.css');
 
     }
     get rowValue(){

@@ -14,7 +14,7 @@ export default class CardCompressed extends LightningElement {
     //}
 
     connectedCallback() {
-        loadStyle(this, 'fsites/c/resource/Assets/Assets/Styles/cardCompressedExternalStyles.css');
+        loadStyle(this, 'sfsites/c/resource/Assets/Assets/Styles/cardCompressedExternalStyles.css');
     }
 
     navigateToDetail() {

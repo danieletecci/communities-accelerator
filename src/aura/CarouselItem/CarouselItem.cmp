@@ -19,7 +19,7 @@
                 <div class="{!'carousel-item-image ' + if(not(empty(v.imgHref)), ' sc-cursor--pointer')}" style="{!'background-image: url(' + v.imgSrc + '); height: ' + v.heightValue}">
                     
                     <!-- Overlap Text -->
-                    <aura:if isTrue="{!not(v.overLapLocation == null)}">
+                    <aura:if isTrue="{! v.title != null || v.description != null}">
                         <div class="{!'overlap ' + v.overLapLocation}">
                             <!-- Title and Description -->
                             <div class="title" style="{! 'font-size: calc(' + v.heightValue + ' / 10);' }">{!v.title}</div>
@@ -33,9 +33,8 @@
                 
                 <!-- Image -->
                 <div class="carousel-item-image" style="{!'background-image: url(' + v.imgSrc + '); height: ' + v.heightValue}">
-                    
                     <!-- Overlap Text -->
-                    <aura:if isTrue="{!not(v.overLapLocation == null)}">
+                    <aura:if isTrue="{! v.title != null || v.description != null || v.buttonLabel != null}">
                         <div class="{!'overlap ' + v.overLapLocation}">
                             <!-- Title and Description -->
                             <div class="title" style="{! 'font-size: calc(' + v.heightValue + ' / 10);' }">{!v.title}</div>

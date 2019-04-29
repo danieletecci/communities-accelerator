@@ -4,6 +4,7 @@
     text-align: center;
 }
 .THIS.slds-scope .sc-pagination__dot {
+    margin: 0 2px;
     display: block;
     width: 12px;
     height: 12px;

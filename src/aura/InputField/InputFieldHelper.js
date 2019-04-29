@@ -129,8 +129,7 @@
         var max = fieldConfiguration.maxLength;
         if(inputValue.length > max) {
             component.set("v.inputValue", inputValue.substring(0,max));
-            //MIGRACION
-			//AGREGAR SETEO DE ERROR USANDO LABEL, VER EN DEV4
+            component.find("error-msg").getElement().innerHTML = $A.get("$Label.c.MaxLengthErrorMessage") + ' ' + max +".";
         }else{
             if(component.get('v.fieldConfiguration.displayType')== 'Numeric'){
                 component.set("v.inputValue", inputValue.replace(' ',''));

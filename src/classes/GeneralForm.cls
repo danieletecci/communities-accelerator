@@ -1,6 +1,9 @@
 global without sharing class GeneralForm{
-    public FormSettings formSettings;
-    public Map<String, SObject> formData{get;set;}
+    
+    @AuraEnabled
+    global FormSettings formSettings;
+    @AuraEnabled
+    global Map<String, SObject> formData{get;set;}
     
     global GeneralForm(String formUniqueName, Set<Id> clusterIds){
         generateGeneralFormData(formUniqueName, clusterIds);
@@ -16,21 +19,21 @@ global without sharing class GeneralForm{
     global void generateGeneralFormData(String formUniqueName, Set<Id> clusterIds){
         if(clusterIds == null){
             clusterIds = new Set<Id>{null};
-        }
+                }
         formData = new map<String, SObject>();
         List<FormSection__c> formSections = [SELECT  SectionTitle__c, StyleClass__c, Order__c, ColumnWidth__c,
-                                                		Form__r.StyleClass__c, Form__r.ExternalID__c, Form__r.RetrievalClass__c, Form__r.SaveClass__c,
-                                                		(SELECT FieldAPIName__c, FieldLabel__c, PlaceHolder__c, FieldType__c, HelpText__c, PicklistValues__c, IsRequired__c, ReadOnly__c, DefaultValue__c,
-                                                         		StyleClass__c,ObjectAPIName__c , TextAreaRows__c,
-                                                         		FormValidation__r.Status__c, FormValidation__r.ErrorMessage__c, FormValidation__r.RegularExpression__c,MaxLength__c,
-		                                                    	ConfirmationRequired__c, ConfirmationLabel__c, ConfirmationError__c, ConfirmationPlaceholder__c 
-           	                                          	   FROM FormFields__r 
-                                                      	  WHERE Status__c = 'Active' 
-                                                   	   ORDER BY Order__c ASC)
-                                                  FROM FormSection__c 
-                                                 WHERE Form__r.ExternalID__c =: formUniqueName AND Form__r.Status__c = 'Active' AND Form__r.Cluster__c IN :clusterIds ORDER BY Order__c ASC];
+                                             Form__r.StyleClass__c, Form__r.ExternalID__c, Form__r.RetrievalClass__c, Form__r.SaveClass__c,
+                                             (SELECT FieldAPIName__c, FieldLabel__c, PlaceHolder__c, FieldType__c, HelpText__c, PicklistValues__c, IsRequired__c, ReadOnly__c, DefaultValue__c,
+                                              StyleClass__c,ObjectAPIName__c , TextAreaRows__c,
+                                              FormValidation__r.Status__c, FormValidation__r.ErrorMessage__c, FormValidation__r.RegularExpression__c,MaxLength__c,
+                                              ConfirmationRequired__c, ConfirmationLabel__c, ConfirmationError__c, ConfirmationPlaceholder__c 
+                                              FROM FormFields__r 
+                                              WHERE Status__c = 'Active' 
+                                              ORDER BY Order__c ASC)
+                                             FROM FormSection__c 
+                                             WHERE Form__r.ExternalID__c =: formUniqueName AND Form__r.Status__c = 'Active' AND Form__r.Cluster__c IN :clusterIds ORDER BY Order__c ASC];
         
-
+        
         System.debug('GeneralForm.generateGeneralFormData() method. formSections: ' + formSections);
         
         if(!formSections.isEmpty()){
@@ -38,22 +41,24 @@ global without sharing class GeneralForm{
                                             formSections.get(0).Form__r.RetrievalClass__c, formSections.get(0).Form__r.SaveClass__c
                                            );
             Map<String,Schema.SObjectType> globalDescribe = Schema.getGlobalDescribe();
-
+            
             for(FormSection__c formSection : formSections){
                 Section currentSection = new Section(formSection);
                 formSettings.sections.add(currentSection);
                 for(FormElement__c formField : formSection.FormFields__r){
-                    Boolean isCalculatedOrFormula = getIsCalculatedOrFormulaField(globalDescribe, formField.ObjectAPIName__c, formField.FieldAPIName__c);
                     String fieldValue = formField.DefaultValue__c != null ? formField.DefaultValue__c : null;
                     currentSection.fields.add(new Element(formField));
-                    if(!formData.containsKey(formField.ObjectAPIName__c)){
-                    	SObject obj = globalDescribe.get(formField.ObjectAPIName__c).newSobject();
-                        formData.put(formField.ObjectAPIName__c, obj);
-                    }
-                    if(!isCalculatedOrFormula){
-                        formData.get(formField.ObjectAPIName__c).put(formField.FieldAPIName__c, fieldValue);
-                    }else{
-                        formData.put(formField.ObjectAPIName__c, addNonEditableField(JSON.serialize(formData.get(formField.ObjectAPIName__c)), formField.FieldAPIName__c, fieldValue,formField.FieldType__c, formField.ObjectAPIName__c));
+                    if(formField.ObjectAPIName__c != null && formField.FieldAPIName__c != null){
+                        if(!formData.containsKey(formField.ObjectAPIName__c)){
+                            SObject obj = globalDescribe.get(formField.ObjectAPIName__c).newSobject();
+                            formData.put(formField.ObjectAPIName__c, obj);
+                        }
+                        Boolean isCalculatedOrFormula = getIsCalculatedOrFormulaField(globalDescribe, formField.ObjectAPIName__c, formField.FieldAPIName__c);
+                        if(!isCalculatedOrFormula){
+                            formData.get(formField.ObjectAPIName__c).put(formField.FieldAPIName__c, fieldValue);
+                        }else{
+                            formData.put(formField.ObjectAPIName__c, addNonEditableField(JSON.serialize(formData.get(formField.ObjectAPIName__c)), formField.FieldAPIName__c, fieldValue,formField.FieldType__c, formField.ObjectAPIName__c));
+                        }
                     }
                 }
             }
@@ -82,15 +87,14 @@ global without sharing class GeneralForm{
         return null;
     }
     /*
-		As a work around to add non editable fields to the form data, we serialize the object, add the field, then deserialize it.
-	*/
+As a work around to add non editable fields to the form data, we serialize the object, add the field, then deserialize it.
+*/
     private sObject addNonEditableField(String serializedObject, String fieldApiName, String fieldValue, String fieldType, String objectType){
         serializedObject = serializedObject.substring(0, serializedObject.lastIndexOf('}'));
         if(fieldValue != null)
-			serializedObject = serializedObject + ',"' + fieldApiName + '":"' + fieldValue + '"}';
+            serializedObject = serializedObject + ',"' + fieldApiName + '":"' + fieldValue + '"}';
         else{
-             	serializedObject = serializedObject + ',"' + fieldApiName + '":null}';
-            
+            serializedObject = serializedObject + ',"' + fieldApiName + '":null}';
         }
         system.debug('serializedobj' + serializedObject);
         return (SObject)JSON.deserialize(serializedObject, Type.forName(objectType));
@@ -107,14 +111,14 @@ global without sharing class GeneralForm{
     class FormConstructionException extends Exception{}
     
     @TestVisible
-    class FormSettings{
-        public String saveClass;
-        public String retrievalClass;
-        public String styleClass;
-        public String uniqueFormName;
-        public List<Section> sections;
+    global class FormSettings{
+        @AuraEnabled global String saveClass;
+        @AuraEnabled global String retrievalClass;
+        @AuraEnabled global String styleClass;
+        @AuraEnabled global String uniqueFormName;
+        @AuraEnabled global List<Section> sections;
         
-        public FormSettings(String uniqueFormName, String styleClass, String retrievalClass, String saveClass){
+        global FormSettings(String uniqueFormName, String styleClass, String retrievalClass, String saveClass){
             this.styleClass = styleClass;
             this.uniqueFormName = uniqueFormName;
             this.sections = new List<Section>();
@@ -122,14 +126,14 @@ global without sharing class GeneralForm{
             this.saveClass = saveClass;
         }
     }
-    class Section{
-        public String SectionTitle;
-        public String styleClass;
-        public Integer order;
-        public List<Element> fields;
-        public String sectionWidth;
+    global class Section{
+        @AuraEnabled global String SectionTitle;
+        @AuraEnabled global String styleClass;
+        @AuraEnabled global Integer order;
+        @AuraEnabled global List<Element> fields;
+        @AuraEnabled global String sectionWidth;
         
-        public Section(FormSection__c formSection){
+        global Section(FormSection__c formSection){
             this.sectionTitle = formSection.SectionTitle__c;
             this.styleClass = formSection.StyleClass__c;
             this.order = (Integer)formSection.Order__c;
@@ -140,30 +144,30 @@ global without sharing class GeneralForm{
             }
         }
     }
-    class Element{
-        public String objApiName;
-        public String apiName;
-        public String displayType;
-        public String label;
-        public String placeHolder;
-        public String helpText;
-        public Boolean isRequired;
-        public Boolean readOnly;
-        public String defaultValue;
-        public String styleClass;
-        public List<String> picklistValues;
-        public Boolean hasValidation;
-        public String validationErrorMessage;
-        public String validationRegExp;
-        public String fieldMask;
-        public Integer maxLength;
-        public Boolean hasConfirmation;
-        public String confirmationLabel;
-        public String confirmationPlaceholder;
-        public String confirmationErrMessage;
-        public Integer textAreaRows;
+    global class Element{
+        @AuraEnabled global String objApiName;
+        @AuraEnabled global String apiName;
+        @AuraEnabled global String displayType;
+        @AuraEnabled global String label;
+        @AuraEnabled global String placeHolder;
+        @AuraEnabled global String helpText;
+        @AuraEnabled global Boolean isRequired;
+        @AuraEnabled global Boolean readOnly;
+        @AuraEnabled global String defaultValue;
+        @AuraEnabled global String styleClass;
+        @AuraEnabled global List<String> picklistValues;
+        @AuraEnabled global Boolean hasValidation;
+        @AuraEnabled global String validationErrorMessage;
+        @AuraEnabled global String validationRegExp;
+        @AuraEnabled global String fieldMask;
+        @AuraEnabled global Integer maxLength;
+        @AuraEnabled global Boolean hasConfirmation;
+        @AuraEnabled global String confirmationLabel;
+        @AuraEnabled global String confirmationPlaceholder;
+        @AuraEnabled global String confirmationErrMessage;
+        @AuraEnabled global Integer textAreaRows;
         
-        public Element(FormElement__c field){
+        global Element(FormElement__c field){
             this.objApiName = field.ObjectAPIName__c;
             this.apiName = field.FieldAPIName__c;
             this.displayType = field.FieldType__c;

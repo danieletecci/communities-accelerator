@@ -1,4 +1,4 @@
-public with sharing class DatatableUtils {
+public without sharing class DatatableUtils {
     
     public static List<SObject> doGetRecords(Datatable__c datatable, Integer offSet, DatatableController.DatatableWrapper wrapper){
         List<SObject> rows = new List<SObject>();

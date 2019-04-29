@@ -1,6 +1,7 @@
 import { LightningElement, api, track, wire } from 'lwc';
 import getContentRecordTypes from	'@salesforce/apex/ContentRecordTypeModalController.getContentRecordTypes';
 import getTemplateRecordTypes from	'@salesforce/apex/ContentRecordTypeModalController.getTemplateRecordTypes';
+import getNameSpace from	'@salesforce/apex/GeneralUtils.getNameSpace';
 import Create from '@salesforce/label/c.Create';
 import TemplateLabel from '@salesforce/label/c.Template';
 import General_Close from '@salesforce/label/c.General_Close';
@@ -31,6 +32,8 @@ export default class RecordTypeSelectionModal extends NavigationMixin(LightningE
 	@track generalCancel;
 	@track generalNext;
 	@track isTemplate;
+
+	namespace
 
 	//Reference used for the pubsub module
 	@wire(CurrentPageReference) pageRef;
@@ -89,12 +92,25 @@ export default class RecordTypeSelectionModal extends NavigationMixin(LightningE
 			});
 	}
 
+	//Get namespace
+	getnamespace(){
+		getNameSpace({ })
+			.then(result => {
+				this.namespace = JSON.parse(JSON.stringify(result));
+			})
+			.catch( err => {
+				console.log(err);
+				this.namespace = '';
+			});
+	}
+
 	//Get Data of the component
 	onInit(){
 		this.value = null;
 		if(this.isTemplate){
 			this.getRecordTypeTemplate();
 		}else{
+			this.getnamespace();
 			this.getRecordType();
 		}
 		this.deselectRadioButtons();
@@ -135,7 +151,7 @@ export default class RecordTypeSelectionModal extends NavigationMixin(LightningE
 			this.dispatchEventTemplateModal(eventDetail);
 		}else{
 			if(this.value === "structureContent"){
-				this.navigateToWebPage("/lightning/n/Sitemap");
+				this.navigateToWebPage("/lightning/n/"+ this.namespace +"Sitemap");
 			} else{
 				const eventDetail = { 
 					recordTypeId : this.value,

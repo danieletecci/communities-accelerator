@@ -3,6 +3,11 @@
 	overflow: hidden;
 	min-height: 31px;
 }
+.THIS .list-header {
+    font-family: roboto;
+    font-size: 50px;
+    font-weight: 200;
+}
 .THIS .componentBody{
 	position: relative;
 	overflow: hidden;

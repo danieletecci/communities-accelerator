@@ -72,7 +72,7 @@ public class MediaElementsManagerControllerTest {
 		Test.stopTest();
 		// Then
 		System.assertEquals(6, searchedList.size());
-		System.assertEquals(2, searchedList2.size());
+		System.assertEquals(1, searchedList2.size());
 	}
 	@isTest 
 	static void PA181_CASE_5(){

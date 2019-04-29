@@ -263,4 +263,9 @@ public class GeneralUtils{
 
         return stringDate.replace(' ', 'T') + 'Z';
     }
+    
+    @AuraEnabled
+    public static String getNameSpace() {
+        return nameSpace;
+    }
 }

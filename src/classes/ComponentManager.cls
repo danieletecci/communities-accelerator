@@ -96,6 +96,7 @@ public without sharing virtual class ComponentManager {
         defaultComponentFieldSet.add('[CMS]HierarchicalOrderBy__c');
         defaultComponentFieldSet.add('[CMS]TagCriteria__c');
         defaultComponentFieldSet.add('[CMS]PageSize__c');
+        defaultComponentFieldSet.add('[CMS]Title__c');
         defaultComponentFieldSet.addAll(componentFieldSet);
         componentRecord = ComponentUtils.getComponent(componentExternalId, defaultComponentFieldSet, device);
         mw.component = new ObjectComponentWrapper(componentRecord);

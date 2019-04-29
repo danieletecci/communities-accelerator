@@ -1,36 +1,36 @@
-public without sharing class GeneralForm{
+global without sharing class GeneralForm{
     public FormSettings formSettings;
     public Map<String, SObject> formData{get;set;}
     
-    public GeneralForm(String formUniqueName, Set<Id> clusterIds){
+    global GeneralForm(String formUniqueName, Set<Id> clusterIds){
         generateGeneralFormData(formUniqueName, clusterIds);
     }
     
-    public GeneralForm(String formUniqueName, Set<Id> clusterIds, String recordId){
+    global GeneralForm(String formUniqueName, Set<Id> clusterIds, String recordId){
         generateGeneralFormData(formUniqueName, clusterIds);
         if(recordId != null && this.formSettings.retrievalClass != null){
             runMethod(this.formSettings.retrievalClass, this.formData, recordId);    
         }
     }
     
-    public void generateGeneralFormData(String formUniqueName, Set<Id> clusterIds){
+    global void generateGeneralFormData(String formUniqueName, Set<Id> clusterIds){
         if(clusterIds == null){
             clusterIds = new Set<Id>{null};
-        }
+                }
         formData = new map<String, SObject>();
         List<FormSection__c> formSections = [SELECT  SectionTitle__c, StyleClass__c, Order__c, ColumnWidth__c,
-                                                		Form__r.StyleClass__c, Form__r.ExternalID__c, Form__r.RetrievalClass__c, Form__r.SaveClass__c,
-                                                		(SELECT FieldAPIName__c, FieldLabel__c, PlaceHolder__c, FieldType__c, HelpText__c, PicklistValues__c, IsRequired__c, ReadOnly__c, DefaultValue__c,
-                                                         		StyleClass__c,ObjectAPIName__c , TextAreaRows__c,
-                                                         		FormValidation__r.Status__c, FormValidation__r.ErrorMessage__c, FormValidation__r.RegularExpression__c,MaxLength__c,
-		                                                    	ConfirmationRequired__c, ConfirmationLabel__c, ConfirmationError__c, ConfirmationPlaceholder__c 
-           	                                          	   FROM FormFields__r 
-                                                      	  WHERE Status__c = 'Active' 
-                                                   	   ORDER BY Order__c ASC)
-                                                  FROM FormSection__c 
-                                                 WHERE Form__r.ExternalID__c =: formUniqueName AND Form__r.Status__c = 'Active' AND Form__r.Cluster__c IN :clusterIds ORDER BY Order__c ASC];
+                                             Form__r.StyleClass__c, Form__r.ExternalID__c, Form__r.RetrievalClass__c, Form__r.SaveClass__c,
+                                             (SELECT FieldAPIName__c, FieldLabel__c, PlaceHolder__c, FieldType__c, HelpText__c, PicklistValues__c, IsRequired__c, ReadOnly__c, DefaultValue__c,
+                                              StyleClass__c,ObjectAPIName__c , TextAreaRows__c,
+                                              FormValidation__r.Status__c, FormValidation__r.ErrorMessage__c, FormValidation__r.RegularExpression__c,MaxLength__c,
+                                              ConfirmationRequired__c, ConfirmationLabel__c, ConfirmationError__c, ConfirmationPlaceholder__c 
+                                              FROM FormFields__r 
+                                              WHERE Status__c = 'Active' 
+                                              ORDER BY Order__c ASC)
+                                             FROM FormSection__c 
+                                             WHERE Form__r.ExternalID__c =: formUniqueName AND Form__r.Status__c = 'Active' AND Form__r.Cluster__c IN :clusterIds ORDER BY Order__c ASC];
         
-
+        
         System.debug('GeneralForm.generateGeneralFormData() method. formSections: ' + formSections);
         
         if(!formSections.isEmpty()){
@@ -38,22 +38,24 @@ public without sharing class GeneralForm{
                                             formSections.get(0).Form__r.RetrievalClass__c, formSections.get(0).Form__r.SaveClass__c
                                            );
             Map<String,Schema.SObjectType> globalDescribe = Schema.getGlobalDescribe();
-
+            
             for(FormSection__c formSection : formSections){
                 Section currentSection = new Section(formSection);
                 formSettings.sections.add(currentSection);
                 for(FormElement__c formField : formSection.FormFields__r){
-                    Boolean isCalculatedOrFormula = getIsCalculatedOrFormulaField(globalDescribe, formField.ObjectAPIName__c, formField.FieldAPIName__c);
                     String fieldValue = formField.DefaultValue__c != null ? formField.DefaultValue__c : null;
                     currentSection.fields.add(new Element(formField));
-                    if(!formData.containsKey(formField.ObjectAPIName__c)){
-                    	SObject obj = globalDescribe.get(formField.ObjectAPIName__c).newSobject();
-                        formData.put(formField.ObjectAPIName__c, obj);
-                    }
-                    if(!isCalculatedOrFormula){
-                        formData.get(formField.ObjectAPIName__c).put(formField.FieldAPIName__c, fieldValue);
-                    }else{
-                        formData.put(formField.ObjectAPIName__c, addNonEditableField(JSON.serialize(formData.get(formField.ObjectAPIName__c)), formField.FieldAPIName__c, fieldValue,formField.FieldType__c, formField.ObjectAPIName__c));
+                    if(formField.ObjectAPIName__c != null && formField.FieldAPIName__c != null){
+                        if(!formData.containsKey(formField.ObjectAPIName__c)){
+                            SObject obj = globalDescribe.get(formField.ObjectAPIName__c).newSobject();
+                            formData.put(formField.ObjectAPIName__c, obj);
+                        }
+                        Boolean isCalculatedOrFormula = getIsCalculatedOrFormulaField(globalDescribe, formField.ObjectAPIName__c, formField.FieldAPIName__c);
+                        if(!isCalculatedOrFormula){
+                            formData.get(formField.ObjectAPIName__c).put(formField.FieldAPIName__c, fieldValue);
+                        }else{
+                            formData.put(formField.ObjectAPIName__c, addNonEditableField(JSON.serialize(formData.get(formField.ObjectAPIName__c)), formField.FieldAPIName__c, fieldValue,formField.FieldType__c, formField.ObjectAPIName__c));
+                        }
                     }
                 }
             }
@@ -70,7 +72,7 @@ public without sharing class GeneralForm{
         }
     }
     
-    public static FormResponseWrapper saveForm(String formSettingsString, Map<String, SObject> formData){
+    global static FormResponseWrapper saveForm(String formSettingsString, Map<String, SObject> formData){
         FormSettings formSettings = (FormSettings)JSON.deserialize(formSettingsString, FormSettings.class);
         if(!Test.isRunningTest()){
             Type t  = Type.forName(formSettings.saveClass);
@@ -82,15 +84,14 @@ public without sharing class GeneralForm{
         return null;
     }
     /*
-		As a work around to add non editable fields to the form data, we serialize the object, add the field, then deserialize it.
-	*/
+As a work around to add non editable fields to the form data, we serialize the object, add the field, then deserialize it.
+*/
     private sObject addNonEditableField(String serializedObject, String fieldApiName, String fieldValue, String fieldType, String objectType){
         serializedObject = serializedObject.substring(0, serializedObject.lastIndexOf('}'));
         if(fieldValue != null)
-			serializedObject = serializedObject + ',"' + fieldApiName + '":"' + fieldValue + '"}';
+            serializedObject = serializedObject + ',"' + fieldApiName + '":"' + fieldValue + '"}';
         else{
-             	serializedObject = serializedObject + ',"' + fieldApiName + '":null}';
-            
+            serializedObject = serializedObject + ',"' + fieldApiName + '":null}';
         }
         system.debug('serializedobj' + serializedObject);
         return (SObject)JSON.deserialize(serializedObject, Type.forName(objectType));

@@ -1,7 +1,8 @@
 global class FormResponseWrapper {
- 		global String status{get;set;}
-        global String message{get;set;}
-        global String newUserId{get;set;}
+    	@AuraEnabled global String status{get;set;}
+        @AuraEnabled global String message{get;set;}
+        @AuraEnabled global String newUserId{get;set;}
+
 
         global FormResponseWrapper() {
             this.status = 'new';

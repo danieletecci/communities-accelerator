@@ -1,5 +1,8 @@
 global without sharing class GeneralForm{
+
+    @AuraEnabled
     global FormSettings formSettings;
+    @AuraEnabled
     global Map<String, SObject> formData{get;set;}
     
     global GeneralForm(String formUniqueName, Set<Id> clusterIds){
@@ -109,11 +112,11 @@ As a work around to add non editable fields to the form data, we serialize the o
     
     @TestVisible
     global class FormSettings{
-        global String saveClass;
-        global String retrievalClass;
-        global String styleClass;
-        global String uniqueFormName;
-        global List<Section> sections;
+        @AuraEnabled global String saveClass;
+        @AuraEnabled global String retrievalClass;
+        @AuraEnabled global String styleClass;
+        @AuraEnabled global String uniqueFormName;
+        @AuraEnabled global List<Section> sections;
         
         global FormSettings(String uniqueFormName, String styleClass, String retrievalClass, String saveClass){
             this.styleClass = styleClass;
@@ -124,11 +127,12 @@ As a work around to add non editable fields to the form data, we serialize the o
         }
     }
     global class Section{
-        global String SectionTitle;
-        global String styleClass;
-        global Integer order;
-        global List<Element> fields;
-        global String sectionWidth;
+        @AuraEnabled global String SectionTitle;
+        @AuraEnabled global String styleClass;
+        @AuraEnabled global Integer order;
+        @AuraEnabled global List<Element> fields;
+        @AuraEnabled global String sectionWidth;
+
         
         global Section(FormSection__c formSection){
             this.sectionTitle = formSection.SectionTitle__c;
@@ -142,27 +146,27 @@ As a work around to add non editable fields to the form data, we serialize the o
         }
     }
     global class Element{
-        global String objApiName;
-        global String apiName;
-        global String displayType;
-        global String label;
-        global String placeHolder;
-        global String helpText;
-        global Boolean isRequired;
-        global Boolean readOnly;
-        global String defaultValue;
-        global String styleClass;
-        global List<String> picklistValues;
-        global Boolean hasValidation;
-        global String validationErrorMessage;
-        global String validationRegExp;
-        global String fieldMask;
-        global Integer maxLength;
-        global Boolean hasConfirmation;
-        global String confirmationLabel;
-        global String confirmationPlaceholder;
-        global String confirmationErrMessage;
-        global Integer textAreaRows;
+        @AuraEnabled global String objApiName;
+        @AuraEnabled global String apiName;
+        @AuraEnabled global String displayType;
+        @AuraEnabled global String label;
+        @AuraEnabled global String placeHolder;
+        @AuraEnabled global String helpText;
+        @AuraEnabled global Boolean isRequired;
+        @AuraEnabled global Boolean readOnly;
+        @AuraEnabled global String defaultValue;
+        @AuraEnabled global String styleClass;
+        @AuraEnabled global List<String> picklistValues;
+        @AuraEnabled global Boolean hasValidation;
+        @AuraEnabled global String validationErrorMessage;
+        @AuraEnabled global String validationRegExp;
+        @AuraEnabled global String fieldMask;
+        @AuraEnabled global Integer maxLength;
+        @AuraEnabled global Boolean hasConfirmation;
+        @AuraEnabled global String confirmationLabel;
+        @AuraEnabled global String confirmationPlaceholder;
+        @AuraEnabled global String confirmationErrMessage;
+        @AuraEnabled global Integer textAreaRows;
         
         global Element(FormElement__c field){
             this.objApiName = field.ObjectAPIName__c;

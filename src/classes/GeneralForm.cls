@@ -1,6 +1,6 @@
 global without sharing class GeneralForm{
-    public FormSettings formSettings;
-    public Map<String, SObject> formData{get;set;}
+    global FormSettings formSettings;
+    global Map<String, SObject> formData{get;set;}
     
     global GeneralForm(String formUniqueName, Set<Id> clusterIds){
         generateGeneralFormData(formUniqueName, clusterIds);
@@ -108,14 +108,14 @@ As a work around to add non editable fields to the form data, we serialize the o
     class FormConstructionException extends Exception{}
     
     @TestVisible
-    class FormSettings{
-        public String saveClass;
-        public String retrievalClass;
-        public String styleClass;
-        public String uniqueFormName;
-        public List<Section> sections;
+    global class FormSettings{
+        global String saveClass;
+        global String retrievalClass;
+        global String styleClass;
+        global String uniqueFormName;
+        global List<Section> sections;
         
-        public FormSettings(String uniqueFormName, String styleClass, String retrievalClass, String saveClass){
+        global FormSettings(String uniqueFormName, String styleClass, String retrievalClass, String saveClass){
             this.styleClass = styleClass;
             this.uniqueFormName = uniqueFormName;
             this.sections = new List<Section>();
@@ -123,14 +123,14 @@ As a work around to add non editable fields to the form data, we serialize the o
             this.saveClass = saveClass;
         }
     }
-    class Section{
-        public String SectionTitle;
-        public String styleClass;
-        public Integer order;
-        public List<Element> fields;
-        public String sectionWidth;
+    global class Section{
+        global String SectionTitle;
+        global String styleClass;
+        global Integer order;
+        global List<Element> fields;
+        global String sectionWidth;
         
-        public Section(FormSection__c formSection){
+        global Section(FormSection__c formSection){
             this.sectionTitle = formSection.SectionTitle__c;
             this.styleClass = formSection.StyleClass__c;
             this.order = (Integer)formSection.Order__c;
@@ -141,30 +141,30 @@ As a work around to add non editable fields to the form data, we serialize the o
             }
         }
     }
-    class Element{
-        public String objApiName;
-        public String apiName;
-        public String displayType;
-        public String label;
-        public String placeHolder;
-        public String helpText;
-        public Boolean isRequired;
-        public Boolean readOnly;
-        public String defaultValue;
-        public String styleClass;
-        public List<String> picklistValues;
-        public Boolean hasValidation;
-        public String validationErrorMessage;
-        public String validationRegExp;
-        public String fieldMask;
-        public Integer maxLength;
-        public Boolean hasConfirmation;
-        public String confirmationLabel;
-        public String confirmationPlaceholder;
-        public String confirmationErrMessage;
-        public Integer textAreaRows;
+    global class Element{
+        global String objApiName;
+        global String apiName;
+        global String displayType;
+        global String label;
+        global String placeHolder;
+        global String helpText;
+        global Boolean isRequired;
+        global Boolean readOnly;
+        global String defaultValue;
+        global String styleClass;
+        global List<String> picklistValues;
+        global Boolean hasValidation;
+        global String validationErrorMessage;
+        global String validationRegExp;
+        global String fieldMask;
+        global Integer maxLength;
+        global Boolean hasConfirmation;
+        global String confirmationLabel;
+        global String confirmationPlaceholder;
+        global String confirmationErrMessage;
+        global Integer textAreaRows;
         
-        public Element(FormElement__c field){
+        global Element(FormElement__c field){
             this.objApiName = field.ObjectAPIName__c;
             this.apiName = field.FieldAPIName__c;
             this.displayType = field.FieldType__c;

@@ -66,9 +66,10 @@
 		                </div>
 
                         <!--Link-->
-                    	<c:LookupInput objectAPIName="[CMS]Navigation__c" IconName="standard:link"
-                        selectedRecordId="{!v.contentData.LinkDetail}" label="{!$Label.c.ContentDetailLink}" />
-
+                        <aura:if isTrue="{!v.contentData.Id}">
+                    	    <c:LookupInput objectAPIName="[CMS]Navigation__c" IconName="standard:link"
+                            selectedRecordId="{!v.contentData.LinkDetail}" label="{!$Label.c.ContentDetailLink}" />
+                        </aura:if>
                     </div>
                 </div>
             </div>

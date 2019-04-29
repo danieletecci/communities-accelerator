@@ -14,7 +14,7 @@
         <aura:if isTrue="{! v.device == 'DESKTOP'}">
             <div class="slds-grid slds-gutters">
                 <div class="slds-col slds-size_1-of-12 slds-align_absolute-center logo-container">
-                    LOGO
+                        <div class="icons-container" onclick="{!c.toggleOpened}"></div>
                 </div>
                 <div class="slds-col slds-size_11-of-12 nav-container">
                     <nav class="{!v.navMode}">

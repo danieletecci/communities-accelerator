@@ -4,34 +4,28 @@
     <aura:attribute name="index" required="true" type="Integer"/>
     <aura:attribute name="mobileFormat" required="false" type="Boolean"/>
     <aura:attribute name="component" type="Object" />
+    <aura:attribute name="mask" type="String" />
 
     <aura:attribute name="isActive" type="Boolean" default="false"/>
 
-    <span  data-menu-level="{!v.menuLevel}" data-index="{!v.index}"> 
+    <span  data-menu-level="{!v.menuLevel}" data-index="{!v.index}" class="{!(v.item.menu.MenuLabel == null ? 'only-icon' : '' )}"> 
         <li class="{!'li-level-' + v.menuLevel + ' menu-a ' + if(v.index == 0, 'first-child ', '') + if(v.isActive, 'active', '')}" id="{!'li-level-' + v.menuLevel + '-' + v.index}" onclick="{!v.mobileFormat ? c.toggleActive : ''}">
             <div class="{! if(v.item.subMenus.length > 0, ' has-child ', '') }" >
-
-                <aura:if isTrue="{!and(v.item.menu.Navigation != null, v.item.menu.NavigationURL != null)}">
-                    <a href="{!v.item.menu.NavigationURL}" target="{!v.item.behaviour}">
-                        <aura:if isTrue="{!v.item.iconName != null}">
-                            <lightning:icon iconName="{!v.item.iconName}" size="small"/> &nbsp;
-                        </aura:if>
+                <a class="{!v.item.iconName ? 'a-icon' : ''}" href="{! and(v.item.menu.Navigation != null, v.item.menu.NavigationURL != null) ? v.item.menu.NavigationURL : ''}" target="{! and(v.item.menu.Navigation != null, v.item.menu.NavigationURL != null) ? v.item.behaviour : ''}">
+                    <aura:if isTrue="{!v.item.iconName != null}">
+                        <div class="{!(v.item.menu.MenuLabel == null ? 'only-icon' : '' ) + ' menu-icon div-icon-' + v.menuLevel + '-' + v.index}">
+                            <aura:unescapedHtml value="{!v.mask}"/>
+                        </div>
                         <aura:if isTrue="{!v.item.menu.MenuLabel != null}">
-                            {!v.item.menu.MenuLabel}
-                        </aura:if>  
-                    </a>
-                    <aura:set attribute="else">
-                        <a class="a_menuItemNoLink">
-                            <aura:if isTrue="{!v.item.iconName != null}">
-                                <lightning:icon iconName="{!v.item.iconName}" size="small"/> &nbsp;
-                            </aura:if>
+                            <span class="icon-label">{!v.item.menu.MenuLabel}</span>
+                        </aura:if>
+                        <aura:set attribute="else">
                             <aura:if isTrue="{!v.item.menu.MenuLabel != null}">
                                 {!v.item.menu.MenuLabel}
-                            </aura:if>                            
-                        </a>
-                    </aura:set>
-                </aura:if>
-                                
+                            </aura:if>  
+                        </aura:set>
+                    </aura:if>
+                </a>
                 <aura:if isTrue="{!v.item.subMenus.length > 0}">
                     <div class="{! 'div-ul div-' + v.menuLevel + '-' + v.index}">
                         <ul class="{!'ul-level-'+ v.menuLevel + ' sub-' + v.menuLevel + '-' + v.index }" aura:id="{!'ulLevel'+ v.menuLevel}">

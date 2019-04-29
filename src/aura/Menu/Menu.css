@@ -39,6 +39,20 @@
   height: 50px;
   margin-left: 0;
 }
+.THIS .icons-container::before{
+  content: ' ';
+  position: absolute;
+  height: 30px;
+  width: 40px;
+  top: 15%;
+  left: 4%;
+  -webkit-mask: url(sfsites/c/resource/Assets/Assets/Icons/BrandIcon.svg) no-repeat 50% 50%;
+  -moz-mask: url(sfsites/c/resource/Assets/Assets/Icons/BrandIcon.svg) no-repeat 50% 50%;
+  -o-mask: url(sfsites/c/resource/Assets/Assets/Icons/BrandIcon.svg) no-repeat 50% 50%;
+  -ms-mask: url(sfsites/c/resource/Assets/Assets/Icons/BrandIcon.svg) no-repeat 50% 50%;
+  mask: url(sfsites/c/resource/Assets/Assets/Icons/BrandIcon.svg) no-repeat 50% 50%;
+  background-color: #0B0B0B;
+}
 
 @media screen and (max-width: 768px) {
   
@@ -61,7 +75,6 @@
     margin-left: 140px;
   }
   
-
   .THIS.menu-top-opened .icons-container::after{
     content: ' ';
     position: absolute;
@@ -70,6 +83,10 @@
     top: 15px;
     right: 30px;
     -webkit-mask: url(sfsites/c/resource/Assets/Assets/Icons/CloseIcon.svg) no-repeat 50% 50%;
+    -moz-mask: url(sfsites/c/resource/Assets/Assets/Icons/CloseIcon.svg) no-repeat 50% 50%;
+    -o-mask: url(sfsites/c/resource/Assets/Assets/Icons/CloseIcon.svg) no-repeat 50% 50%;
+    -ms-mask: url(sfsites/c/resource/Assets/Assets/Icons/CloseIcon.svg) no-repeat 50% 50%;
+    mask: url(sfsites/c/resource/Assets/Assets/Icons/CloseIcon.svg) no-repeat 50% 50%;
     background-color: #D6EAFF;
   }
 
@@ -81,6 +98,10 @@
     top: 10px;
     left: 35px;
     -webkit-mask: url(sfsites/c/resource/Assets/Assets/Icons/BrandIcon.svg) no-repeat 50% 50%;
+    -moz-mask: url(sfsites/c/resource/Assets/Assets/Icons/BrandIcon.svg) no-repeat 50% 50%;
+    -o-mask: url(sfsites/c/resource/Assets/Assets/Icons/BrandIcon.svg) no-repeat 50% 50%;
+    -ms-mask: url(sfsites/c/resource/Assets/Assets/Icons/BrandIcon.svg) no-repeat 50% 50%;
+    mask: url(sfsites/c/resource/Assets/Assets/Icons/BrandIcon.svg) no-repeat 50% 50%;
     background-color: #D6EAFF;
   }
 
@@ -92,6 +113,10 @@
     top: 15px;
     right: 30px;
     -webkit-mask: url(sfsites/c/resource/Assets/Assets/Icons/SortIcon.svg) no-repeat 50% 50%;
+    -moz-mask: url(sfsites/c/resource/Assets/Assets/Icons/SortIcon.svg) no-repeat 50% 50%;
+    -o-mask: url(sfsites/c/resource/Assets/Assets/Icons/SortIcon.svg) no-repeat 50% 50%;
+    -ms-mask: url(sfsites/c/resource/Assets/Assets/Icons/SortIcon.svg) no-repeat 50% 50%;
+    mask: url(sfsites/c/resource/Assets/Assets/Icons/SortIcon.svg) no-repeat 50% 50%;
     background-color: #D6EAFF;
   }
 }

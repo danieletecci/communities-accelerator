@@ -3,12 +3,12 @@ global class FormResponseWrapper {
         global String message{get;set;}
         global String newUserId{get;set;}
 
-        public FormResponseWrapper() {
+        global FormResponseWrapper() {
             this.status = 'new';
             this.message = null;
             this.newUserId = '';
         }
-    	public FormResponseWrapper(String status, String message) {
+    	global FormResponseWrapper(String status, String message) {
             this.status = status;
             this.message = message;
         }

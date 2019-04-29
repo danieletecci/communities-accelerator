@@ -6,7 +6,7 @@ export default class faqItem extends LightningElement {
     @api items;
 
     renderedCallback() {
-        loadStyle(this, 'fsites/c/resource/Assets/Assets/Styles/faqItemExternalStyles.css');
+        loadStyle(this, 'sfsites/c/resource/Assets/Assets/Styles/faqItemExternalStyles.css');
 
     }
 

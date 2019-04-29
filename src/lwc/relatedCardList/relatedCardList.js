@@ -15,7 +15,7 @@ export default class RelatedCardList extends LightningElement {
 
     connectedCallback() {
         window.addEventListener("orientationchange", () => this.handleOrientation());
-        loadStyle(this, 'fsites/c/resource/Assets/Assets/Styles/relatedCardListExternalStyles.css');
+        loadStyle(this, 'sfsites/c/resource/Assets/Assets/Styles/relatedCardListExternalStyles.css');
     }
     disconnectedCallback() {
         window.removeEventListener("orientationchange")

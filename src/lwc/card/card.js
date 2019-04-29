@@ -29,8 +29,8 @@ export default class Card extends LightningElement {
 
     connectedCallback() {
         window.addEventListener("orientationchange", () => this.handleOrientation());
-        loadStyle(this, 'fsites/c/resource/Assets/Assets/Styles/cardExternalStyles.css');
-      
+        loadStyle(this, 'sfsites/c/resource/Assets/Assets/Styles/cardExternalStyles.css');
+
     }
     disconnectedCallback() {
         window.removeEventListener("orientationchange")

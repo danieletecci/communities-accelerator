@@ -21,7 +21,7 @@ export default class Banner extends LightningElement {
     connectedCallback() {
         this.elements = this.bannerData.slice();
         loadStyle(this, Assets + '/Assets/Styles/roboto.css');
-        loadStyle(this, 'fsites/c/resource/Assets/Assets/Styles/bannerMobileExternalStyles.css');
+        loadStyle(this, 'sfsites/c/resource/Assets/Assets/Styles/bannerMobileExternalStyles.css');
         loadStyle(this, Assets + '/Assets/Styles/bannerExternalStyle.css');
         loadStyle(this, Assets + '/Assets/Bootstrap/css/bootstrap.min.css'); 
         loadScript(this, Assets + '/Assets/Bootstrap/js/bootstrap.min.js');

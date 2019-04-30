@@ -33,49 +33,67 @@
     <script type="text/javascript">
     
 	    var parentHostName = '{!$CurrentPage.parameters.parentHostName}';
-	   
-	    tinyMCE.init({
-	        mode : "specific_textareas",
-	        editor_selector : "mceEditor",
-	        plugins : "advlist,anchor,autolink,autosave,bbcode,charmap,code,codesample,colorpicker,contextmenu,directionality,emoticons,fullpage,fullscreen,help,hr,image,imagetools,importcss,insertdatetime,legacyoutput,link,lists,media,nonbreaking,noneditable,pagebreak,paste,preview,print,save,searchreplace,spellchecker,tabfocus,table,template,textcolor,textpattern,toc,visualblocks,visualchars,wordcount",
-	        menubar: false,
-	        toolbar: "formatselect fontselect fontsizeselect | bold italic underline strikethrough | forecolor backcolor | bullist numlist outdent indent | alignleft aligncenter alignright alignjustify | removeformat image",
-	    	width: "100%",
-	    	height : "20rem",
-	    	init_instance_callback: function (editor) {
+
+	    
+		tinymce.init({
+		  	mode : "specific_textareas",
+			menubar: false,
+			plugins: "fullpage",
+		  	selector: 'textarea#content1',
+		  	toolbar: 'formatselect fontselect fontsizeselect | bold italic underline strikethrough | forecolor backcolor | bullist numlist outdent indent | alignleft aligncenter alignright alignjustify | removeformat image customInsertButton code',
+		  	width: "100%",
+			height : "20rem",
+		  	init_instance_callback: function (editor) {
 			    editor.on('Change', function (e) {
-			    	console.log("visualforece contentBody: " + tinymce.get('content1').getContent());
-			      	parent.postMessage(tinymce.get('content1').getContent(), parentHostName);
+			    	console.log("visualforce contentBody: " + tinymce.get('content1').getContent());
+
+			      	parent.postMessage({event 	: "contentchange",
+			      						data	: tinymce.get('content1').getContent()}, 
+			      						parentHostName);
 			    });
-			}
-	    });
+			},
+		  	setup: function (editor) {
+				editor.ui.registry.addButton('customInsertButton', {
+			      	text: 'Add Image',
+			      	onAction: function (_) {
+			      		parent.postMessage({event 	: "showimageselector"}, 
+			      						parentHostName);
+			        //editor.insertContent('&nbsp;<strong>It\'s my button!</strong>&nbsp;');
+			      	}
+		    	});
+		  	}
+		});
+
 
     </script>
     
     <script>
         var lastDivHeight = 0;
         var parentHostName = '{!$CurrentPage.parameters.parentHostName}';
-        $(window).on( "load", function() {
-            //sendPageHeight();
-            setBody();
-        });
 
-        function sendPageHeight(){
-            if(parentHostName != null && parentHostName != ''){
-                if(lastDivHeight != $("#knowledgeDiv").height()){
-                    lastDivHeight = $("#knowledgeDiv").height();
-                    if(lastDivHeight<485){
-                        lastDivHeight=485;
-                    }
-                    parent.postMessage(lastDivHeight, parentHostName);
-                }
-            }
+        window.addEventListener("message", function(event){
+        	if (event.origin == parentHostName) {
+        		var parameters = event.data;
+	            console.log("message visulforce handler: " + JSON.stringify(parameters));
+	            switch(parameters.event){
+            		case "contentchange":
+            			setBody(parameters.data);
+            			break;
+            		case "insertimage":
+            			insertImage(parameters.data);
+            			break;
+            	}
+	        }
+        }, false);
+
+        function insertImage(url){
+	        console.log("insertImage: " + url);
+        	tinymce.activeEditor.insertContent('<img src="' + url + '" />');
+	        console.log("insertImage end");
         }
 
-        function setBody(){
-        	var body = '{!$CurrentPage.parameters.contentBody}';
-        	console.log("----- vp body: " + body);
-			tinymce.activeEditor.selection.setContent(decodeURI(body || ""));
+        function setBody(body){
+			tinymce.activeEditor.setContent(body || "");
         }
     </script>
     

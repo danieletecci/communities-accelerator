@@ -1,18 +1,21 @@
 <aura:component access="global">
 	<!-- HANDLERS -->
 	<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler name="URLEvent" event="c:MediaElementManagerEvent" action="{!c.handleURLEvent}"/>
 
 	<!-- ATTRIBUTES -->
 	<aura:attribute name="namespace"	type="String" default="c"	/>
 	<aura:attribute name="iframeUrl" 	type="String"				/>
 	<aura:attribute name="contentBody"	type="String"				/>
+	<aura:attribute name="vHost"		type="String"				/>
 
+    <c:MediaElementManager aura:id="medEl" hasButton="false"/>
 	<lightning:tabset selectedTabId="one">
         <lightning:tab label="Formatted Text" id="one">
-			<iframe aura:id="KB_iframe" src="{!v.iframeUrl}" style="width:100%;height:20rem;" scrolling="no" frameborder="0"/>
+			<iframe aura:id="KB_iframe" name="KB_iframe" class="KB_iframe" src="{!v.iframeUrl}" style="width:100%;height:20rem;" scrolling="no" frameborder="0" onload="{!c.handleIframeLoad}" />
         </lightning:tab>
         <lightning:tab label="HTML" id="two">
-        	<lightning:textarea name="htmlBody" variant="label-hidden" value="{!v.contentBody}" />
+        	<lightning:textarea name="htmlBody" variant="label-hidden" value="{!v.contentBody}" onchange="{!c.handleContentChange}"/>
         </lightning:tab>
     </lightning:tabset>
 

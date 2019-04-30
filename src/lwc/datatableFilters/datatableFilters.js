@@ -138,6 +138,13 @@ export default class DatatableCustomDateType extends LightningElement {
         this.dispatchEvent(filterValue);
     }
 
+    filterSelected() {
+        var filterButton = this.template.querySelector("button.filter");
+        filterButton.classList.toggle("active");
+        this.filterArray(filterButton);
+    }
+
+
     select () {
         var filterButton = this.template.querySelector("button.filter");
         var numeroMin = this.template.querySelectorAll("input.min");

@@ -47,6 +47,7 @@ public class ObjectComponentWrapper {
     @AuraEnabled public String TagCriteria;
     @AuraEnabled public String Title;
     @AuraEnabled public String NumberOfColumns;
+    @AuraEnabled public Decimal CustomHeight;
 
     @AuraEnabled public String LinkDetailURL;
     
@@ -98,6 +99,7 @@ public class ObjectComponentWrapper {
         try{this.RecordtypeDeveloperName = component.Recordtype.DeveloperName;}catch(Exception e){}
         try{this.Title = component.Title__c;}catch(Exception e){}
         try{this.NumberOfColumns = component.NumberOfColumns__c;}catch(Exception e){}
+        try{this.CustomHeight = component.CustomHeight__c;}catch(Exception e){}
 
         try{this.LinkDetailURL = component.LinkDetail__r.URL__c;}catch(Exception e){}
     }

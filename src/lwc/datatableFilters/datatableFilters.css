@@ -32,3 +32,8 @@
 .datatableFilters[data-is-desktop="true"] button.filter.active:after {
   background: #F2B005;
 }
+.datatableFilters input[type="number"] {
+  border: none;
+  border-bottom: solid 2px #D9D9D9;
+  width: 100%;
+}

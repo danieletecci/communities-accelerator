@@ -14,4 +14,30 @@
             }
         }
     }
+
+    &[data-is-desktop="true"]{
+        button{
+            border: none;
+            text-align: left;
+            &.filter{
+                margin: 0px;
+                &:after{
+                    content: ' ';
+                    height: 10px;
+                    width: 10px;
+                    display: block;
+                    float: right;
+                    border-radius: 50%;
+                    background: #2B2B2B;
+                }
+                &.active {
+                    color: #F2B005;
+                    &:after{
+                        background: #F2B005;
+                    }
+                }
+            }
+           
+        }
+    }
 }

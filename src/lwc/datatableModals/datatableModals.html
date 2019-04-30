@@ -7,58 +7,55 @@
                         <div class="modal__header">
                             <img class="slds-modal__close closeModal" src={closeicon} onclick={closeModal}>
                         </div>
-                        <div class="modal__content">
+                        <div class={modalContentClass}>
                             <template for:each={setFilters} for:item="col">
-                                <div key={col.fieldName} class="slds-grid slds-wrap slds-gutters_x-small">
-                                    <template if:true={col.filtrable}>
-                                        <div class="filter-title slds-col slds-size_4-of-4 slds-grid">
+                                <template if:true={col.filtrable}>
+                                    <div key={col.fieldName} class={filterContainerClass}>
+                                        <div class={filterTitleClass} onclick={toggleOptions}>
                                             <h2 class="slds-col slds-size_3-of-4">{col.label}</h2>
                                         </div>
-                                        <template for:each={col.filtrableValues} for:item="filter">
-                                            <!-- <div key={filter} class="slds-col slds-size_2-of-4">  
-                                                <button class="filter" 
-                                                        data-column={col.fieldName} 
-                                                        data-type={col.type} 
-                                                        data-value={filter}
-                                                        onclick={filterActive}>{filter}
-                                                </button>
-                                            </div>
-                                        </template>
-                                        <template if:true={showDatepickers}>
-                                            <div class="slds-grid slds-wrap slds-gutters_x-small">
-                                                <lightning-input class="slds-col slds-size_2-of-4 datefrom" type="date" name="from-day" max={seletedDateTo} onchange={changeDatepickerFrom} placeholder="From"></lightning-input>
-                                                <lightning-input class="slds-col slds-size_2-of-4 dateto" type="date" name="to-day" min={seletedDateFrom} onchange={changeDatepickerTo} placeholder="To" ></lightning-input>
-                                            </div>
-                                        </template> -->
-                                            <div key={filter} class="slds-col slds-size_2-of-4"> 
-                                                <c-datatable-filters column={col.fieldName} 
-                                                                     type={col.type} 
-                                                                     filter={filter} 
-                                                                     appliedfilters={table.appliedFilters} 
-                                                                     formartdate={formartDate}
-                                                                     onfilter={filterElement}>
-                                                </c-datatable-filters>
-                                            </div>
-                                        </template>
-                                    </template>
-                                </div>
+                                        <div class={filterOptionsClass}>
+                                            <template for:each={col.filtrableValues} for:item="filter" for:index="index">
+                                                <div key={filter} class={filterItemClass}> 
+                                                    <template if:true={isFirst}>
+                                                        <p>Select {col.label}</p>
+                                                    </template>
+                                                    <c-datatable-filters column={col.fieldName} 
+                                                                            type={col.type} 
+                                                                            filter={filter} 
+                                                                            appliedfilters={table.appliedFilters} 
+                                                                            formartdate={formartDate}
+                                                                            onfilter={filterElement}
+                                                                            is-desktop={isDesktop}>
+                                                    </c-datatable-filters>
+                                                </div>
+                                            </template>
+                                        </div>
+                                    </div>
+                                </template>
                             </template>
-                            <!-- <template if:true={isCustomDate} class="slds-grid slds-wrap slds-gutters_x-small">
-                                <lightning-input class="slds-col slds-size_2-of-4 datefrom" type="date" name="from-day" max={seletedDateTo} onchange={changeDatepickerFrom} placeholder="From"></lightning-input>
-                                <lightning-input class="slds-col slds-size_2-of-4 dateto" type="date" name="to-day" min={seletedDateFrom} onchange={changeDatepickerTo} placeholder="To" ></lightning-input>
-                            </template> -->
+                            
                             <template if:true={showFilterModalFooter}>
                                 <div class="bottom-spacer">&nbsp;</div>
                             </template>
+
                         </div>
                         <template if:true={showFilterModalFooter}>
                             <div class="modal__footer slds-grid slds-wrap">
-                                <button onclick={filterAllRemove} class="slds-col slds-size_1-of-1">Remove All Filters</button>
-                                <button class="applyFilter slds-col slds-size_1-of-1" onclick={applyFilter}>Apply</button>
+                                <button onclick={filterAllRemove} class={removeAllFiltersClass}>
+                                    <template if:true={isDesktop}>
+                                            <img class="closeModal" src={closeicon} onclick={closeModal}>
+                                    </template>
+                                    <template if:false={isDesktop}>
+                                            Remove All Filters
+                                    </template>
+                                </button>
+                                <button class={applyFilterClass} onclick={applyFilter}>Apply</button>
                             </div>
                         </template>
                     </div>
                 </template>
+
                 <!--                DETAIL'S MODAL                 -->
                 <div class="detailmodal">
                     <template if:true={detailModal}>
@@ -82,6 +79,7 @@
                         </div>
                     </template>
                 </div>
+
                 <!--                ACTION'S MODAL                 -->
                 <template if:true={actionModal}>
                     <div class="modal__header">

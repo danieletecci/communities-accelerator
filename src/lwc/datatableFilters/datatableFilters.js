@@ -6,6 +6,7 @@ export default class DatatableCustomDateType extends LightningElement {
     @api filter;
     @api appliedfilters;
     @api formartdate;
+    @api isDesktop;
 
     isRemoveAll = false;
 

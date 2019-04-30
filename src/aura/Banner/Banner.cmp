@@ -9,7 +9,7 @@
 
 		<aura:if isTrue="{!v.dataWrapper.listAllContentIds.length > 0}">
 		
-	        <div style="{!'height: ' + v.heightValue}">
+	        <div style="{!'height: ' + v.heightValue}" aura:id="banner">
 
 				<c:Carousel showTotal="false" seeBullet="{!v.componentWrapper.ShowBullets}" automaticTransition="{!v.componentWrapper.AutomaticTransition}" transitionTime="{!v.componentWrapper.BannerTransitionTime}" loop="{!v.componentWrapper.LoopField}" direction="{!v.componentWrapper.Direction}" fadeInMode="{!v.componentWrapper.BannerType == 'Fade'}" heightValue="{!v.heightValue}">
 				    <aura:iteration items="{!v.dataWrapper.contentWrapper}" var="wrapper">

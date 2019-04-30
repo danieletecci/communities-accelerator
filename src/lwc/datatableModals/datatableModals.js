@@ -36,6 +36,45 @@ export default class DatatableModals extends LightningElement {
         }
     }
 
+    get filterTitleClass() {
+        let sldsClass = this.isDesktop?'slds-size_4-of-4':'slds-size_4-of-4';
+        return `filter-title slds-col ${sldsClass} slds-grid`;
+    }
+
+    get filterContainerClass(){
+        let sldsClass = this.isDesktop?'slds-size_2-of-12':'';
+        return `filterContainer slds-grid slds-wrap slds-gutters_x-small ${sldsClass}`;
+    }
+
+    get modalContentClass(){
+        let sldsClass = this.isDesktop?'slds-grid slds-grid_align-end':'';
+        return `modal__content ${sldsClass}`;
+    }
+
+    get filterItemClass(){
+        let sldsClass = this.isDesktop?'':'slds-size_2-of-4';
+        return `filterItemClass slds-col ${sldsClass}`;
+    }
+
+    get filterOptionsClass(){
+        let sldsClass = 'slds-hide';
+        return `filterOptions ${sldsClass}`;
+    }
+
+    get removeAllFiltersClass(){
+        let sldsClass = this.isDesktop?'slds-size_1-of-2':'slds-size_1-of-1';
+        return `removeAllFilters slds-col ${sldsClass}`;
+    }
+
+    get applyFilterClass(){
+        let sldsClass = this.isDesktop?`slds-size_1-of-2`:`slds-size_1-of-1`;
+        return `applyFilter slds-col ${sldsClass}`;
+    }
+
+    toggleOptions(event){
+        return event.currentTarget.parentNode.querySelector('.filterOptions').classList.toggle('slds-hide');
+    }
+
     setTypeModal() {
         if (this.type === "detailModal") {
             this.actionModal = false;

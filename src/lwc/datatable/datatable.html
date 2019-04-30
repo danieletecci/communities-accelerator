@@ -3,10 +3,15 @@
         <div class="header">
             <h1>{table.title}</h1>
             <div class="search-element" >
-                <input class="searchInput" placeholder="Search" type="search" onsearch={searchEvent} onfocus={focusFilter}/>
+                <input class="searchInput" placeholder="Search" type="search" value={searchTerm} onkeyup={setSearchTerm} onsearch={searchEvent} onfocus={focusFilter}/>
                 <div class="icons-group">
                     <template if:true={showCancelSearch}>
-                        <button class="cancelSearch" onclick={cancelFilter}>Cancel</button>
+                        <template if:false={isDesktop}>
+                            <button class="cancelSearch" onclick={cancelFilter}>Cancel</button>
+                        </template>
+                        <template if:true={isDesktop}>
+                            <img src={closeIcon}  onclick={cancelFilter}> 
+                        </template>
                     </template>
                     <template if:true={showFilterIcon}>
                         <img class="filterIcon" src={filterIcon} onclick={openFilterModal}>
@@ -14,6 +19,7 @@
                 </div>
             </div>
         </div>
+
         <template if:true={appliedFilters}>
             <template for:each={table.appliedFilters} for:item="filters">
                 <div class="pills-container" key={filters.value1}>
@@ -24,49 +30,7 @@
                 </div>
             </template>
         </template>
-        <!-- <template if:true={showFilterModal}>
-            <div class="modal">
-                <div class="modal__header">
-                    <img class="slds-modal__close closeModal" src={closeIcon} onclick={closeFilterModal}>
-                </div>
-                <div class="modal__content">
-                    <template for:each={setDateFilter} for:item="col">
-                        <div key={col.fieldName} class="slds-grid slds-wrap slds-gutters_x-small">
-                            <template if:true={col.filtrable}>
-                                <div class="filter-title slds-col slds-size_4-of-4 slds-grid">
-                                    <h2 class="slds-col slds-size_3-of-4">{col.label}</h2>
-                                </div>
-                                <template for:each={col.filtrableValues} for:item="filter">
-                                    <div key={filter} class="slds-col slds-size_2-of-4">  
-                                        <button class="filter" 
-                                                data-column={col.fieldName} 
-                                                data-type={col.type} 
-                                                data-value={filter}
-                                                onclick={filterActive}>{filter}
-                                        </button>
-                                    </div>
-                                </template>
-                            </template>
-                        </div>
-                    </template>
-                    <template if:true={isCustomDate}>
-                        <h2 class="slds-col slds-size_3-of-4">Select Dates</h2>
-                        <input type="date" name="from-day" max="2019-04-12" class="datefrom">
-                        <input type="date" name="to-day" max="2019-04-12" class="dateto">
-                    </template>
-                    <template if:true={showFooterModal}>
-                        <div class="bottom-spacer">&nbsp;</div>
-                    </template>
-                </div>
-                <template if:true={showFooterModal}>
-                    <div class="modal__footer slds-grid slds-wrap">
-                        <button onclick={filterRemove} class="slds-col slds-size_1-of-1">Remove All Filters</button>
-                        <button class="applyFilter slds-col slds-size_1-of-1" onclick={dataFilter}>Apply</button>
-                    </div>
-                </template>
-            </div>
-        </template> -->
-
+        
         <template if:true={isDesktop}>
             <!---->
             <table class="slds-table slds-table_cell-buffer slds-no-row-hover desktop-table">

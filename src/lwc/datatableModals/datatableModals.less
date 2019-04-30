@@ -96,8 +96,10 @@
                 padding-bottom: 15px;
                 padding-right: 40px;
             }
+           
             .modal__content {
                 padding: 30px 36px 50px 28px;
+               
                 .detailcontent {
                     padding-bottom: 20px;
                     p {
@@ -129,26 +131,72 @@
                     height: 25px;
                 } 
             }
-
         }
-          
     }
     
     &[data-is-desktop="true"]{
-        position: absolute;
-        top: 0;
         width: 100%;
         height: 100%;
         .modal{
-            position: absolute;
+            position: relative;
             top: 0px;
-            margin-top: 70px;
-            .detailmodal{
-                .modal__footer{
+           
+            .filterModal{
+                display: flex;
+                background-color: transparent;
+                .modal__content, .modal__footer{
                     position: relative;
+                }
+                .modal__header{
+                    display: none;
+                }
+                .modal__content{
+                    height: auto;
+                    .bottom-spacer {
+                        margin-bottom: 0px;
+                    }
+                    h2{
+                        cursor: pointer;
+                        font-size: 20px;
+                        margin: 0px;
+                    }
+                    .filterContainer {
+                        position: relative;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                    }
+                    .filterOptions{
+                        position: absolute;
+                        top: 50px;
+                        background: #0B0B0B;
+                        position: absolute;
+                        color: #FDFDFD;
+                        width: 200px;
+                        .filterItemClass {
+                            padding: 0px;
+                        }
+                    }
+                }
+                .modal__footer{
+                    width: 110px;
+                    display: flex;
+                    justify-content: space-between;
+                    padding: 30px 0px;
+                    .removeAllFilters, .applyFilter {
+                        width: auto;
+                        /* display: none;*/
+                    }
+                    .removeAllFilters{
+                        background: transparent;
+                    }
                 }
             } 
         }
         
     }
+}
+
+:host{
+    order: 2;
 }

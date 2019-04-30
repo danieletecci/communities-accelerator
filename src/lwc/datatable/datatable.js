@@ -13,6 +13,7 @@ export default class Datatable extends LightningElement {
     @track columnsToShow;
     @track columnsToShowLength = 0;
     @track showFilterModal = false;
+    @track searchTerm = '';
     // @track showFooterModal = false;
     @track showDetailModal = false;
     @track showActionModal = false;
@@ -117,6 +118,9 @@ export default class Datatable extends LightningElement {
         //TRUE = Portrail  
         this.orientation = (screen.orientation.angle === 0) ? true : false;
     }
+    setSearchTerm(event){
+        this.searchTerm = event.currentTarget.value;
+    }
 
     focusFilter() {
         this.showCancelSearch = true;
@@ -124,8 +128,10 @@ export default class Datatable extends LightningElement {
     }
 
     cancelFilter() {
+        this.searchTerm = "";
         this.showCancelSearch = false;
         this.showFilterIcon = false;
+        this.closeFilterModal();
     }
 
     deleteFilter(event) {

@@ -10,6 +10,28 @@
   background-color: #0B0B0B;
   color: #EEEEEE;
 }
+.datatableFilters[data-is-desktop="true"] button {
+  border: none;
+  text-align: left;
+}
+.datatableFilters[data-is-desktop="true"] button.filter {
+  margin: 0px;
+}
+.datatableFilters[data-is-desktop="true"] button.filter:after {
+  content: ' ';
+  height: 10px;
+  width: 10px;
+  display: block;
+  float: right;
+  border-radius: 50%;
+  background: #2B2B2B;
+}
+.datatableFilters[data-is-desktop="true"] button.filter.active {
+  color: #F2B005;
+}
+.datatableFilters[data-is-desktop="true"] button.filter.active:after {
+  background: #F2B005;
+}
 .datatableFilters input[type="number"] {
   border: none;
   border-bottom: solid 2px #D9D9D9;

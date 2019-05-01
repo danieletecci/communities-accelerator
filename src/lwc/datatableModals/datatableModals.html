@@ -1,5 +1,10 @@
 <template>
-    <div class="datatableModals" data-is-desktop={isDesktop}>
+    <div 
+        class="datatableModals" 
+        data-is-desktop={isDesktop} 
+        data-action-modal={actionModal} 
+        data-filter-modal={filterModal} 
+        data-detail-modal={detailModal}>
             <div class="modal">
                 <!--                FILTER'S MODAL                  -->
                 <template if:true={filterModal}>
@@ -15,18 +20,18 @@
                                             <h2 class="slds-col slds-size_3-of-4">{col.label}</h2>
                                         </div>
                                         <div class={filterOptionsClass}>
-                                            <template for:each={col.filtrableValues} for:item="filter" for:index="index">
-                                                <div key={filter} class={filterItemClass}> 
-                                                    <template if:true={isFirst}>
-                                                        <p>Select {col.label}</p>
-                                                    </template>
-                                                    <c-datatable-filters column={col.fieldName} 
-                                                                            type={col.type} 
-                                                                            filter={filter} 
-                                                                            appliedfilters={table.appliedFilters} 
-                                                                            formartdate={formartDate}
-                                                                            onfilter={filterElement}
-                                                                            is-desktop={isDesktop}>
+                                            <div>
+                                                <p>Select {col.label}</p>
+                                            </div>
+                                            <template iterator:it={col.filtrableValues}>
+                                                <div key={it.value} class={filterItemClass}>
+                                                    <c-datatable-filters column={it.value.fieldName} 
+                                                                    type={it.value.type} 
+                                                                    filter={it.value} 
+                                                                    appliedfilters={table.appliedFilters} 
+                                                                    formartdate={formartDate}
+                                                                    onfilter={filterElement}
+                                                                    is-desktop={isDesktop}>
                                                     </c-datatable-filters>
                                                 </div>
                                             </template>
@@ -34,11 +39,9 @@
                                     </div>
                                 </template>
                             </template>
-                            
                             <template if:true={showFilterModalFooter}>
                                 <div class="bottom-spacer">&nbsp;</div>
                             </template>
-
                         </div>
                         <template if:true={showFilterModalFooter}>
                             <div class="modal__footer slds-grid slds-wrap">

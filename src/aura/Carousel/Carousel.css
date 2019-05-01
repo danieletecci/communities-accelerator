@@ -6,8 +6,8 @@
 .THIS.slds-scope .sc-pagination__dot {
     margin: 0 2px;
     display: block;
-    width: 12px;
-    height: 12px;
+    width: 23px;
+    height: 23px;
     border-radius: 12px;
     border: 1px solid #c8cfda;
     background: white;
@@ -25,6 +25,7 @@
 
 /* ARROWS */
 .THIS .div-prev-button {
+    display: none;
     position: absolute;
     left: 0;
     top: 50%;
@@ -32,6 +33,7 @@
     z-index: 2;
 }
 .THIS .div-next-button {
+    display: none;
     position: absolute;
     right: 0;
     top: 50%;
@@ -52,8 +54,8 @@
 }
 .THIS .pagination {
     position: absolute;
-    bottom: 0;
-    left: 50%;
+    bottom: 5%;
+    left: 6%;
     transform: translateX(-50%);
     z-index: 2;
 }

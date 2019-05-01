@@ -25,9 +25,9 @@
 	                <!-- Component Body -->
 	                <div class="componentBody">
 	                    <!-- COMMUNITY COMPONENT -->
-	                    <h2 class="list-header">
+	                    <!-- <h2 class="list-header">
 	                    	{!v.componentWrapper.meta.component.Title}
-	                    </h2>
+	                    </h2> -->
 			            <div class="body-container">
 			                {!v.body}
 			                

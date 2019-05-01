@@ -14,7 +14,7 @@
 				<c:Carousel showTotal="false" seeBullet="{!v.componentWrapper.ShowBullets}" automaticTransition="{!v.componentWrapper.AutomaticTransition}" transitionTime="{!v.componentWrapper.BannerTransitionTime}" loop="{!v.componentWrapper.LoopField}" direction="{!v.componentWrapper.Direction}" fadeInMode="{!v.componentWrapper.BannerType == 'Fade'}" heightValue="{!v.heightValue}">
 				    <aura:iteration items="{!v.dataWrapper.contentWrapper}" var="wrapper">
 						<aura:iteration items="{!wrapper.mediaElements}" var="element">
-					    	<c:CarouselItem imgSrc="{!element.FileURLDesktop}" imgHref="{!wrapper.content.LinkDetailURL}" title="{!wrapper.content.Title}" description="{!wrapper.content.Extract}" buttonLabel="{!wrapper.content.ButtonLabel}" overLapLocation="{!wrapper.content.OverlayQuadrant}" heightValue="{!v.heightValue}"/> 
+					    	<c:CarouselItem imgSrc="{!element.FileURLDesktop}" imgHref="{!wrapper.content.LinkDetailURL}" title="{!wrapper.content.Title}" description="{!wrapper.content.Extract}" buttonLabel="{!wrapper.content.ButtonLabel}" overLapLocation="{!wrapper.content.OverlayQuadrant}" heightValue="{!v.heightValue}" bannerFrameType="{!v.componentWrapper.BannerFrameType}"/> 
 						</aura:iteration>
 					</aura:iteration>
 				</c:Carousel>

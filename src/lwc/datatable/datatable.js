@@ -174,6 +174,11 @@ export default class Datatable extends LightningElement {
         this.sortEvent(configObject);
     }
 
+    getPage(){
+        const sortIndex = new CustomEvent('getpage', { detail: {page:1} });
+        this.dispatchEvent(sortIndex);
+    }
+
     rowActionEvent(event) {
         var actions = { recordId: event.currentTarget.dataset.id,
                        componentName: event.currentTarget.dataset.component,

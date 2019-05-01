@@ -127,6 +127,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Menu__c.Audience__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Menu__c.ComponentName__c</field>
         <readable>true</readable>
     </fieldPermissions>

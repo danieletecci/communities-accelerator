@@ -14,6 +14,10 @@
     </flexiPageRegions>
     <flexiPageRegions>
         <componentInstances>
+            <componentInstanceProperties>
+                <name>relatedListComponentOverride</name>
+                <value>NONE</value>
+            </componentInstanceProperties>
             <componentName>force:relatedListContainer</componentName>
         </componentInstances>
         <mode>Replace</mode>
@@ -92,6 +96,13 @@
                 <value>maintabs</value>
             </componentInstanceProperties>
             <componentName>flexipage:tabset</componentName>
+        </componentInstances>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>objectAPIName</name>
+                <value>Menu__c</value>
+            </componentInstanceProperties>
+            <componentName>AudienceManager</componentName>
         </componentInstances>
         <mode>Replace</mode>
         <name>main</name>

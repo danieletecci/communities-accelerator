@@ -161,6 +161,19 @@ export default class Datatable extends LightningElement {
         this.dispatchEvent(filterItemSelected);
     }
 
+    sortEvent(values){
+        const sortIndex = new CustomEvent('sort', { detail:values });
+        this.dispatchEvent(sortIndex);
+    }
+
+    sortByColumn(event){
+        let direction = event.currentTarget.dataset.direction === 'ASC'?'DESC':'ASC';
+        event.currentTarget.dataset.direction = direction;
+        let currentState = JSON.parse(JSON.stringify(event.currentTarget.dataset));
+        let configObject = Object.assign({}, currentState, {direction});
+        this.sortEvent(configObject);
+    }
+
     rowActionEvent(event) {
         var actions = { recordId: event.currentTarget.dataset.id,
                        componentName: event.currentTarget.dataset.component,
@@ -191,10 +204,5 @@ export default class Datatable extends LightningElement {
         const clearFilter = new CustomEvent('clearfilter');
         this.dispatchEvent(clearFilter);
         this.filterRemove();
-    }
-
-    sortByColumn(event){
-        console.log(event);
-        debugger;
     }
 }

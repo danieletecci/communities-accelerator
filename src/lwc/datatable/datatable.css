@@ -90,7 +90,7 @@
 .datatable[data-is-desktop="true"] .header {
   display: flex;
   justify-content: space-between;
-  order: 1;
+  order: 10;
 }
 .datatable[data-is-desktop="true"] .search-element {
   min-width: 0px;
@@ -116,7 +116,7 @@
   cursor: pointer;
 }
 .datatable[data-is-desktop="true"] .desktop-table {
-  order: 3;
+  order: 30;
 }
 .datatable[data-is-desktop="true"] .desktop-table tr {
   height: 50px;
@@ -140,4 +140,15 @@
 .datatable[data-is-desktop="true"] .applied-filter-container {
   display: flex;
   flex-direction: row-reverse;
+  order: 25;
+}
+.datatable[data-is-desktop="true"] .table__footer {
+  display: flex;
+  position: relative;
+  order: 15;
+  justify-content: flex-end;
+}
+.datatable[data-is-desktop="true"] .table__footer button.remove-filter-btn {
+  position: relative;
+  width: auto;
 }

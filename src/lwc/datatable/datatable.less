@@ -98,7 +98,7 @@
         .header {
             display: flex;
             justify-content: space-between;
-            order: 1;
+            order: 10;
         }
 
         .search-element{
@@ -126,7 +126,7 @@
             
         } 
         .desktop-table{
-          order: 3;
+          order: 30;
         }
         
         .desktop-table tr{
@@ -155,6 +155,17 @@
         .applied-filter-container{
           display: flex;
           flex-direction: row-reverse;
+          order: 25;
+        }
+        .table__footer{
+          display: flex;
+          position: relative;
+          order: 15;
+          justify-content: flex-end;
+          button.remove-filter-btn{
+            position: relative;
+            width: auto;
+          }
         }
     }
 }

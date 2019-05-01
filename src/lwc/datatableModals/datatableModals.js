@@ -66,7 +66,8 @@ export default class DatatableModals extends LightningElement {
     }
 
     toggleOptions(event){
-        return event.currentTarget.parentNode.querySelector('.filterOptions').classList.toggle('slds-hide');
+        this.hideFilterLists();
+        return event.currentTarget.parentNode.querySelector('.filterOptions').classList.remove('slds-hide');
     }
 
     setTypeModal() {
@@ -144,20 +145,25 @@ export default class DatatableModals extends LightningElement {
     }
 
     filtersToApply() {
-        var filters = this.template.querySelectorAll('c-datatable-filters');
-        var values;
+        let filters = this.template.querySelectorAll('c-datatable-filters');
+        let values;
+        this.activeFilters = [];
         filters.forEach(filter => { 
             values = (JSON.parse(JSON.stringify(filter.valueSelect())));
             if (values) {this.activeFilters.push(values);}
         });
     }
 
+    hideFilterLists(){
+        this.template.querySelectorAll('.filterOptions').forEach( (element) => !element.classList.contains('slds-hide')&&element.classList.add('slds-hide') );
+    }
+
     applyFilter() {
+        this.hideFilterLists();
         var activeFilters;
         var filters = [];   
         var filter;
         var dates = this.formatDate();
-
         this.filtersToApply();
         activeFilters = JSON.parse(JSON.stringify(this.activeFilters));   
         activeFilters.forEach(fil =>{
@@ -188,7 +194,7 @@ export default class DatatableModals extends LightningElement {
         if (this.removeAllFilters) { filters = []; }
         const values = JSON.stringify(filters);
         this.filterEvent(values);
-        this.closeModal();
+        !this.isDesktop && this.closeModal();
     }
 
     filterEvent(values) {

@@ -21,14 +21,16 @@
         </div>
 
         <template if:true={appliedFilters}>
-            <template for:each={table.appliedFilters} for:item="filters">
-                <div class="pills-container" key={filters.value1}>
-                    <span class="slds-pill">
-                        <span class="slds-pill__label">{filters.value1}</span>
-                        <img src={closeIcon} data-name={filters.filter.name} data-value={filters.value1} onclick={deleteFilter}>
-                    </span>
-                </div>
-            </template>
+            <div class="applied-filter-container">
+                <template for:each={table.appliedFilters} for:item="filters">
+                    <div class="pills-container" key={filters.value1}>
+                        <span class="slds-pill">
+                            <span class="slds-pill__label">{filters.value1}</span>
+                            <img src={closeIcon} data-name={filters.filter.name} data-value={filters.value1} onclick={deleteFilter}>
+                        </span>
+                    </div>
+                </template>
+            </div>
         </template>
         
         <template if:true={isDesktop}>

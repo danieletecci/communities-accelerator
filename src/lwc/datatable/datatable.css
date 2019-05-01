@@ -137,3 +137,7 @@
   display: flex;
   justify-content: space-between;
 }
+.datatable[data-is-desktop="true"] .applied-filter-container {
+  display: flex;
+  flex-direction: row-reverse;
+}

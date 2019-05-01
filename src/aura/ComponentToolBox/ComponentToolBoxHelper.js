@@ -5,9 +5,10 @@
 		var metaComponentId = component.get('v.componentWrapper.meta.objectId');
 
 		var url = ((sfDomain === undefined || sfDomain == '') ? './detail' : sfDomain) + '/';
-		
+		var namespace = component.get('v.componentWrapper.meta.namepace') === undefined ? '' : component.get('v.componentWrapper.meta.namepace');
+
 		if(componentId != null){
-			url += componentId;
+			url += 'lightning/r/' + namespace + 'Component__c/' + componentId + '/view';
 		}else{
 			if(metaComponentId != null){
 				url += metaComponentId;
@@ -27,7 +28,8 @@
 	
 	newContent : function(component, recordId) {		
 		var sfDomain = component.get('v.salesforceDomain');
-		var url = ((sfDomain === undefined || sfDomain == '') ? './detail' : sfDomain) + '/lightning/r/Content__c/' + recordId + '/view';
+		var namespace = component.get('v.componentWrapper.meta.namepace') === undefined ? '' : component.get('v.componentWrapper.meta.namepace');
+		var url = ((sfDomain === undefined || sfDomain == '') ? './detail' : sfDomain) + '/lightning/r/' + namespace + 'Content__c/' + recordId + '/view';
 		window.open(url);
 	},
 

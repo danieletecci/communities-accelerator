@@ -16,7 +16,7 @@
     <div aura:id="cg_component">
 
          <!-- TOOL BOX COMPONENT -->
-        <c:ComponentToolBox componentType="Block" componentExternalId="{!v.componentExternalId}" componentWrapper="{!v.componentWrapper}" salesforceDomain="{!v.componentWrapper.acceleratorSettings.SalesforceDomain__c}" isLoading="{!v.isLoading}">
+        <c:ComponentToolBox componentType="Block" componentExternalId="{!v.componentExternalId}" componentWrapper="{!v.componentWrapper}" salesforceDomain="{!v.componentWrapper.acceleratorSettings.SalesforceDomain}" isLoading="{!v.isLoading}">
             
 			<aura:if isTrue="{!and(not(v.componentWrapper == null), v.componentWrapper.data.listAllContentIds.length > 0)}">
 				<!-- BLOCK LOC COMPONENT -->

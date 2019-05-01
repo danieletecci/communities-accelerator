@@ -13,6 +13,7 @@
 	<aura:attribute name="isNameEdit"			type="Boolean"		default="false"	/>
 	<aura:attribute name="confirmationModal"	type="Aura.Component"				/>
 	<aura:attribute name="security"				type="Object"						/>
+	<aura:attribute name="namespace"			type="String"						/>
     <aura:attribute name="IsNewFromTemplate"	type="Boolean"		default="false"	/>
 	<aura:attribute name="scheduledTooltip" 	type="String" 						/>
 	<aura:attribute name="publishedTooltip"		type="String" 						/>

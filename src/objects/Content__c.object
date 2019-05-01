@@ -738,6 +738,10 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
         <picklistValues>
             <picklist>BannerFrameType__c</picklist>
             <values>
+                <fullName>Custom</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Hero</fullName>
                 <default>false</default>
             </values>
@@ -865,6 +869,10 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
         <label>Article</label>
         <picklistValues>
             <picklist>BannerFrameType__c</picklist>
+            <values>
+                <fullName>Custom</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>Hero</fullName>
                 <default>false</default>
@@ -998,6 +1006,10 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
         <picklistValues>
             <picklist>BannerFrameType__c</picklist>
             <values>
+                <fullName>Custom</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Hero</fullName>
                 <default>false</default>
             </values>
@@ -1126,6 +1138,10 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
         <picklistValues>
             <picklist>BannerFrameType__c</picklist>
             <values>
+                <fullName>Custom</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Hero</fullName>
                 <default>false</default>
             </values>
@@ -1253,6 +1269,10 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
         <label>Event</label>
         <picklistValues>
             <picklist>BannerFrameType__c</picklist>
+            <values>
+                <fullName>Custom</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>Hero</fullName>
                 <default>false</default>
@@ -1385,6 +1405,10 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
         <label>FAQ</label>
         <picklistValues>
             <picklist>BannerFrameType__c</picklist>
+            <values>
+                <fullName>Custom</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>Hero</fullName>
                 <default>false</default>

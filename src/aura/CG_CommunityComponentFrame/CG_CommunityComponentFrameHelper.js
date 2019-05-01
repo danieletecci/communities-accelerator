@@ -1,8 +1,25 @@
 ({
+	initContent : function(component, event, helper) {
+		var cWrapper = component.get('v.componentWrapper');
+		var componentRecordType = cWrapper.component.RecordTypeDeveloperName;
+		var action = component.get('c.getContentRecordtypeId');
+		action.setParams({
+			componentRecordType: componentRecordType
+		});
+
+	    action.setCallback(this, function(f) {
+            if(f.getState() === "SUCCESS") {
+            	component.set('v.contentRecordtypeId', action.getReturnValue());
+	        }
+	    });
+	    $A.enqueueAction(action);
+	}, 
 	viewComponent : function(component, event, helper) {
 		var cWrapper = component.get('v.componentWrapper');
 		var sfDomain  = cWrapper.acceleratorSettings.SalesforceDomain;
-		window.open(((sfDomain === undefined || sfDomain == '') ? './detail' : sfDomain) + '/' + cWrapper.component.Id, '_blank');
+		var url = ((sfDomain === undefined || sfDomain == '') ? './detail' : sfDomain) + '/lightning/r/' + cWrapper.namespace + 'Component__c/' + cWrapper.component.Id + '/view';
+		
+		window.open(url, '_blank');
 	},
 	viewContent : function(component, event, helper) {
 		var contentDetail = component.find('contentDetail').getElement();
@@ -12,46 +29,13 @@
 			helper.showContentDetail(component, false);
 		}
 	},
-	newContent : function(component, event, helper) {
-		
-		var cWrapper = component.get('v.componentWrapper');
-		var componentRecordTypeId = cWrapper.component.RecordTypeDeveloperName;
-		var navUrl = window.location.pathname;
-		var navId;
-
-		var act = component.get('c.getNavigationId');
-		act.setParams({navigationUrl: navUrl});
-		act.setCallback(this,function(f){
-			if (f.getState()==="SUCCESS"){
-				navId = act.getReturnValue();	
-			}
-		});
-
-		var action = component.get('c.getContentRecordtypeId');
-		action.setParams({
-			componentRecordType: componentRecordTypeId,
-		});
-
-	    action.setCallback(this, function(f) {
-            if(f.getState() === "SUCCESS") {
-            	var contntRecordTypeWp = action.getReturnValue();
-
-				var sfDomain  = cWrapper.acceleratorSettings.SalesforceDomain;
-				if(contntRecordTypeWp.haveContentRecordType){
-
-					var url = ((sfDomain === undefined || sfDomain == '') ? './detail' : sfDomain) + '/lightning/n/NewContent' + '?RecordTypeId=' + contntRecordTypeWp.contentRecordTypeId + '&ComponentId=' + cWrapper.component.Id + '&NavigationId=' + navId;
-				}else{
-					var url = ((sfDomain === undefined || sfDomain == '') ? './detail' : sfDomain) + '/lightning/n/NewContent';
-				}
-				
-				window.open(url);
-
-	        }
-	    });
-	    $A.enqueueAction(act);
-	    $A.enqueueAction(action);
+	newContent : function(component, recordId) {		
+		var sfDomain = component.get('v.componentWrapper.acceleratorSettings.SalesforceDomain');
+		var namespace = component.get('v.componentWrapper.namespace') === undefined ? '' : component.get('v.componentWrapper.namespace');
+		var url = ((sfDomain === undefined || sfDomain == '') ? './detail' : sfDomain) + '/lightning/r/' + namespace + 'Content__c/' + recordId + '/view';
+		window.open(url);
 	},
-	  // the function that reads the url parameters
+	// the function that reads the url parameters
     getPageUrl: function() {
         var sPageURL = decodeURIComponent(window.location.search.substring(1));//,
 			//sURLVariables = sPageURL.split('/'),

@@ -10,32 +10,35 @@
 	<aura:attribute name="salesforceDomain" 	type="String" 					/>
     <aura:attribute name="isLoading" 			type="Boolean" 	default="true" 	/>
     <aura:attribute name="showComponentFrame" 	type="Boolean" 	default="true"	/>
+    <aura:attribute name="isLivePreview"		type="Boolean" 	default="false"	/>
     <aura:attribute name="isTemplate" 			type="Boolean" 	default="false" />
 	<aura:attribute name="contentActivated" 	type="Boolean" 	default="false"	/>
 	<aura:attribute name="navigationURL"		type="String"	default="false" />
     	
     <!-- COMPONENT -->
-    <aura:if isTrue="{!not(empty(v.componentWrapper.meta.component.Id + v.componentWrapper.meta.objectId))}">
+    <aura:if isTrue="{!or(and(v.componentType == 'ClusterSelector', not(empty(v.componentWrapper.meta.component.Id))), and(and(v.componentWrapper.clusterId != null, and(v.componentWrapper.clusterId != 'undefined', v.componentWrapper.clusterId != '')), not(empty(v.componentWrapper.meta.component.Id + v.componentWrapper.meta.objectId))))}">
     	
     	<aura:if isTrue="{!and(or(v.componentWrapper.permissions.isEnabledViewFrame, v.componentWrapper.permissions.isEnabledEditFrame), v.showComponentFrame)}">
-        
+        	
 	        <div id="editFrame">
 	            <div id="{!v.componentWrapper.meta.component.Id + v.componentWrapper.meta.objectId}" onmouseenter="{!c.doShowEditFrame}" onmouseleave="{!c.doHideEditFrame}" class="mainEditFrame">
 	                
 	                <!-- Component Body -->
 	                <div class="componentBody">
 	                    <!-- COMMUNITY COMPONENT -->
-	                    <h2 class="list-header">
-	                    	{!v.componentWrapper.meta.component.Title}
-	                    </h2>
-			            <div class="body-container">
-			                {!v.body}
-			                
-			                <!-- LOADING SPINNER -->
-			                <aura:if isTrue="{!v.isLoading}"> 
-			                    <c:Spinner/>
-			                </aura:if>
-			            </div>
+	                    <aura:if isTrue="{!or(v.componentType == 'ClusterSelector', and(v.componentWrapper.data.contentWrapper != null, v.componentWrapper.data.contentWrapper.length > 0))}">
+		                    <h2 class="list-header">
+		                    	{!v.componentWrapper.meta.component.Title}
+		                    </h2>
+				            <div class="body-container">
+				                {!v.body}
+				                
+				                <!-- LOADING SPINNER -->
+				                <aura:if isTrue="{!v.isLoading}"> 
+				                    <c:Spinner/>
+				                </aura:if>
+				            </div>
+				        </aura:if>
 	                </div>
 
 	                <!-- Component Name -->
@@ -72,49 +75,51 @@
 
 	        <aura:set attribute="else">
 	            <!-- COMMUNITY COMPONENT -->
-	            <h2 class="list-header">
-                	{!v.componentWrapper.meta.component.Title}
-                </h2>
-	            <div class="body-container">
-	                {!v.body}
-	                
-	                <!-- LOADING SPINNER -->
-	                <aura:if isTrue="{!v.isLoading}"> 
-	                    <c:Spinner/>
-	                </aura:if>
-	            </div>
+	            <aura:if isTrue="{!or(v.componentType == 'ClusterSelector', and(v.componentWrapper.data.contentWrapper != null, v.componentWrapper.data.contentWrapper.length > 0))}">
+		            <h2 class="list-header">
+	                	{!v.componentWrapper.meta.component.Title}
+	                </h2>
+		            <div class="body-container">
+		                {!v.body}
+		                
+		                <!-- LOADING SPINNER -->
+		                <aura:if isTrue="{!v.isLoading}"> 
+		                    <c:Spinner/>
+		                </aura:if>
+		            </div>
+		        </aura:if>
 	        </aura:set>
 
 	    </aura:if> 
    
    		<!-- VALIDATIONS -->
         <aura:set attribute="else">
-
-        	<!-- Empty component Validation -->
-	        <aura:if isTrue="{!v.componentExternalId == ''}">
-	            <div class="slds-page-header" style="text-align: center;">
-	                <lightning:layout horizontalAlign="left">
-	                    <lightning:layoutItem size="12" flexibility="auto" padding="around-small">
-	                        <h1 class="slds-page-header__title slds-text-heading_large">{!v.componentType}</h1>
-	                        <p>{!$Label.c.ComponentEmpty}</p>
-	                    </lightning:layoutItem>
-	                </lightning:layout>
-	            </div>
-				
-				<!-- Cluster Validation -->
-	            <aura:set attribute="else">
-	            	<aura:if isTrue="{!and(v.componentWrapper != null, or(v.componentWrapper.clusterId == null, or(v.componentWrapper.clusterId == 'undefined', v.componentWrapper.clusterId == '')))}">
-			            <div class="slds-page-header" style="text-align: center;">
-			                <lightning:layout horizontalAlign="left">
-			                    <lightning:layoutItem size="12" flexibility="auto" padding="around-small">
-			                        <h1 class="slds-page-header__title slds-text-heading_large">{!v.componentType}</h1>
-			                        <p>{!$Label.c.NoClusterSelected}</p>
-			                    </lightning:layoutItem>
-			                </lightning:layout>
-			            </div>  
-			    	</aura:if>
-	            </aura:set>
-
+        	<aura:if isTrue="{!v.isLivePreview}">
+	        	<!-- Empty component Validation -->
+		        <aura:if isTrue="{!v.componentExternalId == ''}">
+		            <div class="slds-page-header" style="text-align: center;">
+		                <lightning:layout horizontalAlign="left">
+		                    <lightning:layoutItem size="12" flexibility="auto" padding="around-small">
+		                        <h1 class="slds-page-header__title slds-text-heading_large">{!v.componentType}</h1>
+		                        <p>{!$Label.c.ComponentEmpty}</p>
+		                    </lightning:layoutItem>
+		                </lightning:layout>
+		            </div>
+					
+					<!-- Cluster Validation -->
+		            <aura:set attribute="else">
+		            	<aura:if isTrue="{!or(v.componentWrapper.clusterId == null, or(v.componentWrapper.clusterId == 'undefined', v.componentWrapper.clusterId == ''))}">
+				            <div class="slds-page-header" style="text-align: center;">
+				                <lightning:layout horizontalAlign="left">
+				                    <lightning:layoutItem size="12" flexibility="auto" padding="around-small">
+				                        <h1 class="slds-page-header__title slds-text-heading_large">{!v.componentType}</h1>
+				                        <p>{!$Label.c.NoClusterSelected}</p>
+				                    </lightning:layoutItem>
+				                </lightning:layout>
+				            </div>  
+				    	</aura:if>
+		            </aura:set>
+		        </aura:if>
 	        </aura:if>	        
         </aura:set> 
     </aura:if>

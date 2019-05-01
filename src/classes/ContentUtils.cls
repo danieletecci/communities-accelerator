@@ -6,7 +6,9 @@ public without sharing virtual class ContentUtils {
         'ArticleList'           => 'Article',
         'AdvanceContent'        => 'AdvanceContent',
         'Banner'                => 'Banner',
-        'Block'                 => 'Block'
+        'Block'                 => 'Block',
+        'EventsRelated'         => 'Event',
+        'ArticlesRelated'       => 'Article'
     };
 
     public class ContentWrapper{

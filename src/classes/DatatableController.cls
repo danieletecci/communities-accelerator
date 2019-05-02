@@ -1,4 +1,4 @@
-public class DatatableController extends ComponentManager {
+public without sharing class DatatableController extends ComponentManager {
 
     public Datatable__c datatable {get;set;}
     public List<DatatableElement__c> datatableElements {get;set;}

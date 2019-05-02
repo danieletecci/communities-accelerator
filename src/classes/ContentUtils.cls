@@ -5,7 +5,10 @@ public without sharing virtual class ContentUtils {
         'FAQ'                   => 'FAQ',
         'ArticleList'           => 'Article',
         'AdvanceContent'        => 'AdvanceContent',
-        'Banner'                => 'Banner'
+        'Banner'                => 'Banner',
+        'Block'                 => 'Block',
+        'EventsRelated'         => 'Event',
+        'ArticlesRelated'       => 'Article'
     };
 
     public class ContentWrapper{
@@ -37,6 +40,7 @@ public without sharing virtual class ContentUtils {
         //SELECT
         fieldSet.add('[CMS]Audience__r.[CMS]ReferenceAudienceExternalIds__c');
         query += 'SELECT ' + GeneralUtils.joinFields(fieldSet) + ', (SELECT Id, [CMS]MediaElement__c, [CMS]Placement__c FROM [CMS]MediaElementAssignments__r WHERE [CMS]Placement__c = \''+ getPlaceForRTComponent(component.RecordTypeDevelopername) +'\') ';     
+        //query += 'SELECT ' + GeneralUtils.joinFields(fieldSet) + ' ';     
         
         //FROM
         query += 'FROM [CMS]Content__c ';
@@ -75,7 +79,7 @@ public without sharing virtual class ContentUtils {
                 }
             }
 
-            if(component.Datasource != null && (component.Datasource == 'All Articles' || component.Datasource == 'All Events') ){
+            if(component.Datasource != null && (component.Datasource == 'All Articles' || component.Datasource == 'All Events' || component.Datasource == 'All Blocks') ){
                 query += 'WHERE Id NOT IN: setContentToExclude AND [CMS]ExternalId__c NOT IN: setContentToExclude AND [CMS]Cluster__c IN: setClusterIds AND Recordtype.DeveloperName =: contentTypeToSearch ';
             }else{
 
@@ -103,11 +107,10 @@ public without sharing virtual class ContentUtils {
         if(component.HierarchicalOrderBy != null){
             query = query.replace('ORDER BY', 'ORDER BY [CMS]Cluster__r.[CMS]ClusterLevel__c ' + component.HierarchicalOrderBy + ', ');
         }       
-        
+
         ContentWrapper cw = new ContentWrapper();
         Map<Id, Content__c> mapContent = new Map<Id, Content__c>((List<Content__c>)Database.query(GeneralUtils.prefix(query)));
-        system.debug('content size: ' + mapContent.size());
-
+        
         if(!mapContent.isEmpty()){
             //Manual Order del contenido
             if(component.Datasource == 'ManualAssignment' && component.OrderBy == 'Manual Order' && contentIdList.size() > 0){
@@ -166,9 +169,11 @@ public without sharing virtual class ContentUtils {
         query += 'SELECT ' + GeneralUtils.joinFields(fieldSet) + ', (SELECT Id, [CMS]MediaElement__c, [CMS]Placement__c FROM [CMS]MediaElementAssignments__r WHERE [CMS]Placement__c = \''+ getPlaceForRTComponent(componentType) +'\') ';
         query += 'FROM [CMS]Content__c ';
         query += 'WHERE Id IN: setAllContentIds ';
-        query += 'ORDER BY ' + orderBy + ' ';
-        query = query.replace('ORDER BY', 'ORDER BY [CMS]Cluster__r.[CMS]ClusterLevel__c ASC, ');
-        query += 'LIMIT ' + pageSize + ' ';
+        query += 'ORDER BY [CMS]Cluster__r.[CMS]ClusterLevel__c ASC';
+        if(String.isNotBlank(orderBy)){
+            query += ', ' + orderBy;
+        }
+        query += ' LIMIT ' + pageSize + ' ';
 
         Decimal offSet = (page-1) * pageSize;
 
@@ -277,7 +282,7 @@ public without sharing virtual class ContentUtils {
 
     private static List<ContentDataWrapper> createContentDataWrappers(List<Content__c> contents){
         List<ContentDataWrapper> listCDW = new List<ContentDataWrapper>();
-
+        
         set<Id> setMediaElementIds = new set<Id>();
         for(Content__c c: contents){
             for(MediaElementAssignment__c m: c.MediaElementAssignments__r){
@@ -326,6 +331,7 @@ public without sharing virtual class ContentUtils {
         else if(componentRT == 'EventList'){contentPlaceToSearch = 'EventImage';}
         else if(componentRT == 'EventsRelated'){contentPlaceToSearch = 'EventImage';}
         else if(componentRT == 'EventDetail'){contentPlaceToSearch = 'EventImage';}
+        else if(componentRT == 'Block'){contentPlaceToSearch = 'BlockImage';}
         return contentPlaceToSearch;
     }
 

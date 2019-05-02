@@ -32,8 +32,9 @@
             <div class="slds-col slds-p-left_x-small slds-size_9-of-12" style="height:100% !important;">
                 <lightning:card class="slds-p-bottom_medium">
                     <aura:set attribute="title">
-                        <!-- https://cg-ca-dev-dt-dev-ed.preview.salesforce-communities.com/?orgId=00D1U000000tUY7&siteId=0DM1U000000Puum&language=en_US  -->
+                        
                         <aura:if isTrue="{! v.url}">
+                            <!-- https://DOMAIN.preview.salesforce-communities.com/?orgId=XXXXXXXXXXXXXXX&siteId=XXXXXXXXXXXXXXX&language=en_US-->
                             <iframe aura:id="iframe" width="100%" height="100%" src="{!v.url}" onload="{!c.onLogin}" />
                             <div class="slds-grid slds-grid_vertical-align-center content-centered" style="{! (v.isLoading) ? '' : 'display:none;'}">
                                 <div class="slds-col">

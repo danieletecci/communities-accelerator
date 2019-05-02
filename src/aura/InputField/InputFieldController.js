@@ -43,7 +43,7 @@
     	helper.validateWithoutErrorMessage(component, event, helper);
 	},
     phoneChanged : function(component, event, helper){
-        if(component.get('v.fieldConfiguration.displayType') == 'Phone'){
+        if(component.get('v.fieldConfiguration.displayType') == 'Phone' && component.find("error-msg").getElement() != null){
             helper.setValueOnFormData(component);
             helper.validate(component, event, helper);
         }

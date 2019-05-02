@@ -1,0 +1,6 @@
+lightning-timepicker .slds-listbox{
+    position: fixed !important;
+    left: 50% !important;
+    top: 61% !important;
+    width: 30% !important;
+}

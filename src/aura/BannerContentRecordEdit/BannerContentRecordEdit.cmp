@@ -49,8 +49,10 @@
                         value="{!v.contentData.ButtonLabel}" />
                     <br />
                     <!--Link-->
-                    <c:LookupInput objectAPIName="[CMS]Navigation__c" IconName="standard:link"
+                    <aura:if isTrue="{!v.contentData.Id}">
+                        <c:LookupInput objectAPIName="[CMS]Navigation__c" IconName="standard:link"
                         selectedRecordId="{!v.contentData.LinkDetail}" label="{!$Label.c.BannerContentDetailLink}" />
+                    </aura:if>
                     <br />
                     <ui:outputText value="{!$Label.c.BannerContentDetailLayout}" /><br />
                     <!--Choose Layout-->

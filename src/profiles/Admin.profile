@@ -587,6 +587,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Component__c.Title__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Component__c.NumberOfColumns__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>ContentAssignment__c.ExternalId__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1170,7 +1180,7 @@
         <field>Datatable__c.WhereCondition__c</field>
         <readable>true</readable>
     </fieldPermissions>
-	<fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>FormElement__c.ConfirmationError__c</field>
         <readable>true</readable>
@@ -1202,11 +1212,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>FormElement__c.FieldAPIName__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>FormElement__c.FieldLabel__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1233,11 +1238,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>FormElement__c.MaxLength__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>FormElement__c.ObjectAPIName__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1463,6 +1463,14 @@
         <recordType>Component__c.ArticlesRelated</recordType>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Component__c-Component%3A Search - Page Layout</layout>
+        <recordType>Component__c.Search</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Component__c-Component%3A Block - Page Layout</layout>
+        <recordType>Component__c.Block</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>ContentAssignment__c-Component Content Assignment Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -1487,6 +1495,10 @@
     <layoutAssignments>
         <layout>Content__c-Content%3A Article - Page Layout</layout>
         <recordType>Content__c.Article</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Content__c-Content%3A Block - Page Layout</layout>
+        <recordType>Content__c.Block</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Navigation__c-Navigation Layout</layout>
@@ -1528,7 +1540,7 @@
     <layoutAssignments>
         <layout>Datatable__c-List View Layout</layout>
     </layoutAssignments>
-	<layoutAssignments>
+    <layoutAssignments>
         <layout>FormElement__c-Form Element Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -1624,7 +1636,7 @@
         <tab>Sitemap</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
-	<tabVisibilities>
+    <tabVisibilities>
         <tab>Form__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
@@ -1827,7 +1839,7 @@
         <object>Datatable__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
-	<objectPermissions>
+    <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>
         <allowEdit>true</allowEdit>
@@ -1981,6 +1993,11 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
+        <recordType>Component__c.Block</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
         <recordType>Content__c.AdvanceContent</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
@@ -2007,6 +2024,11 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
+        <recordType>Content__c.Block</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
         <recordType>DatatableAction__c.GlobalAction</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
@@ -2015,7 +2037,7 @@
         <recordType>DatatableAction__c.RowAction</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
-	<recordTypeVisibilities>
+    <recordTypeVisibilities>
         <default>false</default>
         <recordType>FormElement__c.Component</recordType>
         <visible>false</visible>

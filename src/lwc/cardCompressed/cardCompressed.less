@@ -6,21 +6,23 @@
     max-height: 140px;
 }
 
-.container-info { 
-    padding-left: 14px
-}
-
 .img-container {
     height: 100%;
     .img {
         height: 100%;
+        @media screen and (min-width: 768px){
+            height: 100px;
+        }
         width: auto;
     }
 }
 
 .header {
     font-family: 'Roboto';
-    padding: 0 5px;
+    margin-bottom: 5px;
+    @media screen and (max-width: 768px){
+        padding: 0 5px;
+    }
 }
 
 .head-event { 

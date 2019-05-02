@@ -93,7 +93,7 @@ public with sharing class ORGInitUtils {
         upsertComponents();
         
         TriggersHandlerManager.byPassTrigger('BrandTriggers');
-        upsertBrands();
+        //upsertBrands();
         
         TriggersHandlerManager.byPassTrigger('TranslationTriggers');
         upsertTranslation();
@@ -101,18 +101,18 @@ public with sharing class ORGInitUtils {
         TriggersHandlerManager.byPassTrigger('MenuAssignmentTriggers');
         upsertMenuAssigment();
 
-        TriggersHandlerManager.byPassTrigger('RecipeTriggers');
-        upsertRecipe();
+        //TriggersHandlerManager.byPassTrigger('RecipeTriggers');
+        //upsertRecipe();
         
-        TriggersHandlerManager.byPassTrigger('RecipeIngredientTriggers');
-        upsertRecipeIngredient();
+        //TriggersHandlerManager.byPassTrigger('RecipeIngredientTriggers');
+        //upsertRecipeIngredient();
         
-        TriggersHandlerManager.byPassTrigger('RecipeStepTriggers');
-        upsertRecipeStep();
+        //TriggersHandlerManager.byPassTrigger('RecipeStepTriggers');
+        //upsertRecipeStep();
         
-        upsertContentCartItems();
+        //upsertContentCartItems();
 
-        upsertSearchDetails();
+        upsertSearchDetails(); 
         
         TriggersHandlerManager.byPassTrigger('DatatableTriggers');
         upsertListViews();
@@ -509,19 +509,17 @@ public with sharing class ORGInitUtils {
         Content__c advanceContent        = new Content__c(RecordTypeId = getRTId('Content__c-AdvanceContent').Id,    Name = 'DUMMY_Advnce Content 1',      ExternalId__c = 'DUMMY_cont_AC1',         Cluster__c = getId('DONTG'),   Category__c = getId('DUMMY_ComponentesdePC'), HTMLContent__c = '<iframe width="560" height="315" src="https://www.youtube.com/embed/zeSxHleDbxA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br/><br/><!-- Menú de navegación del sitio --><ul class="navbar">  <li><a href="indice.html">Página principal</a>  <li><a href="meditaciones.html">Meditaciones</a>  <li><a href="ciudad.html">Mi ciudad</a>  <li><a href="enlaces.html">Enlaces</a></ul><br/><!-- Contenido principal --><h1>BIENVENIDO [!user.name] (Tu jefe es: [!user.manager.name]): Mi primera página con estilo</h1><p>¡Bienvenido a mi primera página con estilo!<p>No tiene imágenes, pero tiene estilo.También tiene enlaces, aunque no te lleven aningún sitio…<p>Debería haber más cosas aquí, pero todavía no séqué poner.<br/><br/><!-- Firma y fecha de la página, ¡sólo por cortesía! --><address>Creada el 5 de abril de 2004<br>  por mí mismo.</address>', Status__c = 'Draft');
         Content__c event1                = new Content__c(RecordTypeId = getRTId('Content__c-Event').Id,             Name = 'DUMMY_Event 1',               ExternalId__c = 'DUMMY_cont_Event1',      Cluster__c = getId('DONTG'),   Category__c = getId('DUMMY_notebooksyAccesorios'), Title__c = 'Lorem Ipsum Event 1', Extract__c = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry', Body__c = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', Status__c='Draft');
         Content__c event2                = new Content__c(RecordTypeId = getRTId('Content__c-Event').Id,             Name = 'DUMMY_Event 2',               ExternalId__c = 'DUMMY_cont_Event2',      Cluster__c = getId('On_Am'),  Category__c = getId('DUMMY_ImpresorasyAccesorios'), Title__c = 'Lorem Ipsum Event 2', Extract__c = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry',Body__c = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', Status__c='Draft');
-        Content__c news1                 = new Content__c(RecordTypeId = getRTId('Content__c-News').Id,              Name = 'DUMMY_News 1',                ExternalId__c = 'DUMMY_cont_News1',       Cluster__c = getId('DONTG'),   Category__c = getId('DUMMY_PeriféricosdePC'), Title__c = 'Lorem Ipsum News 1', Extract__c = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry', Body__c = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', Status__c = 'Draft');
-        Content__c news2                 = new Content__c(RecordTypeId = getRTId('Content__c-News').Id,              Name = 'DUMMY_News 1',                ExternalId__c = 'DUMMY_cont_News2',       Cluster__c = getId('On_Eu'),   Category__c = getId('DUMMY_ImpresorasyAccesorios'), Title__c = 'Lorem Ipsum News 2', Extract__c = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry',  Body__c = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', Status__c = 'Draft');
+        Content__c news1                 = new Content__c(RecordTypeId = getRTId('Content__c-Article').Id,           Name = 'DUMMY_News 1',                ExternalId__c = 'DUMMY_cont_News1',       Cluster__c = getId('DONTG'),   Category__c = getId('DUMMY_PeriféricosdePC'), Title__c = 'Lorem Ipsum News 1', Extract__c = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry', Body__c = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', Status__c = 'Draft');
+        Content__c news2                 = new Content__c(RecordTypeId = getRTId('Content__c-Article').Id,           Name = 'DUMMY_News 1',                ExternalId__c = 'DUMMY_cont_News2',       Cluster__c = getId('On_Eu'),   Category__c = getId('DUMMY_ImpresorasyAccesorios'), Title__c = 'Lorem Ipsum News 2', Extract__c = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry',  Body__c = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', Status__c = 'Draft');
         Content__c faq1                  = new Content__c(RecordTypeId = getRTId('Content__c-FAQ').Id,               Name = 'DUMMY_FAQ 1',                 ExternalId__c = 'DUMMY_cont_FAQ1',        Cluster__c = getId('DONTG'),   Category__c = getId('DUMMY_CelularesyTelefonos'), Title__c = 'What is Lorem Ipsum?', Extract__c = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry', Status__c = 'Draft');
         Content__c faq2                  = new Content__c(RecordTypeId = getRTId('Content__c-FAQ').Id,               Name = 'DUMMY_FAQ 1',                 ExternalId__c = 'DUMMY_cont_FAQ2',        Cluster__c = getId('On_Am'),  Category__c = null, Title__c = 'Why do we use it?', Extract__c = 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.', Status__c = 'Draft');
-        Content__c recipe                = new Content__c(RecordTypeId = getRTId('Content__c-Recipe').Id,            Name = 'DUMMY_Recipe',                ExternalId__c = 'DUMMY_cont_Recipe',      Cluster__c = getId('DONTG'),   Title__c = 'Lorem Ipsum Recipe 1', Extract__c = 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.', Status__c = 'Draft');
-        Content__c recipe2               = new Content__c(RecordTypeId = getRTId('Content__c-Recipe').Id,            Name = 'DUMMY_Recipe 2',              ExternalId__c = 'DUMMY_cont_Recipe_2',    Cluster__c = getId('On_Am'),  Title__c = 'Lorem Ipsum Recipe 2', Extract__c = 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout Recipe 2.', Status__c = 'Draft');
  
         //templates
         Content__c advanceContTemplate   = new Content__c(RecordTypeId = getRTId('Content__c-AdvanceContent').Id,    Name = 'DUMMY_Advnce Content 1 Template',      ExternalId__c = 'DUMMY_cont_AC1Template',         Cluster__c = getId('DONTG'),   Category__c = getId('DUMMY_ComponentesdePC'), HTMLContent__c = '<iframe width="560" height="315" src="https://www.youtube.com/embed/zeSxHleDbxA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br/><br/><!-- Menú de navegación del sitio --><ul class="navbar">  <li><a href="indice.html">Página principal</a>  <li><a href="meditaciones.html">Meditaciones</a>  <li><a href="ciudad.html">Mi ciudad</a>  <li><a href="enlaces.html">Enlaces</a></ul><br/><!-- Contenido principal --><h1>BIENVENIDO [!user.name] (Tu jefe es: [!user.manager.name]): Mi primera página con estilo</h1><p>¡Bienvenido a mi primera página con estilo!<p>No tiene imágenes, pero tiene estilo.También tiene enlaces, aunque no te lleven aningún sitio…<p>Debería haber más cosas aquí, pero todavía no séqué poner.<br/><br/><!-- Firma y fecha de la página, ¡sólo por cortesía! --><address>Creada el 5 de abril de 2004<br>  por mí mismo.</address>', Status__c='Draft', IsTemplate__c = true, TemplateDescription__c = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.');
         Content__c event1Template        = new Content__c(RecordTypeId = getRTId('Content__c-Event').Id,             Name = 'DUMMY_Event 1 Template',               ExternalId__c = 'DUMMY_cont_Event1Template',      Cluster__c = getId('DONTG'),   Category__c = getId('DUMMY_notebooksyAccesorios'), Title__c = 'Lorem Ipsum Event 1', Extract__c = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry', Body__c = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', Status__c = 'Draft', IsTemplate__c = true, TemplateDescription__c = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.');
         Content__c event2Template        = new Content__c(RecordTypeId = getRTId('Content__c-Event').Id,             Name = 'DUMMY_Event 2 Template',               ExternalId__c = 'DUMMY_cont_Event2Template',      Cluster__c = getId('On_Am'),  Category__c = getId('DUMMY_ImpresorasyAccesorios'), Title__c = 'Lorem Ipsum Event 2', Extract__c = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry',Body__c = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', Status__c = 'Draft', IsTemplate__c = true, TemplateDescription__c = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.');
-        Content__c news1Template         = new Content__c(RecordTypeId = getRTId('Content__c-News').Id,              Name = 'DUMMY_News 1 Template',                ExternalId__c = 'DUMMY_cont_News1Template',       Cluster__c = getId('DONTG'),   Category__c = getId('DUMMY_PeriféricosdePC'), Title__c = 'Lorem Ipsum News 1', Extract__c = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry', Body__c = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', Status__c = 'Draft', IsTemplate__c = true, TemplateDescription__c = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.');
-        Content__c news2Template         = new Content__c(RecordTypeId = getRTId('Content__c-News').Id,              Name = 'DUMMY_News 1 Template',                ExternalId__c = 'DUMMY_cont_News2Template',       Cluster__c = getId('On_Eu'),   Category__c = getId('DUMMY_ImpresorasyAccesorios'), Title__c = 'Lorem Ipsum News 2', Extract__c = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry',  Body__c = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', Status__c = 'Draft', IsTemplate__c = true, TemplateDescription__c = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.');
+        Content__c news1Template         = new Content__c(RecordTypeId = getRTId('Content__c-Article').Id,              Name = 'DUMMY_News 1 Template',                ExternalId__c = 'DUMMY_cont_News1Template',       Cluster__c = getId('DONTG'),   Category__c = getId('DUMMY_PeriféricosdePC'), Title__c = 'Lorem Ipsum News 1', Extract__c = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry', Body__c = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', Status__c = 'Draft', IsTemplate__c = true, TemplateDescription__c = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.');
+        Content__c news2Template         = new Content__c(RecordTypeId = getRTId('Content__c-Article').Id,              Name = 'DUMMY_News 1 Template',                ExternalId__c = 'DUMMY_cont_News2Template',       Cluster__c = getId('On_Eu'),   Category__c = getId('DUMMY_ImpresorasyAccesorios'), Title__c = 'Lorem Ipsum News 2', Extract__c = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry',  Body__c = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', Status__c = 'Draft', IsTemplate__c = true, TemplateDescription__c = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.');
 
         
         contentsList.add(banner1);
@@ -533,8 +531,6 @@ public with sharing class ORGInitUtils {
         contentsList.add(news2);
         contentsList.add(faq1);
         contentsList.add(faq2);
-        contentsList.add(recipe);
-        contentsList.add(recipe2);
         contentsList.add(advanceContTemplate);
         contentsList.add(event1Template);
         contentsList.add(event2Template);
@@ -560,10 +556,6 @@ public with sharing class ORGInitUtils {
         mediaElementAssignmentList.add(new MediaElementAssignment__c(Content__c = event1.Id, MediaElement__c = getId('DUMMY_meVeleros'), ExternalId__c = 'DUMMY_Event_meVelerosDet_MeAs', Placement__c = 'EventImageDetail'));
         mediaElementAssignmentList.add(new MediaElementAssignment__c(Content__c = event2.Id, MediaElement__c = getId('DUMMY_meOtonio'), ExternalId__c = 'DUMMY_Event2_meOtonioList_MeAs', Placement__c = 'EventImageList'));
         mediaElementAssignmentList.add(new MediaElementAssignment__c(Content__c = event2.Id, MediaElement__c = getId('DUMMY_meOtonio'), ExternalId__c = 'DUMMY_Event2_meOtonioDet_MeAs', Placement__c = 'EventImageDetail'));
-        mediaElementAssignmentList.add(new MediaElementAssignment__c(Content__c = recipe.Id, MediaElement__c = getId('DUMMY_meEstatuas'), ExternalId__c = 'DUMMY_Recipe_meEstatuasList_MeAs', Placement__c = 'RecipeImageList'));
-        mediaElementAssignmentList.add(new MediaElementAssignment__c(Content__c = recipe.Id, MediaElement__c = getId('DUMMY_meEstatuas'), ExternalId__c = 'DUMMY_Recipe_meEstatuasDet_MeAs', Placement__c = 'RecipeImageDetail'));
-        mediaElementAssignmentList.add(new MediaElementAssignment__c(Content__c = recipe2.Id, MediaElement__c = getId('DUMMY_meAbeja'), ExternalId__c = 'DUMMY_Recipe2_meAbejaList_MeAs', Placement__c = 'RecipeImageList'));
-        mediaElementAssignmentList.add(new MediaElementAssignment__c(Content__c = recipe2.Id, MediaElement__c = getId('DUMMY_meAbeja'), ExternalId__c = 'DUMMY_Recipe2_meAbejaDet_MeAs', Placement__c = 'RecipeImageDetail'));
         mediaElementAssignmentList.add(new MediaElementAssignment__c(Content__c = news1Template.Id, MediaElement__c = getId('DUMMY_meEstatuas'), ExternalId__c = 'DUMMY_News_meEstatuasList_MeAsTemplate', Placement__c = 'NewsImageList'));
         mediaElementAssignmentList.add(new MediaElementAssignment__c(Content__c = news1Template.Id, MediaElement__c = getId('DUMMY_meEstatuas'), ExternalId__c = 'DUMMY_News_meEstatuasDet_MeAsTemplate', Placement__c = 'NewsImageDetail'));
         mediaElementAssignmentList.add(new MediaElementAssignment__c(Content__c = news2Template.Id, MediaElement__c = getId('DUMMY_meAbeja'), ExternalId__c = 'DUMMY_News2_meAbejaList_MeAsTemplate', Placement__c = 'NewsImageList'));
@@ -578,8 +570,6 @@ public with sharing class ORGInitUtils {
         
         /* Inserta 3 TagAssignment - BEGIN */
         tagAssignmentList.add(new TagAssignment__c(Tag__c = getId('DUMMY_home'), Content__c = banner1.Id, ExternalId__c = 'DUMMY_home_Banner1_TagAs'));
-        tagAssignmentList.add(new TagAssignment__c(Tag__c = getId('DUMMY_home'), Content__c = recipe.Id, ExternalId__c = 'DUMMY_home_Recipe1_TagAs'));
-        tagAssignmentList.add(new TagAssignment__c(Tag__c = getId('DUMMY_home'), Content__c = recipe2.Id, ExternalId__c = 'DUMMY_home_Recipe2_TagAs'));
         
         result = Database.upsert(tagAssignmentList, TagAssignment__c.Fields.ExternalId__c, true);
         /* Inserta 3 TagAssignment - END */
@@ -594,18 +584,18 @@ public with sharing class ORGInitUtils {
         List<TagAssignment__c> tagAssignmentList = new List<TagAssignment__c>();
         
         Component__c comp_Banner            = new Component__c(RecordTypeId = getRTId('Component__c-Banner').Id,            Name = 'DUMMY_Banner',            ExternalId__c = 'DUMMY_CBanner',           Cluster__c = getId('DONTG'), Datasource__c = 'Tags', HierarchicalOrderBy__c = '', OrderBy__c = 'Name DESC', AutomaticTransition__c = true, Orientation__c = 'Horizontal-Landscape', BannerTransitionTime__c = 2.000, BannerType__c = 'Carousel', Loop__c = false, BannerFrameType__c = 'Hero', ShowBullets__c = true, Direction__c = 'Right', LinkDetail__c = null , Status__c='Inactive');
-        Component__c comp_Event             = new Component__c(RecordTypeId = getRTId('Component__c-Event').Id,             Name = 'DUMMY_Event',             ExternalId__c = 'DUMMY_CEvent',            Cluster__c = getId('DONTG'), Datasource__c = 'All Events',        HierarchicalOrderBy__c = '', OrderBy__c = 'Name DESC', ExcludePastEvents__c  = false, EventsType__c = 'Landscape', PageSize__c = 3, PagingType__c = 'Carousel', LinkDetail__c  = getId('DUMMY_Nav_eventDetail') , Status__c='Inactive');
+        Component__c comp_Event             = new Component__c(RecordTypeId = getRTId('Component__c-EventList').Id,             Name = 'DUMMY_Event',             ExternalId__c = 'DUMMY_CEvent',            Cluster__c = getId('DONTG'), Datasource__c = 'All Events',        HierarchicalOrderBy__c = '', OrderBy__c = 'Name DESC', ExcludePastEvents__c  = false, EventsType__c = 'Landscape', PageSize__c = 3, PagingType__c = 'Carousel', LinkDetail__c  = getId('DUMMY_Nav_eventDetail') , Status__c='Inactive');
         Component__c comp_EventDetail       = new Component__c(RecordTypeId = getRTId('Component__c-EventDetail').Id,       Name = 'DUMMY_Event Detail',      ExternalId__c = 'DUMMY_CEventDetail',      Cluster__c = getId('DONTG'), Status__c='Inactive');
-        Component__c comp_RelatedEvent      = new Component__c(RecordTypeId = getRTId('Component__c-RelatedEvents').Id,     Name = 'DUMMY_Related Event',     ExternalId__c = 'DUMMY_CRelatedEvent',     Cluster__c = getId('DONTG'), Datasource__c = 'ParentComponentBehaviour', HierarchicalOrderBy__c = '', OrderBy__c = 'Name DESC', ExcludePastEvents__c  = false, EventsType__c = 'Landscape', PageSize__c = 3, PagingType__c = 'Carousel', LinkDetail__c  = getId('DUMMY_Nav_eventDetail'), Status__c='Inactive' );
-        Component__c comp_News              = new Component__c(RecordTypeId = getRTId('Component__c-News').Id,              Name = 'DUMMY_News',              ExternalId__c = 'DUMMY_CNews',             Cluster__c = getId('DONTG'), Datasource__c = 'ManualAssignment', HierarchicalOrderBy__c = '', OrderBy__c = 'Name DESC', NewsType__c = 'Landscape', PageSize__c = 3, PagingType__c = 'Carousel', LinkDetail__c  = getId('DUMMY_Nav_newsDetail'), Status__c='Inactive');
-        Component__c comp_NewsDetail        = new Component__c(RecordTypeId = getRTId('Component__c-NewsDetail').Id,        Name = 'DUMMY_News Detail',       ExternalId__c = 'DUMMY_CNewsDetail',       Cluster__c = getId('DONTG'),  Status__c='Inactive');
-        Component__c comp_RelatedNews       = new Component__c(RecordTypeId = getRTId('Component__c-RelatedNews').Id,       Name = 'DUMMY_Related News',      ExternalId__c = 'DUMMY_CRelatedNews',      Cluster__c = getId('DONTG'), Datasource__c = 'ParentComponentBehaviour', HierarchicalOrderBy__c = '', OrderBy__c = 'Name DESC', NewsType__c = 'Landscape', PageSize__c = 3, PagingType__c = 'Carousel', LinkDetail__c  = getId('DUMMY_Nav_newsDetail') , Status__c='Inactive');
+        Component__c comp_RelatedEvent      = new Component__c(RecordTypeId = getRTId('Component__c-EventsRelated').Id,     Name = 'DUMMY_Related Event',     ExternalId__c = 'DUMMY_CRelatedEvent',     Cluster__c = getId('DONTG'), Datasource__c = 'ParentComponentBehaviour', HierarchicalOrderBy__c = '', OrderBy__c = 'Name DESC', ExcludePastEvents__c  = false, EventsType__c = 'Landscape', PageSize__c = 3, PagingType__c = 'Carousel', LinkDetail__c  = getId('DUMMY_Nav_eventDetail'), Status__c='Inactive' );
+        Component__c comp_News              = new Component__c(RecordTypeId = getRTId('Component__c-ArticleList').Id,              Name = 'DUMMY_News',              ExternalId__c = 'DUMMY_CNews',             Cluster__c = getId('DONTG'), Datasource__c = 'ManualAssignment', HierarchicalOrderBy__c = '', OrderBy__c = 'Name DESC', ArticleType__c = 'Landscape', PageSize__c = 3, PagingType__c = 'Carousel', LinkDetail__c  = getId('DUMMY_Nav_newsDetail'), Status__c='Inactive');
+        Component__c comp_NewsDetail        = new Component__c(RecordTypeId = getRTId('Component__c-ArticleDetail').Id,        Name = 'DUMMY_News Detail',       ExternalId__c = 'DUMMY_CNewsDetail',       Cluster__c = getId('DONTG'),  Status__c='Inactive');
+        Component__c comp_RelatedNews       = new Component__c(RecordTypeId = getRTId('Component__c-ArticlesRelated').Id,       Name = 'DUMMY_Related News',      ExternalId__c = 'DUMMY_CRelatedNews',      Cluster__c = getId('DONTG'), Datasource__c = 'ParentComponentBehaviour', HierarchicalOrderBy__c = '', OrderBy__c = 'Name DESC', ArticleType__c = 'Landscape', PageSize__c = 3, PagingType__c = 'Carousel', LinkDetail__c  = getId('DUMMY_Nav_newsDetail') , Status__c='Inactive');
         Component__c comp_AdvanceContent    = new Component__c(RecordTypeId = getRTId('Component__c-AdvanceContent').Id,    Name = 'DUMMY_Advance Content',   ExternalId__c = 'DUMMY_CAdvanceContent',   Cluster__c = getId('DONTG'), Datasource__c = 'ManualAssignment', HierarchicalOrderBy__c = '', OrderBy__c = 'Name DESC' , Status__c='Inactive');
         Component__c comp_FAQ               = new Component__c(RecordTypeId = getRTId('Component__c-FAQ').Id,               Name = 'DUMMY_FAQ',               ExternalId__c = 'DUMMY_CFAQ',              Cluster__c = getId('DONTG'), Datasource__c = 'Categories', HierarchicalOrderBy__c = '', OrderBy__c = 'Name DESC' , Status__c='Inactive');
-        Component__c comp_ClusterSelector   = new Component__c(RecordTypeId = getRTId('Component__c-Cluster_Selector').Id,  Name = 'DUMMY_Cluster Selector',  ExternalId__c = 'DUMMY_CClusterSelector',  Cluster__c = getId('DONTG'), FirstCluster__c = getId('DONTG') , Status__c='Inactive');
+        Component__c comp_ClusterSelector   = new Component__c(RecordTypeId = getRTId('Component__c-ClusterSelector').Id,  Name = 'DUMMY_Cluster Selector',  ExternalId__c = 'DUMMY_CClusterSelector',  Cluster__c = getId('DONTG'), FirstCluster__c = getId('DONTG') , Status__c='Inactive');
         Component__c comp_Menu              = new Component__c(RecordTypeId = getRTId('Component__c-Menu').Id,              Name = 'DUMMY_Menu',              ExternalId__c = 'DUMMY_CMenu',             Cluster__c = getId('DONTG'), NavigationMode__c = 'Horizontal-Simple', HasDelay__c = true, DelayTime__c = 500 , Status__c='Inactive');
         Component__c comp_Search            = new Component__c(RecordTypeId = getRTId('Component__c-Search').Id,            Name = 'DUMMY_Search',            ExternalId__c = 'DUMMY_CSearch',           Cluster__c = getId('DONTG'), SearchPlaceholder__c = 'GlobalSearchPlaceholder', PredictiveSearchEnabled__c = true, Status__c='Inactive');
-        Component__c comp_LanguageSelector  = new Component__c(RecordTypeId = getRTId('Component__c-Language_Selector').Id, Name = 'DUMMY_Language Selector', ExternalId__c = 'DUMMY_CLanguageSelector', Cluster__c = getId('DONTG'), FirstCluster__c = getId('DONTG'), Status__c='Inactive' );
+        Component__c comp_LanguageSelector  = new Component__c(RecordTypeId = getRTId('Component__c-LanguageSelector').Id, Name = 'DUMMY_Language Selector', ExternalId__c = 'DUMMY_CLanguageSelector', Cluster__c = getId('DONTG'), FirstCluster__c = getId('DONTG'), Status__c='Inactive' );
 
         componentsList.add(comp_Banner);
         componentsList.add(comp_Event);
@@ -653,10 +643,10 @@ public with sharing class ORGInitUtils {
     }
 
     private static void upsertSearchDetails(){
-        List<SearchDetail__c> dsList = new List<SearchDetail__c>();
+        List<SearchSetting__c> dsList = new List<SearchSetting__c>();
         
         /* Inserta 3 SearchDetail - BEGIN */
-        dsList.add(new SearchDetail__c(
+        dsList.add(new SearchSetting__c(
                                                             Name                                = 'Banner',
                                                             ExternalId__c                       = 'Dummy_SearchBanner',
                                                             Component__c                        = getId('DUMMY_CSearch'),
@@ -673,7 +663,7 @@ public with sharing class ORGInitUtils {
                                                             URLParameterName__c                 = 'Id',
                                                             Active__c                           = true));
 
-        dsList.add(new SearchDetail__c(
+        dsList.add(new SearchSetting__c(
                                                             Name                                = 'Event',
                                                             ExternalId__c                       = 'Dummy_SearchEvent',
                                                             Component__c                        = getId('DUMMY_CSearch'),
@@ -690,7 +680,7 @@ public with sharing class ORGInitUtils {
                                                             URLParameterName__c                 = 'Id',
                                                             Active__c                           = true));
 
-        dsList.add(new SearchDetail__c(
+        dsList.add(new SearchSetting__c(
                                                             Name                                = 'News',
                                                             ExternalId__c                       = 'Dummy_SearchNews',
                                                             Component__c                        = getId('DUMMY_CSearch'),
@@ -699,7 +689,7 @@ public with sharing class ORGInitUtils {
                                                             ObjectAPIName__c                    = 'Content__c',
                                                             FieldsToSearch__c                   = 'Name',
                                                             FieldsToShow__c                     = 'Name,Description__c,Status__c',
-                                                            RecordTypeDevName__c                = 'News',
+                                                            RecordTypeDevName__c                = 'Article',
                                                             Filter__c                           = null,
                                                             IconName__c                         = 'standard:customer_portal_users',
                                                             PredictiveSearchRecordsNumber__c    = 3,
@@ -707,14 +697,13 @@ public with sharing class ORGInitUtils {
                                                             URLParameterName__c                 = 'Id',
                                                             Active__c                           = true));
         
-        List<Database.UpsertResult> results = Database.upsert(dsList, SearchDetail__c.Fields.ExternalId__c, true);
-        
+        List<Database.UpsertResult> results = Database.upsert(dsList, SearchSetting__c.Fields.ExternalId__c, true);
+         
         addToMapRecords(dsList);
         /* Inserta 3 SearchDetail - END */
     }
 
-    private static void upsertBrands() {
-        /* Inserta 3 Brands - BEGIN */
+   /* private static void upsertBrands() {
         List<Brand__c> brandList = new List<Brand__c>();
         
         Brand__c Brand1 = new Brand__c(Name='Brand 1', ExternalId__c='DUMMY_Brand1', BrandContent__c = getId('DUMMY_cont_Estatuas'), Cluster__c = getId('DONTG'), Status__c = 'Inactive');
@@ -728,11 +717,9 @@ public with sharing class ORGInitUtils {
         List<Database.UpsertResult> result = Database.upsert(brandList, Brand__c.Fields.ExternalId__c, true);
         
         addToMapRecords(brandList);
-        /* Inserta 3 Brands - END */
-    }
+    }*/
         
-    private static void upsertContentCartItems(){
-        /* Inserta 3 ContentCartItems - BEGIN */
+/*    private static void upsertContentCartItems(){
         List<ContentCartItem__c> contentCartList = new List<ContentCartItem__c>();
 
 
@@ -749,8 +736,8 @@ public with sharing class ORGInitUtils {
         List<Database.UpsertResult> result = Database.upsert(contentCartList, ContentCartItem__c.Fields.ExternalId__c, true);
         
         addToMapRecords(contentCartList);
-        /* Inserta 3 ContentCartItems - END */
-    }
+         Inserta 3 ContentCartItems - END 
+    }*/
     
     private static void upsertTranslation(){
         /* Inserta 3 Translation - BEGIN */
@@ -787,8 +774,8 @@ public with sharing class ORGInitUtils {
         /* Inserta 3 MenuAssignment - END */
     }
     
-    private static void upsertRecipe(){ 
-        /* Inserta 2 Recipe__c - BEGIN */
+    /*private static void upsertRecipe(){ 
+         Inserta 2 Recipe__c - BEGIN 
         List<Recipe__c> recipeList = new List<Recipe__c>();
         
         Recipe__c recipe1 =  new Recipe__c(Name = 'DUMMY_Recipe1', ExternalId__c='DUMMY_Ex_Recipe1', Content__c = getId('DUMMY_cont_Recipe'), Cluster__c = getId('DONTG'), Status__c='Inactive');
@@ -800,11 +787,11 @@ public with sharing class ORGInitUtils {
         List<Database.UpsertResult> result = Database.upsert(recipeList, Recipe__c.Fields.ExternalId__c, true);
         
         addToMapRecords(recipeList);
-        /* Inserta 2 Recipe__c - END */
-    }
+
+    }*/
     
-    private static void upsertRecipeStep(){
-        /* Inserta 2 RecipeStep__c - BEGIN */
+    /*private static void upsertRecipeStep(){
+         
         List<RecipeStep__c> recipeStepList = new List<RecipeStep__c>();
         
         RecipeStep__c recipeStep1 =  new RecipeStep__c(Name = 'DUMMY_RecipeStep1', ExternalId__c='DUMMY_Ex_RecipeStep1', Order__c =1, Step__c = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry', Recipe__c = getId('DUMMY_Ex_Recipe1'));
@@ -816,11 +803,11 @@ public with sharing class ORGInitUtils {
         List<Database.UpsertResult> result = Database.upsert(recipeStepList, RecipeStep__c.Fields.ExternalId__c, true);
         
         addToMapRecords(recipeStepList);
-        /* Inserta 2 RecipeStep__c - END */
-    }
+ 
+    }*/
     
-    private static void upsertRecipeIngredient(){
-        /* Inserta 4 RecipeIngredient__c - BEGIN */
+    /*private static void upsertRecipeIngredient(){
+         Inserta 4 RecipeIngredient__c - BEGIN 
         List<RecipeIngredient__c> recipeIngList = new List<RecipeIngredient__c>();
         
         RecipeIngredient__c recipeIng1 =  new RecipeIngredient__c(Name = 'DUMMY_RecipeIngredient1', ExternalId__c='DUMMY_Ex_RecipeIngredient1', Order__c =1, RecordTypeId = getRTId('RecipeIngredient__c-BrandIngredient').Id , Recipe__c = getId('DUMMY_Ex_Recipe1'), Brand__c = getId('DUMMY_Brand2'), BrandVariant__c =  getId('DUMMY_Brand3'));
@@ -837,8 +824,8 @@ public with sharing class ORGInitUtils {
         List<Database.UpsertResult> result = Database.upsert(recipeIngList, RecipeIngredient__c.Fields.ExternalId__c, true);
         
         addToMapRecords(recipeIngList);
-        /* Inserta 4 RecipeIngredient__c - END */
-    }
+        /* Inserta 4 RecipeIngredient__c - END 
+    }*/
     
     private static void upsertListViews() {
         /* Inserta 1 ListView__c - BEGIN */
@@ -893,9 +880,9 @@ public with sharing class ORGInitUtils {
                                                                     , Order__c = 2
                                                                     , Searchable__c = true
                                                                     , Sortable__c = true
-                                                                    , Type__c = 'Type');
-        
-        datatableElementsList.add(datatableElement);
+                                                                    , Type__c = '');
+        //type is now picklist and cannot be searched as the required type is string
+        //datatableElementsList.add(datatableElement);
         
         Database.upsert(datatableElementsList, datatableElement__c.Fields.ExternalId__c, true);
         

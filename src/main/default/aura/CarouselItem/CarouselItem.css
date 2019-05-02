@@ -1,0 +1,95 @@
+.THIS.slds-box.sc-card {
+    padding: 0;
+    width: 100%;
+    overflow: hidden;
+}
+.THIS .carousel-item-image {
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    z-index: 0;
+    position: relative;
+}
+.THIS .sc-cursor--pointer {
+    cursor: pointer;
+}
+
+/* OVERLAP */
+.THIS .overlap{
+    position: absolute;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    max-width: 50%;
+}
+
+/* OVERLAP QUADRANT */
+.THIS .Top-Left{
+    top: 5%;
+    text-align: left;
+    margin-left: 50px;
+}
+.THIS .Top-Center{
+    top: 5%;
+    text-align: center;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.THIS .Top-Right{
+    top: 5%;
+    text-align: right;
+    right: 50px;
+}
+.THIS .Middle-Left{
+    text-align: left;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 50px;
+}
+.THIS .Middle-Center{
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.THIS .Middle-Right{
+    text-align: right;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 50px;
+}
+.THIS .Bottom-Left{
+    text-align: left;
+    bottom: 15%;
+    margin-left: 50px;
+}
+.THIS .Bottom-Center{
+    text-align: center;
+    bottom: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    
+}
+.THIS .Bottom-Right{
+    text-align: right;
+    bottom: 15%;
+    right: 50px;
+}
+
+/* OVERLAP TEXT STYLES */
+.THIS .title{
+    font-weight: 100;
+    line-height: 50px;
+    color: white;
+}
+.THIS .description{
+    color: white;
+    line-height: 30px;
+}
+.THIS .detailButton{
+    margin-top: 10px;
+    color: white;
+}
+.THIS .detailButton:hover{
+    color: black;
+    background-color: white;
+}

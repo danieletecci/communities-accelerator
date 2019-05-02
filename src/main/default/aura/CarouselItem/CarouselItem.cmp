@@ -1,0 +1,59 @@
+<aura:component >
+    <aura:attribute name="imgSrc" type="String"/>
+    <aura:attribute name="imgHref" type="String"/>
+    <aura:attribute name="heightValue" type="String"/>
+    <aura:attribute name="bannerFrameType" type="String"/>
+
+    <ltng:require styles="{!$Resource.Assets + '/Assets/Styles/roboto.css'}" />
+    <!-- NAHUE TEST --> 
+    <aura:attribute name="title" type="String" default=""/>    
+    <aura:attribute name="description" type="String" default=""/>
+    <aura:attribute name="buttonLabel" type="String" default=""/>
+
+    <aura:attribute name="overLapLocation" type="String"  default=""/>
+    
+    <!-- NAHUE TEST END-->
+
+    <div id="carouselItem">
+        <aura:if isTrue="{!and(not(empty(v.imgHref)), empty(v.buttonLabel))}">
+            <a href="{!v.imgHref}" target="_blank">
+                
+                <!-- Image -->
+                <div class="{!'carousel-item-image ' + if(not(empty(v.imgHref)), ' sc-cursor--pointer')}" style="{!'background-image: url(' + v.imgSrc + '); height: ' + v.heightValue}">
+                    
+                    <!-- Overlap Text -->
+                    <aura:if isTrue="{! v.title != null || v.description != null}">
+                        <div class="{!'overlap ' + v.overLapLocation}">
+                            <!-- Title and Description -->
+                            <div class="title" style="{! 'font-size: ' + (v.bannerFrameType == 'Hero' ? '80px' : '40px') + ';' }">{!v.title}</div>
+                            <div class="description" style="{! 'font-size: ' + (v.bannerFrameType == 'Hero' ? '40px' : '20px') + ';' }"><aura:unescapedHtml value="{!v.description}"/></div>
+                        </div>
+                    </aura:if>
+                </div>
+            </a>
+
+            <aura:set attribute="else">
+                
+                <!-- Image -->
+                <div class="carousel-item-image" style="{!'background-image: url(' + v.imgSrc + '); height: ' + v.heightValue}">
+                    <!-- Overlap Text -->
+                    <aura:if isTrue="{! v.title != null || v.description != null || v.buttonLabel != null}">
+                        <div class="{!'overlap ' + v.overLapLocation}">
+                            <!-- Title and Description -->
+                            <div class="title" style="{! 'font-size: ' + (v.bannerFrameType == 'Hero' ? '80px' : '40px') + ';' }">{!v.title}</div>
+                            <div class="description" style="{! 'font-size: ' + (v.bannerFrameType == 'Hero' ? '40px' : '20px') + ';' }"><aura:unescapedHtml value="{!v.description}"/></div>
+                            <!-- Link button -->
+                            <aura:if isTrue="{!not(empty(v.buttonLabel))}">
+                                <a href="{!v.imgHref}" target="_blank">
+                                    <lightning:button variant="Inverse" label="{!v.buttonLabel}" title="{!v.buttonLabel}" class="detailButton"/>
+                                </a>
+                            </aura:if>
+                        </div>
+                    </aura:if>
+                </div>
+
+            </aura:set>
+        </aura:if>
+    </div>
+
+</aura:component>

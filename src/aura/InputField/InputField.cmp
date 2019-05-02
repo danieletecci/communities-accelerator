@@ -131,12 +131,12 @@
         <!-- PHONE -->
         <aura:if isTrue="{!v.fieldConfiguration.displayType == 'Phone'}">
             <div class="{!'form-group border-lable-flt ' + if (or(v.fieldConfiguration.helpText == null, v.fieldConfiguration.helpText == ''), 'without-help-text' , '' )}">
-            <c:CountrySelector inputNumber="{!v.inputValue}"></c:CountrySelector>
+            	<c:CountrySelector inputNumber="{!v.inputValue}"></c:CountrySelector>
             	<aura:if isTrue="{!and(v.fieldConfiguration.label != '', v.fieldConfiguration.label != null)}">    
                     <label class="{!if ( v.onError, 'error' , '' )}" for="inputText">{!v.fieldConfiguration.label + if(v.fieldConfiguration.isRequired, ' *')}</label>
                 </aura:if>
                 <span class="error-msg" aura:id="error-msg"></span>
             </div>
-        </aura:if>
+        </aura:if> 
     </div>
 </aura:component>

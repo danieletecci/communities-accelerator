@@ -38,8 +38,8 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
-        <comment>Action override created by Lightning App Builder during activation.</comment>
-        <content>Form_Element_Record_Page1</content>
+        <comment>Action override updated by Lightning App Builder during activation.</comment>
+        <content>Form_Element_Record_Page</content>
         <formFactor>Large</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Flexipage</type>
@@ -125,7 +125,7 @@
         <inlineHelpText>Complete with the field name defined in the Wrapper Class</inlineHelpText>
         <label>Field API Name</label>
         <length>50</length>
-        <required>false</required>
+        <required>true</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
@@ -260,7 +260,7 @@
         <externalId>false</externalId>
         <label>Object API Name</label>
         <length>255</length>
-        <required>false</required>
+        <required>true</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>

@@ -1,0 +1,3 @@
+<design:component label="CG Block">
+	<design:attribute name="componentExternalId" label="Component External Id" datasource="apex://BlockDynamicPicklist"/>
+</design:component>

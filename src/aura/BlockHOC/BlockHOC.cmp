@@ -1,0 +1,40 @@
+<aura:component controller="BlockController" implements="forceCommunity:availableForAllPageTypes" access="global">
+
+	<!-- CONSTRUCTOR  -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+        
+    <!-- GENERAL VARIABLES  -->
+    <aura:attribute name="componentExternalId" type="String" access="global"/>
+    <aura:attribute name="componentWrapper" type="Object"/>
+
+    <!-- INTERNAL VARIABLES -->
+    <aura:attribute name="isLoading" type="boolean" default="true"/>
+    <aura:attribute name="showPaging" type="Boolean" default="{!v.componentWrapper.data.listAllContentIds.length > v.componentWrapper.data.contentWrapper.length}"/>
+    <aura:attribute name="currentPageNumber" type="Integer" default="1"/>
+
+    <!-- MAIN COMPONENT -->
+    <div aura:id="cg_component">
+
+         <!-- TOOL BOX COMPONENT -->
+        <c:ComponentToolBox componentType="Block" componentExternalId="{!v.componentExternalId}" componentWrapper="{!v.componentWrapper}" salesforceDomain="{!v.componentWrapper.acceleratorSettings.SalesforceDomain}" isLoading="{!v.isLoading}">
+            
+			<aura:if isTrue="{!and(not(v.componentWrapper == null), v.componentWrapper.data.listAllContentIds.length > 0)}">
+				<!-- BLOCK LOC COMPONENT -->
+		        <c:cardList 
+		        	onnavigatetodetail="{!c.handleNavigateToDetail}" 
+		            contents="{!v.componentWrapper.data.contentWrapper}" 
+		            type="{!v.componentWrapper.meta.component.RecordTypeDeveloperName}"
+		            numberofcards="{!v.componentWrapper.meta.component.PageSize}"
+		            numberofcolumns="{!v.componentWrapper.meta.component.NumberOfColumns}"
+		            showpaging="{!v.showPaging}"
+		            pagingtype="{!v.componentWrapper.meta.component.PagingType}"
+		            pagenumbers="{!v.componentWrapper.data.pagesNumbers}"
+		            onnextpage="{!c.doNext}"
+		            onprevpage="{!c.doPrevious}"
+		            ongotopage="{!c.doGetPage}"/>
+	        </aura:if>	
+
+        </c:ComponentToolBox>
+    </div>	
+
+</aura:component>

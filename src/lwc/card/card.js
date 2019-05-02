@@ -1,6 +1,5 @@
 import { LightningElement, api, track } from 'lwc';
 import { loadStyle } from 'lightning/platformResourceLoader';
-import Style from '@salesforce/resourceUrl/Assets';
 
 export default class Card extends LightningElement {
     @api config; 
@@ -30,7 +29,8 @@ export default class Card extends LightningElement {
 
     connectedCallback() {
         window.addEventListener("orientationchange", () => this.handleOrientation());
-        loadStyle(this, Style + '/Assets/Styles/roboto.css')
+        loadStyle(this, 'sfsites/c/resource/Assets/Assets/Styles/cardExternalStyles.css');
+
     }
     disconnectedCallback() {
         window.removeEventListener("orientationchange")
@@ -51,7 +51,7 @@ export default class Card extends LightningElement {
     }
 
     get isEvent() {
-        return this.config.type === 'Event'
+        return this.config.type === 'EventList'
     }
 
     get headerClass() {

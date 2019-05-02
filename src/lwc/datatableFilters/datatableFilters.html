@@ -1,0 +1,32 @@
+<template>
+    <div class="datatableFilters" data-is-desktop={isDesktop}> 
+        <div>
+            <button class="filter" 
+                    data-value={filter}
+                    onclick={filterSelected}>{filter}
+            </button>
+        </div>
+        <template if:true={isCustomDate}>
+            <div>
+                <button class="filter" 
+                        data-value={filter}
+                        data-column={column} 
+                        data-type={type}
+                        onclick={select}>{filter}
+                </button>
+            </div>
+            <template if:true={isCustomDate}>
+                <div>
+                    <lightning-input class="datefrom" type="date" name="from-day" max={seletedDateTo} onchange={changeDatepickerFrom} placeholder="From"></lightning-input>
+                    <lightning-input class="dateto" type="date" name="to-day" min={seletedDateFrom} onchange={changeDatepickerTo} placeholder="To" ></lightning-input>
+                </div>
+            </template>
+        </template>
+        <template if:true={typeIsNumber}>
+            <div>
+                <input class="min" type="number" placeholder="Min" max={seletedMax} data-type={type} data-column={column} onchange={changeInputMin}>
+                <input class="max" type="number" placeholder="Max" min={seletedMin} data-type={type} data-column={column} onchange={changeInputMax}>
+            </div>
+        </template>
+    </div>
+</template>

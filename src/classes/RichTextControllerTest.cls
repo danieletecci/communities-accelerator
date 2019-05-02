@@ -29,32 +29,4 @@ public class RichTextControllerTest {
         System.assertEquals(expectedRichTextURLs, richTextURLs);
         System.assertEquals(richTextExternalIds, richTextFinal);
     }
-
-    
-    @isTest
-    public static void testGetMediaElementExternalIds(){
-        // Given
-        String richText1 = '<img src="@ME:123@">-<img src="@ME:456@">-<img src="@ME:789@">-<img src="@ME:100@">-';
-        String richTextA = '<img src="@ME:ABC@">-<img src="@ME:DEF@">-<img src="@ME:GHI@">-<img src="@ME:JKL@">-';
-        List<String> richTexts = new List<String>{richText1, richTextA};
-        // When    
-        List<String> mediaElementExternalIds = RichTextController.getMediaElementExternalIds(richTexts);
-        // Then
-        List<String> expected = new List<String>{'123', '456', '789', '100', 'ABC', 'DEF', 'GHI', 'JKL'};
-        System.assertEquals(expected, mediaElementExternalIds);
-    }
-    
-    @isTest
-    public static void testGetMediaElementURLs(){
-        // Given
-        String richText1 = '<img src="www.123">-<img src="www.456">-<img src="www.789">-<img src="www.100">-';
-        String richTextA = '<img src="www.ABC">-<img src="www.DEF">-<img src="www.GHI">-<img src="www.JKL">-';
-        List<String> richTexts = new List<String>{richText1, richTextA};
-        // When
-        List<String> mediaElementURLs = RichTextController.getMediaElementURLs(richTexts);
-        // Then
-        List<String> expected = new List<String>{'www.123', 'www.456', 'www.789', 'www.100', 'www.ABC', 'www.DEF', 'www.GHI', 'www.JKL'};
-        System.assertEquals(expected, mediaElementURLs);
-    }
-    
 }

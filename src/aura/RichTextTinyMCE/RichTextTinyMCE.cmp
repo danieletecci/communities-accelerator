@@ -13,10 +13,10 @@
 
     <c:MediaElementManager aura:id="medEl" hasButton="false"/>
 	<lightning:tabset selectedTabId="one">
-        <lightning:tab label="Formatted Text" id="one">
-			<iframe aura:id="KB_iframe" name="KB_iframe" class="KB_iframe" src="{!v.iframeUrl}" style="width:100%;height:20rem;" scrolling="no" frameborder="0" onload="{!c.handleIframeLoad}" />
+        <lightning:tab label="{!$Label.c.RichTextBodyText}" id="one">
+			<iframe aura:id="KB_iframe" name="KB_iframe" class="KB_iframe" src="{!v.iframeUrl}" style="width:100%;height:30rem;" scrolling="no" frameborder="0" onload="{!c.handleIframeLoad}" />
         </lightning:tab>
-        <lightning:tab label="HTML" id="two">
+        <lightning:tab label="{!$Label.c.RichTextBodyHTML}" id="two">
         	<lightning:textarea name="htmlBody" variant="label-hidden" value="{!v.contentBody}" onchange="{!c.handleContentChange}"/>
         </lightning:tab>
     </lightning:tabset>

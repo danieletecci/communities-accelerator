@@ -1801,6 +1801,22 @@
         <value>Required field must be completed.</value>
     </labels>
     <labels>
+        <fullName>RichTextBodyText</fullName>
+        <categories>RichTextTinyMCE.cmp</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>RichTextBodyText</shortDescription>
+        <value>Body Text</value>
+    </labels>
+    <labels>
+        <fullName>RichTextBodyHTML</fullName>
+        <categories>RichTextTinyMCE.cmp</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>RichTextBodyHTML</shortDescription>
+        <value>Body HTML</value>
+    </labels>
+    <labels>
         <fullName>SaveAndNext</fullName>
         <language>en_US</language>
         <protected>false</protected>

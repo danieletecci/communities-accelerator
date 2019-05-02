@@ -85,7 +85,7 @@
 	    $A.enqueueAction(action);
 	},
 	closeModal : function(component, event, helper){	
-		document.body.style.overflowY = "auto";	
+		//document.body.style.overflowY = "auto";	
         var cmpTarget = component.find('Modalbox');
         var cmpBack = component.find('Modalbackdrop');
         $A.util.removeClass(cmpBack,'slds-backdrop--open');

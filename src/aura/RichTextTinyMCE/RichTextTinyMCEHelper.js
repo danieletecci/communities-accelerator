@@ -27,10 +27,7 @@
 		// Set Content Body
 		if(!component.get("v.contentBody"))
 			component.set("v.contentBody","");
-		/*sessionStorage.setItem('contentBody', component.get("v.contentBody"));
-		var body = helper.replaceAll(encodeURI(component.get("v.contentBody")),"%0A","");
-		var body = body.replace(/#/g, '%23');
-        finalURL += '&contentBody=' + body;*/
+		
 		component.set('v.iframeUrl', finalURL);
 	},
 	addMessageEventListener : function(component){
@@ -53,16 +50,10 @@
         }, false);
 	},
 	setContentBody : function(component, data){
-		console.log("event.data: ", data);
 		var contentBody = data;
-		/*var contentBody = (str.indexOf("<body>") != -1) ? 
-							str.substring(str.indexOf("<body>")+6, str.indexOf("</body>")) : 
-							str;*/
 		component.set("v.contentBody", contentBody);
-		console.log("modifiedbody: ", component.get("v.contentBody"));
 	},
 	showImageSelector : function(component){
 		component.set("v.meHelper", !component.get("v.meHelper"));
-		//component.find("medEl").initPopUp();
 	}
 })

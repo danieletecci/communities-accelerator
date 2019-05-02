@@ -25,6 +25,7 @@ public without sharing virtual class ComponentManager {
         @auraEnabled public MetaWrapper meta;
         @auraEnabled public DataWrapper data;
         @auraEnabled public String contentRecordTypeId;
+        @auraEnabled public Boolean hasContent;
     }
 
     public class PermissionsWrapper{
@@ -54,7 +55,8 @@ public without sharing virtual class ComponentManager {
         cw.clusterId = clusterId;
         cw.permissions = getPermissionWrapper();
         cw.meta = getMeta();
-        
+        cw.hasContent = false;
+
         if(cw.meta.component != null){
             String contentRTDevName = ContentUtils.rtComponentToContent.get(cw.meta.component.RecordtypeDeveloperName);
             if(contentRTDevName != null){

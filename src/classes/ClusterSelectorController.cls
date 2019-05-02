@@ -28,6 +28,8 @@ public with sharing class ClusterSelectorController extends ComponentManager{
     @auraEnabled
     public static ComponentWrapper getComponentWrapper(String componentExternalId, String componentId, String device){
         ClusterSelectorController ctrl = new ClusterSelectorController();
+        ComponentWrapper cw = new ComponentWrapper();
+        
         ctrl.customPermissionEdit = 'Cluster Selector Edit Frame';
         ctrl.customPermissionView = 'Cluster Selector View Frame';        
         ctrl.componentFieldSet = new Set<String>{
@@ -36,7 +38,13 @@ public with sharing class ClusterSelectorController extends ComponentManager{
         ctrl.componentExternalId = componentExternalId;
         ctrl.componentId = componentId;
         ctrl.device = device;
-        return ctrl.getCW();
+
+        cw = ctrl.getCW();
+
+        TreeWrapper treeWr = (TreeWrapper) cw.data;
+        cw.hasContent = treeWr.items.size() > 0;
+
+        return cw;
     }
 
     public override DataWrapper getData() {

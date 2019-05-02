@@ -95,7 +95,7 @@ public class MenuController {
 
 	// Traemos todos los SubMenus relacionados a los Menus del Component	
 	public static List<Menu__c> getMenuList(List<String> menuIds){
-		List<Menu__c> menuList = [SELECT Id, MenuLabel__c, ParentMenu__c, Cluster__c, Behaviour__c, Navigation__r.URL__c, MenuIcon__c, Audience__c, Audience__r.ReferenceAudienceExternalIds__c FROM Menu__c 
+		List<Menu__c> menuList = [SELECT Id, MenuLabel__c, ComponentName__c, ParentMenu__c, Cluster__c, Behaviour__c, Navigation__r.URL__c, MenuIcon__c, Audience__c, Audience__r.ReferenceAudienceExternalIds__c FROM Menu__c 
 					WHERE Id =: menuIds 
 					OR ParentMenu__c =: menuIds 
     				OR ParentMenu__r.ParentMenu__c =: menuIds 

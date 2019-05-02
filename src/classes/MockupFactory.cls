@@ -417,7 +417,7 @@ global class MockupFactory {
         insert menuList;
 
         return menuList;
-    }
+    }    
 
         //Create MenuAssignment__c by Menu && Component
     global static List<MenuAssignment__c> createMenuAssignment(List<Menu__c> menuList, List<Component__c> componentList){

@@ -10,7 +10,25 @@
         <div class="slds-col slds-size_2-of-3">
             <!-- <template if:true={config.headerText}> -->
                 <div class="header-container">
-                    <p class={headerClass}>{config.headerText}</p>
+                    <p class={headerClassRelated}>
+                        <template if:true={isEventRelated}>
+                            <template if:true={config.startDate}>
+                                <lightning-formatted-date-time value={config.startDate} year="numeric" day="numeric" month="short" time-zone="UTC">{config.startDate}</lightning-formatted-date-time>
+                                <template if:true={config.endDate}>
+                                    <span> - </span>
+                                    <lightning-formatted-date-time value={config.endDate} year="numeric" day="numeric" month="short" time-zone="UTC">{config.endDate}</lightning-formatted-date-time>
+                                </template>                            
+                            </template>
+                        </template>
+                        <template if:false={isEventRelated}>
+                            <template if:true={config.date}>
+                                <lightning-formatted-date-time value={config.date} day="numeric" month="short" time-zone="UTC">{config.date}</lightning-formatted-date-time>
+                            </template>
+                            <template if:true={config.headerText}>
+                                {config.headerText}
+                            </template>
+                        </template>
+                    </p>
                 </div>
             <!-- </template> -->
             <template if:true={config.title}>
@@ -23,12 +41,14 @@
             <template if:true={config.description}>
                 <div class="footer">
                     <div class="description">
-                        <template if:true={isEvent}>
-                            <div class="location-container">
-                                <i class="icon location-icon"></i>
-                            </div>
-                        </template>
-                        {config.description}
+                        <template if:true={isEventRelated}>
+                            <template if:true={config.location}>
+                                <div class="location-container">
+                                    <i class="icon location-icon"></i>
+                                </div>
+                                {config.location}
+                            </template>
+                        </template>                        
                     </div>
                 </div>
             </template>

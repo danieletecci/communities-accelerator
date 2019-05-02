@@ -40,21 +40,22 @@ public with sharing class ClusterSelectorController extends ComponentManager{
         ctrl.device = device;
 
         cw = ctrl.getCW();
-
-        TreeWrapper treeWr = (TreeWrapper) cw.data;
-        cw.hasContent = treeWr.items.size() > 0;
+        if(cw.data != null){
+            TreeWrapper treeWr = (TreeWrapper) cw.data;
+            cw.hasContent = treeWr.items.size() > 0;
+        }
 
         return cw;
     }
 
     public override DataWrapper getData() {
-    	TreeWrapper tw;
-    	
-    	if(String.isBlank(this.componentExternalId)){
-    		tw = getClusterRootForComponent(this.componentId);
-    	} else {
-    		tw = getClusterRootByExternalId(this.componentExternalId);
-    	}
+        TreeWrapper tw;
+        
+        if(String.isBlank(this.componentExternalId)){
+            tw = getClusterRootForComponent(this.componentId);
+        } else {
+            tw = getClusterRootByExternalId(this.componentExternalId);
+        }
 
         return tw;
     }    
@@ -87,9 +88,9 @@ public with sharing class ClusterSelectorController extends ComponentManager{
       
         if(!clusterList.isEmpty()){
             clusterRoot = clusterList[0];
-	        ClusterUtils.ClusterWrapper clusterWrappper = ClusterUtils.getClustersBelow(clusterRoot.Id);
-	        TreeWrapper tree = ClusterSelectorController.getTree(clusterWrappper, leafOnly);       
-	        return tree;
+            ClusterUtils.ClusterWrapper clusterWrappper = ClusterUtils.getClustersBelow(clusterRoot.Id);
+            TreeWrapper tree = ClusterSelectorController.getTree(clusterWrappper, leafOnly);       
+            return tree;
         }
 
         return null;      
@@ -111,7 +112,7 @@ public with sharing class ClusterSelectorController extends ComponentManager{
         
         List<Component__c> component = [SELECT Id, Cluster__c, ClusterExternalId__c FROM Component__c WHERE Id =: componentId];
         if(component.size() > 0){
-        	return component[0].Cluster__c;	
+            return component[0].Cluster__c; 
         }
         return '';
     }
@@ -136,7 +137,7 @@ public with sharing class ClusterSelectorController extends ComponentManager{
         List<Component__c> component = [SELECT FirstCluster__c, OnlyClusterLeaf__c 
                                         FROM Component__c WHERE ExternalId__c =: externalId];
         if(component.size() > 0){
-        	return component[0];
+            return component[0];
         }
         return null;
     }

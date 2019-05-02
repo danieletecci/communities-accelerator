@@ -35,7 +35,7 @@
                 </div>
                 <div class="slds-col slds-p-bottom_small">
                     <aura:if isTrue="{!v.contentData}">
-                        <c:RichTextTinyMCE aura:id="rich" namespace="c" contentBody="{!v.contentData.Body}"/>
+                        <c:RichTextTinyMCE aura:id="richText" namespace="c" contentBody="{!v.contentData.Body}"/>
                     </aura:if>
                 </div>
                 <div class="slds-col slds-p-bottom_small">

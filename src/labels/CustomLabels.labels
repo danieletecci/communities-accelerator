@@ -1809,6 +1809,14 @@
         <value>Body Text</value>
     </labels>
     <labels>
+        <fullName>RichTextImageTitle</fullName>
+        <categories>RichTextTinyMCE.page</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>RichTextImageTitle</shortDescription>
+        <value>Add media from Salesforce</value>
+    </labels>
+    <labels>
         <fullName>RichTextBodyHTML</fullName>
         <categories>RichTextTinyMCE.cmp</categories>
         <language>en_US</language>

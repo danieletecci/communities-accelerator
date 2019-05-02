@@ -25,7 +25,9 @@
     			<br />
 
     			<ui:outputText value="{!$Label.c.FAQContentDetailBody}"/>
-    			<c:RichTextContainer aura:id="RichTextContainer" contentBody="{!v.contentData.Body}" />
+                <aura:if isTrue="{!v.contentData}">
+                    <c:RichTextTinyMCE aura:id="richText" namespace="c" contentBody="{!v.contentData.Body}"/>
+                </aura:if>
             </div>
         </div>
     </div>

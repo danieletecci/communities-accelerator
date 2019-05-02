@@ -5,6 +5,7 @@
 
 	<!-- FAQs COMPONENT -->
 	<aura:if isTrue="{!v.dataWrapper.listAllContentIds.length > 0}">
+		<h2 class="title">{!$Label.c.FAQ_Title}</h2>
 		<lightning:accordion aura:id="accordion" allowMultipleSectionsOpen="true">
 			<aura:iteration items="{!v.dataWrapper.contentWrapper}" var="wrapper">
 				<div class="slds-grid">

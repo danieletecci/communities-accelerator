@@ -2,10 +2,11 @@
 	
 	<!-- GENERAL VARIABLES --> 
     <aura:attribute name="contentWrapper" type="Object"/>
+    <aura:attribute name="orientation" type="String"/>
 
 	<!-- ADVANCE CONTENT COMPONENT -->
 	<aura:iteration items="{!v.contentWrapper}" var="wrapper">
-		<div>
+        <div class="{! 'advcontent '+ $Browser.formFactor + v.orientation}">
 			<aura:unescapedHtml value="{!wrapper.content.HTMLContent}"/>
 		</div>
 	</aura:iteration>

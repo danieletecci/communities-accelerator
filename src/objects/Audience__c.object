@@ -46,9 +46,9 @@
     <description>Represents the different Audience and Audience Group, which will be used for segment any record.</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
-    <enableLicensing>false</enableLicensing>
     <enableReports>false</enableReports>
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
@@ -166,13 +166,11 @@
     <listViews>
         <fullName>All</fullName>
         <columns>NAME</columns>
-        <columns>Description__c</columns>
-        <columns>Status__c</columns>
         <columns>ExternalId__c</columns>
         <columns>Cluster__c</columns>
-        <columns>AudienceCriteria__c</columns>
-        <columns>CREATED_DATE</columns>
+        <columns>RECORDTYPE</columns>
         <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
@@ -182,8 +180,8 @@
         <columns>ExternalId__c</columns>
         <columns>Cluster__c</columns>
         <columns>ReferenceAudienceExternalIds__c</columns>
-        <columns>CREATED_DATE</columns>
         <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>RECORDTYPE</field>
@@ -195,13 +193,11 @@
     <listViews>
         <fullName>Audiences</fullName>
         <columns>NAME</columns>
-        <columns>Description__c</columns>
-        <columns>Status__c</columns>
         <columns>ExternalId__c</columns>
         <columns>Cluster__c</columns>
-        <columns>AudienceCriteria__c</columns>
-        <columns>CREATED_DATE</columns>
+        <columns>Status__c</columns>
         <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>RECORDTYPE</field>
@@ -279,7 +275,18 @@
             </values>
         </picklistValues>
     </recordTypes>
-    <searchLayouts/>
+    <searchLayouts>
+        <customTabListAdditionalFields>ExternalId__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Cluster__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>RECORDTYPE</customTabListAdditionalFields>
+        <customTabListAdditionalFields>UPDATEDBY_USER</customTabListAdditionalFields>
+        <customTabListAdditionalFields>LAST_UPDATE</customTabListAdditionalFields>
+        <searchResultsAdditionalFields>ExternalId__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Cluster__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>RECORDTYPE</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>UPDATEDBY_USER</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>LAST_UPDATE</searchResultsAdditionalFields>
+    </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

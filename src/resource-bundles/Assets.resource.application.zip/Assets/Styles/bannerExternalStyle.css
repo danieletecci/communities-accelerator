@@ -6,3 +6,10 @@
   padding-top: 0 !important;
   padding-left: 0 !important;
 }
+
+@media screen and (min-width: 768px){
+  .cCenterPanel{
+    max-width: 1920px !important;
+    padding-right: 0 !important;
+  }
+}

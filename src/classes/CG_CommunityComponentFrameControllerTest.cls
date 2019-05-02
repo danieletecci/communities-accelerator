@@ -4,17 +4,17 @@ private class CG_CommunityComponentFrameControllerTest
 	@isTest
 	static void getContentRecordtypeId()
 	{
-		// Given Exist a sObject with recordType ArticlesRelated
-
+		// Given
+		// Exist a sObject with recordType Article
+		String rtAR = [SELECt id, name, SobjectType FROM RecordType WHERE SobjectType =: GeneralUtils.prefix('[CMS]Content__c') AND DeveloperName = 'Article'].id;
 
 		// When
 		test.startTest();
-		CG_CommunityComponentFrameController.ContentRecordTypeWrapper crtw = CG_CommunityComponentFrameController.getContentRecordtypeId('ArticlesRelated');
+		String crtw = CG_CommunityComponentFrameController.getContentRecordtypeId('ArticleList');
 		test.stopTest();
 
-
 		// Then
-		System.assert(crtw.haveContentRecordType);
+		System.assertEquals(rtAR, crtw);
 
 	}
 
@@ -26,17 +26,13 @@ private class CG_CommunityComponentFrameControllerTest
         Navigation__c nav = new Navigation__c(Name = 'NavTest', URL__c = 'testNav');
         insert nav;
 
-
 		// When
 		test.startTest();
 		String navId = CG_CommunityComponentFrameController.getNavigationId('/s/testNav');
 		test.stopTest();
 
-
 		// Then
 		System.assertNotEquals(navId, null);
-
 	}
-
 
 }

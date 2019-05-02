@@ -2,27 +2,3 @@
   fill: #FF4500 !important;
   padding-bottom: 1px !important;
 }
-.card-body-container p {
-  margin-top: 20px;
-  font-size: 16px;
-  text-align: left;
-  color: #333333;
-  line-height: 26px;
-  font-weight: 400;
-}
-.card-body-container .banner-img-container {
-  margin-top: 20px;
-  width: 101vw;
-  height: 120px;
-  position: relative;
-  left: 50%;
-  overflow: hidden;
-  transform: translateX(-50%);
-}
-.card-body-container .banner-img-container .banner-img {
-  width: 100%;
-  position: relative;
-}
-.card-body-container img {
-  width: 100%;
-}

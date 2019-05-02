@@ -1,398 +1,123 @@
-/* *****************************
-            GLOBAL   
- ******************************* */
-.THIS .a_menuItemNoLink {
-      cursor: default;
-  }
-/* *****************************
-            GLOBAL END  
- ******************************* */
- 
- /* *****************************
-  NAVIGATION MODE: HORIZONTAL-SIMPLE   
- ******************************* */
-/* DESKTOP */
-.THIS nav.Horizontal-Simple ul {
-padding:0;
-margin:0;
-list-style: none;
-position: relative;
-}
-
-.THIS nav.Horizontal-Simple ul li {
-display:inline-block;
-float:none;
-white-space:nowrap;
-}
-
-.THIS nav.Horizontal-Simple a {
- display:block;
- padding:0 10px;
- color: black;
- font-size:20px;
- line-height:30px;
- text-decoration:none;
-}
-
-.THIS nav.Horizontal-Simple a:hover {
- color:#FFF;
- background-color:#CCC;
- transition: all .3s ease;
-}
-
-.THIS nav.Horizontal-Simple a {
- background-color: #DCDCDC;
- transition: all .3s ease;
-}
-
-.THIS nav.Horizontal-Simple ul ul {
-display:none;
-position:absolute;
-top:100%;
-}
-
-.THIS nav.Horizontal-Simple ul li:hover div div > ul.ul-level-1 {
-display:inherit;
-transition: all .3s ease;
-z-index:999;
-}
-.THIS nav.Horizontal-Simple ul li:hover div div.div-ul > ul.ul-level-1 li:hover div div > ul.ul-level-2{
-display:inherit;
-transition: all .3s ease;
-z-index:999;
-}
-.THIS nav.Horizontal-Simple ul li:hover div div.div-ul > ul.ul-level-1 li:hover div div > ul.ul-level-2 li:hover div div > ul.ul-level-3{
-display:inherit;
-transition: all .3s ease;
-z-index:999;
-}
-.THIS nav.Horizontal-Simple ul ul li {
-min-width:170px;
-position:relative;
-}
-
-.THIS nav.Horizontal-Simple ul ul ul {
-position:absolute;
-top:1.8rem;
-left:0;
-}
-/*------------------------------
-              END
--------------------------------- */
-
-/* *****************************
- 	NAVIGATION MODE: OTHER   
- ******************************* */
-
-/* DESKTOP */
-.THIS nav.Other ul {
+.THIS.menu-top-opened{
+  background-color: #0B0B0B;
+  position: absolute;
+  height: 100vh;
   width: 100%;
-  display: flex;
-  justify-content: flex-start;
-  text-transform: uppercase;
 }
 
-@media screen and (min-width: 768px) {
-  .THIS nav.Other ul > span {
-    padding-right: 65px;
-  }
-}
-.THIS nav.Other ul li.menu-a {
-  font-size: 12px;
-  color: #FFFFFF;
-  line-height: 14px;
-  display: flex;
-  align-items: center;
-}
-@media screen and (min-width: 768px) {
-  .THIS nav.Other ul li.menu-a {
-    font-weight: 700;
-    width: 100%;
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .THIS nav.Other ul li.menu-a > div:hover > span {
-    cursor: default;
-  }
-  .THIS nav.Other ul li.menu-a > div:hover > span:not(.no-action) {
-    cursor: pointer;
-  }
-}
-.THIS nav.Other ul li.menu-a span {
-  display: flex;
-  align-items: center;
-  z-index: 99;
-}
-.THIS nav.Other ul li.menu-a span a {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  color: #ffffff;
-  z-index: 99;
-  padding: 16px;
-}
-.THIS nav.Other ul li.menu-a span i {
-  font-size: 16px;
-}
-
-@media screen and (min-width: 768px) {
-  .THIS nav.Other ul li.menu-a > div span i {
-    margin-right: 10px;
-  }
-}
-@media (min-width: 768px) {
-  .THIS nav.Other ul.ul-level-0 {
-    
-    z-index: 999;
-    overflow: hidden;
-  }
-} 
-@media (min-width: 768px) {
-  .THIS nav.Other ul.ul-level-0 li.li-level-1 {
-    justify-content: center;
-  }
-}
-.THIS nav.Other ul.ul-level-0 li.li-level-1 > div .div-ul {
+.THIS.menu-top-closed{
+  height: 50px;
+  background-color: #0b0b0b;
+  position: fixed;
+  width: 100%;
+  left: 0;
   z-index: 999;
 }
-@media (min-width: 768px) {
+
+@media screen and (min-width: 768px) {
+  .THIS ul.ul-level-0{
+    display: flex;
+  }
   
-  .THIS nav.Other ul.ul-level-0 li.li-level-1 div:hover ul.ul-level-1 li.li-level-2 div:hover div.div-ul {
-    visibility: visible;
-    opacity: 1;
-  }
-  .THIS nav.Other ul.ul-level-0 li.li-level-1 div ul.ul-level-1 li.li-level-2 div ul.ul-level-2 > span {
-    padding: 0;
-  }
-  .THIS nav.Other ul.ul-level-0 li.li-level-1 div:hover ul.ul-level-1 li.li-level-2 div:hover ul.ul-level-2 li.li-level-3 {
-    height: 45px;
-    z-index: 999;
-    visibility: visible;
-    opacity: 1;
-  }
-  .THIS nav.Other ul.ul-level-0 li.li-level-1 div:hover ul.ul-level-1 li.li-level-2 div:hover ul.ul-level-2 li.li-level-3 div {
-    width: 100%;
-    margin: 0 auto;
-  }
-  .THIS nav.Other ul.ul-level-0 li.li-level-1 div:hover ul.ul-level-1 li.li-level-2 div:hover ul.ul-level-2 li.li-level-3 div:hover {
-    background-color: #DCDCDC;
-    height: 45px;
-    padding-top: 16px;
-  }
-  .THIS nav.Other ul.ul-level-0 li.li-level-1 div ul.ul-level-1 li.li-level-2 div ul.ul-level-2 li.li-level-3 div a {
-    display: none;
-  }
-  .THIS nav.Other ul.ul-level-0 li.li-level-1 div:hover ul.ul-level-1 li.li-level-2 div:hover ul.ul-level-2 li.li-level-3 div a {
-    display: initial;
-    color: black;
-  }
 }
-@media (min-width: 768px) and (min-width: 768px) {
-  .THIS nav.Other ul.ul-level-0 li.li-level-1 div:hover ul.ul-level-1 {
-    z-index: 999;
-  }
-}
-@media (min-width: 768px) and (min-width: 768px) {
-  .THIS nav.Other ul.ul-level-0 li.li-level-1 div:hover ul.ul-level-1 li.li-level-2 div:hover {
-    background-color: #919191;
-  }
-}
-@media (min-width: 768px) and (min-width: 768px) {
-  .THIS nav.Other ul.ul-level-0 li.li-level-1 div:hover ul.ul-level-1 li.li-level-2 div:hover ul.ul-level-2 {
-    background-color: #E3E3E3;
-    visibility: visible;
-    opacity: 1;
-    margin-left: 0px;
-  }
-}
-@media (min-width: 768px) {
-  .THIS nav.Other ul.ul-level-0 li.li-level-1 div ul.ul-level-1 {
-    z-index: 999;
-    display: flex;
-    align-items: center;
-    position: relative;
-    height: 45px;
-    left: 30px;
-    max-width: 1280px;
-    margin: 0 auto;
-  }
+.THIS .nav-container{
+  padding: 14px;
+  margin-left: 50px;
 }
 
-@media (min-width: 768px) {
-  .THIS nav.Other ul.ul-level-0 li.li-level-1 div ul.ul-level-1 > span {
-    padding-right: 52px;
-  }
-}
-.THIS nav.Other ul.ul-level-0 li.li-level-1 div ul.ul-level-1 .li-level-2 {
-  line-height: 11px;
+.THIS .logo-container{
+  background-color: #F2B005;
+  height: 100%;
+  margin-left: 15px;
+  font-size: 19px;
 }
 
-@media (min-width: 768px) {
-  .THIS nav.Other ul.ul-level-0 li.li-level-1 div ul.ul-level-1 .li-level-2 div span a {
-    padding: 16px;
-    height: 45px;
-    width: 100%;
-    margin: 0 auto;
-  }
+.THIS ul.ul-level-1, .THIS ul.ul-level-2{
+  margin-left: 135px;
 }
 
-@media (min-width: 768px) {
-  .THIS nav.Other ul.ul-level-0 li.li-level-1 div ul.ul-level-1 .li-level-2  div div.div-ul {
-    z-index: 999;
-    width: 100%;
-    align-items: center;
-  }
+.THIS > div.slds-grid{
+  height: 50px;
+  margin-left: 0;
 }
-@media (min-width: 768px) {
-  .THIS nav.Other ul.ul-level-0 li.li-level-1 div ul.ul-level-1 .li-level-2 div div.div-ul ul.ul-level-2 {
-    z-index: 999;
-    display: flex;
-    flex-direction: row;
+.THIS .icons-container::before{
+  content: ' ';
+  position: absolute;
+  height: 30px;
+  width: 40px;
+  top: 15%;
+  left: 4%;
+  -webkit-mask: url(sfsites/c/resource/Assets/Assets/Icons/BrandIcon.svg) no-repeat 50% 50%;
+  -moz-mask: url(sfsites/c/resource/Assets/Assets/Icons/BrandIcon.svg) no-repeat 50% 50%;
+  -o-mask: url(sfsites/c/resource/Assets/Assets/Icons/BrandIcon.svg) no-repeat 50% 50%;
+  -ms-mask: url(sfsites/c/resource/Assets/Assets/Icons/BrandIcon.svg) no-repeat 50% 50%;
+  mask: url(sfsites/c/resource/Assets/Assets/Icons/BrandIcon.svg) no-repeat 50% 50%;
+  background-color: #0B0B0B;
+}
+
+@media screen and (max-width: 768px) {
+  
+  .THIS.menu-top-closed{
     position: absolute;
-    top: 45px;
-    width: auto;
   }
-}
-/* lvl 4 */
-@media (min-width: 768px) {
-  .THIS nav.Other ul.ul-level-0 li.li-level-1 div ul.ul-level-1 .li-level-2 div div.div-ul ul.ul-level-2 .li-level-3 div div.div-ul ul.ul-level-3 {
-    z-index: 999;
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 45px;
-    width: auto;
-    background-color: #f2f2f2; /* TODO bbuscar color */
-  }
-}
-   .THIS nav.Other ul.ul-level-0 li.li-level-1 div:hover ul.ul-level-1 .li-level-2 div:hover div.div-ul ul.ul-level-2 .li-level-3 div:hover div.div-ul ul.ul-level-3 {
+  
+  .THIS ul.ul-level-0{
+    margin-top: 70px;
     margin-left: 0;
+    padding-left: 35px;
+    padding-right: 35px;
   }
-  .THIS nav.Other ul.ul-level-0 li.li-level-1 div:hover ul.ul-level-1 .li-level-2 div:hover div.div-ul ul.ul-level-2 .li-level-3 div:hover div.div-ul ul.ul-level-3 span {
-    padding: 0;
+  
+  .THIS ul.ul-level-1{
+    margin-left: 70px;
   }
-  .THIS nav.Other ul.ul-level-0 li.li-level-1 div:hover ul.ul-level-1 .li-level-2 div:hover div.div-ul ul.ul-level-2 .li-level-3 div:hover div.div-ul ul.ul-level-3 span div{
-    
-  }
-  .THIS nav.Other ul.ul-level-0 li.li-level-1 div ul.ul-level-1 li.li-level-2 div ul.ul-level-2 li.li-level-3 div ul.ul-level-3 li.li-level-4 div {
-    display: none;
-  }
-  .THIS nav.Other ul.ul-level-0 li.li-level-1 div:hover ul.ul-level-1 li.li-level-2 div:hover ul.ul-level-2 li.li-level-3 div:hover ul.ul-level-3 li.li-level-4 div  {
-    display: initial;
-    height: 100%;
-    padding-top: 0;
-  }
-  .THIS nav.Other ul.ul-level-0 li.li-level-1 div:hover ul.ul-level-1 li.li-level-2 div:hover ul.ul-level-2 li.li-level-3 div:hover ul.ul-level-3 li.li-level-4 div a {
-    display: block;
-    height: auto;
-    min-width: 200px; /* todo */
-  }
-/* lvl 4 end */
-@media (min-width: 768px) {
-  .THIS nav.Other ul.ul-level-0 li.li-level-1 > div {
-  	padding: 16px;
-  }
-}
-@media (min-width: 768px) {
-  .THIS nav.Other ul.ul-level-0 li.li-level-1 > div:not(.has-child):hover::before {
-    content: none;
-  }
-  .THIS nav.Other ul.ul-level-0 li.li-level-1 > div:not(.has-child):hover::after {
-    content: none;
-  }
-}
-@media (min-width: 768px) {
-  .THIS nav.Other ul.ul-level-0 li.li-level-1 > div:hover::before {
-    content: '';
-    position: absolute;
-    margin-left: -140px;
-    top: 35px;
-    display: block;
-    width: 170px;
-    height: 135px;
-    transform: rotate(-45deg);
-  }
-  .THIS nav.Other ul.ul-level-0 li.li-level-1 > div:hover::after {
-    content: '';
-    position: absolute;
-    top: 35px;
-    display: block;
-    width: 170px;
-    height: 135px;
-    transform: rotate(45deg);
-  }
-}
-@media (min-width: 768px) {
-  .THIS nav.Other ul.ul-level-0 li.li-level-1 > div:not(.has-child):hover::before {
-    content: none;
-  }
-  .THIS nav.Other ul.ul-level-0 li.li-level-1 > div:not(.has-child):hover::after {
-    content: none;
-  }
-}
-@media (min-width: 768px) {
-  .THIS nav.Other ul.ul-level-0 li.li-level-1 > div:hover::before {
-    content: '';
-    position: absolute;
-    margin-left: -130px;
-    top: 65px;
-    display: block;
-    width: 160px;
-    height: 100px;
-    transform: rotate(-45deg);
-  }
-  .THIS nav.Other ul.ul-level-0 li.li-level-1 > div:hover::after {
-    content: '';
-    position: absolute;
-    top: 80px;
-    display: block;
-    width: 130px;
-    height: 60px;
-    transform: rotate(45deg);
-  }
-}
-@media (min-width: 768px) {
-  .THIS nav.Other ul.ul-level-0 li.li-level-1 > div:hover > div.div-ul {
-    z-index: 999;
-    display: flex;
-  }
-}
-@media (min-width: 768px) {
-  .THIS nav.Other ul.ul-level-0 li.li-level-1 > div:hover > span {
-    color: #F2B005;
-    border-bottom: solid 2px #F2B005;
-  }
-}
-@media (min-width: 768px) {
-  .THIS nav.Other ul.ul-level-0 li.li-level-1 > div:hover > span a {
-    color: #F2B005;
-  }
-}
-@media (min-width: 768px) {
-  .THIS nav.Other ul.ul-level-0 li.li-level-1 > div > div.div-ul {
-    display: flex;
-    background-color: #3E3E3E;
-    width: 100%;
-    align-items: center;
-    position: absolute;
-    height: 45px;
-    top: 58px;
-    left: 0;
-  }
-}
 
-/* Only IE */
-@media all and (-ms-high-contrast: none) and (min-width: 768px), (-ms-high-contrast: active) and (min-width: 768px) {
-  .THIS nav.Other .ul-level-0 .li-level-1 div:hover .ul-level-1 .li-level-2 div:hover .ul-level-2 .li-level-3 div span {
-    justify-content: flex-start;
+  .THIS ul.ul-level-2{
+    margin-left: 140px;
+  }
+  
+  .THIS.menu-top-opened .icons-container::after{
+    content: ' ';
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    top: 15px;
+    right: 30px;
+    -webkit-mask: url(sfsites/c/resource/Assets/Assets/Icons/CloseIcon.svg) no-repeat 50% 50%;
+    -moz-mask: url(sfsites/c/resource/Assets/Assets/Icons/CloseIcon.svg) no-repeat 50% 50%;
+    -o-mask: url(sfsites/c/resource/Assets/Assets/Icons/CloseIcon.svg) no-repeat 50% 50%;
+    -ms-mask: url(sfsites/c/resource/Assets/Assets/Icons/CloseIcon.svg) no-repeat 50% 50%;
+    mask: url(sfsites/c/resource/Assets/Assets/Icons/CloseIcon.svg) no-repeat 50% 50%;
+    background-color: #D6EAFF;
+  }
+
+  .THIS .icons-container::before{
+    content: ' ';
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    top: 10px;
+    left: 35px;
+    -webkit-mask: url(sfsites/c/resource/Assets/Assets/Icons/BrandIcon.svg) no-repeat 50% 50%;
+    -moz-mask: url(sfsites/c/resource/Assets/Assets/Icons/BrandIcon.svg) no-repeat 50% 50%;
+    -o-mask: url(sfsites/c/resource/Assets/Assets/Icons/BrandIcon.svg) no-repeat 50% 50%;
+    -ms-mask: url(sfsites/c/resource/Assets/Assets/Icons/BrandIcon.svg) no-repeat 50% 50%;
+    mask: url(sfsites/c/resource/Assets/Assets/Icons/BrandIcon.svg) no-repeat 50% 50%;
+    background-color: #D6EAFF;
+  }
+
+  .THIS.menu-top-closed .icons-container::after{
+    content: ' ';
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    top: 15px;
+    right: 30px;
+    -webkit-mask: url(sfsites/c/resource/Assets/Assets/Icons/SortIcon.svg) no-repeat 50% 50%;
+    -moz-mask: url(sfsites/c/resource/Assets/Assets/Icons/SortIcon.svg) no-repeat 50% 50%;
+    -o-mask: url(sfsites/c/resource/Assets/Assets/Icons/SortIcon.svg) no-repeat 50% 50%;
+    -ms-mask: url(sfsites/c/resource/Assets/Assets/Icons/SortIcon.svg) no-repeat 50% 50%;
+    mask: url(sfsites/c/resource/Assets/Assets/Icons/SortIcon.svg) no-repeat 50% 50%;
+    background-color: #D6EAFF;
   }
 }
-@media all and (-ms-high-contrast: none) and (min-width: 768px), (-ms-high-contrast: active) and (min-width: 768px) {
-  .THIS nav.Other .ul-level-0 .li-level-1 div:hover .ul-level-1 .li-level-2 div:hover .ul-level-2 .li-level-3 div span a {
-    justify-content: flex-start;
-  }
-}
-/*------------------------------
-              END
--------------------------------- */

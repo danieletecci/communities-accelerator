@@ -221,31 +221,48 @@
     </fields>
     <label>Navigation</label>
     <listViews>
+        <fullName>Active</fullName>
+        <columns>NAME</columns>
+        <columns>ExternalId__c</columns>
+        <columns>Cluster__c</columns>
+        <columns>URL__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Active</value>
+        </filters>
+        <label>Active</label>
+    </listViews>
+    <listViews>
         <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>ExternalId__c</columns>
+        <columns>Cluster__c</columns>
+        <columns>Status__c</columns>
+        <columns>URL__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
     <listViews>
-        <fullName>Navigation</fullName>
+        <fullName>Inactive</fullName>
         <columns>NAME</columns>
-        <filterScope>Mine</filterScope>
+        <columns>ExternalId__c</columns>
+        <columns>Cluster__c</columns>
+        <columns>URL__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
         <filters>
-            <field>RECORDTYPE</field>
+            <field>Status__c</field>
             <operation>equals</operation>
-            <value>Navigation__c.Navigation</value>
+            <value>Inactive</value>
         </filters>
-        <label>Navigation</label>
-    </listViews>
-    <listViews>
-        <fullName>NavigationVariant</fullName>
-        <columns>NAME</columns>
-        <filterScope>Mine</filterScope>
-        <filters>
-            <field>RECORDTYPE</field>
-            <operation>equals</operation>
-            <value>Navigation__c.Navigation_variant</value>
-        </filters>
-        <label>Navigation variant</label>
+        <label>Inactive</label>
     </listViews>
     <nameField>
         <label>Navigation Name</label>
@@ -268,7 +285,7 @@
             <values>
                 <fullName>Same Tab</fullName>
                 <default>false</default>
-	    </values>
+            </values>
         </picklistValues>
         <picklistValues>
             <picklist>Status__c</picklist>
@@ -332,7 +349,20 @@
             </values>
         </picklistValues>
     </recordTypes>
-    <searchLayouts/>
+    <searchLayouts>
+        <customTabListAdditionalFields>ExternalId__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Cluster__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Status__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>URL__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>UPDATEDBY_USER</customTabListAdditionalFields>
+        <customTabListAdditionalFields>LAST_UPDATE</customTabListAdditionalFields>
+        <searchResultsAdditionalFields>ExternalId__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Cluster__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Status__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>URL__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>UPDATEDBY_USER</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>LAST_UPDATE</searchResultsAdditionalFields>
+    </searchLayouts>
     <sharingModel>Private</sharingModel>
     <sharingReasons>
         <fullName>Clustering__c</fullName>

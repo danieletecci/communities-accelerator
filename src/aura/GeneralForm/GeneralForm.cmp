@@ -1,0 +1,26 @@
+<aura:component access="global">
+    <aura:attribute access="global" name="form" type="Object"/>
+    <aura:attribute access="global" name="validationErrors" type="Object" default="[]" description="This attribute contains an array with every field with error"/>
+    <aura:attribute access="global" name="lastFieldModified" type="String" description="Used to let parent component know which field was the last one modified"/>
+    <aura:method  name="validateAllFields" action="{!c.validateAllFields}" access="global" description="Method to be called to validate every field in the form, and show its corresponding error message"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    
+    <lightning:layout multipleRows="true" class="{!v.form.formSettings.styleClass}">
+        <span class="{!'slds-medium-size_12-of-12 mandatory-fields'}"></span>
+        <aura:iteration items="{!v.form.formSettings.sections}" var="section" >
+            <lightning:layoutItem padding="around-large" class="{!section.styleClass + ' ' + 'slds-col slds-x-small-size_12-of-12 slds-small-size_12-of-12 slds-medium-size_12-of-12 slds-large-size_' + section.sectionWidth + '-of-12'}">
+                <h3 class="p-15-black-medium section-title">{!section.SectionTitle}</h3>
+                <aura:iteration items="{!section.fields}" var="field" > 
+                    <c:InputField formData="{!v.form.formData}"
+                                     fieldConfiguration="{!field}"
+                                     validationErrors="{!v.validationErrors}"
+                                     lastFieldModified="{!v.lastFieldModified}"
+                                     aura:id="inputFieldComponent"
+                                     />
+                </aura:iteration>
+            </lightning:layoutItem>
+        </aura:iteration>
+    </lightning:layout>
+    
+</aura:component>

@@ -1,11 +1,14 @@
 ({
     doInit : function(component, event, helper) {
         var showComponentFrame = component.get('v.showComponentFrame');
+        var isLive = String(window.location.href).includes('livepreview.') || String(window.location.href).includes('sitestudio.');
+        component.set('v.isLivePreview', isLive);
         
         if(showComponentFrame){
-            if(String(window.location.href).includes('livepreview.') || String(window.location.href).includes('sitestudio.')){
+            if(isLive){
                 component.set('v.showComponentFrame', false);
-            }
+                
+		    }
         }
         var urlArr = window.location.pathname.split("/s/");
         var url = (urlArr.length > 1 && urlArr[1] != "") ? urlArr[1] : "/s/";

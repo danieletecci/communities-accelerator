@@ -1,2 +1,128 @@
-.THIS {
+.THIS.DESKTOP p.p-date{
+    font-size: 19px;
+    font-weight: 500;
+    line-height: 28px;
+    color: #848484;
+    font-style: normal;
+}
+.THIS.DESKTOP h1.h1-title{
+    font-size: 50px;
+    font-weight: 300;
+    line-height: 70px;
+    color: #0B0B0B;
+    font-style: normal;
+}
+.THIS.DESKTOP p.p-extract{
+    font-size: 25px;
+    font-weight: 300;
+    line-height: 40px;
+    color: #848484;
+    font-style: italic;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+.THIS.DESKTOP img.img-feature{
+    width: 100%;
+    height: 450px;
+	-o-object-fit: contain;
+	object-fit: contain;
+}
+.THIS.DESKTOP p.p-img-desc{
+    font-size: 19px;
+    font-weight: 500;
+    line-height: 29px;
+    color: #848484;
+    font-style: normal;
+    margin-top: 20px;
+}
+.THIS.DESKTOP p.p-body{
+    font-size: 25px;
+    font-weight: 400;
+    line-height: 40px;
+    color: #333333;
+    font-style: normal;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+.THIS.DESKTOP h1.h1-title,.THIS.DESKTOP p.p-extract,.THIS.DESKTOP p.p-body{
+    width: 768px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.THIS.DESKTOP p.p-img-desc{
+    width: 536px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.THIS.TABLET.PORTRAIT h1.h1-title,.THIS.TABLET.PORTRAIT p.p-extract,.THIS.TABLET.PORTRAIT p.p-body{
+    width: 450px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.THIS.TABLET.PORTRAIT p.p-img-desc{
+    width: 297px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.THIS.TABLET.LANDSCAPE h1.h1-title,.THIS.TABLET.LANDSCAPE p.p-extract,.THIS.TABLET.LANDSCAPE p.p-body{
+    width: 645px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.THIS.TABLET.LANDSCAPE p.p-img-desc{
+    width: 424px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.THIS.PHONE.PORTRAIT h1.h1-title,.THIS.PHONE.PORTRAIT p.p-extract,.THIS.PHONE.PORTRAIT p.p-body,.THIS.PHONE.PORTRAIT p.p-img-desc{
+    width: 100%;
+}
+.THIS.PHONE.LANDSCAPE h1.h1-title,.THIS.PHONE.LANDSCAPE p.p-extract,.THIS.PHONE.LANDSCAPE p.p-body,.THIS.PHONE.LANDSCAPE p.p-img-desc{
+    width: 100%;
+}
+.THIS.TABLET p.p-date,.THIS.PHONE p.p-date{
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 28px;
+    color: #848484;
+    font-style: normal;
+}
+.THIS.TABLET h1.h1-title,.THIS.PHONE h1.h1-title {
+    font-size: 25px;
+    font-weight: 300;
+    line-height: 30px;
+    color: #0B0B0B;
+    font-style: normal;
+}
+.THIS.TABLET p.p-extract,.THIS.PHONE p.p-extract{
+    font-size: 17px;
+    font-weight: 300;
+    line-height: 25px;
+    color: #848484;
+    font-style: italic;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.THIS.TABLET img.img-feature,.THIS.PHONE img.img-feature{
+    width: 100%;
+    height: 200px;
+	-o-object-fit: contain;
+	object-fit: contain;
+}
+.THIS.TABLET p.p-img-desc,.THIS.PHONE p.p-img-desc{
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 20px;
+    color: #848484;
+    font-style: normal;
+    margin-top: 20px;
+}
+.THIS.TABLET p.p-body,.THIS.PHONE p.p-body{
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 26px;
+    color: #333333;
+    font-style: normal;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }

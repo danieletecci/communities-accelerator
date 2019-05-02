@@ -23,9 +23,12 @@
 	handleIframeLoad : function(component, event, helper){
 		component.find('KB_iframe').getElement().contentWindow.postMessage({
 																				event : "contentchange",
-																				data : component.get("v.contentBody")
+																				data : component.get("v.contentBody"),
 																			}, 
 																			component.get("v.vHost"));
 
-	}
+	},
+	itemsChange: function(component, event) {
+		component.find("medEl").initPopUp();
+    }
 })

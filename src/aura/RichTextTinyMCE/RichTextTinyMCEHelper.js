@@ -62,6 +62,7 @@
 		console.log("modifiedbody: ", component.get("v.contentBody"));
 	},
 	showImageSelector : function(component){
-		component.find("medEl").initPopUp();
+		component.set("v.meHelper", !component.get("v.meHelper"));
+		//component.find("medEl").initPopUp();
 	}
 })

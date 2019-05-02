@@ -2,12 +2,14 @@
 	<!-- HANDLERS -->
 	<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <aura:handler name="URLEvent" event="c:MediaElementManagerEvent" action="{!c.handleURLEvent}"/>
+    <aura:handler name="change" value="{!v.meHelper}" action="{!c.itemsChange}"/>
 
 	<!-- ATTRIBUTES -->
 	<aura:attribute name="namespace"	type="String" default="c"	/>
 	<aura:attribute name="iframeUrl" 	type="String"				/>
 	<aura:attribute name="contentBody"	type="String"				/>
 	<aura:attribute name="vHost"		type="String"				/>
+	<aura:attribute name="meHelper"		type="Boolean" default="false" />
 
     <c:MediaElementManager aura:id="medEl" hasButton="false"/>
 	<lightning:tabset selectedTabId="one">

@@ -26,7 +26,7 @@
 	                <!-- Component Body -->
 	                <div class="componentBody">
 	                    <!-- COMMUNITY COMPONENT -->
-	                    <aura:if isTrue="{!or(v.componentType == 'ClusterSelector', and(v.componentWrapper.data.contentWrapper != null, v.componentWrapper.data.contentWrapper.length > 0))}">
+                        <aura:if isTrue="{!or(v.componentType == 'ClusterSelector',v.componentType == 'Datatable', and(v.componentWrapper.data.contentWrapper != null, v.componentWrapper.data.contentWrapper.length > 0))}">
 		                    <h2 class="list-header">
 		                    	{!v.componentWrapper.meta.component.Title}
 		                    </h2>
@@ -43,7 +43,7 @@
 
 	                <!-- Component Name -->
 	                <div class="componentNamePanel borderColorBlue hidden">
-	                    {#v.componentWrapper.meta.component.RecordTypeDeveloperName + ' - ' + v.componentWrapper.meta.component.Name}
+	                    {!v.componentWrapper.meta.component.RecordTypeDeveloperName + ' - ' + v.componentWrapper.meta.component.Name}
 	                </div>
 
 	                <!-- Buttons -->
@@ -54,13 +54,13 @@
 	                        <lightning:buttonIcon iconName="utility:insert_template" class="buttonsPanelIcons" title="Add content" alternativeText="Add content" onclick="{!c.doNewContent}" size="medium"/>
 	                    </aura:if>
 	                    
-	                    <aura:if isTrue="{#v.componentWrapper.data.contentWrapper.length > 0}">
+	                    <aura:if isTrue="{!v.componentWrapper.data.contentWrapper.length > 0}">
 	                        <lightning:buttonIcon iconName="utility:image" class="buttonsPanelIcons" title="View Content" alternativeText="content" onclick="{!c.doViewContent}" size="medium"/>
 	                    </aura:if>
 	                </div>
 
 	                <!-- Related Content -->
-	                <aura:if isTrue="{#v.componentWrapper.data.contentWrapper.length > 0}">
+	                <aura:if isTrue="{!v.componentWrapper.data.contentWrapper.length > 0}">
 	                    <div aura:id="contentDetail" class="contentDetail borderColorBlue hidden">
 	                        <ul>
 	                            <aura:iteration items="{!v.componentWrapper.data.contentWrapper}" var="wrapper">

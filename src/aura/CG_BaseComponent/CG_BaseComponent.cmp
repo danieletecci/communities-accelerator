@@ -23,7 +23,7 @@
     <!-- COMPONENT -->
     <div aura:id="cg_component">
 
-        <aura:if isTrue="{!or(v.isBackend, not(v.componentWrapper == null),not(v.componentWrapper.component == null)) }">
+        <aura:if isTrue="{!or(or(v.isBackend, not(v.componentWrapper == null)), not(v.componentWrapper.component == null)) }">
             <c:CG_CommunityComponentFrame componentWrapper="{!v.componentWrapper}" isLivePreview="{!v.isLivePreview}">
                 <!-- COMMUNITY COMPONENT -->
                 <div id="{!v.componentWrapper.component.Id}" class="body-container">

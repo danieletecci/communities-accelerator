@@ -20,7 +20,7 @@
 
                 <div class="componentBody">
                     <!-- COMMUNITY COMPONENT -->
-                    <aura:if isTrue="{!or(v.componentWrapper.component.RecordTypeDeveloperName == 'LanguageSelector', v.componentWrapper.component.RecordTypeDeveloperName == 'Menu', and(v.componentWrapper.contentWrapper != null, v.componentWrapper.contentWrapper.length > 0))}">
+                    <aura:if isTrue="{!or(or(v.componentWrapper.component.RecordTypeDeveloperName == 'LanguageSelector', v.componentWrapper.component.RecordTypeDeveloperName == 'Menu'), and(v.componentWrapper.contentWrapper != null, v.componentWrapper.contentWrapper.length > 0))}">
                         <h2 class="list-header">
                             {!v.componentWrapper.component.Title}
                         </h2>
@@ -62,7 +62,7 @@
 
         <aura:set attribute="else">
             <!-- COMMUNITY COMPONENT -->
-            <aura:if isTrue="{!or(v.componentWrapper.component.RecordTypeDeveloperName == 'LanguageSelector', v.componentWrapper.component.RecordTypeDeveloperName == 'Menu', and(v.componentWrapper.contentWrapper != null, v.componentWrapper.contentWrapper.length > 0))}">
+            <aura:if isTrue="{!or(or(v.componentWrapper.component.RecordTypeDeveloperName == 'LanguageSelector', v.componentWrapper.component.RecordTypeDeveloperName == 'Menu'), and(v.componentWrapper.contentWrapper != null, v.componentWrapper.contentWrapper.length > 0))}">
                 <h2 class="list-header">
                     {!v.componentWrapper.component.Title}
                 </h2>

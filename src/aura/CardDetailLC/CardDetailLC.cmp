@@ -33,7 +33,7 @@
                         <div class="location-container">
                             <aura:if isTrue="{! v.details.location.name}">
                                 <i class="icon location-icon"></i>
-                                <a href="{!v.details.location.href}">{v.details.location.name}</a>
+                                <a href="{!v.details.location.href}">{!v.details.location.name}</a>
                             </aura:if>
                         </div>
                     </aura:if>

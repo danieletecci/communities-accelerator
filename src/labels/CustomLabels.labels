@@ -1801,6 +1801,30 @@
         <value>Required field must be completed.</value>
     </labels>
     <labels>
+        <fullName>RichTextBodyText</fullName>
+        <categories>RichTextTinyMCE.cmp</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>RichTextBodyText</shortDescription>
+        <value>Body Text</value>
+    </labels>
+    <labels>
+        <fullName>RichTextImageTitle</fullName>
+        <categories>RichTextTinyMCE.page</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>RichTextImageTitle</shortDescription>
+        <value>Add media from Salesforce</value>
+    </labels>
+    <labels>
+        <fullName>RichTextBodyHTML</fullName>
+        <categories>RichTextTinyMCE.cmp</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>RichTextBodyHTML</shortDescription>
+        <value>Body HTML</value>
+    </labels>
+    <labels>
         <fullName>SaveAndNext</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -1999,4 +2023,20 @@
         <shortDescription>MaxLengthErrorMessage</shortDescription>
         <value>The maximum number of characters is</value>
     </labels>
+    <labels>
+        <fullName>MenuNavigationCompleted</fullName>
+        <categories>MenuTrigger</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>MenuNavigationCompleted</shortDescription>
+        <value>You cannot complete this field if Navigation's field is already completed.</value>
+    </labels>
+    <labels>
+        <fullName>MenuComponentNameCompleted</fullName>
+        <categories>MenuTrigger</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>MenuComponentNameCompleted</shortDescription>
+        <value>You cannot complete this field if ComponentName's field is already completed.</value>
+    </labels>    
 </CustomLabels>

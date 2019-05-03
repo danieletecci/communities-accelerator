@@ -26,7 +26,7 @@
 	                <!-- Component Body -->
 	                <div class="componentBody">
 	                    <!-- COMMUNITY COMPONENT -->
-                        <aura:if isTrue="{!or(v.componentType == 'ClusterSelector',v.componentType == 'Datatable', and(v.componentWrapper.data.contentWrapper != null, v.componentWrapper.data.contentWrapper.length > 0))}">
+                        <aura:if isTrue="{!or(v.componentWrapper.hasContent, and(v.componentWrapper.data.contentWrapper != null, v.componentWrapper.data.contentWrapper.length > 0))}">
 		                    <h2 class="list-header">
 		                    	{!v.componentWrapper.meta.component.Title}
 		                    </h2>
@@ -75,7 +75,7 @@
 
 	        <aura:set attribute="else">
 	            <!-- COMMUNITY COMPONENT -->
-	            <aura:if isTrue="{!or(v.componentType == 'ClusterSelector', and(v.componentWrapper.data.contentWrapper != null, v.componentWrapper.data.contentWrapper.length > 0))}">
+	            <aura:if isTrue="{!or(v.componentWrapper.hasContent, and(v.componentWrapper.data.contentWrapper != null, v.componentWrapper.data.contentWrapper.length > 0))}">
 		            <h2 class="list-header">
 	                	{!v.componentWrapper.meta.component.Title}
 	                </h2>
@@ -123,7 +123,7 @@
 	        </aura:if>	        
         </aura:set> 
     </aura:if>
-    <aura:if isTrue="{!v.componentWrapper != null}">
+    <aura:if isTrue="{!and(v.componentWrapper != null, v.componentWrapper.permissions.isEnabledEditFrame)}">
     	<c:createNewContentModal aura:id="newContentModal" recordTypeId="{!v.componentWrapper.contentRecordTypeId}" componentId="{!v.componentWrapper.meta.component.Id}" navigationUrl="{!v.navigationURL}" isTemplate="{!v.isTemplate}" salesforceDomain="{!v.salesforceDomain}" oncontentcreated="{!c.doGoToContent}"></c:createNewContentModal>
     </aura:if>
     

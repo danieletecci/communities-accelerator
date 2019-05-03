@@ -46,7 +46,7 @@ public class ContentLandingRecordListControllerTest {
         insert new TagAssignment__c(Component__c = componentTest.Id, Content__c = bannerTest2.Id, Tag__c = TagTest2.Id);
 
         //When
-        ContentLandingRecordListController.TableWrapper tableWrapperTest = ContentLandingRecordListController.buildTableWrapper(bannerRecordTypeId, clusterTest.Id, categoryTest.Id, new List<String>{TagTest1.Id, TagTest2.Id}, 'Draft', null, false, 0, 5);
+        ContentLandingRecordListController.TableWrapper tableWrapperTest = ContentLandingRecordListController.buildTableWrapper(bannerRecordTypeId, clusterTest.Id, categoryTest.Id, (String)TagTest1.Id + ',' + (String)TagTest2.Id, 'Draft', null, false, 0, 5);
 
         //Then
         System.assertEquals(1, tableWrapperTest.contentWrappers.size());

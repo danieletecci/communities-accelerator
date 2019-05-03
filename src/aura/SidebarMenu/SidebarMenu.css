@@ -1,0 +1,311 @@
+.cSidebarMenu.sidebar {
+  min-height: 100vh;
+  height: 100%;
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 181px;
+  background-color: #FFFFFF;
+  overflow-x: hidden;
+  -webkit-box-shadow: 3px 0px 20px 0px rgba(0, 0, 0, 0.16);
+  -moz-box-shadow: 3px 0px 20px 0px rgba(0, 0, 0, 0.16);
+  box-shadow: 3px 0px 20px 0px rgba(0, 0, 0, 0.16);
+}
+@media screen and (min-width: 1280px) {
+  .cSidebarMenu.sidebar {
+    width: calc((100vw - 1280px)/2 + 181px);
+    margin-left: calc((100vw - 1280px)/-2);
+  }
+}
+.cSidebarMenu.sidebar .desktop-sidebar-container {
+  position: absolute;
+  width: 181px;
+  padding-left: 28px;
+  padding-right: 18px;
+  padding-top: 31px;
+}
+@media screen and (min-width: 1280px) {
+  .cSidebarMenu.sidebar .desktop-sidebar-container {
+    left: calc((100vw - 1280px)/2);
+  }
+}
+.cSidebarMenu.sidebar .desktop-sidebar-container .p-10-greyMediumLight-black {
+  text-align: left;
+  line-height: 35px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.cSidebarMenu.sidebar .desktop-sidebar-container .p-10-greyMediumLight-black > span {
+  border-bottom: 2px solid;
+  padding-bottom: 7px;
+  font-size: 10px;
+  color: #7D7773;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+.cSidebarMenu.sidebar .desktop-sidebar-container ul.ul-level-0 span:first-child li {
+  margin-top: 29px;
+}
+.cSidebarMenu.sidebar .desktop-sidebar-container ul.ul-level-0 span li {
+  margin-bottom: 35px;
+}
+.cSidebarMenu.sidebar .desktop-sidebar-container ul.ul-level-0 span li div {
+  width: 100%;
+}
+.cSidebarMenu.sidebar .desktop-sidebar-container ul.ul-level-0 span li div div {
+  width: 100%;
+}
+.cSidebarMenu.sidebar .desktop-sidebar-container ul.ul-level-0 span li div div div {
+  width: 100%;
+}
+.cSidebarMenu.sidebar .desktop-sidebar-container ul.ul-level-0 span li div div div span {
+  width: 100%;
+  display: flex;
+}
+.cSidebarMenu.sidebar .desktop-sidebar-container ul.ul-level-0 span li div div div span a {
+  width: 100%;
+  font-weight: 400;
+  font-size: 10px;
+  color: #5F5F5F;
+  line-height: 11px;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+.cSidebarMenu.sidebar .desktop-sidebar-container ul.ul-level-0 span li div div div span a:hover,
+.cSidebarMenu.sidebar .desktop-sidebar-container ul.ul-level-0 span li div div div span a:active,
+.cSidebarMenu.sidebar .desktop-sidebar-container ul.ul-level-0 span li div div div span a:focus {
+  box-shadow: none;
+  text-decoration: none;
+  color: #000000;
+  font-weight: 700;
+}
+.cSidebarMenu.sidebar .desktop-sidebar-container ul.ul-level-0 span li.lemon-button > div {
+  width: 135px;
+  height: 45px;
+  background-color: #F2B005;
+}
+.cSidebarMenu.sidebar .desktop-sidebar-container ul.ul-level-0 span li.lemon-button > div div {
+  width: 100%;
+}
+.cSidebarMenu.sidebar .desktop-sidebar-container ul.ul-level-0 span li.lemon-button > div div div {
+  width: 100%;
+}
+.cSidebarMenu.sidebar .desktop-sidebar-container ul.ul-level-0 span li.lemon-button > div div div span {
+  width: 100%;
+  display: flex;
+}
+.cSidebarMenu.sidebar .desktop-sidebar-container ul.ul-level-0 span li.lemon-button > div div div span a {
+  width: 135px;
+  height: 45px;
+  font-weight: 500;
+  font-size: 12px;
+  color: #000000;
+  line-height: 45px;
+  text-align: center;
+}
+.cSidebarMenu.sidebar .desktop-sidebar-container ul.ul-level-0 span li.lemon-button > div div div span a:hover,
+.cSidebarMenu.sidebar .desktop-sidebar-container ul.ul-level-0 span li.lemon-button > div div div span a:active,
+.cSidebarMenu.sidebar .desktop-sidebar-container ul.ul-level-0 span li.lemon-button > div div div span a:focus {
+  box-shadow: none;
+  background: #FFC800;
+  text-decoration: none;
+  color: #000000;
+}
+.cSidebarMenu.sidebar .desktop-sidebar-container ul.ul-level-0 span.is-active li div div div span a {
+  color: #000000;
+  font-weight: 700;
+}
+.cSidebarMenu.mobilebar {
+  min-height: 52px;
+  background-color: #3E3E3E;
+  padding-left: 21px;
+  padding-right: 21px;
+}
+.cSidebarMenu.mobilebar ul.ul-level-0 .p-16-white-bold {
+  text-align: left;
+  line-height: 52px;
+  min-height: 52px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  text-transform: uppercase;
+  color: white;
+  font-weight: 700;
+}
+.cSidebarMenu.mobilebar ul.ul-level-0 .p-16-white-bold.is-open {
+  color: #F2B005;
+}
+.cSidebarMenu.mobilebar ul.ul-level-0 .p-16-white-bold.is-open span span {
+  text-transform: uppercase;
+}
+.cSidebarMenu.mobilebar ul.ul-level-0 .p-16-white-bold span.italic-dynamic-title {
+  font-weight: 300;
+  font-style: italic;
+  text-transform: uppercase;
+}
+.cSidebarMenu.mobilebar ul.ul-level-0 .p-16-white-bold > span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.cSidebarMenu.mobilebar ul.ul-level-0 .p-16-white-bold > span i {
+  margin-right: 22px;
+  line-height: 52px;
+}
+.cSidebarMenu.mobilebar ul.ul-level-0 .p-16-white-bold > i {
+  line-height: 52px;
+}
+.cSidebarMenu.mobilebar ul.ul-level-0 div {
+  height: 100%;
+}
+.cSidebarMenu.mobilebar ul.ul-level-0 div span:first-child li {
+  margin-top: 42px;
+}
+.cSidebarMenu.mobilebar ul.ul-level-0 div span li {
+  margin-bottom: 31px;
+}
+.cSidebarMenu.mobilebar ul.ul-level-0 div span li div {
+  width: 100%;
+}
+.cSidebarMenu.mobilebar ul.ul-level-0 div span li div div {
+  width: 100%;
+}
+.cSidebarMenu.mobilebar ul.ul-level-0 div span li div div div {
+  width: 100%;
+}
+.cSidebarMenu.mobilebar ul.ul-level-0 div span li div div div span {
+  width: 100%;
+  display: flex;
+}
+.cSidebarMenu.mobilebar ul.ul-level-0 div span li div div div span a {
+  font-weight: 700;
+  font-size: 16px;
+  color: #FFFFFF;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-transform: uppercase;
+  width: 100%;
+}
+.cSidebarMenu.mobilebar ul.ul-level-0 div span li.lemon-button > div {
+  width: 320px;
+  height: 45px;
+  background-color: #F2B005;
+}
+@media screen and (max-width: 320px) {
+  .cSidebarMenu.mobilebar ul.ul-level-0 div span li.lemon-button > div {
+    width: 278px;
+  }
+}
+.cSidebarMenu.mobilebar ul.ul-level-0 div span li.lemon-button > div div div span a {
+  width: 320px;
+  height: 45px;
+  font-weight: 500;
+  font-size: 16px;
+  color: #000000;
+  line-height: 45px;
+  text-align: center;
+}
+@media screen and (max-width: 320px) {
+  .cSidebarMenu.mobilebar ul.ul-level-0 div span li.lemon-button > div div div span a {
+    width: 278px;
+  }
+}
+.cSidebarMenu.mobilebar ul.ul-level-0 div span li.lemon-button > div div div span a:hover,
+.cSidebarMenu.mobilebar ul.ul-level-0 div span li.lemon-button > div div div span a:active,
+.cSidebarMenu.mobilebar ul.ul-level-0 div span li.lemon-button > div div div span a:focus {
+  box-shadow: none;
+  background: #FFC800;
+  text-decoration: none;
+  color: #000000;
+}
+.cSidebarMenu.mobilebar ul.ul-level-0 div span.is-active li div div div span a {
+  color: #F2B005;
+}
+.cSidebarMenu.mobilebar ul.ul-level-0 div span li div div div div div.cCP_ChangeOutletMenuComponent {
+  margin-top: 65px;
+}
+.cSidebarMenu.mobilebar ul.ul-level-0 div span li div div div div div.cCP_ChangeOutletMenuComponent a {
+  display: flex;
+  font-size: 16px;
+  color: #FFFFFF;
+  font-weight: 300;
+  text-transform: uppercase;
+  line-height: 19px;
+}
+.cSidebarMenu.mobilebar ul.ul-level-0 div span li div div div div div.cCP_ChangeOutletMenuComponent a img {
+  margin-right: 22px;
+}
+.cSidebarMenu.mobilebar ul.ul-level-0 div span li div div div div div.cCP_ChangeOutletMenuComponent a:hover,
+.cSidebarMenu.mobilebar ul.ul-level-0 div span li div div div div div.cCP_ChangeOutletMenuComponent a:active,
+.cSidebarMenu.mobilebar ul.ul-level-0 div span li div div div div div.cCP_ChangeOutletMenuComponent a:focus {
+  box-shadow: none;
+  text-decoration: none;
+}
+.cSidebarMenu.mobilebar ul.ul-level-0 div span li div div div div div.cCP_ChangeOutletMenuComponent a:hover span,
+.cSidebarMenu.mobilebar ul.ul-level-0 div span li div div div div div.cCP_ChangeOutletMenuComponent a:active span,
+.cSidebarMenu.mobilebar ul.ul-level-0 div span li div div div div div.cCP_ChangeOutletMenuComponent a:focus span {
+  box-shadow: none;
+  text-decoration: none;
+}
+.cSidebarMenu.mobilebar ul.ul-level-0 div span.is-active li div div div div div.cCP_ChangeOutletMenuComponent a {
+  color: #F2B005;
+}
+    .cSidebarMenu .arrow-icon::after{
+        content: ' ';
+        position: absolute;
+        height: 15px;
+        width: 20px;
+        top: 17px;
+        right: 15px;
+        -webkit-mask: url(sfsites/c/resource/Assets/Assets/Icons/arrow.svg) no-repeat 50% 50%;
+        -moz-mask: url(sfsites/c/resource/Assets/Assets/Icons/arrow.svg) no-repeat 50% 50%;
+        -o-mask: url(sfsites/c/resource/Assets/Assets/Icons/arrow.svg) no-repeat 50% 50%;
+        -ms-mask: url(sfsites/c/resource/Assets/Assets/Icons/arrow.svg) no-repeat 50% 50%;
+        mask: url(sfsites/c/resource/Assets/Assets/Icons/arrow.svg) no-repeat 50% 50%;
+        background-color: #D6EAFF;
+    }
+    .cSidebarMenu .reverse::after{
+        transform: rotate(180deg);
+    }
+    .cSidebarMenu .is-open .arrow-icon::after{
+        background-color: #f2b005;
+    }
+    .cSidebarMenu .div-icon{
+		max-width: 30px;
+    }
+    .cSidebarMenu .div-icon::after{
+        content: ' ';
+        position: absolute;
+        height: 20px;
+        width: 20px;
+        background-color: #ffffff;
+    }
+    .cSidebarMenu .is-active .div-icon::after{
+		background-color: #f2b005;        
+    }
+    @media screen and (min-width: 768px) {
+        .cSidebarMenu .div-icon{
+            max-width: 25px;
+        }
+        .cSidebarMenu .div-icon::after{
+            height: 12px;
+    		background-color: #5f5f5f;
+        }
+    }
+    .cSidebarMenu.sidebar .desktop-sidebar-container ul.ul-level-0 span li div div div span:hover .div-icon::after{
+        background-color: #000000;
+    }
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  .cSidebarMenu.sidebar .desktop-sidebar-container {
+    position: absolute;
+  }
+}

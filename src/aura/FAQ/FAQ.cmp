@@ -5,12 +5,13 @@
 
 	<!-- FAQs COMPONENT -->
 	<aura:if isTrue="{!v.dataWrapper.listAllContentIds.length > 0}">
-		<h2 class="title">{!$Label.c.FAQ_Title}</h2>
 		<lightning:accordion aura:id="accordion" allowMultipleSectionsOpen="true">
 			<aura:iteration items="{!v.dataWrapper.contentWrapper}" var="wrapper">
 				<div class="slds-grid">
 					<div class="slds-col slds-size_12-of-12">
-						<c:faqItem items="{!wrapper.content}"/>
+                        <aura:if isTrue="{!wrapper.content}">
+                        	<c:FAQItemLC item="{!wrapper.content}"/>
+                        </aura:if>
 					</div>
 				</div>
 	    	</aura:iteration>

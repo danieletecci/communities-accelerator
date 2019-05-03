@@ -1,0 +1,69 @@
+.THIS.accordion {
+  font-size: medium;
+  max-width: 1280px;
+}
+.THIS.accordion .slds-button:hover,
+.THIS.accordion .slds-button:focus {
+  color: initial;
+  box-shadow: none;
+}
+.THIS.accordion .slds-button.slds-button_reset {
+  width: 100%;
+  color: #C0C0C0;
+}
+@media screen and (min-width: 768px) {
+  .THIS.accordion .slds-button.slds-button_reset {
+    margin-bottom: 30px;
+  }
+}
+.THIS.accordion .slds-button.slds-button_reset:after {
+  content: url('sfsites/c/resource/Assets/Assets/Icons/arrow.svg');
+  float: right;
+  margin-left: auto;
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
+  margin-top: 8px;
+}
+.THIS.accordion .slds-button.slds-button_reset.active:after {
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+.THIS.accordion .slds-button.slds-button_reset .title {
+  max-width: 80%;
+  display: inline-block;
+}
+@media screen and (min-width: 768px) {
+  .THIS.accordion .slds-button.slds-button_reset .title {
+    font-size: 30px;
+    font-weight: 100;
+    line-height: 40px;
+  }
+}
+.THIS.accordion .slds-accordion_content {
+  color: #333333;
+  height: auto;
+  overflow: hidden;
+  display: block;
+  transition: all 0.4s cubic-bezier(0.55, 0.085, 0.68, 0.53);
+}
+@media screen and (min-width: 768px) {
+  .THIS.accordion .slds-accordion_content {
+    margin-bottom: 50px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .THIS.accordion .slds-accordion_content {
+    padding-right: 200px;
+  }
+}
+.THIS.accordion .slds-accordion_content lightning-formatted-rich-text {
+  font-size: 20px;
+  font-weight: 500;
+}
+.THIS.accordion .scale-out-ver-top {
+  max-height: 0;
+}

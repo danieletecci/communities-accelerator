@@ -1,0 +1,53 @@
+<aura:component >
+    <aura:attribute name="details" type="Object" />
+    <ltng:require styles="{!join(',', 
+    $Resource.Assets + '/Assets/Styles/cardDetailExternalStyles.css', 
+    $Resource.Assets + '/Assets/Styles/roboto.css')}" />
+
+    <div class="{! if($Browser.isPhone,'mobile','')}">
+        <div class="card-detail slds-grid slds-gutters_direct slds-gutters_x-large slds-grid_align-center">
+            <div class="detail slds-col slds-size_4-of-4">
+                <aura:if isTrue="{! v.details.layout != 'Body Only'}">
+                    <aura:if isTrue="{! v.details.type != 'Event'}">
+                        <div class="date-container">
+                            <p class="date">
+                                <lightning:formattedDateTime value="{!v.details.date}" day="numeric" month="short" time-zone="UTC"/>                             
+                                {!v.details.headerText}
+                            </p> 
+                        </div>
+                    </aura:if>
+                    <aura:if isTrue="{! v.details.type == 'Event'}">
+                        <div class="date-container event">
+                            <p class="date">
+                                <aura:if isTrue="{!v.details.startDate}">
+                                    <lightning:formattedDateTime value="{!v.details.startDate}" year="numeric" day="numeric" month="short" timeZone="UTC"/>
+                                    <aura:if isTrue="{!v.details.endDate}">
+                                        <span> - </span>
+                                        <lightning:formattedDateTime value="{!v.details.endDate}" year="numeric" day="numeric" month="short" timeZone="UTC"/>
+                                    </aura:if>                            
+                                </aura:if>
+                            </p>
+                        </div>
+                    </aura:if>
+                    <aura:if isTrue="{! v.details.type == 'Event'}">
+                        <div class="location-container">
+                            <aura:if isTrue="{! v.details.location.name}">
+                                <i class="icon location-icon"></i>
+                                <a href="{!v.details.location.href}">{v.details.location.name}</a>
+                            </aura:if>
+                        </div>
+                    </aura:if>
+                    <div class="title-container">
+                        <h1 class="title">{!v.details.title}</h1>
+                    </div>
+                    <div class="main-img-container">
+                        <img class="main-img" src="{!v.details.imgSrc}" alt="Banner Image"/>
+                    </div>
+                </aura:if>
+                <div class="card-body-container">
+                    <aura:unescapedHtml value="{!v.details.body}"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</aura:component>

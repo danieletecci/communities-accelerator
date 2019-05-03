@@ -12,6 +12,7 @@
 				var data = response.getReturnValue();
 				if(data){
 					component.set("v.contentData", 			data.content);
+					component.set("v.namespace", 			data.namespace);
 					component.set("v.timeZone", 			data.timeZone);
 					component.set("v.visibilitySelectors", 	data.visibilitySelectors);
 					component.set("v.security", 			data.security);

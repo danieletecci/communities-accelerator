@@ -52,13 +52,50 @@
                 </thead>
                 <tbody>
                     <template for:each={table.tableData} for:item="row">
-                        <tr class="slds-hint-parent" key={row.Id} data-key={row.Id} onclick={openDetailModal}>
+                        <tr class="slds-hint-parent" key={row.Id} data-key={row.Id} >
                             <template for:each={columnsToShow} for:item="col">
-                                <td data-label={col.label} key={col.label}>
+                                <td data-label={col.label} key={col.label} data-key={row.Id} onclick={openDetailModal}>
                                     <div>
                                         <c-datatable-row colname={col.label} is-desktop hide-columns column={col.fieldName} row={row}></c-datatable-row>
                                     </div> 
                                 </td>
+                            </template>
+                            
+                            <template if:true={hasRowActions}>
+
+                                <template if:true={extraRowActionsVisible}>
+                                    <td class={extraRowActionContainerClass} >
+                                        <div class="slds-grid slds-gutters">
+                                            <template for:each={firstLevelRowAction} for:item="action">
+                                                <div key={action.label} class="slds-no-flex slds-col slds-size_1-of-4">
+                                                    <img src={action.icon} 
+                                                        data-id={row.Id} 
+                                                        data-component={action.component} 
+                                                        data-modal={action.showAsModal}
+                                                        data-navigation={action.navigation}
+                                                        onclick={rowActionEvent}>
+                                                </div>
+                                            </template>
+                                            <template if:true={hasExtraRowActions}>
+                                                <div class="slds-no-flex slds-col slds-size_1-of-4" onclick={hideMoreRowActions}>
+                                                    <img src={moreIcon}/>
+                                                </div>
+                                            </template>
+                                        </div>
+                                    </td>
+                                </template>
+
+                                <template if:false={extraRowActionsVisible}>
+                                    <td  class={extraRowActionContainerClass}>
+                                        <div class="slds-grid slds-gutters">
+                                            <template if:true={hasExtraRowActions}>
+                                                <div onclick={showMoreRowActions}>
+                                                    <img src={moreIcon}/>
+                                                </div>
+                                            </template>
+                                        </div>
+                                    </td>
+                                </template>
                             </template>
                         </tr>
                     </template>

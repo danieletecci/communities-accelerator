@@ -122,6 +122,15 @@
   height: 50px;
   cursor: pointer;
 }
+.datatable[data-is-desktop="true"] .desktop-table tr td.active {
+  position: absolute;
+  left: 0;
+  background: white;
+  padding: 0;
+  display: block;
+  height: 50px;
+  width: 100%;
+}
 .datatable[data-is-desktop="true"] .desktop-table tbody .slds-hint-parent:nth-child(odd) {
   background-color: #F8F8F8;
 }

@@ -6,21 +6,35 @@ import { LightningElement, api, track } from 'lwc';
 export default class Datatable extends LightningElement {
     @api table;
 
+    // Responsiveness
     @track orientation;
     @track isPhone = false;
     @track isTablet = false;
     @track isDesktop = false;
+
+    // Table
     @track columnsToShow;
     @track columnsToShowLength = 0;
+
+    // Modals
     @track showFilterModal = false;
-    @track searchTerm = '';
-    // @track showFooterModal = false;
     @track showDetailModal = false;
     @track showActionModal = false;
+
+    
+    // Filters
+    @track searchTerm = '';
     @track showCancelSearch = false;
     @track showFilterIcon = false;
-    // @track isCustomDate = false;
+
+    // Actions
+    @track hasGlobalActions = false;
+    @track hasRowActions = false;
+    @track hasExtraRowActions = false;
+    @track extraRowActionsVisible = false;
     @track rowAction = [];
+    @track firstLevelRowActionAmount = 3;
+    @track firstLevelRowAction = [];
     @track globalAction = [];
     @track clickRow;
 
@@ -65,16 +79,9 @@ export default class Datatable extends LightningElement {
         return (this.table.appliedFilters.length > 0) ? true : false;
     }
 
-    // get setDateFilter() {   
-    //     var columns = JSON.parse(JSON.stringify(this.table.columns));
-    //     var filterValues = ["Last Week", "Last Month", "Last Year", "Custom Range"]; 
-    //     columns.forEach(col => {
-    //         if(col.filtrable && (col.type === "DATE" || col.type === "DATETIME")) {
-    //             col.filtrableValues = filterValues;
-    //         }
-    //     });
-    //     return columns;
-    // }
+    get extraRowActionContainerClass(){
+        return 'extraRowActionContainer';
+    }
 
     openFilterModal() {
         this.showFilterModal = true;
@@ -103,14 +110,21 @@ export default class Datatable extends LightningElement {
     }
 
     typeActions() {
-        this.table.actions.forEach(act => {
+        this.table.actions.forEach( (act, index, actionList) => {
             act.icon = Assets + '/Assets/Icons/' + act.icon +'.svg';
             if (act.recordType === "RowAction") {
+                this.hasRowActions = true;
                 this.rowAction.push(act);
             } else {
+                this.hasGlobalActions = true;
                 this.globalAction.push(act);
             }
+            if(index === (actionList.length-1)){
+                this.hasExtraRowActions = this.firstLevelRowActionAmount<this.rowAction.length;
+                this.firstLevelRowAction = this.rowAction.slice(0, this.firstLevelRowActionAmount); 
+            }
         });
+
     }
 
     handleOrientation() {
@@ -177,6 +191,16 @@ export default class Datatable extends LightningElement {
     getPage(){
         const sortIndex = new CustomEvent('getpage', { detail: {page:1} });
         this.dispatchEvent(sortIndex);
+    }
+
+    showMoreRowActions(event){
+        event.currentTarget.parentElement.parentElement.classList.add('active');
+        this.extraRowActionsVisible = true;
+    }
+    
+    hideMoreRowActions(event){
+        event.currentTarget.parentElement.parentElement.classList.add('active');
+        this.extraRowActionsVisible = false;
     }
 
     rowActionEvent(event) {

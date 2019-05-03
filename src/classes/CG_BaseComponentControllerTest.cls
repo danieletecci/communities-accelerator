@@ -34,32 +34,7 @@ public with sharing class CG_BaseComponentControllerTest {
         system.assertNotEquals(null, cw);
         system.assertEquals(componentRN.id, cw.component.id);
     }   
-    @isTest 
-    static void CASE_2(){
-        /*  Comment: dado un String correspondiente al ExternalId__c de un Component__c se retorna un Wrapper 
-            con el Component correspondiente, es un Banner con datasourse 'Manual Assigment'  */
     
-        //Given
-        String clusterId = [SELECT id FROM Cluster__c LIMIT 1].Id;
-        //Component Banner Record
-        String recordTypeId = [SELECt id, name, SobjectType FROM RecordType WHERE SobjectType =: GeneralUtils.prefix('[CMS]Component__c') AND DeveloperName = 'Banner' LIMIT 1].id;
-        Component__c componentBanner = new Component__c (Name='Article', ExternalId__c='Article', RecordTypeId = recordTypeId, Datasource__c = 'ManualAssignment',HierarchicalOrderBy__c = 'ASC');
-        insert componentBanner;
-        //Content Banner Record
-        String RTBannerId = [SELECt id, name, SobjectType FROM RecordType WHERE SobjectType =: GeneralUtils.prefix('[CMS]Content__c') AND DeveloperName = 'Banner'].id;
-        Content__c contentBanner = new Content__c(Name = 'Article1', RecordTypeId = RTBannerId);
-        insert contentBanner;
-        // Component Content Junction Record
-        ContentAssignment__c ca = new ContentAssignment__c(Component__c=componentBanner.id, Content__c=contentBanner.id);
-        insert ca;
-        //When
-        test.startTest();
-        CG_BaseComponentController.ComponentWrapper cw = CG_BaseComponentController.getComponentWrapper(componentBanner.ExternalId__c, 'Banner', null, null, null, 'DESKTOP');
-        test.stopTest();
-        //Then
-        system.assertNotEquals(null, cw);
-        system.assertEquals(componentBanner.id, cw.component.id);
-    }
     @isTest 
     static void CASE_3(){
         /*  Comment: Prueba del paginado */

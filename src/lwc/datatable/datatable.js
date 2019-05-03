@@ -147,15 +147,6 @@ export default class Datatable extends LightningElement {
         this.filterEvent(values);
     }
 
-    // filterActive(event) {
-    //     event.currentTarget.classList.toggle("active");
-    //     this.showFooterModal = true;
-
-    //     if(event.currentTarget.dataset.value === "Custom Range") {
-    //         this.isCustomDate = true;
-    //     }
-    // }
-
     filterAllRemove() {
         var tableFooter = this.template.querySelector("div.table__footer");
         var filters = [];
@@ -165,63 +156,23 @@ export default class Datatable extends LightningElement {
         this.showFilterIcon = false;
     }
 
-    // formatDate() {
-    //     var today = new Date();
-    //     var dates = [];
-    //     dates = {
-    //         now: today.getFullYear() + '-' + String(today.getMonth()+1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0'),
-    //         lastWeek: today.getFullYear() + '-' + String(today.getMonth()+1).padStart(2, '0') + '-' + String(today.getDate()-7).padStart(2, '0'),
-    //         lastMonth: today.getFullYear() + '-' + String((today.getMonth()+1)-1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0'),
-    //         lastYear: (today.getFullYear()-1) + '-' + String(today.getMonth()+1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0')
-    //     };
-    //     return dates;
-    // }
-
-    // dataFilter() {
-    //     var button = this.template.querySelectorAll("button.active");
-    //     var customDateFrom = this.template.querySelector("input[type='date'].datefrom");
-    //     var customDateTo = this.template.querySelector("input[type='date'].dateto");
-    //     var filters = [];   
-    //     var filter;
-    //     var dates = this.formatDate();
-    //     var value1;
-    //     var value2;
-
-    //     button.forEach(fil =>{
-    //         value1 = fil.dataset.value;
-    //         value2 = null;
-    //         if (fil.dataset.value === "Last Week") {
-    //             value1 = dates.lastWeek;  //value1 = menor
-    //             value2 = dates.now; //value2 = mayor
-    //         } else if (fil.dataset.value === "Last Month") {
-    //                 value1 = dates.lastMonth;
-    //                 value2 = dates.now;
-    //             } else if (fil.dataset.value === "Last Year") {
-    //                     value1 = dates.lastYear;
-    //                     value2 = dates.now;
-    //                 } else if (fil.dataset.value === "Custom Range") {
-    //                     value1 = customDateFrom.value;
-    //                     value2 = customDateTo.value;
-    //                 }
-
-    //         filter = {filter: {
-    //                         name: fil.dataset.column, 
-    //                         type: fil.dataset.type
-    //                     },
-    //                     value1: value1,
-    //                     value2: value2
-    //                 };
-    //         filters.push(filter);
-    //     });
-    //     const values = JSON.stringify(filters);
-    //     this.filterEvent(values);
-    //     this.closeFilterModal();
-    //     this.showCancelSearch = false;
-    // }
 
     filterEvent(values) {
         const filterItemSelected = new CustomEvent('filter', { detail: {values} });
         this.dispatchEvent(filterItemSelected);
+    }
+
+    sortEvent(values){
+        const sortIndex = new CustomEvent('sort', { detail:values });
+        this.dispatchEvent(sortIndex);
+    }
+
+    sortByColumn(event){
+        let direction = event.currentTarget.dataset.direction === 'ASC'?'DESC':'ASC';
+        event.currentTarget.dataset.direction = direction;
+        let currentState = JSON.parse(JSON.stringify(event.currentTarget.dataset));
+        let configObject = Object.assign({}, currentState, {direction});
+        this.sortEvent(configObject);
     }
 
     rowActionEvent(event) {
@@ -254,10 +205,5 @@ export default class Datatable extends LightningElement {
         const clearFilter = new CustomEvent('clearfilter');
         this.dispatchEvent(clearFilter);
         this.filterRemove();
-    }
-
-    sortByColumn(event){
-        console.log(event);
-        debugger;
     }
 }

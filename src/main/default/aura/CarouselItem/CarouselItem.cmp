@@ -5,7 +5,6 @@
     <aura:attribute name="bannerFrameType" type="String"/>
 
     <ltng:require styles="{!$Resource.Assets + '/Assets/Styles/roboto.css'}" />
-    <ltng:require styles="{! v.bannerFrameType == 'Hero' ? $Resource.Assets + '/Assets/Styles/bannerExternalStyle.css' : ''}" />
     <!-- NAHUE TEST --> 
     <aura:attribute name="title" type="String" default=""/>    
     <aura:attribute name="description" type="String" default=""/>
@@ -15,7 +14,7 @@
     
     <!-- NAHUE TEST END-->
 
-    <div id="carouselItem" class="{!v.bannerFrameType == 'Hero' ? 'hero-banner' : v.bannerFrameType == 'Square' ? 'square-banner' : ''}">
+    <div id="carouselItem">
         <aura:if isTrue="{!and(not(empty(v.imgHref)), empty(v.buttonLabel))}">
             <a href="{!v.imgHref}" target="_blank">
                 
@@ -26,8 +25,8 @@
                     <aura:if isTrue="{! v.title != null || v.description != null}">
                         <div class="{!'overlap ' + v.overLapLocation}">
                             <!-- Title and Description -->
-                            <div class="title">{!v.title}</div>
-                            <div class="description"><aura:unescapedHtml value="{!v.description}"/></div>
+                            <div class="title" style="{! 'font-size: ' + (v.bannerFrameType == 'Hero' ? '80px' : '40px') + ';' }">{!v.title}</div>
+                            <div class="description" style="{! 'font-size: ' + (v.bannerFrameType == 'Hero' ? '40px' : '20px') + ';' }"><aura:unescapedHtml value="{!v.description}"/></div>
                         </div>
                     </aura:if>
                 </div>
@@ -41,15 +40,15 @@
                     <aura:if isTrue="{! v.title != null || v.description != null || v.buttonLabel != null}">
                         <div class="{!'overlap ' + v.overLapLocation}">
                             <!-- Title and Description -->
-                            <div class="title">{!v.title}</div>
-                            <div class="description"><aura:unescapedHtml value="{!v.description}"/></div>
+                            <div class="title" style="{! 'font-size: ' + (v.bannerFrameType == 'Hero' ? '80px' : '40px') + ';' }">{!v.title}</div>
+                            <div class="description" style="{! 'font-size: ' + (v.bannerFrameType == 'Hero' ? '40px' : '20px') + ';' }"><aura:unescapedHtml value="{!v.description}"/></div>
+                            <!-- Link button -->
+                            <aura:if isTrue="{!not(empty(v.buttonLabel))}">
+                                <a href="{!v.imgHref}" target="_blank">
+                                    <lightning:button variant="Inverse" label="{!v.buttonLabel}" title="{!v.buttonLabel}" class="detailButton"/>
+                                </a>
+                            </aura:if>
                         </div>
-                    </aura:if>
-                    <!-- Link button -->
-                    <aura:if isTrue="{!and(v.buttonLabel != null, not(empty(v.buttonLabel)))}">
-                        <a class="a-btn" href="{!v.imgHref}" target="_blank">
-                            <lightning:button variant="Inverse" label="{!v.buttonLabel}" title="{!v.buttonLabel}" class="detailButton"/>
-                        </a>
                     </aura:if>
                 </div>
 

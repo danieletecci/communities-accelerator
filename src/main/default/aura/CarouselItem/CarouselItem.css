@@ -17,14 +17,9 @@
 /* OVERLAP */
 .THIS .overlap{
     position: absolute;
+    background: rgba(0, 0, 0, 0.3);
     padding: 20px;
     max-width: 50%;
-}
-
-.THIS.square-banner .overlap{
-    position: absolute;
-    padding: 40px;
-    max-width: 100%;
 }
 
 /* OVERLAP QUADRANT */
@@ -46,14 +41,9 @@
 }
 .THIS .Middle-Left{
     text-align: left;
-    top: 25%;
-    transform: translateY(-25%);
+    top: 50%;
+    transform: translateY(-50%);
     margin-left: 50px;
-}
-.THIS.square-banner .Middle-Left{
-    top: 0;
-    transform: none;
-    margin-left: 0;
 }
 .THIS .Middle-Center{
     text-align: center;
@@ -61,21 +51,11 @@
     left: 50%;
     transform: translate(-50%, -50%);
 }
-.THIS.square-banner .Middle-Center{
-    top: 0;
-    left: 0;
-    transform: none;
-}
 .THIS .Middle-Right{
     text-align: right;
     top: 50%;
     transform: translateY(-50%);
     right: 50px;
-}
-.THIS.square-banner .Middle-Right{
-    top: 0;
-    right: 0;
-    transform: none;
 }
 .THIS .Bottom-Left{
     text-align: left;
@@ -100,41 +80,16 @@
     font-weight: 100;
     line-height: 50px;
     color: white;
-    font-size: 40px;
-    margin-bottom: 15px;
-}
-.THIS.hero-banner .title{
-    font-size: 80px;
-    line-height: 100px;
-    margin-bottom: 0;
 }
 .THIS .description{
     color: white;
     line-height: 30px;
-    font-size: 20px;
-}
-.THIS.hero-banner .description{
-    font-size: 40px;
-    line-height: 60px;
 }
 .THIS .detailButton{
-    width: 200px;
-    height: 35px;
-    border: none;
-    background-color: #F2B005;
-    border-radius: 0;
+    margin-top: 10px;
+    color: white;
+}
+.THIS .detailButton:hover{
     color: black;
-    font-weight: 500;
-}
-.THIS .a-btn{
-    position: absolute;
-    bottom: 10%;
-    right: 150px;
-}
-.THIS.hero-banner .a-btn{
-    right: 70px;
-}
-.THIS.square-banner .a-btn{
-    right: 40px;
-    bottom: 17%;
+    background-color: white;
 }

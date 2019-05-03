@@ -47,12 +47,12 @@ public class ContentLandingRecordListController {
         String contentTypeId;
         String clusterId;
         String categoryId;
-        List<String> tagIds;
+        String tagIds;
         String status;
         String searchText;
         Boolean isTemplate;
         // Wrapper para agrupar los criterios de filtro recibidos
-        FilterWrapper(String contentTypeId, String clusterId, String categoryId, List<String> tagIds, String status, String searchText, Boolean isTemplate){
+        FilterWrapper(String contentTypeId, String clusterId, String categoryId, String tagIds, String status, String searchText, Boolean isTemplate){
             this.contentTypeName = contentTypeId != null ? [SELECT Id, Name FROM RecordType WHERE Id =: contentTypeId LIMIT 1].Name : 'Last Modified';
             this.contentTypeId = contentTypeId;
             this.clusterId = clusterId;
@@ -72,7 +72,7 @@ public class ContentLandingRecordListController {
     
     //Cacheable = TRUE, used when the table is not updated
     @auraEnabled(cacheable=true)
-    public static String getTableWrapper(String contentTypeId, String clusterId, String categoryId, List<String> tagIds, String status, String searchText, Boolean isTemplate, Integer recordOffset, Integer recordLimit){
+    public static String getTableWrapper(String contentTypeId, String clusterId, String categoryId, String tagIds, String status, String searchText, Boolean isTemplate, Integer recordOffset, Integer recordLimit){
         TableWrapper tableWrapper = buildTableWrapper(contentTypeId, clusterId, categoryId, tagIds, status, searchText, isTemplate, recordOffset, recordLimit);
         // El Wrapper es enviado al componente en forma de JSON
         return JSON.serialize(tableWrapper);
@@ -80,13 +80,13 @@ public class ContentLandingRecordListController {
     
     //Cacheable = FALSE, used when the table is updated
     @auraEnabled(cacheable=false)
-    public static String getUpdatedTableWrapper(String contentTypeId, String clusterId, String categoryId, List<String> tagIds, String status, String searchText, Boolean isTemplate, Integer recordOffset, Integer recordLimit){
+    public static String getUpdatedTableWrapper(String contentTypeId, String clusterId, String categoryId, String tagIds, String status, String searchText, Boolean isTemplate, Integer recordOffset, Integer recordLimit){
         TableWrapper tableWrapper = buildTableWrapper(contentTypeId, clusterId, categoryId, tagIds, status, searchText, isTemplate, recordOffset, recordLimit);
         // El Wrapper es enviado al componente en forma de JSON
         return JSON.serialize(tableWrapper);
     }
     
-    public static TableWrapper buildTableWrapper(String contentType, String clusterId, String categoryId, List<String> tagIds, String status, String searchText, Boolean isTemplate, Integer recordOffset, Integer recordLimit){
+    public static TableWrapper buildTableWrapper(String contentType, String clusterId, String categoryId, String tagIds, String status, String searchText, Boolean isTemplate, Integer recordOffset, Integer recordLimit){
         FilterWrapper wrapper = new FilterWrapper(contentType, clusterId, categoryId, tagIds, status, searchText, isTemplate);
         String title = (wrapper.contentTypeName + ' Records').toUpperCase();
         String columnSetString = getColumnSet();
@@ -155,6 +155,7 @@ public class ContentLandingRecordListController {
         // Devuelve los registros filtrados
         System.debug('queryInString: ' + queryInString);
         List<Content__c> records = Database.query(GeneralUtils.prefix(queryInString));
+        System.debug('records:' + records);
         return records;
     }
 
@@ -215,9 +216,12 @@ public class ContentLandingRecordListController {
         if(wrapper.clusterId != null)       queryConditions.add('[CMS]Cluster__c = \'' + wrapper.clusterId + '\'');
         if(wrapper.categoryId != null)      queryConditions.add('[CMS]Category__c = \'' + wrapper.categoryId + '\'');
         if(wrapper.isTemplate != null)      queryConditions.add('[CMS]isTemplate__c = ' + wrapper.isTemplate);
-        if(wrapper.tagIds != null && ! wrapper.tagIds.isEmpty()){
+        if(String.isNotBlank(wrapper.tagIds)){
             // Trae los IDs de los Contenidos asociados a las Tags recibidas
-            String tagedContentIds = getTagedContentIds(wrapper.tagIds);
+            wrapper.tagIds = wrapper.tagIds.deleteWhitespace();
+            List<String> listOfTagIds = wrapper.tagIds.split(',');
+
+            String tagedContentIds = getTagedContentIds(listOfTagIds);
             if(tagedContentIds != null) queryConditions.add('Id IN ' + tagedContentIds);
         }
         if(wrapper.status != null && wrapper.status.toLowerCase() != 'all') queryConditions.add('[CMS]Status__c = \'' + wrapper.status + '\'');
@@ -254,6 +258,7 @@ public class ContentLandingRecordListController {
 
     static String getTagedContentIds(List<String> tagIds){
         List<tagAssignment__c> tagAssignments = [SELECT Id, Content__c, Tag__c FROM TagAssignment__c WHERE Tag__c IN: tagIds AND Content__c != NULL];
+
         Map<String,List<String>> contentTagMap = new Map<String,List<String>>();
         for(tagAssignment__c tagAssignment : tagAssignments){
             // Si el Contenido ya está en al mapa con una Tag, agregamos la Tag actual a su lista
@@ -261,7 +266,7 @@ public class ContentLandingRecordListController {
                 contentTagMap.get(tagAssignment.Content__c).add(tagAssignment.Tag__c);
             // Si el Contenido no está en el mapa, lo agregamos creando una lista con la Tag actual
             } else{
-                contentTagMap.put(tagAssignment.Content__c, new List<String>{tagAssignment.Tag__c});    
+                contentTagMap.put(tagAssignment.Content__c, new List<String>{tagAssignment.Tag__c});
             }
         }
         // Construye la lista de Contenidos asociados a las Tags recibidas
@@ -280,7 +285,7 @@ public class ContentLandingRecordListController {
         }
         
         // Devuelve la lista de forma que pueda ser incluida en la query dinámicamente
-        return tagedContentIds.length() > 2 ? tagedContentIds = '(' + tagedContentIds.substring(0, tagedContentIds.length()-2) + ')' : null;
+        return tagedContentIds.length() > 2 ? tagedContentIds = '(' + tagedContentIds.substring(0, tagedContentIds.length()-2) + ')' : '(\'\')';
     }
 
 }

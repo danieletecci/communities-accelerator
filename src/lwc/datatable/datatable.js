@@ -3,6 +3,14 @@ import { loadStyle } from 'lightning/platformResourceLoader';
 
 import { LightningElement, api, track } from 'lwc';
 
+import GeneralCancel from '@salesforce/label/c.General_Cancel';
+import GeneralSearch from '@salesforce/label/c.General_Search';
+import RemoveAllFilters from '@salesforce/label/c.RemoveAllFilters';
+import GeneralShowMore from '@salesforce/label/c.General_ShowMore';
+import GeneralApply from '@salesforce/label/c.General_Apply';
+
+
+
 export default class Datatable extends LightningElement {
     @api table;
 
@@ -32,16 +40,24 @@ export default class Datatable extends LightningElement {
     @track hasRowActions = false;
     @track hasExtraRowActions = false;
     @track rowAction = [];
-    @track firstLevelRowActionAmount = 3;
+    @track firstLevelRowActionAmount = 2;
     @track firstLevelRowAction = [];
     @track globalAction = [];
     @track clickRow;
+
+    // Custom Labels
+    @track GeneralSearch = GeneralSearch;
+    @track GeneralCancel = GeneralCancel;
+    @track RemoveAllFilters = RemoveAllFilters;
+    @track GeneralShowMore = GeneralShowMore;
+    @track GeneralApply = GeneralApply;
 
     numberOfColumns = 6;
     filterIcon = Assets + '/Assets/Icons/FilterIcon.svg';
     closeIcon = Assets + '/Assets/Icons/CloseIcon.svg';
     moreIcon = Assets + '/Assets/Icons/MoreIcon.svg';
     sortIcon = Assets + '/Assets/Icons/SortIcon.svg';
+    arrowIcon = Assets + '/Assets/Icons/arrow.svg';
 
     constructor() {
         super();
@@ -193,7 +209,13 @@ export default class Datatable extends LightningElement {
     }
 
     showMoreRowActions(event){
-        event.currentTarget.parentElement.parentElement.classList.toggle('active');
+        let hasClass = event.currentTarget.parentElement.parentElement.classList.contains('active');
+        this.template.querySelectorAll(`td.extraRowActionContainer.active`).forEach(item => item.classList.remove('active'));
+        if(!hasClass){
+            event.currentTarget.parentElement.parentElement.classList.add('active');
+        }else{
+            event.currentTarget.parentElement.parentElement.classList.remove('active');
+        }
     }
 
     rowActionEvent(event) {

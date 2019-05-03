@@ -119,7 +119,27 @@
   order: 30;
 }
 .datatable[data-is-desktop="true"] .desktop-table tr {
+  font-family: Roboto;
+  font-weight: 500;
+  font-size: 16px;
   height: 50px;
+}
+.datatable[data-is-desktop="true"] .desktop-table tr .trigger {
+  visibility: hidden;
+  display: flex;
+  justify-content: space-around;
+}
+.datatable[data-is-desktop="true"] .desktop-table tr .trigger div:last-child img {
+  transform: rotate(90deg);
+}
+.datatable[data-is-desktop="true"] .desktop-table tr img {
+  height: 20px;
+  width: 20px;
+}
+.datatable[data-is-desktop="true"] .desktop-table tr:hover .trigger {
+  visibility: visible;
+}
+.datatable[data-is-desktop="true"] .desktop-table tr td {
   cursor: pointer;
 }
 .datatable[data-is-desktop="true"] .desktop-table tr td.extraRowActionContainer {
@@ -139,15 +159,23 @@
   display: block;
   height: 50px;
   width: 100%;
-  box-shadow: 1px 1px 5px;
-  transition: box-shadow 0.3s ease-in-out;
+}
+.datatable[data-is-desktop="true"] .desktop-table tr td.extraRowActionContainer.active .trigger {
+  display: none;
 }
 .datatable[data-is-desktop="true"] .desktop-table tr td.extraRowActionContainer.active .full-list {
   display: flex;
   justify-content: space-between;
 }
-.datatable[data-is-desktop="true"] .desktop-table tr td.extraRowActionContainer.active .trigger {
-  display: none;
+.datatable[data-is-desktop="true"] .desktop-table tr td.extraRowActionContainer.active .full-list img {
+  margin-left: 10px;
+}
+.datatable[data-is-desktop="true"] .desktop-table tr td.extraRowActionContainer.active .full-list .trigger {
+  display: block;
+}
+.datatable[data-is-desktop="true"] .desktop-table tr td.extraRowActionContainer.active .full-list .trigger img {
+  margin-left: 0px;
+  transform: rotate(-90deg);
 }
 .datatable[data-is-desktop="true"] .desktop-table tbody .slds-hint-parent:nth-child(odd) {
   background-color: #F8F8F8;

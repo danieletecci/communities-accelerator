@@ -1,5 +1,12 @@
 import { LightningElement, api, track } from 'lwc';
 
+
+import General_Select from '@salesforce/label/c.General_Select';
+import From from '@salesforce/label/c.From';
+import To from '@salesforce/label/c.To';
+import Min from '@salesforce/label/c.Min';
+import Max from '@salesforce/label/c.Max';
+
 export default class DatatableCustomDateType extends LightningElement {
     @api column;
     @api type;
@@ -67,6 +74,11 @@ export default class DatatableCustomDateType extends LightningElement {
     @track selectedDateTo;
     @track selectedMin;
     @track selectedMax;
+    @track GeneralSelect = General_Select;
+    @track From = From;
+    @track To = To;
+    @track Min = Min;
+    @track Max = Max;
 
     isLastWeek = false;
     isLastMonth = false;

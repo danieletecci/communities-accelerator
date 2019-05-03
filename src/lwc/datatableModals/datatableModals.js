@@ -1,5 +1,8 @@
 import { LightningElement, api, track } from 'lwc';
-import { loadStyle } from 'lightning/platformResourceLoader';
+import RemoveAllFilters from '@salesforce/label/c.RemoveAllFilters';
+import GeneralApply from '@salesforce/label/c.General_Apply';
+import GeneralClose from '@salesforce/label/c.General_Close';
+import GeneralSelect from '@salesforce/label/c.General_Select';
 
 
 export default class DatatableModals extends LightningElement {
@@ -18,6 +21,19 @@ export default class DatatableModals extends LightningElement {
     @track filterModal;
     @track formartDate = this.formatDate();
 
+    @track RemoveAllFilters = RemoveAllFilters;
+    @track GeneralApply = GeneralApply;
+    @track GeneralClose = GeneralClose;
+    @track GeneralSelect = GeneralSelect;
+
+    @track typePicklist = [];
+    @track typeNumber = [];
+    @track typeDate = [];
+    @track selectedDateFrom;
+    @track selectedDateTo;
+    @track selectedMin;
+    @track selectedMax;
+
     firstRender = true;
     removeAllFilters = false;
 
@@ -34,6 +50,10 @@ export default class DatatableModals extends LightningElement {
             this.appliedFilters();
             this.showFilterModalFooter = true; 
         }
+        if (this.typePicklist.length === 0 && this.typeNumber.length === 0 && this.typeDate.length === 0) { 
+            this.setFilters(); 
+        }
+
     }
 
     get filterTitleClass() {
@@ -71,6 +91,35 @@ export default class DatatableModals extends LightningElement {
         return `applyFilter slds-col ${sldsClass}`;
     }
 
+    get picklist() {
+        return (this.typePicklist.length > 0) ? true : false;
+    }
+
+    get number() {
+        return (this.typeNumber.length > 0) ? true : false;
+    }
+
+    get date() {
+        return (this.typeDate.length > 0) ? true : false;
+    }
+
+    setFilters() {   
+        var columns = JSON.parse(JSON.stringify(this.table.columns));
+        var filterValues = ["Last Week", "Last Month", "Last Year", "Custom Range"];
+        var isNumber = ["number"];
+        columns.forEach(col => {
+            if(col.filtrable && (col.type === "DATE" || col.type === "DATETIME")) {
+                col.filtrableValues = filterValues;
+                this.typeDate.push(col);
+            } else if (col.filtrable && (col.type === "DOUBLE")) {
+                col.filtrableValues = isNumber;
+                this.typeNumber.push(col);
+            } else if (col.filtrable && (col.type === "PICKLIST")) {
+                this.typePicklist.push(col);
+            }
+        });
+        return columns;
+    }
     toggleOptions(event){
         this.hideFilterLists();
         return event.currentTarget.parentNode.querySelector('.filterOptions').classList.remove('slds-hide');
@@ -93,20 +142,6 @@ export default class DatatableModals extends LightningElement {
     }
 
     //-----          FILTER'S MODAL         ------//    
-
-    get setFilters() {   
-        var columns = JSON.parse(JSON.stringify(this.table.columns));
-        var filterValues = ["Last Week", "Last Month", "Last Year", "Custom Range"];
-        var isNumber = ["number"];
-        columns.forEach(col => {
-            if(col.filtrable && (col.type === "DATE" || col.type === "DATETIME")) {
-                col.filtrableValues = filterValues;
-            } else if (col.filtrable && (col.type === "DOUBLE")) {
-                col.filtrableValues = isNumber;
-            }
-        });
-        return columns;
-    }
 
     formatDate() {
         var today = new Date();
@@ -151,6 +186,8 @@ export default class DatatableModals extends LightningElement {
     }
 
     filtersToApply() {
+        var number = this.template.querySelector("input.min");
+        var date = this.template.querySelector("lightning-input.datefrom");
         let filters = this.template.querySelectorAll('c-datatable-filters');
         let values;
         this.activeFilters = [];
@@ -158,6 +195,22 @@ export default class DatatableModals extends LightningElement {
             values = (JSON.parse(JSON.stringify(filter.valueSelect())));
             if (values) {this.activeFilters.push(values);}
         });
+        if (this.selectedMin && this.selectedMax) {
+            let filter = {  column: number.dataset.column,
+                            type:   number.dataset.type,
+                            value1: this.selectedMin,
+                            value2: this.selectedMax                      
+                        }
+            this.activeFilters.push(filter);
+        }
+        if (this.selectedDateFrom && this.selectedDateTo) {
+            let filter = {  column: date.dataset.column,
+                            type:   date.dataset.type,
+                            value1: this.selectedDateFrom,
+                            value2: this.selectedDateTo                      
+                        }
+            this.activeFilters.push(filter);
+        }
     }
 
     hideFilterLists(){

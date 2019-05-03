@@ -3,6 +3,7 @@ import RemoveAllFilters from '@salesforce/label/c.RemoveAllFilters';
 import GeneralApply from '@salesforce/label/c.General_Apply';
 import GeneralClose from '@salesforce/label/c.General_Close';
 import GeneralSelect from '@salesforce/label/c.General_Select';
+import { loadStyle } from 'lightning/platformResourceLoader';
 
 
 export default class DatatableModals extends LightningElement {

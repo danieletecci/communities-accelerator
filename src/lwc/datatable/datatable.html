@@ -63,39 +63,34 @@
                             
                             <template if:true={hasRowActions}>
 
-                                <template if:true={extraRowActionsVisible}>
-                                    <td class={extraRowActionContainerClass} >
-                                        <div class="slds-grid slds-gutters">
-                                            <template for:each={firstLevelRowAction} for:item="action">
-                                                <div key={action.label} class="slds-no-flex slds-col slds-size_1-of-4">
-                                                    <img src={action.icon} 
-                                                        data-id={row.Id} 
-                                                        data-component={action.component} 
-                                                        data-modal={action.showAsModal}
-                                                        data-navigation={action.navigation}
-                                                        onclick={rowActionEvent}>
-                                                </div>
-                                            </template>
-                                            <template if:true={hasExtraRowActions}>
-                                                <div class="slds-no-flex slds-col slds-size_1-of-4" onclick={hideMoreRowActions}>
-                                                    <img src={moreIcon}/>
-                                                </div>
-                                            </template>
-                                        </div>
-                                    </td>
-                                </template>
 
-                                <template if:false={extraRowActionsVisible}>
-                                    <td  class={extraRowActionContainerClass}>
-                                        <div class="slds-grid slds-gutters">
-                                            <template if:true={hasExtraRowActions}>
-                                                <div onclick={showMoreRowActions}>
-                                                    <img src={moreIcon}/>
-                                                </div>
-                                            </template>
+
+                                <td class="extraRowActionContainer" >
+                                    <div class="slds-grid slds-gutters full-list">
+                                        <template for:each={firstLevelRowAction} for:item="action">
+                                            <div key={action.label}>
+                                                <img src={action.icon}
+                                                    data-id={row.Id}
+                                                    data-component={action.component}
+                                                    data-modal={action.showAsModal}
+                                                    data-navigation={action.navigation}
+                                                    onclick={rowActionEvent}>
+                                            </div>
+                                        </template>
+                                        <div onclick={showMoreRowActions}>
+                                            <img src={moreIcon}/>
                                         </div>
-                                    </td>
-                                </template>
+                                    </div>
+                                    <div class="trigger">
+                                        <!--<template if:true={hasExtraRowActions}>-->
+                                            <div onclick={showMoreRowActions}>
+                                                <img src={moreIcon}/>
+                                            </div>
+                                        <!--</template>-->
+                                    </div>
+                                </td>
+
+
                             </template>
                         </tr>
                     </template>

@@ -31,7 +31,6 @@ export default class Datatable extends LightningElement {
     @track hasGlobalActions = false;
     @track hasRowActions = false;
     @track hasExtraRowActions = false;
-    @track extraRowActionsVisible = false;
     @track rowAction = [];
     @track firstLevelRowActionAmount = 3;
     @track firstLevelRowAction = [];
@@ -194,13 +193,7 @@ export default class Datatable extends LightningElement {
     }
 
     showMoreRowActions(event){
-        event.currentTarget.parentElement.parentElement.classList.add('active');
-        this.extraRowActionsVisible = true;
-    }
-    
-    hideMoreRowActions(event){
-        event.currentTarget.parentElement.parentElement.classList.add('active');
-        this.extraRowActionsVisible = false;
+        event.currentTarget.parentElement.parentElement.classList.toggle('active');
     }
 
     rowActionEvent(event) {

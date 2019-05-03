@@ -2038,5 +2038,61 @@
         <protected>true</protected>
         <shortDescription>MenuComponentNameCompleted</shortDescription>
         <value>You cannot complete this field if ComponentName's field is already completed.</value>
-    </labels>    
+    </labels>
+    <labels>    
+        <fullName>RemoveAllFilters</fullName>
+        <categories>datatable.js</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RemoveAllFilters</shortDescription>
+        <value>Remove All Filters</value>
+    </labels>
+    <labels>
+        <fullName>General_Apply</fullName>
+        <categories>datatable.js</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>General_Apply</shortDescription>
+        <value>Apply</value>
+    </labels>
+    <labels>
+        <fullName>General_Select</fullName>
+        <categories>datatableFilters.js</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>General_Select</shortDescription>
+        <value>Select</value>
+    </labels>
+    <labels>
+        <fullName>From</fullName>
+        <categories>datatableFilters.js</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>From</shortDescription>
+        <value>From</value>
+    </labels>
+    <labels>
+        <fullName>To</fullName>
+        <categories>datatableFilters.js</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>To</shortDescription>
+        <value>To</value>
+    </labels>
+    <labels>
+        <fullName>Min</fullName>
+        <categories>datatableFilters.js</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Min</shortDescription>
+        <value>Min</value>
+    </labels>
+    <labels>
+        <fullName>Max</fullName>
+        <categories>datatableFilters.js</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Max</shortDescription>
+        <value>Max</value>
+    </labels>
 </CustomLabels>

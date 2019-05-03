@@ -79,15 +79,27 @@
         <editHeading>true</editHeading>
         <label>Look</label>
         <layoutColumns>
+			<layoutItems>
+                <behavior>Edit</behavior>
+                <field>StyleClass__c</field>
+            </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>MenuLabel__c</field>
+            </layoutItems>
+			<layoutItems>		
+                <behavior>Edit</behavior>		
+                <field>MenuDynamicLabel__c</field>		
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>MenuIcon__c</field>
+            </layoutItems>
+			<layoutItems>		
+                <behavior>Edit</behavior>		
+                <field>DisplayOn__c</field>		
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>

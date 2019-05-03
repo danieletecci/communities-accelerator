@@ -1,0 +1,44 @@
+<aura:component>    
+    <aura:attribute name="opened" type="Boolean" default="false"/>
+    <aura:attribute name="menus" type="Object[]"/>
+    <aura:attribute name="device" type="String"/>
+    <aura:attribute name="navMode" type="String" />
+    <aura:attribute name="component" type="Object" />
+    
+    <ltng:require styles="{!$Resource.Assets + '/Assets/Styles/roboto.css'}" />
+    
+    <div class="{!if(v.device == 'DESKTOP', 'sidebar', 'mobilebar')}" id="desktopSidebarContainer">
+        <!-- DESKTOP -->
+        <aura:if isTrue="{! v.device == 'DESKTOP'}">
+            <div class="desktop-sidebar-container" id="desktopSidebarContent">
+                <p class="p-10-greyMediumLight-black">
+                    <span>
+                        {! if(v.component.Title, v.component.Title, '') + ' '}
+                    </span>
+                </p>
+                <ul class="slds-show_medium ul-level-0">
+                    <aura:iteration items="{!v.menus}" var="menu" indexVar="navIndex">
+                        <c:SidebarMenuItem menuIsOpen="{!v.opened}" item="{!menu}" menuLevel="1" mobileFormat="false" index="{!navIndex}"/>
+                    </aura:iteration>
+                </ul>
+            </div>
+            <!-- MOBILE -->
+            <aura:set attribute="else">
+                <ul class="slds-hide_medium ul-level-0">
+                    <p class="{! 'p-16-white-bold ' + if(v.opened,'is-open',' ')}" onclick="{!c.openCloseMenu}">
+                        <span>
+                             {! if(v.component.Title, v.component.Title, '') + ' '}
+                        </span>
+                        <div class="{! 'arrow-icon ' + if(v.opened,'reverse','')}"/>
+                    </p>
+                    <div class="{!if(v.opened, '', 'slds-hide ')}">
+                        <aura:iteration items="{!v.menus}" var="menu" indexVar="navIndex">
+                            <c:SidebarMenuItem isActive="false" menuIsOpen="{!v.opened}" item="{!menu}" menuLevel="1" mobileFormat="true" index="{!navIndex}"/>
+                        </aura:iteration>
+                    </div>
+                </ul>
+                
+            </aura:set>
+        </aura:if>
+    </div>
+</aura:component>

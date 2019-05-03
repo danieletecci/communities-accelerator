@@ -1,0 +1,54 @@
+<aura:component >
+    <aura:attribute type="Aura.Component[]" name="dynamicComponent" />
+    <aura:attribute name="item" required="true" type="Object"/>
+    <aura:attribute name="menuLevel" required="true" type="Integer"/>
+    <aura:attribute name="mobileFormat" required="true" type="Boolean"/>
+    <aura:attribute name="index" required="true" type="Integer"/>
+    <aura:attribute name="isActive" default="false" type="Boolean"/>
+    <aura:attribute name="urlTarget" default="" required="false" type="String"/>
+    <aura:attribute name="isLogOut" default="false" required="false" type="Boolean"/>
+    <aura:attribute name="mask" type="String" />
+    
+    <aura:attribute name="menuIsOpen" required="true" type="Boolean"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    
+    
+    <span class="{!if(v.isActive, 'is-active')}" data-menu-level="{!v.menuLevel}" data-index="{!v.index}">
+        <li class="{!'li-level-' + v.menuLevel + ' menu-a ' + if(v.index == 0, 'first-child ', '') + v.item.menu.StyleClass}" id="{!'li-level-' + v.menuLevel + '-' + v.index}">
+            <div class="{!if(and(v.item.iconName != null,v.item.menu.MenuLabel == null),' only-icon ',' ') }">
+                <div class="slds-grid slds-grid_align-spread slds-grid_vertical-align-center">
+                    <div class="slds-col">
+                        
+                        <!-- COMUNNITY PAGE / EXTERNAL URL -->
+                        <aura:if isTrue="{!!v.item.menu.ComponentName}">
+                            <span>
+                                <aura:if isTrue="{!v.item.iconName != null}">
+                                    <div class="div-icon">
+                                        <aura:unescapedHtml value="{!v.mask}"/>
+                                    </div>
+                                </aura:if>
+                                <aura:if isTrue="{!!v.isLogOut}">
+                                    <a href="" onclick="{!c.redirect}" target="{!v.item.behavoiur}">
+                                        {! if(v.item.menu.MenuLabel,v.item.menu.MenuLabel,'') + ' '} <span>{!if(v.item.menu.MenuDynamicLabel,v.item.menu.MenuDynamicLabel,'')}</span>
+                                    </a>
+                                    <aura:set attribute="else">
+                                        <a href="{!v.item.menu.NavigationURL}" target="_self">
+                                            {! if(v.item.menu.MenuLabel,v.item.menu.MenuLabel,'') + ' '} <span>{!if(v.item.menu.MenuDynamicLabel,v.item.menu.MenuDynamicLabel,'')}</span>
+                                        </a>
+                                    </aura:set>
+                                </aura:if>
+                            </span>
+                            <!-- CUSTOM COMPONENT -->
+                            <aura:set attribute="else">
+                                <div id="{!v.item.menu.Id}">
+                                    {!v.dynamicComponent}
+                                </div>
+                            </aura:set>
+                        </aura:if>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </span>
+</aura:component>

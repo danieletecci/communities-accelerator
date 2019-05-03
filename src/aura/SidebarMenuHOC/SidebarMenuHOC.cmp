@@ -1,4 +1,4 @@
-<aura:component controller="SidebarMenuController" extends="c:CG_BaseComponent" implements="forceCommunity:availableForAllPageTypes" access="global">
+<aura:component controller="SidebarMenuController" implements="forceCommunity:availableForAllPageTypes" access="global">
 
 	<!-- GENERAL VARIABLES --> 
 	<aura:attribute name="componentExternalId" type="String" access="global"/>

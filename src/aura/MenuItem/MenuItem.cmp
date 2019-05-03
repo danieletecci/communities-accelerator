@@ -1,4 +1,5 @@
 <aura:component >
+    <aura:attribute type="Aura.Component[]" name="dynamicComponent" />
     <aura:attribute name="menuLevel" required="true" type="Integer"/>
     <aura:attribute name="item" required="true" type="Object"/>
     <aura:attribute name="index" required="true" type="Integer"/>
@@ -16,12 +17,16 @@
                         <div class="{!(v.item.menu.MenuLabel == null ? 'only-icon' : '' ) + ' menu-icon div-icon-' + v.menuLevel + '-' + v.index}">
                             <aura:unescapedHtml value="{!v.mask}"/>
                         </div>
-                        <aura:if isTrue="{!v.item.menu.MenuLabel != null}">
+                        
+                        <aura:if isTrue="{!and(v.item.menu.MenuLabel != null,v.item.menu.ComponentName==null)}">
                             <span class="icon-label">{!v.item.menu.MenuLabel}</span>
                         </aura:if>
                         <aura:set attribute="else">
-                            <aura:if isTrue="{!v.item.menu.MenuLabel != null}">
-                                {!v.item.menu.MenuLabel}
+                            <aura:if isTrue="{!and(v.item.menu.MenuLabel != null, v.item.menu.ComponentName == null)}">
+                                	{!v.item.menu.MenuLabel}
+                                 <aura:set attribute="else">
+                                     {!v.dynamicComponent}
+                                </aura:set>
                             </aura:if>  
                         </aura:set>
                     </aura:if>

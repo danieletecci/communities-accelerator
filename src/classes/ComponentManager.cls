@@ -25,6 +25,7 @@ public without sharing virtual class ComponentManager {
         @auraEnabled public MetaWrapper meta;
         @auraEnabled public DataWrapper data;
         @auraEnabled public String contentRecordTypeId;
+        @auraEnabled public Boolean hasContent;
     }
 
     public class PermissionsWrapper{
@@ -37,6 +38,7 @@ public without sharing virtual class ComponentManager {
         @auraEnabled public String objectId;
         @auraEnabled public String name;
         @auraEnabled public String navId;
+        @auraEnabled public String namespace;
     }
     
     public virtual class DataWrapper{}
@@ -53,7 +55,8 @@ public without sharing virtual class ComponentManager {
         cw.clusterId = clusterId;
         cw.permissions = getPermissionWrapper();
         cw.meta = getMeta();
-        
+        cw.hasContent = false;
+
         if(cw.meta.component != null){
             String contentRTDevName = ContentUtils.rtComponentToContent.get(cw.meta.component.RecordtypeDeveloperName);
             if(contentRTDevName != null){
@@ -96,10 +99,12 @@ public without sharing virtual class ComponentManager {
         defaultComponentFieldSet.add('[CMS]HierarchicalOrderBy__c');
         defaultComponentFieldSet.add('[CMS]TagCriteria__c');
         defaultComponentFieldSet.add('[CMS]PageSize__c');
+        defaultComponentFieldSet.add('[CMS]Title__c');
         defaultComponentFieldSet.addAll(componentFieldSet);
         componentRecord = ComponentUtils.getComponent(componentExternalId, defaultComponentFieldSet, device);
         mw.component = new ObjectComponentWrapper(componentRecord);
         mw.navId = GeneralUtils.getNavigationId(navigationUrl);
+        mw.namespace = GeneralUtils.getNameSpace();
         return mw;
     }
 

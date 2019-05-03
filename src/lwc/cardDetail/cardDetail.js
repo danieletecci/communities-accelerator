@@ -10,7 +10,7 @@ export default class CardDetail extends LightningElement {
     mobile = navigator.userAgent.toLowerCase().includes('mobi');
 
     renderedCallback() {
-        loadStyle(this, Style + '/Assets/Styles/cardDetailExternalStyle.css');
+        loadStyle(this, 'sfsites/c/resource/Assets/Assets/Styles/cardDetailExternalStyles.css');
         loadStyle(this, Style + '/Assets/Styles/roboto.css');
     }
 
@@ -24,5 +24,9 @@ export default class CardDetail extends LightningElement {
 
     get eventClass() {
         return this.isEvent ? 'date-container event' : 'date-container';
+    }
+
+    get bodyOnly() {
+        return this.details.layout === 'Body Only';
     }
 }

@@ -582,6 +582,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Component__c.Title__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Component__c.NumberOfColumns__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>ContentAssignment__c.ExternalId__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1165,6 +1175,191 @@
         <field>Datatable__c.WhereCondition__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FormElement__c.ConfirmationError__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FormElement__c.ConfirmationLabel__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FormElement__c.ConfirmationPlaceholder__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FormElement__c.ConfirmationRequired__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FormElement__c.DefaultValue__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FormElement__c.ExternalID__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FormElement__c.FieldLabel__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FormElement__c.FieldType__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FormElement__c.FormValidation__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FormElement__c.HelpText__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FormElement__c.IsRequired__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FormElement__c.MaxLength__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FormElement__c.Order__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FormElement__c.PicklistValues__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FormElement__c.PlaceHolder__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FormElement__c.ReadOnly__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FormElement__c.Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FormElement__c.StyleClass__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FormElement__c.TextAreaRows__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FormSection__c.ColumnWidth__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FormSection__c.ExternalID__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FormSection__c.Order__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FormSection__c.SectionTitle__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FormSection__c.StyleClass__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FormValidation__c.ApexClass__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FormValidation__c.ErrorMessage__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FormValidation__c.ExternalID__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FormValidation__c.RegularExpression__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FormValidation__c.Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>FormValidation__c.Type__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Form__c.Cluster__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Form__c.ExternalId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Form__c.FormBehaviour__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Form__c.RetrievalClass__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Form__c.SaveClass__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Form__c.Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Form__c.StyleClass__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <applicationVisibilities>
         <application>CMS_Administration</application>
         <default>false</default>
@@ -1263,6 +1458,14 @@
         <recordType>Component__c.ArticlesRelated</recordType>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Component__c-Component%3A Search - Page Layout</layout>
+        <recordType>Component__c.Search</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Component__c-Component%3A Block - Page Layout</layout>
+        <recordType>Component__c.Block</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>ContentAssignment__c-Component Content Assignment Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -1287,6 +1490,10 @@
     <layoutAssignments>
         <layout>Content__c-Content%3A Article - Page Layout</layout>
         <recordType>Content__c.Article</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Content__c-Content%3A Block - Page Layout</layout>
+        <recordType>Content__c.Block</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Navigation__c-Navigation Layout</layout>
@@ -1327,6 +1534,30 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Datatable__c-List View Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>FormElement__c-Form Element Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>FormElement__c-Form Element Layout</layout>
+        <recordType>FormElement__c.Component</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>FormElement__c-Form Element Layout</layout>
+        <recordType>FormElement__c.Field</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>FormElement__c-Form Element Layout</layout>
+        <recordType>FormElement__c.HTML</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>FormSection__c-Form Section Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>FormValidation__c-Form Validation Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Form__c-Form Layout</layout>
     </layoutAssignments>
     <tabVisibilities>
         <tab>Audience__c</tab>
@@ -1390,6 +1621,18 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>Datatable__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>ContentLanding</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>Sitemap</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>Form__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <userLicense>Salesforce</userLicense>
@@ -1591,6 +1834,57 @@
         <object>Datatable__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>FormElement__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>FormSection__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>FormValidation__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>Form__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>FormElement__c.Component</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>FormElement__c.Field</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>FormElement__c.HTML</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>true</default>
         <recordType>Audience__c.Audience</recordType>
@@ -1694,6 +1988,11 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
+        <recordType>Component__c.Block</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
         <recordType>Content__c.AdvanceContent</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
@@ -1720,6 +2019,11 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
+        <recordType>Content__c.Block</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
         <recordType>DatatableAction__c.GlobalAction</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
@@ -1727,5 +2031,20 @@
         <default>true</default>
         <recordType>DatatableAction__c.RowAction</recordType>
         <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>FormElement__c.Component</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>FormElement__c.Field</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>FormElement__c.HTML</recordType>
+        <visible>false</visible>
     </recordTypeVisibilities>
 </Profile>

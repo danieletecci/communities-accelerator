@@ -61,7 +61,7 @@ public with sharing class ContentDetailController {
         }
     }
 
-    @AuraEnabled (Cacheable = false)
+    @AuraEnabled(cacheable=false)
     public static DataWrapper getData(String recordId){
         DataWrapper data;
         try{

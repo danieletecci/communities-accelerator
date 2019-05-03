@@ -1,4 +1,4 @@
-public class DatatableController extends ComponentManager {
+public without sharing class DatatableController extends ComponentManager {
 
     public Datatable__c datatable {get;set;}
     public List<DatatableElement__c> datatableElements {get;set;}
@@ -8,12 +8,20 @@ public class DatatableController extends ComponentManager {
     @AuraEnabled
     public static String doInit(String externalId) {
         DatatableController controller = new DatatableController();
+        ComponentWrapper cw = new ComponentWrapper();
+
         controller.componentExternalId = externalId;
         controller.componentFieldSet = new Set<String>();
         controller.customPermissionEdit='Datatable Edit Frame';
         controller.customPermissionView='Datatable View Frame';
         controller.defaultComponentFieldSet = new Set<String>();
-        return JSON.serialize(controller.getCW());
+
+        cw = controller.getCW();
+
+        DatatableWrapper dataTableWr = (DatatableWrapper) cw.data;
+        cw.hasContent = dataTableWr.tableData.size() > 0;
+
+        return JSON.serialize(cw);
     }
 
     @AuraEnabled

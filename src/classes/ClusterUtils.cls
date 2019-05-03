@@ -1,11 +1,11 @@
-public with sharing class ClusterUtils {
+global class ClusterUtils {
 
 	@TestVisible private static String testNetworkName;
 
-	public class ClusterWrapper {
-		public Cluster__c cluster;
-		public List<ClusterWrapper> relatedClusters;
-		public ClusterWrapper(Cluster__c p_cluster){
+	global class ClusterWrapper {
+		global Cluster__c cluster;
+		global List<ClusterWrapper> relatedClusters;
+		global ClusterWrapper(Cluster__c p_cluster){
 			this.cluster = p_cluster;
 			this.relatedClusters = new List<ClusterWrapper>();
 		}
@@ -13,7 +13,7 @@ public with sharing class ClusterUtils {
 	}
 
 	public static map<String, set<String>> mapClustersParents;
-	public static set<String> getClustersParents(String clusterId) {
+	global static set<String> getClustersParents(String clusterId) {
 		if(mapClustersParents == null){
 			mapClustersParents = new map<String, set<String>>();
 		}
@@ -41,7 +41,7 @@ public with sharing class ClusterUtils {
 	}
 	
 	public static map<String, ClusterWrapper> mapClustersBelow;
-	public static ClusterWrapper getClustersBelow(String clusterId) {
+	global static ClusterWrapper getClustersBelow(String clusterId) {
 		if(mapClustersBelow == null){
 			mapClustersBelow = new map<String, ClusterWrapper>();
 		}
@@ -69,7 +69,7 @@ public with sharing class ClusterUtils {
 	}
 
 	public static map<String, String> mapMappingKeyCluster;
-	public static String getClusterIdFromMappingObject(String recordId, String networkId){
+	global static String getClusterIdFromMappingObject(String recordId, String networkId){
 		if(mapMappingKeyCluster == null){
 			mapMappingKeyCluster = new map<String, String>();
 		}
@@ -108,7 +108,7 @@ public with sharing class ClusterUtils {
 	}
 
 
-	public static Set<Id> getEntireClusterBranch(String clusterId){
+	global static Set<Id> getEntireClusterBranch(String clusterId){
 		List<Cluster__c> clusterList = [SELECT id, parentCluster__c FROM Cluster__c];
 		//Map with id as key and cluster as value
 		Map<String, Cluster__c> clusterMap = new Map<String, Cluster__c>();

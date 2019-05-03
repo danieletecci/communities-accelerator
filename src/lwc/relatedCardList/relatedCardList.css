@@ -4,9 +4,14 @@
   justify-content: space-around;
 }
 .spacer {
-  border-bottom: 1px solid #C0C0C0;
+  border-bottom: 1px solid #EEE;
   width: 90%;
   margin: auto;
+}
+@media screen and (min-width: 768px) {
+  .spacer {
+    width: 100%;
+  }
 }
 .column-spacer:nth-child(2n) {
   padding-left: 5px;
@@ -22,4 +27,8 @@
 .related-header h2 {
   font-weight: 300;
   font-size: 30px;
+  color: #848484;
+}
+.card-padding {
+  padding-right: 10px;
 }

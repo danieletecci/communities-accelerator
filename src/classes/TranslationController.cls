@@ -27,9 +27,7 @@ public with sharing class TranslationController {
 	}
 
 	private static String getLookupObjectName(String parentLookupName, String objectName){
-		system.debug('TOKEN1: parentLookupName ' + parentLookupName);
-		system.debug('TOKEN1: objectName ' + objectName);
-
+		
 		Schema.DescribeFieldResult f = Schema.getGlobalDescribe()
 		    .get(GeneralUtils.prefix(objectName))
 		    .getDescribe()

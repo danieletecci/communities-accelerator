@@ -7,36 +7,38 @@
 
     <aura:attribute name="contentActivated" type="Boolean" default="false"/>
     <aura:attribute name="isLivePreview" type="Boolean" default="false"/>
+    <aura:attribute name="isTemplate" type="Boolean"  default="false" />
+    <aura:attribute name="navigationURL" type="String"  default="" />
+    <aura:attribute name="contentRecordtypeId" type="String"  default="" />
     
     <aura:if isTrue="{!and(or(v.componentWrapper.isEnabledCommunityEditFrame, v.componentWrapper.isEnabledCommunityViewFrame), not(v.isLivePreview))}">
         
         <div id="editFrame">
             <div id="{!v.componentWrapper.component.Id}" onmouseover="{!c.doShowEditFrame}" onmouseout="{!c.doHideEditFrame}" class="mainEditFrame">
-            	
+                
                 <!-- Component Body -->
+
                 <div class="componentBody">
-                    {!v.body}
+                    <!-- COMMUNITY COMPONENT -->
+                    <aura:if isTrue="{!or(or(v.componentWrapper.component.RecordTypeDeveloperName == 'LanguageSelector', v.componentWrapper.component.RecordTypeDeveloperName == 'Menu'), and(v.componentWrapper.contentWrapper != null, v.componentWrapper.contentWrapper.length > 0))}">
+                        <h2 class="list-header">
+                            {!v.componentWrapper.component.Title}
+                        </h2>
+                        {!v.body}
+                    </aura:if>
                 </div>
 
                 <!-- Component Name -->
                 <div class="componentNamePanel borderColorBlue hidden">
-            		{#v.componentWrapper.component.RecordTypeDeveloperName + ' - ' + v.componentWrapper.component.Name}
-            	</div>
+                    {#v.componentWrapper.component.RecordTypeDeveloperName + ' - ' + v.componentWrapper.component.Name}
+                </div>
 
                 <!-- Buttons -->
                 <div class="buttonsPanel hidden">
                     <lightning:buttonIcon iconName="utility:settings" class="buttonsPanelIcons" title="View Component" alternativeText="component" onclick="{!c.doViewComponent}" size="medium"/>
 
                     <aura:if isTrue="{!v.componentWrapper.isEnabledCommunityEditFrame}">
-
-                        <aura:if isTrue="{!or(
-                            and(v.componentWrapper.component.RecordTypeDeveloperName == 'AdvanceContent',
-                                or(v.componentWrapper.contentWrapper == null, 0 >= v.componentWrapper.contentWrapper.length)),
-                            v.componentWrapper.component.RecordTypeDeveloperName != 'AdvanceContent')}">
-
-                            <lightning:buttonIcon iconName="utility:insert_template" class="buttonsPanelIcons" title="Add content" alternativeText="Add content" onclick="{!c.doNewContent}" size="medium"/>
-                        </aura:if>
-                        
+                        <lightning:buttonIcon iconName="utility:insert_template" class="buttonsPanelIcons" title="Add content" alternativeText="Add content" onclick="{!c.doNewContent}" size="medium"/>
                     </aura:if>
 
                     <aura:if isTrue="{!v.componentWrapper.contentWrapper.length > 0}">
@@ -59,9 +61,18 @@
         </div>
 
         <aura:set attribute="else">
-            {!v.body}
+            <!-- COMMUNITY COMPONENT -->
+            <aura:if isTrue="{!or(or(v.componentWrapper.component.RecordTypeDeveloperName == 'LanguageSelector', v.componentWrapper.component.RecordTypeDeveloperName == 'Menu'), and(v.componentWrapper.contentWrapper != null, v.componentWrapper.contentWrapper.length > 0))}">
+                <h2 class="list-header">
+                    {!v.componentWrapper.component.Title}
+                </h2>
+                {!v.body}
+            </aura:if>
         </aura:set>
+    </aura:if>
 
+    <aura:if isTrue="{!and(v.componentWrapper != null, v.componentWrapper.isEnabledCommunityEditFrame)}">
+        <c:createNewContentModal aura:id="newContentModal" recordTypeId="{!v.contentRecordtypeId}" componentId="{!v.componentWrapper.component.Id}" navigationUrl="{!v.navigationURL}" isTemplate="{!v.isTemplate}" salesforceDomain="{!v.componentWrapper.acceleratorSettings.SalesforceDomain}" oncontentcreated="{!c.doGoToContent}"></c:createNewContentModal>
     </aura:if>
 
 </aura:component>

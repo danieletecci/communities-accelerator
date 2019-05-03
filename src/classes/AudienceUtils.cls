@@ -1,4 +1,4 @@
-public with sharing class AudienceUtils {
+global with sharing class AudienceUtils {
 
     public static Id rtAudienceGroup = Schema.SObjectType.Audience__c.getRecordTypeInfosByDeveloperName().get('AudienceGroup').getRecordTypeId();
     public static Id rtAudience = Schema.SObjectType.Audience__c.getRecordTypeInfosByDeveloperName().get('Audience').getRecordTypeId();
@@ -7,7 +7,7 @@ public with sharing class AudienceUtils {
     Description: This method filter the records received based on the Audiences of a User
     The records received in the "records" list must have queried the relation Audience__r.ReferenceAudienceExternalIds__c
     */
-    public static void filterRecords(Id userId, List<SObject> records, String audienceLookupApiName){
+    global static void filterRecords(Id userId, List<SObject> records, String audienceLookupApiName){
         //Get user audiences
         Set<String> userAudiences = CMSUserSettingsUtils.getUserAudiences(userId);
         
@@ -34,7 +34,7 @@ public with sharing class AudienceUtils {
     /*
     Description: This method returns or creates and return an Audience Group based on a combination of Audiences
     */
-    public static String audienceGroupCreation(List<String> audienceExternalIdsList, String clusterId){
+    global static String audienceGroupCreation(List<String> audienceExternalIdsList, String clusterId){
         if(audienceExternalIdsList == null || audienceExternalIdsList.isEmpty()){return null;}
 
         //Check if the clusterId received exists
@@ -85,7 +85,7 @@ public with sharing class AudienceUtils {
     /*
     Description: This method calculates the Audiences that apply for a User based on the Audiences Criteria
     */
-    public static List<String> audienceUserCalculation(set<id> audiencesIdsSet, Id accountId, Id contactId, Id acRelationId, Id customRecordId){
+    global static List<String> audienceUserCalculation(set<id> audiencesIdsSet, Id accountId, Id contactId, Id acRelationId, Id customRecordId){
         List<String> audiencesIdsToReturnList = new List<String>();
 
         Account account;

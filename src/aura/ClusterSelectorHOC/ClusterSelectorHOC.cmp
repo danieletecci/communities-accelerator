@@ -10,8 +10,16 @@
     <aura:attribute name="componentExternalId" type="String" access="global"/>
     <aura:attribute name="componentId" type="Id"/>
     <aura:attribute name="isBackend" type="Boolean" default="false"/>
-
+    <aura:attribute name="isLoading" type="boolean" default="false"/>
     <aura:attribute name="componentWrapper" type="Object"/>
+
+    <!-- METHODS -->
+    <aura:method name="hasClusterCookie" action="{!c.hasClusterCookie}" description="Returns the Cluster Cookie value, if there is any" access="global" />
+    
+    <aura:method name="setClusterCookie" action="{!c.setClusterCookie}" description="Sets the Cluster Cookie value from the outside" access="global" >
+        <aura:attribute name="cookieValue" type="String" access="global" />
+    </aura:method>
+
 
     <!-- MAIN COMPONENT -->
     <div>        
@@ -23,7 +31,5 @@
             />
 
         </c:ComponentToolBox>
-    </div>	
-    
-    
+    </div>
 </aura:component>

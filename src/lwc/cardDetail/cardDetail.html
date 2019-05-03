@@ -2,21 +2,41 @@
     <div class={isMobile}>
         <div class="card-detail slds-grid slds-gutters_direct slds-gutters_x-large slds-grid_align-center">
             <div class="detail slds-col slds-size_4-of-4">
-                <div class={eventClass}>
-                    <p class="date">
-                        <lightning-formatted-date-time value={details.date} year="numeric" day="numeric" month="long" time-zone="UTC"></lightning-formatted-date-time>
-                    </p>
-                </div>
-                <div if:true={isEvent} class="location-container">
-                    <lightning-icon class="slds-icon_container" icon-name="custom:custom106" size="x-small" alternative-text="Location" ></lightning-icon>
-                    <a href={details.location.href}>{details.location.name}</a>
-                </div>
-                <div class="title-container">
-                    <h1 class="title">{details.title}</h1>
-                </div>
-                <div class="main-img-container">
-                    <img class="main-img" src={details.imgSrc} alt="Banner Image">
-                </div>
+                <template if:false={bodyOnly}>
+                    <div if:false={isEvent} class={eventClass}>
+                        <p class="date">
+                            <template if:true={details.date}>
+                                <lightning-formatted-date-time value={details.date} day="numeric" month="short" time-zone="UTC"></lightning-formatted-date-time>                             
+                            </template>
+                            <template if:true={details.headerText}>
+                                {details.headerText}                         
+                            </template>
+                        </p> 
+                    </div>
+                    <div if:true={isEvent} class={eventClass}>
+                            <p class="date">
+                                <template if:true={details.startDate}>
+                                    <lightning-formatted-date-time value={details.startDate} year="numeric" day="numeric" month="short" time-zone="UTC">{details.startDate}</lightning-formatted-date-time>
+                                    <template if:true={details.endDate}>
+                                        <span> - </span>
+                                        <lightning-formatted-date-time value={details.endDate} year="numeric" day="numeric" month="short" time-zone="UTC">{details.endDate}</lightning-formatted-date-time>
+                                    </template>                            
+                                </template>
+                            </p>
+                    </div>
+                    <div if:true={isEvent} class="location-container">
+                        <template if:true={details.location.name}>
+                            <i class="icon location-icon"></i>
+                            <a href={details.location.href}>{details.location.name}</a>
+                        </template>
+                    </div>
+                    <div class="title-container">
+                        <h1 class="title">{details.title}</h1>
+                    </div>
+                    <div class="main-img-container">
+                        <img class="main-img" src={details.imgSrc} alt="Banner Image">
+                    </div>
+                </template>
                 <div class="card-body-container">
                     <lightning-formatted-rich-text value={details.body}></lightning-formatted-rich-text>
                 </div>

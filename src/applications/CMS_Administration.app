@@ -9,6 +9,15 @@
         <type>Flexipage</type>
         <pageOrSobjectType>Category__c</pageOrSobjectType>
     </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Navigation_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>Navigation__c</pageOrSobjectType>
+    </actionOverrides>
     <brand>
         <headerColor>#0070D2</headerColor>
         <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
@@ -216,6 +225,33 @@
         <type>Flexipage</type>
         <profile>Admin</profile>
     </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Audience_Group_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Audience__c</pageOrSobjectType>
+        <recordType>Audience__c.AudienceGroup</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Component_Block_page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Component__c</pageOrSobjectType>
+        <recordType>Component__c.Block</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Content_Block_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Content__c</pageOrSobjectType>
+        <recordType>Content__c.Block</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
     <tabs>Cluster__c</tabs>
     <tabs>Component__c</tabs>
     <tabs>ContentLanding</tabs>
@@ -228,5 +264,6 @@
     <tabs>Datatable__c</tabs>
     <tabs>Audience__c</tabs>
     <tabs>CMSUserSettings__c</tabs>
+    <tabs>Form__c</tabs>
     <uiType>Lightning</uiType>
 </CustomApplication>

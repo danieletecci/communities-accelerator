@@ -36,7 +36,12 @@ public class SidebarMenuController extends ComponentManager{
         ctrl.clusterId = clusterId;
         ctrl.device = device;
 
-        return ctrl.getCW();
+        ComponentManager.ComponentWrapper cw = ctrl.getCW();
+        SidebarComponentWrapper dataTableWr = (SidebarComponentWrapper) cw.data;
+        if(!dataTableWr.navWrapper.isEmpty()){
+            cw.hasContent = true;
+        }
+        return cw;
     }
     
 

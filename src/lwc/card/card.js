@@ -66,4 +66,8 @@ export default class Card extends LightningElement {
         return this.isEvent? 'desc-highlight' : 'desc-normal'; 
     }
 
+    get locationHref() {
+        return 'https://www.google.com/maps/search/' + this.config.footer.description.descSecondary;
+    }
+
 }

@@ -58,7 +58,7 @@
                                         <template if:true={isEvent}>
                                             <i class="icon location-icon"></i>
                                         </template>
-                                        {config.footer.description.descSecondary}
+                                        <a href={locationHref}>{config.footer.description.descSecondary}</a>
                                     </div>
                                 </template>
                             </div>
@@ -138,7 +138,7 @@
                                             <template if:true={isEvent}>
                                                 <i class="icon location-icon"></i>
                                             </template>
-                                            {config.footer.description.descSecondary}
+                                            <a href={locationHref}>{config.footer.description.descSecondary}</a>
                                         </div>
                                     </template>
                                 </div>

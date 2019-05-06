@@ -1,6 +1,4 @@
 .bd-example {
-  position: absolute;
-  left: 0;
   width: 100vw;
 }
 .bd-example:after {

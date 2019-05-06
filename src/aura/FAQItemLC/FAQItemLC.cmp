@@ -1,0 +1,14 @@
+<aura:component >
+    <aura:attribute name="item" type="Object"/>
+    
+    <div class="accordion">
+        <button onclick="{!c.openAccordion}" class="slds-button slds-button_reset btn-accordion">
+            <p class="title">
+                {!v.item.Title}
+            </p>
+        </button>
+        <div class="slds-accordion_content scale-out-ver-top content-accordion">
+            <aura:unescapedHtml value="{!v.item.Body}"/>
+        </div>   
+    </div>
+</aura:component>

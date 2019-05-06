@@ -41,6 +41,11 @@
   font-weight: 400;
   display: flex;
 }
+@media screen and (min-width: 768px){
+  .THIS .card-detail .detail .location-container a {
+    font-size: 19px;
+  }
+}
 .THIS .card-detail .detail .location-container .slds-icon_container {
   background-color: transparent;
 }
@@ -160,7 +165,14 @@
   bottom: -1px;
 }
 .THIS .icon {
-  font-size: 1rem;
+  margin-top: 3px;
+  font-size: 1.1rem;
+}
+@media (max-width: 768px) {
+  .THIS .icon {
+    margin-top: 0;
+    font-size: 0.75rem;
+  }
 }
 .THIS .icon.icon-2x {
   font-size: 2rem;

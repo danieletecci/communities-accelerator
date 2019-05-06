@@ -15,7 +15,7 @@
         
         <div id="editFrame">
             <div id="{!v.componentWrapper.component.Id}" onmouseover="{!c.doShowEditFrame}" onmouseout="{!c.doHideEditFrame}" class="mainEditFrame">
-            	
+                
                 <!-- Component Body -->
 
                 <div class="componentBody">
@@ -30,8 +30,8 @@
 
                 <!-- Component Name -->
                 <div class="componentNamePanel borderColorBlue hidden">
-            		{#v.componentWrapper.component.RecordTypeDeveloperName + ' - ' + v.componentWrapper.component.Name}
-            	</div>
+                    {#v.componentWrapper.component.RecordTypeDeveloperName + ' - ' + v.componentWrapper.component.Name}
+                </div>
 
                 <!-- Buttons -->
                 <div class="buttonsPanel hidden">
@@ -71,7 +71,7 @@
         </aura:set>
     </aura:if>
 
-    <aura:if isTrue="{!v.componentWrapper != null}">
+    <aura:if isTrue="{!and(v.componentWrapper != null, v.componentWrapper.isEnabledCommunityEditFrame)}">
         <c:createNewContentModal aura:id="newContentModal" recordTypeId="{!v.contentRecordtypeId}" componentId="{!v.componentWrapper.component.Id}" navigationUrl="{!v.navigationURL}" isTemplate="{!v.isTemplate}" salesforceDomain="{!v.componentWrapper.acceleratorSettings.SalesforceDomain}" oncontentcreated="{!c.doGoToContent}"></c:createNewContentModal>
     </aura:if>
 

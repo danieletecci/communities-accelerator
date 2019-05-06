@@ -3,12 +3,26 @@
 		this.superAfterRender();
 
         var delayEndTime;
+        var customComponent = component.get("v.item.menu.ComponentName");
         if(component.get("v.component")){
             if(!component.get("v.component").HasDelay){
                 delayEndTime = 500;
             } else{
                 delayEndTime = component.get('v.component').DelayTime;
             }
+        }
+        
+        if(customComponent){            
+            $A.createComponent(customComponent,{},
+                function(newcomponent){
+                   if(component.isValid()){
+                       var dynamicComponent = component.get("v.dynamicComponent");
+                       dynamicComponent.push(newcomponent);
+                       component.set("v.dynamicComponent", dynamicComponent);
+                    }
+                }
+                            
+        	);
         }
         var index = component.get('v.index');
         var menuLevel = component.get('v.menuLevel');

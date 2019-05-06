@@ -13,6 +13,7 @@
     <aura:attribute name="mediaElementName"       type="String"   />
     <aura:attribute name="isExtIdEdit"            type="Boolean"      default="false" />
     <aura:attribute name="oldExtId"               type="String"    />
+    <aura:attribute name="namespace"              type="String"   />
     
     <div class="slds-grid">
         <div class="slds-m-around_medium slds-border_top slds-border_bottom slds-border_right slds-border_left">
@@ -34,7 +35,9 @@
                     <lightning:textarea name="contentExtract" value="{!v.contentData.Extract}" label="{!$Label.c.ArticleContentDetailExtract}" maxlength="1500" />
                 </div>
                 <div class="slds-col slds-p-bottom_small">
-                    <c:RichTextContainer aura:id="RichTextContainer" label="{!$Label.c.ArticleContentDetailBody}" contentBody="{!v.contentData.Body}" />
+                    <aura:if isTrue="{!v.contentData}">
+                        <c:RichTextTinyMCE aura:id="richText" namespace="{!v.namespace}" contentBody="{!v.contentData.Body}"/>
+                    </aura:if>
                 </div>
                 <div class="slds-col slds-p-bottom_small">
                     <ui:outputText value="{!$Label.c.ArticleContentDetailImage}"/>

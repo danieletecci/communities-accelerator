@@ -34,7 +34,7 @@
 		            parentContentId: parentContentId,
 		            clusterId: clusterCookie,
 					device: device
-				});
+				}); 
 
 			    action.setCallback(this, function(f) {
 		            if(f.getState() === "SUCCESS") {
@@ -45,7 +45,12 @@
 							details.type = recordType === 'EventDetail' ? 'Event' : 'Article';
 							if(cWrapper.contentWrapper.length > 0){
 								var content = cWrapper.contentWrapper[0].content;
-								details.date = content.EventStartDate;
+								if(details.type === 'Article') {
+									details.date = content.PublishStartDate;
+								} else {
+									details.startDate = content.EventStartDate;  
+									details.endDate = content.EventEndDate;
+								}
 								details.location = {};
 								details.location.name = content.Location;
 								details.location.href = 'https://www.google.com/maps/search/' + content.Location;

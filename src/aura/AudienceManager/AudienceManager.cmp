@@ -1,0 +1,143 @@
+<aura:component controller="AudienceManagerController" implements="flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+	
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler event="force:refreshView" action="{!c.doInit}"/>
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="isLoading" type="boolean" default="true" />
+    
+    <!-- Parameterizable attributes -->
+    <aura:attribute name="relationTitle" type="String" access="global"/>
+    <aura:attribute name="objectAPIName" type="String" access="global"/>
+    
+    <!-- Junction Object Records -->
+    <aura:attribute name="recordsWrapper" type="Object"/>
+    <aura:attribute name="SecondaryObjectWrapper" type="Object"/>
+    <aura:attribute name="isEdit" type="Boolean" default="false"/>
+
+
+    <!-- Style variables -->
+    <aura:attribute name="variableDivHeight" type="String" />
+
+	<!-- Render variable -->
+    <aura:attribute name="scrollCallback" type="Object" access="private" />
+
+    
+	<!--Header part-->
+	<lightning:card title="{!v.relationTitle != null ? v.relationTitle : v.recordsWrapper.secondaryObjectLabelPlural}">
+
+		<aura:if isTrue="{!v.isLoading}">
+
+            <c:Spinner/>
+
+            <aura:set attribute="else">
+
+            	<aura:if isTrue="{!or(v.recordsWrapper.recordsSelected.length > 0, v.recordsWrapper.recordsToSelect.length > 0)}">
+            		
+            		<!-- Search -->
+            		<aura:if isTrue="{!v.isEdit}">
+						<div class="slds-form-element">
+							<div class="slds-form-element__control">
+								<input type="text" aura:id="i_input_search" class="slds-input" placeholder="{! '&#xF002; ' + $Label.c.General_Search}" onkeyup="{!c.doSearch}"/>
+							</div>
+						</div>
+					</aura:if>
+
+					<!--Junction Object Selected Records -->
+
+					<!-- Table read only -->
+					<aura:if isTrue="{!not(v.isEdit)}">		
+						<aura:if isTrue="{!v.recordsWrapper.recordsSelected.length > 0}">
+							<table class="slds-table slds-table_cell-buffer slds-table_bordered">
+							  <thead>
+							    <tr class="slds-line-height_reset">
+							      <th class="" scope="col">
+							        <div class="slds-truncate slds-text-title--caps" title="Name">{!v.recordsWrapper.fieldNameLabel}</div>
+							      </th>
+							    </tr>
+							  </thead>
+							   <tbody>
+							   	<aura:iteration items="{!v.recordsWrapper.recordsSelected}" var="rec">
+								    <tr class="slds-hint-parent">
+								      <th data-label="{!rec.name}" scope="row">
+								        <div class="slds-truncate" title="{!rec.name}"><a href="{!'/' + rec.idRecord}" tabindex="-1">{!rec.name}</a></div>
+								      </th>					      
+								    </tr>
+							    </aura:iteration>							    
+							  </tbody>
+							</table>
+							<aura:set attribute="else">
+								<div class="slds-text-heading_medium slds-text-align_center">{!$Label.c.NoRecordsSelected}</div>
+							</aura:set>
+
+						</aura:if>
+					</aura:if>
+
+					<!-- Table edition -->
+					<aura:if isTrue="{!v.isEdit}">
+						<div class="slds-table--header-fixed_container" style="height:162px">
+	    					<div class="slds-scrollable_y">
+								<table aura:id="i_table_edit" class="slds-table slds-table_bordered slds-table--header-fixed">
+									<thead>
+										<tr class="slds-text-title--caps">
+											<th scope="col">
+												<div class="slds-cell-fixed">
+													<ui:inputCheckbox change="{!c.doSelectAll}" class="c_row_header_fixed"/>
+												</div>
+											</th>
+											<th scope="col">
+												<div class="slds-cell-fixed">
+													<div class="c_row_header_fixed" title="Name">{!v.recordsWrapper.fieldNameLabel}</div>
+												</div>
+											</th>
+										</tr>
+									</thead>
+									<tbody>
+										<aura:iteration items="{!v.recordsWrapper.recordsSelected}" var="rec">
+											<tr class="c_item_searchable">
+												<td scope="row" class="c_row_toselect">
+													<ui:inputCheckbox text="{!rec.externalId}" aura:id="i_input_checkbox" value="true"/>
+												</td>
+												<td scope="row">
+													<div class="slds-truncate" title="{!rec.name}"><a href="{!'/' + rec.idRecord}">{!rec.name}</a></div>
+												</td>
+											</tr>
+										</aura:iteration>
+										<aura:iteration items="{!v.recordsWrapper.recordsToSelect}" var="rec">
+											<tr class="c_item_searchable">
+												<td scope="row" class="c_row_toselect">
+													<ui:inputCheckbox text="{!rec.externalId}" aura:id="i_input_checkbox" value="false"/>
+												</td>
+												<td scope="row">
+													<div class="slds-truncate" title="{!rec.name}"><a href="{!'/' + rec.idRecord}">{!rec.name}</a></div>
+												</td>
+											</tr>
+										</aura:iteration>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</aura:if>
+
+					<div class="slds-button-group" role="group">
+						<aura:if isTrue="{!not(v.isEdit)}">
+							<button class="slds-button slds-button_neutral" title="Edit" onclick="{!c.doEdit}">{!$Label.c.General_Edit}</button>
+						</aura:if>						
+						<aura:if isTrue="{!v.isEdit}">
+							<button class="slds-button slds-button_neutral" title="Cancel" onclick="{!c.doCancel}">{!$Label.c.General_Cancel}</button>
+
+							<button class="slds-button slds-button_neutral uiButton--brand" title="Save" onclick="{!c.doSave}">{!$Label.c.General_Save}</button>
+						</aura:if>
+					</div>
+
+					<aura:set attribute="else">
+						<div class="slds-text-heading_medium slds-text-align_center">{!$Label.c.NoRecordsToShow}</div>
+					</aura:set>
+				
+				</aura:if>
+
+			</aura:set>
+
+		</aura:if>
+
+	</lightning:card>
+</aura:component>

@@ -3,7 +3,7 @@
         helper.getRecord(component, event, helper);
     },
     doGetPage : function(component, event, helper) {
-        helper.doGetPage(component, event, helper);
+        helper.doGetPage(component, event, helper, event.getParam('page'));
     },
     doHandleSearch : function(component, event, helper) {
         var searchTerm = event.getParam("values");

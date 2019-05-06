@@ -58,6 +58,27 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
+        <fullName>Audience__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Audience</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>Audience__c.RecordType.DeveloperName</field>
+                <operation>equals</operation>
+                <value>AudienceGroup</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>Audience__c</referenceTo>
+        <relationshipLabel>Menus</relationshipLabel>
+        <relationshipName>Menus</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>Behaviour__c</fullName>
         <externalId>false</externalId>
         <label>Behaviour</label>
@@ -120,6 +141,36 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
         <type>Text</type>
         <unique>false</unique>
     </fields>
+	<fields>		
+        <fullName>DisplayOn__c</fullName>		
+        <defaultValue>&quot;Both&quot;</defaultValue>		
+        <externalId>false</externalId>		
+        <label>Display On</label>		
+        <required>false</required>		
+        <trackTrending>false</trackTrending>		
+        <type>Picklist</type>		
+        <valueSet>		
+            <restricted>true</restricted>		
+            <valueSetDefinition>		
+                <sorted>false</sorted>		
+                <value>		
+                    <fullName>Desktop</fullName>		
+                    <default>false</default>		
+                    <label>Desktop</label>		
+                </value>		
+                <value>		
+                    <fullName>Mobile</fullName>		
+                    <default>false</default>		
+                    <label>Mobile</label>		
+                </value>		
+                <value>		
+                    <fullName>Both</fullName>		
+                    <default>false</default>		
+                    <label>Both</label>		
+                </value>		
+            </valueSetDefinition>		
+        </valueSet>		
+    </fields>
     <fields>
         <fullName>ExternalId__c</fullName>
         <caseSensitive>false</caseSensitive>
@@ -130,6 +181,16 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>true</unique>
+    </fields>
+	<fields>
+        <fullName>MenuDynamicLabel__c</fullName>		
+        <externalId>false</externalId>		
+        <label>Menu Dynamic Label</label>		
+        <length>40</length>		
+        <required>false</required>		
+        <trackTrending>false</trackTrending>		
+        <type>Text</type>		
+        <unique>false</unique>		
     </fields>
     <fields>
         <fullName>MenuIcon__c</fullName>
@@ -187,6 +248,16 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
             <restricted>true</restricted>
             <valueSetName>Status</valueSetName>
         </valueSet>
+    </fields>
+	<fields>
+        <fullName>StyleClass__c</fullName>		
+        <externalId>false</externalId>		
+        <label>Style Class</label>		
+        <length>40</length>		
+        <required>false</required>		
+        <trackTrending>false</trackTrending>		
+        <type>Text</type>		
+        <unique>false</unique>		
     </fields>
     <fields>
         <fullName>URLParameters__c</fullName>
@@ -247,6 +318,21 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
                 <default>false</default>
             </values>
         </picklistValues>
+		<picklistValues>
+            <picklist>DisplayOn__c</picklist>		
+            <values>		
+                <fullName>Both</fullName>		
+                <default>false</default>		
+            </values>		
+            <values>		
+                <fullName>Desktop</fullName>		
+                <default>false</default>		
+            </values>		
+            <values>		
+                <fullName>Mobile</fullName>		
+                <default>false</default>		
+            </values>		
+        </picklistValues>	
         <picklistValues>
             <picklist>Status__c</picklist>
             <values>
@@ -274,6 +360,21 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
                 <fullName>Same Tab</fullName>
                 <default>false</default>
             </values>
+        </picklistValues>
+		<picklistValues>
+            <picklist>DisplayOn__c</picklist>		
+            <values>		
+                <fullName>Both</fullName>		
+                <default>false</default>		
+            </values>		
+            <values>		
+                <fullName>Desktop</fullName>		
+                <default>false</default>		
+            </values>		
+            <values>		
+                <fullName>Mobile</fullName>		
+                <default>false</default>		
+            </values>		
         </picklistValues>
         <picklistValues>
             <picklist>Status__c</picklist>

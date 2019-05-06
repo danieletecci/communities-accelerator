@@ -1,0 +1,4 @@
+<design:component label="Audience Manager">
+	<design:attribute name="relationTitle" label="Title"/>
+	<design:attribute name="objectAPIName" label="Object Name" required="true"/>
+</design:component>

@@ -59,8 +59,7 @@
 			content : content,
 			visibilitySelectorsString : JSON.stringify(visibilitySelectors),
 			mediaElementId : mediaElementId,
-			status : status,
-			contentOldTagAssignments : content.Tags
+			status : status
         });
 		action.setCallback(this, function(response){
 			var state = response.getState();

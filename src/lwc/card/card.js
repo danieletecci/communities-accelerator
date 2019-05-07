@@ -39,7 +39,7 @@ export default class Card extends LightningElement {
     }
 
     disconnectedCallback() {
-        window.removeEventListener("orientationchange")
+        window.removeEventListener("orientationchange");
     }
 
     handleOrientation() {
@@ -69,7 +69,7 @@ export default class Card extends LightningElement {
     }
 
     get isEvent() {
-        return this.config.type === 'EventList'
+        return this.config.type === 'EventList';
     }
 
     get headerClass() {
@@ -129,5 +129,9 @@ export default class Card extends LightningElement {
     get containerGridClass() {
         let typeClass = this.orientation;
         return `container-${typeClass} slds-grid`;
+    }
+
+    get locationHref() {
+        return 'https://www.google.com/maps/search/' + this.config.footer.description.descSecondary;
     }
 }

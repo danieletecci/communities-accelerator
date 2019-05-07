@@ -81,20 +81,16 @@ global without sharing class GeneralForm{
     }
 
     global static FormResponseWrapper saveForm(String formSettingsString, Map<String, SObject> formData, String namespace){
-        System.debug('Before serialize formSettings ' + formSettings);
-        System.debug('Before serialize formData ' + formData);
         FormSettings formSettings = (FormSettings)JSON.deserialize(formSettingsString, FormSettings.class);
-        System.debug('formSettings ' + formSettings);
-        System.debug('isRunningTest ' + Test.isRunningTest());
+        
         if(!Test.isRunningTest()){
-            Type t  = Type.forName(namespace, formSettings.saveClass);
-            System.debug('SaveClass ' + t);
+            Type t = Type.forName(namespace, formSettings.saveClass);
+            if(t == null){
+                t = Type.forName(formSettings.saveClass);
+            }
 
-            if(t != null){
-                System.debug('NewInstance ' + t.newInstance());
+            if(t != null){                
                 FormSaveInterface formSave = (FormSaveInterface)t.newInstance();
-                System.debug('FormSave ' + formSave);
-                System.debug('FormSave ' + formSave.execute(formData));
                 return formSave.execute(formData);
             }
         }

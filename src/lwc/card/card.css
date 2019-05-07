@@ -7,7 +7,7 @@
 }
 @media (min-width: 768px) {
   .container-portrait {
-    height: 400px;
+    height: 350px;
     margin-bottom: 0;
     margin-top: 0;
   }
@@ -38,6 +38,15 @@
   .container-portrait .body-container {
     min-height: 48px;
   }
+}
+@media (min-width: 768px) {
+  .container-portrait .footer {
+    min-height: 30px;
+  }
+}
+.container-portrait .footer a {
+  color: black;
+  text-decoration: none;
 }
 .container-landscape {
   font-family: 'Roboto';

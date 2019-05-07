@@ -1,0 +1,3 @@
+<design:component label="CG Sidebar">
+	<design:attribute name="componentExternalId" label="Component External Id" datasource="apex://MenuDynamicPicklist"/>
+</design:component>

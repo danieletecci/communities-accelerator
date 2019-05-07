@@ -11,11 +11,11 @@
 			if (state === "SUCCESS") {
 				var data = response.getReturnValue();
 				if(data){
+					component.set("v.namespace", 			data.namespace);
 					component.set("v.contentData", 			data.content);
-					
 					component.set("v.visibilitySelectors", 	data.visibilitySelectors);
 					component.set("v.security", 			data.security);
-					if(data.content.MediaElementAssignments != null){
+					if(data.content.MediaElementAssignments != null && data.content.MediaElementAssignments.length > 0){
 						component.set('v.imageUrl', data.content.MediaElementAssignments[0].MediaElement.FileURLDesktop);
                         component.set('v.mediaElementName', data.content.MediaElementAssignments[0].MediaElement.Name);
                         component.set('v.mediaElementId', data.content.MediaElementAssignments[0].MediaElement.Id);

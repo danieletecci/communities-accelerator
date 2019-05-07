@@ -1,4 +1,6 @@
 import { LightningElement, api, track } from 'lwc';
+import { loadStyle } from 'lightning/platformResourceLoader';
+
 
 export default class RelatedCardList extends LightningElement {
     @api contents;
@@ -13,6 +15,7 @@ export default class RelatedCardList extends LightningElement {
 
     connectedCallback() {
         window.addEventListener("orientationchange", () => this.handleOrientation());
+        loadStyle(this, 'sfsites/c/resource/Assets/Assets/Styles/relatedCardListExternalStyles.css');
     }
     disconnectedCallback() {
         window.removeEventListener("orientationchange")
@@ -31,7 +34,13 @@ export default class RelatedCardList extends LightningElement {
     }
 
     get typeWrapper() {
-        return this.type.toLowerCase() + 's';
+        //return this.type.toLowerCase() + 's';
+        if(this.type === 'ArticlesRelated')
+            return 'articles';
+        else if(this.type === 'EventsRelated')
+            return 'events';
+        else
+            return this.type.toLowerCase() + 's';
     }
-
+    
 }

@@ -43,14 +43,14 @@
                                 <p class="img-feature-selected-desc">
                                     <span class="slds-truncate" title="{!v.mediaElementName}">{!v.mediaElementName}</span>
                                     <lightning:buttonIcon
-                                                            iconName="utility:delete"
-                                                            size="large"
-                                                            variant="bare"
-                                                            title="{!$Label.c.UnassignImage}"
-                                                            iconClass="slds-button slds-button_icon"
-                                                            class="img-close"
-                                                            alternativeText="{!$Label.c.UnassignImage}"
-                                                            onclick="{!c.unassignFeatureImg}" />
+                                        iconName="utility:delete"
+                                        size="large"
+                                        variant="bare"
+                                        title="{!$Label.c.UnassignImage}"
+                                        iconClass="slds-button slds-button_icon"
+                                        class="img-close"
+                                        alternativeText="{!$Label.c.UnassignImage}"
+                                        onclick="{!c.unassignFeatureImg}" />
                                 </p>
                             </div>
                             <aura:set attribute="else">
@@ -80,8 +80,10 @@
 
                 <!--Link-->
                 <div class="slds-col slds-p-bottom_small">
-                    <c:LookupInput objectAPIName="[CMS]Navigation__c" IconName="standard:link"
-                    selectedRecordId="{!v.contentData.LinkDetail}" label="{!$Label.c.BannerContentDetailLink}" />
+                    <aura:if isTrue="{!v.contentData.Id}">
+                        <c:LookupInput objectAPIName="[CMS]Navigation__c" IconName="standard:link"
+                        selectedRecordId="{!v.contentData.LinkDetail}" label="{!$Label.c.BannerContentDetailLink}" />
+                    </aura:if>
                 </div>
                     
                 <!--Choose Layout-->

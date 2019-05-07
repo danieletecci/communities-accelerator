@@ -3,6 +3,6 @@
 	<aura:attribute name="componentExternalId" type="String" access="global"/>
 	<aura:attribute name="componentType" type="String" default="ArticleDetail"/>
 	
-    <c:cardDetail details="{!v.componentWrapper.details}" />
+    <c:CardDetailLC details="{!v.componentWrapper.details}" />
 		
 </aura:component>

@@ -25,7 +25,6 @@
 }
 .datatable div.pills-container {
   height: 50px;
-  overflow-x: scroll;
   white-space: nowrap;
 }
 .datatable div.pills-container .slds-pill {
@@ -82,4 +81,129 @@
   padding: 0;
   width: 100%;
   text-align: left;
+}
+.datatable[data-is-desktop="true"] {
+  position: relative;
+  display: flex;
+  flex-flow: column;
+}
+.datatable[data-is-desktop="true"] .header {
+  display: flex;
+  justify-content: space-between;
+  order: 10;
+}
+.datatable[data-is-desktop="true"] .search-element {
+  min-width: 0px;
+  height: 80px;
+}
+.datatable[data-is-desktop="true"] .search-element .searchInput,
+.datatable[data-is-desktop="true"] .search-element .searchInput::placeholder {
+  background-image: none;
+  font-size: 50px;
+  line-height: 25px;
+  padding: 10px 0px;
+  width: 250px;
+}
+.datatable[data-is-desktop="true"] .search-element .icons-group {
+  width: 100px;
+  display: flex;
+  justify-content: space-around;
+}
+.datatable[data-is-desktop="true"] .search-element .icons-group .cancelSearch {
+  height: 100%;
+}
+.datatable[data-is-desktop="true"] .search-element .icons-group .filterIcon {
+  cursor: pointer;
+}
+.datatable[data-is-desktop="true"] .desktop-table {
+  order: 30;
+}
+.datatable[data-is-desktop="true"] .desktop-table tr {
+  font-family: Roboto;
+  font-weight: 500;
+  font-size: 16px;
+  height: 50px;
+}
+.datatable[data-is-desktop="true"] .desktop-table tr .trigger {
+  visibility: hidden;
+  display: flex;
+  justify-content: space-around;
+}
+.datatable[data-is-desktop="true"] .desktop-table tr .trigger div:last-child img {
+  transform: rotate(90deg);
+}
+.datatable[data-is-desktop="true"] .desktop-table tr img {
+  height: 20px;
+  width: 20px;
+}
+.datatable[data-is-desktop="true"] .desktop-table tr:hover .trigger {
+  visibility: visible;
+}
+.datatable[data-is-desktop="true"] .desktop-table tr td {
+  cursor: pointer;
+}
+.datatable[data-is-desktop="true"] .desktop-table tr td.extraRowActionContainer {
+  margin: 0px;
+  padding: 0px;
+  text-align: right;
+  box-shadow: 0px 0px 0px;
+}
+.datatable[data-is-desktop="true"] .desktop-table tr td.extraRowActionContainer .full-list {
+  display: none;
+}
+.datatable[data-is-desktop="true"] .desktop-table tr td.extraRowActionContainer.active {
+  position: absolute;
+  left: 0;
+  background: white;
+  padding: 15px;
+  display: block;
+  height: 50px;
+  width: 100%;
+}
+.datatable[data-is-desktop="true"] .desktop-table tr td.extraRowActionContainer.active .trigger {
+  display: none;
+}
+.datatable[data-is-desktop="true"] .desktop-table tr td.extraRowActionContainer.active .full-list {
+  display: flex;
+  justify-content: space-between;
+}
+.datatable[data-is-desktop="true"] .desktop-table tr td.extraRowActionContainer.active .full-list img {
+  margin-left: 10px;
+}
+.datatable[data-is-desktop="true"] .desktop-table tr td.extraRowActionContainer.active .full-list .trigger {
+  display: block;
+}
+.datatable[data-is-desktop="true"] .desktop-table tr td.extraRowActionContainer.active .full-list .trigger img {
+  margin-left: 0px;
+  transform: rotate(-90deg);
+}
+.datatable[data-is-desktop="true"] .desktop-table tbody .slds-hint-parent:nth-child(odd) {
+  background-color: #F8F8F8;
+}
+.datatable[data-is-desktop="true"] .desktop-table .pagination td {
+  padding: 0px;
+  margin: 0px;
+  background: #4B96E8;
+  text-align: center;
+  color: #FDFDFD;
+  font-weight: bold;
+}
+.datatable[data-is-desktop="true"] .desktop-table .columnLabel {
+  display: flex;
+  justify-content: space-between;
+}
+.datatable[data-is-desktop="true"] .applied-filter-container {
+  display: flex;
+  flex-direction: row-reverse;
+  order: 25;
+}
+.datatable[data-is-desktop="true"] .table__footer {
+  display: flex;
+  position: relative;
+  order: 15;
+  justify-content: flex-end;
+}
+.datatable[data-is-desktop="true"] .table__footer button.remove-filter-btn {
+  position: relative;
+  width: auto;
 }

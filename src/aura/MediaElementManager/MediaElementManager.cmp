@@ -55,15 +55,9 @@
                 </header>
                 <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
                     <!-- SEARCH BOX -->
-                    <input type="text" aura:id="searchField" class="input_search" placeholder="{!$Label.c.GlobalSearchPlaceholder}" onkeypress="{!c.doSearch}"/>
-                    <lightning:buttonIcon
-                        iconName="utility:search"
-                        size="large"
-                        variant="bare"
-                        class="icon_search"
-                        title="{!$Label.c.General_Search}" 
-                        alternativeText="{!$Label.c.General_Search}"
-                        onclick="{!c.searchByText}"/>
+                    <div class="slds-form-element" onkeyup="{! c.doSearch }">
+                        <lightning:input aura:id="searchField" name="inline-search-input" type="search" placeholder="{!$Label.c.GlobalSearchPlaceholder}" variant="label-hidden" onchange="{!c.doSearch}" />
+                    </div>
                     <div class="div_mediaSearchSection" onscroll="{!c.getMoreRecords}">
                         <!-- MEDIA ELEMENTS LIST -->
                         <div class="div_mediaElementsContainer infinite-list" id="infinite-list">					
@@ -71,8 +65,10 @@
                                 <div class="div_mediaElementCardContainer slds-align_absolute-center" onclick="{!c.selectMediaElement}">
                                     <img src="{!mediaElement.fileURLDesktop}" data-name="{!mediaElement.name}" class="img_mediaElementReview" id="{!mediaElement.idME}"/>
                                     <div class="div_cardTitle">
-                                        <p class="slds-truncate">{!mediaElement.name}</p>
-                                        <p class="slds-truncate">{!mediaElement.lastModified} - {!mediaElement.size} - {!mediaElement.ext}</p>
+                                        <span class="slds-media__body">
+                                            <span class="slds-listbox__option-text slds-listbox__option-text_entity">{!mediaElement.name}</span>
+                                            <span class="slds-listbox__option-meta slds-listbox__option-meta_entity">{!mediaElement.lastModified} - {!mediaElement.size} - {!mediaElement.ext}</span>
+                                        </span>
                                     </div>
                                 </div>
                             </aura:iteration>

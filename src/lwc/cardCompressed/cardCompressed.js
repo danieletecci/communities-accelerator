@@ -1,6 +1,5 @@
 import { LightningElement, api } from 'lwc';
 import { loadStyle } from 'lightning/platformResourceLoader';
-import Style from '@salesforce/resourceUrl/Assets';
 
 export default class CardCompressed extends LightningElement {
     @api config; 
@@ -15,7 +14,7 @@ export default class CardCompressed extends LightningElement {
     //}
 
     connectedCallback() {
-        loadStyle(this, Style + '/Assets/Styles/roboto.css');
+        loadStyle(this, 'sfsites/c/resource/Assets/Assets/Styles/cardCompressedExternalStyles.css');
     }
 
     navigateToDetail() {
@@ -25,10 +24,18 @@ export default class CardCompressed extends LightningElement {
     }
 
     get headerClass() {
-        return this.config.type === 'Event'? 'header head-event' : 'header head-news'; 
+        return this.config.type === 'Event' ? 'header head-event' : 'header head-news'; 
     }
     
     get isEvent() {
-        return this.config.type === 'Event'
+        return this.config.type === 'Event';
+    }
+
+    get isEventRelated() {
+        return this.config.type === 'EventsRelated';
+    }
+
+    get headerClassRelated() {
+        return this.config.type === 'EventsRelated' ? 'header head-event' : 'header head-news'; 
     }
 }

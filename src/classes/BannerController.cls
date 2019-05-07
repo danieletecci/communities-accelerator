@@ -13,7 +13,8 @@ public with sharing class BannerController extends ComponentManager{
             '[CMS]AutomaticTransition__c',
             '[CMS]BannerTransitionTime__c',
             '[CMS]Loop__c',
-            '[CMS]Direction__c'
+            '[CMS]Direction__c',
+            '[CMS]CustomHeight__c'
         };
         
         ctrl.componentExternalId = componentExternalId;

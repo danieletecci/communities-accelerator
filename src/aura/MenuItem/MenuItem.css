@@ -1,0 +1,141 @@
+
+.THIS li{
+    list-style-type: none;
+}
+.THIS li a{
+    font-size: 19px;
+    padding: 15px;
+    color: #848484;
+    line-height: 19px;
+    font-weight: 400;
+    text-decoration: none;
+}
+.THIS li > div.has-child{
+    position: relative;
+    cursor: pointer;
+}
+.THIS li.active > div.has-child::after {
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+.THIS .icon-label{
+    padding-left: 30px;
+}
+.THIS .menu-icon::after {
+    content: ' ';
+    position: absolute;
+    height: 21px;
+    width: 20px;
+    background-color: #848484;
+}
+
+@media screen and (min-width: 768px) {
+    .THIS li:hover > div.has-child > a{
+        color: #FDFDFD;
+    }
+    .THIS li:hover > div.has-child > a .menu-icon::after{
+        background-color: #FDFDFD;
+    }
+    .THIS li a:hover{
+        color: #FDFDFD;
+    }
+    .THIS li a:hover .menu-icon::after{
+        background-color: #FDFDFD;
+    }
+    .THIS li.active > div.has-child a{
+        color: #D6EAFF;
+    }
+    .THIS li.active > div.has-child a .menu-icon::after{
+        background-color: #D6EAFF;
+    }
+    .THIS .div-ul li:hover > div.has-child > a{
+        color: #2A86EA;
+    }
+    .THIS .div-ul li:hover > div.has-child > a .menu-icon::after{
+        background-color: #2A86EA;
+    }
+    .THIS .div-ul li a:hover{
+        color: #2A86EA;
+    }
+    .THIS .div-ul li a:hover .menu-icon::after {
+        background-color: #2A86EA;
+    }
+    .THIS .div-ul{
+        position: fixed;
+        width: 100%;
+        left: 0;
+        top: 50px;
+        height: 50px;
+        background-color: #F8F8F8;
+    }
+    .THIS .div-ul .div-ul{
+        top: 100px;
+        background-color: #FDFDFD;
+    }
+    .THIS .div-ul .ul-level-1,.THIS .div-ul .ul-level-2{
+        display: flex;
+        margin-bottom: 0;
+        padding: 14px;
+    }
+    .THIS a.a-icon{
+        display: flex;
+        padding-top: 0;
+        padding-right: 30px;
+    }
+    .THIS.only-icon[data-menu-level="1"] > li > div > a > .menu-icon.only-icon::after {
+        background-color: #FDFDFD; 
+    }
+
+    .THIS.only-icon[data-menu-level="1"]{
+        height: 50px;
+        margin-top: -14px;
+        padding-top: 14px;
+        background-color: #2B2B2B;
+        padding-right: 4px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .THIS li a{
+        font-size: 16px;
+        padding: 0;
+    }
+    .THIS li > div{
+        padding-top: 30px;
+    }
+    .THIS li > div.has-child > div{
+        display: none;
+    }
+    .THIS li.active > div.has-child > div:not([class*="div-2"]){
+        display: block;
+    }
+    .THIS li.li-level-1.active > div.has-child > a{
+        color: #F2B005;
+    }
+    .THIS li.li-level-1.active > div.has-child > a .menu-icon::after{
+        background-color: #F2B005;
+    }
+    .THIS li.li-level-1 > div.has-child::after{
+        content: ' ';
+        position: absolute;
+        height: 15px;
+        width: 20px;
+        top: 33px;
+        right: 0;
+        -webkit-mask: url(sfsites/c/resource/Assets/Assets/Icons/arrow.svg) no-repeat 50% 50%;
+        -moz-mask: url(sfsites/c/resource/Assets/Assets/Icons/arrow.svg) no-repeat 50% 50%;
+        -o-mask: url(sfsites/c/resource/Assets/Assets/Icons/arrow.svg) no-repeat 50% 50%;
+        -ms-mask: url(sfsites/c/resource/Assets/Assets/Icons/arrow.svg) no-repeat 50% 50%;
+        mask: url(sfsites/c/resource/Assets/Assets/Icons/arrow.svg) no-repeat 50% 50%;
+        background-color: #D6EAFF;
+    }
+    
+    .THIS .menu-icon.only-icon {
+        height: 30px;
+    }
+    .THIS .menu-icon::after {
+        background-color: #D6EAFF;
+    }
+} 

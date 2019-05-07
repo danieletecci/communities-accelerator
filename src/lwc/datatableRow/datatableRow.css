@@ -19,3 +19,12 @@
   color: #0B0B0B;
   margin-top: 10px;
 }
+.DatatableRow[data-is-desktop=true],
+.DatatableRow[data-is-desktop=true] .rowdata,
+.DatatableRow[data-is-desktop=true] .rowdata p.value {
+  padding: 0px;
+  margin: 0px;
+}
+.DatatableRow[data-is-desktop=true] p {
+  line-height: 20px;
+}

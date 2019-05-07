@@ -8,6 +8,8 @@ export default class CardFormatter extends NavigationMixin(LightningElement) {
     @api type;
     @api urlToNavigate;
     @api parentComponentId;
+    @api viewmode;
+    @api formfactor;
 
     @wire(CurrentPageReference)
     currentPageReference;

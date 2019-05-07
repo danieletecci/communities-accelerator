@@ -1,161 +1,253 @@
 <template>
-    <template if:true={orientation}>
-        <div class="container-portrait" onclick={navigateToDetail}>
-            <template if:true={config}>
-                <!-- <template if:true={config.headerText}> -->
-                    <div class="header-container">
-                        <p class={headerClass}>
-                            <template if:true={isEvent}>
-                                <template if:true={config.startDate}>
-                                    <lightning-formatted-date-time value={config.startDate} year="numeric" day="numeric" month="short" time-zone="UTC">{config.startDate}</lightning-formatted-date-time>
-                                    <template if:true={config.endDate}>
-                                        <span> - </span>
-                                        <lightning-formatted-date-time value={config.endDate} year="numeric" day="numeric" month="short" time-zone="UTC">{config.endDate}</lightning-formatted-date-time>
-                                    </template>                            
-                                </template>
-                            </template>
-                            <template if:false={isEvent}>
-                                <template if:true={config.date}>
-                                    <lightning-formatted-date-time value={config.date} day="numeric" month="short" time-zone="UTC">{config.date}</lightning-formatted-date-time>
-                                </template>
-                                <template if:true={config.headerText}>
-                                    {headerText}
-                                </template>
-                            </template>
-                        </p>
-                    </div>
-                <!-- </template> -->
-                <template if:true={config.title}>
-                    <div class="title-container">
-                        <h3 class="title">
-                            {config.title}
-                        </h3>
-                    </div>
-                </template>
-                <template if:true={config.bodyText}>
-                    <div class="body-container">
-                        <p class="body body-portrait">
-                            {config.bodyText}
-                        </p>
-                    </div>
-                </template>
-                <template if:true={config.imgSrc}>
-                    <div class="img-container-portrait">
-                        <img src={config.imgSrc} alt="" class="img-portrait">
-                    </div>
-                </template>
-                <template if:true={config.footer}>
-                    <div class="footer">
-                        <template if:true={config.footer.description}>
-                            <div class="description-conainter">
-                                <template if:true={config.footer.description.descPrimary}>
-                                    <div class={primaryDescClass}>
-                                        {config.footer.description.descPrimary}
-                                    </div>
-                                </template>
-                                <template if:true={config.footer.description.descSecondary}>
-                                    <div class={secondaryDescClass}>
-                                        <template if:true={isEvent}>
-                                            <i class="icon location-icon"></i>
+    <template if:true={show}>
+        <template if:false={isContentLandscapeInDesktop}>
+            <template if:false={isLandscapeNotInDesktopOrIsNotTablet}>
+                <div class={containerClass} onclick={navigateToDetail}>
+                    <template if:true={config}>
+                        <!-- <template if:true={config.headerText}> -->
+                            <div class="header-container">
+                                <p class={headerClass}>
+                                    <template if:true={isEvent}>
+                                        <template if:true={config.startDate}>
+                                            <lightning-formatted-date-time value={config.startDate} day="numeric" month="short" time-zone="UTC">{config.startDate}</lightning-formatted-date-time>
+                                            <template if:true={config.endDate}>
+                                                <span> - </span>
+                                                <lightning-formatted-date-time value={config.endDate} day="numeric" month="short" time-zone="UTC">{config.endDate}</lightning-formatted-date-time>
+                                            </template>                            
                                         </template>
-                                        {config.footer.description.descSecondary}
-                                    </div>
-                                </template>
+                                    </template>
+                                    <template if:false={isEvent}>
+                                        <template if:true={config.date}>
+                                            <lightning-formatted-date-time value={config.date} day="numeric" month="short" time-zone="UTC">{config.date}</lightning-formatted-date-time>
+                                        </template>
+                                        <template if:true={config.headerText}>
+                                            {headerText}
+                                        </template>
+                                    </template>
+                                </p>
+                            </div>
+                        <!-- </template> -->
+                        <template if:true={config.title}>
+                            <div class="title-container">
+                                <h3 class="title">
+                                    {config.title}
+                                </h3>
                             </div>
                         </template>
-                        <!-- <template if:true={config.footer.controls}> -->
-                        <!-- <div class="controls">
-                                    <template for:each={config.footer.controls} for:item="control">
-                                        <template if:true={control.icon}>
-            
+                        <template if:true={config.bodyText}>
+                            <div class="body-container">
+                                <p class={bodyClass}>
+                                    {config.bodyText}
+                                </p>
+                            </div>
+                        </template>
+                        <template if:true={config.imgSrc}>
+                            <div class={imgContainerClass}>
+                                <img src={config.imgSrc} alt="" class={imgClass}>
+                            </div>
+                        </template>
+                        <template if:true={config.footer}>
+                            <div class={footerClass}>
+                                <template if:true={config.footer.description}>
+                                    <div class="description-container">
+                                        <template if:true={config.footer.description.descPrimary}>
+                                            <div class={primaryDescClass}>
+                                                {config.footer.description.descPrimary}
+                                            </div>
+                                        </template>
+                                        <template if:true={config.footer.description.descSecondary}>
+                                            <div class={secondaryDescClass}>
+                                                <template if:true={isEvent}>
+                                                    <i class="icon location-icon"></i>
+                                                </template>
+                                                {config.footer.description.descSecondary}
+                                            </div>
+                                        </template>
+                                    </div>
+                                </template>
+                                <!-- <template if:true={config.footer.controls}> -->
+                                <!-- <div class="controls">
+                                            <template for:each={config.footer.controls} for:item="control">
+                                                <template if:true={control.icon}>
+                    
+                                                </template>
+                                            </template>
+                                        </div> -->
+                                <!-- </template> -->
+                            </div>
+                        </template>
+                    </template>
+                </div>
+            </template> 
+            <template if:true={isLandscapeNotInDesktopOrIsNotTablet}>
+                <template if:true={config}>
+                    <div class={containerGridClass} onclick={navigateToDetail}>
+                        <div class="slds-col slds-size_1-of-4">
+                            <template if:true={config.imgSrc}>
+                                <template if:true={isEvent}>
+                                    <div class={imgClassEvent}>
+                                        <img src={config.imgSrc} alt="" class={imgClassEvent}>
+                                    </div>
+                                </template>
+                                <template if:false={isEvent}>
+                                    <div class={imgClass}>
+                                        <img src={config.imgSrc} alt="" class={imgClass}>
+                                    </div>
+                                </template>
+                            </template>
+                        </div>
+                        <div class="slds-col slds-size_3-of-4 container-info">
+                            <div class="header-container"> 
+                                <p class={headerClass}>
+                                    <template if:true={isEvent}>
+                                        <template if:true={config.startDate}>
+                                            <lightning-formatted-date-time value={config.startDate} day="numeric" month="short" time-zone="UTC">{config.startDate}</lightning-formatted-date-time>
+                                            <template if:true={config.endDate}>
+                                                <span> - </span>
+                                                <lightning-formatted-date-time value={config.endDate} day="numeric" month="short" time-zone="UTC">{config.endDate}</lightning-formatted-date-time>
+                                            </template>                            
                                         </template>
                                     </template>
-                                </div> -->
-                        <!-- </template> -->
-                    </div>
-                </template>
-            </template>
-        </div>
-    </template>
-    <template if:false={orientation}>
-        <template if:true={config}>
-            <div class="container-landscape slds-grid" onclick={navigateToDetail}>
-                <div class="slds-col slds-size_1-of-4">
-                    <template if:true={config.imgSrc}>
-                        <div class="img-container-landscape">
-                            <img src={config.imgSrc} alt="" class="img-landscape">
-                        </div>
-                    </template>
-                </div>
-                <div class="slds-col slds-size_3-of-4 container-info">
-                    <div class="header-container">
-                        <p class={headerClass}>
-                            <template if:true={isEvent}>
-                                <template if:true={config.startDate}>
-                                    <lightning-formatted-date-time value={config.startDate} year="numeric" day="numeric" month="short" time-zone="UTC">{config.startDate}</lightning-formatted-date-time>
-                                    <template if:true={config.endDate}>
-                                        <span> - </span>
-                                        <lightning-formatted-date-time value={config.endDate} year="numeric" day="numeric" month="short" time-zone="UTC">{config.endDate}</lightning-formatted-date-time>
-                                    </template>                            
-                                </template>
-                            </template>
-                            <template if:false={isEvent}>
-                                <template if:true={config.date}>
-                                    <lightning-formatted-date-time value={config.date} day="numeric" month="short" time-zone="UTC">{config.date}</lightning-formatted-date-time>
-                                </template>
-                                <template if:true={config.headerText}>
-                                    {config.headerText}
-                                </template>
-                            </template>
-                        </p>
-                    </div>
-                    <template if:true={config.title}>
-                        <div class="title-container">
-                            <h3 class="title">
-                                {config.title}
-                            </h3>
-                        </div>
-                    </template>
-                    <template if:true={config.bodyText}>
-                        <div class="body-container">
-                            <p class="body body-landscape">
-                                {config.bodyText}
-                            </p>
-                        </div>
-                    </template>
-
-                    <template if:true={config.footer}>
-                        <div class="footer-landscape">
-                            <template if:true={config.footer.description}>
-                                <div class="description-conainter">
-                                    <template if:true={config.footer.description.descPrimary}>
-                                        <div class={primaryDescClass}>
-                                            {config.footer.description.descPrimary}
-                                        </div>
+                                    <template if:false={isEvent}>
+                                        <template if:true={config.date}>
+                                            <lightning-formatted-date-time value={config.date} day="numeric" month="short" time-zone="UTC">{config.date}</lightning-formatted-date-time>
+                                        </template>
+                                        <template if:true={config.headerText}>
+                                            {config.headerText}
+                                        </template>
                                     </template>
-                                    <template if:true={config.footer.description.descSecondary}>
-                                        <div class={secondaryDescClass}>
-                                            <template if:true={isEvent}>
-                                                <i class="icon location-icon"></i>
-                                            </template>
-                                            {config.footer.description.descSecondary}
-                                        </div>
-                                    </template>
+                                </p>
+                            </div>
+                            <template if:true={config.title}>
+                                <div class="title-container">
+                                    <h3 class="title">
+                                        {config.title}
+                                    </h3>
                                 </div>
                             </template>
-                            <!-- <template if:true={config.footer.controls}>
-                            <div class="controls">
-                                <template for:each={config.footer.controls} for:item="control">
-                                    <template if:true={control.icon}>
-
+                            <template if:true={config.bodyText}>
+                                <div class="body-container">
+                                    <p class={bodyClass}>
+                                        {config.bodyText}
+                                    </p>
+                                </div>
+                            </template>
+    
+                            <template if:true={config.footer}>
+                                <div class={footerClass}>
+                                    <template if:true={config.footer.description}>
+                                        <div class="description-conainter">
+                                            <template if:true={config.footer.description.descPrimary}>
+                                                <div class={primaryDescClass}>
+                                                    {config.footer.description.descPrimary}
+                                                </div>
+                                            </template>
+                                            <template if:true={config.footer.description.descSecondary}>
+                                                <div class={secondaryDescClass}>
+                                                    <template if:true={isEvent}>
+                                                        <i class="icon location-icon"></i>
+                                                    </template>
+                                                    {config.footer.description.descSecondary}
+                                                </div>
+                                            </template>
+                                        </div>
+                                    </template>
+                                    <!-- <template if:true={config.footer.controls}>
+                                    <div class="controls">
+                                        <template for:each={config.footer.controls} for:item="control">
+                                            <template if:true={control.icon}>
+    
+                                            </template>
+                                        </template>
+                                    </div>
+                                </template> -->
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </template>  
+            </template>
+        </template>
+        <template if:true={isContentLandscapeInDesktop}>
+            <template if:true={config}>
+                <div class={containerGridClass} onclick={navigateToDetail}>
+                    <div class="slds-col slds-size_1-of-4">
+                        <template if:true={config.imgSrc}>
+                            <div class={imgClass}>
+                                <img src={config.imgSrc} alt="" class={imgClass}>
+                            </div>
+                        </template>
+                    </div>
+                    <div class="slds-col slds-size_3-of-4 container-info">
+                        <div class="header-container"> 
+                            <p class={headerClass}>
+                                <template if:true={isEvent}>
+                                    <template if:true={config.startDate}>
+                                        <lightning-formatted-date-time value={config.startDate} day="numeric" month="short" time-zone="UTC">{config.startDate}</lightning-formatted-date-time>
+                                        <template if:true={config.endDate}>
+                                            <span> - </span>
+                                            <lightning-formatted-date-time value={config.endDate} day="numeric" month="short" time-zone="UTC">{config.endDate}</lightning-formatted-date-time>
+                                        </template>                            
                                     </template>
                                 </template>
-                            </div>
-                        </template> -->
+                                <template if:false={isEvent}>
+                                    <template if:true={config.date}>
+                                        <lightning-formatted-date-time value={config.date} day="numeric" month="short" time-zone="UTC">{config.date}</lightning-formatted-date-time>
+                                    </template>
+                                    <template if:true={config.headerText}>
+                                        {config.headerText}
+                                    </template>
+                                </template>
+                            </p>
                         </div>
-                    </template>
+                        <template if:true={config.title}>
+                            <div class="title-container">
+                                <h3 class="title">
+                                    {config.title}
+                                </h3>
+                            </div>
+                        </template>
+                        <template if:true={config.bodyText}>
+                            <div class="body-container">
+                                <p class={bodyClass}>
+                                    {config.bodyText}
+                                </p>
+                            </div>
+                        </template>
+
+                        <template if:true={config.footer}>
+                            <div class={footerClass}>
+                                <template if:true={config.footer.description}>
+                                    <div class="description-conainter">
+                                        <template if:true={config.footer.description.descPrimary}>
+                                            <div class={primaryDescClass}>
+                                                {config.footer.description.descPrimary}
+                                            </div>
+                                        </template>
+                                        <template if:true={config.footer.description.descSecondary}>
+                                            <div class={secondaryDescClass}>
+                                                <template if:true={isEvent}>
+                                                    <i class="icon location-icon"></i>
+                                                </template>
+                                                {config.footer.description.descSecondary}
+                                            </div>
+                                        </template>
+                                    </div>
+                                </template>
+                                <!-- <template if:true={config.footer.controls}>
+                                <div class="controls">
+                                    <template for:each={config.footer.controls} for:item="control">
+                                        <template if:true={control.icon}>
+
+                                        </template>
+                                    </template>
+                                </div>
+                            </template> -->
+                            </div>
+                        </template>
+                    </div>
                 </div>
-            </div>
+            </template>
         </template>
     </template>
 </template>

@@ -13,10 +13,10 @@
                     <p class={headerClassRelated}>
                         <template if:true={isEventRelated}>
                             <template if:true={config.startDate}>
-                                <lightning-formatted-date-time value={config.startDate} year="numeric" day="numeric" month="short" time-zone="UTC">{config.startDate}</lightning-formatted-date-time>
+                                <lightning-formatted-date-time value={config.startDate} day="numeric" month="short" time-zone="UTC">{config.startDate}</lightning-formatted-date-time>
                                 <template if:true={config.endDate}>
                                     <span> - </span>
-                                    <lightning-formatted-date-time value={config.endDate} year="numeric" day="numeric" month="short" time-zone="UTC">{config.endDate}</lightning-formatted-date-time>
+                                    <lightning-formatted-date-time value={config.endDate} day="numeric" month="short" time-zone="UTC">{config.endDate}</lightning-formatted-date-time>
                                 </template>                            
                             </template>
                         </template>

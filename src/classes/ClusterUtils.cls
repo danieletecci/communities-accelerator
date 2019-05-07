@@ -1,4 +1,4 @@
-global with sharing class ClusterUtils {
+global class ClusterUtils {
 
 	@TestVisible private static String testNetworkName;
 

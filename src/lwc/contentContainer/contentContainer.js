@@ -227,11 +227,11 @@ export default class ContentContainer extends NavigationMixin(LightningElement) 
                            values.push(value.label);
                            ids.push(value.value);
                            element.value = values.join(', ');
-                           element.id = ids.join(', ');
+                           element.id = ids.join(',');
                        }
                     }else{
                         let values = element.value.split(', ');
-                        let ids = element.id.split(', ');
+                        let ids = element.id.split(',');
                         if(values.length < 2){
                             element.value = null;
                             element.id = null;
@@ -239,7 +239,7 @@ export default class ContentContainer extends NavigationMixin(LightningElement) 
                             ids.splice(ids.findIndex(x => x === value.value),1);
                             values.splice(values.findIndex(x => x === value.label),1);
                             element.value = values.join(', ');
-                            element.id = ids.join(', ');
+                            element.id = ids.join(',');
                         }
                     }
                 }else{

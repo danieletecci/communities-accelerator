@@ -3,11 +3,11 @@
         <div class="header">
             <h1>{table.title}</h1>
             <div class="search-element" >
-                <input class="searchInput" placeholder="Search" type="search" value={searchTerm} onkeyup={setSearchTerm} onsearch={searchEvent} onfocus={focusFilter}/>
+                <input class="searchInput" placeholder={GeneralSearch} type="search" value={searchTerm} onkeyup={setSearchTerm} onsearch={searchEvent} onfocus={focusFilter}/>
                 <div class="icons-group">
                     <template if:true={showCancelSearch}>
                         <template if:false={isDesktop}>
-                            <button class="cancelSearch" onclick={cancelFilter}>Cancel</button>
+                            <button class="cancelSearch" onclick={cancelFilter}>{GeneralCancel}</button>
                         </template>
                         <template if:true={isDesktop}>
                             <img src={closeIcon}  onclick={cancelFilter}> 
@@ -52,20 +52,65 @@
                 </thead>
                 <tbody>
                     <template for:each={table.tableData} for:item="row">
-                        <tr class="slds-hint-parent" key={row.Id} data-key={row.Id} onclick={openDetailModal}>
+                        <tr class="slds-hint-parent" key={row.Id} data-key={row.Id} >
                             <template for:each={columnsToShow} for:item="col">
-                                <td data-label={col.label} key={col.label}>
+                                <td data-label={col.label} key={col.label} data-key={row.Id} onclick={openDetailModal}>
                                     <div>
                                         <c-datatable-row colname={col.label} is-desktop hide-columns column={col.fieldName} row={row}></c-datatable-row>
                                     </div> 
                                 </td>
                             </template>
+                            
+                            <template if:true={hasRowActions}>
+
+
+
+                                <td class="extraRowActionContainer" >
+                                    <div class="slds-grid slds-gutters full-list">
+                                            
+                                        <template for:each={rowAction} for:item="action">
+                                            <div key={action.label}>
+                                                {action.label}
+                                                <img src={action.icon}
+                                                    data-id={row.Id}
+                                                    data-component={action.component}
+                                                    data-modal={action.showAsModal}
+                                                    data-navigation={action.navigation}
+                                                    onclick={rowActionEvent}>
+                                            </div>
+                                        </template>
+                                        <div onclick={showMoreRowActions} class="trigger">
+                                            <img src={arrowIcon}/>
+                                        </div>
+                                    </div>
+
+                                    <div class="trigger">
+                                        <template for:each={firstLevelRowAction} for:item="action">
+                                            <div key={action.label}>
+                                                <img src={action.icon}
+                                                    data-id={row.Id}
+                                                    data-component={action.component}
+                                                    data-modal={action.showAsModal}
+                                                    data-navigation={action.navigation}
+                                                    onclick={rowActionEvent}>
+                                            </div>
+                                        </template>
+                                        <!--<template if:true={hasExtraRowActions}>-->
+                                            <div onclick={showMoreRowActions}>
+                                                <img src={moreIcon}/>
+                                            </div>
+                                        <!--</template>-->
+                                    </div>
+                                </td>
+
+
+                            </template>
                         </tr>
                     </template>
                     <tr class="pagination">
                         <td colspan={columnsToShowLength}>
-                            <div>
-                                Show More
+                            <div onclick={getPage}>
+                                {GeneralShowMore}
                             </div> 
                         </td>
                     </tr>
@@ -103,7 +148,7 @@
         </template>
         <template if:true={appliedFilters}>
             <div class="table__footer">
-                <button class="remove-filter-btn" onclick={filterAllRemove}>Remove All Filters</button>
+                <button class="remove-filter-btn" onclick={filterAllRemove}>{RemoveAllFilters}</button>
             </div>
         </template>
         <!--                MODALS                 -->

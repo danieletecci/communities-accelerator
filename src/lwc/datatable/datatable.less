@@ -130,8 +130,71 @@
         }
         
         .desktop-table tr{
-            height: 50px;
+          font-family: Roboto;
+          font-weight: 500;
+          font-size: 16px;
+          height: 50px;
+          .trigger{
+            visibility: hidden;
+            display: flex;
+            justify-content: space-around;
+            div:last-child img{
+              transform: rotate(90deg);
+            }
+          }
+          img{
+            height: 20px;
+            width: 20px;
+          }
+          &:hover{
+            .trigger{
+              visibility: visible;
+            }
+          }
+          td{
             cursor: pointer;
+          }
+            td.extraRowActionContainer{ 
+              margin: 0px;
+              padding: 0px;
+              text-align: right;
+              box-shadow: 0px 0px 0px;
+              
+              .full-list{
+                display:none;
+              }
+              
+              &.active{
+                position: absolute;
+                left: 0;
+                background: white;
+                padding: 15px;
+                display: block;
+                height: 50px;
+                width: 100%;
+               
+                .trigger{
+                  display: none;
+                }
+
+                .full-list{
+                  display: flex;
+                  justify-content: space-between;
+                  img{
+                    margin-left: 10px;
+                  }
+                  .trigger{
+                    display: block;
+                    img{
+                      margin-left: 0px;
+                      transform: rotate(-90deg);
+                    }
+
+                  }
+                }
+              }
+            }
+            
         }
 
         .desktop-table tbody .slds-hint-parent:nth-child(odd){

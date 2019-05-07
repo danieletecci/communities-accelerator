@@ -30,6 +30,7 @@
   background-color: #333333;
   color: #FDFDFD;
   text-align: right;
+  padding-right: 6px;
 }
 .head-news {
   color: #C0C0C0;
@@ -59,7 +60,6 @@
 .footer {
   position: relative;
   bottom: 0;
-  margin-top: 10px;
 }
 .location-container {
   display: inline-block;

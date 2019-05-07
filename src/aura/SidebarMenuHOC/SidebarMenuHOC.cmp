@@ -1,0 +1,15 @@
+<aura:component controller="SidebarMenuController" implements="forceCommunity:availableForAllPageTypes" access="global">
+
+	<!-- GENERAL VARIABLES --> 
+	<aura:attribute name="componentExternalId" type="String" access="global"/>
+    <aura:attribute name="componentType" type="String" default="Menu"/>
+
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+	<!--INTERNAL -->
+    <aura:attribute name="componentWrapper" type="Object" />
+    <aura:attribute name="isLivePreview" type="Boolean" default="false"/>
+
+		    <div>
+				<c:SidebarMenu menus="{!v.componentWrapper.data.navWrapper}" device="{! v.componentWrapper.data.device}" navMode="{!v.componentWrapper.component.NavigationMode}" component="{!v.componentWrapper.meta.component}"/>
+			</div>
+</aura:component>

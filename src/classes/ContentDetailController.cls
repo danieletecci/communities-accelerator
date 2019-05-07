@@ -113,7 +113,8 @@ public with sharing class ContentDetailController {
         else
             categories = [SELECT id, name FROM Category__c WHERE Id = :contentCategoryId];
         List<VisibilityOptionWrapper> categoryWrapperList = new List<VisibilityOptionWrapper>();
-        String selectedValue = null;
+        categoryWrapperList.add(new VisibilityOptionWrapper(Label.ContentLandingNone, 'noneValue', false));
+        String selectedValue = 'noneValue';
         for(Category__c category : categories){
             VisibilityOptionWrapper categoryWrapper;  
             if(category.id == contentCategoryId){
@@ -183,7 +184,7 @@ public with sharing class ContentDetailController {
     }
 
     @AuraEnabled
-    public static Boolean saveContent(Object content, String visibilitySelectorsString, String mediaElementId, String status, List<ObjectContentWrapper.TagAssignment> contentOldTagAssignments){
+    public static Boolean saveContent(Object content, String visibilitySelectorsString, String mediaElementId, String status){
         ObjectContentWrapper ocw = (ObjectContentWrapper) JSON.deserialize(JSON.serialize(content), ObjectContentWrapper.class);
         Savepoint sp = Database.setSavepoint();
         Content__c contentVar = ocw.parse();
@@ -192,7 +193,7 @@ public with sharing class ContentDetailController {
             List<VisibilitySelectorWrapper> visibilitySelectors = (List<VisibilitySelectorWrapper>)JSON.deserialize(visibilitySelectorsString, List<VisibilitySelectorWrapper>.class);
             updateAudienceAssignments(contentVar, getSelectorByApiName(visibilitySelectors, GeneralUtils.prefix('[CMS]Audience__c')));
             contentVar = updateContent(contentVar, visibilitySelectors, status);
-            updateTagAssignments(contentVar, getSelectorByApiName(visibilitySelectors, GeneralUtils.prefix('[CMS]Tag__c')), contentOldTagAssignments);
+            updateTagAssignments(contentVar, getSelectorByApiName(visibilitySelectors, GeneralUtils.prefix('[CMS]Tag__c')), ocw.Tags);
             updateMediaElementAssignment(contentVar, mediaElementId);
             return true;
         }catch(DMLException e){
@@ -262,6 +263,7 @@ public with sharing class ContentDetailController {
                 }
             }
         }
+
         if(!tagAssignmentsToCreate.isEmpty()){
             insert tagAssignmentsToCreate;
         }
@@ -286,7 +288,7 @@ public with sharing class ContentDetailController {
         
         for(VisibilityOptionWrapper category : categorySelector.values){
             if(category.isSelected){
-                content.Category__c = category.value;
+                content.Category__c = category.value == 'noneValue' ? null : category.value;
                 break;
             }
         }

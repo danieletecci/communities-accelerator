@@ -3,32 +3,61 @@ import { loadStyle } from 'lightning/platformResourceLoader';
 
 import { LightningElement, api, track } from 'lwc';
 
+import GeneralCancel from '@salesforce/label/c.General_Cancel';
+import GeneralSearch from '@salesforce/label/c.General_Search';
+import RemoveAllFilters from '@salesforce/label/c.RemoveAllFilters';
+import GeneralShowMore from '@salesforce/label/c.General_ShowMore';
+import GeneralApply from '@salesforce/label/c.General_Apply';
+
+
+
 export default class Datatable extends LightningElement {
     @api table;
 
+    // Responsiveness
     @track orientation;
     @track isPhone = false;
     @track isTablet = false;
     @track isDesktop = false;
+
+    // Table
     @track columnsToShow;
     @track columnsToShowLength = 0;
+
+    // Modals
     @track showFilterModal = false;
-    @track searchTerm = '';
-    // @track showFooterModal = false;
     @track showDetailModal = false;
     @track showActionModal = false;
+
+    
+    // Filters
+    @track searchTerm = '';
     @track showCancelSearch = false;
     @track showFilterIcon = false;
-    // @track isCustomDate = false;
+
+    // Actions
+    @track hasGlobalActions = false;
+    @track hasRowActions = false;
+    @track hasExtraRowActions = false;
     @track rowAction = [];
+    @track firstLevelRowActionAmount = 2;
+    @track firstLevelRowAction = [];
     @track globalAction = [];
     @track clickRow;
+
+    // Custom Labels
+    @track GeneralSearch = GeneralSearch;
+    @track GeneralCancel = GeneralCancel;
+    @track RemoveAllFilters = RemoveAllFilters;
+    @track GeneralShowMore = GeneralShowMore;
+    @track GeneralApply = GeneralApply;
 
     numberOfColumns = 6;
     filterIcon = Assets + '/Assets/Icons/FilterIcon.svg';
     closeIcon = Assets + '/Assets/Icons/CloseIcon.svg';
     moreIcon = Assets + '/Assets/Icons/MoreIcon.svg';
     sortIcon = Assets + '/Assets/Icons/SortIcon.svg';
+    arrowIcon = Assets + '/Assets/Icons/arrow.svg';
 
     constructor() {
         super();
@@ -66,16 +95,9 @@ export default class Datatable extends LightningElement {
         return (this.table.appliedFilters.length > 0) ? true : false;
     }
 
-    // get setDateFilter() {   
-    //     var columns = JSON.parse(JSON.stringify(this.table.columns));
-    //     var filterValues = ["Last Week", "Last Month", "Last Year", "Custom Range"]; 
-    //     columns.forEach(col => {
-    //         if(col.filtrable && (col.type === "DATE" || col.type === "DATETIME")) {
-    //             col.filtrableValues = filterValues;
-    //         }
-    //     });
-    //     return columns;
-    // }
+    get extraRowActionContainerClass(){
+        return 'extraRowActionContainer';
+    }
 
     openFilterModal() {
         this.showFilterModal = true;
@@ -104,14 +126,21 @@ export default class Datatable extends LightningElement {
     }
 
     typeActions() {
-        this.table.actions.forEach(act => {
+        this.table.actions.forEach( (act, index, actionList) => {
             act.icon = Assets + '/Assets/Icons/' + act.icon +'.svg';
             if (act.recordType === "RowAction") {
+                this.hasRowActions = true;
                 this.rowAction.push(act);
             } else {
+                this.hasGlobalActions = true;
                 this.globalAction.push(act);
             }
+            if(index === (actionList.length-1)){
+                this.hasExtraRowActions = this.firstLevelRowActionAmount<this.rowAction.length;
+                this.firstLevelRowAction = this.rowAction.slice(0, this.firstLevelRowActionAmount); 
+            }
         });
+
     }
 
     handleOrientation() {
@@ -173,6 +202,21 @@ export default class Datatable extends LightningElement {
         let currentState = JSON.parse(JSON.stringify(event.currentTarget.dataset));
         let configObject = Object.assign({}, currentState, {direction});
         this.sortEvent(configObject);
+    }
+
+    getPage(){
+        const sortIndex = new CustomEvent('getpage', { detail: {page:1} });
+        this.dispatchEvent(sortIndex);
+    }
+
+    showMoreRowActions(event){
+        let hasClass = event.currentTarget.parentElement.parentElement.classList.contains('active');
+        this.template.querySelectorAll(`td.extraRowActionContainer.active`).forEach(item => item.classList.remove('active'));
+        if(!hasClass){
+            event.currentTarget.parentElement.parentElement.classList.add('active');
+        }else{
+            event.currentTarget.parentElement.parentElement.classList.remove('active');
+        }
     }
 
     rowActionEvent(event) {

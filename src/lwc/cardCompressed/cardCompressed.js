@@ -24,10 +24,18 @@ export default class CardCompressed extends LightningElement {
     }
 
     get headerClass() {
-        return this.config.type === 'Event'? 'header head-event' : 'header head-news'; 
+        return this.config.type === 'Event' ? 'header head-event' : 'header head-news'; 
     }
     
     get isEvent() {
-        return this.config.type === 'Event'
+        return this.config.type === 'Event';
+    }
+
+    get isEventRelated() {
+        return this.config.type === 'EventsRelated';
+    }
+
+    get headerClassRelated() {
+        return this.config.type === 'EventsRelated' ? 'header head-event' : 'header head-news'; 
     }
 }

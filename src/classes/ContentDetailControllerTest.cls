@@ -36,7 +36,7 @@ public with sharing class ContentDetailControllerTest {
         //insert new TagAssignment__c(Content__c = content.id, Tag__c = tag.id);
         ContentDetailController.DataWrapper dataWrapper= ContentDetailController.getData(content.Id);
         //When
-        Boolean saveSuccess = ContentDetailController.saveContent(dataWrapper.content, JSON.serialize(dataWrapper.visibilitySelectors), me.id, 'Published', dataWrapper.content.Tags);
+        Boolean saveSuccess = ContentDetailController.saveContent(dataWrapper.content, JSON.serialize(dataWrapper.visibilitySelectors), me.id, 'Published');
         //Then
         system.assert(saveSuccess);
 

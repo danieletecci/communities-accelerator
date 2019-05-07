@@ -81,7 +81,11 @@ global without sharing class GeneralForm{
     }
 
     global static FormResponseWrapper saveForm(String formSettingsString, Map<String, SObject> formData, String namespace){
+        System.debug('Before serialize formSettings ' + formSettings);
+        System.debug('Before serialize formData ' + formData);
         FormSettings formSettings = (FormSettings)JSON.deserialize(formSettingsString, FormSettings.class);
+        System.debug('formSettings ' + formSettings);
+        System.debug('isRunningTest ' + Test.isRunningTest());
         if(!Test.isRunningTest()){
             Type t  = Type.forName(namespace, formSettings.saveClass);
             System.debug('SaveClass ' + t);

@@ -45,11 +45,12 @@ export default class Card extends LightningElement {
     handleOrientation() {
         let varFormFactor = this.formfactor ? this.formfactor.toLowerCase() : 'desktop';
         if(varFormFactor === 'desktop') {
-            if(this.viewmode === 'Landscape') {
+            /*if(this.viewmode === 'Landscape') {
                 this.orientation = varFormFactor + '-portrait';
             } else {
                 this.orientation = varFormFactor + '-landscape';
-            }
+            }*/
+            this.orientation = varFormFactor + '-landscape';
         } else  if(varFormFactor === 'tablet') {
             this.orientation = varFormFactor + '-portrait';
         } else {
@@ -85,7 +86,8 @@ export default class Card extends LightningElement {
     }
 
     get isContentLandscapeInDesktop() {
-        return this.formfactor === 'DESKTOP' && this.viewmode === 'Landscape';
+        //return this.formfactor === 'DESKTOP' && this.viewmode === 'Landscape';
+        return false;
     }
 
     get isLandscapeNotInDesktopOrIsNotTablet() {
@@ -93,7 +95,7 @@ export default class Card extends LightningElement {
     }
 
     get show() { 
-        return this.viewmode && this.formfactor;
+        return /*this.viewmode &&*/ this.formfactor;
     }
 
     get containerClass() {

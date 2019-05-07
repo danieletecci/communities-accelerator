@@ -34,3 +34,15 @@
     border: solid 1px #dcdbda;
     border-radius: .25rem;
 }
+.THIS .input-start-date,.THIS .input-end-date{
+    max-width: 596px;
+}
+.THIS .input-start-date lightning-datepicker,.THIS .input-start-date lightning-timepicker ,.THIS .input-end-date lightning-datepicker,.THIS .input-end-date lightning-timepicker{
+    width: 50%;
+}
+.THIS .div-input{
+    max-width: 873px;
+}
+.THIS .content-container{
+    padding-left: 92px;
+}

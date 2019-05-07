@@ -1,11 +1,11 @@
 ({
-		setContentData : function(component) {
+	setContentData : function(component) {
 		var action 		= component.get('c.getData');
 		var recordId 	= component.get('v.recordId');
 		var helper		= this;
 		action.setParams({
 			recordId: recordId
-    	});
+		});
 		action.setCallback(this, function(response){
 			var state = response.getState();
 			if (state === "SUCCESS") {
@@ -17,8 +17,8 @@
 					component.set("v.security", 			data.security);
 					if(data.content.MediaElementAssignments != null && data.content.MediaElementAssignments.length > 0){
 						component.set('v.imageUrl', data.content.MediaElementAssignments[0].MediaElement.FileURLDesktop);
-                        component.set('v.mediaElementName', data.content.MediaElementAssignments[0].MediaElement.Name);
-                        component.set('v.mediaElementId', data.content.MediaElementAssignments[0].MediaElement.Id);
+						component.set('v.mediaElementName', data.content.MediaElementAssignments[0].MediaElement.Name);
+						component.set('v.mediaElementId', data.content.MediaElementAssignments[0].MediaElement.Id);
 					}
 					component.find("RichTextContainer").setContentBody();
 				}else{
@@ -28,7 +28,7 @@
 				let errors = response.getError();
 				let message = 'Unknown error';
 				if (errors && Array.isArray(errors) && errors.length > 0) {
-				    message = errors[0].message;
+					message = errors[0].message;
 				}
 				helper.displayErrorMessage(message);
 			}
@@ -36,8 +36,8 @@
 		
 		$A.enqueueAction(action);
 	},
-    updateContent : function(component, status){
-    	var helper				   = this;
+	updateContent : function(component, status){
+		var helper				   = this;
 		var content 			   = component.get('v.contentData');
 		var previousStatus		   = content.Status;
 		var visibilitySelectors    = component.get('v.visibilitySelectors');
@@ -48,7 +48,7 @@
 			visibilitySelectorsString : JSON.stringify(visibilitySelectors),
 			mediaElementId : mediaElementId,
 			status : status
-        });
+		});
 		action.setCallback(this, function(response){
 			var state = response.getState();
 			if (state === "SUCCESS") {
@@ -56,13 +56,13 @@
 				var navEvt = $A.get("e.force:navigateToSObject");
 				navEvt.setParams({
 					"recordId": content.Id,
-					 });
+					});
 				navEvt.fire();
 			} else if (state === "ERROR") {
 				let errors = response.getError();
 				let message = 'Unknown error';
 				if (errors && Array.isArray(errors) && errors.length > 0) {
-				    message = errors[0].message;
+					message = errors[0].message;
 				}
 				helper.displayErrorMessage(message);
 			}
@@ -103,9 +103,9 @@
 		toastEvent.fire();
 	},
 	stringFormat: function(string) {
-	    var outerArguments = arguments;
-	    return string.replace(/\{(\d+)\}/g, function() {
-	        return outerArguments[parseInt(arguments[1]) + 1];
-	    });
+		var outerArguments = arguments;
+		return string.replace(/\{(\d+)\}/g, function() {
+			return outerArguments[parseInt(arguments[1]) + 1];
+		});
 	}
 })

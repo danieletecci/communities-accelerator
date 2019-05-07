@@ -34,3 +34,12 @@
     border: solid 1px #dcdbda;
     border-radius: .25rem;
 }
+.THIS .banner-type-select,.THIS .name-button-input,.THIS .div-link-input{
+    max-width: 240px;
+}
+.THIS .div-input{
+    max-width: 873px;
+}
+.THIS .content-container{
+    padding-left: 92px;
+}

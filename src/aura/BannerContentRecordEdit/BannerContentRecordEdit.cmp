@@ -21,10 +21,10 @@
             <c:ContentDetailColumnFields objectWrapper="{!v.visibilitySelectors}" />
         </div>
         <div class="slds-col slds-p-around_small" >
-            <div class="slds-grid slds-grid_vertical">
+            <div class="slds-grid slds-grid_vertical content-container">
 
                 <!--Banner Type-->
-                <div class="slds-col slds-p-bottom_small">
+                <div class="slds-col slds-p-bottom_small banner-type-select">
                     <lightning:select name="bannerType" label="{!$Label.c.BannerContentDetailType}"
                         value="{!v.contentData.BannerFrameType}">
                         <aura:iteration items="{!v.bannerFrameTypes}" var="bannerFrameType">
@@ -34,7 +34,7 @@
                 </div>
 
                 <!--Feature Image-->
-                <div class="slds-col slds-p-bottom_small">
+                <div class="slds-col slds-p-bottom_small div-input">
                     <ui:outputText value="{!$Label.c.ArticleContentDetailImage}" />
                     <div class="slds-form-element__control slds-align_absolute-center div-add-media">
                         <aura:if isTrue="{!v.imageUrl}">
@@ -61,25 +61,25 @@
                 </div>
 
                 <!--Title-->
-                <div class="slds-col slds-p-bottom_small">
+                <div class="slds-col slds-p-bottom_small div-input">
                     <lightning:input label="{!$Label.c.BannerContentDetailTitle}" name="contentName" value="{!v.contentData.Title}"
                     aura:id="contentName" maxlength="255"/>
                 </div>
 
                 <!--Extract-->
-                <div class="slds-col slds-p-bottom_small">
+                <div class="slds-col slds-p-bottom_small div-input">
                     <lightning:input label="{!$Label.c.BannerContentDetailExtract}" name="contentExtract"
                     value="{!v.contentData.Extract}" maxlength="1500"/>
                 </div>
 
-                <!--Booton-->
-                <div class="slds-col slds-p-bottom_small">
+                <!--Button-->
+                <div class="slds-col slds-p-bottom_small name-button-input">
                     <lightning:input label="{!$Label.c.BannerContentDetailButton}" name="buttonLabel"
                     value="{!v.contentData.ButtonLabel}" />
                 </div>
 
                 <!--Link-->
-                <div class="slds-col slds-p-bottom_small">
+                <div class="slds-col slds-p-bottom_small div-link-input">
                     <aura:if isTrue="{!v.contentData.Id}">
                         <c:LookupInput objectAPIName="[CMS]Navigation__c" IconName="standard:link"
                         selectedRecordId="{!v.contentData.LinkDetail}" label="{!$Label.c.BannerContentDetailLink}" />
@@ -87,7 +87,7 @@
                 </div>
                     
                 <!--Choose Layout-->
-                <div class="slds-col slds-p-bottom_small">
+                <div class="slds-col slds-p-bottom_small div-input">
                     <ui:outputText value="{!$Label.c.BannerContentDetailLayout}" />
                     <div class="slds-form-element__control slds-align_absolute-center div-choose-layout">
                         <aura:if isTrue="{!v.layoutOptions.length > 0}">

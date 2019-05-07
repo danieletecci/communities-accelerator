@@ -2,7 +2,7 @@
 .body-desktop-portrait {
   margin: 5px 0;
   line-height: 19px;
-  max-height: 3em;
+  height: 2.4em;
   color: #C0C0C0;
 }
 
@@ -12,35 +12,38 @@
   margin: 30px auto;
   color: #C0C0C0;
   width: 90%;
-  height: 350px;
+  max-height: 350px;
+  min-height: 175px;
   min-width: 350px;
   margin-bottom: 0;
   margin-top: 0;
 }
 
-.container-desktop-portrait .footer {
-  min-height: 30px;
-}
-
-.container-desktop-portrait .footer a {
-  color: black;
-  text-decoration: none;
+.container-desktop-portrait .head-event {
+  padding-right: 40px;
 }
 
 .img-desktop-portrait {
-  height: 140px;
+  height: 100%;
+  width: 100%;
   object-fit: cover;
 }
 
 .footer-desktop-portrait {
-  text-align: right;
+  float: right;
+  height: 30px;
+}
+
+.footer-desktop-portrait a {
+  color: black;
+  text-decoration: none;
 }
 
 /* DESKTOP LANDSCAPE */
 .body-desktop-landscape {
   margin: 5px 0;
   line-height: 19px;
-  max-height: 2.4em;
+  height: 2.4em;
 }
 
 .container-desktop-landscape {
@@ -49,6 +52,7 @@
   margin: 20px auto;
   color: #C0C0C0;
   min-width: 300px;
+  height: 350px;
 }
 
 .img-container-desktop-landscape {
@@ -79,21 +83,29 @@
 
 .footer-desktop-landscape {
   padding: 19px 0 0 0;
+  height: 30px;
 }
 
-.container-desktop-landscape .footer a {
+.footer-desktop-landscape a {
   color: black;
   text-decoration: none;
+}
+
+.container-desktop-landscape .head-event {
+  padding-right: 40px;
+}
+
+.container-desktop-landscape .header-container {
+  padding-bottom: 11px;
 }
 
 /* PHONE PORTRAIT */
 .container-phone-portrait {
   font-family: 'Roboto';
   font-size: 16px;
-  margin: 19px auto;
-  margin-bottom: 51px;
+  margin-top: 19px;
   color: #C0C0C0;
-  max-height: 370px;
+  height: 370px;
   padding: 0 36px;
 }
 
@@ -108,12 +120,12 @@
 .body-phone-portrait {
   margin: 5px 0;
   line-height: 19px;
-  max-height: 2.4em;
+  height: 2.4em;
   max-width: 90%;
   width: 90%;
 }
 
-.container-phone-portrait .footer a {
+.footer-desktop-landscape a {
   color: black;
   text-decoration: none;
 }
@@ -129,7 +141,14 @@
 
 .footer-phone-portrait {
   padding-top: 17px;
+  min-height: 19px;
 }
+
+.footer-phone-portrait a {
+  color: black;
+  text-decoration: none;
+}
+
 /*img-phone-portrait */
 /* PHONE LANDSCAPE */
 .container-phone-landscape {
@@ -138,7 +157,7 @@
   margin: 19px auto;
   margin-bottom: 51px;
   color: #C0C0C0;
-  max-height: 167px;
+  height: 167px;
   display: flex;
   padding: 0 37px;
 }
@@ -146,7 +165,7 @@
 .body-phone-landscape {
   margin: 5px 0;
   line-height: 19px;
-  max-height: 2.4em;
+  height: 2.4em;
   max-width: 90%;
   width: 90%;
 }
@@ -184,9 +203,10 @@
 
 .footer-phone-landscape {
   float: right;
+  min-height: 19px;
 }
 
-.container-phone-landscape .footer a {
+.footer-phone-landscape a {
   color: black;
   text-decoration: none;
 }
@@ -213,7 +233,7 @@
 .body-tablet-portrait {
   margin: 5px 0;
   line-height: 19px;
-  max-height: 2.4em;
+  height: 2.4em;
   max-width: 90%;
   width: 90%;
 }
@@ -229,9 +249,10 @@
 
 .footer-tablet-portrait {
   padding-top: 17px;
+  min-height: 19px;
 }
 
-.container-tablet-portrait .footer a {
+.footer-tablet-portrait a {
   color: black;
   text-decoration: none;
 }
@@ -252,7 +273,7 @@
   font-size: 25px;
   font-weight: 300;
   color: #333333;
-  max-height: 60px;
+  height: 60px;
   overflow: hidden;
 }
 .body {  

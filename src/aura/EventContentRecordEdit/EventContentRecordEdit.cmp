@@ -15,12 +15,13 @@
     <aura:attribute name="mediaElementName"       type="String"   />
     <aura:attribute name="isExtIdEdit"            type="Boolean"      default="false" />
     <aura:attribute name="oldExtId"               type="String"    />
+    <aura:attribute name="namespace"              type="String"   />
 
     <div class="slds-grid">
         <div class="slds-m-around_medium slds-border_top slds-border_bottom slds-border_right slds-border_left">
             <c:ContentDetailColumnFields objectWrapper="{!v.visibilitySelectors}" />
         </div>
-        <div class="slds-col slds-p-around_small" >
+        <div class="slds-col slds-p-around_small content-container" >
             <div class="slds-grid slds-grid_vertical">
                 <div class="slds-col slds-p-bottom_small">
                     <aura:if isTrue="{!v.contentData.IsTemplate}">
@@ -31,38 +32,39 @@
                 </div>
 
                 <!--Title-->
-                <div class="slds-col slds-p-bottom_small">
+                <div class="slds-col slds-p-bottom_small div-input">
                     <lightning:input label="{!$Label.c.EventContentDetailTitle}" aura:id="eventTitle" value="{!v.contentData.Title}" maxlength="255"/>
                 </div>
                 
                 <!--Extract-->
-                <div class="slds-col slds-p-bottom_small">
+                <div class="slds-col slds-p-bottom_small div-input">
                     <ui:inputTextArea label="{!$Label.c.EventContentDetailExtract}" aura:id="eventExtract" value="{!v.contentData.Extract}" maxlength="1500" />
                 </div>
 
                 <!--Body -->
-                <div class="slds-col slds-p-bottom_small">
-                    <ui:outputText value="{!$Label.c.EventContentDetailBody}"/>
-                    <c:richTextContainer aura:id="RichTextContainer" contentBody="{!v.contentData.Body}" />
+                <div class="slds-col slds-p-bottom_small div-input">
+                    <aura:if isTrue="{!v.contentData}">
+                        <c:RichTextTinyMCE aura:id="richText" namespace="{!v.namespace}" contentBody="{!v.contentData.Body}"/>
+                    </aura:if>
                 </div>
                 
                 <!--Start Date-->
-                <div class="slds-col slds-p-bottom_small">
+                <div class="slds-col slds-p-bottom_small input-start-date">
                     <lightning:input label="{!$Label.c.EventContentDetailEventStartDate}" aura:id="eventStartDate" type="datetime-local" value="{!v.contentData.EventStartDate}"/>
                 </div>
 
                 <!--End Date-->
-                <div class="slds-col slds-p-bottom_small">
+                <div class="slds-col slds-p-bottom_small input-end-date">
                     <lightning:input label="{!$Label.c.EventContentDetailEventEndDate}" aura:id="eventEndDate" type="datetime-local" value="{!v.contentData.EventEndDate}" />
                 </div>
 
                 <!--Location Information-->
-                <div class="slds-col slds-p-bottom_small">
+                <div class="slds-col slds-p-bottom_small div-input">
                     <ui:inputTextArea label="{!$Label.c.EventContentDetailEventLocationInformation}" aura:id="eventLocation" value="{!v.contentData.Location}" maxlength="1500"/>     
                 </div>
                         
                 <!--Feature Image-->
-                <div class="slds-col slds-p-bottom_small">
+                <div class="slds-col slds-p-bottom_small div-input">
                     <ui:outputText value="{!$Label.c.EventContentDetailFeatureImage}"/>
                     <div class="slds-form-element__control slds-align_absolute-center div-add-media">
                         <aura:if isTrue="{!v.imageUrl}">
@@ -89,7 +91,7 @@
                 </div>
 
                 <!--Choose Layout-->
-                <div class="slds-col slds-p-bottom_small">
+                <div class="slds-col slds-p-bottom_small div-input">
                     <ui:outputText value="{!$Label.c.EventContentDetailChooseLayout}"/>
                     <div class="slds-form-element__control slds-align_absolute-center div-choose-layout">
                         <aura:if isTrue="{!v.layoutOptions.length > 0}">

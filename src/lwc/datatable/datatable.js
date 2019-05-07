@@ -3,40 +3,84 @@ import { loadStyle } from 'lightning/platformResourceLoader';
 
 import { LightningElement, api, track } from 'lwc';
 
+import GeneralCancel from '@salesforce/label/c.General_Cancel';
+import GeneralSearch from '@salesforce/label/c.General_Search';
+import RemoveAllFilters from '@salesforce/label/c.RemoveAllFilters';
+import GeneralShowMore from '@salesforce/label/c.General_ShowMore';
+import GeneralApply from '@salesforce/label/c.General_Apply';
+
+
+
 export default class Datatable extends LightningElement {
     @api table;
 
+    // Responsiveness
     @track orientation;
+    @track isPhone = false;
+    @track isTablet = false;
+    @track isDesktop = false;
+
+    // Table
     @track columnsToShow;
+    @track columnsToShowLength = 0;
+
+    // Modals
     @track showFilterModal = false;
-    // @track showFooterModal = false;
     @track showDetailModal = false;
     @track showActionModal = false;
+
+    
+    // Filters
+    @track searchTerm = '';
     @track showCancelSearch = false;
     @track showFilterIcon = false;
-    // @track isCustomDate = false;
+
+    // Actions
+    @track hasGlobalActions = false;
+    @track hasRowActions = false;
+    @track hasExtraRowActions = false;
     @track rowAction = [];
+    @track firstLevelRowActionAmount = 2;
+    @track firstLevelRowAction = [];
     @track globalAction = [];
     @track clickRow;
+
+    // Custom Labels
+    @track GeneralSearch = GeneralSearch;
+    @track GeneralCancel = GeneralCancel;
+    @track RemoveAllFilters = RemoveAllFilters;
+    @track GeneralShowMore = GeneralShowMore;
+    @track GeneralApply = GeneralApply;
 
     numberOfColumns = 6;
     filterIcon = Assets + '/Assets/Icons/FilterIcon.svg';
     closeIcon = Assets + '/Assets/Icons/CloseIcon.svg';
     moreIcon = Assets + '/Assets/Icons/MoreIcon.svg';
+    sortIcon = Assets + '/Assets/Icons/SortIcon.svg';
+    arrowIcon = Assets + '/Assets/Icons/arrow.svg';
 
     constructor() {
         super();
         this.handleOrientation();
+        this.setDevices();
+    }
+
+    setDevices(){
+        let currentDeviceType = eval("$A.get('$Browser.formFactor')");
+        let deviceTypeRef = 'is' + currentDeviceType[0] + currentDeviceType.slice(1).toLowerCase();
+        this[deviceTypeRef] = true;
     }
 
     connectedCallback() {
         window.addEventListener("orientationchange", () => this.handleOrientation());
+        loadStyle(this, 'sfsites/c/resource/Assets/Assets/Styles/datatableExternalStyles.css');
         loadStyle(this, Assets + '/Assets/Styles/roboto.css');
     }
 
     renderedCallback() {
         if (this.table && !this.columnsToShow) {
             this.columnsToShow = this.table.columns.slice(0, this.numberOfColumns);
+            this.columnsToShowLength = this.columnsToShow.length;
         }
         if (this.table.actions.length > 0 && this.rowAction.length === 0 && this.globalAction.length === 0) {
             this.typeActions();
@@ -51,16 +95,9 @@ export default class Datatable extends LightningElement {
         return (this.table.appliedFilters.length > 0) ? true : false;
     }
 
-    // get setDateFilter() {   
-    //     var columns = JSON.parse(JSON.stringify(this.table.columns));
-    //     var filterValues = ["Last Week", "Last Month", "Last Year", "Custom Range"]; 
-    //     columns.forEach(col => {
-    //         if(col.filtrable && (col.type === "DATE" || col.type === "DATETIME")) {
-    //             col.filtrableValues = filterValues;
-    //         }
-    //     });
-    //     return columns;
-    // }
+    get extraRowActionContainerClass(){
+        return 'extraRowActionContainer';
+    }
 
     openFilterModal() {
         this.showFilterModal = true;
@@ -89,19 +126,29 @@ export default class Datatable extends LightningElement {
     }
 
     typeActions() {
-        this.table.actions.forEach(act => {
+        this.table.actions.forEach( (act, index, actionList) => {
             act.icon = Assets + '/Assets/Icons/' + act.icon +'.svg';
             if (act.recordType === "RowAction") {
+                this.hasRowActions = true;
                 this.rowAction.push(act);
             } else {
+                this.hasGlobalActions = true;
                 this.globalAction.push(act);
             }
+            if(index === (actionList.length-1)){
+                this.hasExtraRowActions = this.firstLevelRowActionAmount<this.rowAction.length;
+                this.firstLevelRowAction = this.rowAction.slice(0, this.firstLevelRowActionAmount); 
+            }
         });
+
     }
 
     handleOrientation() {
         //TRUE = Portrail  
         this.orientation = (screen.orientation.angle === 0) ? true : false;
+    }
+    setSearchTerm(event){
+        this.searchTerm = event.currentTarget.value;
     }
 
     focusFilter() {
@@ -110,8 +157,10 @@ export default class Datatable extends LightningElement {
     }
 
     cancelFilter() {
+        this.searchTerm = "";
         this.showCancelSearch = false;
         this.showFilterIcon = false;
+        this.closeFilterModal();
     }
 
     deleteFilter(event) {
@@ -127,15 +176,6 @@ export default class Datatable extends LightningElement {
         this.filterEvent(values);
     }
 
-    // filterActive(event) {
-    //     event.currentTarget.classList.toggle("active");
-    //     this.showFooterModal = true;
-
-    //     if(event.currentTarget.dataset.value === "Custom Range") {
-    //         this.isCustomDate = true;
-    //     }
-    // }
-
     filterAllRemove() {
         var tableFooter = this.template.querySelector("div.table__footer");
         var filters = [];
@@ -145,63 +185,38 @@ export default class Datatable extends LightningElement {
         this.showFilterIcon = false;
     }
 
-    // formatDate() {
-    //     var today = new Date();
-    //     var dates = [];
-    //     dates = {
-    //         now: today.getFullYear() + '-' + String(today.getMonth()+1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0'),
-    //         lastWeek: today.getFullYear() + '-' + String(today.getMonth()+1).padStart(2, '0') + '-' + String(today.getDate()-7).padStart(2, '0'),
-    //         lastMonth: today.getFullYear() + '-' + String((today.getMonth()+1)-1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0'),
-    //         lastYear: (today.getFullYear()-1) + '-' + String(today.getMonth()+1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0')
-    //     };
-    //     return dates;
-    // }
-
-    // dataFilter() {
-    //     var button = this.template.querySelectorAll("button.active");
-    //     var customDateFrom = this.template.querySelector("input[type='date'].datefrom");
-    //     var customDateTo = this.template.querySelector("input[type='date'].dateto");
-    //     var filters = [];   
-    //     var filter;
-    //     var dates = this.formatDate();
-    //     var value1;
-    //     var value2;
-
-    //     button.forEach(fil =>{
-    //         value1 = fil.dataset.value;
-    //         value2 = null;
-    //         if (fil.dataset.value === "Last Week") {
-    //             value1 = dates.lastWeek;  //value1 = menor
-    //             value2 = dates.now; //value2 = mayor
-    //         } else if (fil.dataset.value === "Last Month") {
-    //                 value1 = dates.lastMonth;
-    //                 value2 = dates.now;
-    //             } else if (fil.dataset.value === "Last Year") {
-    //                     value1 = dates.lastYear;
-    //                     value2 = dates.now;
-    //                 } else if (fil.dataset.value === "Custom Range") {
-    //                     value1 = customDateFrom.value;
-    //                     value2 = customDateTo.value;
-    //                 }
-
-    //         filter = {filter: {
-    //                         name: fil.dataset.column, 
-    //                         type: fil.dataset.type
-    //                     },
-    //                     value1: value1,
-    //                     value2: value2
-    //                 };
-    //         filters.push(filter);
-    //     });
-    //     const values = JSON.stringify(filters);
-    //     this.filterEvent(values);
-    //     this.closeFilterModal();
-    //     this.showCancelSearch = false;
-    // }
 
     filterEvent(values) {
         const filterItemSelected = new CustomEvent('filter', { detail: {values} });
         this.dispatchEvent(filterItemSelected);
+    }
+
+    sortEvent(values){
+        const sortIndex = new CustomEvent('sort', { detail:values });
+        this.dispatchEvent(sortIndex);
+    }
+
+    sortByColumn(event){
+        let direction = event.currentTarget.dataset.direction === 'ASC'?'DESC':'ASC';
+        event.currentTarget.dataset.direction = direction;
+        let currentState = JSON.parse(JSON.stringify(event.currentTarget.dataset));
+        let configObject = Object.assign({}, currentState, {direction});
+        this.sortEvent(configObject);
+    }
+
+    getPage(){
+        const sortIndex = new CustomEvent('getpage', { detail: {page:1} });
+        this.dispatchEvent(sortIndex);
+    }
+
+    showMoreRowActions(event){
+        let hasClass = event.currentTarget.parentElement.parentElement.classList.contains('active');
+        this.template.querySelectorAll(`td.extraRowActionContainer.active`).forEach(item => item.classList.remove('active'));
+        if(!hasClass){
+            event.currentTarget.parentElement.parentElement.classList.add('active');
+        }else{
+            event.currentTarget.parentElement.parentElement.classList.remove('active');
+        }
     }
 
     rowActionEvent(event) {

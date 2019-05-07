@@ -11,6 +11,7 @@
 			if (state === "SUCCESS") {
 				var data = response.getReturnValue();
 				if(data){
+					component.set("v.namespace", 			data.namespace);
 					component.set("v.contentData", 			data.content);
 					component.set("v.timeZone", 			data.timeZone);
 					component.set("v.visibilitySelectors", 	data.visibilitySelectors);
@@ -21,7 +22,7 @@
                         component.set('v.mediaElementId', data.content.MediaElementAssignments[0].MediaElement.Id);
 					}
 					helper.setLayoutOptions(component);
-					component.find("RichTextContainer").setContentBody();
+					//component.find("RichTextContainer").setContentBody();
 				}else{
 					helper.displayErrorMessage($A.get("$Label.c.ArticleContentDetailLoadError"));
 				}
@@ -58,8 +59,7 @@
 			content : content,
 			visibilitySelectorsString : JSON.stringify(visibilitySelectors),
 			mediaElementId : mediaElementId,
-			status : status,
-			contentOldTagAssignments : content.Tags
+			status : status
         });
 		action.setCallback(this, function(response){
 			var state = response.getState();

@@ -23,7 +23,7 @@
     <!-- COMPONENT -->
     <div aura:id="cg_component">
 
-        <aura:if isTrue="{!or(v.isBackend, not(v.componentWrapper == null),not(v.componentWrapper.component == null)) }">
+        <aura:if isTrue="{!or(or(v.isBackend, not(v.componentWrapper == null)), not(v.componentWrapper.component == null)) }">
             <c:CG_CommunityComponentFrame componentWrapper="{!v.componentWrapper}" isLivePreview="{!v.isLivePreview}">
                 <!-- COMMUNITY COMPONENT -->
                 <div id="{!v.componentWrapper.component.Id}" class="body-container">
@@ -42,7 +42,7 @@
     </div>
     <!--Validation Messages-->
     <aura:If isTrue="{!v.isLivePreview}">
-        <aura:if isTrue="{!v.showComponentEmpty}">
+        <aura:if isTrue="{!v.componentExternalId == ''}">
             <div class="slds-page-header" style="text-align: center;">
                 <lightning:layout horizontalAlign="left">
                     <lightning:layoutItem size="12" flexibility="auto" padding="around-small">
@@ -52,27 +52,15 @@
                 </lightning:layout>
             </div>
             <aura:set attribute="else">
-                <aura:if isTrue="{!and(not(v.componentType == v.componentWrapper.component.RecordTypeDeveloperName), v.componentType != 'Menu')}">
+                <aura:if isTrue="{!or(v.componentWrapper.clusterId == null, or(v.componentWrapper.clusterId == 'undefined', v.componentWrapper.clusterId == ''))}">
                     <div class="slds-page-header" style="text-align: center;">
                         <lightning:layout horizontalAlign="left">
                             <lightning:layoutItem size="12" flexibility="auto" padding="around-small">
                                 <h1 class="slds-page-header__title slds-text-heading_large">{!v.componentType}</h1>
-                                <p>{!$Label.c.IncorrectExternalId}</p>
+                                <p>{!$Label.c.NoClusterSelected}</p>
                             </lightning:layoutItem>
                         </lightning:layout>
-                    </div>
-                    <aura:set attribute="else">
-                        <aura:if isTrue="{!or(v.componentWrapper.clusterId == 'undefined', v.componentWrapper.clusterId == '')}">
-                            <div class="slds-page-header" style="text-align: center;">
-                                <lightning:layout horizontalAlign="left">
-                                    <lightning:layoutItem size="12" flexibility="auto" padding="around-small">
-                                        <h1 class="slds-page-header__title slds-text-heading_large">{!v.componentType}</h1>
-                                        <p>{!$Label.c.NoClusterSelected}</p>
-                                    </lightning:layoutItem>
-                                </lightning:layout>
-                            </div>  
-                        </aura:if>
-                    </aura:set>
+                    </div>  
                 </aura:if>
             </aura:set>
 

@@ -22,7 +22,7 @@
 						component.set("v.contentData.BannerFrameType",data.bannerFrameTypes[0]);                        
                     }
 
-                    if(data.content.MediaElementAssignments != null){
+                    if(data.content.MediaElementAssignments != null && data.content.MediaElementAssignments.length > 0){
 						component.set('v.imageUrl', data.content.MediaElementAssignments[0].MediaElement.FileURLDesktop);
                         component.set('v.mediaElementName', data.content.MediaElementAssignments[0].MediaElement.Name);
                         component.set('v.mediaElementId', data.content.MediaElementAssignments[0].MediaElement.Id);
@@ -64,8 +64,7 @@
 			content : content,
 			visibilitySelectorsString : JSON.stringify(visibilitySelectors),
 			mediaElementId : mediaElementId,
-			status : status,
-			contentOldTagAssignments : content.Tags
+			status : status
         });
 		action.setCallback(this, function(response){
 			var state = response.getState();

@@ -11,6 +11,7 @@
     <aura:attribute name="security"               type="Object"   />
     <aura:attribute name="mediaElementId"         type="String"   />
     <aura:attribute name="mediaElementName"       type="String"   />
+    <aura:attribute name="namespace"              type="String"   />
 
     <div class="slds-grid">
         <div class="slds-m-around_medium slds-border_top slds-border_bottom slds-border_right slds-border_left">
@@ -25,7 +26,9 @@
     			<br />
 
     			<ui:outputText value="{!$Label.c.FAQContentDetailBody}"/>
-    			<c:RichTextContainer aura:id="RichTextContainer" contentBody="{!v.contentData.Body}" />
+                <aura:if isTrue="{!v.contentData}">
+                    <c:RichTextTinyMCE aura:id="richText" namespace="{!v.namespace}" contentBody="{!v.contentData.Body}"/>
+                </aura:if>
             </div>
         </div>
     </div>

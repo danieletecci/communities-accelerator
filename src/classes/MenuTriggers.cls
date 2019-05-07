@@ -23,9 +23,11 @@ public with sharing class MenuTriggers extends TriggersHandler{
 
     //Master loops
     public override void masterLoop_BeforeInsert(SObject recNew) {
+        validateFields((Menu__c)recNew,null);
         setExternalId((Menu__c)recNew);
     }
     public override void masterLoop_BeforeUpdate(SObject recNew, SObject recOld) {
+        validateFields((Menu__c)recNew,(Menu__c) recOld);
         setExternalId((Menu__c)recNew);    
     }  
 
@@ -126,5 +128,20 @@ public with sharing class MenuTriggers extends TriggersHandler{
             recNew.ExternalID__c = GeneralUtils.generateExternalId(recNew.Name, recNew.Cluster__c, recNew.getSObjectType().getDescribe().getName());
         }
     }
-
+    
+    
+    private void validateFields(Menu__c recNew, Menu__c recOld){
+        if(!canMethod('validateFields')){return;}
+        
+        if(String.IsNotBlank(recNew.ComponentName__c)  && String.IsNotBlank(recNew.Navigation__c)){ 
+            if (recOld != null){
+                if (String.IsNotBlank(recOld.ComponentName__c))
+                  recNew.Navigation__c.addError(Label.MenuComponentNameCompleted);
+                else
+                  recNew.ComponentName__c.addError(Label.MenuNavigationCompleted);
+          }else{
+              recNew.Navigation__c.addError(Label.MenuComponentNameCompleted);
+          }
+        }
+    }
 }

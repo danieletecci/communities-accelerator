@@ -16,6 +16,7 @@
 					component.set("v.timeZone", 	dataWrapper.timeZone);
 					component.set("v.gmtOffset", 	dataWrapper.gmtOffset);
 					component.set("v.security", 	dataWrapper.security);
+					component.set("v.namespace", 	dataWrapper.namespace);
 					helper.setTooltips(component);
 				}else{
 					helper.displayErrorMessage($A.get("$Label.c.ArticleContentDetailLoadError"));
@@ -115,7 +116,7 @@
 				);
 				var urlEvent = $A.get("e.force:navigateToURL");
 			    urlEvent.setParams({
-			      "url": "/lightning/n/ContentLanding"
+			      "url": "/lightning/n/" + component.get("v.namespace") + "ContentLanding"
 			    });
 			    urlEvent.fire();
 			} else if (state === "ERROR") {

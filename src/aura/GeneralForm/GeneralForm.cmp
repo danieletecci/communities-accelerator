@@ -1,8 +1,8 @@
-<aura:component >
-    <aura:attribute name="form" type="Object" />
-    <aura:attribute name="validationErrors" type="Object" default="[]" description="This attribute contains an array with every field with error"/>
-    <aura:attribute name="lastFieldModified" type="String" description="Used to let parent component know which field was the last one modified"/>
-    <aura:method name="validateAllFields" action="{!c.validateAllFields}" access="PUBLIC" description="Method to be called to validate every field in the form, and show its corresponding error message"/>
+<aura:component access="global">
+    <aura:attribute access="global" name="form" type="Object"/>
+    <aura:attribute access="global" name="validationErrors" type="Object" default="[]" description="This attribute contains an array with every field with error"/>
+    <aura:attribute access="global" name="lastFieldModified" type="String" description="Used to let parent component know which field was the last one modified"/>
+    <aura:method  name="validateAllFields" action="{!c.validateAllFields}" access="global" description="Method to be called to validate every field in the form, and show its corresponding error message"/>
     
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     

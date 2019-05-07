@@ -33,4 +33,46 @@ public class FormElementTriggersTest {
         System.assert(formElement.ExternalId__c != null);
 
 	}
+    
+    @isTest
+	static void incorrectObjectApiNameTest(){
+		//Given
+		MockupFactory.generateAcceleratorSetting();
+        Cluster__c cluster = MockupFactory.createCluster('Argentina', null, 2, 'ClusterRoot', 'CRT')[0];
+        MockupFactory.createForm('testName', 'testName', 'testRetrieval', cluster.id);
+		//When
+		Test.startTest();
+		FormElement__c formElement = [SELECT id, name FROM FormElement__c LIMIT 1];
+        formElement.ObjectApiName__c = 'wrongApiName';
+        try{
+            update formElement;
+        
+        //Then
+        }catch(DMLException e){
+            system.assert(e.getMessage().contains('FIELD_CUSTOM_VALIDATION_EXCEPTION'));
+        }
+        Test.stopTest();
+
+	}
+    
+    @isTest
+	static void incorrectFieldApiNameTest(){
+		//Given
+		MockupFactory.generateAcceleratorSetting();
+        Cluster__c cluster = MockupFactory.createCluster('Argentina', null, 2, 'ClusterRoot', 'CRT')[0];
+        MockupFactory.createForm('testName', 'testName', 'testRetrieval', cluster.id);
+		//When
+		Test.startTest();
+		FormElement__c formElement = [SELECT id, name FROM FormElement__c LIMIT 1];
+        formElement.ObjectApiName__c = '';
+        try{
+            update formElement;
+        
+        //Then
+        }catch(DMLException e){
+            system.assert(e.getMessage().contains('FIELD_CUSTOM_VALIDATION_EXCEPTION'));
+        }
+        Test.stopTest();
+
+	}
 }

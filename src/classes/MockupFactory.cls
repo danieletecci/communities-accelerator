@@ -141,13 +141,10 @@ global class MockupFactory {
     /*global static List<Cluster__c> createClusterRoot(List<String> nameList){
         List<Cluster__c> clusterRootList = new List<Cluster__c>();
         RecordType rtRoot = [SELECT Id FROM RecordType WHERE SobjectType = 'Cluster__c' AND DeveloperName = 'ClusterRoot'];
-
         for(String name : nameList){
             clusterRootList.add(new Cluster__c(Name = name, RecordTypeId = rtRoot.Id));
-
         }
         insert tagList;
-
         return tagList;
     }
 */
@@ -210,6 +207,7 @@ global class MockupFactory {
                                         RecordTypeId = recordT.Id,
                                         Cluster__c = cluster == null ? null : cluster.Id,
                                         Title__c = nameRecordType + cluster,
+                                        NumberOfColumns__c = '4',
                                         Status__c='Inactive'));
             }
 
@@ -419,7 +417,7 @@ global class MockupFactory {
         insert menuList;
 
         return menuList;
-    }
+    }    
 
         //Create MenuAssignment__c by Menu && Component
     global static List<MenuAssignment__c> createMenuAssignment(List<Menu__c> menuList, List<Component__c> componentList){
@@ -513,5 +511,17 @@ global class MockupFactory {
         return form;
         
     }
+
+    //Create Audience Record Type Audience
+    global static List<Audience__c> createAudience(String name, Integer quantity, Id clusterId){
+        
+        List<Audience__c> audienceList = new List<Audience__c>();
+
+        for(Integer i = 0 ; i < quantity ; i ++) {
+           audienceList.add(new Audience__c(Cluster__c = clusterId, Name = name+i, RecordTypeId = AudienceUtils.rtAudience));
+        }
+        insert audienceList;
+        return audienceList;
+    }   
 
 }

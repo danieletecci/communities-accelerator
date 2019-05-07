@@ -127,12 +127,27 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Menu__c.Audience__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Menu__c.ComponentName__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>Menu__c.DisplayOn__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Menu__c.ExternalId__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>Menu__c.MenuDynamicLabel__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -153,6 +168,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Menu__c.ParentMenu__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>Menu__c.StyleClass__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1207,11 +1227,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>FormElement__c.FieldAPIName__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>FormElement__c.FieldLabel__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1238,11 +1253,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>FormElement__c.MaxLength__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>FormElement__c.ObjectAPIName__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

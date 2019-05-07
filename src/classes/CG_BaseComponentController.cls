@@ -12,10 +12,13 @@ public with sharing class CG_BaseComponentController {
         @auraEnabled public List<Category__c> categories;
 		@auraEnabled public List<Tag__c> tags;
 		@auraEnabled public String clusterId;
+		@auraEnabled public String namespace;
+
 		public ComponentWrapper(){
 			this.acceleratorSettings = new CustomSettingWrapper(CMSSettings__c.getInstance(), CMSContentSettings__c.getInstance(), CMSMediaElementSettings__c.getInstance());
             this.isEnabledCommunityEditFrame = FeatureManagement.checkPermission('CommunityEditFrame');
             this.isEnabledCommunityViewFrame = FeatureManagement.checkPermission('CommunityViewFrame');
+            this.namespace = GeneralUtils.getNameSpace();
 		}
 	}
     
@@ -80,8 +83,7 @@ public with sharing class CG_BaseComponentController {
 					}
 				}
 			}else{
-				if(componentType == 'Banner' || componentType == 'ArticleList' || componentType == 'EventList' || 
-				componentType == 'AdvanceContent' || componentType == 'FAQ' || 
+				if(componentType == 'ArticleList' || componentType == 'EventList' || 
 				componentType == 'ArticleDetail' || componentType == 'EventDetail' || componentType == 'ArticlesRelated' ||
 				componentType == 'EventsRelated'){
 					contentWrapper = ContentUtils.getContentFromComponent(new ObjectComponentWrapper(component), getContentFieldSetByComponentType(component.Recordtype.Developername, device), setContentDirect, setContentToExclude, setClusterIds, device);
@@ -163,18 +165,14 @@ public with sharing class CG_BaseComponentController {
     }
 
     private static set<String> getComponentFieldSetByComponentType(String componentType, String device){
-        set<String> setFields;
-        if(componentType == 'Banner'){			setFields = new set<String>{'[CMS]BannerFrameType__c','[CMS]Orientation__c','[CMS]BannerType__c','[CMS]ShowBullets__c','[CMS]AutomaticTransition__c','[CMS]BannerTransitionTime__c','[CMS]Loop__c','[CMS]Direction__c'};}
-        if(componentType == 'ArticleList'){			setFields = new set<String>{'[CMS]ArticleType__c', '[CMS]PagingType__c', '[CMS]LinkDetail__r.[CMS]URL__c', '[CMS]ExternalId__c', '[CMS]Title__c', '[CMS]NumberOfColumns__c'};}
-        if(componentType == 'EventList'){			setFields = new set<String>{'[CMS]EventsType__c', '[CMS]ExcludePastEvents__c', '[CMS]PagingType__c', '[CMS]LinkDetail__r.[CMS]URL__c', '[CMS]ExternalId__c', '[CMS]Title__c', '[CMS]NumberOfColumns__c'};}
-        if(componentType == 'AdvanceContent'){	setFields = new set<String>{};}
-        if(componentType == 'FAQ'){				setFields = new set<String>{};}
+        Set<String> setFields;
+        if(componentType == 'ArticleList'){			setFields = new set<String>{'[CMS]ArticleType__c', '[CMS]PagingType__c', '[CMS]LinkDetail__r.[CMS]URL__c', '[CMS]ExternalId__c', '[CMS]NumberOfColumns__c'};}
+        if(componentType == 'EventList'){			setFields = new set<String>{'[CMS]EventsType__c', '[CMS]ExcludePastEvents__c', '[CMS]PagingType__c', '[CMS]LinkDetail__r.[CMS]URL__c', '[CMS]ExternalId__c', '[CMS]NumberOfColumns__c'};}
         if(componentType == 'ArticleDetail'){		setFields = new set<String>{};}
         if(componentType == 'EventDetail'){		setFields = new set<String>{};}
         if(componentType == 'ArticlesRelated'){		setFields = new set<String>{'[CMS]ArticleType__c', '[CMS]PagingType__c', '[CMS]LinkDetail__r.[CMS]URL__c', '[CMS]ExternalId__c'};}
         if(componentType == 'EventsRelated'){	setFields = new set<String>{'[CMS]EventsType__c', '[CMS]ExcludePastEvents__c', '[CMS]PagingType__c', '[CMS]LinkDetail__r.[CMS]URL__c', '[CMS]ExternalId__c'};}
-        if(componentType == 'Cluster_Selector'){	setFields = new set<String>{};}
-        if(componentType == 'Language_Selector'){	setFields = new set<String>{};}
+        if(componentType == 'LanguageSelector'){	setFields = new set<String>{};}
         if(componentType == 'Menu'){	setFields = new set<String>{};}
         
         //Default fields
@@ -187,21 +185,19 @@ public with sharing class CG_BaseComponentController {
         setFields.add('[CMS]PageSize__c');
         setFields.add('[CMS]HierarchicalOrderBy__c');
         setFields.add('[CMS]TagCriteria__c');
+        setFields.add('[CMS]Title__c');
 
         return setFields;
     }
 
     private static set<String> getContentFieldSetByComponentType(String componentType, String device){
-    	if(componentType == 'EventsRelated'){componentType = 'Event';}
-    	if(componentType == 'ArticlesRelated'){componentType = 'Article';}
+    	if(componentType == 'EventsRelated'){componentType = 'EventList';}
+    	if(componentType == 'ArticlesRelated'){componentType = 'ArticleList';}
     	
         set<String> setFields;
-        if(componentType == 'Banner'){			setFields = new set<String>{'[CMS]LinkDetail__r.[CMS]URL__c','[CMS]OverlayQuadrant__c', '[CMS]Title__c', '[CMS]Extract__c', '[CMS]ButtonLabel__c','[CMS]BannerFrameType__c'};}
-        if(componentType == 'ArticleList'){			setFields = new set<String>{'[CMS]Title__c','[CMS]Body__c', '[CMS]Extract__c', '[CMS]LinkDetail__r.[CMS]URL__c', '[CMS]ExternalId__c'};}
+        if(componentType == 'ArticleList'){			setFields = new set<String>{'[CMS]Title__c','[CMS]Body__c', '[CMS]Extract__c', '[CMS]LinkDetail__r.[CMS]URL__c', '[CMS]ExternalId__c', '[CMS]PublishStartDate__c'};}
         if(componentType == 'EventList'){			setFields = new set<String>{'[CMS]Title__c','[CMS]Body__c', '[CMS]Extract__c', '[CMS]EventStartDate__c', '[CMS]EventEndDate__c', '[CMS]Location__c', '[CMS]LinkDetail__r.[CMS]URL__c', '[CMS]ExternalId__c'};}
-        if(componentType == 'AdvanceContent'){	setFields = new set<String>{'[CMS]HTMLContent__c'};}
-        if(componentType == 'FAQ'){				setFields = new set<String>{'[CMS]Title__c', '[CMS]Body__c'};}
-        if(componentType == 'ArticleDetail'){		setFields = new set<String>{'[CMS]Title__c', '[CMS]Extract__c','[CMS]Body__c','[CMS]Layout__c'};}
+        if(componentType == 'ArticleDetail'){		setFields = new set<String>{'[CMS]Title__c', '[CMS]Extract__c','[CMS]Body__c','[CMS]Layout__c', '[CMS]PublishStartDate__c'};}
         if(componentType == 'EventDetail'){		setFields = new set<String>{'[CMS]Title__c', '[CMS]Extract__c','[CMS]Body__c', '[CMS]EventStartDate__c', '[CMS]EventEndDate__c', '[CMS]Location__c','[CMS]Layout__c'};}
 
         setFields.add('Id');

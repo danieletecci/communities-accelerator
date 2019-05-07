@@ -5,7 +5,6 @@
   top: 0;
   width: 100%;
   z-index: 1;
-  overflow: scroll;
 }
 .datatableModals .modal .filterModal {
   background-color: #F8F8F8;
@@ -122,4 +121,78 @@
 .datatableModals .modal .detailmodal .modal__footer img {
   width: 25px;
   height: 25px;
+}
+.datatableModals[data-is-desktop="true"] {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.datatableModals[data-is-desktop="true"][data-detail-modal="true"] {
+  position: absolute;
+}
+.datatableModals[data-is-desktop="true"] .modal {
+  position: relative;
+  top: 0px;
+}
+.datatableModals[data-is-desktop="true"] .modal .filterModal {
+  display: flex;
+  background-color: transparent;
+}
+.datatableModals[data-is-desktop="true"] .modal .filterModal .modal__content,
+.datatableModals[data-is-desktop="true"] .modal .filterModal .modal__footer {
+  position: relative;
+}
+.datatableModals[data-is-desktop="true"] .modal .filterModal .modal__header {
+  display: none;
+}
+.datatableModals[data-is-desktop="true"] .modal .filterModal .modal__content {
+  height: auto;
+}
+.datatableModals[data-is-desktop="true"] .modal .filterModal .modal__content .bottom-spacer {
+  margin-bottom: 0px;
+}
+.datatableModals[data-is-desktop="true"] .modal .filterModal .modal__content h2 {
+  cursor: pointer;
+  font-size: 20px;
+  margin: 0px;
+}
+.datatableModals[data-is-desktop="true"] .modal .filterModal .modal__content .filterContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.datatableModals[data-is-desktop="true"] .modal .filterModal .modal__content .filterOptions {
+  top: 50px;
+  background: #0B0B0B;
+  position: absolute;
+  color: #FDFDFD;
+  width: 200px;
+}
+.datatableModals[data-is-desktop="true"] .modal .filterModal .modal__content .filterOptions p {
+  padding: 0px 5px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.datatableModals[data-is-desktop="true"] .modal .filterModal .modal__content .filterOptions .filterItemClass {
+  padding: 0px;
+}
+.datatableModals[data-is-desktop="true"] .modal .filterModal .modal__footer {
+  width: 110px;
+  display: flex;
+  justify-content: space-between;
+  padding: 30px 0px;
+}
+.datatableModals[data-is-desktop="true"] .modal .filterModal .modal__footer .removeAllFilters,
+.datatableModals[data-is-desktop="true"] .modal .filterModal .modal__footer .applyFilter {
+  width: auto;
+  /* display: none;*/
+}
+.datatableModals[data-is-desktop="true"] .modal .filterModal .modal__footer .removeAllFilters {
+  background: transparent;
+}
+:host {
+  order: 20;
 }

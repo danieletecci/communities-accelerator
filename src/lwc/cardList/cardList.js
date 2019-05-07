@@ -1,4 +1,6 @@
 import { LightningElement, api } from 'lwc';
+import { loadStyle } from 'lightning/platformResourceLoader';
+
 
 export default class CardList extends LightningElement {
     @api contents;
@@ -11,6 +13,10 @@ export default class CardList extends LightningElement {
     @api pagenumbers;
     @api urlToNavigate;
 
+    connectedCallback() {
+        loadStyle(this, 'sfsites/c/resource/Assets/Assets/Styles/cardListExternalStyles.css');
+
+    }
 
     get containerClass() {
         let mobile = navigator.userAgent.toLowerCase().includes('mobi');

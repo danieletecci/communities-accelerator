@@ -1,31 +1,28 @@
 public class RichTextController {
 
+    private static final Pattern URL_REGEX = Pattern.compile('src="(.+?)"');
+    private static final Pattern ME_REGEX = Pattern.compile('src="@ME:(.+?)@"');
+
     // From ExternalIds To URLs
     
     @AuraEnabled
     public static String replaceExternalIdsWithURLs(String richText){
-        List<String> mediaElementExternalIds = getMediaElementExternalIds(new List<String>{richText});
-        Map<String, String> externalIdURLMap = getExternalIdURLMap(mediaElementExternalIds);
-        return replaceExternalIdsWithURLs(richText, externalIdURLMap);
+        List<String> mes = getBodyMEs(richText);
+        Map<String, String> externalIdURLMap = getExternalIdURLMap(mes);
+        return replaceExternalIdsWithURLs(richText, externalIdURLMap, mes);
     }
 
-    public static String replaceExternalIdsWithURLs(String richText, Map<String, String> externalIdUrlMap){
-        // Replaces External Ids in tags @ME:@ with URLs
-        if(richText.contains('@ME:')){
-            String externalId = richText.substringBetween('@ME:', '@');
-            String toReplace = '@ME:' + externalId + '@';
-            String mediaElementURL;
-            if(externalIdUrlMap.keySet().contains(externalId)){
-                mediaElementURL = externalIdUrlMap.get(externalId);
+
+    public static String replaceExternalIdsWithURLs(String richText, Map<String, String> externalIdUrlMap, List<String> totalExtIds){
+        Set<String> extIdSet = new Set<String>(totalExtIds);
+        for(String extId : extIdSet){
+            if(externalIdUrlMap.containsKey(extId)){
+                richText = richText.replace('src="@ME:' + extId + '@"', 'src="' + externalIdUrlMap.get(extId) + '"');
             } else {
-//                mediaElementURL = '@ME_ERROR:' + externalId + '@';
-                mediaElementURL = externalId;
+                richText = richText.replace('src="@ME:' + extId + '@"', 'src=""');
             }
-            richText = richText.replace(toReplace, mediaElementURL);
-            return replaceExternalIdsWithURLs(richText, externalIdUrlMap);
-        } else {
-            return richText;
-        }        
+        }
+        return richText;
     }
 
     public static Map<String, String> getExternalIdURLMap(List<String> mediaElementExternalIds){
@@ -37,47 +34,32 @@ public class RichTextController {
 
         return mapToReturn;
     }
-
-    public static List<String> getMediaElementExternalIds(List<String> richTexts){
-        Set<String> externalIds = new Set<String>();
-        for(String richText : richTexts){
-            externalIds.addAll(getExternalIdsFromRichText(richText, externalIds));
+    
+    private static List<String> getBodyMEs(String body) {
+        final List<String> mes = new List<String>();
+        final Matcher matcher = ME_REGEX.matcher(body);
+        while (matcher.find()) {
+            mes.add(matcher.group(1));
         }
-        
-        List<String> toReturn = new List<String>(externalIds);
-        return toReturn;
-    }
-
-    private static Set<String> getExternalIdsFromRichText(String richText, Set<String> externalIds){
-        if(richText.contains('@ME:')){
-            String externalId = richText.substringBetween('@ME:', '@');
-            externalIds.add(externalId);
-            getExternalIdsFromRichText(richText.substringAfter(externalId), externalIds);
-        }
-
-        return externalIds;
+        return mes;
     }
 
     // From URLs To ExternalIds
 
     @AuraEnabled
     public static String replaceURLsWithExternalIds(String richText){
-        List<String> mediaElementURLs = getMediaElementURLs(new List<String>{richText});
-        Map<String, String> urlExternalIdMap = getURLExternalIdMap(mediaElementURLs);
+        List<String> bodyURLs = getBodyURLs(richText);
+        Map<String, String> urlExternalIdMap = getURLExternalIdMap(bodyURLs);
         return replaceURLsWithExternalIds(richText, urlExternalIdMap);
     }
 
     public static String replaceURLsWithExternalIds(String richText, Map<String, String> urlExternalIdMap){
-        // Replaces URLs with External Ids in tags @ME:@ 
-        String richTextTemp = richText.contains('@ME') ? richText.substring(richText.lastIndexOf('@ME') + 1) : richText;
-        String url = richTextTemp.substringBetween('<img src="', '">');
-        if(url != null){
-            String mediaElementExternalId = urlExternalIdMap.keySet().contains(url) ? '@ME:' + urlExternalIdMap.get(url) + '@' : '@ME_ERROR:' + url + '@';
-            richText = richText.replace(url, mediaElementExternalId);
-            return replaceURLsWithExternalIds(richText, urlExternalIdMap);
-        } else {
-            return richText;
-        }  
+        for(String url : urlExternalIdMap.keySet()){
+            richText = richText.replace('src="' + url + '"', 'src="@ME:' + urlExternalIdMap.get(url) + '@"');
+            richText = richText.replace('src="' + url.replace('&','&amp;') + '"', 'src="@ME:' + urlExternalIdMap.get(url) + '@"');
+        }
+        System.debug('[RichTextController][replaceURLsWithExternalIds] richText: ' + richText);
+        return richText;
     }
 
     public static Map<String, String> getURLExternalIdMap(List<String> mediaElementURLs){
@@ -90,24 +72,12 @@ public class RichTextController {
         return mapToReturn;
     }
 
-    public static List<String> getMediaElementURLs(List<String> richTexts){
-        Set<String> urls = new Set<String>();
-        for(String richText : richTexts){
-            urls.addAll(getURLsFromRichText(richText, urls));
+    private static List<String> getBodyURLs(String body) {
+        final List<String> urls = new List<String>();
+        final Matcher matcher = URL_REGEX.matcher(body);
+        while (matcher.find()) {
+            urls.add(matcher.group(1).replace('&amp;','&'));
         }
-        
-        List<String> toReturn = new List<String>(urls);
-        return toReturn;
-    }
-
-    private static Set<String> getURLsFromRichText(String richText, Set<String> urls){
-        if(richText.contains('<img src="')){
-            String url = richText.substringBetween('<img src="', '">');
-            urls.add(url);
-            getURLsFromRichText(richText.substringAfter(url), urls);
-        }
-
         return urls;
     }
-
 }

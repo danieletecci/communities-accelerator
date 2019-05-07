@@ -1,4 +1,4 @@
-global with sharing class DatatableDynamicPicklist extends VisualEditor.DynamicPickList{
+global without sharing class DatatableDynamicPicklist extends VisualEditor.DynamicPickList{
 	// Default value -- The one that appears at the top
 	global override VisualEditor.DataRow getDefaultValue(){
 		VisualEditor.DataRow defaultValue = new VisualEditor.DataRow('--None--','');

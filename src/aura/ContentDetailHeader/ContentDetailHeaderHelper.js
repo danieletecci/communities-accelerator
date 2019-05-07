@@ -184,8 +184,10 @@
     setTooltips : function(component){
     	try{
     		if(component.get("v.contentData").PublishStartDate && component.get("v.contentData").Status == $A.get("$Label.c.ContentDetailScheduled")){
-	        	moment.locale(component.get("v.locale"));
-		    	var publishStartDate = moment(component.get("v.contentData").PublishStartDate).format('LLL');
+	        	var gmtOffset = component.get("v.gmtOffset");
+	        	moment.locale($A.get("$Locale.langLocale"));
+	        	var pedMoment = moment(component.get("v.contentData").PublishStartDate).zone(gmtOffset);
+		    	var publishStartDate = pedMoment.format('LLL');
 				component.set("v.scheduledTooltip", this.stringFormat($A.get("$Label.c.ContentPendingPublication"), publishStartDate));
 	    	}
 	    } catch(e){
@@ -194,6 +196,7 @@
 	    try{
 	    	if(component.get("v.contentData").PublishEndDate && component.get("v.contentData").Status == $A.get("$Label.c.ContentDetailPublished")){
 	        	var gmtOffset = component.get("v.gmtOffset");
+	        	moment.locale($A.get("$Locale.langLocale"));
 	        	var pedMoment = moment(component.get("v.contentData").PublishEndDate).zone(gmtOffset);
 		    	var publishEndDate = pedMoment.format('LLL');
 		    	component.set("v.publishedTooltip", this.stringFormat($A.get("$Label.c.ContentPublishedUntil"), publishEndDate));

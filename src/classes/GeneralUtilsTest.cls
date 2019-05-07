@@ -61,8 +61,8 @@ private class GeneralUtilsTest {
 
         //When
         Test.startTest();
-        Boolean result = GeneralUtils.isSafeField(GeneralUtils.prefix('[CMS]Cluster__c'), 'name', true);
-        Boolean result2 = GeneralUtils.isSafeField(GeneralUtils.prefix('[CMS]Test__c'), 'id', true);
+        Boolean result = GeneralUtils.isSafeField(GeneralUtils.prefix('[CMS]Cluster__c'), 'name');
+        Boolean result2 = GeneralUtils.isSafeField(GeneralUtils.prefix('[CMS]Test__c'), 'id');
         Test.stopTest();
 
         //Then
@@ -76,8 +76,8 @@ private class GeneralUtilsTest {
 
         //When
         Test.startTest();
-        Boolean result = GeneralUtils.isSafeObject(GeneralUtils.prefix('[CMS]Cluster__c'), true);
-        Boolean result2 = GeneralUtils.isSafeObject(GeneralUtils.prefix('[CMS]Test__c'), true);
+        Boolean result = GeneralUtils.isSafeObject(GeneralUtils.prefix('[CMS]Cluster__c'));
+        Boolean result2 = GeneralUtils.isSafeObject(GeneralUtils.prefix('[CMS]Test__c'));
         Test.stopTest();
 
         //Then

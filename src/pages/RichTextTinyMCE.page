@@ -25,9 +25,9 @@
 		tinymce.init({
 		  	mode : "specific_textareas",
 			menubar: false,
-			plugins: "fullpage media link table",
+			plugins: "fullpage media link table image",
 		  	selector: 'textarea#content1',
-		  	toolbar: 'undo redo | formatselect fontselect fontsizeselect | forecolor backcolor | bold italic underline strikethrough | removeformat | table | inserttable | bullist numlist outdent indent | alignleft aligncenter alignright alignjustify | link customImage media',
+		  	toolbar: 'undo redo | formatselect fontselect fontsizeselect | forecolor backcolor | bold italic underline strikethrough | removeformat | table | inserttable | bullist numlist outdent indent | alignleft aligncenter alignright alignjustify | link customImage media image',
 		  	width: "100%",
 			height : "30rem",
 		  	init_instance_callback: function (editor) {

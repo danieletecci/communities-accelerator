@@ -75,7 +75,7 @@ public class DatatableElementTriggers extends TriggersHandler {
     public void validateObjectFieldApiName(DatatableElement__c recNew) {
         String objectName = this.datatableElementsObjectMap.get(recNew.Id);
         
-        if(GeneralUtils.isSafeField(this.datatableElementsObjectMap.get(recNew.Id), recNew.FieldApiName__c, false)) {
+        if(GeneralUtils.isSafeField(this.datatableElementsObjectMap.get(recNew.Id), recNew.FieldApiName__c)) {
             Schema.DisplayType elementType = Schema.getGlobalDescribe().get(this.datatableElementsObjectMap.get(recNew.Id)).getDescribe().fields.getMap().get(recNew.FieldApiName__c).getDescribe().getType(); 
            	recNew.Type__c = String.valueOf(elementType);
         }else {

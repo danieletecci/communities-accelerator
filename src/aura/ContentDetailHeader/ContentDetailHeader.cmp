@@ -24,102 +24,113 @@
 	<ltng:require scripts="{!$Resource.momentJS}" afterScriptsLoaded="{!c.afterMomentLoaded}" />
 
 	<div class="slds-page-header slds-page-header_record-home">
-	    <div class="slds-page-header__row">
-	        <div class="slds-page-header__col-title">
-	            <div class="slds-media">
-	                <div class="slds-media__body">
-	                    <div class="slds-page-header__name">
-	                        <div class="slds-page-header__name-title">
-	                            <h1>
-	                                <span>{!v.contentData.RecordTypeName + if(v.contentData.IsTemplate, ' ' + $Label.c.General_Template,'')}</span>
-									<aura:if isTrue="{!v.isNameEdit}">
-										<div onkeyup="{!c.onKeyUp}">
-											<lightning:input aura:id="name-input" name="input1" label="" value="{!v.temporaryName}" variant="label-hidden" maxlength="80" />
-										</div>
+		<div class="slds-page-header__row">
+			<div class="slds-page-header__col-title">
+				<div class="slds-media">
+					<div class="slds-media__body">
+						<div class="slds-page-header__name">
+							<div class="slds-page-header__name-title">
+								<h1>
+									<span>{!v.contentData.RecordTypeName + if(v.contentData.IsTemplate, ' ' + $Label.c.General_Template,'')}</span>
+									<aura:if isTrue="{!v.security.hasEditAccess}">
+										<aura:if isTrue="{!v.isNameEdit}">
+											<div onkeyup="{!c.onKeyUp}">
+												<lightning:input aura:id="name-input" name="input1" label="" value="{!v.temporaryName}" variant="label-hidden" maxlength="80" />
+											</div>
+											<aura:set attribute="else">
+												<span class="slds-page-header__title slds-truncate slds-border_bottom slds-p-bottom_xx-small" title="{!v.contentData.Name}">
+													<span class="slds-m-top_xxx-small" ondblclick="{!c.editName}">{!v.contentData.Name}</span><lightning:buttonIcon iconName="utility:edit" size="medium" variant="bare" alternativeText="Edit" class="slds-m-left_large" onclick="{!c.editName}"/>
+												</span>
+											</aura:set>
+										</aura:if>
 										<aura:set attribute="else">
-											<span class="slds-page-header__title slds-truncate slds-border_bottom slds-p-bottom_xx-small" title="{!v.contentData.Name}">
-												<span class="slds-m-top_xxx-small" ondblclick="{!c.editName}">{!v.contentData.Name}</span><lightning:buttonIcon iconName="utility:edit" size="medium" variant="bare" alternativeText="Edit" class="slds-m-left_large" onclick="{!c.editName}"/>
+											<span class="slds-page-header__title slds-truncate slds-p-bottom_xx-small" title="{!v.contentData.Name}">
+												<span class="slds-m-top_xxx-small" >{!v.contentData.Name}</span>
 											</span>
 										</aura:set>
 									</aura:if>
 								</h1>
-	                        </div>
-	                    </div>
-	                </div>
-	            </div>
-	        </div>
-	        <div class="slds-page-header__col-actions">
-	            <div class="slds-page-header__controls">
-	                <div class="slds-page-header__control">
-	                    <lightning:buttonGroup>
-		                	<aura:if isTrue="{!(v.contentData.Status) != ($Label.c.ContentDetailArchived)}">
-						        <lightning:button label="{!$Label.c.General_Save}" onclick="{! c.doSave}" />
-						    </aura:if>
-					        <!-- <lightning:button label="{!$Label.c.ContentDetailSchedule}" /> -->
-		                	<aura:if isTrue="{!and(v.contentData.IsTemplate,v.contentData.Status == ($Label.c.ContentDetailPublished))}">
-						        <lightning:button label="{!$Label.c.CreateFromTemplateButton}"  onclick="{! c.doCreateFromTemplate}" />
-						    </aura:if>
-						    <aura:if isTrue="{!(v.contentData.Status) == ($Label.c.ContentDetailArchived)}">
-						        <lightning:button label="{!$Label.c.ContentDetailUnarchive}" onclick="{! c.doUnarchive}" />
-						    </aura:if>
-						    <lightning:buttonMenu alternativeText="Show menu" onselect="{! c.handleMenuSelect }" class="slds-button_last">
-						    	<aura:if isTrue="{!and(v.contentData.Status != $Label.c.ContentDetailPublished, v.security.hasDeleteAccess)}">
-									<lightning:menuItem label="{!$Label.c.General_Delete}" value="delete" />
-								</aura:if>
-	                			<aura:if isTrue="{!(v.contentData.Status) == ($Label.c.ContentDetailPublished)}">
-									<lightning:menuItem label="{!$Label.c.ContentDetailUnpublish}" value="unpublish" />
-									<lightning:menuItem label="{!$Label.c.ContentDetailArchive}" value="archive" />
-								</aura:if>
-								<aura:if isTrue="{!(v.contentData.Status) == ($Label.c.ContentDetailScheduled)}">
-									<lightning:menuItem label="{!$Label.c.ContentDetailUnschedule}" value="unschedule" />
-								</aura:if>
-							</lightning:buttonMenu>
-					    </lightning:buttonGroup>
-	                </div>
-	                <aura:if isTrue="{!(v.contentData.Status != $Label.c.ContentDetailArchived)}">
-		        		<div class="slds-page-header__control">
-		        			<lightning:button label="{!$Label.c.ContentDetailPublish}" variant="brand" title="{!$Label.c.ContentDetailPublish}" onclick="{! c.doPublishContent }"/>
-		        		</div>
-		        	</aura:if>
-	            </div>
-	        </div>
-	    </div>
-	    <div class="slds-page-header__row slds-page-header__row_gutters">
-	        <div class="slds-page-header__col-details">
-	            <ul class="slds-page-header__detail-row">
-	                <li class="slds-page-header__detail-block">
-	                    <div class="slds-text-title slds-truncate" title="{!$Label.c.ContentDetailPublicationStatus}">
-	                    	{!$Label.c.ContentDetailPublicationStatus}
-	                    </div>
-	                    <div onmouseenter="{!c.showTooltip}"  onmouseleave="{!c.hideTooltip}">
-	                    	<div class="{! 'slds-popover slds-popover_tooltip slds-nubbin_bottom-left ' + v.tooltipClass}" role="tooltip" id="help" style="position:absolute;margin-top:-3rem;margin-left:-1rem;" aura:id="tooltip">
-							   <div class="slds-popover__body">{! if(v.contentData.Status == $Label.c.ContentDetailScheduled, v.scheduledTooltip, if(v.contentData.Status == $Label.c.ContentDetailPublished, v.publishedTooltip, '')) }</div>
 							</div>
-	                    	<lightning:icon iconName="{!if(v.contentData.Status == $Label.c.ContentDetailDraft, 'standard:drafts', if(v.contentData.Status == $Label.c.ContentDetailScheduled, 'standard:date_time', if(v.contentData.Status == $Label.c.ContentDetailPublished, 'standard:task2', 'custom:custom42')))}" class="slds-m-right_x-small" size="x-small" alternativeText="{!v.contentData.Status}" />
-	                    	{!v.contentData.Status}
-	                    </div>
-	                </li>
-	            	<li class="slds-page-header__detail-block">
-	                    <div class="slds-text-title slds-truncate" title="{!$Label.c.ContentLandingCluster}">
-	                    	{!$Label.c.ContentLandingCluster}
-	                    </div>
-	                    <div class="slds-truncate" title="{!v.contentData.ClusterName}">{!v.contentData.ClusterName}</div>
-	                </li>
-	                <li class="slds-page-header__detail-block">
-	                    <div class="slds-text-title slds-truncate" title="{!$Label.c.ContentDetailLastSave}">
-	                        {!$Label.c.ContentDetailLastSave}
-	                    </div>
-	                    <div class="slds-truncate" title="{!v.contentData.LastModifiedDate}">
-	                    	<lightning:formattedDateTime value="{!v.contentData.LastModifiedDate}" year="numeric" month="numeric" day="numeric" hour="2-digit" minute="2-digit" timeZone="{!v.timeZone}" timeZoneName="short" hour12="false"/>
-                        </div>
-	                </li>
-	                <li class="slds-page-header__detail-block">
-	                    <div class="slds-text-title slds-truncate" title="{!$Label.c.ContentDetailCreatedBy}">{!$Label.c.ContentDetailCreatedBy}</div>
-	                    <div class="slds-truncate" title="{!v.contentData.CreatedByName}">{!v.contentData.CreatedByName}</div>
-	                </li>
-	            </ul>
-	        </div>
-	    </div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="slds-page-header__col-actions">
+				<div class="slds-page-header__controls">
+					<div class="slds-page-header__control">
+						<lightning:buttonGroup>
+							<aura:if isTrue="{!and((v.contentData.Status) != ($Label.c.ContentDetailArchived), v.security.hasEditAccess)}">
+								<lightning:button label="{!$Label.c.General_Save}" onclick="{! c.doSave}" />
+							</aura:if>
+							<!-- <lightning:button label="{!$Label.c.ContentDetailSchedule}" /> -->
+							<aura:if isTrue="{!and(v.contentData.IsTemplate,v.contentData.Status == ($Label.c.ContentDetailPublished), v.security.hasCreateContentPermission)}">
+								<lightning:button label="{!$Label.c.CreateFromTemplateButton}"  onclick="{! c.doCreateFromTemplate}" />
+							</aura:if>
+							<aura:if isTrue="{!and((v.contentData.Status) == ($Label.c.ContentDetailArchived), v.security.hasEditAccess)}">
+								<lightning:button label="{!$Label.c.ContentDetailUnarchive}" onclick="{! c.doUnarchive}" />
+							</aura:if>
+							<aura:if isTrue="{!and(v.contentData.Status != $Label.c.ContentDetailPublished, v.security.hasDeleteAccess) ||
+								and((v.contentData.Status) == ($Label.c.ContentDetailPublished),  v.security.hasEditAccess) ||
+								and((v.contentData.Status) == ($Label.c.ContentDetailScheduled), v.security.hasEditAccess)}">
+								<lightning:buttonMenu alternativeText="Show menu" onselect="{! c.handleMenuSelect }" class="slds-button_last">
+									<aura:if isTrue="{!and(v.contentData.Status != $Label.c.ContentDetailPublished, v.security.hasDeleteAccess)}">
+										<lightning:menuItem label="{!$Label.c.General_Delete}" value="delete" />
+									</aura:if>
+									<aura:if isTrue="{!and((v.contentData.Status) == ($Label.c.ContentDetailPublished),  v.security.hasEditAccess)}">
+										<lightning:menuItem label="{!$Label.c.ContentDetailUnpublish}" value="unpublish" />
+										<lightning:menuItem label="{!$Label.c.ContentDetailArchive}" value="archive" />
+									</aura:if>
+									<aura:if isTrue="{!and((v.contentData.Status) == ($Label.c.ContentDetailScheduled), v.security.hasEditAccess)}">
+										<lightning:menuItem label="{!$Label.c.ContentDetailUnschedule}" value="unschedule" />
+									</aura:if>
+								</lightning:buttonMenu>
+							</aura:if>
+						</lightning:buttonGroup>
+					</div>
+					<aura:if isTrue="{!and((v.contentData.Status != $Label.c.ContentDetailArchived), v.security.hasEditAccess)}">
+						<div class="slds-page-header__control">
+							<lightning:button label="{!$Label.c.ContentDetailPublish}" variant="brand" title="{!$Label.c.ContentDetailPublish}" onclick="{! c.doPublishContent }"/>
+						</div>
+					</aura:if>
+				</div>
+			</div>
+		</div>
+		<div class="slds-page-header__row slds-page-header__row_gutters">
+			<div class="slds-page-header__col-details">
+				<ul class="slds-page-header__detail-row">
+					<li class="slds-page-header__detail-block">
+						<div class="slds-text-title slds-truncate" title="{!$Label.c.ContentDetailPublicationStatus}">
+							{!$Label.c.ContentDetailPublicationStatus}
+						</div>
+						<div onmouseenter="{!c.showTooltip}"  onmouseleave="{!c.hideTooltip}">
+							<div class="{! 'slds-popover slds-popover_tooltip slds-nubbin_bottom-left ' + v.tooltipClass}" role="tooltip" id="help" style="position:absolute;margin-top:-3rem;margin-left:-1rem;" aura:id="tooltip">
+							<div class="slds-popover__body">{! if(v.contentData.Status == $Label.c.ContentDetailScheduled, v.scheduledTooltip, if(v.contentData.Status == $Label.c.ContentDetailPublished, v.publishedTooltip, '')) }</div>
+							</div>
+							<lightning:icon iconName="{!if(v.contentData.Status == $Label.c.ContentDetailDraft, 'standard:drafts', if(v.contentData.Status == $Label.c.ContentDetailScheduled, 'standard:date_time', if(v.contentData.Status == $Label.c.ContentDetailPublished, 'standard:task2', 'custom:custom42')))}" class="slds-m-right_x-small" size="x-small" alternativeText="{!v.contentData.Status}" />
+							{!v.contentData.Status}
+						</div>
+					</li>
+					<li class="slds-page-header__detail-block">
+						<div class="slds-text-title slds-truncate" title="{!$Label.c.ContentLandingCluster}">
+							{!$Label.c.ContentLandingCluster}
+						</div>
+						<div class="slds-truncate" title="{!v.contentData.ClusterName}">{!v.contentData.ClusterName}</div>
+					</li>
+					<li class="slds-page-header__detail-block">
+						<div class="slds-text-title slds-truncate" title="{!$Label.c.ContentDetailLastSave}">
+							{!$Label.c.ContentDetailLastSave}
+						</div>
+						<div class="slds-truncate" title="{!v.contentData.LastModifiedDate}">
+							<lightning:formattedDateTime value="{!v.contentData.LastModifiedDate}" year="numeric" month="numeric" day="numeric" hour="2-digit" minute="2-digit" timeZone="{!v.timeZone}" timeZoneName="short" hour12="false"/>
+						</div>
+					</li>
+					<li class="slds-page-header__detail-block">
+						<div class="slds-text-title slds-truncate" title="{!$Label.c.ContentDetailCreatedBy}">{!$Label.c.ContentDetailCreatedBy}</div>
+						<div class="slds-truncate" title="{!v.contentData.CreatedByName}">{!v.contentData.CreatedByName}</div>
+					</li>
+				</ul>
+			</div>
+		</div>
 	</div>
 
     <aura:if isTrue="{!v.contentData}">

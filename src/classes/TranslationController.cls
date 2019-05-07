@@ -64,12 +64,12 @@ public with sharing class TranslationController {
 			
 		}
 
-		if(GeneralUtils.isSafeObject(parentLookupName, true)) {
+		if(SecurityUtils.isObjectAccessible(parentLookupName)) {
 			Map<String,Schema.SObjectField> sobjectDescribeMap = Schema.getGlobalDescribe().get(parentLookupName).getDescribe().fields.getMap();
 			List<String> fieldNameList = fieldSet.deleteWhitespace().split(',');
 			
 			for(String fieldName : fieldNameList){
-				if(GeneralUtils.isSafeField(parentLookupName, fieldName, true)){
+				if(SecurityUtils.isFieldAccessible(parentLookupName, fieldName)){
 					Schema.DescribeFieldResult fieldDescribe = sobjectDescribeMap.get(fieldName).getDescribe();
 					String typeField;
 
@@ -107,7 +107,7 @@ public with sharing class TranslationController {
 			rw.dataObject[i].idCouple = '';
 		}
 		
-		if(GeneralUtils.isSafeObject(parentLookupName, true)) {
+		if(SecurityUtils.isObjectAccessible(parentLookupName)) {
 			language = String.escapeSingleQuotes(language);
 			recordId = String.escapeSingleQuotes(recordId);
 			
@@ -142,7 +142,7 @@ public with sharing class TranslationController {
 		List<Translation__c> deleteTranslationList = new List<Translation__c>();
 		Map<String, Integer> mapPositionValues = new Map<String, Integer>();
 		
-		if(GeneralUtils.isSafeObject(parentLookupName, true)) {
+		if(SecurityUtils.isObjectAccessible(parentLookupName)) {
 			recordId = String.escapeSingleQuotes(recordId);
 			String nameCouple = (String) Database.query('SELECT Name FROM ' + parentLookupName + ' WHERE Id =: recordId')[0].get('Name');
 			nameCouple = GeneralUtils.getSubstring(nameCouple, 40);

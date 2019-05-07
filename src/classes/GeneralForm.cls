@@ -75,10 +75,10 @@ global without sharing class GeneralForm{
         }
     }
     
-    global static FormResponseWrapper saveForm(String formSettingsString, Map<String, SObject> formData){
+    global static FormResponseWrapper saveForm(String formSettingsString, Map<String, SObject> formData, String namespace){
         FormSettings formSettings = (FormSettings)JSON.deserialize(formSettingsString, FormSettings.class);
         if(!Test.isRunningTest()){
-            Type t  = Type.forName(formSettings.saveClass);
+            Type t  = Type.forName(namespace, formSettings.saveClass);
             if(t != null){
                 FormSaveInterface formSave = (FormSaveInterface)t.newInstance();
                 return formSave.execute(formData);

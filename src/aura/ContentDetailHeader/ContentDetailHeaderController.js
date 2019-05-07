@@ -48,7 +48,7 @@
         helper.deleteContent(component);
     },
     doHideConfirmation: function(component, event, helper){
-        var confrimationModal = component.get("v.confirmationModal");
+        var confirmationModal = component.get("v.confirmationModal");
         confirmationModal.hide();
         confirmationModal.destroy();
     },

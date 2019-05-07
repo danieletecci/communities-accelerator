@@ -1088,6 +1088,14 @@
         <shortDescription>Are you sure?</shortDescription>
         <value>Are you sure?</value>
     </labels>
+	<labels>
+        <fullName>General_AreYouSureYouWantTo</fullName>
+        <categories>General</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Are you sure you want to</shortDescription>
+        <value>Are you sure you want to</value>
+    </labels>
     <labels>
         <fullName>General_Cancel</fullName>
         <categories>General</categories>

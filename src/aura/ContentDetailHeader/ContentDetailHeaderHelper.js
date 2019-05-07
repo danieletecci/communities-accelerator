@@ -144,7 +144,7 @@
 			helper.displaySuccessMessage(helper.stringFormat($A.get("$Label.c.ContentDetailUnpublishMessage"), recordTypeName, recordName));
 		} else if(previousStatus === 'Published' && actualStatus === 'Published'){
 			helper.displaySuccessMessage(helper.stringFormat($A.get("$Label.c.ContentDetailPublishMessage"), recordTypeName, recordName));
-		}		
+		}			
 	},
 	showUpdateContent : function(component, status, action){
 		$A.createComponent(
@@ -152,7 +152,7 @@
             { 	
                 "aura:id"		: "confirmationModal",
                 "title"			: action + ' ' + component.get("v.contentData").Name,
-                "message"		: $A.get("$Label.c.General_AreYouSure"),
+                "message"		: $A.get("$Label.c.General_AreYouSureYouWantTo") + ' ' + action + ' ' +component.get("v.contentData").Name + '?',
                 "confirmLabel"	: action,
                 "confirmVariant": "brand",
                 "onconfirm"		: (status == 'Draft') ? component.getReference("c.doDraftUpdate") : component.getReference("c.doArchive"),
@@ -187,9 +187,9 @@
             {
                 "aura:id"		: "confirmationModal",
                 "title"			: $A.get("$Label.c.General_Delete") + ' ' + component.get("v.contentData").Name,
-                "message"		: $A.get("$Label.c.ContentDeletingMessage"),
+                "message"		: $A.get("$Label.c.General_AreYouSureYouWantTo") + ' ' + $A.get("$Label.c.General_Delete") + ' ' + component.get("v.contentData").Name + '?',
                 "confirmLabel"	: $A.get("$Label.c.General_Delete"),
-                "confirmVariant": "destructive",
+                "confirmVariant": "brand",
                 "onconfirm"		: component.getReference("c.doDelete"),
                 "oncancel"		: component.getReference("c.doHideConfirmation")
             },

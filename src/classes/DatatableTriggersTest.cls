@@ -119,4 +119,23 @@ private class DatatableTriggersTest {
         
         Test.stopTest();
     }
+
+    //CMS-315 Apex Sharing on Datatable
+    @isTest
+    static void updateDatatableSharing(){
+        // Given
+        List<Cluster__c> clusterRootList = MockupFactory.createCluster('ClusterRootTest', null, 1, 'ClusterRoot', 'DRC');
+        List<Datatable__c> datatableList = MockupFactory.createDatatables('Table Test', 'TableTest', GeneralUtils.prefix('[CMS]Component__c'), 1, clusterRootList[0].Id);
+        List<DatatableElement__c> dataElementList = MockupFactory.createDatatableElements('Name', 'DataElementExternalId', 2, datatableList[0].Id);
+        datatableList[0].Cluster__c = clusterRootList[0].Id;
+        
+        // When
+        Test.startTest();
+        update datatableList[0];
+        Test.stopTest();
+
+        // Then
+        List<Datatable__Share> shareList = [SELECT Id, ParentId FROM Datatable__Share WHERE ParentId = :datatableList[0].Id AND RowCause =: GeneralUtils.prefix('[CMS]Clustering__c')];
+        System.assertEquals(3, shareList.size());
+    }
 }

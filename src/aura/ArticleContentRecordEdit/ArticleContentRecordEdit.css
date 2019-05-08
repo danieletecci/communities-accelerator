@@ -40,3 +40,11 @@
 .THIS .content-container{
     padding-left: 92px;
 }
+.THIS .template-desc-div{
+    padding:10px;
+    background-color: #F3F2F2;
+    height: 152px;
+}
+.THIS .template-desc-div lightning-textarea textarea{
+    height: 92px;
+}

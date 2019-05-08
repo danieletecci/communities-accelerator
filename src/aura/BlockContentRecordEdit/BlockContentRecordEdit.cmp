@@ -22,55 +22,53 @@
         <div class="slds-m-around_medium slds-border_top slds-border_bottom slds-border_right slds-border_left">
             <c:ContentDetailColumnFields objectWrapper="{!v.visibilitySelectors}" />
         </div>
-        <div class="slds-col slds-p-around_small" >
+        <div class="slds-col slds-p-around_small content-container" >
             <div class="slds-grid slds-grid_vertical">
-                <div class="slds-col slds-p-bottom_small">
-
-                	<!-- If is Template -->
+                
+                <div class="slds-col slds-p-bottom_small div-input">
+                    <!-- If is Template -->
                     <aura:if isTrue="{!v.contentData.IsTemplate}">
-                        <div style="background-color:#EEEEEE;padding:10px;">
-                            <lightning:textarea label="{!$Label.c.ContentDetailTemplateDescription}" name="templateDescription" value="{!v.contentData.TemplateDescription}" required="true" aura:id="templateDescription"/>
-                         </div>                    
+                        <div class="template-desc-div">
+                            <lightning:textarea label="{!$Label.c.ContentDetailTemplateDescription}" name="templateDescription" value="{!v.contentData.TemplateDescription}" aura:id="templateDescription"/>
+                        </div>                    
                     </aura:if>
+                </div>
 
-                    <!-- Fields -->
-                    <div style="padding:10px">
+                <!--Title-->
+                <div class="slds-col slds-p-bottom_small div-input">
+                    <lightning:input label="{!$Label.c.ContentDetailTitle}" name="contentName" value="{!v.contentData.Title}" aura:id="contentName" maxlength="255" />
+                </div>
+                
+                <!--Extract-->
+                <div class="slds-col slds-p-bottom_small div-input">
+                    <ui:inputTextArea label="{!$Label.c.ContentDetailExtract}" aura:id="blockExtract" value="{!v.contentData.Extract}"  maxlength="1500"/>
+                </div>
 
-                        <!--Title-->
-                        <div class="slds-col slds-p-bottom_small">
-	                        <lightning:input label="{!$Label.c.ContentDetailTitle}" name="contentName" value="{!v.contentData.Title}" aura:id="contentName" maxlength="255" required="true"/>
-	                    </div>
-                        
-                        <!--Extract-->
-                        <div class="slds-col slds-p-bottom_small">
-                        	<ui:inputTextArea label="{!$Label.c.ContentDetailExtract}" aura:id="blockExtract" value="{!v.contentData.Extract}"  maxlength="1500" rows="4" required="true"/>
-                        </div>
-
-                        <!--Feature Image-->
-                        <div class="slds-col slds-p-bottom_small">
-	                        <ui:outputText value="{!$Label.c.ContentDetailFeatureImage}"/>
-	                        <div class="slds-form-element__control slds-align_absolute-center div-add-media">
-		                        <aura:if isTrue="{!v.imageUrl}">
-		                            <div class="img-div">
-		                                <img class="img-feature-selected" src="{!v.imageUrl}" />
-		                                <p class="img-feature-selected-desc">
-		                                    <span class="slds-truncate" title="{!v.mediaElementName}">{!v.mediaElementName}</span>
-		                                    <lightning:buttonIcon iconName="utility:delete" size="large" variant="bare" title="{!$Label.c.UnassignImage}" iconClass="slds-button slds-button_icon" class="img-close" alternativeText="{!$Label.c.UnassignImage}" onclick="{!c.unassignFeatureImg}" />
-		                                </p>
-		                            </div>
-		                            <aura:set attribute="else">
-		                                <c:MediaElementManager />
-		                            </aura:set>
-		                        </aura:if>
-		                    </div>
-		                </div>
-
-                        <!--Link-->
-                        <aura:if isTrue="{!v.contentData.Id}">
-                    	    <c:LookupInput objectAPIName="[CMS]Navigation__c" IconName="standard:link"
-                            selectedRecordId="{!v.contentData.LinkDetail}" label="{!$Label.c.ContentDetailLink}" />
+                <!--Feature Image-->
+                <div class="slds-col slds-p-bottom_small div-input">
+                    <ui:outputText value="{!$Label.c.ContentDetailFeatureImage}"/>
+                    <div class="slds-form-element__control slds-align_absolute-center div-add-media">
+                        <aura:if isTrue="{!v.imageUrl}">
+                            <div class="img-div">
+                                <img class="img-feature-selected" src="{!v.imageUrl}" />
+                                <p class="img-feature-selected-desc">
+                                    <span class="slds-truncate" title="{!v.mediaElementName}">{!v.mediaElementName}</span>
+                                    <lightning:buttonIcon iconName="utility:delete" size="large" variant="bare" title="{!$Label.c.UnassignImage}" iconClass="slds-button slds-button_icon" class="img-close" alternativeText="{!$Label.c.UnassignImage}" onclick="{!c.unassignFeatureImg}" />
+                                </p>
+                            </div>
+                            <aura:set attribute="else">
+                                <c:MediaElementManager />
+                            </aura:set>
                         </aura:if>
                     </div>
+                </div>
+
+                <!--Link-->
+                <div class="slds-col slds-p-bottom_small div-link-input">
+                    <aura:if isTrue="{!v.contentData.Id}">
+                        <c:LookupInput objectAPIName="[CMS]Navigation__c" IconName="standard:link"
+                        selectedRecordId="{!v.contentData.LinkDetail}" label="{!$Label.c.ContentDetailLink}" />
+                    </aura:if>
                 </div>
             </div>
         </div>

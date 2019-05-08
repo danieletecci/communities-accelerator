@@ -43,7 +43,7 @@
             	</div>
             </div>
             <div class="slds-grid slds-wrap">
-  				<div class="slds-col">
+  				<div class="slds-col slds-size_12-of-12">
                     <aura:iteration items="{!v.selectedOptions}" var="opt">
                     	<lightning:pill name="{!opt.value}" label="{!opt.label}" onremove="{! c.handleRemove }"/>
                     </aura:iteration>

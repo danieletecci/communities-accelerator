@@ -19,27 +19,27 @@
         <div class="slds-m-around_medium slds-border_top slds-border_bottom slds-border_right slds-border_left">
             <c:ContentDetailColumnFields objectWrapper="{!v.visibilitySelectors}" />
         </div>
-        <div class="slds-col slds-p-around_small" >
+        <div class="slds-col slds-p-around_small content-container" >
             <div class="slds-grid slds-grid_vertical">
-                <div class="slds-col slds-p-bottom_small">
+                <div class="slds-col slds-p-bottom_small div-input">
                     <aura:if isTrue="{!v.contentData.IsTemplate}">
                         <div style="background-color:#EEEEEE;padding:10px;">
                             <lightning:textarea label="{!$Label.c.ArticleContentDetailTemplateDescription}" name="templateDescription" value="{!v.contentData.TemplateDescription}" aura:id="templateDescription"/>
                         </div>
                     </aura:if>
                 </div>
-                <div class="slds-col slds-p-bottom_small">
+                <div class="slds-col slds-p-bottom_small div-input">
                     <lightning:input label="{!$Label.c.ArticleContentDetailTitle}" name="contentName" value="{!v.contentData.Title}" aura:id="contentName" maxlength="255"/>
                 </div>
-                <div class="slds-col slds-p-bottom_small">
+                <div class="slds-col slds-p-bottom_small div-input">
                     <lightning:textarea name="contentExtract" value="{!v.contentData.Extract}" label="{!$Label.c.ArticleContentDetailExtract}" maxlength="1500" />
                 </div>
-                <div class="slds-col slds-p-bottom_small">
+                <div class="slds-col slds-p-bottom_small div-input">
                     <aura:if isTrue="{!v.contentData}">
                         <c:RichTextTinyMCE aura:id="richText" namespace="{!v.namespace}" contentBody="{!v.contentData.Body}"/>
                     </aura:if>
                 </div>
-                <div class="slds-col slds-p-bottom_small">
+                <div class="slds-col slds-p-bottom_small div-input">
                     <ui:outputText value="{!$Label.c.ArticleContentDetailImage}"/>
                     <div class="slds-form-element__control slds-align_absolute-center div-add-media">
                         <aura:if isTrue="{!v.imageUrl}">
@@ -64,7 +64,7 @@
                         </aura:if>
                     </div>
                 </div>
-                <div class="slds-col slds-p-bottom_small">
+                <div class="slds-col slds-p-bottom_small div-input">
                     <!--Choose Layout-->
                     <ui:outputText value="{!$Label.c.ArticleContentDetailChooseLayout}"/>
                     <div class="slds-form-element__control slds-align_absolute-center div-choose-layout">

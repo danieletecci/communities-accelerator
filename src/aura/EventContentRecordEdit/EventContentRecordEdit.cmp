@@ -23,7 +23,7 @@
         </div>
         <div class="slds-col slds-p-around_small content-container" >
             <div class="slds-grid slds-grid_vertical">
-                <div class="slds-col slds-p-bottom_small">
+                <div class="slds-col slds-p-bottom_small div-input">
                     <aura:if isTrue="{!v.contentData.IsTemplate}">
                         <div style="background-color:#EEEEEE;padding:10px;">
                             <lightning:textarea label="{!$Label.c.EventContentDetailTemplateDescription}" name="templateDescription" value="{!v.contentData.TemplateDescription}" aura:id="templateDescription"/>

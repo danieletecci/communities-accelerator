@@ -1132,7 +1132,7 @@
         <fullName>General_Content</fullName>
         <categories>General</categories>
         <language>en_US</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>Content</shortDescription>
         <value>Content</value>
     </labels>

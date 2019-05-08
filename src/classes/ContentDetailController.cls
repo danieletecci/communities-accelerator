@@ -14,7 +14,7 @@ public with sharing class ContentDetailController {
             this.security               = security;
             this.timeZone               = timeZone;
             this.bannerFrameTypes       = bannerFrameTypes;
-            this.namespace              = (String.isBlank(GeneralUtils.namespace)) ? 'c' : GeneralUtils.namespace.replace('_','');
+            this.namespace              = (String.isBlank(GeneralUtils.namespace)) ? 'c' : GeneralUtils.namespace.replace('_','').toLowerCase();
         }
     }
 

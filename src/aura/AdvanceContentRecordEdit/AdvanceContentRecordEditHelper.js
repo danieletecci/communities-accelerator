@@ -11,6 +11,7 @@
 			if (state === "SUCCESS") {
 				var data = response.getReturnValue();
 				if(data){
+					component.set("v.namespace", 			data.namespace);
 					component.set("v.contentData", 			data.content);
 					
 					component.set("v.visibilitySelectors", 	data.visibilitySelectors);
@@ -20,7 +21,6 @@
                         component.set('v.mediaElementName', data.content.MediaElementAssignments[0].MediaElement.Name);
                         component.set('v.mediaElementId', data.content.MediaElementAssignments[0].MediaElement.Id);
 					}
-					//component.find("RichTextContainer").setContentBody();
 				}else{
 					helper.displayErrorMessage($A.get("$Label.c.ArticleContentDetailLoadError"));
 				}

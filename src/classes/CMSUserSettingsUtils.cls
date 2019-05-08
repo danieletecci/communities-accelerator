@@ -5,29 +5,34 @@ global with sharing class CMSUserSettingsUtils {
         User user;
         try{user = [SELECT Id, UserName FROM User WHERE Id =: userId];}catch(Exception e){}
         
-        Cluster__c cluster;
-        try{cluster = [SELECT Id FROM Cluster__c WHERE Id =: clusterId];}catch(Exception e){}
-        
+
         if(user != null){
-            if(cluster != null){
-                CMSUserSettings__c userSettings = getUserSettings(userId);
+            if(Pattern.compile('[a-zA-Z0-9]{15}|[a-zA-Z0-9]{18}').matcher(String.valueOf(clusterId)).matches()){
+                Schema.SObjectType sobjectType = clusterId.getSObjectType();
+                String sobjectName = sobjectType.getDescribe().getName();
                 
-                //CMS User Settings creation
-                if(userSettings == null){
-                    userSettings = new CMSUserSettings__c(
-                        Name = user.UserName,
-                        User__c = user.Id
-                    );
+                if(GeneralUtils.prefix('[CMS]Cluster__c').equalsIgnoreCase(sobjectName)){
+                    CMSUserSettings__c userSettings = getUserSettings(userId);
+                    
+                    //CMS User Settings creation
+                    if(userSettings == null){
+                        userSettings = new CMSUserSettings__c(
+                            Name = user.UserName,
+                            User__c = user.Id
+                        );
+                    }
+                    userSettings.Cluster__c = clusterId;
+                    userSettings.AudienceAccount__c = accountId;
+                    userSettings.AudienceContact__c = contactId;
+                    userSettings.CustomRecordId__c = customRecordId;
+
+                    //Upsert CMS User Settings
+                    upsert userSettings;
+
+                    CMSUsersSettingsMap.put(user.Id, userSettings);
+                }else{
+                    throw new CMSException('CLUSTER_NOT_FOUND: ' + Label.ExceptionMessageClusterNotFound);
                 }
-                userSettings.Cluster__c = cluster.Id;
-                userSettings.AudienceAccount__c = accountId;
-                userSettings.AudienceContact__c = contactId;
-                userSettings.CustomRecordId__c = customRecordId;
-
-                //Upsert CMS User Settings
-                upsert userSettings;
-
-                CMSUsersSettingsMap.put(user.Id, userSettings);
             }else{
                 throw new CMSException('CLUSTER_NOT_FOUND: ' + Label.ExceptionMessageClusterNotFound);
             }

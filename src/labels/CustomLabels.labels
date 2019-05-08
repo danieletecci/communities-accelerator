@@ -1128,6 +1128,14 @@
         <shortDescription>Confirm</shortDescription>
         <value>Confirm</value>
     </labels>
+	<labels>
+        <fullName>General_Content</fullName>
+        <categories>General</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Content</shortDescription>
+        <value>Content</value>
+    </labels>
     <labels>
         <fullName>General_Delete</fullName>
         <categories>General</categories>
@@ -1247,6 +1255,14 @@
         <protected>false</protected>
         <shortDescription>Template</shortDescription>
         <value>Template</value>
+    </labels>
+	<labels>
+        <fullName>General_This</fullName>
+        <categories>General</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>This</shortDescription>
+        <value>This</value>
     </labels>
     <labels>
         <fullName>General_View</fullName>

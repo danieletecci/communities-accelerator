@@ -152,7 +152,7 @@
             { 	
                 "aura:id"		: "confirmationModal",
                 "title"			: action + ' ' + component.get("v.contentData").Name,
-                "message"		: $A.get("$Label.c.General_AreYouSureYouWantTo") + ' ' + action + ' ' +component.get("v.contentData").Name + '?',
+                "message"		: $A.get("$Label.c.General_AreYouSureYouWantTo") + ' ' + action.toLowerCase() + ' ' + $A.get("$Label.c.General_This").toLowerCase() + ' ' + $A.get("$Label.c.General_Content") +'?',
                 "confirmLabel"	: action,
                 "confirmVariant": "brand",
                 "onconfirm"		: (status == 'Draft') ? component.getReference("c.doDraftUpdate") : component.getReference("c.doArchive"),
@@ -187,7 +187,7 @@
             {
                 "aura:id"		: "confirmationModal",
                 "title"			: $A.get("$Label.c.General_Delete") + ' ' + component.get("v.contentData").Name,
-                "message"		: $A.get("$Label.c.General_AreYouSureYouWantTo") + ' ' + $A.get("$Label.c.General_Delete") + ' ' + component.get("v.contentData").Name + '?',
+                "message"		: $A.get("$Label.c.General_AreYouSureYouWantTo") + ' ' + $A.get("$Label.c.General_Delete").toLowerCase() + ' ' + $A.get("$Label.c.General_This").toLowerCase() + ' ' + $A.get("$Label.c.General_Content") +'?',
                 "confirmLabel"	: $A.get("$Label.c.General_Delete"),
                 "confirmVariant": "brand",
                 "onconfirm"		: component.getReference("c.doDelete"),

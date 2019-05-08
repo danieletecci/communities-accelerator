@@ -4,15 +4,15 @@
     <aura:attribute name="recordId" type="String"/>
     <aura:attribute name="behaviourMessage" type="Object"/>
      
-	<lightning:card>
-	    <aura:set attribute="title">
-	    	<strong>Component Behaviour</strong>
-	    	<br/>
-	    	<br/>
-	    	<aura:if isTrue="{!v.behaviourMessage}">
-        		<ui:outputText value="{!v.behaviourMessage}"/>
-    		</aura:if>
-	    </aura:set>
-	</lightning:card>
+	<div class="slds-grid slds-m-around_medium">
+		<div class="component-behaviour-width">
+			<p class="p-title"><lightning:icon class="info-icon" iconName="utility:info"/><b>{!$Label.c.ComponentBehaviour}</b></p>
+		</div>
+		<div class="content-container" >
+			<aura:if isTrue="{!v.behaviourMessage}">
+				<ui:outputText value="{!v.behaviourMessage}"/>
+			</aura:if>
+		</div>
+	</div>
 
 </aura:component>

@@ -41,7 +41,7 @@ public class ComponentBehaviourController {
         for(TagAssignment__c tagAssignment : tagAssignments){
             behaviourMessage += '\n' + tagAssignment.Order__c + '. ' + tagAssignment.Tag__r.Name;
         }
-        behaviourMessage += '\n\n Tag criteria: ' + component.TagCriteria__c;
+        behaviourMessage += '\n\n '+ Label.TagCriteria + component.TagCriteria__c;
         return behaviourMessage;
     }
 
@@ -56,7 +56,7 @@ public class ComponentBehaviourController {
     }
 
     private static String getBannerType(Component__c component){
-        String bannerType = '\n\n Banner type: ' + component.BannerFrameType__c;
+        String bannerType = '\n\n '+ Label.BannerType + component.BannerFrameType__c;
         return bannerType;
     }
 

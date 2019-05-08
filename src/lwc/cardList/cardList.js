@@ -12,6 +12,8 @@ export default class CardList extends LightningElement {
     @api pagingtype;
     @api pagenumbers;
     @api urlToNavigate;
+    @api viewmode;
+    @api formfactor;
 
     connectedCallback() {
         loadStyle(this, 'sfsites/c/resource/Assets/Assets/Styles/cardListExternalStyles.css');
@@ -25,7 +27,10 @@ export default class CardList extends LightningElement {
     }
     get cardWrapperClass() {
         let mobile = navigator.userAgent.toLowerCase().includes('mobi');
-        return mobile ? 'slds-col slds-size_4-of-4' : 'slds-col slds-size_1-of-' + this.numberofcolumns;
+        if(this.formfactor === 'TABLET')
+            return 'slds-col slds-size_2-of-4';
+        else
+            return mobile ? 'slds-col slds-size_4-of-4' : 'slds-col slds-size_1-of-' + this.numberofcolumns;
     }
     
     get isCarrousel() {
@@ -52,5 +57,13 @@ export default class CardList extends LightningElement {
         var numberofpage = event.currentTarget.value;
         const goToPageEvent = new CustomEvent('gotopage', {detail: {numberofpage}});
         this.dispatchEvent(goToPageEvent);
+    }
+
+    get spacerClass() {
+        let typeClass = 'desktop';
+        if(this.formfactor)
+            typeClass = this.formfactor.toLowerCase();
+
+        return `spacer-${typeClass}`;
     }
 }

@@ -21,64 +21,82 @@
         <div class="slds-m-around_medium slds-border_top slds-border_bottom slds-border_right slds-border_left">
             <c:ContentDetailColumnFields objectWrapper="{!v.visibilitySelectors}" />
         </div>
-        <div class="slds-col slds-p-around_small" >
+        <div class="slds-col slds-p-around_small content-container" >
             <div class="slds-grid slds-grid_vertical">
-                <div class="slds-col slds-p-bottom_small">
-
+                <div class="slds-col slds-p-bottom_small div-input">
                     <aura:if isTrue="{!v.contentData.IsTemplate}">
                         <div style="background-color:#EEEEEE;padding:10px;">
-                            <lightning:textarea label="{!$Label.c.EventContentDetailTemplateDescription}" name="templateDescription" value="{!v.contentData.TemplateDescription}" required="true" aura:id="templateDescription"/>
+                            <lightning:textarea label="{!$Label.c.EventContentDetailTemplateDescription}" name="templateDescription" value="{!v.contentData.TemplateDescription}" aura:id="templateDescription"/>
                          </div>
-                    
                     </aura:if>
-                    <div style="padding:10px">
+                </div>
 
-                        <!--Title-->
-                        <lightning:input label="{!$Label.c.EventContentDetailTitle}" aura:id="eventTitle" value="{!v.contentData.Title}" required="true"/>
-                        
-                        
-                        <!--Extract-->
-                        <ui:inputTextArea label="{!$Label.c.EventContentDetailExtract}" aura:id="eventExtract" value="{!v.contentData.Extract}" rows="4" required="true"/>
-                        
-                        <br/>
-                        <!--Body -->
-                        <ui:outputText value="{!$Label.c.EventContentDetailBody}"/>
+                <!--Title-->
+                <div class="slds-col slds-p-bottom_small div-input">
+                    <lightning:input label="{!$Label.c.EventContentDetailTitle}" aura:id="eventTitle" value="{!v.contentData.Title}" maxlength="255"/>
+                </div>
+                
+                <!--Extract-->
+                <div class="slds-col slds-p-bottom_small div-input">
+                    <ui:inputTextArea label="{!$Label.c.EventContentDetailExtract}" aura:id="eventExtract" value="{!v.contentData.Extract}" maxlength="1500" />
+                </div>
 
-                        <aura:if isTrue="{!v.contentData}">
-                            <c:RichTextTinyMCE aura:id="richText" namespace="{!v.namespace}" contentBody="{!v.contentData.Body}"/>
-                        </aura:if>
+                <!--Body -->
+                <div class="slds-col slds-p-bottom_small div-input">
+                    <aura:if isTrue="{!v.contentData}">
+                        <c:RichTextTinyMCE aura:id="richText" namespace="{!v.namespace}" contentBody="{!v.contentData.Body}"/>
+                    </aura:if>
+                </div>
+                
+                <!--Start Date-->
+                <div class="slds-col slds-p-bottom_small input-start-date">
+                    <lightning:input label="{!$Label.c.EventContentDetailEventStartDate}" aura:id="eventStartDate" type="datetime-local" value="{!v.contentData.EventStartDate}"/>
+                </div>
+
+                <!--End Date-->
+                <div class="slds-col slds-p-bottom_small input-end-date">
+                    <lightning:input label="{!$Label.c.EventContentDetailEventEndDate}" aura:id="eventEndDate" type="datetime-local" value="{!v.contentData.EventEndDate}" />
+                </div>
+
+                <!--Location Information-->
+                <div class="slds-col slds-p-bottom_small div-input">
+                    <ui:inputTextArea label="{!$Label.c.EventContentDetailEventLocationInformation}" aura:id="eventLocation" value="{!v.contentData.Location}" maxlength="1500"/>     
+                </div>
                         
-                        <!--Start Date-->
-                        <br/>
-                        <lightning:input label="{!$Label.c.EventContentDetailEventStartDate}" aura:id="eventStartDate" type="datetime-local" value="{!v.contentData.EventStartDate}" required="true" />
-                        
-                        <!--End Date-->
-                        <br/>
-                        <lightning:input label="{!$Label.c.EventContentDetailEventEndDate}" aura:id="eventEndDate" type="datetime-local" value="{!v.contentData.EventEndDate}" />
-
-
-                        <!--Location Information-->
-                        <ui:inputTextArea label="{!$Label.c.EventContentDetailEventLocationInformation}" aura:id="eventLocation" value="{!v.contentData.Location}" rows="4"/>     
-
-                        <br/>
-                                
-                        <!--Feature Image-->
-                        <ui:outputText value="{!$Label.c.EventContentDetailFeatureImage}"/>
-                        <br/>
-                        <c:MediaElementManager />
+                <!--Feature Image-->
+                <div class="slds-col slds-p-bottom_small div-input">
+                    <ui:outputText value="{!$Label.c.EventContentDetailFeatureImage}"/>
+                    <div class="slds-form-element__control slds-align_absolute-center div-add-media">
                         <aura:if isTrue="{!v.imageUrl}">
-                            <img style="height:200px" src="{!v.imageUrl}" />
+                            <div class="img-div">
+                                <img class="img-feature-selected" src="{!v.imageUrl}" />
+                                <p class="img-feature-selected-desc">
+                                    <span class="slds-truncate" title="{!v.mediaElementName}">{!v.mediaElementName}</span>
+                                    <lightning:buttonIcon
+                                        iconName="utility:delete"
+                                        size="large"
+                                        variant="bare"
+                                        title="{!$Label.c.UnassignImage}"
+                                        iconClass="slds-button slds-button_icon"
+                                        class="img-close"
+                                        alternativeText="{!$Label.c.UnassignImage}"
+                                        onclick="{!c.unassignFeatureImg}" />
+                                </p>
+                            </div>
+                            <aura:set attribute="else">
+                                <c:MediaElementManager />
+                            </aura:set>
                         </aura:if>
-                        
-                        <br/><br/>
+                    </div>
+                </div>
 
-                        <!--Choose Layout-->
-                        <ui:outputText value="{!$Label.c.EventContentDetailChooseLayout}"/>
-                        <div>
-                            <aura:if isTrue="{!v.layoutOptions.length > 0}">
-                                <c:ContentLayoutPicker selectedValue="{!v.contentData.Layout}" layoutOptions="{!v.layoutOptions}" />
-                            </aura:if>
-                        </div>
+                <!--Choose Layout-->
+                <div class="slds-col slds-p-bottom_small div-input">
+                    <ui:outputText value="{!$Label.c.EventContentDetailChooseLayout}"/>
+                    <div class="slds-form-element__control slds-align_absolute-center div-choose-layout">
+                        <aura:if isTrue="{!v.layoutOptions.length > 0}">
+                            <c:ContentLayoutPicker selectedValue="{!v.contentData.Layout}" layoutOptions="{!v.layoutOptions}" />
+                        </aura:if>
                     </div>
                 </div>
             </div>

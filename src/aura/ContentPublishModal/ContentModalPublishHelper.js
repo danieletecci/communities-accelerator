@@ -11,7 +11,7 @@
 			else
 				component.find("start-date").setCustomValidity("");
 			component.find("start-date").reportValidity();
-			validEndDate = component.find("start-date").checkValidity();
+			validStartDate = component.find("start-date").checkValidity();
 		}
 		if(expire === true){
 			if(action === 'publish' && new Date(endDate) < new Date())

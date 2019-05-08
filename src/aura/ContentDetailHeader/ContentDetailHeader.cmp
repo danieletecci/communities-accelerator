@@ -60,7 +60,7 @@
 						        <lightning:button label="{!$Label.c.CreateFromTemplateButton}"  onclick="{! c.doCreateFromTemplate}" />
 						    </aura:if>
 						    <aura:if isTrue="{!(v.contentData.Status) == ($Label.c.ContentDetailArchived)}">
-						        <lightning:button label="{!$Label.c.ContentDetailUnarchive}" onclick="{! c.doUnarchive}" />
+						        <lightning:button label="{!$Label.c.ContentDetailUnarchive}" onclick="{! c.doDraftUpdate}" />
 						    </aura:if>
 						    <lightning:buttonMenu alternativeText="Show menu" onselect="{! c.handleMenuSelect }" class="slds-button_last">
 						    	<aura:if isTrue="{!and(v.contentData.Status != $Label.c.ContentDetailPublished, v.security.hasDeleteAccess)}">
@@ -126,7 +126,9 @@
 		<c:ContentPublishModal aura:id="contentModalPublish" content="{!v.contentData}" hasDetailComponent="{!v.hasDetailComponent}"/>
 	</aura:if>
 
-	{!v.confirmationModal}
+	<div class="slds-text-align_center"> 
+		{!v.confirmationModal}
+	</div>	
 
     <aura:if isTrue="{!v.contentData.Id != null}">
     	<c:createNewContentModal aura:id="newContentModal" oncontentcreated="{!c.doGoToContent}" recordTypeId="{!v.contentData.RecordTypeId}" templateId="{!v.contentData.Id}"></c:createNewContentModal>

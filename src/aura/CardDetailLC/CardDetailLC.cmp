@@ -8,37 +8,47 @@
         <div class="card-detail slds-grid slds-gutters_direct slds-gutters_x-large slds-grid_align-center">
             <div class="detail slds-col slds-size_4-of-4">
                 <aura:if isTrue="{! v.details.layout != 'Body Only'}">
+                    <aura:if isTrue="{! if($Browser.isPhone,true,false)}" ><hr></hr></aura:if>
                     <aura:if isTrue="{! v.details.type != 'Event'}">
                         <div class="date-container">
-                            <p class="date">
-                                <lightning:formattedDateTime value="{!v.details.date}" day="numeric" month="short" time-zone="UTC"/>                             
-                                {!v.details.headerText}
-                            </p> 
+                            <span class="date-container-article">
+                                <p class="date">
+                                    <aura:if isTrue="{! v.details.date != null }">
+                                        <lightning:formattedDateTime value="{! v.details.date }" day="numeric" month="short" time-zone="UTC"></lightning:formattedDateTime>                             
+                                    </aura:if>
+                                    <aura:if isTrue="{! v.details.headerText != null }">
+                                        {! v.details.headerText }                         
+                                    </aura:if>
+                                </p> 
+                            </span>
                         </div>
                     </aura:if>
                     <aura:if isTrue="{! v.details.type == 'Event'}">
-                        <div class="date-container event">
-                            <p class="date">
-                                <aura:if isTrue="{!v.details.startDate}">
-                                    <lightning:formattedDateTime value="{!v.details.startDate}" year="numeric" day="numeric" month="short" timeZone="UTC"/>
-                                    <aura:if isTrue="{!v.details.endDate}">
-                                        <span> - </span>
-                                        <lightning:formattedDateTime value="{!v.details.endDate}" year="numeric" day="numeric" month="short" timeZone="UTC"/>
-                                    </aura:if>                            
+                        <div class="date-container">
+                            <span class="date-container-event">
+                                <p class="date-event">
+                                    <aura:if isTrue="{! v.details.startDate != null }">
+                                        <lightning:formattedDateTime value="{! v.details.startDate }" day="numeric" month="short" time-zone="UTC">{! v.details.startDate }</lightning:formattedDateTime>
+                                        <aura:if isTrue="{! v.details.endDate != null }">
+                                            <span> - </span>
+                                            <lightning:formattedDateTime value="{! v.details.endDate }" day="numeric" month="short" time-zone="UTC">{! v.details.endDate }</lightning:formattedDateTime>
+                                        </aura:if>                           
+                                    </aura:if>
+                                </p>
+                            </span>
+                            <span class="location-container">
+                                <aura:if isTrue="{! v.details.location.name != null }">
+                                    <i class="icon location-icon"></i>
+                                    <a href="{! v.details.location.href }">{! v.details.location.name }</a>
                                 </aura:if>
-                            </p>
-                        </div>
-                    </aura:if>
-                    <aura:if isTrue="{! v.details.type == 'Event'}">
-                        <div class="location-container">
-                            <aura:if isTrue="{! v.details.location.name}">
-                                <i class="icon location-icon"></i>
-                                <a href="{!v.details.location.href}">{!v.details.location.name}</a>
-                            </aura:if>
+                            </span>
                         </div>
                     </aura:if>
                     <div class="title-container">
                         <h1 class="title">{!v.details.title}</h1>
+                    </div>
+                    <div class="body-container">
+                        <p>{!v.details.extract}</p>
                     </div>
                     <div class="main-img-container">
                         <img class="main-img" src="{!v.details.imgSrc}" alt="Banner Image"/>

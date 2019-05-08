@@ -24,19 +24,18 @@
         </div>
         <div class="slds-col slds-p-around_small content-container" >
             <div class="slds-grid slds-grid_vertical">
-                <div class="slds-col slds-p-bottom_small">
-                    
+                <div class="slds-col slds-p-bottom_small div-input">
                     <aura:if isTrue="{!v.contentData.IsTemplate}">
                         <div style="background-color:#EEEEEE;padding:10px;">
-                            <lightning:textarea label="{!$Label.c.AdvanceContentDetailTemplateDescription}" name="templateDescription" value="{!v.contentData.TemplateDescription}" required="true" aura:id="templateDescription"/>
-                         </div>
+                            <lightning:textarea label="{!$Label.c.AdvanceContentDetailTemplateDescription}" name="templateDescription" value="{!v.contentData.TemplateDescription}" aura:id="templateDescription"/>
+                        </div>
                     </aura:if>
-                    
-                    <div class="slds-col slds-p-bottom_small div-input">
-                        <aura:if isTrue="{!v.contentData}">
-                            <c:RichTextTinyMCE aura:id="richText" namespace="{!v.namespace}" contentBody="{!v.contentData.HTMLContent}"/>
-                        </aura:if>
-                    </div>
+                </div>
+                
+                <div class="slds-col slds-p-bottom_small div-input">
+                    <aura:if isTrue="{!v.contentData}">
+                        <c:RichTextTinyMCE aura:id="richText" namespace="{!v.namespace}" contentBody="{!v.contentData.HTMLContent}"/>
+                    </aura:if>
                 </div>
             </div>
         </div>

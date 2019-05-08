@@ -4,10 +4,16 @@
     justify-content: space-around;
 }
 
-.spacer {
+.spacer-desktop {
     border-bottom: 1px solid #C0C0C0;
     width: 80%;
     margin: auto;
+    display: none;
+}
+
+.spacer-phone, .spacer-tablet {
+    border-bottom: 1px solid #C0C0C0;
+    margin: 0 37px;
 }
 
 .left-arrow-div{
@@ -32,6 +38,11 @@
     .list-container.carrousel{
         padding-left: 35px;
         padding-right: 35px;
+    }
+
+    .list-container {
+        flex-flow: wrap;
+        justify-content: flex-start;
     }
 }
 

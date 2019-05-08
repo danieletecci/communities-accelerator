@@ -55,6 +55,7 @@
 								details.location.name = content.Location;
 								details.location.href = 'https://www.google.com/maps/search/' + content.Location;
 								details.title = content.Title;
+								details.extract = content.Extract;
 								details.imgSrc = cWrapper.contentWrapper[0].mediaElements[0].FileURLDesktop;
 								details.body = content.Body;
 								details.layout = content.Layout;

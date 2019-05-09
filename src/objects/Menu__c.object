@@ -218,7 +218,7 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
         <externalId>false</externalId>
         <label>Navigation</label>
         <lookupFilter>
-            <active>true</active>
+            <active>false</active>
             <filterItems>
                 <field>$Source.Cluster__c</field>
                 <operation>equals</operation>

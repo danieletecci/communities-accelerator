@@ -1,12 +1,12 @@
 public with sharing class ContentLandingHeaderController {
 	@AuraEnabled(cacheable=true)
     public static Boolean hasCreateTemplateButton(){
-    	return SecurityUtils.hasCustomPermission(GeneralUtils.prefix('[CMS]ContentCreateTemplate');
+    	return SecurityUtils.hasCustomPermission(GeneralUtils.prefix('[CMS]ContentCreateTemplate'));
     }
 
     @AuraEnabled(cacheable=true)
     public static Boolean hasCreateContentButton(){
-    	return SecurityUtils.isObjectCreateable(GeneralUtils.prefix('[CMS]Content__c');
+    	return SecurityUtils.isObjectCreateable(GeneralUtils.prefix('[CMS]Content__c'));
     }
 
 	@AuraEnabled(cacheable=true)

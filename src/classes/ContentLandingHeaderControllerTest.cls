@@ -10,4 +10,15 @@ public with sharing class ContentLandingHeaderControllerTest {
 	static void getPicklistValues() {
 		ContentLandingHeaderController.getPicklistValues('[CMS]Content__c','[CMS]Status__c');
 	}
+
+	@isTest 
+	static void hasCreateTemplateButton() {
+		ContentLandingHeaderController.hasCreateTemplateButton();
+	}
+	
+	@isTest 
+	static void hasCreateContentButton() {
+		ContentLandingHeaderController.hasCreateContentButton();
+	}
+
 }

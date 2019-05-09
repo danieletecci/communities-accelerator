@@ -6,7 +6,6 @@ import getTableWrapper from	'@salesforce/apex/ContentLandingRecordListController
 import getUpdatedTableWrapper from	'@salesforce/apex/ContentLandingRecordListController.getUpdatedTableWrapper';
 import deleteContent from	'@salesforce/apex/ContentLandingRecordListController.deleteContent';
 import ContentLandingAll from '@salesforce/label/c.ContentLandingAll';
-import ContentLandingNone from '@salesforce/label/c.ContentLandingNone';
 import ContentLandingContentType from '@salesforce/label/c.ContentLandingContentType';
 import ContentLandingCluster from '@salesforce/label/c.ContentLandingCluster';
 import ContentLandingCategory from '@salesforce/label/c.ContentLandingCategory';
@@ -207,7 +206,7 @@ export default class ContentContainer extends NavigationMixin(LightningElement) 
     adaptDataFilters(){
         this.filters.forEach(element => {
             if (!element.isMultiPicklist){
-                element.values = [{"id": ContentLandingNone, "isSelected": false, "label": ContentLandingNone}, ...element.values];
+                element.values = [{"id": ContentLandingAll, "isSelected": false, "label": ContentLandingAll}, ...element.values];
             }
         });
     }
@@ -243,7 +242,7 @@ export default class ContentContainer extends NavigationMixin(LightningElement) 
                         }
                     }
                 }else{
-                    if(value.label === ContentLandingNone){
+                    if(value.label === ContentLandingAll){
                         element.value = null;
                         element.id = null;
                     }else{
@@ -269,7 +268,7 @@ export default class ContentContainer extends NavigationMixin(LightningElement) 
                 this.tableDataFilter(this.filtersValues[0].id, this.filtersValues[1].id, this.filtersValues[2].id);
                 break;
                 case ContentLandingContentType:
-                    if(value.value === ContentLandingNone){
+                    if(value.value === ContentLandingAll){
                             this.contentTypeValue = null;
                     }else{
                             this.contentTypeValue = value.value;

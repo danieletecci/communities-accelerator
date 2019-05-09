@@ -9,12 +9,13 @@
 	<aura:attribute name="iframeUrl" 	type="String"				/>
 	<aura:attribute name="contentBody"	type="String"				/>
 	<aura:attribute name="vHost"		type="String"				/>
+	<aura:attribute name="bodyRequired"	type="Boolean" 				/>
 	<aura:attribute name="meHelper"		type="Boolean" default="false" />
 
     <c:MediaElementManager aura:id="medEl" hasButton="false"/>
 	<lightning:tabset selectedTabId="one">
-        <lightning:tab label="{!$Label.c.RichTextBodyText}" id="one">
-			<iframe aura:id="KB_iframe" name="KB_iframe" class="KB_iframe" src="{!v.iframeUrl}" style="width:100%;height:30rem;" scrolling="no" frameborder="0" onload="{!c.handleIframeLoad}" />
+        <lightning:tab label="{!((v.bodyRequired) ? '* ' : '') + $Label.c.RichTextBodyText}" id="one" >
+			<iframe aura:id="KB_iframe" name="KB_iframe" class="KB_iframe" src="{!v.iframeUrl}" style="margin-left:1px;margin-right:1px;width:100%;height:30rem;" scrolling="no" frameborder="0" onload="{!c.handleIframeLoad}" />
         </lightning:tab>
         <lightning:tab label="{!$Label.c.RichTextBodyHTML}" id="two">
         	<lightning:textarea name="htmlBody" variant="label-hidden" value="{!v.contentBody}" onchange="{!c.handleContentChange}"/>

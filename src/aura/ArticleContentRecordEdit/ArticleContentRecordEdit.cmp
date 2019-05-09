@@ -1,8 +1,14 @@
 <aura:component implements="flexipage:availableForAllPageTypes,force:appHostable,lightning:isUrlAddressable,force:hasRecordId" controller="ContentDetailController" access="global">
+
+    <!-- STYLES -->
+    <ltng:require styles="{!$Resource.multilineToastCSS}" />
+
+    <!-- HANDLERS -->
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     <aura:handler event="c:ContentUpsertEvent" action="{!c.handleUpsertEvent}"/>
     <aura:handler name="URLEvent" event="c:MediaElementManagerEvent" action="{!c.handleMediaElementEvent}"/>
     
+    <!-- ATTRIBUTES -->
     <aura:attribute name="contentData"            type="Object"   />
     <aura:attribute name="imageUrl"               type="String"   />
     <aura:attribute name="layoutOptions"          type="List"     />
@@ -14,6 +20,13 @@
     <aura:attribute name="isExtIdEdit"            type="Boolean"      default="false" />
     <aura:attribute name="oldExtId"               type="String"    />
     <aura:attribute name="namespace"              type="String"   />
+
+    <!-- DESIGN ATTRIBUTES -->
+    <aura:attribute name="titleRequired"    type="Boolean" default="true"/>
+    <aura:attribute name="extractRequired"  type="Boolean" /> 
+    <aura:attribute name="bodyRequired"     type="Boolean" /> 
+    <aura:attribute name="featureRequired"  type="Boolean" /> 
+    <aura:attribute name="layoutRequired"   type="Boolean" /> 
     
     <div class="slds-grid">
         <div class="slds-m-around_medium slds-border_top slds-border_bottom slds-border_right slds-border_left">
@@ -29,19 +42,22 @@
                     </aura:if>
                 </div>
                 <div class="slds-col slds-p-bottom_small">
-                    <lightning:input label="{!$Label.c.ArticleContentDetailTitle}" name="contentName" value="{!v.contentData.Title}" aura:id="contentName" maxlength="255"/>
+                    <lightning:input aura:id="title" label="{!$Label.c.ArticleContentDetailTitle}" required="{!v.titleRequired}" name="contentName" value="{!v.contentData.Title}" maxlength="255"/>
                 </div>
                 <div class="slds-col slds-p-bottom_small">
-                    <lightning:textarea name="contentExtract" value="{!v.contentData.Extract}" label="{!$Label.c.ArticleContentDetailExtract}" maxlength="1500" />
+                    <lightning:textarea aura:id="extract" name="contentExtract" value="{!v.contentData.Extract}" required="{!v.extractRequired}" label="{!$Label.c.ArticleContentDetailExtract}" maxlength="1500" />
                 </div>
                 <div class="slds-col slds-p-bottom_small">
                     <aura:if isTrue="{!v.contentData}">
-                        <c:RichTextTinyMCE aura:id="richText" namespace="{!v.namespace}" contentBody="{!v.contentData.Body}"/>
+                        <c:RichTextTinyMCE aura:id="richText" bodyRequired="{!v.bodyRequired}" namespace="{!v.namespace}" contentBody="{!v.contentData.Body}"/>
                     </aura:if>
+                    <div aura:id="bodyError" class="slds-hide slds-has-error slds-form-element__help" style="color:#c23934;" id="error-message-unique-id">{!$Label.c.General_CompleteThisField}</div>
                 </div>
                 <div class="slds-col slds-p-bottom_small">
-                    <ui:outputText value="{!$Label.c.ArticleContentDetailImage}"/>
-                    <div class="slds-form-element__control slds-align_absolute-center div-add-media">
+                    <label class="slds-form-element__label slds-no-flex">
+                        <aura:if isTrue="{!v.featureRequired}"><abbr title="required" class="slds-required">*</abbr></aura:if>{!$Label.c.ArticleContentDetailImage}
+                    </label>
+                    <div aura:id="featureDiv" class="slds-form-element__control slds-align_absolute-center div-add-media">
                         <aura:if isTrue="{!v.imageUrl}">
                             <div class="img-div">
                                 <img class="img-feature-selected" src="{!v.imageUrl}" />
@@ -63,14 +79,18 @@
                             </aura:set>
                         </aura:if>
                     </div>
+                    <div aura:id="featureError" class="slds-hide slds-has-error slds-form-element__help" style="color:#c23934;" id="error-message-unique-id">{!$Label.c.General_CompleteThisField}</div>
                 </div>
                 <div class="slds-col slds-p-bottom_small">
                     <!--Choose Layout-->
-                    <ui:outputText value="{!$Label.c.ArticleContentDetailChooseLayout}"/>
-                    <div class="slds-form-element__control slds-align_absolute-center div-choose-layout">
+                    <label class="slds-form-element__label slds-no-flex">
+                        <aura:if isTrue="{!v.layoutRequired}"><abbr title="required" class="slds-required">*</abbr></aura:if>{!$Label.c.ArticleContentDetailChooseLayout}
+                    </label>
+                    <div aura:id="layoutDiv" class="slds-form-element__control slds-align_absolute-center div-choose-layout">
                         <aura:if isTrue="{!v.layoutOptions.length > 0}">
                             <c:ContentLayoutPicker selectedValue="{!v.contentData.Layout}" layoutOptions="{!v.layoutOptions}" />
                         </aura:if>
+                        <div aura:id="layoutError" class="slds-hide slds-has-error slds-form-element__help" style="color:#c23934;" id="error-message-unique-id">{!$Label.c.General_CompleteThisField}</div>
                     </div>
                 </div>
             </div>

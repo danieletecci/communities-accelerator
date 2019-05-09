@@ -1489,6 +1489,22 @@
         <value>{0} audience selected</value>
     </labels>
     <labels>
+        <fullName>ReviewFields</fullName>
+        <categories>Content Detail</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Review the following fields</shortDescription>
+        <value>Review the following fields</value>
+    </labels>
+    <labels>
+        <fullName>MissingRequiredFields</fullName>
+        <categories>Content Detail</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Missing required fields</shortDescription>
+        <value>Missing required fields</value>
+    </labels>
+    <labels>
         <fullName>MultiComboboxOneTagSelected</fullName>
         <categories>Multi Select Combobox</categories>
         <language>en_US</language>

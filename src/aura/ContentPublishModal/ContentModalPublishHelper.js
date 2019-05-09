@@ -15,7 +15,7 @@
 		}
 		if(expire === true){
 			if(action === 'publish' && new Date(endDate) < new Date())
-				component.find("end-date").setCustomValidity($A.get("$Label.c.PublishModalFutureStartDate"));
+				component.find("end-date").setCustomValidity($A.get("$Label.c.PublishModalFutureEndDate"));
 			else if(action === 'schedule' && startDate === null && new Date(endDate) < new Date())
 				component.find("end-date").setCustomValidity($A.get("$Label.c.PublishModalFutureEndDate"));
 			else if(action === 'schedule' && startDate != null && new Date(endDate) < new Date(startDate))

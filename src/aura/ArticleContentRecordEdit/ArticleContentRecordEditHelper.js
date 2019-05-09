@@ -40,8 +40,8 @@
     setLayoutOptions : function(component) {
     	var layoutOptions = [
 			{value:"Title Top", 	imageUrl:"/ContentLayouts/Article-Layouts/TitleTop.png", 		label:$A.get("$Label.c.ArticleContentDetailTitleTop")},
-			{value:"Title Middle", 	imageUrl:"/ContentLayouts/Article-Layouts/TitleMiddle.png", 	label:$A.get("$Label.c.ArticleContentDetailTitleMiddle")},
-			{value:"Title Bottom", 	imageUrl:"/ContentLayouts/Article-Layouts/TitleBottom.png", 	label:$A.get("$Label.c.ArticleContentDetailTitleBottom")},
+			// {value:"Title Middle", 	imageUrl:"/ContentLayouts/Article-Layouts/TitleMiddle.png", 	label:$A.get("$Label.c.ArticleContentDetailTitleMiddle")},
+			// {value:"Title Bottom", 	imageUrl:"/ContentLayouts/Article-Layouts/TitleBottom.png", 	label:$A.get("$Label.c.ArticleContentDetailTitleBottom")},
 			{value:"Body Only", 	imageUrl:"/ContentLayouts/Article-Layouts/BodyOnly.png", 		label:$A.get("$Label.c.ArticleContentDetailBodyOnly")}
 		];
 		component.set('v.layoutOptions', layoutOptions);

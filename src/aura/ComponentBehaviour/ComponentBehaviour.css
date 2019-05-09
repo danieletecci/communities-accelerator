@@ -1,0 +1,15 @@
+.THIS .component-behaviour-width{
+    width: 260px;
+}
+.THIS lightning-icon.info-icon svg{
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+}
+.THIS .content-container{
+    margin-top: 2px;
+}
+.THIS.slds-grid.slds-m-around_medium{
+    padding: 12px 0 12px 24px;
+    background-color: #F3F2F2;
+}

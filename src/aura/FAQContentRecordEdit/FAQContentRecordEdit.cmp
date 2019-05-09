@@ -17,18 +17,20 @@
         <div class="slds-m-around_medium slds-border_top slds-border_bottom slds-border_right slds-border_left">
             <c:ContentDetailColumnFields objectWrapper="{!v.visibilitySelectors}" />
         </div>
-        <div class="slds-col slds-p-around_small" >
-            <div class="slds-grid slds-grid_vertical">    
-    			<!--
-    			<lightning:input label="{!$Label.c.FAQContentDetailExternalId}" name="contentExternalId" value="{!v.contentData.ExternalId}"/>
-    			-->
-				<lightning:input label="{!$Label.c.FAQContentDetailTitle}" name="contentName" value="{!v.contentData.Title}" required="true" aura:id="contentName"/>
-    			<br />
+        <div class="slds-col slds-p-around_small content-container" >
+            <div class="slds-grid slds-grid_vertical">
+                
+                <!--Title-->
+                <div class="slds-col slds-p-bottom_small div-input">
+                    <lightning:input label="{!$Label.c.FAQContentDetailTitle}" name="contentName" value="{!v.contentData.Title}" aura:id="contentName"/>
+                </div>
 
-    			<ui:outputText value="{!$Label.c.FAQContentDetailBody}"/>
-                <aura:if isTrue="{!v.contentData}">
-                    <c:RichTextTinyMCE aura:id="richText" namespace="{!v.namespace}" contentBody="{!v.contentData.Body}"/>
-                </aura:if>
+                <!--Body-->
+                <div class="slds-col slds-p-bottom_small div-input">
+                    <aura:if isTrue="{!v.contentData}">
+                        <c:RichTextTinyMCE aura:id="richText" namespace="{!v.namespace}" contentBody="{!v.contentData.Body}"/>
+                    </aura:if>
+                </div>
             </div>
         </div>
     </div>

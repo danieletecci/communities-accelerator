@@ -34,12 +34,23 @@
     border: solid 1px #dcdbda;
     border-radius: .25rem;
 }
-.THIS .banner-type-select,.THIS .name-button-input,.THIS .div-link-input{
-    max-width: 240px;
+.THIS .input-start-date,.THIS .input-end-date{
+    max-width: 596px;
+}
+.THIS .input-start-date lightning-datepicker,.THIS .input-start-date lightning-timepicker ,.THIS .input-end-date lightning-datepicker,.THIS .input-end-date lightning-timepicker{
+    width: 50%;
 }
 .THIS .div-input{
     max-width: 873px;
 }
 .THIS .content-container{
     padding-left: 92px;
+}
+.THIS .template-desc-div{
+    padding:10px;
+    background-color: #F3F2F2;
+    height: 152px;
+}
+.THIS .template-desc-div lightning-textarea textarea{
+    height: 92px;
 }

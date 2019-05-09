@@ -144,7 +144,28 @@
 			helper.displaySuccessMessage(helper.stringFormat($A.get("$Label.c.ContentDetailUnpublishMessage"), recordTypeName, recordName));
 		} else if(previousStatus === 'Published' && actualStatus === 'Published'){
 			helper.displaySuccessMessage(helper.stringFormat($A.get("$Label.c.ContentDetailPublishMessage"), recordTypeName, recordName));
-		}
+		}			
+	},
+	showUpdateContent : function(component, status, action){
+		$A.createComponent(
+            "c:ConfirmationModal",
+            { 	
+                "aura:id"		: "confirmationModal",
+                "title"			: action + ' ' + component.get("v.contentData").Name,
+                "message"		: $A.get("$Label.c.General_AreYouSureYouWantTo") + ' ' + action.toLowerCase() + ' ' + $A.get("$Label.c.General_This").toLowerCase() + ' ' + $A.get("$Label.c.General_Content") +'?',
+                "confirmLabel"	: action,
+                "confirmVariant": "brand",
+                "onconfirm"		: (status == 'Draft') ? component.getReference("c.doDraftUpdate") : component.getReference("c.doArchive"),
+                "oncancel"		: component.getReference("c.doHideConfirmation")
+            },
+            function(confirmationModal, status, errorMessage){
+                //Add the new button to the body array
+                if (status === "SUCCESS") {
+                    component.set("v.confirmationModal", confirmationModal);
+                    confirmationModal.show();
+                }
+            }
+        );
 	},
 	updateContent : function(component, status, publishStartDate, publishEndDate){
 		var contentId 			= component.get('v.recordId');
@@ -166,9 +187,9 @@
             {
                 "aura:id"		: "confirmationModal",
                 "title"			: $A.get("$Label.c.General_Delete") + ' ' + component.get("v.contentData").Name,
-                "message"		: $A.get("$Label.c.ContentDeletingMessage"),
+                "message"		: $A.get("$Label.c.General_AreYouSureYouWantTo") + ' ' + $A.get("$Label.c.General_Delete").toLowerCase() + ' ' + $A.get("$Label.c.General_This").toLowerCase() + ' ' + $A.get("$Label.c.General_Content") +'?',
                 "confirmLabel"	: $A.get("$Label.c.General_Delete"),
-                "confirmVariant": "destructive",
+                "confirmVariant": "brand",
                 "onconfirm"		: component.getReference("c.doDelete"),
                 "oncancel"		: component.getReference("c.doHideConfirmation")
             },

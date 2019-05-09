@@ -69,6 +69,7 @@ global without sharing class GeneralForm{
     
     private static void runMethod(String className, Map<String, SObject> formData, String recordId){
         Type t  = Type.forName(className);
+        System.debug('RetrievalClass ' + t);
         if(t != null){
             FormRetrievalInterface formRetrieval = (FormRetrievalInterface)t.newInstance();
             formData = formRetrieval.execute(formData, recordId);
@@ -76,10 +77,19 @@ global without sharing class GeneralForm{
     }
     
     global static FormResponseWrapper saveForm(String formSettingsString, Map<String, SObject> formData){
+        return saveForm(formSettingsString, formData, '');
+    }
+
+    global static FormResponseWrapper saveForm(String formSettingsString, Map<String, SObject> formData, String namespace){
         FormSettings formSettings = (FormSettings)JSON.deserialize(formSettingsString, FormSettings.class);
+        
         if(!Test.isRunningTest()){
-            Type t  = Type.forName(formSettings.saveClass);
-            if(t != null){
+            Type t = Type.forName(namespace, formSettings.saveClass);
+            if(t == null){
+                t = Type.forName(formSettings.saveClass);
+            }
+
+            if(t != null){                
                 FormSaveInterface formSave = (FormSaveInterface)t.newInstance();
                 return formSave.execute(formData);
             }

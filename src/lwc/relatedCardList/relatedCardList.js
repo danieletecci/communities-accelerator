@@ -36,7 +36,7 @@ export default class RelatedCardList extends LightningElement {
     get typeWrapper() {
         //return this.type.toLowerCase() + 's';
         if(this.type === 'ArticlesRelated')
-            return 'articles';
+            return 'news';
         else if(this.type === 'EventsRelated')
             return 'events';
         else

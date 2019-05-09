@@ -11,7 +11,7 @@
 			else
 				component.find("start-date").setCustomValidity("");
 			component.find("start-date").reportValidity();
-			validEndDate = component.find("start-date").checkValidity();
+			validStartDate = component.find("start-date").checkValidity();
 		}
 		if(expire === true){
 			if(action === 'publish' && new Date(endDate) < new Date())
@@ -40,7 +40,7 @@
 				"contentId" 		: contentId,
 				"status" 			: status,	
 				"publishStartDate"	: component.get("v.startDate"),
-				"publishEndDate"	: component.get("v.endDate")
+				"publishEndDate"	: component.get("v.expire") == true ? component.get("v.endDate") : null
 			});
 	        cmpEvent.fire();
 			$A.util.removeClass(component.find("publishModal"), "slds-fade-in-open");

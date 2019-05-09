@@ -28,7 +28,7 @@ public with sharing class ContentDetailHeaderController {
         }
     }
 
-    @AuraEnabled(cacheable=true)
+    @AuraEnabled(cacheable=false)
     public static DataWrapper getData(String recordId){
         Content__c content = getContentData(recordId);
         UserRecordAccess ura = SecurityUtils.getUserRecordAccess(recordId);
@@ -42,7 +42,7 @@ public with sharing class ContentDetailHeaderController {
         );
         String tzName = UserInfo.getTimeZone().getDisplayName();
         return new DataWrapper(
-            getContentData(recordId), 
+            content,
             UserInfo.getTimeZone().getID(), 
             tzName.substring(tzName.indexOf('GMT')+3, tzName.indexOf(')')), 
             sw

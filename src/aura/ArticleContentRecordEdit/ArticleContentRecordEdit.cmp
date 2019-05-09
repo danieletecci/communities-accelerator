@@ -32,28 +32,28 @@
         <div class="slds-m-around_medium slds-border_top slds-border_bottom slds-border_right slds-border_left">
             <c:ContentDetailColumnFields objectWrapper="{!v.visibilitySelectors}" />
         </div>
-        <div class="slds-col slds-p-around_small" >
+        <div class="slds-col slds-p-around_small content-container" >
             <div class="slds-grid slds-grid_vertical">
-                <div class="slds-col slds-p-bottom_small">
+                <div class="slds-col slds-p-bottom_small div-input">
                     <aura:if isTrue="{!v.contentData.IsTemplate}">
-                        <div style="background-color:#EEEEEE;padding:10px;">
+                        <div class="template-desc-div">
                             <lightning:textarea label="{!$Label.c.ArticleContentDetailTemplateDescription}" name="templateDescription" value="{!v.contentData.TemplateDescription}" aura:id="templateDescription"/>
                         </div>
                     </aura:if>
                 </div>
-                <div class="slds-col slds-p-bottom_small">
+                <div class="slds-col slds-p-bottom_small div-input">
                     <lightning:input aura:id="title" label="{!$Label.c.ArticleContentDetailTitle}" required="{!v.titleRequired}" name="contentName" value="{!v.contentData.Title}" maxlength="255"/>
                 </div>
-                <div class="slds-col slds-p-bottom_small">
+                <div class="slds-col slds-p-bottom_small div-input">
                     <lightning:textarea aura:id="extract" name="contentExtract" value="{!v.contentData.Extract}" required="{!v.extractRequired}" label="{!$Label.c.ArticleContentDetailExtract}" maxlength="1500" />
                 </div>
-                <div class="slds-col slds-p-bottom_small">
+                <div class="slds-col slds-p-bottom_small div-input">
                     <aura:if isTrue="{!v.contentData}">
                         <c:RichTextTinyMCE aura:id="richText" bodyRequired="{!v.bodyRequired}" namespace="{!v.namespace}" contentBody="{!v.contentData.Body}"/>
                     </aura:if>
                     <div aura:id="bodyError" class="slds-hide slds-has-error slds-form-element__help" style="color:#c23934;" id="error-message-unique-id">{!$Label.c.General_CompleteThisField}</div>
                 </div>
-                <div class="slds-col slds-p-bottom_small">
+                <div class="slds-col slds-p-bottom_small div-input">
                     <label class="slds-form-element__label slds-no-flex">
                         <aura:if isTrue="{!v.featureRequired}"><abbr title="required" class="slds-required">*</abbr></aura:if>{!$Label.c.ArticleContentDetailImage}
                     </label>
@@ -81,7 +81,7 @@
                     </div>
                     <div aura:id="featureError" class="slds-hide slds-has-error slds-form-element__help" style="color:#c23934;" id="error-message-unique-id">{!$Label.c.General_CompleteThisField}</div>
                 </div>
-                <div class="slds-col slds-p-bottom_small">
+                <div class="slds-col slds-p-bottom_small div-input">
                     <!--Choose Layout-->
                     <label class="slds-form-element__label slds-no-flex">
                         <aura:if isTrue="{!v.layoutRequired}"><abbr title="required" class="slds-required">*</abbr></aura:if>{!$Label.c.ArticleContentDetailChooseLayout}

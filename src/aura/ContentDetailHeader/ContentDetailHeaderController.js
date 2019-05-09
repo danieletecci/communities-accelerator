@@ -37,31 +37,34 @@
             var nameinput = component.find("name-input");
             nameinput.focus();
         }, 0);
+    },   
+    doArchive: function(component, event, helper){
+        helper.updateContent(component, "Archived", null, null);
     },
-    doUnarchive: function(component, event, helper){
+    doDraftUpdate: function(component, event, helper){
         helper.updateContent(component, "Draft", null, null);
     },
     doDelete: function(component, event, helper){
         helper.deleteContent(component);
     },
     doHideConfirmation: function(component, event, helper){
-        var confrimationModal = component.get("v.confirmationModal");
+        var confirmationModal = component.get("v.confirmationModal");
         confirmationModal.hide();
         confirmationModal.destroy();
     },
     handleMenuSelect: function(component, event, helper){
-        switch(event.getParam("value")){
+        switch(event.getParam("value")){   
             case "delete":
                 helper.showConfirmationDelete(component);
                 break;
             case "unpublish":
-                helper.updateContent(component, "Draft", null, null);
+                helper.showUpdateContent(component, "Draft", $A.get("$Label.c.ContentDetailUnpublish"));
                 break;
             case "archive":
-                helper.updateContent(component, "Archived", null, null);
+                helper.showUpdateContent(component, "Archived", $A.get("$Label.c.ContentDetailArchive"));
                 break;
             case "unschedule":
-                helper.updateContent(component, "Draft", null, null);
+                helper.showUpdateContent(component, "Draft", $A.get("$Label.c.ContentDetailUnschedule"));
                 break;
         }
     },

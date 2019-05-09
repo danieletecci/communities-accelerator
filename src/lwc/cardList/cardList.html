@@ -8,8 +8,8 @@
         </template>
         <template for:each={contents} for:item="content" for:index="index">
             <div key={content.content.Id} class={cardWrapperClass}>
-                <c-card-formatter content={content} type={type}></c-card-formatter>
-                <div class="spacer"></div>
+                <c-card-formatter content={content} type={type} viewmode={viewmode} formfactor={formfactor}></c-card-formatter>
+                <div class={spacerClass}></div>
             </div>
         </template>
         <template if:true={isCarrousel} >

@@ -38,6 +38,7 @@ public with sharing class SecurityUtilsTest {
         Test.stopTest();
 
         //Then
+        System.AssertNotEquals(hasCustomPermission, null);
         System.AssertNotEquals(isObjectAccessible, null);
         System.AssertNotEquals(isObjectCreateable, null);
         System.AssertNotEquals(isObjectUpdateable, null);

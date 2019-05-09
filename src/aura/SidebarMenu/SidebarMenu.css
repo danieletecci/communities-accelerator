@@ -1,4 +1,4 @@
-.THIS .cSidebarMenu.sidebar {
+.THIS.sidebar {
   min-height: 100vh;
   height: 100%;
   position: relative;
@@ -12,12 +12,12 @@
   box-shadow: 3px 0px 20px 0px rgba(0, 0, 0, 0.16);
 }
 @media screen and (min-width: 1280px) {
-.THIS .cSidebarMenu.sidebar {
+  .THIS.sidebar {
     width: calc((100vw - 1280px)/2 + 181px);
     margin-left: calc((100vw - 1280px)/-2);
   }
 }
-.THIS .cSidebarMenu.sidebar .desktop-sidebar-container {
+.THIS.sidebar .desktop-sidebar-container {
   position: absolute;
   width: 181px;
   padding-left: 28px;
@@ -25,18 +25,18 @@
   padding-top: 31px;
 }
 @media screen and (min-width: 1280px) {
-.THIS .cSidebarMenu.sidebar .desktop-sidebar-container {
+  .THIS.sidebar .desktop-sidebar-container {
     left: calc((100vw - 1280px)/2);
   }
 }
-.THIS .cSidebarMenu.sidebar .desktop-sidebar-container .p-10-greyMediumLight-black {
+.THIS.sidebar .desktop-sidebar-container .p-10-greyMediumLight-black {
   text-align: left;
   line-height: 35px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.THIS .cSidebarMenu.sidebar .desktop-sidebar-container .p-10-greyMediumLight-black > span {
+.THIS.sidebar .desktop-sidebar-container .p-10-greyMediumLight-black > span {
   border-bottom: 2px solid;
   padding-bottom: 7px;
   font-size: 10px;
@@ -44,26 +44,26 @@
   font-weight: 900;
   text-transform: uppercase;
 }
-.THIS .cSidebarMenu.sidebar .desktop-sidebar-container ul.ul-level-0 span:first-child li {
+.THIS.sidebar .desktop-sidebar-container ul.ul-level-0 span:first-child li {
   margin-top: 29px;
 }
-.THIS .cSidebarMenu.sidebar .desktop-sidebar-container ul.ul-level-0 span li {
+.THIS.sidebar .desktop-sidebar-container ul.ul-level-0 span li {
   margin-bottom: 35px;
 }
-.THIS .cSidebarMenu.sidebar .desktop-sidebar-container ul.ul-level-0 span li div {
+.THIS.sidebar .desktop-sidebar-container ul.ul-level-0 span li div {
   width: 100%;
 }
-.THIS .cSidebarMenu.sidebar .desktop-sidebar-container ul.ul-level-0 span li div div {
+.THIS.sidebar .desktop-sidebar-container ul.ul-level-0 span li div div {
   width: 100%;
 }
-.THIS .cSidebarMenu.sidebar .desktop-sidebar-container ul.ul-level-0 span li div div div {
+.THIS.sidebar .desktop-sidebar-container ul.ul-level-0 span li div div div {
   width: 100%;
 }
-.THIS .cSidebarMenu.sidebar .desktop-sidebar-container ul.ul-level-0 span li div div div span {
+.THIS.sidebar .desktop-sidebar-container ul.ul-level-0 span li div div div span {
   width: 100%;
   display: flex;
 }
-.THIS .cSidebarMenu.sidebar .desktop-sidebar-container ul.ul-level-0 span li div div div span a {
+.THIS.sidebar .desktop-sidebar-container ul.ul-level-0 span li div div div span a {
   width: 100%;
   font-weight: 400;
   font-size: 10px;
@@ -75,30 +75,30 @@
   white-space: nowrap;
   text-transform: uppercase;
 }
-.THIS .cSidebarMenu.sidebar .desktop-sidebar-container ul.ul-level-0 span li div div div span a:hover,
-.THIS .cSidebarMenu.sidebar .desktop-sidebar-container ul.ul-level-0 span li div div div span a:active,
-.THIS .cSidebarMenu.sidebar .desktop-sidebar-container ul.ul-level-0 span li div div div span a:focus {
+.THIS.sidebar .desktop-sidebar-container ul.ul-level-0 span li div div div span a:hover,
+.THIS.sidebar .desktop-sidebar-container ul.ul-level-0 span li div div div span a:active,
+.THIS.sidebar .desktop-sidebar-container ul.ul-level-0 span li div div div span a:focus {
   box-shadow: none;
   text-decoration: none;
   color: #000000;
   font-weight: 700;
 }
-.THIS .cSidebarMenu.sidebar .desktop-sidebar-container ul.ul-level-0 span li.lemon-button > div {
+.THIS.sidebar .desktop-sidebar-container ul.ul-level-0 span li.lemon-button > div {
   width: 135px;
   height: 45px;
   background-color: #F2B005;
 }
-.THIS .cSidebarMenu.sidebar .desktop-sidebar-container ul.ul-level-0 span li.lemon-button > div div {
+.THIS.sidebar .desktop-sidebar-container ul.ul-level-0 span li.lemon-button > div div {
   width: 100%;
 }
-.THIS .cSidebarMenu.sidebar .desktop-sidebar-container ul.ul-level-0 span li.lemon-button > div div div {
+.THIS.sidebar .desktop-sidebar-container ul.ul-level-0 span li.lemon-button > div div div {
   width: 100%;
 }
-.THIS .cSidebarMenu.sidebar .desktop-sidebar-container ul.ul-level-0 span li.lemon-button > div div div span {
+.THIS.sidebar .desktop-sidebar-container ul.ul-level-0 span li.lemon-button > div div div span {
   width: 100%;
   display: flex;
 }
-.THIS .cSidebarMenu.sidebar .desktop-sidebar-container ul.ul-level-0 span li.lemon-button > div div div span a {
+.THIS.sidebar .desktop-sidebar-container ul.ul-level-0 span li.lemon-button > div div div span a {
   width: 135px;
   height: 45px;
   font-weight: 500;
@@ -107,25 +107,25 @@
   line-height: 45px;
   text-align: center;
 }
-.THIS .cSidebarMenu.sidebar .desktop-sidebar-container ul.ul-level-0 span li.lemon-button > div div div span a:hover,
-.THIS .cSidebarMenu.sidebar .desktop-sidebar-container ul.ul-level-0 span li.lemon-button > div div div span a:active,
-.THIS .cSidebarMenu.sidebar .desktop-sidebar-container ul.ul-level-0 span li.lemon-button > div div div span a:focus {
+.THIS.sidebar .desktop-sidebar-container ul.ul-level-0 span li.lemon-button > div div div span a:hover,
+.THIS.sidebar .desktop-sidebar-container ul.ul-level-0 span li.lemon-button > div div div span a:active,
+.THIS.sidebar .desktop-sidebar-container ul.ul-level-0 span li.lemon-button > div div div span a:focus {
   box-shadow: none;
   background: #FFC800;
   text-decoration: none;
   color: #000000;
 }
-.THIS .cSidebarMenu.sidebar .desktop-sidebar-container ul.ul-level-0 span.is-active li div div div span a {
+.THIS.sidebar .desktop-sidebar-container ul.ul-level-0 span.is-active li div div div span a {
   color: #000000;
   font-weight: 700;
 }
-.THIS .cSidebarMenu.mobilebar {
+.THIS.mobilebar {
   min-height: 52px;
   background-color: #3E3E3E;
   padding-left: 21px;
   padding-right: 21px;
 }
-.THIS .cSidebarMenu.mobilebar ul.ul-level-0 .p-16-white-bold {
+.THIS.mobilebar ul.ul-level-0 .p-16-white-bold {
   text-align: left;
   line-height: 52px;
   min-height: 52px;
@@ -139,52 +139,52 @@
   color: white;
   font-weight: 700;
 }
-.THIS .cSidebarMenu.mobilebar ul.ul-level-0 .p-16-white-bold.is-open {
+.THIS.mobilebar ul.ul-level-0 .p-16-white-bold.is-open {
   color: #F2B005;
 }
-.THIS .cSidebarMenu.mobilebar ul.ul-level-0 .p-16-white-bold.is-open span span {
+.THIS.mobilebar ul.ul-level-0 .p-16-white-bold.is-open span span {
   text-transform: uppercase;
 }
-.THIS .cSidebarMenu.mobilebar ul.ul-level-0 .p-16-white-bold span.italic-dynamic-title {
+.THIS.mobilebar ul.ul-level-0 .p-16-white-bold span.italic-dynamic-title {
   font-weight: 300;
   font-style: italic;
   text-transform: uppercase;
 }
-.THIS .cSidebarMenu.mobilebar ul.ul-level-0 .p-16-white-bold > span {
+.THIS.mobilebar ul.ul-level-0 .p-16-white-bold > span {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.THIS .cSidebarMenu.mobilebar ul.ul-level-0 .p-16-white-bold > span i {
+.THIS.mobilebar ul.ul-level-0 .p-16-white-bold > span i {
   margin-right: 22px;
   line-height: 52px;
 }
-.THIS .cSidebarMenu.mobilebar ul.ul-level-0 .p-16-white-bold > i {
+.THIS.mobilebar ul.ul-level-0 .p-16-white-bold > i {
   line-height: 52px;
 }
-.THIS .cSidebarMenu.mobilebar ul.ul-level-0 div {
+.THIS.mobilebar ul.ul-level-0 div {
   height: 100%;
 }
-.THIS .cSidebarMenu.mobilebar ul.ul-level-0 div span:first-child li {
+.THIS.mobilebar ul.ul-level-0 div span:first-child li {
   margin-top: 42px;
 }
-.THIS .cSidebarMenu.mobilebar ul.ul-level-0 div span li {
+.THIS.mobilebar ul.ul-level-0 div span li {
   margin-bottom: 31px;
 }
-.THIS .cSidebarMenu.mobilebar ul.ul-level-0 div span li div {
+.THIS.mobilebar ul.ul-level-0 div span li div {
   width: 100%;
 }
-.THIS .cSidebarMenu.mobilebar ul.ul-level-0 div span li div div {
+.THIS.mobilebar ul.ul-level-0 div span li div div {
   width: 100%;
 }
-.THIS .cSidebarMenu.mobilebar ul.ul-level-0 div span li div div div {
+.THIS.mobilebar ul.ul-level-0 div span li div div div {
   width: 100%;
 }
-.THIS .cSidebarMenu.mobilebar ul.ul-level-0 div span li div div div span {
+.THIS.mobilebar ul.ul-level-0 div span li div div div span {
   width: 100%;
   display: flex;
 }
-.THIS .cSidebarMenu.mobilebar ul.ul-level-0 div span li div div div span a {
+.THIS.mobilebar ul.ul-level-0 div span li div div div span a {
   font-weight: 700;
   font-size: 16px;
   color: #FFFFFF;
@@ -195,17 +195,17 @@
   text-transform: uppercase;
   width: 100%;
 }
-.THIS .cSidebarMenu.mobilebar ul.ul-level-0 div span li.lemon-button > div {
+.THIS.mobilebar ul.ul-level-0 div span li.lemon-button > div {
   width: 320px;
   height: 45px;
   background-color: #F2B005;
 }
 @media screen and (max-width: 320px) {
-.THIS .cSidebarMenu.mobilebar ul.ul-level-0 div span li.lemon-button > div {
+  .THIS.mobilebar ul.ul-level-0 div span li.lemon-button > div {
     width: 278px;
   }
 }
-.THIS .cSidebarMenu.mobilebar ul.ul-level-0 div span li.lemon-button > div div div span a {
+.THIS.mobilebar ul.ul-level-0 div span li.lemon-button > div div div span a {
   width: 320px;
   height: 45px;
   font-weight: 500;
@@ -215,25 +215,25 @@
   text-align: center;
 }
 @media screen and (max-width: 320px) {
-.THIS .cSidebarMenu.mobilebar ul.ul-level-0 div span li.lemon-button > div div div span a {
+  .THIS.mobilebar ul.ul-level-0 div span li.lemon-button > div div div span a {
     width: 278px;
   }
 }
-.THIS .cSidebarMenu.mobilebar ul.ul-level-0 div span li.lemon-button > div div div span a:hover,
-.THIS .cSidebarMenu.mobilebar ul.ul-level-0 div span li.lemon-button > div div div span a:active,
-.THIS .cSidebarMenu.mobilebar ul.ul-level-0 div span li.lemon-button > div div div span a:focus {
+.THIS.mobilebar ul.ul-level-0 div span li.lemon-button > div div div span a:hover,
+.THIS.mobilebar ul.ul-level-0 div span li.lemon-button > div div div span a:active,
+.THIS.mobilebar ul.ul-level-0 div span li.lemon-button > div div div span a:focus {
   box-shadow: none;
   background: #FFC800;
   text-decoration: none;
   color: #000000;
 }
-.THIS .cSidebarMenu.mobilebar ul.ul-level-0 div span.is-active li div div div span a {
+.THIS.mobilebar ul.ul-level-0 div span.is-active li div div div span a {
   color: #F2B005;
 }
-.THIS .cSidebarMenu.mobilebar ul.ul-level-0 div span li div div div div div.cCP_ChangeOutletMenuComponent {
+.THIS.mobilebar ul.ul-level-0 div span li div div div div div.cCP_ChangeOutletMenuComponent {
   margin-top: 65px;
 }
-.THIS .cSidebarMenu.mobilebar ul.ul-level-0 div span li div div div div div.cCP_ChangeOutletMenuComponent a {
+.THIS.mobilebar ul.ul-level-0 div span li div div div div div.cCP_ChangeOutletMenuComponent a {
   display: flex;
   font-size: 16px;
   color: #FFFFFF;
@@ -241,71 +241,71 @@
   text-transform: uppercase;
   line-height: 19px;
 }
-.THIS .cSidebarMenu.mobilebar ul.ul-level-0 div span li div div div div div.cCP_ChangeOutletMenuComponent a img {
+.THIS.mobilebar ul.ul-level-0 div span li div div div div div.cCP_ChangeOutletMenuComponent a img {
   margin-right: 22px;
 }
-.THIS .cSidebarMenu.mobilebar ul.ul-level-0 div span li div div div div div.cCP_ChangeOutletMenuComponent a:hover,
-.THIS .cSidebarMenu.mobilebar ul.ul-level-0 div span li div div div div div.cCP_ChangeOutletMenuComponent a:active,
-.THIS .cSidebarMenu.mobilebar ul.ul-level-0 div span li div div div div div.cCP_ChangeOutletMenuComponent a:focus {
+.THIS.mobilebar ul.ul-level-0 div span li div div div div div.cCP_ChangeOutletMenuComponent a:hover,
+.THIS.mobilebar ul.ul-level-0 div span li div div div div div.cCP_ChangeOutletMenuComponent a:active,
+.THIS.mobilebar ul.ul-level-0 div span li div div div div div.cCP_ChangeOutletMenuComponent a:focus {
   box-shadow: none;
   text-decoration: none;
 }
-.THIS .cSidebarMenu.mobilebar ul.ul-level-0 div span li div div div div div.cCP_ChangeOutletMenuComponent a:hover span,
-.THIS .cSidebarMenu.mobilebar ul.ul-level-0 div span li div div div div div.cCP_ChangeOutletMenuComponent a:active span,
-.THIS .cSidebarMenu.mobilebar ul.ul-level-0 div span li div div div div div.cCP_ChangeOutletMenuComponent a:focus span {
+.THIS.mobilebar ul.ul-level-0 div span li div div div div div.cCP_ChangeOutletMenuComponent a:hover span,
+.THIS.mobilebar ul.ul-level-0 div span li div div div div div.cCP_ChangeOutletMenuComponent a:active span,
+.THIS.mobilebar ul.ul-level-0 div span li div div div div div.cCP_ChangeOutletMenuComponent a:focus span {
   box-shadow: none;
   text-decoration: none;
 }
-.THIS .cSidebarMenu.mobilebar ul.ul-level-0 div span.is-active li div div div div div.cCP_ChangeOutletMenuComponent a {
+.THIS.mobilebar ul.ul-level-0 div span.is-active li div div div div div.cCP_ChangeOutletMenuComponent a {
   color: #F2B005;
 }
-.THIS .cSidebarMenu .arrow-icon::after{
-    content: ' ';
-    position: absolute;
-    height: 15px;
-    width: 20px;
-    margin-top: 18px;
+    .THIS .arrow-icon::after{
+        content: ' ';
+        position: absolute;
+        height: 15px;
+        width: 20px;
+        margin-top: 18px;
     margin-left: -18px;
-    -webkit-mask: url(sfsites/c/resource/Assets/Assets/Icons/arrow.svg) no-repeat 50% 50%;
-    -moz-mask: url(sfsites/c/resource/Assets/Assets/Icons/arrow.svg) no-repeat 50% 50%;
-    -o-mask: url(sfsites/c/resource/Assets/Assets/Icons/arrow.svg) no-repeat 50% 50%;
-    -ms-mask: url(sfsites/c/resource/Assets/Assets/Icons/arrow.svg) no-repeat 50% 50%;
-    mask: url(sfsites/c/resource/Assets/Assets/Icons/arrow.svg) no-repeat 50% 50%;
-    background-color: #D6EAFF;
-}
-.THIS .cSidebarMenu .reverse::after{
-    transform: rotate(180deg);
-}
-.THIS .cSidebarMenu .is-open .arrow-icon::after{
-    background-color: #f2b005;
-}
-.THIS .cSidebarMenu .div-icon{
-max-width: 30px;
-}
-.THIS .cSidebarMenu .div-icon::after{
-    content: ' ';
-    position: absolute;
-    height: 20px;
-    width: 20px;
-    background-color: #ffffff;
-}
-.THIS .cSidebarMenu .is-active .div-icon::after{
-background-color: #f2b005;        
-}
-@media screen and (min-width: 768px) {
-    .THIS .cSidebarMenu .div-icon{
-      max-width: 25px;
+        -webkit-mask: url(sfsites/c/resource/Assets/Assets/Icons/arrow.svg) no-repeat 50% 50%;
+        -moz-mask: url(sfsites/c/resource/Assets/Assets/Icons/arrow.svg) no-repeat 50% 50%;
+        -o-mask: url(sfsites/c/resource/Assets/Assets/Icons/arrow.svg) no-repeat 50% 50%;
+        -ms-mask: url(sfsites/c/resource/Assets/Assets/Icons/arrow.svg) no-repeat 50% 50%;
+        mask: url(sfsites/c/resource/Assets/Assets/Icons/arrow.svg) no-repeat 50% 50%;
+        background-color: #D6EAFF;
     }
-    .THIS .cSidebarMenu .div-icon::after{
-      height: 12px;
-	    background-color: #5f5f5f;
+    .THIS .reverse::after{
+        transform: rotate(180deg);
     }
-}
-.THIS .cSidebarMenu.sidebar .desktop-sidebar-container ul.ul-level-0 span li div div div span:hover .div-icon::after{
-    background-color: #000000;
-}
+    .THIS .is-open .arrow-icon::after{
+        background-color: #f2b005;
+    }
+    .THIS .div-icon{
+		max-width: 30px;
+    }
+    .THIS .div-icon::after{
+        content: ' ';
+        position: absolute;
+        height: 20px;
+        width: 20px;
+        background-color: #ffffff;
+    }
+    .THIS .is-active .div-icon::after{
+		background-color: #f2b005;        
+    }
+    @media screen and (min-width: 768px) {
+        .THIS .div-icon{
+            max-width: 25px;
+        }
+        .THIS .div-icon::after{
+            height: 12px;
+    		background-color: #5f5f5f;
+        }
+    }
+    .THIS.sidebar .desktop-sidebar-container ul.ul-level-0 span li div div div span:hover .div-icon::after{
+        background-color: #000000;
+    }
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-.THIS .cSidebarMenu.sidebar .desktop-sidebar-container {
+  .THIS.sidebar .desktop-sidebar-container {
     position: absolute;
   }
 }

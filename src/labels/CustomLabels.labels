@@ -2119,4 +2119,28 @@
         <shortDescription>Max</shortDescription>
         <value>Max</value>
     </labels>
+    <labels>
+        <fullName>ComponentBehaviour</fullName>
+        <categories>ComponentBehaviour.cmp</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ComponentBehaviour</shortDescription>
+        <value>Component Behaviour</value>
+    </labels>
+    <labels>
+        <fullName>TagCriteria</fullName>
+        <categories>ComponentBehaviour.cls</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TagCriteria</shortDescription>
+        <value>Tag criteria:</value>
+    </labels>
+    <labels>
+        <fullName>BannerType</fullName>
+        <categories>ComponentBehaviour.cls</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BannerType</shortDescription>
+        <value>Banner type:</value>
+    </labels>
 </CustomLabels>

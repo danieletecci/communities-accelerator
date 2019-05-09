@@ -40,7 +40,7 @@
 				"contentId" 		: contentId,
 				"status" 			: status,	
 				"publishStartDate"	: component.get("v.startDate"),
-				"publishEndDate"	: component.get("v.endDate")
+				"publishEndDate"	: component.get("v.expire") == true ? component.get("v.endDate") : null
 			});
 	        cmpEvent.fire();
 	    } else

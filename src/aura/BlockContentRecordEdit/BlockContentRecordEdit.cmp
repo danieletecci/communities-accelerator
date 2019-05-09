@@ -1,5 +1,8 @@
 <aura:component implements="flexipage:availableForAllPageTypes,force:appHostable,lightning:isUrlAddressable,force:hasRecordId" controller="ContentDetailController" access="global">
 
+    <!-- STYLES -->
+    <ltng:require styles="{!$Resource.multilineToastCSS}" />
+
     <!-- HANDLERS -->
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     <aura:handler event="c:ContentUpsertEvent" action="{!c.handleUpsertEvent}"/>
@@ -16,6 +19,12 @@
     <aura:attribute name="mediaElementName"       type="String"   />
     <aura:attribute name="isExtIdEdit"            type="Boolean"      default="false" />
     <aura:attribute name="oldExtId"               type="String"    />
+
+    <!-- DESIGN ATTRIBUTES -->
+    <aura:attribute name="titleRequired"    type="Boolean" default="true"/>
+    <aura:attribute name="extractRequired"  type="Boolean" />
+    <aura:attribute name="featureRequired"  type="Boolean" />
+    <aura:attribute name="linkRequired"     type="Boolean" />
 
     <!-- BODY -->
     <div class="slds-grid">
@@ -36,17 +45,19 @@
 
                 <!--Title-->
                 <div class="slds-col slds-p-bottom_small div-input">
-                    <lightning:input label="{!$Label.c.ContentDetailTitle}" name="contentName" value="{!v.contentData.Title}" aura:id="contentName" maxlength="255" />
+                    <lightning:input aura:id="title" label="{!$Label.c.ContentDetailTitle}" required="{!v.titleRequired}" name="contentName" value="{!v.contentData.Title}" maxlength="255"/>
                 </div>
                 
                 <!--Extract-->
                 <div class="slds-col slds-p-bottom_small div-input">
-                    <ui:inputTextArea label="{!$Label.c.ContentDetailExtract}" aura:id="blockExtract" value="{!v.contentData.Extract}"  maxlength="1500"/>
+                    <lightning:textarea aura:id="extract" name="contentExtract" value="{!v.contentData.Extract}" required="{!v.extractRequired}" label="{!$Label.c.ContentDetailExtract}" maxlength="1500" />
                 </div>
 
                 <!--Feature Image-->
                 <div class="slds-col slds-p-bottom_small div-input">
-                    <ui:outputText value="{!$Label.c.ContentDetailFeatureImage}"/>
+                    <label class="slds-form-element__label slds-no-flex">
+                        <aura:if isTrue="{!v.featureRequired}"><abbr title="required" class="slds-required">*</abbr></aura:if>{!$Label.c.ContentDetailFeatureImage}
+                    </label>
                     <div class="slds-form-element__control slds-align_absolute-center div-add-media">
                         <aura:if isTrue="{!v.imageUrl}">
                             <div class="img-div">
@@ -61,12 +72,13 @@
                             </aura:set>
                         </aura:if>
                     </div>
+                    <div aura:id="featureError" class="slds-hide slds-has-error slds-form-element__help" style="color:#c23934;" id="error-message-unique-id">{!$Label.c.General_CompleteThisField}</div>
                 </div>
 
                 <!--Link-->
                 <div class="slds-col slds-p-bottom_small div-link-input">
                     <aura:if isTrue="{!v.contentData.Id}">
-                        <c:LookupInput objectAPIName="[CMS]Navigation__c" IconName="standard:link"
+                        <c:LookupInput aura:id="linkDetail" isRequired="{!v.linkRequired}" objectAPIName="[CMS]Navigation__c" IconName="standard:link" 
                         selectedRecordId="{!v.contentData.LinkDetail}" label="{!$Label.c.ContentDetailLink}" />
                     </aura:if>
                 </div>

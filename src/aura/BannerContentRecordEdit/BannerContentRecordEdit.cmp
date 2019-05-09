@@ -1,20 +1,32 @@
 <aura:component implements="flexipage:availableForAllPageTypes,force:appHostable,lightning:isUrlAddressable,force:hasRecordId" controller="ContentDetailController" access="global">
     
+    <!-- STYLES -->
+    <ltng:require styles="{!$Resource.multilineToastCSS}" />
+
     <!-- HANDLERS -->
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     <aura:handler event="c:ContentUpsertEvent" action="{!c.handleUpsertEvent}"/>
     <aura:handler name="URLEvent" event="c:MediaElementManagerEvent" action="{!c.handleMediaElementEvent}"/>
 
+    <!-- ATTRIBUTES -->
     <aura:attribute name="contentData"            type="Object" />
     <aura:attribute name="imageUrl"               type="String" />
     <aura:attribute name="layoutOptions"          type="List" />
     <aura:attribute name="bannerFrameTypes"       type="List" />
-    
     <aura:attribute name="visibilitySelectors"    type="List"     />
     <aura:attribute name="security"               type="Object"   />
     <aura:attribute name="timeZone"               type="String"   />
     <aura:attribute name="mediaElementId"         type="String"   />
     <aura:attribute name="mediaElementName"       type="String"   />
+
+    <!-- DESIGN ATTRIBUTES -->
+    <aura:attribute name="bannerTypeRequired"   type="Boolean" />
+    <aura:attribute name="featureRequired"      type="Boolean" />
+    <aura:attribute name="titleRequired"        type="Boolean" />
+    <aura:attribute name="extractRequired"      type="Boolean" />
+    <aura:attribute name="buttonRequired"       type="Boolean" />
+    <aura:attribute name="linkRequired"         type="Boolean" />
+    <aura:attribute name="layoutRequired"       type="Boolean" />
 
     <div class="slds-grid">
         <div class="slds-m-around_medium slds-border_top slds-border_bottom slds-border_right slds-border_left">
@@ -25,7 +37,7 @@
 
                 <!--Banner Type-->
                 <div class="slds-col slds-p-bottom_small banner-type-select">
-                    <lightning:select name="bannerType" label="{!$Label.c.BannerContentDetailType}"
+                    <lightning:select required="{!v.bannerTypeRequired}" messageWhenValueMissing="{!$Label.c.General_CompleteThisField}" name="bannerType" label="{!$Label.c.BannerContentDetailType}"
                         value="{!v.contentData.BannerFrameType}">
                         <aura:iteration items="{!v.bannerFrameTypes}" var="bannerFrameType">
                             <option text="{!bannerFrameType}" value="{!bannerFrameType}" selected="{! if(bannerFrameType == v.contentData.BannerFrameType, true, false)}" />
@@ -35,8 +47,10 @@
 
                 <!--Feature Image-->
                 <div class="slds-col slds-p-bottom_small div-input">
-                    <ui:outputText value="{!$Label.c.ArticleContentDetailImage}" />
-                    <div class="slds-form-element__control slds-align_absolute-center div-add-media">
+                    <label class="slds-form-element__label slds-no-flex">
+                        <aura:if isTrue="{!v.featureRequired}"><abbr title="required" class="slds-required">*</abbr></aura:if>{!$Label.c.ArticleContentDetailImage}
+                    </label>
+                    <div aura:id="featureDiv" class="slds-form-element__control slds-align_absolute-center div-add-media">
                         <aura:if isTrue="{!v.imageUrl}">
                             <div class="img-div">
                                 <img class="img-feature-selected" src="{!v.imageUrl}" />
@@ -58,41 +72,43 @@
                             </aura:set>
                         </aura:if>
                     </div>
+                    <div aura:id="featureError" class="slds-hide slds-has-error slds-form-element__help" style="color:#c23934;" id="error-message-unique-id">{!$Label.c.General_CompleteThisField}</div>
                 </div>
 
                 <!--Title-->
                 <div class="slds-col slds-p-bottom_small div-input">
-                    <lightning:input label="{!$Label.c.BannerContentDetailTitle}" name="contentName" value="{!v.contentData.Title}"
-                    aura:id="contentName" maxlength="255"/>
+                    <lightning:input aura:id="title" label="{!$Label.c.ArticleContentDetailTitle}" required="{!v.titleRequired}" name="contentName" value="{!v.contentData.Title}" maxlength="255"/>
                 </div>
 
                 <!--Extract-->
                 <div class="slds-col slds-p-bottom_small div-input">
-                    <lightning:input label="{!$Label.c.BannerContentDetailExtract}" name="contentExtract"
-                    value="{!v.contentData.Extract}" maxlength="1500"/>
+                    <lightning:textarea aura:id="extract" name="contentExtract" value="{!v.contentData.Extract}" required="{!v.extractRequired}" label="{!$Label.c.ArticleContentDetailExtract}" maxlength="1500" />
                 </div>
 
                 <!--Button-->
                 <div class="slds-col slds-p-bottom_small name-button-input">
-                    <lightning:input label="{!$Label.c.BannerContentDetailButton}" name="buttonLabel"
+                    <lightning:input aura:id="buttonLabel" required="{!v.buttonRequired}" label="{!$Label.c.BannerContentDetailButton}" name="buttonLabel"
                     value="{!v.contentData.ButtonLabel}" />
                 </div>
 
                 <!--Link-->
                 <div class="slds-col slds-p-bottom_small div-link-input">
                     <aura:if isTrue="{!v.contentData.Id}">
-                        <c:LookupInput objectAPIName="[CMS]Navigation__c" IconName="standard:link"
+                        <c:LookupInput aura:id="linkDetail" isRequired="{!v.linkRequired}" objectAPIName="[CMS]Navigation__c" IconName="standard:link"
                         selectedRecordId="{!v.contentData.LinkDetail}" label="{!$Label.c.BannerContentDetailLink}" />
                     </aura:if>
                 </div>
                     
                 <!--Choose Layout-->
                 <div class="slds-col slds-p-bottom_small div-input">
-                    <ui:outputText value="{!$Label.c.BannerContentDetailLayout}" />
-                    <div class="slds-form-element__control slds-align_absolute-center div-choose-layout">
+                    <label class="slds-form-element__label slds-no-flex">
+                        <aura:if isTrue="{!v.layoutRequired}"><abbr title="required" class="slds-required">*</abbr></aura:if>{!$Label.c.BannerContentDetailLayout}
+                    </label>
+                    <div aura:id="layoutDiv" class="slds-form-element__control slds-align_absolute-center div-choose-layout">
                         <aura:if isTrue="{!v.layoutOptions.length > 0}">
                             <c:ContentLayoutPicker selectedValue="{!v.contentData.OverlayQuadrant}" layoutOptions="{!v.layoutOptions}" />
                         </aura:if>
+                        <div aura:id="layoutError" class="slds-hide slds-has-error slds-form-element__help" style="color:#c23934;" id="error-message-unique-id">{!$Label.c.General_CompleteThisField}</div>
                     </div>
                 </div>
             </div>

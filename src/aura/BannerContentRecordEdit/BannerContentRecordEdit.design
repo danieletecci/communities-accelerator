@@ -1,4 +1,11 @@
 <design:component label="Banner Details Edit">
+    <design:attribute name="bannerTypeRequired" label="Banner Type Required"    default="false"/> 
+    <design:attribute name="featureRequired"    label="Feature Image Required"  default="false"/> 
+    <design:attribute name="titleRequired"      label="Title Required"          default="false"/> 
+    <design:attribute name="extractRequired"    label="Extract Required"        default="false"/> 
+    <design:attribute name="buttonRequired"     label="Button Label Required"   default="false"/> 
+    <design:attribute name="linkRequired"       label="Link Required"           default="false"/> 
+    <design:attribute name="layoutRequired"     label="Layout Required"         default="false"/> 
 	<sfdc:objects>
         <sfdc:object>Content__c</sfdc:object>
     </sfdc:objects>

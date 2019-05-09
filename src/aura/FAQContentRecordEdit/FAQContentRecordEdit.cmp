@@ -1,10 +1,14 @@
 <aura:component implements="flexipage:availableForAllPageTypes,force:appHostable,lightning:isUrlAddressable,force:hasRecordId" controller="ContentDetailController" access="global">
     
+    <!-- STYLES -->
+    <ltng:require styles="{!$Resource.multilineToastCSS}" />
+
     <!-- HANDLERS -->
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     <aura:handler event="c:ContentUpsertEvent" action="{!c.handleUpsertEvent}"/>
     <aura:handler name="URLEvent" event="c:MediaElementManagerEvent" action="{!c.handleMediaElementEvent}"/>
     
+    <!-- ATTRIBUTES -->
     <aura:attribute name="contentData" 			  type="Object" />
     <aura:attribute name="imageUrl" 			  type="String" />
     <aura:attribute name="visibilitySelectors"    type="List"     />
@@ -12,6 +16,10 @@
     <aura:attribute name="mediaElementId"         type="String"   />
     <aura:attribute name="mediaElementName"       type="String"   />
     <aura:attribute name="namespace"              type="String"   />
+
+    <!-- DESIGN ATTRIBUTES -->
+    <aura:attribute name="titleRequired"    type="Boolean" default="true"/>
+    <aura:attribute name="bodyRequired"     type="Boolean" /> 
 
     <div class="slds-grid">
         <div class="slds-m-around_medium slds-border_top slds-border_bottom slds-border_right slds-border_left">
@@ -22,14 +30,15 @@
                 
                 <!--Title-->
                 <div class="slds-col slds-p-bottom_small div-input">
-                    <lightning:input label="{!$Label.c.FAQContentDetailTitle}" name="contentName" value="{!v.contentData.Title}" aura:id="contentName"/>
+                    <lightning:input aura:id="title" label="{!$Label.c.FAQContentDetailTitle}" required="{!v.titleRequired}" name="contentName" value="{!v.contentData.Title}" maxlength="255"/>
                 </div>
 
                 <!--Body-->
                 <div class="slds-col slds-p-bottom_small div-input">
                     <aura:if isTrue="{!v.contentData}">
-                        <c:RichTextTinyMCE aura:id="richText" namespace="{!v.namespace}" contentBody="{!v.contentData.Body}"/>
+                        <c:RichTextTinyMCE aura:id="richText" bodyRequired="{!v.bodyRequired}" namespace="{!v.namespace}" contentBody="{!v.contentData.Body}"/>
                     </aura:if>
+                    <div aura:id="bodyError" class="slds-hide slds-has-error slds-form-element__help" style="color:#c23934;" id="error-message-unique-id">{!$Label.c.General_CompleteThisField}</div>
                 </div>
             </div>
         </div>

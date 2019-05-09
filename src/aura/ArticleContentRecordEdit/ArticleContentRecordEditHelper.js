@@ -137,22 +137,42 @@
 	validateRequiredFields : function(component, callback){
 		var fields = this.getEmptyRequiredFieldsList(component);
 		var errorMessage = $A.get("$Label.c.ReviewFields") + "\n";
+		var hasEmptyFields = false;
 		if(!$A.util.isEmpty(fields)){
+
 			fields.forEach(function myFunction(item, index, arr) {
-				errorMessage += " • " + item.label + "\n";
-				if(item.isStandard){
-					item.input.reportValidity();
-				} else {
-					if(item.div && !$A.util.hasClass(item.div, "has-errror")){
-						$A.util.addClass(item.div, "has-errror");
+				if(item.isEmpty){
+					hasEmptyFields = true;
+					errorMessage += " • " + item.label + "\n";
+					if(item.isStandard){
+						item.input.reportValidity();
+					} else {
+						if(item.div && !$A.util.hasClass(item.div, "has-errror")){
+							$A.util.addClass(item.div, "has-errror");
+						}
+						if(item.error && !$A.util.hasClass(item.error, "slds-show")){
+							$A.util.addClass(item.error, "slds-show");
+							$A.util.removeClass(item.error, "slds-hide");
+						}
 					}
-					if(item.error && !$A.util.hasClass(item.error, "slds-show")){
-						$A.util.addClass(item.error, "slds-show");
-						$A.util.removeClass(item.error, "slds-hide");
+				} else {
+					if(item.isStandard){
+						item.input.reportValidity();
+					} else {
+						if(item.div && $A.util.hasClass(item.div, "has-errror")){
+							$A.util.removeClass(item.div, "has-errror");
+						}
+						if(item.error && $A.util.hasClass(item.error, "slds-show")){
+							$A.util.removeClass(item.error, "slds-show");
+							$A.util.addClass(item.error, "slds-hide");
+						}
 					}
 				}
 			});
-			this.showToast($A.get("$Label.c.MissingRequiredFields"), errorMessage, "error");
+			if(hasEmptyFields)
+				this.showToast($A.get("$Label.c.MissingRequiredFields"), errorMessage, "error");
+			else
+				callback();
 		} else {
 			callback();
 		}
@@ -170,13 +190,14 @@
 		return fields;
 	},
 	addField : function(isRequired, fields, label, isStandard, input, div, error, value){
-		if(isRequired && $A.util.isEmpty(value)){
+		if(isRequired){
 			fields.push({
 				"isStandard"	: isStandard,
 				"label"			: label,
 				"input"			: input,
 				"div"			: div,
-				"error"			: error
+				"error"			: error,
+				"isEmpty"		:  $A.util.isEmpty(value)
 			});
 		}
 	}

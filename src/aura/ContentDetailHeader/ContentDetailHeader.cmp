@@ -50,57 +50,57 @@
 										</aura:set>
 									</aura:if>
 								</h1>
-	                        </div>
-	                    </div>
-	                </div>
-	            </div>
-	        </div>
-	        <div class="slds-page-header__col-actions">
-	            <div class="slds-page-header__controls">
-	                <div class="slds-page-header__control">
-	                    <lightning:buttonGroup>
-		                	<aura:if isTrue="{!(v.contentData.Status) != ($Label.c.ContentDetailArchived)}">
-						        <lightning:button label="{!$Label.c.General_Save}" onclick="{! c.doSave}" />
-						    </aura:if>
-					        <!-- <lightning:button label="{!$Label.c.ContentDetailSchedule}" /> -->
-		                	<aura:if isTrue="{!and(v.contentData.IsTemplate,v.contentData.Status == ($Label.c.ContentDetailPublished))}">
-						        <lightning:button label="{!$Label.c.CreateFromTemplateButton}"  onclick="{! c.doCreateFromTemplate}" />
-						    </aura:if>
-						    <aura:if isTrue="{!(v.contentData.Status) == ($Label.c.ContentDetailArchived)}">
-						        <lightning:button label="{!$Label.c.ContentDetailUnarchive}" onclick="{! c.doDraftUpdate}" />
-						    </aura:if>
-						    <lightning:buttonMenu alternativeText="Show menu" onselect="{! c.handleMenuSelect }" class="slds-button_last">
-						    	<aura:if isTrue="{!and(v.contentData.Status != $Label.c.ContentDetailPublished, v.security.hasDeleteAccess)}">
-									<lightning:menuItem label="{!$Label.c.General_Delete}" value="delete" />
-								</aura:if>
-	                			<aura:if isTrue="{!(v.contentData.Status) == ($Label.c.ContentDetailPublished)}">
-									<lightning:menuItem label="{!$Label.c.ContentDetailUnpublish}" value="unpublish" />
-									<lightning:menuItem label="{!$Label.c.ContentDetailArchive}" value="archive" />
-								</aura:if>
-								<aura:if isTrue="{!(v.contentData.Status) == ($Label.c.ContentDetailScheduled)}">
-									<lightning:menuItem label="{!$Label.c.ContentDetailUnschedule}" value="unschedule" />
-								</aura:if>
-							</lightning:buttonMenu>
-					    </lightning:buttonGroup>
-	                </div>
-	                <aura:if isTrue="{!(v.contentData.Status != $Label.c.ContentDetailArchived)}">
-		        		<div class="slds-page-header__control">
-		        			<lightning:button label="{!$Label.c.ContentDetailPublish}" variant="brand" title="{!$Label.c.ContentDetailPublish}" onclick="{! c.doPublishContent }"/>
-		        		</div>
-		        	</aura:if>
-	            </div>
-	        </div>
-	    </div>
-	    <div class="slds-page-header__row slds-page-header__row_gutters">
-	        <div class="slds-page-header__col-details">
-	            <ul class="slds-page-header__detail-row">
-	                <li class="slds-page-header__detail-block">
-	                    <div class="slds-text-title slds-truncate" title="{!$Label.c.ContentDetailPublicationStatus}">
-	                    	{!$Label.c.ContentDetailPublicationStatus}
-	                    </div>
-	                    <div onmouseenter="{!c.showTooltip}"  onmouseleave="{!c.hideTooltip}">
-	                    	<div class="{! 'slds-popover slds-popover_tooltip slds-nubbin_bottom-left ' + v.tooltipClass}" role="tooltip" id="help" style="position:absolute;margin-top:-3rem;margin-left:-1rem;" aura:id="tooltip">
-							   <div class="slds-popover__body">{! if(v.contentData.Status == $Label.c.ContentDetailScheduled, v.scheduledTooltip, if(v.contentData.Status == $Label.c.ContentDetailPublished, v.publishedTooltip, '')) }</div>
+							   
+						   
+					   
+				   
+			   
+													
+													 
+														
+											
+																								   
+																						  
+					
+																					
+																																
+																													 
+					
+																						  
+																										   
+					
+																														
+																														 
+																				 
+				  
+																									 
+																							
+																						
+				  
+																						 
+																							  
+				  
+							  
+								 
+					   
+																							   
+												   
+																																									
+				  
+					 
+				   
+			   
+		   
+																	  
+													
+													  
+															
+																												   
+																
+						   
+																						   
+																																																							  
+																																																						 
 							</div>
 						</div>
 					</div>
@@ -118,7 +118,7 @@
 								<lightning:button label="{!$Label.c.CreateFromTemplateButton}"  onclick="{! c.doCreateFromTemplate}" />
 							</aura:if>
 							<aura:if isTrue="{!and((v.contentData.Status) == ($Label.c.ContentDetailArchived), v.security.hasEditAccess)}">
-								<lightning:button label="{!$Label.c.ContentDetailUnarchive}" onclick="{! c.doUnarchive}" />
+								<lightning:button label="{!$Label.c.ContentDetailUnarchive}" onclick="{! c.doDraftUpdate}" />
 							</aura:if>
 							<aura:if isTrue="{!and(v.contentData.Status != $Label.c.ContentDetailPublished, v.security.hasDeleteAccess) ||
 								and((v.contentData.Status) == ($Label.c.ContentDetailPublished),  v.security.hasEditAccess) ||
@@ -188,9 +188,11 @@
 		<c:ContentPublishModal aura:id="contentModalPublish" content="{!v.contentData}" hasDetailComponent="{!v.hasDetailComponent}"/>
 	</aura:if>
 
+									  
 	<div class="slds-text-align_center"> 
 		{!v.confirmationModal}
-	</div>	
+	</div>
+		
 
     <aura:if isTrue="{!v.contentData.Id != null}">
     	<c:createNewContentModal aura:id="newContentModal" oncontentcreated="{!c.doGoToContent}" recordTypeId="{!v.contentData.RecordTypeId}" templateId="{!v.contentData.Id}"></c:createNewContentModal>

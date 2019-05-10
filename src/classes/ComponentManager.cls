@@ -101,7 +101,12 @@ public without sharing virtual class ComponentManager {
         defaultComponentFieldSet.add('[CMS]PageSize__c');
         defaultComponentFieldSet.add('[CMS]Title__c');
         defaultComponentFieldSet.addAll(componentFieldSet);
-        componentRecord = ComponentUtils.getComponent(componentExternalId, defaultComponentFieldSet, device);
+        if(String.isNotBlank(componentExternalId)){
+            componentRecord = ComponentUtils.getComponent(componentExternalId, defaultComponentFieldSet, device);
+        }
+        else{
+            componentRecord = ComponentUtils.getComponent(componentId, defaultComponentFieldSet, device);
+        }
         mw.component = new ObjectComponentWrapper(componentRecord);
         mw.navId = GeneralUtils.getNavigationId(navigationUrl);
         mw.namespace = GeneralUtils.getNameSpace();

@@ -1,6 +1,7 @@
 <aura:component >
 
 	<aura:attribute name="objectWrapper" type="Object"/>
+    <aura:attribute name="hasEditAccess" type="Boolean"    />
 
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
 

@@ -1529,6 +1529,14 @@
         <value>Missing required fields</value>
     </labels>
     <labels>
+        <fullName>NoFeatureImage</fullName>
+        <categories>Content Detail</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No image selected</shortDescription>
+        <value>No image selected</value>
+    </labels>
+    <labels>
         <fullName>MultiComboboxOneTagSelected</fullName>
         <categories>Multi Select Combobox</categories>
         <language>en_US</language>

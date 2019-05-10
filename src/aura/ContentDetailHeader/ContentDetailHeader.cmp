@@ -49,58 +49,7 @@
 											</span>
 										</aura:set>
 									</aura:if>
-								</h1>
-							   
-						   
-					   
-				   
-			   
-													
-													 
-														
-											
-																								   
-																						  
-					
-																					
-																																
-																													 
-					
-																						  
-																										   
-					
-																														
-																														 
-																				 
-				  
-																									 
-																							
-																						
-				  
-																						 
-																							  
-				  
-							  
-								 
-					   
-																							   
-												   
-																																									
-				  
-					 
-				   
-			   
-		   
-																	  
-													
-													  
-															
-																												   
-																
-						   
-																						   
-																																																							  
-																																																						 
+								</h1>																																									 
 							</div>
 						</div>
 					</div>
@@ -193,7 +142,6 @@
 		{!v.confirmationModal}
 	</div>
 		
-
     <aura:if isTrue="{!v.contentData.Id != null}">
     	<c:createNewContentModal aura:id="newContentModal" oncontentcreated="{!c.doGoToContent}" recordTypeId="{!v.contentData.RecordTypeId}" templateId="{!v.contentData.Id}"></c:createNewContentModal>
     </aura:if>

@@ -1,11 +1,11 @@
 public with sharing class ContentDetailHeaderController {
     //DATA WRAPPER
     public class DataWrapper{
-        @AuraEnabled public ObjectContentWrapper   content;
-        @AuraEnabled public String          timeZone;
-        @AuraEnabled public String          gmtOffset;
-        @AuraEnabled public SecurityWrapper security;
-        @AuraEnabled public String namespace;
+        @AuraEnabled public ObjectContentWrapper    content;
+        @AuraEnabled public String                  timeZone;
+        @AuraEnabled public String                  gmtOffset;
+        @AuraEnabled public SecurityWrapper         security;
+        @AuraEnabled public String                  namespace;
         
         public DataWrapper(Content__c content, String timeZone, String gmtOffset, SecurityWrapper security){
             this.content            = new ObjectContentWrapper(content);

@@ -1,15 +1,18 @@
 <aura:component >
-    <aura:attribute name="layoutOptions" type="List" />
-    <aura:attribute name="selectedValue" type="String" />
+    <aura:attribute name="layoutOptions" type="List"    />
+    <aura:attribute name="selectedValue" type="String"  />
+    <aura:attribute name="hasEditAccess" type="Boolean" />
 
     <div class="choose-layout">
         <aura:iteration items="{!v.layoutOptions}" var="option">
-            <div class="layout-box">
-                <p class="choose-layout-title">{!option.label}</p>
-                <img id="{!option.value}" src="{! $Resource.ContentLayouts + option.imageUrl}"
-                     onclick="{!c.setSelectedLayout}"
-                     class="{!if(v.selectedValue == option.value,'selectedLayout choose-layout-img','choose-layout-img')}" />
-            </div>
+            <aura:if isTrue="{!or(v.hasEditAccess, and(not(v.hasEditAccess),v.selectedValue == option.value)) }">
+                <div class="layout-box">
+                    <p class="choose-layout-title">{!option.label}</p>
+                    <img id="{!option.value}" src="{! $Resource.ContentLayouts + option.imageUrl}"
+                        onclick="{!c.setSelectedLayout}"
+                        class="{!if(v.selectedValue == option.value,'selectedLayout choose-layout-img','choose-layout-img')}" />
+                </div>
+            </aura:if>
         </aura:iteration>
     </div>
 </aura:component>

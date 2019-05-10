@@ -22,11 +22,11 @@
     <aura:attribute name="namespace"              type="String"     />
 
     <!-- DESIGN ATTRIBUTES -->
-    <aura:attribute name="titleRequired"    type="Boolean" default="true"/>
-    <aura:attribute name="extractRequired"  type="Boolean" /> 
-    <aura:attribute name="bodyRequired"     type="Boolean" /> 
-    <aura:attribute name="featureRequired"  type="Boolean" /> 
-    <aura:attribute name="layoutRequired"   type="Boolean" /> 
+    <aura:attribute name="titleRequired"    type="Boolean" default="true" access="global"/>
+    <aura:attribute name="extractRequired"  type="Boolean" access="global" /> 
+    <aura:attribute name="bodyRequired"     type="Boolean" access="global" /> 
+    <aura:attribute name="featureRequired"  type="Boolean" access="global" /> 
+    <aura:attribute name="layoutRequired"   type="Boolean" access="global" /> 
     
     <div class="slds-grid">
         <div class="slds-m-around_medium slds-border_top slds-border_bottom slds-border_right slds-border_left">

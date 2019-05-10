@@ -21,10 +21,10 @@
     <aura:attribute name="oldExtId"               type="String"   />
 
     <!-- DESIGN ATTRIBUTES -->
-    <aura:attribute name="titleRequired"    type="Boolean" default="true"/>
-    <aura:attribute name="extractRequired"  type="Boolean" />
-    <aura:attribute name="featureRequired"  type="Boolean" />
-    <aura:attribute name="linkRequired"     type="Boolean" />
+    <aura:attribute name="titleRequired"    type="Boolean" default="true" access="global"/>
+    <aura:attribute name="extractRequired"  type="Boolean" access="global" />
+    <aura:attribute name="featureRequired"  type="Boolean" access="global" />
+    <aura:attribute name="linkRequired"     type="Boolean" access="global" />
 
     <!-- BODY -->
     <div class="slds-grid">

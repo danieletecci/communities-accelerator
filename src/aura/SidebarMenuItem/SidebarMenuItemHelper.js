@@ -7,8 +7,9 @@
         }
         if('/s/' + component.get("v.item.menu.NavigationURL") === window.location.pathname){
             component.set("v.isActive", true);
+        }else{
+            component.set("v.isActive", false);
         }
-        
     },
     redirect : function(component) {
         var item = component.get('v.item');

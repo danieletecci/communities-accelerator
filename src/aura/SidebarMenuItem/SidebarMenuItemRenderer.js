@@ -1,6 +1,7 @@
 ({
 	afterRender : function(component, event, helper) {
         this.superAfterRender();
+        
         var componentName = component.get("v.item.menu.ComponentName");
         if(componentName){            
             $A.createComponent(componentName,{},
@@ -10,8 +11,7 @@
                        dynamicComponent.push(newcomponent);
                        component.set("v.dynamicComponent", dynamicComponent);
                     }
-                }
-                            
+                }              
         	);
         }
         var url = 'sfsites/c/resource/Assets/Assets/Icons/' + component.get("v.item").iconName;

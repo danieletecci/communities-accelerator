@@ -12,6 +12,7 @@
     <aura:attribute name="menuIsOpen" required="true" type="Boolean"/>
     
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler event="forceCommunity:routeChange" action="{!c.urlChange}"/>
     
     
     <span class="{!if(v.isActive, 'is-active')}" data-menu-level="{!v.menuLevel}" data-index="{!v.index}">

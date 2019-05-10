@@ -122,11 +122,23 @@ public class ContentLandingRecordListController {
             // Crea el Wrapper de campo y lo agrega a la lista
             fieldWrappers.add(new FieldWrapper(value, link));
         }
+
         // Si es un template y esta publicado, agrega la opcion 'New from Template'
-        List<String> actions = new List<String>{System.Label.General_View, System.Label.General_Delete};
-        if(content.isTemplate__c && content.Status__c == 'Published'){
+        List<String> actions = new List<String>{};
+
+        // CMS-126 - Adding security checks before adding these actions
+        UserRecordAccess ura = SecurityUtils.getUserRecordAccess(content.Id);
+    
+        if (ura.HasDeleteAccess){
+            actions.add(System.Label.General_Delete);
+        }
+        if (ura.HasReadAccess){
+            actions.add(System.Label.General_View);
+        }
+        if(content.isTemplate__c && content.Status__c == 'Published' && SecurityUtils.isObjectCreateable(GeneralUtils.prefix('[CMS]Content__c'))){
             actions.add(System.Label.ContentLandingNewFromTemplate);
         }
+
         // Crea el Wrapper de Contenido y lo agrega a la lista
         return new ContentWrapper(content.Id, fieldWrappers, content.RecordType.Id, actions);
     }                                                                                  

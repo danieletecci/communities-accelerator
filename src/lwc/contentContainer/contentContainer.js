@@ -2,6 +2,8 @@ import { LightningElement, api, wire, track } from 'lwc';
 import getFilters from	'@salesforce/apex/ContentSearchFiltersController.getFilters';
 import getObjectLabel from	'@salesforce/apex/ContentLandingHeaderController.getObjectLabel';
 import getPicklistValues from	'@salesforce/apex/ContentLandingHeaderController.getPicklistValues';
+import hasCreateTemplateButton from	'@salesforce/apex/ContentLandingHeaderController.hasCreateTemplateButton';
+import hasCreateContentButton from	'@salesforce/apex/ContentLandingHeaderController.hasCreateContentButton';
 import getTableWrapper from	'@salesforce/apex/ContentLandingRecordListController.getTableWrapper';
 import getUpdatedTableWrapper from	'@salesforce/apex/ContentLandingRecordListController.getUpdatedTableWrapper';
 import deleteContent from	'@salesforce/apex/ContentLandingRecordListController.deleteContent';
@@ -15,7 +17,6 @@ import ContentLandingNew from '@salesforce/label/c.ContentLandingNew';
 import ContentLandingTemplate from '@salesforce/label/c.ContentLandingTemplate';
 import TemplateLabel from '@salesforce/label/c.Template';
 import ContentDetailContent from '@salesforce/label/c.ContentDetailContent';
-import General_Error from '@salesforce/label/c.General_Error';
 import { registerListener, unregisterAllListeners, fireEvent } from 'c/pubsub';
 import { CurrentPageReference,NavigationMixin } from 'lightning/navigation';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
@@ -50,6 +51,8 @@ export default class ContentContainer extends NavigationMixin(LightningElement) 
     recordOffset;
     isAddingRecords;
     recordLimit;
+    hasPermissionCreateTemplateButton;
+    hasPermissionCreateContentButton;
 
     //Reference used for the pubsub module
     @wire(CurrentPageReference) pageRef;
@@ -113,6 +116,58 @@ export default class ContentContainer extends NavigationMixin(LightningElement) 
         }
     }
 
+    // Get if the user has permission to create template from APEX CLASS
+    @wire(hasCreateTemplateButton)
+    wiredPermissionTemplate({ error, data }) {
+        if (error) {
+            this.hasPermissionCreateTemplateButton = false;
+            this.headerButtonsSecondary = null;
+            console.log(error);
+        } else if (data) {
+            this.hasPermissionCreateTemplateButton = data;
+            if(this.hasPermissionCreateTemplateButton === true){
+                this.headerButtonsSecondary = [
+                    {
+                        type: 'secondary',
+                        label: ContentLandingTemplate,
+                        labelAlternative: null,
+                        action: 'handleOnClickCreateTemplate',
+                        typeAction: 'dispatchEvent',
+                        show: true
+                    }
+                ];
+            }else{
+                this.headerButtonsSecondary = null;
+            }
+        }
+    }
+    
+    // Get if the user has permission to create content from APEX CLASS
+    @wire(hasCreateContentButton)
+    wiredPermissionContent({ error, data }) {
+        if (error) {
+            this.hasPermissionCreateContentButton = false;
+            this.headerButtonsPrimary = null;
+            console.log(error);
+        } else if (data) {
+            this.hasPermissionCreateContentButton = data;
+            if(this.hasPermissionCreateContentButton === true){
+                this.headerButtonsPrimary = [
+                    {
+                        type: 'primary',
+                        label: ContentLandingNew,
+                        labelAlternative: null,
+                        action: 'handleOnClick',
+                        typeAction: 'dispatchEvent',
+                        show: true
+                    }
+                ]
+            }else{
+                this.headerButtonsPrimary = null;
+            }
+        }
+    }
+
     constructor() {
         super();
         this.statusValue = ContentLandingAll;
@@ -125,26 +180,6 @@ export default class ContentContainer extends NavigationMixin(LightningElement) 
             {label: ContentLandingTags, value: null, id: null, hasRightBar: false},
         ];
         this.SidebarFilterTitle = SidebarFilterTitle;
-        this.headerButtonsPrimary = [
-            {
-                type: 'primary',
-                label: ContentLandingNew,
-                labelAlternative: null,
-                action: 'handleOnClick',
-                typeAction: 'dispatchEvent',
-                show: true
-            }
-        ]
-        this.headerButtonsSecondary = [
-            {
-                type: 'secondary',
-                label: ContentLandingTemplate,
-                labelAlternative: null,
-                action: 'handleOnClickCreateTemplate',
-                typeAction: 'dispatchEvent',
-                show: true
-            }
-        ];
         this.lblContent = ContentDetailContent.charAt(0) + ContentDetailContent.slice(1).toLowerCase();
         this.optionsFilterRadioButtonGroup = [
             { name: "filterRadio", label: this.lblContent, value: false, checked: true },
@@ -160,17 +195,14 @@ export default class ContentContainer extends NavigationMixin(LightningElement) 
         var body = document.body;
         var lwc = this;
         registerListener('tabItemClick', this.handleTabChange, this);
-        body.onscroll = function(event){
-
-            var elem = lwc.template.querySelector('.landingContainerLwc');
-                if (html.clientHeight + html.scrollTop + 400 >= html.scrollHeight && !lwc.isAddingRecords) {
-                    //Call your helper method to show more items
-                    lwc.recordOffset += lwc.recordLimit;
-                    lwc.isAddingRecords = true;
-                    lwc.tableDataFilter(lwc.filtersValues[0].id, lwc.filtersValues[1].id, lwc.filtersValues[2].id, lwc.recordOffset);
-                    
-                }
+        body.onscroll = function(){
+            if (html.clientHeight + html.scrollTop + 400 >= html.scrollHeight && !lwc.isAddingRecords) {
+                //Call your helper method to show more items
+                lwc.recordOffset += lwc.recordLimit;
+                lwc.isAddingRecords = true;
+                lwc.tableDataFilter(lwc.filtersValues[0].id, lwc.filtersValues[1].id, lwc.filtersValues[2].id, lwc.recordOffset);
             }
+        }
         
     }
 

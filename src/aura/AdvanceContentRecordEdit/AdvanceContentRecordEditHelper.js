@@ -11,9 +11,9 @@
 			if (state === "SUCCESS") {
 				var data = response.getReturnValue();
 				if(data){
+					component.set("v.prefix", 				data.prefix);
 					component.set("v.namespace", 			data.namespace);
 					component.set("v.contentData", 			data.content);
-					
 					component.set("v.visibilitySelectors", 	data.visibilitySelectors);
 					component.set("v.hasEditAccess", 			data.hasEditAccess);
 					if(data.content.MediaElementAssignments != null && data.content.MediaElementAssignments.length > 0){

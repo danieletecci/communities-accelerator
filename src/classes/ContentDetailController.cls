@@ -7,6 +7,7 @@ public with sharing class ContentDetailController {
         @AuraEnabled public Boolean                         hasEditAccess;
         @AuraEnabled public List<String>                    bannerFrameTypes;
         @AuraEnabled public String                          namespace;
+        @AuraEnabled public String                          prefix;
         
         public DataWrapper(Content__c content, Boolean hasEditAccess, List<VisibilitySelectorWrapper> visibilitySelectors, String timeZone, List<String> bannerFrameTypes){
             this.content                = new ObjectContentWrapper(content);
@@ -15,6 +16,7 @@ public with sharing class ContentDetailController {
             this.timeZone               = timeZone;
             this.bannerFrameTypes       = bannerFrameTypes;
             this.namespace              = (String.isBlank(GeneralUtils.namespace)) ? 'c' : GeneralUtils.namespace.replace('_','').toLowerCase();
+            this.prefix                 = GeneralUtils.namespace;
         }
     }
 

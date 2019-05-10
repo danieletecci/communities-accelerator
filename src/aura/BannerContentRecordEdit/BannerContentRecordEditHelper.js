@@ -11,10 +11,11 @@
 			if (state === "SUCCESS") {
 				var data = response.getReturnValue();
 				if(data){
+					component.set("v.prefix", 				data.prefix);
 					component.set("v.contentData", 			data.content);
 					component.set("v.timeZone", 			data.timeZone);
 					component.set("v.visibilitySelectors", 	data.visibilitySelectors);
-					component.set("v.hasEditAccess", 			data.hasEditAccess);
+					component.set("v.hasEditAccess", 		data.hasEditAccess);
 					component.set("v.bannerFrameTypes",		data.bannerFrameTypes);
 
                     var frameType = component.get("v.contentData.BannerFrameType");

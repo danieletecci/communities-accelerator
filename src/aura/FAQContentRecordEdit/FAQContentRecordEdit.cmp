@@ -16,6 +16,7 @@
     <aura:attribute name="mediaElementId"         type="String"   />
     <aura:attribute name="mediaElementName"       type="String"   />
     <aura:attribute name="namespace"              type="String"   />
+    <aura:attribute name="prefix"                 type="String"   />
 
     <!-- DESIGN ATTRIBUTES -->
     <aura:attribute name="titleRequired"    type="Boolean" default="true" access="global"/>
@@ -27,25 +28,27 @@
         </div>
         <div class="slds-col slds-p-around_small content-container" >
             <div class="slds-grid slds-grid_vertical">
-                <lightning:recordViewForm recordId="{!v.contentData.Id}" objectApiName="Content__c">
-                    <!--Title-->
-                    <div class="slds-col slds-p-bottom_small div-input">
-                        <aura:if isTrue="{!v.hasEditAccess}">
-                            <lightning:input aura:id="title" label="{!$Label.c.FAQContentDetailTitle}" required="{!v.titleRequired}" name="contentName" value="{!v.contentData.Title}" maxlength="255"/>
-                            <aura:set attribute="else">
-                                <lightning:outputField fieldName="Title__c" />
-                            </aura:set>
-                        </aura:if>
-                    </div>
+                <aura:if isTrue="{!not(empty(v.contentData))}">
+                    <lightning:recordViewForm recordId="{!v.contentData.Id}" objectApiName="{!v.prefix + 'Content__c'}">
+                        <!--Title-->
+                        <div class="slds-col slds-p-bottom_small div-input">
+                            <aura:if isTrue="{!v.hasEditAccess}">
+                                <lightning:input aura:id="title" label="{!$Label.c.FAQContentDetailTitle}" required="{!v.titleRequired}" name="contentName" value="{!v.contentData.Title}" maxlength="255"/>
+                                <aura:set attribute="else">
+                                    <lightning:outputField fieldName="{!v.prefix + 'Title__c'}" />
+                                </aura:set>
+                            </aura:if>
+                        </div>
 
-                    <!--Body-->
-                    <div class="slds-col slds-p-bottom_small div-input">
-                        <aura:if isTrue="{!v.contentData}">
-                            <c:RichTextTinyMCE aura:id="richText" hasEditAccess="{!v.hasEditAccess}" bodyRequired="{!v.bodyRequired}" namespace="{!v.namespace}" contentBody="{!v.contentData.Body}"/>
-                        </aura:if>
-                        <div aura:id="bodyError" class="slds-hide slds-has-error slds-form-element__help" style="color:#c23934;" id="error-message-unique-id">{!$Label.c.General_CompleteThisField}</div>
-                    </div>
-                </lightning:recordViewForm>
+                        <!--Body-->
+                        <div class="slds-col slds-p-bottom_small div-input">
+                            <aura:if isTrue="{!v.contentData}">
+                                <c:RichTextTinyMCE aura:id="richText" hasEditAccess="{!v.hasEditAccess}" bodyRequired="{!v.bodyRequired}" namespace="{!v.namespace}" contentBody="{!v.contentData.Body}"/>
+                            </aura:if>
+                            <div aura:id="bodyError" class="slds-hide slds-has-error slds-form-element__help" style="color:#c23934;" id="error-message-unique-id">{!$Label.c.General_CompleteThisField}</div>
+                        </div>
+                    </lightning:recordViewForm>
+                </aura:if>
             </div>
         </div>
     </div>

@@ -20,6 +20,7 @@
     <aura:attribute name="isExtIdEdit"            type="Boolean"      default="false" />
     <aura:attribute name="oldExtId"               type="String"    />
     <aura:attribute name="namespace"              type="String"   />
+    <aura:attribute name="prefix"                 type="String"     />
 
     <!-- DESIGN ATTRIBUTES -->
     <aura:attribute name="titleRequired"        type="Boolean" default="true" access="global"/>
@@ -37,129 +38,131 @@
         </div>
         <div class="slds-col slds-p-around_small content-container" >
             <div class="slds-grid slds-grid_vertical">
-                <lightning:recordViewForm recordId="{!v.contentData.Id}" objectApiName="Content__c">
-                    <aura:if isTrue="{!v.contentData.IsTemplate}">
+                <aura:if isTrue="{!not(empty(v.contentData))}">
+                    <lightning:recordViewForm recordId="{!v.contentData.Id}" objectApiName="{!v.prefix + 'Content__c'}">
+                        <aura:if isTrue="{!v.contentData.IsTemplate}">
+                            <div class="slds-col slds-p-bottom_small div-input">
+                                <aura:if isTrue="{!v.hasEditAccess}">
+                                    <div class="template-desc-div">
+                                        <lightning:textarea label="{!$Label.c.EventContentDetailTemplateDescription}" name="templateDescription" value="{!v.contentData.TemplateDescription}" aura:id="templateDescription"/>
+                                    </div>
+                                    <aura:set attribute="else">
+                                        <lightning:outputField fieldName="{!v.prefix + 'TemplateDescription__c'}" />
+                                    </aura:set>
+                                </aura:if>
+                            </div>
+                        </aura:if>
+
+                        <!--Title-->
                         <div class="slds-col slds-p-bottom_small div-input">
                             <aura:if isTrue="{!v.hasEditAccess}">
-                                <div class="template-desc-div">
-                                    <lightning:textarea label="{!$Label.c.EventContentDetailTemplateDescription}" name="templateDescription" value="{!v.contentData.TemplateDescription}" aura:id="templateDescription"/>
-                                </div>
+                                <lightning:input aura:id="title" label="{!$Label.c.EventContentDetailTitle}" required="{!v.titleRequired}" name="contentName" value="{!v.contentData.Title}" maxlength="255"/>
                                 <aura:set attribute="else">
-                                    <lightning:outputField fieldName="TemplateDescription__c" />
+                                    <lightning:outputField fieldName="{!v.prefix + 'Title__c'}" />
                                 </aura:set>
                             </aura:if>
                         </div>
-                    </aura:if>
+                        
+                        <!--Extract-->
+                        <div class="slds-col slds-p-bottom_small div-input">
+                            <aura:if isTrue="{!v.hasEditAccess}">
+                                <lightning:textarea aura:id="extract" name="contentExtract" value="{!v.contentData.Extract}" required="{!v.extractRequired}" label="{!$Label.c.EventContentDetailExtract}" maxlength="1500" />
+                                <aura:set attribute="else">
+                                    <lightning:outputField fieldName="{!v.prefix + 'Extract__c'}" />
+                                </aura:set>
+                            </aura:if>
+                        </div>
 
-                    <!--Title-->
-                    <div class="slds-col slds-p-bottom_small div-input">
-                        <aura:if isTrue="{!v.hasEditAccess}">
-                            <lightning:input aura:id="title" label="{!$Label.c.EventContentDetailTitle}" required="{!v.titleRequired}" name="contentName" value="{!v.contentData.Title}" maxlength="255"/>
-                            <aura:set attribute="else">
-                                <lightning:outputField fieldName="Title__c" />
-                            </aura:set>
-                        </aura:if>
-                    </div>
-                    
-                    <!--Extract-->
-                    <div class="slds-col slds-p-bottom_small div-input">
-                        <aura:if isTrue="{!v.hasEditAccess}">
-                            <lightning:textarea aura:id="extract" name="contentExtract" value="{!v.contentData.Extract}" required="{!v.extractRequired}" label="{!$Label.c.EventContentDetailExtract}" maxlength="1500" />
-                            <aura:set attribute="else">
-                                <lightning:outputField fieldName="Extract__c" />
-                            </aura:set>
-                        </aura:if>
-                    </div>
+                        <!--Body -->
+                        <div class="slds-col slds-p-bottom_small div-input">
+                            <aura:if isTrue="{!v.contentData}">
+                                <c:RichTextTinyMCE aura:id="richText" hasEditAccess="{!v.hasEditAccess}" bodyRequired="{!v.bodyRequired}" namespace="{!v.namespace}" contentBody="{!v.contentData.Body}"/>
+                            </aura:if>
+                            <div aura:id="bodyError" class="slds-hide slds-has-error slds-form-element__help" style="color:#c23934;" id="error-message-unique-id">{!$Label.c.General_CompleteThisField}</div>
+                        </div>
+                        
+                        <!--Start Date-->
+                        <div class="slds-col slds-p-bottom_small input-start-date">
+                            <aura:if isTrue="{!v.hasEditAccess}">
+                                <lightning:input aura:id="startDate" required="{!v.startDateRequired}" label="{!$Label.c.EventContentDetailEventStartDate}" messageWhenValueMissing="{!$Label.c.General_CompleteThisField}" type="datetime-local" value="{!v.contentData.EventStartDate}"/>
+                                <aura:set attribute="else">
+                                    <lightning:outputField fieldName="{!v.prefix + 'EventStartDate__c'}" />
+                                </aura:set>
+                            </aura:if>
+                        </div>
 
-                    <!--Body -->
-                    <div class="slds-col slds-p-bottom_small div-input">
-                        <aura:if isTrue="{!v.contentData}">
-                            <c:RichTextTinyMCE aura:id="richText" hasEditAccess="{!v.hasEditAccess}" bodyRequired="{!v.bodyRequired}" namespace="{!v.namespace}" contentBody="{!v.contentData.Body}"/>
-                        </aura:if>
-                        <div aura:id="bodyError" class="slds-hide slds-has-error slds-form-element__help" style="color:#c23934;" id="error-message-unique-id">{!$Label.c.General_CompleteThisField}</div>
-                    </div>
-                    
-                    <!--Start Date-->
-                    <div class="slds-col slds-p-bottom_small input-start-date">
-                        <aura:if isTrue="{!v.hasEditAccess}">
-                            <lightning:input aura:id="startDate" required="{!v.startDateRequired}" label="{!$Label.c.EventContentDetailEventStartDate}" messageWhenValueMissing="{!$Label.c.General_CompleteThisField}" type="datetime-local" value="{!v.contentData.EventStartDate}"/>
-                            <aura:set attribute="else">
-                                <lightning:outputField fieldName="EventStartDate__c" />
-                            </aura:set>
-                        </aura:if>
-                    </div>
+                        <!--End Date-->
+                        <div class="slds-col slds-p-bottom_small input-end-date">
+                            <aura:if isTrue="{!v.hasEditAccess}">
+                                <lightning:input aura:id="endDate" required="{!v.endDateRequired}" label="{!$Label.c.EventContentDetailEventEndDate}" messageWhenValueMissing="{!$Label.c.General_CompleteThisField}" type="datetime-local" value="{!v.contentData.EventEndDate}" />
+                                <aura:set attribute="else">
+                                    <lightning:outputField fieldName="{!v.prefix + 'EventEndDate__c'}" />
+                                </aura:set>
+                            </aura:if>
+                        </div>
 
-                    <!--End Date-->
-                    <div class="slds-col slds-p-bottom_small input-end-date">
-                        <aura:if isTrue="{!v.hasEditAccess}">
-                            <lightning:input aura:id="endDate" required="{!v.endDateRequired}" label="{!$Label.c.EventContentDetailEventEndDate}" messageWhenValueMissing="{!$Label.c.General_CompleteThisField}" type="datetime-local" value="{!v.contentData.EventEndDate}" />
-                            <aura:set attribute="else">
-                                <lightning:outputField fieldName="EventEndDate__c" />
-                            </aura:set>
-                        </aura:if>
-                    </div>
-
-                    <!--Location Information-->
-                    <div class="slds-col slds-p-bottom_small div-input">
-                        <aura:if isTrue="{!v.hasEditAccess}">
-                            <lightning:textarea aura:id="location" value="{!v.contentData.Location}" required="{!v.locationRequired}" label="{!$Label.c.EventContentDetailEventLocationInformation}" maxlength="1500" />
-                            <aura:set attribute="else">
-                                <lightning:outputField fieldName="Location__c" />
-                            </aura:set>
-                        </aura:if>
-                    </div>
-                            
-                    <!--Feature Image-->
-                    <div class="slds-col slds-p-bottom_small div-input">
-                        <label class="slds-form-element__label slds-no-flex">
-                            <aura:if isTrue="{!v.featureRequired}"><abbr title="required" class="slds-required">*</abbr></aura:if>{!$Label.c.EventContentDetailFeatureImage}
-                        </label>
-                        <div aura:id="featureDiv" class="slds-form-element__control slds-align_absolute-center div-add-media">
-                            <aura:if isTrue="{!v.imageUrl}">
-                                <div class="img-div">
-                                    <img class="img-feature-selected" src="{!v.imageUrl}" />
-                                    <p class="img-feature-selected-desc">
-                                        <span class="slds-truncate" title="{!v.mediaElementName}">{!v.mediaElementName}</span>
-                                        
+                        <!--Location Information-->
+                        <div class="slds-col slds-p-bottom_small div-input">
+                            <aura:if isTrue="{!v.hasEditAccess}">
+                                <lightning:textarea aura:id="location" value="{!v.contentData.Location}" required="{!v.locationRequired}" label="{!$Label.c.EventContentDetailEventLocationInformation}" maxlength="1500" />
+                                <aura:set attribute="else">
+                                    <lightning:outputField fieldName="{!v.prefix + 'Location__c'}" />
+                                </aura:set>
+                            </aura:if>
+                        </div>
+                                
+                        <!--Feature Image-->
+                        <div class="slds-col slds-p-bottom_small div-input">
+                            <label class="slds-form-element__label slds-no-flex">
+                                <aura:if isTrue="{!v.featureRequired}"><abbr title="required" class="slds-required">*</abbr></aura:if>{!$Label.c.EventContentDetailFeatureImage}
+                            </label>
+                            <div aura:id="featureDiv" class="slds-form-element__control slds-align_absolute-center div-add-media">
+                                <aura:if isTrue="{!v.imageUrl}">
+                                    <div class="img-div">
+                                        <img class="img-feature-selected" src="{!v.imageUrl}" />
+                                        <p class="img-feature-selected-desc">
+                                            <span class="slds-truncate" title="{!v.mediaElementName}">{!v.mediaElementName}</span>
+                                            
+                                            <aura:if isTrue="{!v.hasEditAccess}">
+                                                <lightning:buttonIcon
+                                                    iconName="utility:delete"
+                                                    size="large"
+                                                    variant="bare"
+                                                    title="{!$Label.c.UnassignImage}"
+                                                    iconClass="slds-button slds-button_icon"
+                                                    class="img-close"
+                                                    alternativeText="{!$Label.c.UnassignImage}"
+                                                    onclick="{!c.unassignFeatureImg}" />
+                                            </aura:if>
+                                        </p>
+                                    </div>
+                                    <aura:set attribute="else">
                                         <aura:if isTrue="{!v.hasEditAccess}">
-                                            <lightning:buttonIcon
-                                                iconName="utility:delete"
-                                                size="large"
-                                                variant="bare"
-                                                title="{!$Label.c.UnassignImage}"
-                                                iconClass="slds-button slds-button_icon"
-                                                class="img-close"
-                                                alternativeText="{!$Label.c.UnassignImage}"
-                                                onclick="{!c.unassignFeatureImg}" />
+                                            <c:MediaElementManager />
+                                            <aura:set attribute="else">
+                                                <lightning:formattedText value="{!$Label.c.NoFeatureImage}" /> 
+                                            </aura:set>
                                         </aura:if>
-                                    </p>
-                                </div>
-                                <aura:set attribute="else">
-                                    <aura:if isTrue="{!v.hasEditAccess}">
-                                        <c:MediaElementManager />
-                                        <aura:set attribute="else">
-                                            <lightning:formattedText value="{!$Label.c.NoFeatureImage}" /> 
-                                        </aura:set>
-                                    </aura:if>
-                                </aura:set>
-                            </aura:if>
-                        </div>																																												
-                        <div aura:id="featureError" class="slds-hide slds-has-error slds-form-element__help" style="color:#c23934;" id="error-message-unique-id">{!$Label.c.General_CompleteThisField}</div>
-                    </div>
-
-                    <!--Choose Layout-->
-                    <div class="slds-col slds-p-bottom_small div-input">
-                        <label class="slds-form-element__label slds-no-flex">
-                            <aura:if isTrue="{!v.layoutRequired}"><abbr title="required" class="slds-required">*</abbr></aura:if>{!$Label.c.EventContentDetailChooseLayout}
-                        </label>
-                        <div aura:id="layoutDiv" class="slds-form-element__control slds-align_absolute-center div-choose-layout">
-                            <aura:if isTrue="{!and(v.layoutOptions.length > 0, not(empty(v.hasEditAccess)))}">
-                                <c:ContentLayoutPicker hasEditAccess="{!v.hasEditAccess}" selectedValue="{!v.contentData.Layout}" layoutOptions="{!v.layoutOptions}" />
-                            </aura:if>
-                            <div aura:id="layoutError" class="slds-hide slds-has-error slds-form-element__help" style="color:#c23934;" id="error-message-unique-id">{!$Label.c.General_CompleteThisField}</div>																																																   
+                                    </aura:set>
+                                </aura:if>
+                            </div>																																												
+                            <div aura:id="featureError" class="slds-hide slds-has-error slds-form-element__help" style="color:#c23934;" id="error-message-unique-id">{!$Label.c.General_CompleteThisField}</div>
                         </div>
-                    </div>
-                </lightning:recordViewForm>
+
+                        <!--Choose Layout-->
+                        <div class="slds-col slds-p-bottom_small div-input">
+                            <label class="slds-form-element__label slds-no-flex">
+                                <aura:if isTrue="{!v.layoutRequired}"><abbr title="required" class="slds-required">*</abbr></aura:if>{!$Label.c.EventContentDetailChooseLayout}
+                            </label>
+                            <div aura:id="layoutDiv" class="slds-form-element__control slds-align_absolute-center div-choose-layout">
+                                <aura:if isTrue="{!and(v.layoutOptions.length > 0, not(empty(v.hasEditAccess)))}">
+                                    <c:ContentLayoutPicker hasEditAccess="{!v.hasEditAccess}" selectedValue="{!v.contentData.Layout}" layoutOptions="{!v.layoutOptions}" />
+                                </aura:if>
+                                <div aura:id="layoutError" class="slds-hide slds-has-error slds-form-element__help" style="color:#c23934;" id="error-message-unique-id">{!$Label.c.General_CompleteThisField}</div>																																																   
+                            </div>
+                        </div>
+                    </lightning:recordViewForm>
+                </aura:if>
             </div>
         </div>
     </div>       

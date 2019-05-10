@@ -11,6 +11,7 @@
 			if (state === "SUCCESS") {
 				var data = response.getReturnValue();
 				if(data){
+					component.set("v.prefix", 				data.prefix);
 					component.set("v.namespace", 			data.namespace);
 					component.set("v.contentData", 			data.content);
 					component.set("v.visibilitySelectors", 	data.visibilitySelectors);

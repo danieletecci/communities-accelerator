@@ -28,11 +28,10 @@
         <div class="slds-col slds-p-around_small content-container" >
             <div class="slds-grid slds-grid_vertical">
                 <lightning:recordViewForm recordId="{!v.contentData.Id}" objectApiName="Content__c">
-                
                     <!--Title-->
                     <div class="slds-col slds-p-bottom_small div-input">
                         <aura:if isTrue="{!v.hasEditAccess}">
-                                <lightning:input aura:id="title" label="{!$Label.c.FAQContentDetailTitle}" required="{!v.titleRequired}" name="contentName" value="{!v.contentData.Title}" maxlength="255"/>
+                            <lightning:input aura:id="title" label="{!$Label.c.FAQContentDetailTitle}" required="{!v.titleRequired}" name="contentName" value="{!v.contentData.Title}" maxlength="255"/>
                             <aura:set attribute="else">
                                 <lightning:outputField fieldName="Title__c" />
                             </aura:set>

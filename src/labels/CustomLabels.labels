@@ -1105,6 +1105,14 @@
         <value>Cancel</value>
     </labels>
     <labels>
+        <fullName>General_Preview</fullName>
+        <categories>General</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Preview</shortDescription>
+        <value>Preview</value>
+    </labels>
+    <labels>
         <fullName>General_Close</fullName>
         <categories>General</categories>
         <language>en_US</language>

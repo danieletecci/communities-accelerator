@@ -64,11 +64,10 @@
                         </aura:if>
                     </div>
                     <div class="slds-col slds-p-bottom_small div-input">
-                        <aura:if isTrue="{!v.contentData}">
+                        <aura:if isTrue="{!and(v.contentData, v.hasEditAccess)}">
                             <c:RichTextTinyMCE aura:id="richText" hasEditAccess="{!v.hasEditAccess}" bodyRequired="{!v.bodyRequired}" namespace="{!v.namespace}" contentBody="{!v.contentData.Body}"/>
                         </aura:if>
                         <div aura:id="bodyError" class="slds-hide slds-has-error slds-form-element__help" style="color:#c23934;" id="error-message-unique-id">{!$Label.c.General_CompleteThisField}</div>
-                        </aura:if>
                     </div>
                     <div class="slds-col slds-p-bottom_small div-input">
                         <label class="slds-form-element__label slds-no-flex">

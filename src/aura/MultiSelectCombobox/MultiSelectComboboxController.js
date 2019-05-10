@@ -11,12 +11,16 @@
         helper.setValueText(component, selectedOptions.length);
     },
     openDropdown:function(component,event,helper){
-        $A.util.addClass(component.find('dropdown'),'slds-is-open');
-        $A.util.removeClass(component.find('dropdown'),'slds-is-close');
+        if(component.get("v.hasEditAccess")){
+            $A.util.addClass(component.find('dropdown'),'slds-is-open');
+            $A.util.removeClass(component.find('dropdown'),'slds-is-close');
+        }
     },
     closeDropDown:function(component,event,helper){
-        $A.util.addClass(component.find('dropdown'),'slds-is-close');
-        $A.util.removeClass(component.find('dropdown'),'slds-is-open');
+        if(component.get("v.hasEditAccess")){
+            $A.util.addClass(component.find('dropdown'),'slds-is-close');
+            $A.util.removeClass(component.find('dropdown'),'slds-is-open');
+        }
     },
     selectOption:function(component,event,helper){        
         var value = event.currentTarget.id.split("#BP#")[0];

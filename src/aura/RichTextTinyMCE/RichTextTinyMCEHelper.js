@@ -45,6 +45,9 @@
             			break;
             		case "vfWindow" :
             			paramters.data.postMessage("prova", component.get("v.vHost"));
+            		case "showpreview" :
+            			helper.showRichTextPreview(component);
+            			break;
             	}
             }
         }, false);
@@ -55,5 +58,8 @@
 	},
 	showImageSelector : function(component){
 		component.set("v.meHelper", !component.get("v.meHelper"));
+	},
+	showRichTextPreview : function(component){
+		component.set("v.rtpHelper", !component.get("v.rtpHelper"));
 	}
 })

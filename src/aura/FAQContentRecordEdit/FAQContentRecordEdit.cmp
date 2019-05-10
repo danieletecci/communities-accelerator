@@ -9,10 +9,10 @@
     <aura:handler name="URLEvent" event="c:MediaElementManagerEvent" action="{!c.handleMediaElementEvent}"/>
     
     <!-- ATTRIBUTES -->
-    <aura:attribute name="contentData" 			  type="Object" />
-    <aura:attribute name="imageUrl" 			  type="String" />
+    <aura:attribute name="contentData" 			  type="Object"   />
+    <aura:attribute name="imageUrl" 			  type="String"   />
     <aura:attribute name="visibilitySelectors"    type="List"     />
-    <aura:attribute name="security"               type="Object"   />
+    <aura:attribute name="hasEditAccess"          type="Boolean"  />
     <aura:attribute name="mediaElementId"         type="String"   />
     <aura:attribute name="mediaElementName"       type="String"   />
     <aura:attribute name="namespace"              type="String"   />
@@ -23,23 +23,30 @@
 
     <div class="slds-grid">
         <div class="slds-m-around_medium slds-border_top slds-border_bottom slds-border_right slds-border_left">
-            <c:ContentDetailColumnFields objectWrapper="{!v.visibilitySelectors}" />
+            <c:ContentDetailColumnFields hasEditAccess="{!v.hasEditAccess}" objectWrapper="{!v.visibilitySelectors}" />
         </div>
         <div class="slds-col slds-p-around_small content-container" >
             <div class="slds-grid slds-grid_vertical">
+                <lightning:recordViewForm recordId="{!v.contentData.Id}" objectApiName="Content__c">
                 
-                <!--Title-->
-                <div class="slds-col slds-p-bottom_small div-input">
-                    <lightning:input aura:id="title" label="{!$Label.c.FAQContentDetailTitle}" required="{!v.titleRequired}" name="contentName" value="{!v.contentData.Title}" maxlength="255"/>
-                </div>
+                    <!--Title-->
+                    <div class="slds-col slds-p-bottom_small div-input">
+                        <aura:if isTrue="{!v.hasEditAccess}">
+                                <lightning:input aura:id="title" label="{!$Label.c.FAQContentDetailTitle}" required="{!v.titleRequired}" name="contentName" value="{!v.contentData.Title}" maxlength="255"/>
+                            <aura:set attribute="else">
+                                <lightning:outputField fieldName="Title__c" />
+                            </aura:set>
+                        </aura:if>
+                    </div>
 
-                <!--Body-->
-                <div class="slds-col slds-p-bottom_small div-input">
-                    <aura:if isTrue="{!v.contentData}">
-                        <c:RichTextTinyMCE aura:id="richText" bodyRequired="{!v.bodyRequired}" namespace="{!v.namespace}" contentBody="{!v.contentData.Body}"/>
-                    </aura:if>
-                    <div aura:id="bodyError" class="slds-hide slds-has-error slds-form-element__help" style="color:#c23934;" id="error-message-unique-id">{!$Label.c.General_CompleteThisField}</div>
-                </div>
+                    <!--Body-->
+                    <div class="slds-col slds-p-bottom_small div-input">
+                        <aura:if isTrue="{!v.contentData}">
+                            <c:RichTextTinyMCE aura:id="richText" hasEditAccess="{!v.hasEditAccess}" bodyRequired="{!v.bodyRequired}" namespace="{!v.namespace}" contentBody="{!v.contentData.Body}"/>
+                        </aura:if>
+                        <div aura:id="bodyError" class="slds-hide slds-has-error slds-form-element__help" style="color:#c23934;" id="error-message-unique-id">{!$Label.c.General_CompleteThisField}</div>
+                    </div>
+                </lightning:recordViewForm>
             </div>
         </div>
     </div>

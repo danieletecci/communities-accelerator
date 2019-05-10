@@ -18,9 +18,10 @@
 							placeholder="{!data.placeholder}"
 							oneItemSelectedText="{!data.label == 'Tags' ? $Label.c.MultiComboboxOneTagSelected : $Label.c.MultiComboboxOneAudienceSelected}"
 							moreItemsSelectedText="{!data.label == 'Tags' ? $Label.c.MultiComboboxMoreTagsSelected : $Label.c.MultiComboboxMoreAudiencesSelected}"
+							hasEditAccess="{!v.hasEditAccess}"
 						/>
 				    	<aura:set attribute="else">
-					    	<lightning:combobox name="{!data.apiName}" label="{!data.label}" value="{!data.selectedValue}" placeholder="{!data.placeholder}" options="{! data.values }" onchange="{! c.onChange }"/>
+					    	<lightning:combobox name="{!data.apiName}" disabled="{!not(v.hasEditAccess)}" label="{!data.label}" value="{!data.selectedValue}" placeholder="{!data.placeholder}" options="{! data.values }" onchange="{! c.onChange }"/>
 					    </aura:set>
 					</aura:if>
 				</div>

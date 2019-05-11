@@ -61,7 +61,7 @@
                             <aura:if isTrue="{!v.hasEditAccess}">
                                 <lightning:textarea aura:id="extract" name="contentExtract" value="{!v.contentData.Extract}" required="{!v.extractRequired}" label="{!$Label.c.ArticleContentDetailExtract}" maxlength="1500" />
                                 <aura:set attribute="else">
-                                    <lightning:outputField fieldName="Extract__c" />
+                                    <lightning:outputField fieldName="{! v.prefix + 'Extract__c'}" />
                                 </aura:set>
                             </aura:if>
                         </div>

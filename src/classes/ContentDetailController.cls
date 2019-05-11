@@ -69,11 +69,16 @@ public with sharing class ContentDetailController {
             Boolean hasContentEditPublishedPerm = SecurityUtils.hasCustomPermission(GeneralUtils.prefix('[CMS]ContentEditPublished'));
             Boolean hasContentEditScheduledPerm = SecurityUtils.hasCustomPermission(GeneralUtils.prefix('[CMS]ContentEditScheduled'));
             Boolean hasEditAccess = ura.HasEditAccess && ((contentRecord.Status__c == 'Published') ? hasContentEditPublishedPerm : ((contentRecord.Status__c == 'Scheduled') ? hasContentEditScheduledPerm : true));
+            
             List<VisibilitySelectorWrapper> visibilitySelectorList = new List<VisibilitySelectorWrapper>();
             visibilitySelectorList.add(getCategorySelectorWrapper(clusterIds, contentRecord.category__c, hasEditAccess));
             visibilitySelectorList.add(getTagSelectorWrapper(clusterIds, tagIds, hasEditAccess));
             visibilitySelectorList.add(getAudienceSelectorWrapper(contentRecord.Cluster__c, audiencesExternalIds, hasEditAccess));
-            List<String> bannerFrameTypes = getBannerFrameTypes();
+            
+            List<String> bannerFrameTypes = new List<String>();
+            if(contentRecord.RecordType.DeveloperName.equalsIgnoreCase('Banner')){
+                bannerFrameTypes = getBannerFrameTypes();   
+            }
 
             data = new DataWrapper(contentRecord, hasEditAccess, visibilitySelectorList, UserInfo.getTimeZone().getID(), bannerFrameTypes);
         } catch(Exception e) {

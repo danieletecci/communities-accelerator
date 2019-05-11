@@ -21,13 +21,13 @@
     <aura:attribute name="prefix"                 type="String"     />
 
     <!-- DESIGN ATTRIBUTES -->
-    <aura:attribute name="bannerTypeRequired"   type="Boolean" access="global" />
-    <aura:attribute name="featureRequired"      type="Boolean" access="global" />
-    <aura:attribute name="titleRequired"        type="Boolean" access="global" />
-    <aura:attribute name="extractRequired"      type="Boolean" access="global" />
-    <aura:attribute name="buttonRequired"       type="Boolean" access="global" />
-    <aura:attribute name="linkRequired"         type="Boolean" access="global" />
-    <aura:attribute name="layoutRequired"       type="Boolean" access="global" />
+    <aura:attribute name="bannerTypeRequired"   type="Boolean" default="true" access="global" />
+    <aura:attribute name="featureRequired"      type="Boolean" default="true" access="global" />
+    <aura:attribute name="titleRequired"        type="Boolean" default="true" access="global" />
+    <aura:attribute name="extractRequired"      type="Boolean" default="true" access="global" />
+    <aura:attribute name="buttonRequired"       type="Boolean" default="true" access="global" />
+    <aura:attribute name="linkRequired"         type="Boolean" default="true" access="global" />
+    <aura:attribute name="layoutRequired"       type="Boolean" default="true" access="global" />
 
     <div class="slds-grid">
         <div class="slds-m-around_medium slds-border_top slds-border_bottom slds-border_right slds-border_left">

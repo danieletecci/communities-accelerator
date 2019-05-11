@@ -20,7 +20,7 @@
 
                     var frameType = component.get("v.contentData.BannerFrameType");
                     if(!frameType){
-						component.set("v.contentData.BannerFrameType",data.bannerFrameTypes[0]);                        
+						component.set("v.contentData.BannerFrameType", data.bannerFrameTypes[0]);                        
                     }
 
                     if(data.content.MediaElementAssignments != null && data.content.MediaElementAssignments.length > 0){

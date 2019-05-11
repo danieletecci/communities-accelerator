@@ -20,7 +20,7 @@
 
     <!-- DESIGN ATTRIBUTES -->
     <aura:attribute name="titleRequired"    type="Boolean" default="true" access="global"/>
-    <aura:attribute name="bodyRequired"     type="Boolean" access="global" /> 
+    <aura:attribute name="bodyRequired"     type="Boolean" default="true" access="global" /> 
 
     <div class="slds-grid">
         <div class="slds-m-around_medium slds-border_top slds-border_bottom slds-border_right slds-border_left">

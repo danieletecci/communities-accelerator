@@ -20,6 +20,9 @@ public with sharing class ContentDetailHeaderController {
         @AuraEnabled public Boolean     hasEditAccess;
         @AuraEnabled public Boolean     hasCreateContentPermission;
         @AuraEnabled public Boolean     hasDeleteAccess;
+        @AuraEnabled public Boolean     canPublish;
+        @AuraEnabled public Boolean     canSchedule;
+        @AuraEnabled public Boolean     canCreateTemplate;
 
         public SecurityWrapper(Boolean hasEditAccess, Boolean hasDeleteAccess, Boolean hasCreateContentPermission){
             this.hasEditAccess              = hasEditAccess;
@@ -32,15 +35,23 @@ public with sharing class ContentDetailHeaderController {
     public static DataWrapper getData(String recordId){
         Content__c content = getContentData(recordId);
         UserRecordAccess ura = SecurityUtils.getUserRecordAccess(recordId);
+        
         Boolean hasContentEditPublishedPerm = SecurityUtils.hasCustomPermission(GeneralUtils.prefix('[CMS]ContentEditPublished'));
         Boolean hasContentEditScheduledPerm = SecurityUtils.hasCustomPermission(GeneralUtils.prefix('[CMS]ContentEditScheduled'));
+        Boolean hasContentCreateTemplatePerm = SecurityUtils.hasCustomPermission(GeneralUtils.prefix('[CMS]ContentCreateTemplate'));
         Boolean isObjectCreateable = SecurityUtils.isObjectCreateable(GeneralUtils.prefix('[CMS]Content__c'));
+        
         SecurityWrapper sw = new SecurityWrapper(
             ura.HasEditAccess && ((content.Status__c == Label.ContentDetailPublished) ? hasContentEditPublishedPerm : ((content.Status__c == Label.ContentDetailScheduled) ? hasContentEditScheduledPerm : true)),
             ura.HasDeleteAccess, 
             isObjectCreateable
         );
+        sw.canPublish = hasContentEditPublishedPerm;
+        sw.canSchedule = hasContentEditScheduledPerm;
+        sw.canCreateTemplate = hasContentCreateTemplatePerm;
+
         String tzName = UserInfo.getTimeZone().getDisplayName();
+        
         return new DataWrapper(
             content,
             UserInfo.getTimeZone().getID(), 

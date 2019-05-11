@@ -45,10 +45,7 @@
 		action.setCallback(this, function(response){
 			var state = response.getState();
 			if (state === "SUCCESS") {
-				var newName = response.getReturnValue();
-				var contentData = component.get("v.contentData");
-				contentData.Name = newName;
-				component.set("v.contentData", contentData);
+				component.set("v.contentData.Name", response.getReturnValue());
 				component.set("v.isNameEdit", false);
 			} else if (state === "ERROR") {
 				let errors = response.getError();
@@ -79,8 +76,7 @@
 				var status = response.getReturnValue();
 				var contentData = component.get("v.contentData");
 				helper.showCorrectMessage(component, contentData.Status, status);
-				contentData.Status = status;
-				component.set("v.contentData", contentData);
+				component.set("v.contentData.Status", status);
 			} else if (state === "ERROR") {
 				let errors = response.getError();
 				let message = 'Unknown error';

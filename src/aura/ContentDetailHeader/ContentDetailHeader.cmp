@@ -63,31 +63,31 @@
 								<lightning:button label="{!$Label.c.General_Save}" onclick="{! c.doSave}" />
 							</aura:if>
 							<!-- <lightning:button label="{!$Label.c.ContentDetailSchedule}" /> -->
-							<aura:if isTrue="{!and(v.contentData.IsTemplate,v.contentData.Status == ($Label.c.ContentDetailPublished), v.security.hasCreateContentPermission)}">
+							<aura:if isTrue="{!and(and(v.contentData.IsTemplate,v.contentData.Status == ($Label.c.ContentDetailPublished), v.security.hasCreateContentPermission), v.security.canCreateTemplate)}">
 								<lightning:button label="{!$Label.c.CreateFromTemplateButton}"  onclick="{! c.doCreateFromTemplate}" />
 							</aura:if>
 							<aura:if isTrue="{!and((v.contentData.Status) == ($Label.c.ContentDetailArchived), v.security.hasEditAccess)}">
 								<lightning:button label="{!$Label.c.ContentDetailUnarchive}" onclick="{! c.doDraftUpdate}" />
 							</aura:if>
-							<aura:if isTrue="{!and(v.contentData.Status != $Label.c.ContentDetailPublished, v.security.hasDeleteAccess) ||
+							<aura:if isTrue="{!and(v.security.hasEditAccess, and(v.contentData.Status != $Label.c.ContentDetailPublished, v.security.hasDeleteAccess)) ||
 								and((v.contentData.Status) == ($Label.c.ContentDetailPublished),  v.security.hasEditAccess) ||
 								and((v.contentData.Status) == ($Label.c.ContentDetailScheduled), v.security.hasEditAccess)}">
 								<lightning:buttonMenu alternativeText="Show menu" onselect="{! c.handleMenuSelect }" class="slds-button_last">
-									<aura:if isTrue="{!and(v.contentData.Status != $Label.c.ContentDetailPublished, v.security.hasDeleteAccess)}">
+									<aura:if isTrue="{!and(v.security.hasEditAccess, v.security.hasDeleteAccess)}">
 										<lightning:menuItem label="{!$Label.c.General_Delete}" value="delete" />
 									</aura:if>
-									<aura:if isTrue="{!and((v.contentData.Status) == ($Label.c.ContentDetailPublished),  v.security.hasEditAccess)}">
+									<aura:if isTrue="{!and(and((v.contentData.Status) == ($Label.c.ContentDetailPublished), v.security.hasEditAccess), v.security.canPublish)}">
 										<lightning:menuItem label="{!$Label.c.ContentDetailUnpublish}" value="unpublish" />
 										<lightning:menuItem label="{!$Label.c.ContentDetailArchive}" value="archive" />
 									</aura:if>
-									<aura:if isTrue="{!and((v.contentData.Status) == ($Label.c.ContentDetailScheduled), v.security.hasEditAccess)}">
+									<aura:if isTrue="{!and(and((v.contentData.Status) == ($Label.c.ContentDetailScheduled), v.security.hasEditAccess), v.security.canSchedule)}">
 										<lightning:menuItem label="{!$Label.c.ContentDetailUnschedule}" value="unschedule" />
 									</aura:if>
 								</lightning:buttonMenu>
 							</aura:if>
 						</lightning:buttonGroup>
 					</div>
-					<aura:if isTrue="{!and((v.contentData.Status != $Label.c.ContentDetailArchived), v.security.hasEditAccess)}">
+					<aura:if isTrue="{!and(and((v.contentData.Status != $Label.c.ContentDetailArchived), v.security.hasEditAccess), v.security.canPublish)}">
 						<div class="slds-page-header__control">
 							<lightning:button label="{!$Label.c.ContentDetailPublish}" variant="brand" title="{!$Label.c.ContentDetailPublish}" onclick="{! c.doPublishContent }"/>
 						</div>
@@ -133,17 +133,18 @@
 		</div>
 	</div>
 
-    <aura:if isTrue="{!v.contentData}">
-		<c:ContentPublishModal aura:id="contentModalPublish" content="{!v.contentData}" hasDetailComponent="{!v.hasDetailComponent}"/>
-	</aura:if>
+	<aura:if isTrue="{!v.security.hasEditAccess}">
+	    <aura:if isTrue="{!and(v.contentData, v.security.canPublish)}">
+			<c:ContentPublishModal aura:id="contentModalPublish" content="{!v.contentData}" hasDetailComponent="{!v.hasDetailComponent}"/>
+		</aura:if>
 
-									  
-	<div class="slds-text-align_center"> 
-		{!v.confirmationModal}
-	</div>
-		
-    <aura:if isTrue="{!v.contentData.Id != null}">
-    	<c:createNewContentModal aura:id="newContentModal" oncontentcreated="{!c.doGoToContent}" recordTypeId="{!v.contentData.RecordTypeId}" templateId="{!v.contentData.Id}"></c:createNewContentModal>
+										  
+		<div class="slds-text-align_center"> 
+			{!v.confirmationModal}
+		</div>
+			
+	    <aura:if isTrue="{!and(v.contentData.Id != null, v.security.hasCreateContentPermission)}">
+	    	<c:createNewContentModal aura:id="newContentModal" oncontentcreated="{!c.doGoToContent}" recordTypeId="{!v.contentData.RecordTypeId}" templateId="{!v.contentData.Id}"></c:createNewContentModal>
+	    </aura:if>
     </aura:if>
-    
 </aura:component>

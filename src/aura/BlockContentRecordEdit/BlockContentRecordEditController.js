@@ -6,11 +6,9 @@
 		var status = event.getParam("status");
 		var contentId = event.getParam("contentId");
 		var recordId = component.get("v.contentData.Id");
-		var content = component.get('v.contentData');
-		content.PublishStartDate = event.getParam("publishStartDate");
-		content.PublishEndDate = event.getParam("publishEndDate");
-		component.set('v.contentData', content);
 		if(recordId == contentId){
+			component.set("v.contentData.PublishStartDate", event.getParam("publishStartDate"));		
+	        component.set("v.contentData.PublishEndDate", event.getParam("publishEndDate"));
 			event.stopPropagation();
 			if(status == $A.get("$Label.c.ContentDetailScheduled") || status == $A.get("$Label.c.ContentDetailPublished")){
 				helper.validateRequiredFields(component, function(){
@@ -37,8 +35,7 @@
 			component.set("v.isExtIdEdit", false);
         }
         if(isEscapeKey){
-        	contentData.ExternalId = component.get("v.oldExtId");
-        	component.set("v.contentData", contentData);
+        	component.set("v.contentData.ExternalId", component.get("v.oldExtId"));
             component.set("v.isExtIdEdit", false);
         }
 	},

@@ -6,10 +6,8 @@
 		var status = event.getParam("status");
 		var contentId = event.getParam("contentId");
 		var recordId = component.get("v.contentData.Id");
-		var content = component.get('v.contentData');
-		content.PublishStartDate = event.getParam("publishStartDate");
-		content.PublishEndDate = event.getParam("publishEndDate");
-		component.set('v.contentData', content);
+		component.set("v.contentData.PublishStartDate", event.getParam("publishStartDate"));		
+        component.set("v.contentData.PublishEndDate", event.getParam("publishEndDate"));
 		if(recordId == contentId){
 			event.stopPropagation();
 			if(status == $A.get("$Label.c.ContentDetailScheduled") || status == $A.get("$Label.c.ContentDetailPublished")){

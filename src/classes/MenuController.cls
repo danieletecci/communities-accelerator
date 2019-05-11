@@ -65,12 +65,18 @@ public class MenuController {
 		cw.clusterId = clusterId;
 		cw.device = device;
 
-		cw.navWrapper = getWrapperFromComponent(component, cw.clusterId);
+		String displayOn;
+        if(device.equals('DESKTOP')){
+            displayOn = 'Desktop';
+        }else{
+            displayOn = 'Mobile';
+        }
+		cw.navWrapper = getWrapperFromComponent(component, cw.clusterId, displayOn);
 		return cw;
 	}
 
 	@auraEnabled
-	public static List<NavWrapper> getWrapperFromComponent(Component__c component, String clusterId){
+	public static List<NavWrapper> getWrapperFromComponent(Component__c component, String clusterId, String displayOn){
 		// Busqueda de Menus con Assignments al Component
 		List<MenuAssignment__c> menuAssignments = [SELECT Id, Component__c, Component__r.Cluster__c, Menu__c, Menu__r.Cluster__c 
 		FROM MenuAssignment__c WHERE Component__c =: component.Id ORDER BY Order__c ASC];
@@ -82,7 +88,7 @@ public class MenuController {
 			}
 		}
 		List<NavWrapper> menuWrappers = new List<NavWrapper>();
-		List<Menu__c> menuList = getMenuList(menuIds);
+		List<Menu__c> menuList = getMenuList(menuIds, displayOn);
 		for(String menuId : MenuIds){
             NavWrapper newWrapper = getMenuWrapper(menuId, menuList, parentClusterIds);
             if(newWrapper != null){
@@ -94,12 +100,14 @@ public class MenuController {
 
 
 	// Traemos todos los SubMenus relacionados a los Menus del Component	
-	public static List<Menu__c> getMenuList(List<String> menuIds){
+	public static List<Menu__c> getMenuList(List<String> menuIds, String displayOn){
 		List<Menu__c> menuList = [SELECT Id, MenuLabel__c, ComponentName__c, ParentMenu__c, Cluster__c, Behaviour__c, Navigation__r.URL__c, MenuIcon__c, Audience__c, Audience__r.ReferenceAudienceExternalIds__c FROM Menu__c 
-					WHERE Id =: menuIds 
+					WHERE (Id =: menuIds 
 					OR ParentMenu__c =: menuIds 
     				OR ParentMenu__r.ParentMenu__c =: menuIds 
-    				OR ParentMenu__r.ParentMenu__r.ParentMenu__c =: menuIds];
+    				OR ParentMenu__r.ParentMenu__r.ParentMenu__c =: menuIds)
+                    AND (DisplayOn__c =: displayOn
+                         OR DisplayOn__c = 'Both')];
 
     	AudienceUtils.filterRecords(UserInfo.getUserId(), menuList, '[CMS]Audience__c');
 

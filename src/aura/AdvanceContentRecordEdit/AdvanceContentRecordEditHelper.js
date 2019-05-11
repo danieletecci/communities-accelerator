@@ -165,8 +165,8 @@
 		var fields = [];
 		var content = component.get("v.contentData");
 		
-		this.addField(component.get("v.bodyRequired"), fields, $A.get("$Label.c.ArticleContentDetailBody"), false, null, null, component.find("bodyError"), content.Body);
-
+		this.addField(component.get("v.bodyRequired"), fields, $A.get("$Label.c.ArticleContentDetailBody"), false, null, null, component.find("bodyError"), content.HTMLContent);
+		
 		return fields;
 	},
 	addField : function(isRequired, fields, label, isStandard, input, div, error, value){

@@ -482,6 +482,14 @@
     <searchLayouts/>
     <sharingModel>ControlledByParent</sharingModel>
     <validationRules>
+        <fullName>Confirmation_Only_Text</fullName>
+        <active>true</active>
+        <description>Only elements of text type can have confirmation</description>
+        <errorConditionFormula>!ISPICKVAL(FieldType__c, &apos;Text&apos;) &amp;&amp;  ConfirmationRequired__c == true</errorConditionFormula>
+        <errorDisplayField>ConfirmationRequired__c</errorDisplayField>
+        <errorMessage>Only text type elements can require confirmation</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>NoDefaultValue</fullName>
         <active>true</active>
         <description>This Validation Rule prevents the User to save a Default value when the field type for the Form Element is equal to &quot;Date&quot;.</description>

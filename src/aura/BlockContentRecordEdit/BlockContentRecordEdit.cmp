@@ -1,5 +1,8 @@
 <aura:component implements="flexipage:availableForAllPageTypes,force:appHostable,lightning:isUrlAddressable,force:hasRecordId" controller="ContentDetailController" access="global">
 
+    <!-- STYLES -->
+    <ltng:require styles="{!$Resource.multilineToastCSS}" />
+
     <!-- HANDLERS -->
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     <aura:handler event="c:ContentUpsertEvent" action="{!c.handleUpsertEvent}"/>
@@ -10,66 +13,106 @@
     <aura:attribute name="imageUrl"               type="String"   />
     <aura:attribute name="layoutOptions"          type="List"     />
     <aura:attribute name="visibilitySelectors"    type="List"     />
-    <aura:attribute name="security"               type="Object"   />
+    <aura:attribute name="hasEditAccess"          type="Boolean"  />
     <aura:attribute name="timeZone"               type="String"   />
     <aura:attribute name="mediaElementId"         type="String"   />
     <aura:attribute name="mediaElementName"       type="String"   />
     <aura:attribute name="isExtIdEdit"            type="Boolean"      default="false" />
-    <aura:attribute name="oldExtId"               type="String"    />
+    <aura:attribute name="oldExtId"               type="String"   />
+    <aura:attribute name="prefix"                 type="String"     />
+
+    <!-- DESIGN ATTRIBUTES -->
+    <aura:attribute name="titleRequired"    type="Boolean" default="true" access="global"/>
+    <aura:attribute name="extractRequired"  type="Boolean" access="global" />
+    <aura:attribute name="featureRequired"  type="Boolean" access="global" />
+    <aura:attribute name="linkRequired"     type="Boolean" access="global" />
 
     <!-- BODY -->
     <div class="slds-grid">
         <div class="slds-m-around_medium slds-border_top slds-border_bottom slds-border_right slds-border_left">
-            <c:ContentDetailColumnFields objectWrapper="{!v.visibilitySelectors}" />
+            <c:ContentDetailColumnFields hasEditAccess="{!v.hasEditAccess}" objectWrapper="{!v.visibilitySelectors}" />
         </div>
         <div class="slds-col slds-p-around_small content-container" >
             <div class="slds-grid slds-grid_vertical">
-                
-                <div class="slds-col slds-p-bottom_small div-input">
-                    <!-- If is Template -->
-                    <aura:if isTrue="{!v.contentData.IsTemplate}">
-                        <div class="template-desc-div">
-                            <lightning:textarea label="{!$Label.c.ContentDetailTemplateDescription}" name="templateDescription" value="{!v.contentData.TemplateDescription}" aura:id="templateDescription"/>
-                        </div>                    
-                    </aura:if>
-                </div>
-
-                <!--Title-->
-                <div class="slds-col slds-p-bottom_small div-input">
-                    <lightning:input label="{!$Label.c.ContentDetailTitle}" name="contentName" value="{!v.contentData.Title}" aura:id="contentName" maxlength="255" />
-                </div>
-                
-                <!--Extract-->
-                <div class="slds-col slds-p-bottom_small div-input">
-                    <ui:inputTextArea label="{!$Label.c.ContentDetailExtract}" aura:id="blockExtract" value="{!v.contentData.Extract}"  maxlength="1500"/>
-                </div>
-
-                <!--Feature Image-->
-                <div class="slds-col slds-p-bottom_small div-input">
-                    <ui:outputText value="{!$Label.c.ContentDetailFeatureImage}"/>
-                    <div class="slds-form-element__control slds-align_absolute-center div-add-media">
-                        <aura:if isTrue="{!v.imageUrl}">
-                            <div class="img-div">
-                                <img class="img-feature-selected" src="{!v.imageUrl}" />
-                                <p class="img-feature-selected-desc">
-                                    <span class="slds-truncate" title="{!v.mediaElementName}">{!v.mediaElementName}</span>
-                                    <lightning:buttonIcon iconName="utility:delete" size="large" variant="bare" title="{!$Label.c.UnassignImage}" iconClass="slds-button slds-button_icon" class="img-close" alternativeText="{!$Label.c.UnassignImage}" onclick="{!c.unassignFeatureImg}" />
-                                </p>
+                <aura:if isTrue="{!not(empty(v.contentData))}">
+                    <lightning:recordViewForm recordId="{!v.contentData.Id}" objectApiName="{!v.prefix + 'Content__c'}">
+                        <aura:if isTrue="{!v.contentData.IsTemplate}">
+                            <div class="slds-col slds-p-bottom_small div-input">
+                                <aura:if isTrue="{!v.hasEditAccess}">
+                                <!-- If is Template -->
+                                    <div class="template-desc-div">
+                                        <lightning:textarea label="{!$Label.c.ContentDetailTemplateDescription}" name="templateDescription" value="{!v.contentData.TemplateDescription}" aura:id="templateDescription"/>
+                                    </div>
+                                    <aura:set attribute="else">
+                                        <lightning:outputField fieldName="{!v.prefix + 'TemplateDescription__c'}" />
+                                    </aura:set>
+                                </aura:if>
                             </div>
-                            <aura:set attribute="else">
-                                <c:MediaElementManager />
-                            </aura:set>
                         </aura:if>
-                    </div>
-                </div>
 
-                <!--Link-->
-                <div class="slds-col slds-p-bottom_small div-link-input">
-                    <aura:if isTrue="{!v.contentData.Id}">
-                        <c:LookupInput objectAPIName="[CMS]Navigation__c" IconName="standard:link"
-                        selectedRecordId="{!v.contentData.LinkDetail}" label="{!$Label.c.ContentDetailLink}" />
-                    </aura:if>
-                </div>
+                        <!--Title-->
+                        <div class="slds-col slds-p-bottom_small div-input">
+                            <aura:if isTrue="{!v.hasEditAccess}">
+                                <lightning:input aura:id="title" label="{!$Label.c.ContentDetailTitle}" required="{!v.titleRequired}" name="contentName" value="{!v.contentData.Title}" maxlength="255"/>
+                                <aura:set attribute="else">
+                                    <lightning:outputField fieldName="{!v.prefix + 'Title__c'}" />
+                                </aura:set>
+                            </aura:if>
+                        </div>
+                        
+                        <!--Extract-->
+                        <div class="slds-col slds-p-bottom_small div-input">
+                            <aura:if isTrue="{!v.hasEditAccess}">
+                                <lightning:textarea aura:id="extract" name="contentExtract" value="{!v.contentData.Extract}" required="{!v.extractRequired}" label="{!$Label.c.ContentDetailExtract}" maxlength="1500" />
+                                <aura:set attribute="else">
+                                    <lightning:outputField fieldName="{!v.prefix + 'Extract__c'}" />
+                                </aura:set>
+                            </aura:if>
+                        </div>
+
+                        <!--Feature Image-->
+                        <div class="slds-col slds-p-bottom_small div-input">
+                            <label class="slds-form-element__label slds-no-flex">
+                                <aura:if isTrue="{!v.featureRequired}"><abbr title="required" class="slds-required">*</abbr></aura:if>{!$Label.c.ContentDetailFeatureImage}
+                            </label>
+                            <div aura:id="featureDiv" class="slds-form-element__control slds-align_absolute-center div-add-media">
+                                <aura:if isTrue="{!v.imageUrl}">
+                                    <div class="img-div">
+                                        <img class="img-feature-selected" src="{!v.imageUrl}" />
+                                        <p class="img-feature-selected-desc">
+                                            <span class="slds-truncate" title="{!v.mediaElementName}">{!v.mediaElementName}</span>
+                                            <aura:if isTrue="{!v.hasEditAccess}">
+                                                <lightning:buttonIcon iconName="utility:delete" size="large" variant="bare" title="{!$Label.c.UnassignImage}" iconClass="slds-button slds-button_icon" class="img-close" alternativeText="{!$Label.c.UnassignImage}" onclick="{!c.unassignFeatureImg}" />
+                                            </aura:if>
+                                        </p>
+                                    </div>
+                                    <aura:set attribute="else">
+                                        <aura:if isTrue="{!v.hasEditAccess}">
+                                            <c:MediaElementManager />
+                                            <aura:set attribute="else">
+                                                <lightning:formattedText value="{!$Label.c.NoFeatureImage}" /> 
+                                            </aura:set>
+                                        </aura:if>
+                                    </aura:set>
+                                </aura:if>
+                            </div>
+                            <div aura:id="featureError" class="slds-hide slds-has-error slds-form-element__help" style="color:#c23934;" id="error-message-unique-id">{!$Label.c.General_CompleteThisField}</div>
+                        </div>
+
+                        <!--Link-->
+                        <div class="slds-col slds-p-bottom_small div-link-input">
+                            <aura:if isTrue="{!v.contentData.Id}">
+                                <aura:if isTrue="{!v.hasEditAccess}">
+                                    <c:LookupInput aura:id="linkDetail" isRequired="{!v.linkRequired}" objectAPIName="[CMS]Navigation__c" IconName="standard:link" 
+                                        selectedRecordId="{!v.contentData.LinkDetail}" label="{!$Label.c.ContentDetailLink}" />
+                                    <aura:set attribute="else">
+                                        <lightning:outputField fieldName="{!v.prefix + 'LinkDetail__c'}" />
+                                    </aura:set>
+                                </aura:if>
+                            </aura:if>
+                        </div>
+                    </lightning:recordViewForm>
+                </aura:if>
             </div>
         </div>
     </div>       

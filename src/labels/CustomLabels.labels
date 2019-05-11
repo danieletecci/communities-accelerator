@@ -1105,6 +1105,14 @@
         <value>Cancel</value>
     </labels>
     <labels>
+        <fullName>General_Preview</fullName>
+        <categories>General</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Preview</shortDescription>
+        <value>Preview</value>
+    </labels>
+    <labels>
         <fullName>General_Close</fullName>
         <categories>General</categories>
         <language>en_US</language>
@@ -1511,6 +1519,30 @@
         <protected>false</protected>
         <shortDescription>Text showed when only a audience is selected</shortDescription>
         <value>{0} audience selected</value>
+    </labels>
+    <labels>
+        <fullName>ReviewFields</fullName>
+        <categories>Content Detail</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Review the following fields</shortDescription>
+        <value>Review the following fields</value>
+    </labels>
+    <labels>
+        <fullName>MissingRequiredFields</fullName>
+        <categories>Content Detail</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Missing required fields</shortDescription>
+        <value>Missing required fields</value>
+    </labels>
+    <labels>
+        <fullName>NoFeatureImage</fullName>
+        <categories>Content Detail</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No image selected</shortDescription>
+        <value>No image selected</value>
     </labels>
     <labels>
         <fullName>MultiComboboxOneTagSelected</fullName>

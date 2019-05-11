@@ -11,12 +11,14 @@
 		content.PublishEndDate = event.getParam("publishEndDate");
 		component.set('v.contentData', content);
 		if(recordId == contentId){
-			var content = component.get("v.contentData");
-			content.PublishStartDate = event.getParam("publishStartDate");
-			content.PublishEndDate = event.getParam("publishEndDate");
-			component.set("v.contentData", content);
 			event.stopPropagation();
-			helper.updateContent(component, status);
+			if(status == $A.get("$Label.c.ContentDetailScheduled") || status == $A.get("$Label.c.ContentDetailPublished")){
+				helper.validateRequiredFields(component, function(){
+					helper.updateContent(component, status);
+				});
+			} else {
+				helper.updateContent(component, status);
+			}
 		}
 	},
 	handleMediaElementEvent : function(component, event, helper){

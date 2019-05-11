@@ -151,38 +151,26 @@ public class GeneralUtils{
         return retText;
     }
     
-    public static Boolean isSafeObject(String objName, Boolean checkPermissions){
+    public static Boolean isSafeObject(String objName){
         Boolean result = false;
         
         SObjectType myObj = Schema.getGlobalDescribe().get(objName);
         
         if(myObj != null) {
-            if(checkPermissions) {
-                if(myObj.getDescribe().isAccessible()) {
-                    result = true;
-                }
-            }else {
-                result = true;
-            }
+            result = true;
         }
         
         return result;
     }
 
-    public static Boolean isSafeField(String objName, String fieldName, Boolean checkPermissions){
+    public static Boolean isSafeField(String objName, String fieldName){
         Boolean result = false;
         
-        if(isSafeObject(objName, checkPermissions)) {
+        if(isSafeObject(objName)) {
             SObjectField myField = Schema.getGlobalDescribe().get(objName).getDescribe().fields.getMap().get(fieldName);
             
             if(myField != null) {
-                if(checkPermissions) {
-                    if(myField.getDescribe().isAccessible()){
-                        result = true;
-                    }
-                }else {
-                    result = true;
-                }
+                result = true;
             }    
         }
         return result;

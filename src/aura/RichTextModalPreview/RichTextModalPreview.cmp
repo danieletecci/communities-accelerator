@@ -1,0 +1,36 @@
+<aura:component >
+    
+    <!-- ATTRIBUTES -->
+    <aura:attribute name="title"			type="String" />
+	<aura:attribute name="contentBody"		type="String" />
+    
+    <!-- METHODS -->
+	<aura:method name="show" action="{!c.doShow}" />
+	<aura:method name="hide" action="{!c.doHide}" />
+    
+	<section aura:id="previewModal" role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-modal_large">
+	    <div class="slds-modal__container">
+	        <header class="slds-modal__header">
+	            <lightning:buttonIcon
+                    iconName="utility:close"
+                    size="large"
+                    variant="bare"
+                    title="{!$Label.c.General_Close}"
+                    iconClass="slds-button slds-button_icon slds-button_icon-inverse"
+                    class="buttonStyle slds-modal__close"
+                    alternativeText="{!$Label.c.General_Close}"
+                    onclick="{!c.doHide}" />
+	            <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">
+	            	{!v.title}
+	            </h2>
+	        </header>
+	        <div class="slds-modal__content slds-scrollable slds-p-vertical_medium slds-p-horizontal_small" id="modal-content-id-1">
+                <aura:unescapedHtml value="{!v.contentBody}" />
+	        </div>
+	        <footer class="slds-modal__footer">
+	            <button class="slds-button slds-button_neutral" onclick="{!c.doHide}">{!$Label.c.General_Close}</button>
+	        </footer>
+        </div>
+    </section>
+    <div aura:id="previewModalBackdrop" class="slds-backdrop"></div>
+</aura:component>

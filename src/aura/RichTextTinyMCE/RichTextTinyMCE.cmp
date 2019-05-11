@@ -2,24 +2,34 @@
 	<!-- HANDLERS -->
 	<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <aura:handler name="URLEvent" event="c:MediaElementManagerEvent" action="{!c.handleURLEvent}"/>
-    <aura:handler name="change" value="{!v.meHelper}" action="{!c.itemsChange}"/>
+    <aura:handler name="change" value="{!v.meHelper}" action="{!c.openMediaElementManager}"/>
+    <aura:handler name="change" value="{!v.rtpHelper}" action="{!c.openPreview}"/>
 
 	<!-- ATTRIBUTES -->
-	<aura:attribute name="namespace"	type="String" default="c"	/>
-	<aura:attribute name="iframeUrl" 	type="String"				/>
-	<aura:attribute name="contentBody"	type="String"				/>
-	<aura:attribute name="vHost"		type="String"				/>
-	<aura:attribute name="meHelper"		type="Boolean" default="false" />
+	<aura:attribute name="namespace"		type="String" 	default="c"		/>
+	<aura:attribute name="iframeUrl" 		type="String"					/>
+	<aura:attribute name="contentBody"		type="String"					/>
+	<aura:attribute name="vHost"			type="String"					/>
+	<aura:attribute name="bodyRequired"		type="Boolean" 					/>
+	<aura:attribute name="meHelper"			type="Boolean" 	default="false" />
+	<aura:attribute name="rtpHelper"		type="Boolean" 	default="false" />
+    <aura:attribute name="hasEditAccess"    type="Boolean"    				/>
 
-    <c:MediaElementManager aura:id="medEl" hasButton="false"/>
+	<c:MediaElementManager aura:id="medEl" hasButton="false"/>
+	<c:RichTextModalPreview aura:id="rtPreview" title="{!$Label.c.General_Preview}" contentBody="{!v.contentBody}" />
 	<lightning:tabset selectedTabId="one">
-        <lightning:tab label="{!$Label.c.RichTextBodyText}" id="one">
-			<iframe aura:id="KB_iframe" name="KB_iframe" class="KB_iframe" src="{!v.iframeUrl}" style="width:100%;height:30rem;" scrolling="no" frameborder="0" onload="{!c.handleIframeLoad}" />
-        </lightning:tab>
+        <lightning:tab label="{!((v.bodyRequired) ? '* ' : '') + $Label.c.RichTextBodyText}" id="one" >
+			<aura:if isTrue="{!v.hasEditAccess}">
+				<iframe aura:id="KB_iframe" name="KB_iframe" class="KB_iframe" src="{!v.iframeUrl}" style="margin-left:1px;margin-right:1px;width:100%;height:30rem;" scrolling="no" frameborder="0" onload="{!c.handleIframeLoad}" />
+				<aura:set attribute="else">
+					<div class="slds-scrollable slds-border_right slds-border_left slds-border_bottom" style="height: 30rem;width:100%;">
+						<aura:unescapedHtml value="{!v.contentBody}" />
+					</div>
+				</aura:set>
+			</aura:if>
+		</lightning:tab>
         <lightning:tab label="{!$Label.c.RichTextBodyHTML}" id="two">
-        	<lightning:textarea name="htmlBody" variant="label-hidden" value="{!v.contentBody}" onchange="{!c.handleContentChange}"/>
+        	<lightning:textarea name="htmlBody" disabled="{!not(v.hasEditAccess)}" variant="label-hidden" value="{!v.contentBody}" onchange="{!c.handleContentChange}"/>
         </lightning:tab>
     </lightning:tabset>
-
-
 </aura:component>

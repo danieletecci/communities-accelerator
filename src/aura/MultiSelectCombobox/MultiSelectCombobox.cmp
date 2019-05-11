@@ -6,6 +6,7 @@
     <aura:attribute name="placeholder" 				type="String"	default="Select items"		/>
     <aura:attribute name="oneItemSelectedText" 		type="String"	default="{0} item selected"	/>
     <aura:attribute name="moreItemsSelectedText" 	type="String"	default="{0} items selected"/>
+    <aura:attribute name="hasEditAccess"            type="Boolean"    />
     
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <div class="slds-form-element container-max-width">
@@ -15,7 +16,7 @@
                 <!--slds-is-open-->
                 <div aura:id="dropdown" onmouseenter="{!c.openDropdown}" onmouseleave="{!c.closeDropDown}" class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click slds-is-close" aria-expanded="true" aria-haspopup="listbox" role="combobox">
                     <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none">
-                        <input aura:id="input-text" type="text" class="slds-input slds-combobox__input slds-combobox__input-value" placeholder="{!v.placeholder}" readonly="true" onfocus="{!c.openDropdown}" value="{!v.value}"/>
+                        <input aura:id="input-text" disabled="{!not(v.hasEditAccess)}" type="text" class="slds-input slds-combobox__input slds-combobox__input-value" placeholder="{!v.placeholder}" readonly="true" onfocus="{!c.openDropdown}" value="{!v.value}"/>
                         <span class="slds-icon_container slds-icon-utility-down slds-input__icon slds-input__icon_right" title="Down icon">
                             <lightning:icon iconName="utility:down" size="xx-small" class="slds-icon-text-default"/>
                             <span class="slds-assistive-text">Down icon</span>
@@ -45,7 +46,12 @@
             <div class="slds-grid slds-wrap">
   				<div class="slds-col slds-size_12-of-12">
                     <aura:iteration items="{!v.selectedOptions}" var="opt">
-                    	<lightning:pill name="{!opt.value}" label="{!opt.label}" onremove="{! c.handleRemove }"/>
+                        <aura:if isTrue="{!v.hasEditAccess}">
+                            <lightning:pill name="{!opt.value}" label="{!opt.label}" onremove="{! c.handleRemove }"/>
+                            <aura:set attribute="else">
+                                <lightning:badge label="{!opt.label}"/>
+                            </aura:set>
+                        </aura:if>
                     </aura:iteration>
                 </div>
             </div>

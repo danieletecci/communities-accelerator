@@ -1,0 +1,9 @@
+<design:component label="Block Details Edit">
+	<design:attribute name="titleRequired"      label="Title Required"          default="true"/>
+    <design:attribute name="extractRequired"    label="Extract Required"        default="false"/> 
+    <design:attribute name="featureRequired"    label="Feature Image Required"  default="false"/> 
+    <design:attribute name="linkRequired"       label="Link Required"           default="false"/> 
+	<sfdc:objects>
+        <sfdc:object>Content__c</sfdc:object>
+    </sfdc:objects>
+</design:component>

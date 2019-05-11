@@ -1,21 +1,27 @@
 <aura:component controller="LookupController" >
-    <!--declare attributes--> 
-    <aura:attribute name="selectedRecordId" type="String" />
-    <aura:attribute name="selectedRecord" type="sObject" default="{}" description="Use,for store SELECTED sObject Record"/>
-    <aura:attribute name="listOfSearchRecords" type="List" description="Use,for store the list of search records which returns from apex class"/>
-    <aura:attribute name="SearchKeyWord" type="string"/>
-    <aura:attribute name="objectAPIName" type="string" default=""/>
-    <aura:attribute name="IconName" type="string" default=""/>
-    <aura:attribute name="label" type="string" default=""/>
-    <aura:attribute name="Message" type="String" default=""/>
-
+    <!-- HANDLERS -->
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
-    <!--declare events hendlers-->  
     <aura:handler name="oSelectedRecordEvent" event="c:LookupInputSelectedObjectEvent" action="{!c.handleComponentEvent}"/>
    
+    <!-- ATTRIBUTES --> 
+    <aura:attribute name="selectedRecordId"     type="String" />
+    <aura:attribute name="selectedRecord"       type="sObject" default="{}" description="Use,for store SELECTED sObject Record"/>
+    <aura:attribute name="listOfSearchRecords"  type="List"    description="Use,for store the list of search records which returns from apex class"/>
+    <aura:attribute name="SearchKeyWord"        type="string"/>
+    <aura:attribute name="objectAPIName"        type="string"  default=""/>
+    <aura:attribute name="IconName"             type="string"  default=""/>
+    <aura:attribute name="label"                type="string"  default=""/>
+    <aura:attribute name="Message"              type="String"  default=""/>
+    <aura:attribute name="isRequired"           type="Boolean" default="false" />
+
+    <!-- METHODS -->
+    <aura:method name="reportValidity" action="{!c.doReportValidity}" />
+    <aura:method name="checkValidity" action="{!c.doCheckValidity}" />
     
     <div onmouseleave="{!c.onblur}" aura:id="searchRes" class="slds-form-element slds-lookup slds-is-close" data-select="single">
-        <label class="slds-form-element__label" for="lookup-348">{!v.label}</label>
+        <label class="slds-form-element__label slds-no-flex" for="lookup-348">
+            <aura:if isTrue="{!v.isRequired}"><abbr title="required" class="slds-required">*</abbr></aura:if>{!v.label}
+        </label>
         <!--This part is for display search bar for lookup-->  
         <div class="slds-form-element__control">
             
@@ -34,7 +40,7 @@
                         <lightning:icon class="slds-icon slds-icon slds-icon_small slds-icon-text-default" iconName="{!v.IconName}" size="x-small" alternativeText="icon"/>
                         <span class="slds-assistive-text"></span>
                     </span>
-                    <ui:inputText click="{!c.onfocus}" updateOn="keyup" keyup="{!c.keyPressController}" class="slds-lookup__search-input slds-input leftPaddingClass" value="{!v.SearchKeyWord}" placeholder="search.."/>
+                    <ui:inputText aura:id="inputLookup" click="{!c.onfocus}" updateOn="keyup" keyup="{!c.keyPressController}" class="slds-lookup__search-input slds-input leftPaddingClass" value="{!v.SearchKeyWord}" placeholder="search.."/>
                 </div>   
             </div>
         </div>
@@ -47,4 +53,5 @@
             </aura:iteration>
         </ul>
     </div>
+    <div aura:id="divError" class="slds-hide slds-has-error slds-form-element__help" style="color:#c23934;" id="error-message-unique-id">{!$Label.c.General_CompleteThisField}</div>
 </aura:component>

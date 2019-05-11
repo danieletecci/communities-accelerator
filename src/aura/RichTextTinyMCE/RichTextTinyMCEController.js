@@ -28,7 +28,10 @@
 																			component.get("v.vHost"));
 
 	},
-	itemsChange: function(component, event) {
+	openMediaElementManager: function(component, event) {
 		component.find("medEl").initPopUp();
+	},
+	openPreview: function(component, event) {
+		component.find("rtPreview").show();
     }
 })

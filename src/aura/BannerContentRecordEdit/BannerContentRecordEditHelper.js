@@ -11,10 +11,11 @@
 			if (state === "SUCCESS") {
 				var data = response.getReturnValue();
 				if(data){
+					component.set("v.prefix", 				data.prefix);
 					component.set("v.contentData", 			data.content);
 					component.set("v.timeZone", 			data.timeZone);
 					component.set("v.visibilitySelectors", 	data.visibilitySelectors);
-					component.set("v.security", 			data.security);
+					component.set("v.hasEditAccess", 		data.hasEditAccess);
 					component.set("v.bannerFrameTypes",		data.bannerFrameTypes);
 
                     var frameType = component.get("v.contentData.BannerFrameType");
@@ -119,6 +120,16 @@
 		});
 		toastEvent.fire();
 	},
+	showToast : function(toastTitle,toastMessage,toastType){
+	    var toastEvent = $A.get("e.force:showToast");
+	    toastEvent.setParams({
+	        title: toastTitle,
+	        message: toastMessage,
+	        type: toastType,
+			mode: (toastType === "success") ? 'dismissable' : 'sticky'
+	    });
+	    toastEvent.fire();
+	},
 	stringFormat: function(string) {
 	    var outerArguments = arguments;
 	    return string.replace(/\{(\d+)\}/g, function() {
@@ -129,7 +140,73 @@
 		component.set('v.mediaElementId', null);
 		component.set('v.imageUrl', null);
 		component.set('v.mediaElementName', null);
-	}
+	},
+	validateRequiredFields : function(component, callback){
+		var fields = this.getEmptyRequiredFieldsList(component);
+		var errorMessage = $A.get("$Label.c.ReviewFields") + "\n";
+		var hasEmptyFields = false;
+		if(!$A.util.isEmpty(fields)){
 
-	
+			fields.forEach(function myFunction(item, index, arr) {
+				if(item.isEmpty){
+					hasEmptyFields = true;
+					errorMessage += " • " + item.label + "\n";
+					if(item.isStandard){
+						item.input.reportValidity();
+					} else {
+						if(item.div && !$A.util.hasClass(item.div, "has-errror")){
+							$A.util.addClass(item.div, "has-errror");
+						}
+						if(item.error && !$A.util.hasClass(item.error, "slds-show")){
+							$A.util.addClass(item.error, "slds-show");
+							$A.util.removeClass(item.error, "slds-hide");
+						}
+					}
+				} else {
+					if(item.isStandard){
+						item.input.reportValidity();
+					} else {
+						if(item.div && $A.util.hasClass(item.div, "has-errror")){
+							$A.util.removeClass(item.div, "has-errror");
+						}
+						if(item.error && $A.util.hasClass(item.error, "slds-show")){
+							$A.util.removeClass(item.error, "slds-show");
+							$A.util.addClass(item.error, "slds-hide");
+						}
+					}
+				}
+			});
+			if(hasEmptyFields)
+				this.showToast($A.get("$Label.c.MissingRequiredFields"), errorMessage, "error");
+			else
+				callback();
+		} else {
+			callback();
+		}
+	},
+	getEmptyRequiredFieldsList : function(component){
+		var fields = [];
+		var content = component.get("v.contentData");
+		
+		this.addField(component.get("v.featureRequired"), fields, $A.get("$Label.c.ArticleContentDetailImage"), false, null, component.find("featureDiv"), component.find("featureError"), component.get("v.imageUrl"));
+		this.addField(component.get("v.titleRequired"), fields, $A.get("$Label.c.ArticleContentDetailTitle"), true, component.find("title"), null, null, content.Title);
+		this.addField(component.get("v.extractRequired"), fields, $A.get("$Label.c.ArticleContentDetailExtract"), true, component.find("extract"), null, null, content.Extract);
+		this.addField(component.get("v.buttonRequired"), fields, $A.get("$Label.c.BannerContentDetailButton"), true, component.find("buttonLabel"), null, null, content.ButtonLabel);
+		this.addField(component.get("v.linkRequired"), fields, $A.get("$Label.c.BannerContentDetailLink"), true, component.find("linkDetail"), null, null, content.LinkDetail);
+		this.addField(component.get("v.layoutRequired"), fields, $A.get("$Label.c.BannerContentDetailLayout"), false, null, component.find("layoutDiv"), component.find("layoutError"), content.OverlayQuadrant);
+
+		return fields;
+	},
+	addField : function(isRequired, fields, label, isStandard, input, div, error, value){
+		if(isRequired){
+			fields.push({
+				"isStandard"	: isStandard,
+				"label"			: label,
+				"input"			: input,
+				"div"			: div,
+				"error"			: error,
+				"isEmpty"		:  $A.util.isEmpty(value)
+			});
+		}
+	}
 })

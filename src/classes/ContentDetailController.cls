@@ -4,30 +4,19 @@ public with sharing class ContentDetailController {
         @AuraEnabled public ObjectContentWrapper            content;
         @AuraEnabled public List<VisibilitySelectorWrapper> visibilitySelectors;
         @AuraEnabled public String                          timeZone;
-        @AuraEnabled public SecurityWrapper                 security;
+        @AuraEnabled public Boolean                         hasEditAccess;
         @AuraEnabled public List<String>                    bannerFrameTypes;
         @AuraEnabled public String                          namespace;
+        @AuraEnabled public String                          prefix;
         
-        public DataWrapper(Content__c content, SecurityWrapper security, List<VisibilitySelectorWrapper> visibilitySelectors, String timeZone, List<String> bannerFrameTypes){
+        public DataWrapper(Content__c content, Boolean hasEditAccess, List<VisibilitySelectorWrapper> visibilitySelectors, String timeZone, List<String> bannerFrameTypes){
             this.content                = new ObjectContentWrapper(content);
             this.visibilitySelectors    = visibilitySelectors;
-            this.security               = security;
+            this.hasEditAccess          = hasEditAccess;
             this.timeZone               = timeZone;
             this.bannerFrameTypes       = bannerFrameTypes;
             this.namespace              = (String.isBlank(GeneralUtils.namespace)) ? 'c' : GeneralUtils.namespace.replace('_','').toLowerCase();
-        }
-    }
-
-    //SECURITY WRAPPER
-    public class SecurityWrapper{
-        @AuraEnabled public Boolean     hasEditAccess;
-        @AuraEnabled public Boolean     hasCreateContentPermission;
-        @AuraEnabled public Boolean     hasRecordTypeAvailable;
-
-        public SecurityWrapper(Boolean hasEditAccess, Boolean hasCreateContentPermission, Boolean hasRecordTypeAvailable){
-            this.hasEditAccess              = hasEditAccess;
-            this.hasCreateContentPermission = hasCreateContentPermission;
-            this.hasRecordTypeAvailable     = hasRecordTypeAvailable;
+            this.prefix                 = GeneralUtils.namespace;
         }
     }
 
@@ -76,17 +65,17 @@ public with sharing class ContentDetailController {
             //Gets the audiences related to the content record.
             Set<String> audiencesExternalIds = getAudiencesFromContentRecord(contentRecord);
             //Gets all the visibility options, with the current content options set as true.
-            SecurityWrapper sw = new SecurityWrapper(hasEditAccess(recordId), hasCreateContentPermission(), hasRecordTypeAvailable(contentRecord.RecordType.DeveloperName));
+            UserRecordAccess ura = SecurityUtils.getUserRecordAccess(recordId);
+            Boolean hasContentEditPublishedPerm = SecurityUtils.hasCustomPermission(GeneralUtils.prefix('[CMS]ContentEditPublished'));
+            Boolean hasContentEditScheduledPerm = SecurityUtils.hasCustomPermission(GeneralUtils.prefix('[CMS]ContentEditScheduled'));
+            Boolean hasEditAccess = ura.HasEditAccess && ((contentRecord.Status__c == 'Published') ? hasContentEditPublishedPerm : ((contentRecord.Status__c == 'Scheduled') ? hasContentEditScheduledPerm : true));
             List<VisibilitySelectorWrapper> visibilitySelectorList = new List<VisibilitySelectorWrapper>();
-            if(sw.hasEditAccess){
-                //visibilitySelectorList.add(getClusterSelectorWrapper(getSubordinateClusters(), contentRecord.cluster__c));
-                visibilitySelectorList.add(getCategorySelectorWrapper(clusterIds, contentRecord.category__c));
-            }
-            visibilitySelectorList.add(getTagSelectorWrapper(clusterIds, tagIds, sw.hasEditAccess));
-            visibilitySelectorList.add(getAudienceSelectorWrapper(contentRecord.Cluster__c, audiencesExternalIds, sw.hasEditAccess));
+            visibilitySelectorList.add(getCategorySelectorWrapper(clusterIds, contentRecord.category__c, hasEditAccess));
+            visibilitySelectorList.add(getTagSelectorWrapper(clusterIds, tagIds, hasEditAccess));
+            visibilitySelectorList.add(getAudienceSelectorWrapper(contentRecord.Cluster__c, audiencesExternalIds, hasEditAccess));
             List<String> bannerFrameTypes = getBannerFrameTypes();
 
-            data = new DataWrapper(contentRecord, sw, visibilitySelectorList, UserInfo.getTimeZone().getID(), bannerFrameTypes);
+            data = new DataWrapper(contentRecord, hasEditAccess, visibilitySelectorList, UserInfo.getTimeZone().getID(), bannerFrameTypes);
         } catch(Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
@@ -119,8 +108,12 @@ public with sharing class ContentDetailController {
         return content;
     }
 
-    private static VisibilitySelectorWrapper getCategorySelectorWrapper(Set<Id> clusterIds, String contentCategoryId){
-        List<Category__c> categories = [SELECT id, name FROM Category__c WHERE Cluster__c IN :clusterIds];
+    private static VisibilitySelectorWrapper getCategorySelectorWrapper(Set<Id> clusterIds, String contentCategoryId, Boolean hasEditAccess){
+        List<Category__c> categories;
+        if(hasEditAccess)
+            categories = [SELECT id, name FROM Category__c WHERE Cluster__c IN :clusterIds];
+        else
+            categories = [SELECT id, name FROM Category__c WHERE Id = :contentCategoryId];
         List<VisibilityOptionWrapper> categoryWrapperList = new List<VisibilityOptionWrapper>();
         categoryWrapperList.add(new VisibilityOptionWrapper(Label.ContentLandingNone, 'noneValue', false));
         String selectedValue = 'noneValue';

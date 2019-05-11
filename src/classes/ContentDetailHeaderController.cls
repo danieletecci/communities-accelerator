@@ -1,11 +1,11 @@
 public with sharing class ContentDetailHeaderController {
     //DATA WRAPPER
     public class DataWrapper{
-        @AuraEnabled public ObjectContentWrapper   content;
-        @AuraEnabled public String          timeZone;
-        @AuraEnabled public String          gmtOffset;
-        @AuraEnabled public SecurityWrapper security;
-        @AuraEnabled public String namespace;
+        @AuraEnabled public ObjectContentWrapper    content;
+        @AuraEnabled public String                  timeZone;
+        @AuraEnabled public String                  gmtOffset;
+        @AuraEnabled public SecurityWrapper         security;
+        @AuraEnabled public String                  namespace;
         
         public DataWrapper(Content__c content, String timeZone, String gmtOffset, SecurityWrapper security){
             this.content            = new ObjectContentWrapper(content);
@@ -19,22 +19,27 @@ public with sharing class ContentDetailHeaderController {
     public class SecurityWrapper{
         @AuraEnabled public Boolean     hasEditAccess;
         @AuraEnabled public Boolean     hasCreateContentPermission;
-        @AuraEnabled public Boolean     hasRecordTypeAvailable;
         @AuraEnabled public Boolean     hasDeleteAccess;
 
-        public SecurityWrapper(Boolean hasEditAccess, Boolean hasDeleteAccess, Boolean hasCreateContentPermission, Boolean hasRecordTypeAvailable){
+        public SecurityWrapper(Boolean hasEditAccess, Boolean hasDeleteAccess, Boolean hasCreateContentPermission){
             this.hasEditAccess              = hasEditAccess;
             this.hasDeleteAccess            = hasDeleteAccess;
             this.hasCreateContentPermission = hasCreateContentPermission;
-            this.hasRecordTypeAvailable     = hasRecordTypeAvailable;
         }
     }
 
     @AuraEnabled(cacheable=false)
     public static DataWrapper getData(String recordId){
         Content__c content = getContentData(recordId);
-        UserRecordAccess ura = getRecordAccess(recordId);
-        SecurityWrapper sw = new SecurityWrapper(ura.HasEditAccess, ura.HasDeleteAccess, hasCreateContentPermission(), hasRecordTypeAvailable(content.RecordType.DeveloperName));
+        UserRecordAccess ura = SecurityUtils.getUserRecordAccess(recordId);
+        Boolean hasContentEditPublishedPerm = SecurityUtils.hasCustomPermission(GeneralUtils.prefix('[CMS]ContentEditPublished'));
+        Boolean hasContentEditScheduledPerm = SecurityUtils.hasCustomPermission(GeneralUtils.prefix('[CMS]ContentEditScheduled'));
+        Boolean isObjectCreateable = SecurityUtils.isObjectCreateable(GeneralUtils.prefix('[CMS]Content__c'));
+        SecurityWrapper sw = new SecurityWrapper(
+            ura.HasEditAccess && ((content.Status__c == Label.ContentDetailPublished) ? hasContentEditPublishedPerm : ((content.Status__c == Label.ContentDetailScheduled) ? hasContentEditScheduledPerm : true)),
+            ura.HasDeleteAccess, 
+            isObjectCreateable
+        );
         String tzName = UserInfo.getTimeZone().getDisplayName();
         return new DataWrapper(
             content,
@@ -87,18 +92,5 @@ public with sharing class ContentDetailHeaderController {
     private static Content__c getContentData(String recordId){
         Content__c content = [SELECT Id, Name, Cluster__r.Name, Status__c, PublishStartDate__c, PublishEndDate__c, LastModifiedDate, IsTemplate__c, CreatedBy.Name, RecordType.Name, RecordType.DeveloperName FROM Content__c WHERE id = :recordId];
         return content;
-    }
-
-    private static Boolean hasCreateContentPermission(){
-        return Schema.sObjectType.Content__c.isCreateable();
-    }
-
-    private static UserRecordAccess getRecordAccess(String recordId){
-        UserRecordAccess ura = [SELECT RecordId, HasReadAccess, HasEditAccess, HasDeleteAccess, HasAllAccess FROM UserRecordAccess WHERE UserId = :UserInfo.getUserId() AND RecordId = :recordId];
-        return ura;
-    }
-
-    private static Boolean hasRecordTypeAvailable(String recordTypeDeveloperName){
-        return Schema.SObjectType.Content__c.getRecordTypeInfosByDeveloperName().get(recordTypeDeveloperName).isAvailable();
     }
 }

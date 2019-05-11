@@ -43,6 +43,8 @@
 				"publishEndDate"	: component.get("v.expire") == true ? component.get("v.endDate") : null
 			});
 	        cmpEvent.fire();
+			$A.util.removeClass(component.find("publishModal"), "slds-fade-in-open");
+			$A.util.removeClass(component.find("publishModalBackdrop"), "slds-backdrop_open");
 	    } else
 	    	helper.scheduleContent(component);
 	},

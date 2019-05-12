@@ -29,6 +29,8 @@
 		            showpaging="{!v.showPaging}"
 		            pagingtype="{!v.componentWrapper.meta.component.PagingType}"
 		            pagenumbers="{!v.componentWrapper.data.pagesNumbers}"
+		            viewmode="List"
+		            formfactor="{!$Browser.formFactor}"
 		            onnextpage="{!c.doNext}"
 		            onprevpage="{!c.doPrevious}"
 		            ongotopage="{!c.doGetPage}"/>

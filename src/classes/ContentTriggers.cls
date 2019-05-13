@@ -1,4 +1,4 @@
-public with sharing class ContentTriggers extends TriggersHandler {
+public without sharing class ContentTriggers extends TriggersHandler {
 
     /*****************************************************************/
     /************************ CONSTRUCTOR ****************************/

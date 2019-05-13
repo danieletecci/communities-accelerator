@@ -54,7 +54,7 @@
                         <img class="main-img" src="{!v.details.imgSrc}" alt="Banner Image"/>
                     </div>
                 </aura:if>
-                <div class="card-body-container">
+                <div class="{! 'card-body-container' + if(v.details.layout == 'Body Only',' body-only','')}">
                     <aura:unescapedHtml value="{!v.details.body}"/>
                 </div>
             </div>

@@ -16,7 +16,7 @@ export default class CardFormatter extends NavigationMixin(LightningElement) {
 
     renderedCallback() {
         if(!this.formatedContent){
-            this.formatedContent = formatContent(this.content, this.type);
+            this.formatedContent = formatContent(this.content, this.type, this.formfactor);
         }
     }
 }

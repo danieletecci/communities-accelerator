@@ -39,6 +39,14 @@
 			    action.setCallback(this, function(f) {
 		            if(f.getState() === "SUCCESS") {
 						var cWrapper = action.getReturnValue();
+						let fileUrlDevice;
+						if(device === 'DESKTOP'){
+							fileUrlDevice = 'FileURLDesktop';
+						} else if (device === 'PHONE'){
+							fileUrlDevice = 'FileURLMobile';
+						} else {
+							fileUrlDevice = 'FileURLTablet';
+						}
 						var recordType = cWrapper.component.RecordTypeDeveloperName;
 						if(recordType === 'EventDetail' || recordType === 'ArticleDetail'){
 							var details = {};
@@ -56,7 +64,7 @@
 								details.location.href = 'https://www.google.com/maps/search/' + content.Location;
 								details.title = content.Title;
 								details.extract = content.Extract;
-								details.imgSrc = cWrapper.contentWrapper[0].mediaElements[0].FileURLDesktop;
+								details.imgSrc = cWrapper.contentWrapper[0].mediaElements[0][fileUrlDevice];
 								details.body = content.Body;
 								details.layout = content.Layout;
 							}

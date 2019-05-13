@@ -5,6 +5,7 @@ import { loadStyle } from 'lightning/platformResourceLoader';
 export default class RelatedCardList extends LightningElement {
     @api contents;
     @api type;
+    @api formfactor;
     @track orientation;
     mobile = navigator.userAgent.toLowerCase().includes('mobi');
 

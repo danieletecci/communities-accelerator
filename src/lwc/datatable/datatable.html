@@ -40,7 +40,7 @@
                     <tr>
                         <template for:each={columnsToShow} for:item="col">
                             <th scope="col" key={col.label}>
-                                <div class="slds-truncate columnLabel" title={col.label} data-field-name={col.label} data-direction="ASC"  onclick={sortByColumn}> 
+                                <div class="slds-truncate columnLabel" title={col.label} data-field-name={col.fieldName} data-direction="ASC"  onclick={sortByColumn}> 
                                     <c-datatable-row colname={col.label} is-desktop hide-values column={col.fieldName} row={row}></c-datatable-row>                                    
                                     <template if:true={col.sortable}>
                                         <img class="sortIcon" src={sortIcon}>

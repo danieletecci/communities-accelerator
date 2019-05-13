@@ -27,6 +27,14 @@
                     if(clusterCookie == undefined || clusterCookie == ''){
                         helper.setCookie('CG_clusterId', cWrapper.clusterId, 100);
                     }
+                    let fileUrlDevice;
+                    if(device === 'DESKTOP'){
+                        fileUrlDevice = 'FileURLDesktop';
+                    } else if (device === 'PHONE'){
+                        fileUrlDevice = 'FileURLMobile';
+                    } else {
+                        fileUrlDevice = 'FileURLTablet';
+                    }
 
                     if(cWrapper.data.contentWrapper.length > 0){
                         elements = cWrapper.data.contentWrapper.map((c, index) => {
@@ -34,11 +42,14 @@
                                 id: c.content.Id,
                                 class: index == 0 ? 'carousel-item active' : 'carousel-item',
                                 indicatorClass: index == 0 ? 'active' : '',
-                                imgSrc: c.mediaElements.length > 0  ? c.mediaElements[0].FileURLDesktop : '',
+                                imgSrc: c.mediaElements.length > 0  ? c.mediaElements[0][fileUrlDevice] : '',
                                 title: c.content.Title,
                                 description: c.content.Extract
                             }
                         })
+                        cWrapper.data.contentWrapper.forEach(content => {
+                            content.mediaElements[0].imgSrc = content.mediaElements[0][fileUrlDevice];
+                        });
                     }
 
                     component.set("v.elements", elements);

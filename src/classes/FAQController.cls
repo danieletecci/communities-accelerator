@@ -20,7 +20,8 @@ public with sharing class FAQController extends ComponentManager{
         
         Set<String> contentSetFields = new Set<String>{
             '[CMS]Title__c',
-            '[CMS]Body__c'
+            '[CMS]Body__c',
+            'Name'
         };
         
         return ContentManager.getCMSContent(clusterId, cw.meta.component, contentSetFields, device);

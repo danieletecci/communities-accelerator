@@ -7,6 +7,7 @@
 		var contentId = event.getParam("contentId");
 		var recordId = component.get("v.contentData.Id");
 		if(recordId == contentId){
+			component.set("v.contentData.Name", event.getParam("name"));
 			component.set("v.contentData.PublishStartDate", event.getParam("publishStartDate"));		
 	        component.set("v.contentData.PublishEndDate", event.getParam("publishEndDate"));
 			event.stopPropagation();

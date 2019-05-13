@@ -8,7 +8,8 @@
     doSave: function (component, event, helper) {
         helper.updateContent(
             component, 
-            component.get("v.contentData").Status, 
+            component.get("v.contentData").Status,
+            component.get("v.contentData").Name, 
             component.get("v.contentData").PublishStartDate,
             component.get("v.contentData").PublishEndDate
         );

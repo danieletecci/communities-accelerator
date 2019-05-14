@@ -3,30 +3,10 @@ import { loadStyle } from 'lightning/platformResourceLoader';
 
 export default class Card extends LightningElement {
     @api config;  
-    //{id:string ,
-    // externalId,
-    // navigateUrl,
-    // type:sting,
-    // headerText:string,
-    // title:string,
-    // bodyText:string,
-    // imgSrc:string,
-    // footer: { 
-    //  description: { 
-    //           descPrimary:string,
-    //           descSecondary:string
-    //       },
-    //  controls: [{ label:string, action:string, icon:boolean }]
-    //  }
-    //}
     @api variant;
     @api viewmode;
     @api formfactor; 
     @track orientation;
-
-    constructor() {
-        super();
-    }
 
     connectedCallback() {
         window.addEventListener("orientationchange", () => this.handleOrientation());

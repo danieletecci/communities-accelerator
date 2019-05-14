@@ -24,8 +24,8 @@
                         </div>
                     </aura:if>
                     <aura:if isTrue="{! v.details.type == 'Event'}">
-                        <div class="date-container">
-                            <span class="date-container-event">
+                        <div class="{! if($Browser.isPhone,'','slds-grid') + ' date-container slds-grid_align-spread'}">
+                            <div class="date-container-event slds-col slds-size_1-of-1 slds-medium-size_2-of-6 slds-large-size_3-of-12">
                                 <p class="date-event">
                                     <aura:if isTrue="{! v.details.startDate != null }">
                                         <lightning:formattedDateTime value="{! v.details.startDate }" day="numeric" month="short" time-zone="UTC">{! v.details.startDate }</lightning:formattedDateTime>
@@ -35,13 +35,13 @@
                                         </aura:if>                           
                                     </aura:if>
                                 </p>
-                            </span>
-                            <span class="location-container">
+                            </div>
+                            <div class="location-container slds-col slds-size_1-of-1 slds-medium-size_2-of-6 slds-large-size_3-of-12">
                                 <aura:if isTrue="{! v.details.location.name != null }">
-                                    <i class="icon location-icon"></i>
                                     <a href="{! v.details.location.href }">{! v.details.location.name }</a>
+                                    <i class="icon location-icon"></i>
                                 </aura:if>
-                            </span>
+                            </div>
                         </div>
                     </aura:if>
                     <div class="title-container">

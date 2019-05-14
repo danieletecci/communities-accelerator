@@ -1,5 +1,13 @@
-const formatContent = (content, type) => {
+const formatContent = (content, type, device) => {
     let formatedContent;
+    let fileUrlDevice;
+    if(device === 'DESKTOP'){
+        fileUrlDevice = 'FileURLDesktop';
+    } else if (device === 'PHONE'){
+        fileUrlDevice = 'FileURLMobile';
+    } else {
+        fileUrlDevice = 'FileURLTablet';
+    }
     let temp = content.mediaElements.length > 0 ? content.mediaElements[0] : {};
     if (content.content !== null && !formatedContent) {
         if (type === 'EventList') {
@@ -11,7 +19,7 @@ const formatContent = (content, type) => {
                 endDate: content.content.EventEndDate,
                 title: content.content.Title,
                 bodyText: content.content.Extract,
-                imgSrc: temp.FileURLDesktop,
+                imgSrc: temp[fileUrlDevice],
                 footer: {
                     description: {
                         descSecondary: content.content.Location
@@ -26,7 +34,7 @@ const formatContent = (content, type) => {
                 date: content.content.PublishStartDate,
                 title: content.content.Title,
                 bodyText: content.content.Extract,
-                imgSrc: temp.FileURLDesktop
+                imgSrc: temp[fileUrlDevice]
             };
         } else {
             formatedContent = {
@@ -35,15 +43,23 @@ const formatContent = (content, type) => {
                 headerText: null,
                 title: content.content.Title,
                 bodyText: content.content.Extract,
-                imgSrc: temp.FileURLDesktop
+                imgSrc: temp[fileUrlDevice]
             };
         }
     }
     return formatedContent;
 }
 
-const formatContentCompressed = (content, type) => {
+const formatContentCompressed = (content, type, device) => {
     let formatedContent;
+    let fileUrlDevice;
+    if(device === 'DESKTOP'){
+        fileUrlDevice = 'FileURLDesktop';
+    } else if (device === 'PHONE'){
+        fileUrlDevice = 'FileURLMobile';
+    } else {
+        fileUrlDevice = 'FileURLTablet';
+    }
     let temp = content.mediaElements.length > 0 ? content.mediaElements[0] : {};
     if (content.content !== null && !formatedContent) {
         if (type === 'EventList' || type === 'EventsRelated') {
@@ -54,7 +70,7 @@ const formatContentCompressed = (content, type) => {
                 startDate: content.content.EventStartDate,
                 endDate: content.content.EventEndDate,
                 title: content.content.Title,
-                imgSrc: temp.FileURLDesktop,
+                imgSrc: temp[fileUrlDevice],
                 description: content.content.Extract,
                 location: content.content.Location
             };
@@ -66,7 +82,7 @@ const formatContentCompressed = (content, type) => {
                 type: type,
                 date: content.content.PublishStartDate,
                 title: content.content.Title,
-                imgSrc: temp.FileURLDesktop,
+                imgSrc: temp[fileUrlDevice],
                 description: content.content.Extract
             };
         } else {
@@ -76,7 +92,7 @@ const formatContentCompressed = (content, type) => {
                 type: type,
                 headerText: null,
                 title: content.content.Title,
-                imgSrc: temp.FileURLDesktop,
+                imgSrc: temp[fileUrlDevice],
                 description: null
             };
         }

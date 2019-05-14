@@ -24,7 +24,7 @@
             ongotopage="{!c.doGetPage}"
             />
             <aura:set attribute="else">
-                    <c:relatedCardList onnavigatetodetail="{!c.handleNavigateToDetail}" contents="{!v.componentWrapper.contentWrapper}" type="{!v.componentWrapper.component.RecordTypeDeveloperName}"/>
+                    <c:relatedCardList onnavigatetodetail="{!c.handleNavigateToDetail}" contents="{!v.componentWrapper.contentWrapper}" type="{!v.componentWrapper.component.RecordTypeDeveloperName}" formfactor="{!$Browser.formFactor}"/>
             </aura:set>
         </aura:if>
     </aura:if>

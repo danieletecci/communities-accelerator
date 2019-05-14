@@ -292,7 +292,7 @@ public without sharing virtual class ContentUtils {
 
         map<Id, MediaElement__c> mapMediaElements;
         if(!setMediaElementIds.isEmpty()){
-            mapMediaElements = new map<Id, MediaElement__c>([SELECT Id, Name, FileURLDesktop__c FROM MediaElement__c WHERE Id IN: setMediaElementIds]);
+            mapMediaElements = new map<Id, MediaElement__c>([SELECT Id, Name, FileURLDesktop__c, FileURLMobile__c, FileURLTablet__c FROM MediaElement__c WHERE Id IN: setMediaElementIds]);
         }
 
         for(Content__c c: contents){

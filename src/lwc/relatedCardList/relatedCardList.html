@@ -8,7 +8,7 @@
         <div class="slds-grid slds-wrap">
             <template for:each={contents} for:item="content" for:index="index">
                 <div key={content.content.Id} class={columnWidth}>
-                    <c-card-compressed-formatter content={content} type={type}></c-card-compressed-formatter>
+                    <c-card-compressed-formatter content={content} type={type} formfactor={formfactor}></c-card-compressed-formatter>
                     <div class="spacer"></div>
                 </div>
             </template>

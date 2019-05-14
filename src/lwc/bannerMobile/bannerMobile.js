@@ -30,33 +30,18 @@ export default class Banner extends LightningElement {
     }
 
     renderedCallback() {
-    //     const carouselDiv = this.template.querySelector('.carousel');
-    //     const id = carouselDiv.getAttribute('id');
-    //     const carouselIndicators = this.template.querySelector('.carousel-indicators');
-    //     const carouselPrev = this.template.querySelector('.carousel-control-prev');
-    //     const carouselNext = this.template.querySelector('.carousel-control-next');
-    //     carouselIndicators.setAttribute('data-target', `#${id}`);
-    //     carouselPrev.setAttribute('href', `#${id}`);
-    //     carouselNext.setAttribute('href', `#${id}`);
         const carousel = this.template.querySelector('.carousel-inner');
         if(!this.firstRender){
             carousel.addEventListener('touchstart', (e) => {
-                e.preventDefault();
                 e.stopPropagation();
                 let touchobj = e.changedTouches[0]
                 this.swipedir = 'none'
                 this.dist = 0
                 this.startX = touchobj.pageX
                 this.startTime = new Date().getTime()// record time when finger first makes contact with surface
-                e.preventDefault()
-            })
-
-            carousel.addEventListener('touchmove', (e) => {
-                e.preventDefault() // prevent scrolling when inside DIV
             })
 
             carousel.addEventListener('touchend', (e) => {
-                e.preventDefault();
                 e.stopPropagation();
                 let touchobj = e.changedTouches[0]
                 this.distX = touchobj.pageX - this.startX // get horizontal dist traveled by finger while in contact with surface
@@ -67,7 +52,6 @@ export default class Banner extends LightningElement {
                         this.handleswipe(this.swipedir);
                     }
                 }
-                e.preventDefault()
             })
             this.firstRender = true;
         }

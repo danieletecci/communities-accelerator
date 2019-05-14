@@ -54,6 +54,9 @@ export default class DatatableModals extends LightningElement {
         if (this.typePicklist.length === 0 && this.typeNumber.length === 0 && this.typeDate.length === 0) { 
             this.setFilters(); 
         }
+        if(this.selectedDateFrom && this.selectedDateTo){
+            this.showFilterModalFooter = true;
+        }
 
     }
 
@@ -104,6 +107,21 @@ export default class DatatableModals extends LightningElement {
         return (this.typeDate.length > 0) ? true : false;
     }
 
+    changeDatepickerFrom(event) {
+        this.selectedDateFrom = event.currentTarget.value;
+    }
+
+    changeDatepickerTo(event) {
+        this.selectedDateTo = event.currentTarget.value;
+    }
+
+    changeInputMin(event) {
+        this.selectedMin = event.currentTarget.value;
+    }
+
+    changeInputMax(event) {
+        this.selectedMax = event.currentTarget.value;
+    }
     setFilters() {   
         var columns = JSON.parse(JSON.stringify(this.table.columns));
         var filterValues = ["Last Week", "Last Month", "Last Year", "Custom Range"];

@@ -46,8 +46,8 @@
                                                     <h2 class="slds-col slds-size_3-of-4">{col.label}</h2>
                                                 </div>
                                                 <div>
-                                                    <input class="min" type="number" placeholder="Min" max={seletedMax} data-type={col.type} data-column={col.fieldName} onchange={changeInputMin}>
-                                                    <input class="max" type="number" placeholder="Max" min={seletedMin} data-type={col.type} data-column={col.fieldName} onchange={changeInputMax}>
+                                                    <input class="min" type="number" placeholder="Min" max={selectedMax} data-type={col.type} data-column={col.fieldName} onchange={changeInputMin}>
+                                                    <input class="max" type="number" placeholder="Max" min={selectedMin} data-type={col.type} data-column={col.fieldName} onchange={changeInputMax}>
                                                 </div>
                                             </div>
                                         </template>
@@ -59,8 +59,8 @@
                                                     <h2 class="slds-col slds-size_3-of-4">{col.label}</h2>
                                                 </div>
                                                 <div>
-                                                    <lightning-input class="datefrom" type="date" name="from-day" data-type={col.type} data-column={col.fieldName} max={seletedDateTo} onchange={changeDatepickerFrom} placeholder="From"></lightning-input>
-                                                    <lightning-input class="dateto" type="date" name="to-day" min={seletedDateFrom} onchange={changeDatepickerTo} placeholder="To" ></lightning-input>
+                                                    <lightning-input class="datefrom" type="date" name="from-day" data-type={col.type} data-column={col.fieldName} max={selectedDateTo} onchange={changeDatepickerFrom} placeholder="From"></lightning-input>
+                                                    <lightning-input class="dateto" type="date" name="to-day" min={selectedDateFrom} onchange={changeDatepickerTo} placeholder="To" ></lightning-input>
                                                 </div>
                                             </div>
                                         </template>

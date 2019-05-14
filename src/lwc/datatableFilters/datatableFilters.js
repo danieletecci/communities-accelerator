@@ -45,21 +45,24 @@ export default class DatatableCustomDateType extends LightningElement {
                 filter = {  column: this.column,
                             type: this.type,
                             value1: this.selectedDateFrom,
-                            value2: this.selectedDateTo                      
+                            value2: this.selectedDateTo,
+                            label: null
                         }
             }
         } else if (filterButton && filterButton.classList.contains("active")) {
             filter = {      column: this.column,
                             type: this.type,
-                            value1: this.filter,
-                            value2: null                    
+                            value1: this.filter.value,
+                            value2: null,
+                            label: this.filter.label
                         } 
         } else if (this.typeIsNumber) {
             if (this.selectedMin && this.selectedMax) {
                 filter = {  column: this.column,
                             type: this.type,
                             value1: this.selectedMin,
-                            value2: this.selectedMax                      
+                            value2: this.selectedMax,
+                            label: null
                         }
             } 
         }  

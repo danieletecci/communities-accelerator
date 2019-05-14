@@ -3,10 +3,10 @@
             <template if:true={showButton}>
                 <div>
                     <button class="filter" 
-                            data-value={filter}
+                            data-value={filter.value}
                             data-column={column} 
                             data-type={type}
-                            onclick={select}>{filter}
+                            onclick={select}>{filter.label}
                     </button>
                 </div>
             </template>

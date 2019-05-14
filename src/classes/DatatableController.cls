@@ -6,7 +6,7 @@ public without sharing class DatatableController extends ComponentManager {
 
     /* Aura Methods - BEGIN */
     @AuraEnabled
-    public static String doInit(String externalId) {
+    public static String doInit(String externalId, String clusterId, String device) {
         DatatableController controller = new DatatableController();
         ComponentWrapper cw = new ComponentWrapper();
 
@@ -17,6 +17,7 @@ public without sharing class DatatableController extends ComponentManager {
         controller.defaultComponentFieldSet = new Set<String>();
 
         cw = controller.getCW();
+        cw.clusterId = clusterId;
 
         DatatableWrapper dataTableWr = (DatatableWrapper) cw.data;
         cw.hasContent = dataTableWr.tableData.size() > 0;
@@ -67,7 +68,7 @@ public without sharing class DatatableController extends ComponentManager {
 
     @AuraEnabled
     public static String handleFilter(String componentWrapper) {
-        System.debug('in DatatableController.handleFilter() method. ');
+        System.debug('[DatatableController.cls][handleFilter] ComponentWrapper: ' + ComponentWrapper);
 
         DatatableController.DatatableWrapper wrapper = (DatatableController.DatatableWrapper)JSON.deserialize(componentWrapper, DatatableController.DatatableWrapper.class);
         
@@ -158,7 +159,7 @@ public without sharing class DatatableController extends ComponentManager {
         public Boolean searchable {get;set;}
         public Boolean sortable {get;set;}
         public Boolean filtrable {get;set;}
-        public List<String> filtrableValues {get;set;}
+        public List<Map<String,String>> filtrableValues {get;set;}
     }
 
     public class DatatableActionWrapper {

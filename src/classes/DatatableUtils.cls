@@ -6,7 +6,12 @@ public without sharing class DatatableUtils {
         List<String> fieldSet = new List<String>();
 
         for(DatatableElement__c elem : datatable.DatatableElements__r) {
-            fieldSet.add(elem.FieldApiName__c);
+            
+            if(elem.Type__c == String.valueOf(Schema.DisplayType.PICKLIST)) {
+                fieldSet.add('toLabel(' + elem.FieldApiName__c + ')');
+            } else {
+                fieldSet.add(elem.FieldApiName__c);
+            }
         }
 
         String fieldSetString = String.join(fieldSet, ', ');

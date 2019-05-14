@@ -177,6 +177,7 @@ public without sharing class DatatableController extends ComponentManager {
         public DatatableController.DatatableFilterFieldWrapper filter {get;set;}
         public String value1 {get;set;}
         public String value2 {get;set;}
+        public String label {get;set;}
 
         public Integer compareTo(Object compareTo) {
             DatatableController.DatatableFilterWrapper obj = (DatatableController.DatatableFilterWrapper)compareTo;

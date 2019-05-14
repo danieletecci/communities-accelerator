@@ -24,7 +24,7 @@
                                                         <p>Select {col.label}</p>
                                                     </div>
                                                     <template iterator:it={col.filtrableValues}>
-                                                        <div key={it.value} class={filterItemClass}>
+                                                        <div key={it.value.value} class={filterItemClass}>
                                                             <c-datatable-filters column={col.fieldName} 
                                                                             type={col.type} 
                                                                             filter={it.value} 

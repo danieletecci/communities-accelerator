@@ -229,6 +229,7 @@ export default class DatatableModals extends LightningElement {
         activeFilters.forEach(fil =>{
             let value1 = fil.value1;
             let value2 = fil.value2;
+            let label = fil.label;
             if (fil.value1 === "Last Week") {
                 value1 = dates.lastWeek;  //value1 = menor
                 value2 = dates.now; //value2 = mayor
@@ -247,7 +248,8 @@ export default class DatatableModals extends LightningElement {
                             type: fil.type
                         },
                         value1: value1,
-                        value2: value2
+                        value2: value2,
+                        label: label
                     };
             filters.push(filter);
         });

@@ -15,7 +15,7 @@ public class DatatableControllerTest {
         Datatable__c data = [Select ExternalId__c from Datatable__c where ExternalId__c like'TableTest%' Limit 1];
         // When
         Test.startTest();
-        String jsonTest = DatatableController.doInit(data.ExternalId__c);
+        String jsonTest = DatatableController.doInit(data.ExternalId__c,null,null);
         Test.stopTest();
         // Then
         System.assertNotEquals(jsonTest, null);
@@ -45,7 +45,7 @@ public class DatatableControllerTest {
     static void testHandleDelete(){       
        // Given
         Datatable__c data = [Select ExternalId__c from Datatable__c where ExternalId__c like'TableTest%' Limit 1];
-        String jsonComponentWrapper = DatatableController.doInit(data.ExternalId__c);
+        String jsonComponentWrapper = DatatableController.doInit(data.ExternalId__c,null,null);
         // When
         Test.startTest();
         List<Id> ids=new List<Id>();

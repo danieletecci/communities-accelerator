@@ -27,7 +27,7 @@ public without sharing class DatatableUtils {
         if(totalRows > 0) {
             wrapper.totalRows = totalRows;
 
-            query = generateDatatableRecordsQuery('SELECT Id, ' + fieldSetString + ' ', ' FROM ' + datatable.ObjectApiName__c + ' ', whereCondition, filtersWhereCondition, searchTermWhereCondition);
+            query = generateDatatableRecordsQuery('SELECT Id' + ((String.isBlank(fieldSetString)) ? '' : ',' + fieldSetString) + ' ', ' FROM ' + datatable.ObjectApiName__c + ' ', whereCondition, filtersWhereCondition, searchTermWhereCondition);
 
             if(String.isNotEmpty(datatable.OrderBy__c)) {
                 System.debug('datatable.orderBy: ' + datatable.OrderBy__c);
@@ -174,7 +174,7 @@ public without sharing class DatatableUtils {
             elem.filtrable = ele.Filtrable__c;
 
             if(ele.Type__c == String.valueOf(Schema.DisplayType.PICKLIST)) {
-                elem.filtrableValues = new List<String>();
+                elem.filtrableValues = new List<Map<String,String>>();
 
                 String objectName = ele.Datatable__r.ObjectApiName__c;
 
@@ -188,7 +188,10 @@ public without sharing class DatatableUtils {
                     }
 
                     if(!excluded) {
-                        elem.filtrableValues.add(pickListVal.getValue());
+                        Map<String,String> temp = new Map<String,String>();
+                        temp.put('label', pickListVal.getLabel());
+                        temp.put('value', pickListVal.getValue());
+                        elem.filtrableValues.add(temp);
                     }
                 }
             }

@@ -59,6 +59,12 @@
   font-size: 20px;
   font-weight: 500;
 }
+.THIS.accordion .content-accordion p{
+  margin-top: 50px;
+  color: #333333;
+  font-weight: 500;
+  font-size: 20px;
+}
 .THIS.accordion .scale-out-ver-top {
   max-height: 0;
 }

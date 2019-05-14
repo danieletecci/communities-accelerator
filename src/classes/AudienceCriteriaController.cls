@@ -98,7 +98,7 @@ public with sharing class AudienceCriteriaController {
         'STRING' => 'Text'
     };
 
-    @auraEnabled
+    @auraEnabled (cacheable=false)
     public static String getCriteria(String audienceId){
         AudienceWrapper aw = new AudienceWrapper();
 

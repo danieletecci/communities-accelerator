@@ -58,6 +58,7 @@
         action.setParams({componentWrapper: JSON.stringify(componentWrapperData)
                             , fieldName: fieldName
                             , direction: direction
+                            , actualPage: component.get("v.pageNumber")
                         });
 
         action.setCallback(this, function(response) {
@@ -83,7 +84,9 @@
         var componentWrapperData = component.get("v.componentWrapper.data");
         componentWrapperData.tableData = [];
 
-        action.setParams({ componentWrapper: (JSON.stringify(componentWrapperData)) });
+        action.setParams({ componentWrapper: (JSON.stringify(componentWrapperData)) 
+                            , actualPage: component.get("v.pageNumber")
+                        });
 
         action.setCallback(this, function(response) {
             component.set('v.isLoading', false);
@@ -127,7 +130,9 @@
         
         var componentWrapperData = component.get("v.componentWrapper.data");
         
-        action.setParams({componentWrapper: JSON.stringify(componentWrapperData)});
+        action.setParams({componentWrapper: JSON.stringify(componentWrapperData)
+                        , actualPage: component.get("v.pageNumber")
+                        });
 
         action.setCallback(this, function(response) {
             var state = response.getState();

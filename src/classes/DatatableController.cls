@@ -35,7 +35,7 @@ public without sharing class DatatableController extends ComponentManager {
 
         Integer offSet = wrapper.recordsPerPage * actualPage;
 
-        List<SObject> records = DatatableUtils.doGetRecords(datatable, offSet, wrapper);
+        List<SObject> records = DatatableUtils.doGetRecords(datatable, offSet, 0, wrapper);
 
         return JSON.serialize(DatatableUtils.mapDatatableDataToWrappers(records, wrapper.columns));
     }
@@ -53,7 +53,7 @@ public without sharing class DatatableController extends ComponentManager {
     }
 
     @AuraEnabled
-    public static String handleSort(String componentWrapper, String fieldName, String direction) {
+    public static String handleSort(String componentWrapper, String fieldName, String direction, Integer actualPage) {
         System.debug('in DatatableController.handleSort() method.');
 
         DatatableController.DatatableWrapper wrapper = (DatatableController.DatatableWrapper)JSON.deserialize(componentWrapper, DatatableController.DatatableWrapper.class);
@@ -62,12 +62,13 @@ public without sharing class DatatableController extends ComponentManager {
         Datatable__c datatable = DatatableUtils.getDatatableInfo(wrapper.componentExternalId);
         datatable.OrderBy__c = wrapper.orderBy;
 
-        List<SObject> records = DatatableUtils.doGetRecords(datatable, 0, wrapper);
+        Integer limitRecords = wrapper.recordsPerPage * actualPage;
+        List<SObject> records = DatatableUtils.doGetRecords(datatable, 0, limitRecords, wrapper); 
         return JSON.serialize(DatatableUtils.mapDatatableDataToWrappers(records, wrapper.columns));
     }
 
     @AuraEnabled
-    public static String handleFilter(String componentWrapper) {
+    public static String handleFilter(String componentWrapper, Integer actualPage) {
         System.debug('[DatatableController.cls][handleFilter] ComponentWrapper: ' + ComponentWrapper);
 
         DatatableController.DatatableWrapper wrapper = (DatatableController.DatatableWrapper)JSON.deserialize(componentWrapper, DatatableController.DatatableWrapper.class);
@@ -79,7 +80,10 @@ public without sharing class DatatableController extends ComponentManager {
         Datatable__c datatable = DatatableUtils.getDatatableInfo(wrapper.componentExternalId);
         datatable.OrderBy__c = wrapper.orderBy;
 
-        List<SObject> records = DatatableUtils.doGetRecords(datatable, 0, wrapper);
+        Integer limitRecords = wrapper.recordsPerPage * actualPage;
+
+        List<SObject> records = DatatableUtils.doGetRecords(datatable, 0, limitRecords, wrapper); 
+
         return JSON.serialize(DatatableUtils.mapDatatableDataToWrappers(records, wrapper.columns));
     }
     /* Aura Methods - END */
@@ -110,7 +114,7 @@ public without sharing class DatatableController extends ComponentManager {
             datatableWrapper.columns = DatatableUtils.mapDatatableElementsToWrappers(datatable.DatatableElements__r);
             datatableWrapper.actions = DatatableUtils.mapDatatableActionsToWrappers(datatable.DatatableActions__r);
             
-            List<SObject> records = DatatableUtils.doGetRecords(datatable, 0, datatableWrapper);
+            List<SObject> records = DatatableUtils.doGetRecords(datatable, 0, 0, datatableWrapper);
 
             datatableWrapper.tableData = DatatableUtils.mapDatatableDataToWrappers(records, datatableWrapper.columns);
 

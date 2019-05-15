@@ -59,10 +59,10 @@ public class DatatableUtilsTest {
         
         Datatable__c d = [SELECT Id, WhereCondition__c, ObjectApiName__c, OrderBy__c
                                 , RecordsPerPage__c
-                                , (SELECT Id, FieldApiName__c, Navigation__c FROM DatatableElements__r) 
+                                , (SELECT Id, FieldApiName__c, Navigation__c, Type__c FROM DatatableElements__r) 
                             FROM Datatable__c WHERE Name = 'DummyDatatable'];
         DatatableController.DatatableWrapper wrapper = new DatatableController.DatatableWrapper();        
-        DatatableUtils.doGetRecords(d, 0, wrapper);        
+        DatatableUtils.doGetRecords(d, 0, 0, wrapper);        
         Test.stopTest();
     }
     

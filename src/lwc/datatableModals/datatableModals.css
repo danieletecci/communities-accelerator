@@ -17,6 +17,7 @@
   z-index: 100;
 }
 .datatableModals .modal .filterModal .modal__content {
+  background-color: #F8F8F8;
   position: absolute;
   height: 100vh;
   width: 100%;
@@ -79,9 +80,10 @@
   cursor: pointer;
 }
 .datatableModals .modal .detailmodal {
-  background-color: #FFFFFF;
+  background-color: #F8F8F8;
   height: 100%;
   top: 155px;
+  font-family: 'Roboto';
 }
 .datatableModals .modal .detailmodal h1 {
   font-size: 40px;
@@ -99,7 +101,7 @@
   padding: 30px 36px 50px 28px;
 }
 .datatableModals .modal .detailmodal .modal__content .detailcontent {
-  padding-bottom: 20px;
+  padding-bottom: 50px;
 }
 .datatableModals .modal .detailmodal .modal__content .detailcontent p {
   font-weight: 500;
@@ -119,7 +121,7 @@
   position: fixed;
   left: 0;
   right: 0;
-  background-color: #F8F8F8;
+  background-color: #FDFDFD;
   padding-left: 56px;
   padding-top: 15px;
   padding-bottom: 15px;

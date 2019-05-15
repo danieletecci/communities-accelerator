@@ -1,4 +1,4 @@
-global with sharing class CMSUserSettingsUtils {
+global without sharing class CMSUserSettingsUtils {
     
     //This methods updates the CMS User Settings with the audiences calculation
     global static void updateUserSettings(Id userId, Id clusterId, Id accountId, Id contactId, Id customRecordId){

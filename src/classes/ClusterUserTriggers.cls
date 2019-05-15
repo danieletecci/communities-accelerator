@@ -1,4 +1,4 @@
-public with sharing class ClusterUserTriggers extends TriggersHandler { 
+public without sharing class ClusterUserTriggers extends TriggersHandler { 
 	
 	/*****************************************************************/
     /************************ CONSTRUCTOR ****************************/

@@ -4,12 +4,11 @@
         <componentInstances>
             <componentName>force:detailPanel</componentName>
         </componentInstances>
+        <componentInstances>
+            <componentName>AudienceCriteria</componentName>
+        </componentInstances>
         <mode>Replace</mode>
         <name>detailTabContent</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <name>Facet-9fb75f3c-0c00-4328-9134-1ce2edc6429d</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -25,17 +24,6 @@
             <componentInstanceProperties>
                 <name>title</name>
                 <value>Standard.Tab.detail</value>
-            </componentInstanceProperties>
-            <componentName>flexipage:tab</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentInstanceProperties>
-                <name>body</name>
-                <value>Facet-9fb75f3c-0c00-4328-9134-1ce2edc6429d</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>title</name>
-                <value>Standard.Tab.relatedLists</value>
             </componentInstanceProperties>
             <componentName>flexipage:tab</componentName>
         </componentInstances>
@@ -61,9 +49,6 @@
                 <value>maintabs</value>
             </componentInstanceProperties>
             <componentName>flexipage:tabset</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentName>AudienceCriteria</componentName>
         </componentInstances>
         <mode>Replace</mode>
         <name>header</name>

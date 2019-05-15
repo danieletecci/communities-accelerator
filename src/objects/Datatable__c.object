@@ -38,16 +38,20 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
-        <type>Default</type>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Datatable_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
-    <enableLicensing>false</enableLicensing>
     <enableReports>true</enableReports>
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
@@ -113,6 +117,7 @@
     <fields>
         <fullName>NoRecordsMessage__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>This field was created to store the message that will be shown to the Portal User when a query from a List View results in &quot;No records found&quot;.</inlineHelpText>
         <label>No Records Message</label>
         <length>32768</length>
         <trackHistory>false</trackHistory>
@@ -199,6 +204,7 @@
     <fields>
         <fullName>OrderBy__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>The value on this field set up how the records will be ordered and display in the frontend.</inlineHelpText>
         <label>Order by</label>
         <length>255</length>
         <required>false</required>
@@ -263,6 +269,12 @@
     <label>Datatable</label>
     <listViews>
         <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Cluster__c</columns>
+        <columns>ExternalId__c</columns>
+        <columns>ObjectApiName__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
@@ -272,7 +284,18 @@
         <type>Text</type>
     </nameField>
     <pluralLabel>Datatables</pluralLabel>
-    <searchLayouts/>
+    <searchLayouts>
+        <customTabListAdditionalFields>Cluster__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>ExternalId__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>ObjectApiName__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>UPDATEDBY_USER</customTabListAdditionalFields>
+        <customTabListAdditionalFields>LAST_UPDATE</customTabListAdditionalFields>
+        <searchResultsAdditionalFields>Cluster__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>ExternalId__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>ObjectApiName__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>UPDATEDBY_USER</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>LAST_UPDATE</searchResultsAdditionalFields>
+    </searchLayouts>
     <sharingModel>Private</sharingModel>
     <sharingReasons>
         <fullName>Clustering__c</fullName>

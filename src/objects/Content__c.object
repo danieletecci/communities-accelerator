@@ -96,7 +96,7 @@
         <fullName>Body__c</fullName>
         <externalId>false</externalId>
         <label>Body</label>
-        <length>131072</length>
+        <length>10000</length>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>

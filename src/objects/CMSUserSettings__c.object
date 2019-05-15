@@ -38,16 +38,20 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
-        <type>Default</type>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>CMS_User_Settings_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
-    <enableLicensing>false</enableLicensing>
     <enableReports>false</enableReports>
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
@@ -56,6 +60,7 @@
         <fullName>AudienceAccount__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
+        <inlineHelpText>The Account related to the Community User.</inlineHelpText>
         <label>Audience Account</label>
         <referenceTo>Account</referenceTo>
         <relationshipLabel>CMS Users Settings</relationshipLabel>
@@ -68,6 +73,7 @@
         <fullName>AudienceContact__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
+        <inlineHelpText>The Contact related to the Community User.</inlineHelpText>
         <label>Audience Contact</label>
         <referenceTo>Contact</referenceTo>
         <relationshipLabel>CMS Users Settings</relationshipLabel>
@@ -79,6 +85,7 @@
     <fields>
         <fullName>Audiences__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>Audiences applied to the Community User.</inlineHelpText>
         <label>Audiences</label>
         <length>131072</length>
         <trackTrending>false</trackTrending>
@@ -121,6 +128,13 @@
     <label>CMS User Settings</label>
     <listViews>
         <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>User__c</columns>
+        <columns>Cluster__c</columns>
+        <columns>AudienceAccount__c</columns>
+        <columns>AudienceContact__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
@@ -129,7 +143,20 @@
         <type>Text</type>
     </nameField>
     <pluralLabel>CMS Users Settings</pluralLabel>
-    <searchLayouts/>
+    <searchLayouts>
+        <customTabListAdditionalFields>User__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Cluster__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>AudienceAccount__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>AudienceContact__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>UPDATEDBY_USER</customTabListAdditionalFields>
+        <customTabListAdditionalFields>LAST_UPDATE</customTabListAdditionalFields>
+        <searchResultsAdditionalFields>User__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Cluster__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>AudienceAccount__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>AudienceContact__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>UPDATEDBY_USER</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>LAST_UPDATE</searchResultsAdditionalFields>
+    </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

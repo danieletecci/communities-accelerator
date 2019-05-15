@@ -4,6 +4,61 @@
         <componentInstances>
             <componentName>force:detailPanel</componentName>
         </componentInstances>
+        <name>Facet-ccb359a4-4e0f-48c2-8fc0-2070ac40d30f</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <componentInstances>
+            <componentName>ComponentPreview</componentName>
+        </componentInstances>
+        <name>Facet-74af19cb-16a7-44e4-8141-1288ce59fcad</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>body</name>
+                <value>Facet-ccb359a4-4e0f-48c2-8fc0-2070ac40d30f</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>title</name>
+                <value>Standard.Tab.detail</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:tab</componentName>
+        </componentInstances>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>body</name>
+                <value>Facet-74af19cb-16a7-44e4-8141-1288ce59fcad</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>title</name>
+                <value>Standard.Tab.preview</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:tab</componentName>
+        </componentInstances>
+        <name>Facet-fde9b7bf-3611-4d41-8396-c0a98de63c9d</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>collapsed</name>
+                <value>false</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>numVisibleActions</name>
+                <value>3</value>
+            </componentInstanceProperties>
+            <componentName>force:highlightsPanel</componentName>
+        </componentInstances>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>tabs</name>
+                <value>Facet-fde9b7bf-3611-4d41-8396-c0a98de63c9d</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:tabset</componentName>
+        </componentInstances>
         <componentInstances>
             <componentInstanceProperties>
                 <name>junctionObjectAPIName</name>
@@ -81,61 +136,6 @@
                     <rightValue>TagsCategories</rightValue>
                 </criteria>
             </visibilityRule>
-        </componentInstances>
-        <name>Facet-ccb359a4-4e0f-48c2-8fc0-2070ac40d30f</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <componentInstances>
-            <componentName>ComponentPreview</componentName>
-        </componentInstances>
-        <name>Facet-74af19cb-16a7-44e4-8141-1288ce59fcad</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <componentInstances>
-            <componentInstanceProperties>
-                <name>body</name>
-                <value>Facet-ccb359a4-4e0f-48c2-8fc0-2070ac40d30f</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>title</name>
-                <value>Standard.Tab.detail</value>
-            </componentInstanceProperties>
-            <componentName>flexipage:tab</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentInstanceProperties>
-                <name>body</name>
-                <value>Facet-74af19cb-16a7-44e4-8141-1288ce59fcad</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>title</name>
-                <value>Standard.Tab.preview</value>
-            </componentInstanceProperties>
-            <componentName>flexipage:tab</componentName>
-        </componentInstances>
-        <name>Facet-fde9b7bf-3611-4d41-8396-c0a98de63c9d</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <componentInstances>
-            <componentInstanceProperties>
-                <name>collapsed</name>
-                <value>false</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>numVisibleActions</name>
-                <value>3</value>
-            </componentInstanceProperties>
-            <componentName>force:highlightsPanel</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentInstanceProperties>
-                <name>tabs</name>
-                <value>Facet-fde9b7bf-3611-4d41-8396-c0a98de63c9d</value>
-            </componentInstanceProperties>
-            <componentName>flexipage:tabset</componentName>
         </componentInstances>
         <name>header</name>
         <type>Region</type>

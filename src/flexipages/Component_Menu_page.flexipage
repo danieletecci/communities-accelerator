@@ -4,33 +4,6 @@
         <componentInstances>
             <componentName>force:detailPanel</componentName>
         </componentInstances>
-        <componentInstances>
-            <componentInstanceProperties>
-                <name>OrderFieldName</name>
-                <value>[CMS]Order__c</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>junctionObjectAPIName</name>
-                <value>[CMS]MenuAssignment__c</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>parentLookup</name>
-                <value>[CMS]Component__c</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>relationTitle</name>
-                <value>Menus</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>secondaryLookup</name>
-                <value>[CMS]Menu__c</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>whereCondition</name>
-                <value>WHERE RecordType.DeveloperName = &apos;Menu&apos; AND [CMS]ClusterRootExternalId__c = [!rec.[CMS]ClusterExternalId__c]</value>
-            </componentInstanceProperties>
-            <componentName>JunctionObjectManager</componentName>
-        </componentInstances>
         <name>Facet-e14e60cb-c618-43d8-beed-2ceb3078b802</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -85,6 +58,33 @@
                 <value>Facet-20faf14d-384e-44a2-9f40-a11444d692ed</value>
             </componentInstanceProperties>
             <componentName>flexipage:tabset</componentName>
+        </componentInstances>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>OrderFieldName</name>
+                <value>[CMS]Order__c</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>junctionObjectAPIName</name>
+                <value>[CMS]MenuAssignment__c</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>parentLookup</name>
+                <value>[CMS]Component__c</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>relationTitle</name>
+                <value>Menus</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>secondaryLookup</name>
+                <value>[CMS]Menu__c</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>whereCondition</name>
+                <value>WHERE RecordType.DeveloperName = &apos;Menu&apos; AND [CMS]ClusterRootExternalId__c = [!rec.[CMS]ClusterExternalId__c]</value>
+            </componentInstanceProperties>
+            <componentName>JunctionObjectManager</componentName>
         </componentInstances>
         <name>header</name>
         <type>Region</type>

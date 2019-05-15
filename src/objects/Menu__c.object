@@ -141,35 +141,35 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
         <type>Text</type>
         <unique>false</unique>
     </fields>
-    <fields>        
-        <fullName>DisplayOn__c</fullName>       
-        <defaultValue>&quot;Both&quot;</defaultValue>       
-        <externalId>false</externalId>      
-        <label>Display On</label>       
-        <required>false</required>      
-        <trackTrending>false</trackTrending>        
-        <type>Picklist</type>       
-        <valueSet>      
-            <restricted>true</restricted>       
-            <valueSetDefinition>        
-                <sorted>false</sorted>      
-                <value>     
-                    <fullName>Desktop</fullName>        
-                    <default>false</default>        
-                    <label>Desktop</label>      
-                </value>        
-                <value>     
-                    <fullName>Mobile</fullName>     
-                    <default>false</default>        
-                    <label>Mobile</label>       
-                </value>        
-                <value>     
-                    <fullName>Both</fullName>       
-                    <default>false</default>        
-                    <label>Both</label>     
-                </value>        
-            </valueSetDefinition>       
-        </valueSet>     
+    <fields>
+        <fullName>DisplayOn__c</fullName>
+        <defaultValue>&quot;Both&quot;</defaultValue>
+        <externalId>false</externalId>
+        <label>Display On</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Desktop</fullName>
+                    <default>false</default>
+                    <label>Desktop</label>
+                </value>
+                <value>
+                    <fullName>Mobile</fullName>
+                    <default>false</default>
+                    <label>Mobile</label>
+                </value>
+                <value>
+                    <fullName>Both</fullName>
+                    <default>false</default>
+                    <label>Both</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <fields>
         <fullName>ExternalId__c</fullName>
@@ -183,14 +183,14 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
         <unique>true</unique>
     </fields>
     <fields>
-        <fullName>MenuDynamicLabel__c</fullName>        
-        <externalId>false</externalId>      
-        <label>Menu Dynamic Label</label>       
-        <length>40</length>     
-        <required>false</required>      
-        <trackTrending>false</trackTrending>        
-        <type>Text</type>       
-        <unique>false</unique>      
+        <fullName>MenuDynamicLabel__c</fullName>
+        <externalId>false</externalId>
+        <label>Menu Dynamic Label</label>
+        <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>MenuIcon__c</fullName>
@@ -259,14 +259,14 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
         </valueSet>
     </fields>
     <fields>
-        <fullName>StyleClass__c</fullName>      
-        <externalId>false</externalId>      
-        <label>Style Class</label>      
-        <length>40</length>     
-        <required>false</required>      
-        <trackTrending>false</trackTrending>        
-        <type>Text</type>       
-        <unique>false</unique>      
+        <fullName>StyleClass__c</fullName>
+        <externalId>false</externalId>
+        <label>Style Class</label>
+        <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>URLParameters__c</fullName>
@@ -280,13 +280,60 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
     </fields>
     <label>Menu</label>
     <listViews>
+        <fullName>Active</fullName>
+        <columns>NAME</columns>
+        <columns>ExternalId__c</columns>
+        <columns>Cluster__c</columns>
+        <columns>ParentMenu__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Active</value>
+        </filters>
+        <label>Active</label>
+    </listViews>
+    <listViews>
         <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>ExternalId__c</columns>
+        <columns>Cluster__c</columns>
+        <columns>ParentMenu__c</columns>
+        <columns>Status__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
     <listViews>
+        <fullName>Inactive</fullName>
+        <columns>NAME</columns>
+        <columns>ExternalId__c</columns>
+        <columns>Cluster__c</columns>
+        <columns>ParentMenu__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Inactive</value>
+        </filters>
+        <label>Inactive</label>
+    </listViews>
+    <listViews>
         <fullName>Menu</fullName>
         <columns>NAME</columns>
+        <columns>ExternalId__c</columns>
+        <columns>Cluster__c</columns>
+        <columns>Status__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
         <filterScope>Mine</filterScope>
         <filters>
             <field>RECORDTYPE</field>
@@ -298,6 +345,12 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
     <listViews>
         <fullName>Submenu</fullName>
         <columns>NAME</columns>
+        <columns>ExternalId__c</columns>
+        <columns>Cluster__c</columns>
+        <columns>ParentMenu__c</columns>
+        <columns>Status__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
         <filterScope>Mine</filterScope>
         <filters>
             <field>RECORDTYPE</field>
@@ -328,20 +381,20 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>DisplayOn__c</picklist>       
-            <values>        
-                <fullName>Both</fullName>       
-                <default>false</default>        
-            </values>       
-            <values>        
-                <fullName>Desktop</fullName>        
-                <default>false</default>        
-            </values>       
-            <values>        
-                <fullName>Mobile</fullName>     
-                <default>false</default>        
-            </values>       
-        </picklistValues>   
+            <picklist>DisplayOn__c</picklist>
+            <values>
+                <fullName>Both</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Desktop</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mobile</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
         <picklistValues>
             <picklist>Status__c</picklist>
             <values>
@@ -371,19 +424,19 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>DisplayOn__c</picklist>       
-            <values>        
-                <fullName>Both</fullName>       
-                <default>false</default>        
-            </values>       
-            <values>        
-                <fullName>Desktop</fullName>        
-                <default>false</default>        
-            </values>       
-            <values>        
-                <fullName>Mobile</fullName>     
-                <default>false</default>        
-            </values>       
+            <picklist>DisplayOn__c</picklist>
+            <values>
+                <fullName>Both</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Desktop</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mobile</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
         <picklistValues>
             <picklist>Status__c</picklist>
@@ -397,7 +450,22 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
             </values>
         </picklistValues>
     </recordTypes>
-    <searchLayouts/>
+    <searchLayouts>
+        <customTabListAdditionalFields>ExternalId__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Cluster__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>ParentMenu__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Status__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>RECORDTYPE</customTabListAdditionalFields>
+        <customTabListAdditionalFields>UPDATEDBY_USER</customTabListAdditionalFields>
+        <customTabListAdditionalFields>LAST_UPDATE</customTabListAdditionalFields>
+        <searchResultsAdditionalFields>ExternalId__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Cluster__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>ParentMenu__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Status__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>RECORDTYPE</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>UPDATEDBY_USER</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>LAST_UPDATE</searchResultsAdditionalFields>
+    </searchLayouts>
     <sharingModel>Private</sharingModel>
     <sharingReasons>
         <fullName>Clustering__c</fullName>
@@ -411,8 +479,7 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
 OR(
 ISBLANK(ParentMenu__c),
 ISBLANK(ParentMenu__r.ParentMenu__c),
-ISBLANK(ParentMenu__r.ParentMenu__r.ParentMenu__c),
-ISBLANK(ParentMenu__r.ParentMenu__r.ParentMenu__r.ParentMenu__c)
+ISBLANK(ParentMenu__r.ParentMenu__r.ParentMenu__c)
 )
 )</errorConditionFormula>
         <errorMessage>Sorry, this menu already has the max of submenu levels, you can&apos;t add more.</errorMessage>

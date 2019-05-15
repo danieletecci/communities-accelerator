@@ -3,6 +3,7 @@
         helper.getRecord(component, event, helper);
     },
     doGetPage : function(component, event, helper) {
+        component.set("v.pageNumber", Math.trunc(event.getParam('page') + 1));
         helper.doGetPage(component, event, helper, event.getParam('page'));
     },
     doHandleSearch : function(component, event, helper) {

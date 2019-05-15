@@ -78,7 +78,7 @@ public class DatatableControllerTest {
              
         // When
         Test.startTest();
-        String jsonTest = DatatableController.handleFilter(JSON.serialize(jsonWrapper));
+        String jsonTest = DatatableController.handleFilter(JSON.serialize(jsonWrapper), 1);
         Test.stopTest();
         // Then
         System.assertNotEquals(jsonTest, null);
@@ -87,7 +87,7 @@ public class DatatableControllerTest {
     @isTest
     static void testhandleSort(){ 
     
-     // Given
+        // Given
         Datatable__c data = [Select ExternalId__c from Datatable__c where ExternalId__c like'TableTest%' Limit 1];
         
         DatatableController.DatatableWrapper jsonWrapper = new DatatableController.DatatableWrapper();
@@ -99,7 +99,7 @@ public class DatatableControllerTest {
         // When   
         Test.startTest();
         
-        String jsonTest = DatatableController.handleSort(JSON.serialize(jsonWrapper), 'Name', 'ASC');
+        String jsonTest = DatatableController.handleSort(JSON.serialize(jsonWrapper), 'Name', 'ASC', 1);
         Test.stopTest();
         // Then
         System.assertNotEquals(jsonTest, null);

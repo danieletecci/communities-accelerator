@@ -1,6 +1,6 @@
 public without sharing class DatatableUtils {
-    
-    public static List<SObject> doGetRecords(Datatable__c datatable, Integer offSet, DatatableController.DatatableWrapper wrapper){
+       
+    public static List<SObject> doGetRecords(Datatable__c datatable, Integer offSet, Integer limitRecords, DatatableController.DatatableWrapper wrapper){
         List<SObject> rows = new List<SObject>();
         
         List<String> fieldSet = new List<String>();
@@ -39,7 +39,18 @@ public without sharing class DatatableUtils {
                 query += ' ORDER BY ' + datatable.OrderBy__c;
             }
 
-            query += ' LIMIT ' + datatable.RecordsPerPage__c + ' OFFSET ' + offset;
+            // Adding a limit to the query
+            if (limitRecords > 0){
+                query += ' LIMIT ' + limitRecords;
+            }
+            else{
+                query += ' LIMIT ' + datatable.RecordsPerPage__c;
+            }
+
+            // Setting an offset if there's any
+            if (offSet > 0){
+                query += ' OFFSET ' + offSet;
+            }
             
             System.debug('query: ' + query);
 
@@ -47,7 +58,7 @@ public without sharing class DatatableUtils {
         }
 
         return rows;
-    }
+    } 
     
     public static String generateDatatableRecordsQuery(String selectPart, String fromPart, String whereCondition, String filtersCondition, String searchTermCondition) {
         String result = '';

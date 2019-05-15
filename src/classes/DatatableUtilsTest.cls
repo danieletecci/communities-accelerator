@@ -54,12 +54,13 @@ public class DatatableUtilsTest {
         elem.Datatable__c = datatable.Id;
         elem.FieldApiName__c = 'CreatedDate';
         elem.Label__c = 'Created Date'; 
+        elem.Type__c = 'DATETIME'; 
         
         insert elem;
         
         Datatable__c d = [SELECT Id, WhereCondition__c, ObjectApiName__c, OrderBy__c
                                 , RecordsPerPage__c
-                                , (SELECT Id, FieldApiName__c, Navigation__c FROM DatatableElements__r) 
+                                , (SELECT Id, FieldApiName__c, Type__c, Navigation__c FROM DatatableElements__r) 
                             FROM Datatable__c WHERE Name = 'DummyDatatable'];
         DatatableController.DatatableWrapper wrapper = new DatatableController.DatatableWrapper();        
         DatatableUtils.doGetRecords(d, 0, wrapper);        

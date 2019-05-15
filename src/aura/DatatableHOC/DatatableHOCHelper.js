@@ -175,7 +175,7 @@
             var componentName = eventParams['componentName'];
             var showAsModal = eventParams['showAsModal'];
             
-            $A.createComponent("c:"+componentName,
+            $A.createComponent(componentName,
                                     { recordId : recordId}
                                     , function(content, status) {
                                             if (status === "SUCCESS") {

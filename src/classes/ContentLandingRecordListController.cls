@@ -197,14 +197,58 @@ public class ContentLandingRecordListController {
         List<String> columnSet = getColumnSet().split(',');
         List<String> columnLabelSet = new List<String>();
         for(String column : columnSet){
-            String columnLabel;
-            columnLabel = column.remove('__c');
-            columnLabel = columnLabel.remove('__r');
-            columnLabel = columnLabel.remove(GeneralUtils.nameSpace);
-            columnLabel = columnLabel.replace('.', ' ');
-            columnLabelSet.add(columnLabel);
+            columnLabelSet.add(getColumnLabel(column));
         }
         return columnLabelSet;
+    }
+
+    public static String getColumnLabel(String column){
+        List<String> fields = column.split('\\.');
+        DescribeSObjectResult objectName = Schema.getGlobalDescribe().get('Content__c').getDescribe();
+        String columnLabel = '';
+
+        for(Integer i=0; i < fields.size(); i++){
+            if(i!=0)
+                columnLabel += ' > ';
+            if(i == fields.size() - 1){
+                columnLabel += getFieldName(objectName.getName(), fields.get(i));
+            } else {
+                objectName = getObjectFieldName(objectName.getName(), fields.get(i));
+                columnLabel += objectName.getLabel();
+            }
+        }
+        return columnLabel;
+    }
+
+    public static DescribeSObjectResult getObjectFieldName(String objectName, String lookupName){
+        objectName = objectName.replace('__r', '__c');
+        lookupName = lookupName.replace('__r', '__c');
+        Schema.DescribeFieldResult f;
+        Map<String, Schema.SobjectField> mapField = Schema.getGlobalDescribe()
+            .get(objectName)
+            .getDescribe()
+            .fields
+            .getMap();
+        if(mapField.containsKey(lookupName + 'Id')){
+            f = mapField.get(lookupName + 'Id').getDescribe();
+        } else {
+            f = mapField.get(lookupName).getDescribe();
+        }
+        return f.getReferenceTo()[0].getDescribe();
+    }
+
+    public static String getFieldName(String objectName, String fieldName){
+        objectName = objectName.replace('__r', '__c');
+        fieldName = fieldName.replace('__r', '__c');
+        Schema.DescribeFieldResult f = Schema.getGlobalDescribe()
+            .get(objectName)
+            .getDescribe()
+            .fields
+            .getMap()
+            .get(fieldName)
+            .getDescribe();
+        
+        return f.getLabel();
     }
 
     static String getWrapperValue(Content__c content, String column){

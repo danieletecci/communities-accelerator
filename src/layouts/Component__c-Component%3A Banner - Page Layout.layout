@@ -70,6 +70,24 @@
                 <field>Title__c</field>
             </layoutItems>
             <layoutItems>
+                <behavior>Required</behavior>
+                <field>BannerFrameType__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CustomHeight__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>BannerType__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>Orientation__c</field>
+            </layoutItems>
+        </layoutColumns>
+        <layoutColumns>
+            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>AutomaticTransition__c</field>
             </layoutItems>
@@ -84,20 +102,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>ShowBullets__c</field>
-            </layoutItems>
-        </layoutColumns>
-        <layoutColumns>
-            <layoutItems>
-                <behavior>Required</behavior>
-                <field>BannerFrameType__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Required</behavior>
-                <field>BannerType__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Required</behavior>
-                <field>Orientation__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>

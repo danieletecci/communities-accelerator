@@ -90,9 +90,7 @@
     <fields>
         <fullName>AutomaticTransition__c</fullName>
         <defaultValue>true</defaultValue>
-        <description>Determina si los contenidos transicionan o no de forma automática.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Determina si los contenidos transicionan o no de forma automática.</inlineHelpText>
         <label>Automatic transition</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -103,7 +101,6 @@
         <defaultValue>&quot;Hero&quot;</defaultValue>
         <description>This field allows users to define the banner rather a small, medium or large on the page added</description>
         <externalId>false</externalId>
-        <inlineHelpText>Para presentación horizontal | Hero banner , 3 , 1 | Page banner , 6 , 1 | Tiny banner , 1 , 1 |||||| Para presentación vertical | Hero banner , 1 , 3 | Page banner , 1 , 6 | Tiny banner , 1 , 1</inlineHelpText>
         <label>Banner Frame Type</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -455,9 +452,7 @@
     <fields>
         <fullName>Loop__c</fullName>
         <defaultValue>true</defaultValue>
-        <description>Determina el comportamiento del banner como un bucle.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Determina el comportamiento del banner como un bucle.</inlineHelpText>
         <label>Loop</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -688,6 +683,7 @@
                 </value>
             </valueSetDefinition>
             <valueSettings>
+                <controllingFieldValue>All Blocks</controllingFieldValue>
                 <controllingFieldValue>ManualAssignment</controllingFieldValue>
                 <controllingFieldValue>Tags</controllingFieldValue>
                 <controllingFieldValue>Categories</controllingFieldValue>
@@ -701,6 +697,7 @@
                 <valueName>CreatedDate ASC</valueName>
             </valueSettings>
             <valueSettings>
+                <controllingFieldValue>All Blocks</controllingFieldValue>
                 <controllingFieldValue>ManualAssignment</controllingFieldValue>
                 <controllingFieldValue>Tags</controllingFieldValue>
                 <controllingFieldValue>Categories</controllingFieldValue>
@@ -714,6 +711,7 @@
                 <valueName>CreatedDate DESC</valueName>
             </valueSettings>
             <valueSettings>
+                <controllingFieldValue>All Blocks</controllingFieldValue>
                 <controllingFieldValue>ManualAssignment</controllingFieldValue>
                 <controllingFieldValue>Tags</controllingFieldValue>
                 <controllingFieldValue>Categories</controllingFieldValue>
@@ -727,6 +725,7 @@
                 <valueName>Name ASC</valueName>
             </valueSettings>
             <valueSettings>
+                <controllingFieldValue>All Blocks</controllingFieldValue>
                 <controllingFieldValue>ManualAssignment</controllingFieldValue>
                 <controllingFieldValue>Tags</controllingFieldValue>
                 <controllingFieldValue>Categories</controllingFieldValue>
@@ -740,6 +739,7 @@
                 <valueName>Name DESC</valueName>
             </valueSettings>
             <valueSettings>
+                <controllingFieldValue>All Blocks</controllingFieldValue>
                 <controllingFieldValue>ManualAssignment</controllingFieldValue>
                 <controllingFieldValue>Tags</controllingFieldValue>
                 <controllingFieldValue>Categories</controllingFieldValue>
@@ -753,6 +753,7 @@
                 <valueName>Category__r.Name ASC</valueName>
             </valueSettings>
             <valueSettings>
+                <controllingFieldValue>All Blocks</controllingFieldValue>
                 <controllingFieldValue>ManualAssignment</controllingFieldValue>
                 <controllingFieldValue>Tags</controllingFieldValue>
                 <controllingFieldValue>Categories</controllingFieldValue>
@@ -766,6 +767,7 @@
                 <valueName>Category__r.Name DESC</valueName>
             </valueSettings>
             <valueSettings>
+                <controllingFieldValue>All Blocks</controllingFieldValue>
                 <controllingFieldValue>ManualAssignment</controllingFieldValue>
                 <controllingFieldValue>Tags</controllingFieldValue>
                 <controllingFieldValue>Categories</controllingFieldValue>
@@ -779,6 +781,7 @@
                 <valueName>PublishStartDate__c ASC</valueName>
             </valueSettings>
             <valueSettings>
+                <controllingFieldValue>All Blocks</controllingFieldValue>
                 <controllingFieldValue>ManualAssignment</controllingFieldValue>
                 <controllingFieldValue>Tags</controllingFieldValue>
                 <controllingFieldValue>Categories</controllingFieldValue>
@@ -792,32 +795,7 @@
                 <valueName>PublishStartDate__c DESC</valueName>
             </valueSettings>
             <valueSettings>
-                <controllingFieldValue>ManualAssignment</controllingFieldValue>
-                <controllingFieldValue>Tags</controllingFieldValue>
-                <controllingFieldValue>Categories</controllingFieldValue>
-                <controllingFieldValue>TagsCategories</controllingFieldValue>
-                <controllingFieldValue>ParentComponentBehaviour</controllingFieldValue>
-                <controllingFieldValue>ParentContentTags</controllingFieldValue>
-                <controllingFieldValue>ParentContentCategories</controllingFieldValue>
-                <controllingFieldValue>ParentContentTagsCategories</controllingFieldValue>
-                <controllingFieldValue>All Articles</controllingFieldValue>
-                <controllingFieldValue>All Events</controllingFieldValue>
-                <valueName>EventStartDate__c ASC</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>ManualAssignment</controllingFieldValue>
-                <controllingFieldValue>Tags</controllingFieldValue>
-                <controllingFieldValue>Categories</controllingFieldValue>
-                <controllingFieldValue>TagsCategories</controllingFieldValue>
-                <controllingFieldValue>ParentComponentBehaviour</controllingFieldValue>
-                <controllingFieldValue>ParentContentTags</controllingFieldValue>
-                <controllingFieldValue>ParentContentCategories</controllingFieldValue>
-                <controllingFieldValue>ParentContentTagsCategories</controllingFieldValue>
-                <controllingFieldValue>All Articles</controllingFieldValue>
-                <controllingFieldValue>All Events</controllingFieldValue>
-                <valueName>EventStartDate__c DESC</valueName>
-            </valueSettings>
-            <valueSettings>
+                <controllingFieldValue>All Blocks</controllingFieldValue>
                 <controllingFieldValue>ManualAssignment</controllingFieldValue>
                 <controllingFieldValue>Tags</controllingFieldValue>
                 <controllingFieldValue>Categories</controllingFieldValue>
@@ -831,6 +809,7 @@
                 <valueName>Title__c ASC</valueName>
             </valueSettings>
             <valueSettings>
+                <controllingFieldValue>All Blocks</controllingFieldValue>
                 <controllingFieldValue>ManualAssignment</controllingFieldValue>
                 <controllingFieldValue>Tags</controllingFieldValue>
                 <controllingFieldValue>Categories</controllingFieldValue>
@@ -844,6 +823,7 @@
                 <valueName>Title__c DESC</valueName>
             </valueSettings>
             <valueSettings>
+                <controllingFieldValue>All Blocks</controllingFieldValue>
                 <controllingFieldValue>ManualAssignment</controllingFieldValue>
                 <controllingFieldValue>Tags</controllingFieldValue>
                 <controllingFieldValue>Categories</controllingFieldValue>
@@ -858,6 +838,31 @@
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>ManualAssignment</controllingFieldValue>
+                <controllingFieldValue>Tags</controllingFieldValue>
+                <controllingFieldValue>Categories</controllingFieldValue>
+                <controllingFieldValue>TagsCategories</controllingFieldValue>
+                <controllingFieldValue>ParentComponentBehaviour</controllingFieldValue>
+                <controllingFieldValue>ParentContentTags</controllingFieldValue>
+                <controllingFieldValue>ParentContentCategories</controllingFieldValue>
+                <controllingFieldValue>ParentContentTagsCategories</controllingFieldValue>
+                <controllingFieldValue>All Events</controllingFieldValue>
+                <valueName>EventStartDate__c ASC</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>ManualAssignment</controllingFieldValue>
+                <controllingFieldValue>Tags</controllingFieldValue>
+                <controllingFieldValue>Categories</controllingFieldValue>
+                <controllingFieldValue>TagsCategories</controllingFieldValue>
+                <controllingFieldValue>ParentComponentBehaviour</controllingFieldValue>
+                <controllingFieldValue>ParentContentTags</controllingFieldValue>
+                <controllingFieldValue>ParentContentCategories</controllingFieldValue>
+                <controllingFieldValue>ParentContentTagsCategories</controllingFieldValue>
+                <controllingFieldValue>All Events</controllingFieldValue>
+                <valueName>EventStartDate__c DESC</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Tags</controllingFieldValue>
+                <controllingFieldValue>TagsCategories</controllingFieldValue>
                 <valueName>Manual Order</valueName>
             </valueSettings>
         </valueSet>
@@ -951,9 +956,7 @@
     <fields>
         <fullName>ShowBullets__c</fullName>
         <defaultValue>true</defaultValue>
-        <description>Determina si se muestran los bullets en el banner.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Determina si se muestran los bullets en el banner.</inlineHelpText>
         <label>Show Bullets</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>

@@ -11,21 +11,6 @@
     <flexiPageRegions>
         <componentInstances>
             <componentInstanceProperties>
-                <name>objectName</name>
-                <value>[CMS]Menu__c</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>parentLookUp</name>
-                <value>[CMS]ParentMenu__c</value>
-            </componentInstanceProperties>
-            <componentName>TreePreview</componentName>
-        </componentInstances>
-        <name>Facet-1262f077-d672-4945-98e9-e29eeb601494</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <componentInstances>
-            <componentInstanceProperties>
                 <name>active</name>
                 <value>true</value>
             </componentInstanceProperties>
@@ -39,17 +24,6 @@
             </componentInstanceProperties>
             <componentName>flexipage:tab</componentName>
         </componentInstances>
-        <componentInstances>
-            <componentInstanceProperties>
-                <name>body</name>
-                <value>Facet-1262f077-d672-4945-98e9-e29eeb601494</value>
-            </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>title</name>
-                <value>Tree View</value>
-            </componentInstanceProperties>
-            <componentName>flexipage:tab</componentName>
-        </componentInstances>
         <mode>Replace</mode>
         <name>maintabs</name>
         <type>Facet</type>
@@ -59,6 +33,10 @@
             <componentInstanceProperties>
                 <name>collapsed</name>
                 <value>false</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>numVisibleActions</name>
+                <value>3</value>
             </componentInstanceProperties>
             <componentName>force:highlightsPanel</componentName>
         </componentInstances>
@@ -83,9 +61,9 @@
         <name>sidebar</name>
         <type>Region</type>
     </flexiPageRegions>
-    <masterLabel>Menu Record Page</masterLabel>
+    <masterLabel>Datatable Element Record Page</masterLabel>
     <parentFlexiPage>flexipage__default_rec_L</parentFlexiPage>
-    <sobjectType>Menu__c</sobjectType>
+    <sobjectType>DatatableElement__c</sobjectType>
     <template>
         <name>flexipage:recordHomeTemplateDesktop</name>
     </template>

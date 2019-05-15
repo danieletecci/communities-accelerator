@@ -70,18 +70,18 @@
                 <field>Title__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
-                <field>NumberOfColumns__c</field>
+                <behavior>Edit</behavior>
+                <field>PagingType__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>PageSize__c</field>
+                <field>NumberOfColumns__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>PagingType__c</field>
+                <behavior>Required</behavior>
+                <field>PageSize__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>

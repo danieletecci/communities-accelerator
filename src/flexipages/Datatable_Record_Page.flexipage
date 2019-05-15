@@ -11,16 +11,13 @@
     <flexiPageRegions>
         <componentInstances>
             <componentInstanceProperties>
-                <name>objectName</name>
-                <value>[CMS]Menu__c</value>
+                <name>relatedListComponentOverride</name>
+                <value>NONE</value>
             </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>parentLookUp</name>
-                <value>[CMS]ParentMenu__c</value>
-            </componentInstanceProperties>
-            <componentName>TreePreview</componentName>
+            <componentName>force:relatedListContainer</componentName>
         </componentInstances>
-        <name>Facet-1262f077-d672-4945-98e9-e29eeb601494</name>
+        <mode>Replace</mode>
+        <name>relatedTabContent</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
@@ -42,11 +39,11 @@
         <componentInstances>
             <componentInstanceProperties>
                 <name>body</name>
-                <value>Facet-1262f077-d672-4945-98e9-e29eeb601494</value>
+                <value>relatedTabContent</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>title</name>
-                <value>Tree View</value>
+                <value>Standard.Tab.relatedLists</value>
             </componentInstanceProperties>
             <componentName>flexipage:tab</componentName>
         </componentInstances>
@@ -59,6 +56,10 @@
             <componentInstanceProperties>
                 <name>collapsed</name>
                 <value>false</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>numVisibleActions</name>
+                <value>3</value>
             </componentInstanceProperties>
             <componentName>force:highlightsPanel</componentName>
         </componentInstances>
@@ -83,9 +84,9 @@
         <name>sidebar</name>
         <type>Region</type>
     </flexiPageRegions>
-    <masterLabel>Menu Record Page</masterLabel>
+    <masterLabel>Datatable Record Page</masterLabel>
     <parentFlexiPage>flexipage__default_rec_L</parentFlexiPage>
-    <sobjectType>Menu__c</sobjectType>
+    <sobjectType>Datatable__c</sobjectType>
     <template>
         <name>flexipage:recordHomeTemplateDesktop</name>
     </template>

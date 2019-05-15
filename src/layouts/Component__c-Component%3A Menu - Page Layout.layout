@@ -54,10 +54,6 @@
         <label>Layout</label>
         <layoutColumns>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Title__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Required</behavior>
                 <field>NavigationMode__c</field>
             </layoutItems>

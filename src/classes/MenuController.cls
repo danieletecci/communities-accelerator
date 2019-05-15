@@ -107,7 +107,8 @@ public class MenuController {
     				OR ParentMenu__r.ParentMenu__c =: menuIds 
     				OR ParentMenu__r.ParentMenu__r.ParentMenu__c =: menuIds)
                     AND (DisplayOn__c =: displayOn
-                         OR DisplayOn__c = 'Both')];
+                         OR DisplayOn__c = 'Both')
+                    ORDER BY Order__c];
 
     	AudienceUtils.filterRecords(UserInfo.getUserId(), menuList, '[CMS]Audience__c');
 

@@ -22,6 +22,7 @@ export default class Datatable extends LightningElement {
 
     // Table
     @track columnsToShow;
+    @track hideTable = false;
 
     // Modals
     @track showFilterModal = false;
@@ -110,11 +111,13 @@ export default class Datatable extends LightningElement {
 
     openDetailModal(event) {
         this.showDetailModal = true;
+        this.hideTable = true;
         this.clickRow = event.currentTarget.dataset.key;
     }
 
     closeDetailModal() {
         this.showDetailModal = false;
+        this.hideTable = false;
     }
 
     openActionModal() {

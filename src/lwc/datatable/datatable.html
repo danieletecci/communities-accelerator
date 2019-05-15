@@ -40,91 +40,93 @@
         
         <template if:true={isDesktop}>
             <!---->
-            <table class="slds-table slds-table_cell-buffer slds-no-row-hover desktop-table">
-                <thead>
-                    <tr>
-                        <template for:each={columnsToShow} for:item="col">
-                            <th scope="col" key={col.label}>
-                                <template if:true={col.sortable}>
-                                    <div class="slds-truncate columnLabel" title={col.label} data-field-name={col.fieldName} data-direction="ASC"  onclick={sortByColumn}> 
-                                        <c-datatable-row colname={col.label} is-desktop hide-values column={col.fieldName} row={row}></c-datatable-row>                                    
-                                        <img class="sortIcon" src={sortIcon}>
-                                    </div>
-                                </template> 
-                                <template if:false={col.sortable}>
-                                    <div class="slds-truncate columnLabel" title={col.label}> 
-                                        <c-datatable-row colname={col.label} is-desktop hide-values column={col.fieldName} row={row}></c-datatable-row>                                    
-                                    </div>
-                                </template>
-                            </th>
-                        </template>
-                    </tr>
-                </thead>
-                <tbody>
-                    <template for:each={table.tableData} for:item="row">
-                        <tr class="slds-hint-parent" key={row.Id} data-key={row.Id} >
+            <template if:false={hideTable}>
+                <table class="slds-table slds-table_cell-buffer slds-no-row-hover desktop-table">
+                    <thead>
+                        <tr>
                             <template for:each={columnsToShow} for:item="col">
-                                <td data-label={col.label} key={col.label} data-key={row.Id} onclick={openDetailModal}>
+                                <th scope="col" key={col.label}>
+                                    <template if:true={col.sortable}>
+                                        <div class="slds-truncate columnLabel" title={col.label} data-field-name={col.fieldName} data-direction="ASC"  onclick={sortByColumn}> 
+                                            <c-datatable-row colname={col.label} is-desktop hide-values column={col.fieldName} row={row}></c-datatable-row>                                    
+                                            <img class="sortIcon" src={sortIcon}>
+                                        </div>
+                                    </template> 
+                                    <template if:false={col.sortable}>
+                                        <div class="slds-truncate columnLabel" title={col.label}> 
+                                            <c-datatable-row colname={col.label} is-desktop hide-values column={col.fieldName} row={row}></c-datatable-row>                                    
+                                        </div>
+                                    </template>
+                                </th>
+                            </template>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={table.tableData} for:item="row">
+                            <tr class="slds-hint-parent" key={row.Id} data-key={row.Id} >
+                                <template for:each={columnsToShow} for:item="col">
+                                    <td data-label={col.label} key={col.label} data-key={row.Id} onclick={openDetailModal}>
+                                        <div>
+                                            <c-datatable-row colname={col.label} is-desktop hide-columns column={col.fieldName} row={row}></c-datatable-row>
+                                        </div> 
+                                    </td>
+                                </template>
+                                
+                                <template if:true={hasRowActions}>
+                                    <td class="extraRowActionContainer">
+                                        <div class="slds-grid slds-gutters full-list">
+                                                
+                                            <template for:each={rowAction} for:item="action">
+                                                <div key={action.label}>
+                                                    {action.label}
+                                                    <img src={action.icon}
+                                                        data-id={row.Id}
+                                                        data-component={action.component}
+                                                        data-modal={action.showAsModal}
+                                                        data-navigation={action.navigation}
+                                                        onclick={rowActionEvent}>
+                                                </div>
+                                            </template>
+                                            <div onclick={showMoreRowActions} class="trigger">
+                                                <img src={arrowIcon}/>
+                                            </div>
+                                        </div>
+
+                                        <div class="trigger">
+                                            <template for:each={firstLevelRowAction} for:item="action">
+                                                <div key={action.label}>
+                                                    <img src={action.icon}
+                                                        data-id={row.Id}
+                                                        data-component={action.component}
+                                                        data-modal={action.showAsModal}
+                                                        data-navigation={action.navigation}
+                                                        onclick={rowActionEvent}>
+                                                </div>
+                                            </template>
+                                            <!--<template if:true={hasExtraRowActions}>-->
+                                                <div onclick={showMoreRowActions}>
+                                                    <img src={moreIcon}/>
+                                                </div>
+                                            <!--</template>-->
+                                        </div>
+                                    </td>
+
+
+                                </template>
+                            </tr>
+                        </template>
+                        <template if:true={hasMore}>
+                            <tr class="pagination" onclick={getPage}>
+                                <td colspan="100%">
                                     <div>
-                                        <c-datatable-row colname={col.label} is-desktop hide-columns column={col.fieldName} row={row}></c-datatable-row>
+                                        {GeneralShowMore}
                                     </div> 
                                 </td>
-                            </template>
-                            
-                            <template if:true={hasRowActions}>
-                                <td class="extraRowActionContainer">
-                                    <div class="slds-grid slds-gutters full-list">
-                                            
-                                        <template for:each={rowAction} for:item="action">
-                                            <div key={action.label}>
-                                                {action.label}
-                                                <img src={action.icon}
-                                                    data-id={row.Id}
-                                                    data-component={action.component}
-                                                    data-modal={action.showAsModal}
-                                                    data-navigation={action.navigation}
-                                                    onclick={rowActionEvent}>
-                                            </div>
-                                        </template>
-                                        <div onclick={showMoreRowActions} class="trigger">
-                                            <img src={arrowIcon}/>
-                                        </div>
-                                    </div>
-
-                                    <div class="trigger">
-                                        <template for:each={firstLevelRowAction} for:item="action">
-                                            <div key={action.label}>
-                                                <img src={action.icon}
-                                                    data-id={row.Id}
-                                                    data-component={action.component}
-                                                    data-modal={action.showAsModal}
-                                                    data-navigation={action.navigation}
-                                                    onclick={rowActionEvent}>
-                                            </div>
-                                        </template>
-                                        <!--<template if:true={hasExtraRowActions}>-->
-                                            <div onclick={showMoreRowActions}>
-                                                <img src={moreIcon}/>
-                                            </div>
-                                        <!--</template>-->
-                                    </div>
-                                </td>
-
-
-                            </template>
-                        </tr>
-                    </template>
-                    <template if:true={hasMore}>
-                        <tr class="pagination" onclick={getPage}>
-                            <td colspan="100%">
-                                <div>
-                                    {GeneralShowMore}
-                                </div> 
-                            </td>
-                        </tr>
-                    </template>
-                </tbody>
-            </table>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </template>
         </template>
 
         <template if:false={isDesktop}>

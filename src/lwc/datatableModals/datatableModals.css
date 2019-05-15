@@ -15,6 +15,7 @@
   right: 37px;
   top: 20px;
   z-index: 100;
+  cursor: pointer;
 }
 .datatableModals .modal .filterModal .modal__content {
   position: absolute;
@@ -126,9 +127,6 @@
   position: relative;
   width: 100%;
   height: 100%;
-}
-.datatableModals[data-is-desktop="true"][data-detail-modal="true"] {
-  position: absolute;
 }
 .datatableModals[data-is-desktop="true"] .modal {
   position: relative;

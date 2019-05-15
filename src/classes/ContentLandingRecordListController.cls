@@ -188,7 +188,7 @@ public class ContentLandingRecordListController {
 
     static String getColumnSet(){
         // Trae las columnas seteadas en Custom Settings
-        CMSContentSettings__c settings = [SELECT Id, ContentLandingColumnFields__c FROM CMSContentSettings__c LIMIT 1];
+        CMSContentSettings__c settings = CMSContentSettings__c.getInstance();
         return settings.ContentLandingColumnFields__c;
     }
 
@@ -200,6 +200,7 @@ public class ContentLandingRecordListController {
             String columnLabel;
             columnLabel = column.remove('__c');
             columnLabel = columnLabel.remove('__r');
+            columnLabel = columnLabel.remove(GeneralUtils.nameSpace);
             columnLabel = columnLabel.replace('.', ' ');
             columnLabelSet.add(columnLabel);
         }

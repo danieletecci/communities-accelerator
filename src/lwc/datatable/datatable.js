@@ -22,13 +22,11 @@ export default class Datatable extends LightningElement {
 
     // Table
     @track columnsToShow;
-    @track columnsToShowLength = 0;
 
     // Modals
     @track showFilterModal = false;
     @track showDetailModal = false;
     @track showActionModal = false;
-
     
     // Filters
     @track searchTerm = '';
@@ -80,7 +78,6 @@ export default class Datatable extends LightningElement {
     renderedCallback() {
         if (this.table && !this.columnsToShow) {
             this.columnsToShow = this.table.columns.slice(0, this.numberOfColumns);
-            this.columnsToShowLength = this.columnsToShow.length;
         }
         if (this.table.actions.length > 0 && this.rowAction.length === 0 && this.globalAction.length === 0) {
             this.typeActions();
@@ -97,6 +94,10 @@ export default class Datatable extends LightningElement {
 
     get extraRowActionContainerClass(){
         return 'extraRowActionContainer';
+    }
+
+    get hasMore(){
+        return this.table.tableData.length !== this.table.totalRows;
     }
 
     openFilterModal() {
@@ -122,7 +123,6 @@ export default class Datatable extends LightningElement {
 
     closeActionModal() {
         this.showActionModal = false;
-        //this.showDetailModal = false;
     }
 
     typeActions() {
@@ -144,7 +144,7 @@ export default class Datatable extends LightningElement {
     }
 
     handleOrientation() {
-        //TRUE = Portrail  
+        //TRUE = Portrait
         this.orientation = (screen.orientation.angle === 0) ? true : false;
     }
     setSearchTerm(event){
@@ -192,7 +192,7 @@ export default class Datatable extends LightningElement {
     }
 
     sortEvent(values){
-        const sortIndex = new CustomEvent('sort', { detail:values });
+        const sortIndex = new CustomEvent('sort', { detail: values });
         this.dispatchEvent(sortIndex);
     }
 
@@ -205,7 +205,8 @@ export default class Datatable extends LightningElement {
     }
 
     getPage(){
-        const sortIndex = new CustomEvent('getpage', { detail: {page:1} });
+        var actualPage = this.table.tableData.length / this.table.recordsPerPage;
+        const sortIndex = new CustomEvent('getpage', { detail: {page:actualPage} });
         this.dispatchEvent(sortIndex);
     }
 

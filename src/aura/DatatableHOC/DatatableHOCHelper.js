@@ -26,7 +26,8 @@
         var action = component.get("c.getPage");
         
         var componentWrapperData = component.get("v.componentWrapper.data");
-        componentWrapperData.tableData = [];
+        
+        // componentWrapperData.tableData = [];
 
         action.setParams({componentWrapper: JSON.stringify(componentWrapperData)
                             , actualPage: actualPage});
@@ -40,7 +41,7 @@
                 var result = JSON.parse(response.getReturnValue());
                 if(result.length > 0) {
                     var componentWrapper = component.get('v.componentWrapper');
-                    componentWrapper.data.tableData = result;
+                    componentWrapper.data.tableData = componentWrapper.data.tableData.concat(result);
                     component.set('v.componentWrapper', componentWrapper);
                 }
             }

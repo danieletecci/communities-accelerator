@@ -72,10 +72,7 @@
                             </template>
                             
                             <template if:true={hasRowActions}>
-
-
-
-                                <td class="extraRowActionContainer" >
+                                <td class="extraRowActionContainer">
                                     <div class="slds-grid slds-gutters full-list">
                                             
                                         <template for:each={rowAction} for:item="action">
@@ -117,13 +114,15 @@
                             </template>
                         </tr>
                     </template>
-                    <tr class="pagination">
-                        <td colspan={columnsToShowLength}>
-                            <div onclick={getPage}>
-                                {GeneralShowMore}
-                            </div> 
-                        </td>
-                    </tr>
+                    <template if:true={hasMore}>
+                        <tr class="pagination" onclick={getPage}>
+                            <td colspan="100%">
+                                <div>
+                                    {GeneralShowMore}
+                                </div> 
+                            </td>
+                        </tr>
+                    </template>
                 </tbody>
             </table>
         </template>

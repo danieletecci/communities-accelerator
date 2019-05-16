@@ -197,7 +197,7 @@ public class ContentLandingRecordListController {
         List<String> columnSet = getColumnSet().split(',');
         List<String> columnLabelSet = new List<String>();
         for(String column : columnSet){
-            columnLabelSet.add(getColumnLabel(column));
+            columnLabelSet.add(getColumnLabel(GeneralUtils.prefix(column)));
         }
         return columnLabelSet;
     }

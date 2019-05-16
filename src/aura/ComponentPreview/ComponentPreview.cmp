@@ -24,7 +24,7 @@
                 <div aria-hidden="false" id="clusterSelectorModal" role="dialog" class="slds-modal slds-slide-up-saving slds-backdrop" style="display:none;">
                     <div class="slds-modal__container">
                         <div class="slds-modal__header">
-                            <h2 id="header43" class="slds-text-heading--medium">{!$Label.c.ClusterLookupPlaceholder}</h2> 
+                            <h2 id="header43" class="slds-text-heading--medium">{!$Label.c.ContentLandingStructureCluster}</h2> 
                         </div>
                         <div aura:id="div1"></div>
                         <div class="slds-modal__content slds-p-around--medium" onclick="{!c.doClusterChange}">

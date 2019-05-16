@@ -58,3 +58,28 @@
         padding: 0 8px;
     }
 }
+.has-more-btn-container{
+    text-align: center;
+}
+.has-more-btn-container button{
+    width: 200px;
+    height: 40px;
+    border: none;
+    background-color: #d3d3d347;
+    font-size: 16px;
+    color: black;
+}
+@media screen and (min-width: 768px) and (max-width: 1025px){
+    .has-more-btn-container button{
+        margin-bottom: 30px;
+        margin-top: 30px;
+        width: 90%;
+    }
+}
+@media screen and (max-width: 768px){
+    .has-more-btn-container button{
+        margin-bottom: 30px;
+        margin-top: 30px;
+        width: 75%;
+    }
+}

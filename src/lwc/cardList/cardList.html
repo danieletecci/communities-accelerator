@@ -34,5 +34,10 @@
                 </div>
             </div>
         </template>
+        <template if:true={isViewMoreAndHasHidedElements}>
+            <div class="slds-col slds-size_4-of-4 has-more-btn-container">
+                <button onclick={DispatchShowMoreEvent}>{viewMoreLabel}</button>
+            </div>
+        </template>
     </div>
 </template>

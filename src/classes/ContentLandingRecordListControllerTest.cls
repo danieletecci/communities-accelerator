@@ -85,7 +85,7 @@ public class ContentLandingRecordListControllerTest {
 
         //Given
         generalTestSetup();
-        String bannerContentTestId = [SELECT Id FROM Content__c WHERE RecordType.Name = 'Banner' LIMIT 1].Id;
+        String bannerContentTestId = [SELECT Id FROM Content__c WHERE RecordType.DeveloperName = 'Banner' LIMIT 1].Id;
 
         //When
         ContentLandingRecordListController.TableWrapper tableWrapperTest1 = ContentLandingRecordListController.buildTableWrapper(null, null, null, null, null, null, false, 0, 5);
@@ -105,7 +105,7 @@ public class ContentLandingRecordListControllerTest {
 
         //Given
         generalTestSetup();
-        String bannerContentTestId = [SELECT Id FROM Content__c WHERE RecordType.Name = 'Banner' LIMIT 1].Id;
+        String bannerContentTestId = [SELECT Id FROM Content__c WHERE RecordType.DeveloperName = 'Banner' LIMIT 1].Id;
 
         //When
         ContentLandingRecordListController.TableWrapper tableWrapperTest1 = ContentLandingRecordListController.buildTableWrapper(null, null, null, null, null, null, false, 0, 5);

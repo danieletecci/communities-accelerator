@@ -204,7 +204,7 @@ public class ContentLandingRecordListController {
 
     public static String getColumnLabel(String column){
         List<String> fields = column.split('\\.');
-        DescribeSObjectResult objectName = Schema.getGlobalDescribe().get('Content__c').getDescribe();
+        DescribeSObjectResult objectName = Schema.getGlobalDescribe().get(GeneralUtils.prefix('[CMS]Content__c')).getDescribe();
         String columnLabel = '';
 
         for(Integer i=0; i < fields.size(); i++){

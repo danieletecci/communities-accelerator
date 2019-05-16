@@ -25,8 +25,6 @@ public without sharing class DatatableUtils {
 
         String query = generateDatatableRecordsQuery('SELECT count()', ' FROM ' + datatable.ObjectApiName__c + ' ', whereCondition, filtersWhereCondition, searchTermWhereCondition);
 
-        System.debug('count query: ' + query);
-        
         Integer totalRows = Database.countQuery(GeneralUtils.prefix(query));
 
         if(totalRows > 0) {
@@ -38,19 +36,17 @@ public without sharing class DatatableUtils {
                 System.debug('datatable.orderBy: ' + datatable.OrderBy__c);
                 query += ' ORDER BY ' + datatable.OrderBy__c;
             }
+            else{
+                // Adding a default order by so values don't get repeated
+                query += ' ORDER BY Id ASC ';
+            }
 
             // Adding a limit to the query
             if (limitRecords > 0){
                 query += ' LIMIT ' + limitRecords;
             }
-            else{
-                query += ' LIMIT ' + datatable.RecordsPerPage__c;
-            }
 
-            // Setting an offset if there's any
-            if (offSet > 0){
-                query += ' OFFSET ' + offSet;
-            }
+            query += ' OFFSET ' + offSet;           
             
             System.debug('query: ' + query);
 

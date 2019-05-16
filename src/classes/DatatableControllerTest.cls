@@ -34,7 +34,7 @@ public class DatatableControllerTest {
 
         // When
         Test.startTest();        
-        String jsonTest = DatatableController.getPage(JSON.serialize(jsonWrapper),1);
+        String jsonTest = DatatableController.getRecords(JSON.serialize(jsonWrapper), 1, false, false, null, null);
         Test.stopTest();
         
         // Then
@@ -78,7 +78,7 @@ public class DatatableControllerTest {
              
         // When
         Test.startTest();
-        String jsonTest = DatatableController.handleFilter(JSON.serialize(jsonWrapper), 1);
+        String jsonTest = DatatableController.getRecords(JSON.serialize(jsonWrapper), 1, false, false, null, null);
         Test.stopTest();
         // Then
         System.assertNotEquals(jsonTest, null);
@@ -99,7 +99,7 @@ public class DatatableControllerTest {
         // When   
         Test.startTest();
         
-        String jsonTest = DatatableController.handleSort(JSON.serialize(jsonWrapper), 'Name', 'ASC', 1);
+        String jsonTest = DatatableController.getRecords(JSON.serialize(jsonWrapper), 1, false, false, null, null);
         Test.stopTest();
         // Then
         System.assertNotEquals(jsonTest, null);

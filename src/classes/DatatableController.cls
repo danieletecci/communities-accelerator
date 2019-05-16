@@ -18,25 +18,30 @@ public without sharing class DatatableController extends ComponentManager {
 
         cw = controller.getCW();
         cw.clusterId = clusterId;
-
+        
         DatatableWrapper dataTableWr = (DatatableWrapper) cw.data;
+
         cw.hasContent = dataTableWr.tableData.size() > 0;
 
         return JSON.serialize(cw);
     }
 
     @AuraEnabled
-    public static String getPage(String componentWrapper, Integer actualPage) {
-        System.debug('in DatatableController.getPage() method. componentWrapper: ');
-        System.debug(componentWrapper);
+    public static String getRecords(String componentWrapper, Integer actualPage, Boolean limitRecords, Boolean offSetRecords, String fieldName, String direction) {
+        DatatableController.DatatableWrapper wrapper = (DatatableController.DatatableWrapper) JSON.deserialize(componentWrapper, DatatableController.DatatableWrapper.class);
 
-        DatatableController.DatatableWrapper wrapper = (DatatableController.DatatableWrapper)JSON.deserialize(componentWrapper, DatatableController.DatatableWrapper.class);
         Datatable__c datatable = DatatableUtils.getDatatableInfo(wrapper.componentExternalId);
 
-        Integer offSet = wrapper.recordsPerPage * actualPage;
+        Integer offSetAmount = (offSetRecords) ? wrapper.recordsPerPage * actualPage : 0;
+        Integer limitRecordsAmount = (limitRecords) ? wrapper.recordsPerPage : wrapper.recordsPerPage * actualPage;
+        // Sort
+        if (!String.isEmpty(fieldName) && !String.isEmpty(direction)){
+            wrapper.orderBy = fieldName + ' ' + direction;
+        }
+        // Filter
+        datatable.OrderBy__c = wrapper.orderBy;
 
-        List<SObject> records = DatatableUtils.doGetRecords(datatable, offSet, 0, wrapper);
-
+        List<SObject> records = DatatableUtils.doGetRecords(datatable, offSetAmount, limitRecordsAmount, wrapper);
         return JSON.serialize(DatatableUtils.mapDatatableDataToWrappers(records, wrapper.columns));
     }
 
@@ -52,40 +57,6 @@ public without sharing class DatatableController extends ComponentManager {
         return '';
     }
 
-    @AuraEnabled
-    public static String handleSort(String componentWrapper, String fieldName, String direction, Integer actualPage) {
-        System.debug('in DatatableController.handleSort() method.');
-
-        DatatableController.DatatableWrapper wrapper = (DatatableController.DatatableWrapper)JSON.deserialize(componentWrapper, DatatableController.DatatableWrapper.class);
-        wrapper.orderBy = fieldName + ' ' + direction;
-
-        Datatable__c datatable = DatatableUtils.getDatatableInfo(wrapper.componentExternalId);
-        datatable.OrderBy__c = wrapper.orderBy;
-
-        Integer limitRecords = wrapper.recordsPerPage * actualPage;
-        List<SObject> records = DatatableUtils.doGetRecords(datatable, 0, limitRecords, wrapper); 
-        return JSON.serialize(DatatableUtils.mapDatatableDataToWrappers(records, wrapper.columns));
-    }
-
-    @AuraEnabled
-    public static String handleFilter(String componentWrapper, Integer actualPage) {
-        System.debug('[DatatableController.cls][handleFilter] ComponentWrapper: ' + ComponentWrapper);
-
-        DatatableController.DatatableWrapper wrapper = (DatatableController.DatatableWrapper)JSON.deserialize(componentWrapper, DatatableController.DatatableWrapper.class);
-        
-        System.debug('### wrapper');
-        System.debug(wrapper);
-        System.debug('    wrapper ###');
-
-        Datatable__c datatable = DatatableUtils.getDatatableInfo(wrapper.componentExternalId);
-        datatable.OrderBy__c = wrapper.orderBy;
-
-        Integer limitRecords = wrapper.recordsPerPage * actualPage;
-
-        List<SObject> records = DatatableUtils.doGetRecords(datatable, 0, limitRecords, wrapper); 
-
-        return JSON.serialize(DatatableUtils.mapDatatableDataToWrappers(records, wrapper.columns));
-    }
     /* Aura Methods - END */
 
      public override MetaWrapper getMeta() {
@@ -106,16 +77,14 @@ public without sharing class DatatableController extends ComponentManager {
 
         if(datatable != null) {
             
-            System.debug('datatable: ' + datatable);
             DatatableWrapper datatableWrapper = DatatableUtils.mapDatatableToWrapper(datatable);
             datatableWrapper.componentExternalId = this.componentExternalId;
             datatableWrapper.searchTerm = '';
 
             datatableWrapper.columns = DatatableUtils.mapDatatableElementsToWrappers(datatable.DatatableElements__r);
             datatableWrapper.actions = DatatableUtils.mapDatatableActionsToWrappers(datatable.DatatableActions__r);
-            
-            List<SObject> records = DatatableUtils.doGetRecords(datatable, 0, 0, datatableWrapper);
 
+            List<SObject> records = DatatableUtils.doGetRecords(datatable, 0, datatableWrapper.recordsPerPage, datatableWrapper);
             datatableWrapper.tableData = DatatableUtils.mapDatatableDataToWrappers(records, datatableWrapper.columns);
 
             return datatableWrapper;

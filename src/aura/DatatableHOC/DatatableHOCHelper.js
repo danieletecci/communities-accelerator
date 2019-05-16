@@ -22,15 +22,19 @@
         });
         $A.enqueueAction(action);
     },
-    doGetPage : function(component, event, helper, actualPage) {
-        var action = component.get("c.getPage");
-        
+    doGetPage : function(component, event, helper, actualPage, fieldName, direction) {
+        var action = component.get("c.getRecords");
         var componentWrapperData = component.get("v.componentWrapper.data");
         
         // componentWrapperData.tableData = [];
 
         action.setParams({componentWrapper: JSON.stringify(componentWrapperData)
-                            , actualPage: actualPage});
+                            , actualPage: actualPage
+                            , limitRecords: true
+                            , offSetRecords: true
+                            , fieldName: fieldName
+                            , direction: direction
+                        });
 
         action.setCallback(this, function(response) {
             component.set('v.isLoading', false);
@@ -49,17 +53,19 @@
         $A.enqueueAction(action);
         component.set('v.isLoading', true);
     },
-    doHandleSort : function(component, event, helper, fieldName, direction) {
-        var action = component.get("c.handleSort");
+    doHandleSort : function(component, event, helper, actualPage, fieldName, direction) {
+        var action = component.get("c.getRecords");
 
         var componentWrapperData = component.get("v.componentWrapper.data");
         componentWrapperData.tableData = [];
-
+                        
         action.setParams({componentWrapper: JSON.stringify(componentWrapperData)
-                            , fieldName: fieldName
-                            , direction: direction
-                            , actualPage: component.get("v.pageNumber")
-                        });
+            , actualPage: actualPage
+            , limitRecords: false
+            , offSetRecords: false
+            , fieldName: fieldName
+            , direction: direction
+        });
 
         action.setCallback(this, function(response) {
             component.set('v.isLoading', false);
@@ -78,15 +84,19 @@
         $A.enqueueAction(action);
         component.set('v.isLoading', true);
     },
-    dohandleFilter : function(component) {
-        var action = component.get("c.handleFilter");
+    dohandleFilter : function(component, event, helper, actualPage, fieldName, direction) {
+        var action = component.get("c.getRecords");
 
         var componentWrapperData = component.get("v.componentWrapper.data");
         componentWrapperData.tableData = [];
 
-        action.setParams({ componentWrapper: (JSON.stringify(componentWrapperData)) 
-                            , actualPage: component.get("v.pageNumber")
-                        });
+        action.setParams({componentWrapper: JSON.stringify(componentWrapperData)
+            , actualPage: actualPage
+            , limitRecords: false
+            , offSetRecords: false
+            , fieldName: fieldName
+            , direction: direction
+        });        
 
         action.setCallback(this, function(response) {
             component.set('v.isLoading', false);
@@ -125,14 +135,18 @@
         $A.enqueueAction(action);
         component.set('v.isLoading', true);
     },
-    doHandleSearch : function(component, event, helper) {
-        var action = component.get("c.handleFilter");
+    doHandleSearch : function(component, event, helper, actualPage, fieldName, direction) {
+        var action = component.get("c.getRecords");
         
-        var componentWrapperData = component.get("v.componentWrapper.data");
-        
+        var componentWrapperData = component.get("v.componentWrapper.data");        
+
         action.setParams({componentWrapper: JSON.stringify(componentWrapperData)
-                        , actualPage: component.get("v.pageNumber")
-                        });
+            , actualPage: actualPage
+            , limitRecords: false
+            , offSetRecords: false
+            , fieldName: fieldName
+            , direction: direction
+        });
 
         action.setCallback(this, function(response) {
             var state = response.getState();

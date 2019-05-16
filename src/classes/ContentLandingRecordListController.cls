@@ -211,44 +211,46 @@ public class ContentLandingRecordListController {
             if(i!=0)
                 columnLabel += ' > ';
             if(i == fields.size() - 1){
-                columnLabel += getFieldName(objectName.getName(), fields.get(i));
+                columnLabel += getFieldName(objectName.getName(), fields.get(i), false);
             } else {
+                columnLabel += getFieldName(objectName.getName(), fields.get(i), true);
                 objectName = getObjectFieldName(objectName.getName(), fields.get(i));
-                columnLabel += objectName.getLabel();
             }
         }
         return columnLabel;
     }
 
-    public static DescribeSObjectResult getObjectFieldName(String objectName, String lookupName){
+    public static String getFieldName(String objectName, String fieldName, Boolean removeId){
+        String fieldLabel = getFieldResult(objectName, fieldName).getLabel();
+        if(removeId && fieldLabel.endsWith(' ID')){
+            fieldLabel = fieldLabel.substring(0, fieldLabel.length()-3);
+        }
+        return fieldLabel;
+    }
+
+    public static DescribeSObjectResult getObjectFieldName(String objectName, String fieldName){
+        Schema.DescribeFieldResult fieldResult = getFieldResult(objectName, fieldName);
+        if(fieldName == 'Owner' && fieldResult.getReferenceTo().size() > 1){
+            return fieldResult.getReferenceTo()[1].getDescribe();
+        }
+        return fieldResult.getReferenceTo()[0].getDescribe();
+    }
+
+    public static Schema.DescribeFieldResult getFieldResult(String objectName, String fieldName){
         objectName = objectName.replace('__r', '__c');
-        lookupName = lookupName.replace('__r', '__c');
-        Schema.DescribeFieldResult f;
+        fieldName = fieldName.replace('__r', '__c');
+        Schema.DescribeFieldResult fieldResult;
         Map<String, Schema.SobjectField> mapField = Schema.getGlobalDescribe()
             .get(objectName)
             .getDescribe()
             .fields
             .getMap();
-        if(mapField.containsKey(lookupName + 'Id')){
-            f = mapField.get(lookupName + 'Id').getDescribe();
+        if(mapField.containsKey(fieldName + 'Id')){
+            fieldResult = mapField.get(fieldName + 'Id').getDescribe();
         } else {
-            f = mapField.get(lookupName).getDescribe();
+            fieldResult = mapField.get(fieldName).getDescribe();
         }
-        return f.getReferenceTo()[0].getDescribe();
-    }
-
-    public static String getFieldName(String objectName, String fieldName){
-        objectName = objectName.replace('__r', '__c');
-        fieldName = fieldName.replace('__r', '__c');
-        Schema.DescribeFieldResult f = Schema.getGlobalDescribe()
-            .get(objectName)
-            .getDescribe()
-            .fields
-            .getMap()
-            .get(fieldName)
-            .getDescribe();
-        
-        return f.getLabel();
+        return fieldResult;
     }
 
     static String getWrapperValue(Content__c content, String column){

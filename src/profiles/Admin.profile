@@ -120,6 +120,11 @@
         <field>Menu__c.Behaviour__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>Menu__c.Order__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Menu__c.Cluster__c</field>

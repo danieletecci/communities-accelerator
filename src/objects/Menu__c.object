@@ -141,6 +141,17 @@ if(Cluster__r.ParentCluster__r.ParentCluster__r.ParentCluster__r.RecordType.Deve
         <type>Text</type>
         <unique>false</unique>
     </fields>
+	<fields>
+        <fullName>Order__c</fullName>		
+        <externalId>false</externalId>		
+        <label>Order</label>		
+        <precision>18</precision>		
+        <required>false</required>		
+        <scale>0</scale>		
+        <trackTrending>false</trackTrending>		
+        <type>Number</type>		
+        <unique>false</unique>		
+    </fields>
     <fields>
         <fullName>DisplayOn__c</fullName>
         <defaultValue>&quot;Both&quot;</defaultValue>

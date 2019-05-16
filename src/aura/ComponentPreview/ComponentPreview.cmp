@@ -45,10 +45,10 @@
                         <aura:if isTrue="{!v.record.RecordTypeDeveloperName == 'Banner'}">
                             <c:BannerHOC componentExternalId="{!v.record.ExternalId}"/>
                         </aura:if>
-                        <aura:if isTrue="{!v.record.RecordTypeDeveloperName == 'Article'}">
+                        <aura:if isTrue="{!v.record.RecordTypeDeveloperName == 'ArticleList'}">
                             <c:ArticleListHOC componentExternalId="{!v.record.ExternalId}"/>
                         </aura:if>
-                        <aura:if isTrue="{!v.record.RecordTypeDeveloperName == 'Event'}">
+                        <aura:if isTrue="{!v.record.RecordTypeDeveloperName == 'EventList'}">
                             <c:EventListHOC componentExternalId="{!v.record.ExternalId}"/>
                         </aura:if>
                         <aura:if isTrue="{!v.record.RecordTypeDeveloperName == 'FAQ'}">
@@ -56,6 +56,12 @@
                         </aura:if>
                         <aura:if isTrue="{!v.record.RecordTypeDeveloperName == 'AdvanceContent'}">
                             <c:AdvanceContentHOC componentExternalId="{!v.record.ExternalId}"/>
+                        </aura:if>
+                        <aura:if isTrue="{!v.record.RecordTypeDeveloperName == 'Block'}">
+                            <c:BlockHOC componentExternalId="{!v.record.ExternalId}"/>
+                        </aura:if>
+                        <aura:if isTrue="{!v.record.RecordTypeDeveloperName == 'Menu'}">
+                            <c:MenuHOC componentExternalId="{!v.record.ExternalId}"/>
                         </aura:if>
                     </div>
                 </div>

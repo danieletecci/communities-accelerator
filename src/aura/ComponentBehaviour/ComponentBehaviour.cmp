@@ -2,17 +2,19 @@
 
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     <aura:attribute name="recordId" type="String"/>
-    <aura:attribute name="behaviourMessage" type="Object"/>
-     
-	<div class="slds-grid slds-m-around_medium">
-		<div class="component-behaviour-width">
-			<p class="p-title"><lightning:icon class="info-icon" iconName="utility:info"/><b>{!$Label.c.ComponentBehaviour}</b></p>
+	<aura:attribute name="behaviourMessage" type="Object"/>
+	
+	<aura:if isTrue="{!v.behaviourMessage}">
+		<div class="slds-grid slds-m-around_medium">
+			<div class="component-behaviour-width">
+				<p class="p-title"><lightning:icon class="info-icon" iconName="utility:info"/><b>{!$Label.c.ComponentBehaviour}</b></p>
+			</div>
+			<div class="content-container" >
+				<aura:if isTrue="{!v.behaviourMessage}">
+					<ui:outputText value="{!v.behaviourMessage}"/>
+				</aura:if>
+			</div>
 		</div>
-		<div class="content-container" >
-			<aura:if isTrue="{!v.behaviourMessage}">
-				<ui:outputText value="{!v.behaviourMessage}"/>
-			</aura:if>
-		</div>
-	</div>
-
+	</aura:if>
+	
 </aura:component>

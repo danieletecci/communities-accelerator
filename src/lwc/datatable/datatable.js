@@ -78,6 +78,7 @@ export default class Datatable extends LightningElement {
 
     renderedCallback() {
         if (this.table && !this.columnsToShow) {
+            this.numberOfColumns = this.table.numberOfColumns > this.numberOfColumns ? this.numberOfColumns : this.table.numberOfColumns;
             this.columnsToShow = this.table.columns.slice(0, this.numberOfColumns);
         }
         if (this.table.actions.length > 0 && this.rowAction.length === 0 && this.globalAction.length === 0) {

@@ -39,7 +39,7 @@
                 <field>Datasource__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Required</behavior>
                 <field>LinkDetail__c</field>
             </layoutItems>
             <layoutItems>
@@ -74,18 +74,14 @@
                 <field>Title__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
-                <field>EventsType__c</field>
+                <behavior>Edit</behavior>
+                <field>PagingType__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Required</behavior>
                 <field>PageSize__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>PagingType__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>

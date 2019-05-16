@@ -18,7 +18,6 @@ public class DatatableElementTriggers extends TriggersHandler {
         setExternalId((DatatableElement__c)recNew);
         validateObjectFieldApiName((DatatableElement__c)recNew);
         validateSearchableField((DatatableElement__c)recNew);
-        validateParentMaxQuantity((DatatableElement__c)recNew);
     }
     public override void masterLoop_BeforeUpdate(SObject recNew, SObject recOld) {
         setExternalId((DatatableElement__c)recNew);
@@ -62,16 +61,6 @@ public class DatatableElementTriggers extends TriggersHandler {
     
     /*****************************************************************/
     /********************** USE CASE METHODS *************************/
-    public void validateParentMaxQuantity(DatatableElement__c recNew) {
-        Datatable__c dt = datatablesMap.get(recNew.Datatable__c);
-
-        System.debug('in validateParentMaxQuantity - dt.DatatableElements__r.size(): ' + dt.DatatableElements__r.size() + ' - dt.NumberOfColumns__c: ' + dt.NumberOfColumns__c);
-
-        if((dt.DatatableElements__r.size() + 1) > Integer.valueOf(dt.NumberOfColumns__c)) {
-            recNew.addError('Max. number of elements reached.');
-        }
-        
-    }
     public void validateObjectFieldApiName(DatatableElement__c recNew) {
         String objectName = this.datatableElementsObjectMap.get(recNew.Id);
         

@@ -87,7 +87,7 @@ public class SidebarMenuController extends ComponentManager{
             displayOn = 'Mobile';
         }
 		return [SELECT Id, MenuLabel__c, MenuDynamicLabel__c, Cluster__c, Navigation__r.URL__c, MenuIcon__c, ComponentName__c, URLParameters__c, Navigation__r.Behaviour__c, Navigation__r.UrlMask__c, StyleClass__c FROM Menu__c 
-                WHERE ParentMenu__c =: menuIds AND (DisplayOn__c = :displayOn OR DisplayOn__c = 'Both') 
+                WHERE ParentMenu__c =: menuIds AND (DisplayOn__c = :displayOn OR DisplayOn__c = 'Both') ORDER BY Order__c
     			];
 	}
     

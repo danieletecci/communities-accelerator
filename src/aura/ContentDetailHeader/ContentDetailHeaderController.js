@@ -31,6 +31,10 @@
             component.set("v.isNameEdit", false);
         }
     },
+    updateName: function(component, event, helper){
+        var newName = component.get("v.temporaryName");
+        helper.setName(component, newName);
+    },
     editName: function (component, event, helper) {
         component.set("v.temporaryName", component.get("v.contentData").Name);
         component.set("v.isNameEdit", true);

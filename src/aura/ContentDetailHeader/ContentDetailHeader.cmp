@@ -35,7 +35,7 @@
 									<aura:if isTrue="{!v.security.hasEditAccess}">
 										<aura:if isTrue="{!v.isNameEdit}">
 											<div onkeyup="{!c.onKeyUp}">
-												<lightning:input aura:id="name-input" name="input1" label="" value="{!v.temporaryName}" variant="label-hidden" maxlength="80" />
+												<lightning:input aura:id="name-input" name="input1" label="" value="{!v.temporaryName}" onblur="{!c.updateName}" variant="label-hidden" maxlength="80" />
 											</div>
 											<aura:set attribute="else">
 												<span class="slds-page-header__title slds-truncate slds-border_bottom slds-p-bottom_xx-small" title="{!v.contentData.Name}">

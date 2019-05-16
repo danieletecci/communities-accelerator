@@ -29,7 +29,9 @@
 		return (validEndDate && validStartDate);
 	},
 	publishContent : function(component){
-		var contentId = component.get('v.content').Id;
+		var content = component.get('v.content');
+		var contentId = content.Id;
+		var contentName = content.Name;
 		var status  = (component.get("v.action") === "schedule") ? "Scheduled" : "Published";
 		if(component.get("v.action") === "publish"){
 			component.set("v.startDate", new Date());
@@ -38,6 +40,7 @@
 			var cmpEvent = $A.get("e.c:ContentUpsertEvent");
 	        cmpEvent.setParams({
 				"contentId" 		: contentId,
+				"name"				: contentName,
 				"status" 			: status,	
 				"publishStartDate"	: component.get("v.startDate"),
 				"publishEndDate"	: component.get("v.expire") == true ? component.get("v.endDate") : null

@@ -10,7 +10,9 @@
         <span class="{!'slds-medium-size_12-of-12 mandatory-fields'}"></span>
         <aura:iteration items="{!v.form.formSettings.sections}" var="section" >
             <lightning:layoutItem padding="around-large" class="{!section.styleClass + ' ' + 'slds-col slds-x-small-size_12-of-12 slds-small-size_12-of-12 slds-medium-size_12-of-12 slds-large-size_' + section.sectionWidth + '-of-12'}">
-                <h3 class="p-15-black-medium section-title">{!section.SectionTitle}</h3>
+                <aura:if isTrue="{!section.SectionTitle}">
+                    <h3 class="p-15-black-medium section-title">{!section.SectionTitle}</h3>
+                </aura:if>    
                 <aura:iteration items="{!section.fields}" var="field" > 
                     <c:InputField formData="{!v.form.formData}"
                                      fieldConfiguration="{!field}"

@@ -1,3 +1,6 @@
+.datatable {
+  padding-bottom: 150px;
+}
 .datatable h1 {
   font-size: 40px;
   font-weight: 200;
@@ -176,6 +179,9 @@
 .datatable[data-is-desktop="true"] .desktop-table tr td.extraRowActionContainer.active .full-list .trigger img {
   margin-left: 0px;
   transform: rotate(-90deg);
+}
+.datatable[data-is-desktop="true"] .desktop-table tbody .slds-hint-parent {
+  background-color: #FDFDFD;
 }
 .datatable[data-is-desktop="true"] .desktop-table tbody .slds-hint-parent:nth-child(odd) {
   background-color: #F8F8F8;

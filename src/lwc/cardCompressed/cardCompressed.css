@@ -1,6 +1,6 @@
 .container {
   font-family: 'Roboto';
-  /*font-size: 16px;*/
+  font-size: 16px;
   padding: 20px 0 10px 0;
   color: #C0C0C0;
   max-height: 140px;
@@ -60,6 +60,7 @@
 .footer {
   position: relative;
   bottom: 0;
+  margin-top: 10px;
 }
 .location-container {
   display: inline-block;

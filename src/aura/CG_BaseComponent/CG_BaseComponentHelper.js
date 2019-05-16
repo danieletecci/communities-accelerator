@@ -91,7 +91,7 @@
 	    	component.set("v.isLoading", false);
 	    }
 	},
-	goPage : function(component, pageNumber){
+	goPage : function(component, pageNumber, getMore){
 		var quantPages = component.get("v.componentWrapper.pagesNumbers")[component.get("v.componentWrapper.pagesNumbers").length-1];
         if(quantPages >= pageNumber && pageNumber > 0 && component.get('v.currentPageNumber') != pageNumber){
 			component.set("v.isLoading", true);
@@ -112,7 +112,11 @@
 
 		    action.setCallback(this, function(f) {
 				if(f.getState() === "SUCCESS") {
-					component.set("v.componentWrapper.contentWrapper", action.getReturnValue());
+					var contents = action.getReturnValue();
+					if(getMore){
+						contents = contents.concat(componentWrapper.contentWrapper);
+					}
+					component.set("v.componentWrapper.contentWrapper", contents);
 	            	component.set('v.currentPageNumber', pageNumber);
 	                component.set("v.isLoading", false);
 		        }

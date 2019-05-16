@@ -11,5 +11,8 @@
     },
     doGetPage : function(component, event, helper){       
 		helper.goPage(component, event.getParam("numberofpage"));
+    },
+    goGetMore : function(component, event, helper){   
+			helper.goPage(component, component.get('v.currentPageNumber') + 1, true);
     }
 })

@@ -2175,4 +2175,12 @@
         <shortDescription>BannerType</shortDescription>
         <value>Banner type:</value>
     </labels>
+    <labels>
+        <fullName>CardsViewMore</fullName>
+        <categories>CardList</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CardsViewMore</shortDescription>
+        <value>View More</value>
+    </labels>
 </CustomLabels>

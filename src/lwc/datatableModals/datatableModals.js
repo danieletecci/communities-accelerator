@@ -55,12 +55,6 @@ export default class DatatableModals extends LightningElement {
         if (this.typePicklist.length === 0 && this.typeNumber.length === 0 && this.typeDate.length === 0 && this.typeText.length === 0) { 
             this.setFilters(); 
         }
-        if(this.typeDate.length === 0 && !this.selectedDateFrom || !this.selectedDateTo){
-            this.showFilterModalFooter = false;
-        } else {
-            this.showFilterModalFooter = true;
-        }
-
     }
 
     get filterTitleClass() {

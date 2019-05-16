@@ -1,6 +1,6 @@
 public without sharing class DatatableUtils {
-    
-    public static List<SObject> doGetRecords(Datatable__c datatable, Integer offSet, DatatableController.DatatableWrapper wrapper){
+       
+    public static List<SObject> doGetRecords(Datatable__c datatable, Integer offSet, Integer limitRecords, DatatableController.DatatableWrapper wrapper){
         List<SObject> rows = new List<SObject>();
         
         List<String> fieldSet = new List<String>();
@@ -25,8 +25,6 @@ public without sharing class DatatableUtils {
 
         String query = generateDatatableRecordsQuery('SELECT count()', ' FROM ' + datatable.ObjectApiName__c + ' ', whereCondition, filtersWhereCondition, searchTermWhereCondition);
 
-        System.debug('count query: ' + query);
-        
         Integer totalRows = Database.countQuery(GeneralUtils.prefix(query));
 
         if(totalRows > 0) {
@@ -38,8 +36,17 @@ public without sharing class DatatableUtils {
                 System.debug('datatable.orderBy: ' + datatable.OrderBy__c);
                 query += ' ORDER BY ' + datatable.OrderBy__c;
             }
+            else{
+                // Adding a default order by so values don't get repeated
+                query += ' ORDER BY Id ASC ';
+            }
 
-            query += ' LIMIT ' + datatable.RecordsPerPage__c + ' OFFSET ' + offset;
+            // Adding a limit to the query
+            if (limitRecords > 0){
+                query += ' LIMIT ' + limitRecords;
+            }
+
+            query += ' OFFSET ' + offSet;           
             
             System.debug('query: ' + query);
 
@@ -47,7 +54,7 @@ public without sharing class DatatableUtils {
         }
 
         return rows;
-    }
+    } 
     
     public static String generateDatatableRecordsQuery(String selectPart, String fromPart, String whereCondition, String filtersCondition, String searchTermCondition) {
         String result = '';

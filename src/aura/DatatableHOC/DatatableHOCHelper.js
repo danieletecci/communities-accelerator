@@ -22,39 +22,16 @@
         });
         $A.enqueueAction(action);
     },
-    doGetPage : function(component, event, helper, actualPage) {
-        var action = component.get("c.getPage");
+    doGetPage : function(component, event, helper, actualPage, fieldName, direction) {
+        var action = component.get("c.getRecords");
+        var componentWrapperData = component.get("v.componentWrapper.data");
         
-        var componentWrapperData = component.get("v.componentWrapper.data");
-        componentWrapperData.tableData = [];
+        // componentWrapperData.tableData = [];
 
         action.setParams({componentWrapper: JSON.stringify(componentWrapperData)
-                            , actualPage: actualPage});
-
-        action.setCallback(this, function(response) {
-            component.set('v.isLoading', false);
-
-            var state = response.getState();
-
-            if (state === "SUCCESS") {
-                var result = JSON.parse(response.getReturnValue());
-                if(result.length > 0) {
-                    var componentWrapper = component.get('v.componentWrapper');
-                    componentWrapper.data.tableData = result;
-                    component.set('v.componentWrapper', componentWrapper);
-                }
-            }
-        });
-        $A.enqueueAction(action);
-        component.set('v.isLoading', true);
-    },
-    doHandleSort : function(component, event, helper, fieldName, direction) {
-        var action = component.get("c.handleSort");
-
-        var componentWrapperData = component.get("v.componentWrapper.data");
-        componentWrapperData.tableData = [];
-
-        action.setParams({componentWrapper: JSON.stringify(componentWrapperData)
+                            , actualPage: actualPage
+                            , limitRecords: true
+                            , offSetRecords: true
                             , fieldName: fieldName
                             , direction: direction
                         });
@@ -68,6 +45,37 @@
                 var result = JSON.parse(response.getReturnValue());
                 if(result.length > 0) {
                     var componentWrapper = component.get('v.componentWrapper');
+                    componentWrapper.data.tableData = componentWrapper.data.tableData.concat(result);
+                    component.set('v.componentWrapper', componentWrapper);
+                }
+            }
+        });
+        $A.enqueueAction(action);
+        component.set('v.isLoading', true);
+    },
+    doHandleSort : function(component, event, helper, actualPage, fieldName, direction) {
+        var action = component.get("c.getRecords");
+
+        var componentWrapperData = component.get("v.componentWrapper.data");
+        componentWrapperData.tableData = [];
+                        
+        action.setParams({componentWrapper: JSON.stringify(componentWrapperData)
+            , actualPage: actualPage
+            , limitRecords: false
+            , offSetRecords: false
+            , fieldName: fieldName
+            , direction: direction
+        });
+
+        action.setCallback(this, function(response) {
+            component.set('v.isLoading', false);
+
+            var state = response.getState();
+
+            if (state === "SUCCESS") {
+                var result = JSON.parse(response.getReturnValue());
+                if(result.length > 0) {
+                    var componentWrapper = component.get('v.componentWrapper');
                     componentWrapper.data.tableData = result;
                     component.set('v.componentWrapper', componentWrapper);
                 }
@@ -76,13 +84,19 @@
         $A.enqueueAction(action);
         component.set('v.isLoading', true);
     },
-    dohandleFilter : function(component) {
-        var action = component.get("c.handleFilter");
+    dohandleFilter : function(component, event, helper, actualPage, fieldName, direction) {
+        var action = component.get("c.getRecords");
 
         var componentWrapperData = component.get("v.componentWrapper.data");
         componentWrapperData.tableData = [];
 
-        action.setParams({ componentWrapper: (JSON.stringify(componentWrapperData)) });
+        action.setParams({componentWrapper: JSON.stringify(componentWrapperData)
+            , actualPage: actualPage
+            , limitRecords: false
+            , offSetRecords: false
+            , fieldName: fieldName
+            , direction: direction
+        });        
 
         action.setCallback(this, function(response) {
             component.set('v.isLoading', false);
@@ -121,12 +135,18 @@
         $A.enqueueAction(action);
         component.set('v.isLoading', true);
     },
-    doHandleSearch : function(component, event, helper) {
-        var action = component.get("c.handleFilter");
+    doHandleSearch : function(component, event, helper, actualPage, fieldName, direction) {
+        var action = component.get("c.getRecords");
         
-        var componentWrapperData = component.get("v.componentWrapper.data");
-        
-        action.setParams({componentWrapper: JSON.stringify(componentWrapperData)});
+        var componentWrapperData = component.get("v.componentWrapper.data");        
+
+        action.setParams({componentWrapper: JSON.stringify(componentWrapperData)
+            , actualPage: actualPage
+            , limitRecords: false
+            , offSetRecords: false
+            , fieldName: fieldName
+            , direction: direction
+        });
 
         action.setCallback(this, function(response) {
             var state = response.getState();
@@ -174,7 +194,7 @@
             var componentName = eventParams['componentName'];
             var showAsModal = eventParams['showAsModal'];
             
-            $A.createComponent("c:"+componentName,
+            $A.createComponent(componentName,
                                     { recordId : recordId}
                                     , function(content, status) {
                                             if (status === "SUCCESS") {

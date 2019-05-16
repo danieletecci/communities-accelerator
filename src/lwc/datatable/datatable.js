@@ -22,13 +22,12 @@ export default class Datatable extends LightningElement {
 
     // Table
     @track columnsToShow;
-    @track columnsToShowLength = 0;
+    @track hideTable = false;
 
     // Modals
     @track showFilterModal = false;
     @track showDetailModal = false;
     @track showActionModal = false;
-
     
     // Filters
     @track searchTerm = '';
@@ -79,9 +78,8 @@ export default class Datatable extends LightningElement {
 
     renderedCallback() {
         if (this.table && !this.columnsToShow) {
-			this.numberOfColumns = this.table.numberOfColumns > this.numberOfColumns ? this.numberOfColumns : this.table.numberOfColumns;
+            this.numberOfColumns = this.table.numberOfColumns > this.numberOfColumns ? this.numberOfColumns : this.table.numberOfColumns;
             this.columnsToShow = this.table.columns.slice(0, this.numberOfColumns);
-            this.columnsToShowLength = this.columnsToShow.length;
         }
         if (this.table.actions.length > 0 && this.rowAction.length === 0 && this.globalAction.length === 0) {
             this.typeActions();
@@ -100,6 +98,10 @@ export default class Datatable extends LightningElement {
         return 'extraRowActionContainer';
     }
 
+    get hasMore(){
+        return this.table.tableData.length !== this.table.totalRows;
+    }
+
     openFilterModal() {
         this.showFilterModal = true;
     }
@@ -110,11 +112,13 @@ export default class Datatable extends LightningElement {
 
     openDetailModal(event) {
         this.showDetailModal = true;
+        this.hideTable = true;
         this.clickRow = event.currentTarget.dataset.key;
     }
 
     closeDetailModal() {
         this.showDetailModal = false;
+        this.hideTable = false;
     }
 
     openActionModal() {
@@ -123,7 +127,6 @@ export default class Datatable extends LightningElement {
 
     closeActionModal() {
         this.showActionModal = false;
-        //this.showDetailModal = false;
     }
 
     typeActions() {
@@ -145,7 +148,7 @@ export default class Datatable extends LightningElement {
     }
 
     handleOrientation() {
-        //TRUE = Portrail  
+        //TRUE = Portrait
         this.orientation = (screen.orientation.angle === 0) ? true : false;
     }
     setSearchTerm(event){
@@ -154,7 +157,12 @@ export default class Datatable extends LightningElement {
 
     focusFilter() {
         this.showCancelSearch = true;
-        this.showFilterIcon = true;
+        if (this.isPhone) {
+            this.showFilterIcon = true;
+        }
+        if (this.isDesktop) {
+            this.showFilterModal = true;
+        }
     }
 
     cancelFilter() {
@@ -193,7 +201,7 @@ export default class Datatable extends LightningElement {
     }
 
     sortEvent(values){
-        const sortIndex = new CustomEvent('sort', { detail:values });
+        const sortIndex = new CustomEvent('sort', { detail: values });
         this.dispatchEvent(sortIndex);
     }
 
@@ -206,7 +214,8 @@ export default class Datatable extends LightningElement {
     }
 
     getPage(){
-        const sortIndex = new CustomEvent('getpage', { detail: {page:1} });
+        var actualPage = this.table.tableData.length / this.table.recordsPerPage;
+        const sortIndex = new CustomEvent('getpage', { detail: {page:actualPage} });
         this.dispatchEvent(sortIndex);
     }
 

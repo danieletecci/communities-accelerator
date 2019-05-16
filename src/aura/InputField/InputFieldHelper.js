@@ -61,7 +61,7 @@
             if(fieldConfiguration.hasConfirmation)
             	helper.removeValidationError(component, true);
         }else if(requiredFailed){
-            helper.setValidationError(component, (fieldConfiguration.label ? fieldConfiguration.label : 'This field') + ' is required.');
+            helper.setValidationError(component, (fieldConfiguration.label ? fieldConfiguration.label : $A.get("$Label.c.FormThisField")) + ' ' + $A.get("$Label.c.FormRequiredField"));
             this.updateValidationErrorObject(component, 'requiredFieldErrors');
         }else if(regexFailed){
             helper.setValidationError(component, fieldConfiguration.validationErrorMessage);
@@ -79,7 +79,7 @@
         var fieldConfiguration = component.get("v.fieldConfiguration");
         var confirmationRequiredFailed = fieldConfiguration.hasConfirmation && helper.validateNotEmptyConfirmation(component, fieldConfiguration);
         if(confirmationRequiredFailed){
-            helper.setValidationError(component, fieldConfiguration.label + ' is required.', true);
+            helper.setValidationError(component, (fieldConfiguration.label ? fieldConfiguration.label : $A.get("$Label.c.FormThisField")) + ' ' + $A.get("$Label.c.FormRequiredField"), true);
             this.updateValidationErrorObject(component, 'requiredFieldErrors');
         }
     },

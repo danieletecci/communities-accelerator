@@ -2183,4 +2183,20 @@
         <shortDescription>CardsViewMore</shortDescription>
         <value>View More</value>
     </labels>
+	<labels>
+        <fullName>FormRequiredField</fullName>
+        <categories>InputField.cmp</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Displayed when a required field is missing</shortDescription>
+        <value>is required.</value>
+    </labels>
+    <labels>
+        <fullName>FormThisField</fullName>
+        <categories>InputField.cmp</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Displayed when a required field is missing</shortDescription>
+        <value>This field</value>
+    </labels>
 </CustomLabels>

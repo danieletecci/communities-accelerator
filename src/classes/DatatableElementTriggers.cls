@@ -61,7 +61,6 @@ public class DatatableElementTriggers extends TriggersHandler {
     
     /*****************************************************************/
     /********************** USE CASE METHODS *************************/
-    
     public void validateObjectFieldApiName(DatatableElement__c recNew) {
         String objectName = this.datatableElementsObjectMap.get(recNew.Id);
         

@@ -11,6 +11,9 @@
     <lightning:overlayLibrary aura:id="rowActionModal" />
     <aura:attribute name="showDatatable" type="Boolean" default="true" />
     <aura:attribute name="customContent" type="Aura.Component" />
+    <aura:attribute name="pageNumber" type="Integer" default="1"/>
+    <aura:attribute name="fieldName" type="String"/>
+    <aura:attribute name="direction" type="String"/>
 
     <!-- LOC Component -->
     <div aura:id="cg_component">

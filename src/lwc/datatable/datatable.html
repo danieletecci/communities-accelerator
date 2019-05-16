@@ -1,5 +1,5 @@
 <template>
-    <div class="datatable" data-is-desktop={isDesktop}>
+    <div class="datatable" data-is-desktop={isDesktop} data-is-phone={isPhone} data-is-tablet={isTablet}>
         <div class="header">
             <h1>{table.title}</h1>
             <div class="search-element" >
@@ -130,32 +130,34 @@
         </template>
 
         <template if:false={isDesktop}>
-            <template for:each={table.tableData} for:item="row">    
-                <article key={row.Id} class="slds-card">   
-                    <div class="slds-grid slds-wrap" onclick={openDetailModal} data-key={row.Id}>
-                        <template for:each={columnsToShow} for:item="col">
-                            <div key={col.label} class={columnClass}>
-                                <c-datatable-row colname={col.label} column={col.fieldName} row={row}></c-datatable-row>
-                            </div> 
-                        </template>
-                    </div>
-                    <footer class="slds-card__footer slds-grid slds-wrap">
-                        <template for:each={rowAction} for:item="action">
-                                <div key={action.label} class="slds-no-flex slds-col slds-size_1-of-4">
-                                    <img src={action.icon} 
-                                        data-id={row.Id} 
-                                        data-component={action.component} 
-                                        data-modal={action.showAsModal}
-                                        data-navigation={action.navigation} 
-                                        onclick={rowActionEvent}>
-                                </div>
-                        </template> 
-                        <div class="slds-no-flex slds-col slds-size_1-of-4">
-                            <img src={moreIcon} onclick={openActionModal}>
+            <div class="cards-container"></div>
+                <template for:each={table.tableData} for:item="row">    
+                    <article key={row.Id} class="slds-card">   
+                        <div class="slds-grid slds-wrap" onclick={openDetailModal} data-key={row.Id}>
+                            <template for:each={columnsToShow} for:item="col">
+                                <div key={col.label} class={columnClass}>
+                                    <c-datatable-row colname={col.label} column={col.fieldName} row={row}></c-datatable-row>
+                                </div> 
+                            </template>
                         </div>
-                    </footer>
-                </article>
-            </template>
+                        <footer class="slds-card__footer slds-grid slds-wrap">
+                            <template for:each={rowAction} for:item="action">
+                                    <div key={action.label} class="slds-no-flex slds-col slds-size_1-of-4">
+                                        <img src={action.icon} 
+                                            data-id={row.Id} 
+                                            data-component={action.component} 
+                                            data-modal={action.showAsModal}
+                                            data-navigation={action.navigation} 
+                                            onclick={rowActionEvent}>
+                                    </div>
+                            </template> 
+                            <div class="slds-no-flex slds-col slds-size_1-of-4">
+                                <img src={moreIcon} onclick={openActionModal}>
+                            </div>
+                        </footer>
+                    </article>
+                </template>
+            </div>
         </template>
         <template if:true={appliedFilters}>
             <div class="table__footer">

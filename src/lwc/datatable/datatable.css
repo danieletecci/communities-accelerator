@@ -1,6 +1,12 @@
 .datatable {
   padding-bottom: 150px;
 }
+.datatable[data-is-phone="true"],
+.datatable[data-is-tablet="true"] {
+  padding-top: 55px;
+  padding-right: 18px;
+  padding-left: 18px;
+}
 .datatable h1 {
   font-size: 40px;
   font-weight: 200;
@@ -49,7 +55,7 @@
   padding: 5px;
 }
 .datatable .search-element {
-  margin-bottom: 25px;
+  margin-bottom: 60px;
   display: inline-block;
   min-width: 100%;
   height: 50px;
@@ -66,6 +72,7 @@
   background-repeat: no-repeat;
   height: 23px;
   width: 23px;
+  color: transparent;
 }
 .datatable .search-element .icons-group {
   line-height: 50px;
@@ -106,6 +113,7 @@
   line-height: 25px;
   padding: 10px 0px;
   width: 250px;
+  color: #D9D9D9;
 }
 .datatable[data-is-desktop="true"] .search-element .icons-group {
   width: 100px;

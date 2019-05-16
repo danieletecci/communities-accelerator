@@ -5,6 +5,7 @@
   top: 0;
   width: 100%;
   z-index: 1;
+  overflow-y: auto;
 }
 .datatableModals .modal .filterModal {
   background-color: #F8F8F8;
@@ -124,7 +125,7 @@
   padding-left: 56px;
   padding-top: 15px;
   padding-bottom: 15px;
-  max-width: 1408px;
+  max-width: 1416px;
   margin: auto;
 }
 .datatableModals .modal .detailmodal .modal__footer img {

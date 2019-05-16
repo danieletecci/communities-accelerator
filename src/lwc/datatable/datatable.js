@@ -157,7 +157,12 @@ export default class Datatable extends LightningElement {
 
     focusFilter() {
         this.showCancelSearch = true;
-        this.showFilterIcon = true;
+        if (this.isPhone) {
+            this.showFilterIcon = true;
+        }
+        if (this.isDesktop) {
+            this.showFilterModal = true;
+        }
     }
 
     cancelFilter() {

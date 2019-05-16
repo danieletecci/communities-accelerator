@@ -1,5 +1,10 @@
 .datatable {
-  padding-bottom: 150px;
+    padding-bottom: 150px;
+    &[data-is-phone="true"], &[data-is-tablet="true"]{
+      padding-top: 55px;
+      padding-right: 18px;
+      padding-left: 18px;
+    }
     h1 {
         font-size: 40px;
         font-weight: 200;
@@ -54,7 +59,7 @@
       }
     }
     .search-element {
-        margin-bottom: 25px;
+        margin-bottom: 60px;
         display: inline-block;
         min-width: 100%;
         height: 50px;
@@ -69,6 +74,7 @@
                 background-repeat: no-repeat;
                 height: 23px;
                 width: 23px;
+                color: transparent;
             }
         }
         .icons-group {
@@ -107,11 +113,11 @@
             height: 80px;
             .searchInput, .searchInput::placeholder{
               background-image: none;
-              //font-size: 50px;
               font-size: 50px;
               line-height: 25px;
               padding: 10px 0px;
               width: 250px;
+              color: #D9D9D9;
             }
             .icons-group{
               width: 100px;

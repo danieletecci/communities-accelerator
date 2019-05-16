@@ -65,6 +65,18 @@
                                             </div>
                                         </template>
                                     </template>
+                                    <template if:true={text}>
+                                        <template for:each={typeText} for:item="col">
+                                            <div key={col.fieldName} class={filterContainerClass}>
+                                                <div class={filterTitleClass}>
+                                                    <h2 class="slds-col slds-size_3-of-4">{col.label}</h2>
+                                                </div>
+                                                <div>
+                                                    <lightning-input class="datefrom" type="text" name="text" data-type={col.type} data-column={col.fieldName} placeholder={col.fieldName}></lightning-input>
+                                                </div>
+                                            </div>
+                                        </template>
+                                    </template>
                             <template if:true={showFilterModalFooter}>
                                 <div class="bottom-spacer">&nbsp;</div>
                             </template>

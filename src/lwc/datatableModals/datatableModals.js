@@ -30,6 +30,7 @@ export default class DatatableModals extends LightningElement {
     @track typePicklist = [];
     @track typeNumber = [];
     @track typeDate = [];
+    @track typeText = [];
     @track selectedDateFrom;
     @track selectedDateTo;
     @track selectedMin;
@@ -51,10 +52,12 @@ export default class DatatableModals extends LightningElement {
             this.appliedFilters();
             this.showFilterModalFooter = true; 
         }
-        if (this.typePicklist.length === 0 && this.typeNumber.length === 0 && this.typeDate.length === 0) { 
+        if (this.typePicklist.length === 0 && this.typeNumber.length === 0 && this.typeDate.length === 0 && this.typeText.length === 0) { 
             this.setFilters(); 
         }
-        if(this.selectedDateFrom && this.selectedDateTo){
+        if(this.typeDate.length === 0 && !this.selectedDateFrom || !this.selectedDateTo){
+            this.showFilterModalFooter = false;
+        } else {
             this.showFilterModalFooter = true;
         }
 
@@ -103,6 +106,10 @@ export default class DatatableModals extends LightningElement {
         return (this.typeNumber.length > 0) ? true : false;
     }
 
+    get text() {
+        return (this.typeText.length > 0) ? true : false;
+    }
+
     get date() {
         return (this.typeDate.length > 0) ? true : false;
     }
@@ -130,7 +137,7 @@ export default class DatatableModals extends LightningElement {
             if(col.filtrable && (col.type === "DATE" || col.type === "DATETIME")) {
                 col.filtrableValues = filterValues;
                 this.typeDate.push(col);
-            } else if (col.filtrable && (col.type === "DOUBLE")) {
+            } else if (col.filtrable && (col.type === "DOUBLE" || col.type === "CURRENCY")) {
                 col.filtrableValues = isNumber;
                 this.typeNumber.push(col);
             } else if (col.filtrable && (col.type === "PICKLIST")) {

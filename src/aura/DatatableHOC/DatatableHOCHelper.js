@@ -26,7 +26,8 @@
         var action = component.get("c.getPage");
         
         var componentWrapperData = component.get("v.componentWrapper.data");
-        componentWrapperData.tableData = [];
+        
+        // componentWrapperData.tableData = [];
 
         action.setParams({componentWrapper: JSON.stringify(componentWrapperData)
                             , actualPage: actualPage});
@@ -40,7 +41,7 @@
                 var result = JSON.parse(response.getReturnValue());
                 if(result.length > 0) {
                     var componentWrapper = component.get('v.componentWrapper');
-                    componentWrapper.data.tableData = result;
+                    componentWrapper.data.tableData = componentWrapper.data.tableData.concat(result);
                     component.set('v.componentWrapper', componentWrapper);
                 }
             }
@@ -57,6 +58,7 @@
         action.setParams({componentWrapper: JSON.stringify(componentWrapperData)
                             , fieldName: fieldName
                             , direction: direction
+                            , actualPage: component.get("v.pageNumber")
                         });
 
         action.setCallback(this, function(response) {
@@ -82,7 +84,9 @@
         var componentWrapperData = component.get("v.componentWrapper.data");
         componentWrapperData.tableData = [];
 
-        action.setParams({ componentWrapper: (JSON.stringify(componentWrapperData)) });
+        action.setParams({ componentWrapper: (JSON.stringify(componentWrapperData)) 
+                            , actualPage: component.get("v.pageNumber")
+                        });
 
         action.setCallback(this, function(response) {
             component.set('v.isLoading', false);
@@ -126,7 +130,9 @@
         
         var componentWrapperData = component.get("v.componentWrapper.data");
         
-        action.setParams({componentWrapper: JSON.stringify(componentWrapperData)});
+        action.setParams({componentWrapper: JSON.stringify(componentWrapperData)
+                        , actualPage: component.get("v.pageNumber")
+                        });
 
         action.setCallback(this, function(response) {
             var state = response.getState();
@@ -174,7 +180,7 @@
             var componentName = eventParams['componentName'];
             var showAsModal = eventParams['showAsModal'];
             
-            $A.createComponent("c:"+componentName,
+            $A.createComponent(componentName,
                                     { recordId : recordId}
                                     , function(content, status) {
                                             if (status === "SUCCESS") {

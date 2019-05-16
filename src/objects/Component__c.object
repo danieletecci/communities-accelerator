@@ -50,9 +50,9 @@
     <description>Represents the behaviour definition for CG components that can be use in a community. For each lightning component available on the community builder, there is one component record type.</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
-    <enableChangeDataCapture>false</enableChangeDataCapture>
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
     <enableReports>true</enableReports>
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
@@ -927,6 +927,11 @@
                     <fullName>Paging Bottom</fullName>
                     <default>false</default>
                     <label>Paging Bottom</label>
+                </value>
+                <value>
+                    <fullName>View More</fullName>
+                    <default>false</default>
+                    <label>View More</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -2067,6 +2072,10 @@
                 <fullName>Paging Bottom</fullName>
                 <default>false</default>
             </values>
+            <values>
+                <fullName>View More</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
         <picklistValues>
             <picklist>StatusApprovalProcess__c</picklist>
@@ -2347,6 +2356,10 @@
             </values>
             <values>
                 <fullName>Paging Bottom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>View More</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2867,6 +2880,10 @@
             </values>
             <values>
                 <fullName>Paging Bottom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>View More</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3707,6 +3724,10 @@
                 <fullName>Paging Bottom</fullName>
                 <default>false</default>
             </values>
+            <values>
+                <fullName>View More</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
         <picklistValues>
             <picklist>StatusApprovalProcess__c</picklist>
@@ -3995,6 +4016,10 @@
             </values>
             <values>
                 <fullName>Paging Bottom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>View More</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

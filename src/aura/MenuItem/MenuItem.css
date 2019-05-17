@@ -139,7 +139,7 @@
     }
     
 }
-	.THIS li.is-current-menu a{
-        color:#F2B005;
-    	font-weight:500;
-    }
+.THIS > li.li-level-1.is-current-menu > div > a{
+    color:#F2B005;
+    font-weight:500;
+}

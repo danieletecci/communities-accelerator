@@ -122,21 +122,25 @@
                     </div>
     
                     <!--                ACTION'S MODAL                 -->
-                    <template if:true={actionModal}>
-                        <div class="modal__header">
-                        </div>
-                        <div class="modal__content">
-                            <template for:each={rowaction} for:item="action">
-                                    <div key={action.label}>
-                                        <label>{action.label}</label>
-                                        <img src={action.icon}>
-                                    </div>
-                            </template>
-                        </div>
-                        <div class="modal__footer">
-                            <button onclick={closeModal}>{GeneralClose}</button>
-                        </div>
-                    </template>
+                    <div class="action-modal">
+                        <template if:true={actionModal}>
+                            <div class="modal__header">
+                                <p class="action-label-title">{table.actionLabel}</p>
+                            </div>
+                            <div class="modal__content">
+                                <template for:each={rowaction} for:item="action">
+                                        <div key={action.label} class="action-phone-detail">
+                                            <label>{action.label}</label>
+                                            <img src={action.icon}>
+                                        </div>
+                                </template>
+                            </div>
+                            <div class="modal__footer">
+                                <button onclick={closeModal}>{GeneralClose}</button>
+                            </div>
+                        </template>
+                    </div>
+                        
             </div>
         </div>
     </template>

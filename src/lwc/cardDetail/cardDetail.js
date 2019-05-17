@@ -10,7 +10,7 @@ export default class CardDetail extends LightningElement {
     mobile = navigator.userAgent.toLowerCase().includes('mobi');
 
     renderedCallback() {
-        loadStyle(this, 'sfsites/c/resource/Assets/Assets/Styles/cardDetailExternalStyles.css');
+        loadStyle(this, '/sfsites/c/resource/Assets/Assets/Styles/cardDetailExternalStyles.css');
         loadStyle(this, Style + '/Assets/Styles/roboto.css');
     }
 

@@ -19,9 +19,11 @@
             pagenumbers="{!v.componentWrapper.pagesNumbers}"
             viewmode="{!v.componentWrapper.component.EventsType}" 
             formfactor="{!$Browser.formFactor}"
+            allContentsQuantity="{!v.componentWrapper.listAllContentIds.length}"
             onnextpage="{!c.doNext}"
             onprevpage="{!c.doPrevious}"
             ongotopage="{!c.doGetPage}"
+            onshowmore="{!c.goGetMore}"
             />
             <aura:set attribute="else">
                     <c:relatedCardList onnavigatetodetail="{!c.handleNavigateToDetail}" contents="{!v.componentWrapper.contentWrapper}" type="{!v.componentWrapper.component.RecordTypeDeveloperName}" formfactor="{!$Browser.formFactor}"/>

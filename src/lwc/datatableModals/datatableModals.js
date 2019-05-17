@@ -42,7 +42,7 @@ export default class DatatableModals extends LightningElement {
     isActive = [];
 
     connectedCallback() {
-        loadStyle(this, 'sfsites/c/resource/Assets/Assets/Styles/datatableModalsExternalStyles.css');
+        loadStyle(this, '/sfsites/c/resource/Assets/Assets/Styles/datatableModalsExternalStyles.css');
     }
 
     renderedCallback() {

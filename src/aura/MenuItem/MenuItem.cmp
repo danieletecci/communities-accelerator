@@ -8,9 +8,9 @@
     <aura:attribute name="mask" type="String" />
 
     <aura:attribute name="isActive" type="Boolean" default="false"/>
-
+    
     <span  data-menu-level="{!v.menuLevel}" data-index="{!v.index}" class="{!(v.item.menu.MenuLabel == null ? 'only-icon' : '' )}"> 
-        <li class="{!'li-level-' + v.menuLevel + ' menu-a ' + if(v.index == 0, 'first-child ', '') + if(v.isActive, 'active', '')}" id="{!'li-level-' + v.menuLevel + '-' + v.index}" onclick="{!v.mobileFormat ? c.toggleActive : ''}">
+        <li class="{!'li-level-' + v.menuLevel + ' menu-a ' + if(v.index == 0, 'first-child ', '') + if(v.isActive, 'active', '') + if(v.item.menu.isActive, ' is-current-menu', '')}" id="{!'li-level-' + v.menuLevel + '-' + v.index}" onclick="{!v.mobileFormat ? c.toggleActive : ''}">
             <div class="{! if(v.item.subMenus.length > 0, ' has-child ', '') }" >
                 <a class="{!v.item.iconName ? 'a-icon' : ''}" href="{! and(v.item.menu.Navigation != null, v.item.menu.NavigationURL != null) ? v.item.menu.NavigationURL : ''}" target="{! and(v.item.menu.Navigation != null, v.item.menu.NavigationURL != null) ? v.item.behaviour : ''}">
                     <aura:if isTrue="{!v.item.iconName != null}">

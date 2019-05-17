@@ -5,6 +5,13 @@
       padding-right: 18px;
       padding-left: 18px;
     }
+    .no-records-to-display {
+      text-align: center;
+      font-size: 19px;
+    }
+    .full-list{
+      justify-content: space-between;
+    }
     h1 {
         font-size: 40px;
         font-weight: 200;
@@ -186,7 +193,11 @@
 
                 .full-list{
                   display: flex;
-                  justify-content: space-between;
+                  justify-content: flex-end;
+                  .actions-visualization {
+                    padding-right: 50px;
+                    color: #4B96E8;
+                  }
                   img{
                     margin-left: 10px;
                   }
@@ -206,6 +217,9 @@
 
         .desktop-table tbody .slds-hint-parent{
           background-color: #FDFDFD;
+        }
+        .desktop-table tbody .slds-hint-parent:hover {
+          box-shadow: inset 0 2px 2px 0 rgba(100,121,143,0.1);
         }
         .desktop-table tbody .slds-hint-parent:nth-child(odd){
             background-color: #F8F8F8;

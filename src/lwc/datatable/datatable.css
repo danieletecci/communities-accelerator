@@ -7,6 +7,13 @@
   padding-right: 18px;
   padding-left: 18px;
 }
+.datatable .no-records-to-display {
+  text-align: center;
+  font-size: 19px;
+}
+.datatable .full-list {
+  justify-content: space-between;
+}
 .datatable h1 {
   font-size: 40px;
   font-weight: 200;
@@ -176,7 +183,11 @@
 }
 .datatable[data-is-desktop="true"] .desktop-table tr td.extraRowActionContainer.active .full-list {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
+}
+.datatable[data-is-desktop="true"] .desktop-table tr td.extraRowActionContainer.active .full-list .actions-visualization {
+  padding-right: 50px;
+  color: #4B96E8;
 }
 .datatable[data-is-desktop="true"] .desktop-table tr td.extraRowActionContainer.active .full-list img {
   margin-left: 10px;
@@ -190,6 +201,9 @@
 }
 .datatable[data-is-desktop="true"] .desktop-table tbody .slds-hint-parent {
   background-color: #FDFDFD;
+}
+.datatable[data-is-desktop="true"] .desktop-table tbody .slds-hint-parent:hover {
+  box-shadow: inset 0 2px 2px 0 rgba(100, 121, 143, 0.1);
 }
 .datatable[data-is-desktop="true"] .desktop-table tbody .slds-hint-parent:nth-child(odd) {
   background-color: #F8F8F8;

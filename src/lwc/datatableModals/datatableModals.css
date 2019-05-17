@@ -176,6 +176,7 @@
 .datatableModals[data-is-desktop="true"] .modal {
   position: relative;
   top: 0px;
+  overflow-y: visible;
 }
 .datatableModals[data-is-desktop="true"] .modal .filterModal {
   display: flex;
@@ -204,6 +205,12 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin: 20px;
+}
+.datatableModals[data-is-desktop="true"] .modal .filterModal .modal__content .min,
+.datatableModals[data-is-desktop="true"] .modal .filterModal .modal__content .max {
+  height: 50px;
+  margin: 0;
 }
 .datatableModals[data-is-desktop="true"] .modal .filterModal .modal__content .filterOptions {
   top: 50px;

@@ -280,7 +280,7 @@ export default class Datatable extends LightningElement {
             const value = event.target.value;
             if (value === null || value === '') this.searchEvent(event);
         }
-        this.closeFilterModal();
+        // this.closeFilterModal();
         this.showCancelSearch = false;
     }
 

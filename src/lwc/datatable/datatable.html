@@ -19,23 +19,37 @@
                 </div>
             </div>
         </div>
+        
+        <!-- Desktop filters -->
+        <template if:false={isPhone}>
+                <c-datatable-modals  type="filterModal"
+                    table={table} 
+                    rowkey={clickRow}
+                    rowaction={rowAction}
+                    closeicon={closeIcon}
+                    onclose={closeFilterModal}
+                    is-desktop={isDesktop}>
+                </c-datatable-modals>  
+        </template>
 
-        <template if:true={appliedFilters}>
-            <div class="applied-filter-container">
-                <template for:each={table.appliedFilters} for:item="filters">
-                    <div class="pills-container" key={filters.value1}>
-                        <span class="slds-pill" >
-                            <template if:true={filters.label}>
-                                <span class="slds-pill__label">{filters.label}</span>
-                            </template>
-                            <template if:false={filters.label}>
-                                <span class="slds-pill__label">{filters.value1}</span>
-                            </template>
-                            <img src={closeIcon} data-name={filters.filter.name} data-value={filters.value1} onclick={deleteFilter}>
-                        </span>
-                    </div>
-                </template>
-            </div>
+        <template if:true={isPhone}>
+            <template if:true={appliedFilters}>
+                <div class="applied-filter-container">
+                    <template for:each={table.appliedFilters} for:item="filters">
+                        <div class="pills-container" key={filters.value1}>
+                            <span class="slds-pill" >
+                                <template if:true={filters.label}>
+                                    <span class="slds-pill__label">{filters.label}</span>
+                                </template>
+                                <template if:false={filters.label}>
+                                    <span class="slds-pill__label">{filters.value1}</span>
+                                </template>
+                                <img src={closeIcon} data-name={filters.filter.name} data-value={filters.value1} onclick={deleteFilter}>
+                            </span>
+                        </div>
+                    </template>
+                </div>
+            </template>
         </template>
         
         <template if:true={isDesktop}>
@@ -168,16 +182,21 @@
             </div>
         </template>
         <!--                MODALS                 -->
-        <template if:true={showFilterModal}>
-            <c-datatable-modals  type="filterModal"
-                                    table={table} 
-                                    rowkey={clickRow}
-                                    rowaction={rowAction}
-                                    closeicon={closeIcon}
-                                    onclose={closeFilterModal}
-                                    is-desktop={isDesktop}>
-            </c-datatable-modals>
+
+        <!-- Mobile filters -->
+        <template if:true={isPhone}>
+            <template if:true={showFilterModal}>
+                <c-datatable-modals  type="filterModal"
+                                        table={table} 
+                                        rowkey={clickRow}
+                                        rowaction={rowAction}
+                                        closeicon={closeIcon}
+                                        onclose={closeFilterModal}
+                                        is-desktop={isDesktop}>
+                </c-datatable-modals>
+            </template>
         </template>
+
         <template if:true={showDetailModal}>
             <c-datatable-modals  type="detailModal"
                                     table={table} 

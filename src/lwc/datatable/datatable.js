@@ -23,6 +23,7 @@ export default class Datatable extends LightningElement {
     // Table
     @track columnsToShow;
     @track hideTable = false;
+    @track hasMoreRows = true;
 
     // Modals
     @track showFilterModal = false;
@@ -51,7 +52,9 @@ export default class Datatable extends LightningElement {
     @track GeneralShowMore = GeneralShowMore;
     @track GeneralApply = GeneralApply;
 
-    numberOfColumns = 6;
+    NUMBER_OF_COLUMNS = 6;
+    hasSearched = false;
+
     filterIcon = Assets + '/Assets/Icons/FilterIcon.svg';
     closeIcon = Assets + '/Assets/Icons/CloseIcon.svg';
     moreIcon = Assets + '/Assets/Icons/MoreIcon.svg';
@@ -78,11 +81,16 @@ export default class Datatable extends LightningElement {
 
     renderedCallback() {
         if (this.table && !this.columnsToShow) {
-            this.numberOfColumns = this.table.numberOfColumns > this.numberOfColumns ? this.numberOfColumns : this.table.numberOfColumns;
-            this.columnsToShow = this.table.columns.slice(0, this.numberOfColumns);
+            this.NUMBER_OF_COLUMNS = this.table.NUMBER_OF_COLUMNS > this.NUMBER_OF_COLUMNS ? this.NUMBER_OF_COLUMNS : this.table.NUMBER_OF_COLUMNS;
+            this.columnsToShow = this.table.columns.slice(0, this.NUMBER_OF_COLUMNS);
         }
         if (this.table.actions.length > 0 && this.rowAction.length === 0 && this.globalAction.length === 0) {
             this.typeActions();
+        }
+        if(this.table.tableData.length === this.table.totalRows || (this.table.tableData.length / this.table.recordsPerPage) % 1 !== 0){
+            this.hasMoreRows = false;
+        }else {
+            this.hasMoreRows = true;
         }
     }
 
@@ -99,7 +107,7 @@ export default class Datatable extends LightningElement {
     }
 
     get hasMore(){
-        return this.table.tableData.length !== this.table.totalRows;
+        return this.hasMoreRows;
     }
 
     openFilterModal() {
@@ -153,6 +161,10 @@ export default class Datatable extends LightningElement {
     }
     setSearchTerm(event){
         this.searchTerm = event.currentTarget.value;
+        if (event.which === 27){
+            event.target.blur();
+            this.cancelFilter();
+        }
     }
 
     focusFilter() {
@@ -169,6 +181,7 @@ export default class Datatable extends LightningElement {
         this.searchTerm = "";
         this.showCancelSearch = false;
         this.showFilterIcon = false;
+        this.searchEventOnBlur({target:{value: ''}});
         this.closeFilterModal();
     }
 
@@ -252,7 +265,18 @@ export default class Datatable extends LightningElement {
     searchEvent(event) {
         const values = event.target.value;
         const searchValue = new CustomEvent('search', { detail: {values} });
+        this.hasSearched = true;
         this.dispatchEvent(searchValue);
+    }
+
+    searchEventOnBlur(event) {
+        if(this.hasSearched){
+            this.hasSearched = false;
+            const value = event.target.value;
+            if (value === null || value === '') this.searchEvent(event);
+        }
+        this.closeFilterModal();
+        this.showCancelSearch = false;
     }
 
     clearFilterEvent() {

@@ -107,7 +107,7 @@
     <fields>
         <fullName>RetrievalClass__c</fullName>
         <externalId>false</externalId>
-		<inlineHelpText>Class containing the logic used to pre populate the form</inlineHelpText>
+        <inlineHelpText>Class containing the logic used to pre populate the form</inlineHelpText>
         <label>Retrieval Class</label>
         <length>255</length>
         <required>false</required>
@@ -118,7 +118,7 @@
     <fields>
         <fullName>SaveClass__c</fullName>
         <externalId>false</externalId>
-		<inlineHelpText>Class containing the logic used to save the form</inlineHelpText>
+        <inlineHelpText>Class containing the logic used to save the form</inlineHelpText>
         <label>Save Class</label>
         <length>255</length>
         <required>false</required>
@@ -151,6 +151,12 @@
     <label>Form</label>
     <listViews>
         <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Cluster__c</columns>
+        <columns>ExternalId__c</columns>
+        <columns>Status__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
@@ -159,7 +165,13 @@
         <type>Text</type>
     </nameField>
     <pluralLabel>Forms</pluralLabel>
-    <searchLayouts/>
+    <searchLayouts>
+        <searchResultsAdditionalFields>Cluster__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>ExternalId__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Status__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>UPDATEDBY_USER</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>LAST_UPDATE</searchResultsAdditionalFields>
+    </searchLayouts>
     <sharingModel>Private</sharingModel>
     <sharingReasons>
         <fullName>ClusterSharing__c</fullName>

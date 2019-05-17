@@ -207,6 +207,9 @@
   justify-content: center;
   margin: 20px;
 }
+.datatableModals[data-is-desktop="true"] .modal .filterModal .modal__content .filterContainer .filter-title {
+  flex-grow: 1;
+}
 .datatableModals[data-is-desktop="true"] .modal .filterModal .modal__content .min,
 .datatableModals[data-is-desktop="true"] .modal .filterModal .modal__content .max {
   height: 50px;

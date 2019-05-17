@@ -40,7 +40,7 @@ export default class Datatable extends LightningElement {
     @track hasRowActions = false;
     @track hasExtraRowActions = false;
     @track rowAction = [];
-    @track firstLevelRowActionAmount = 2;
+    @track FIRST_LEVEL_ROW_ACTION_AMOUNT;
     @track firstLevelRowAction = [];
     @track globalAction = [];
     @track clickRow;
@@ -65,6 +65,7 @@ export default class Datatable extends LightningElement {
         super();
         this.handleOrientation();
         this.setDevices();
+        this.FIRST_LEVEL_ROW_ACTION_AMOUNT = this.isPhone ? 3 : 2;
     }
 
     setDevices(){
@@ -148,8 +149,8 @@ export default class Datatable extends LightningElement {
                 this.globalAction.push(act);
             }
             if(index === (actionList.length-1)){
-                this.hasExtraRowActions = this.firstLevelRowActionAmount<this.rowAction.length;
-                this.firstLevelRowAction = this.rowAction.slice(0, this.firstLevelRowActionAmount); 
+                this.hasExtraRowActions = this.FIRST_LEVEL_ROW_ACTION_AMOUNT < this.rowAction.length;
+                this.firstLevelRowAction = this.rowAction.slice(0, this.FIRST_LEVEL_ROW_ACTION_AMOUNT);
             }
         });
 
@@ -230,6 +231,10 @@ export default class Datatable extends LightningElement {
         var actualPage = this.table.tableData.length / this.table.recordsPerPage;
         const sortIndex = new CustomEvent('getpage', { detail: {page:actualPage} });
         this.dispatchEvent(sortIndex);
+    }
+
+    get noRecordsToDisplay () {
+        return this.table.tableData.length <= 0
     }
 
     showMoreRowActions(event){

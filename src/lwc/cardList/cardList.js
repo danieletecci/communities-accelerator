@@ -33,6 +33,7 @@ export default class CardList extends LightningElement {
         let iscarrousel = this.isCarrousel ? ' carrousel': '';
         return this.mobile ?  'list-container' + iscarrousel : 'list-container slds-grid slds-wrap' + iscarrousel;
     }
+    
     get cardWrapperClass() {
         if(this.formfactor === 'TABLET')
             return 'slds-col slds-size_2-of-4';

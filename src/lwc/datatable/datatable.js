@@ -73,7 +73,7 @@ export default class Datatable extends LightningElement {
 
     connectedCallback() {
         window.addEventListener("orientationchange", () => this.handleOrientation());
-        loadStyle(this, 'sfsites/c/resource/Assets/Assets/Styles/datatableExternalStyles.css');
+        loadStyle(this, '/sfsites/c/resource/Assets/Assets/Styles/datatableExternalStyles.css');
         loadStyle(this, Assets + '/Assets/Styles/roboto.css');
     }
 

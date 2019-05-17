@@ -26,7 +26,7 @@ export default class CardList extends LightningElement {
         this.mobile = navigator.userAgent.toLowerCase().includes('mobi');
     }
     connectedCallback() {
-        loadStyle(this, 'sfsites/c/resource/Assets/Assets/Styles/cardListExternalStyles.css');
+        loadStyle(this, '/sfsites/c/resource/Assets/Assets/Styles/cardListExternalStyles.css');
     }
 
     get containerClass() {

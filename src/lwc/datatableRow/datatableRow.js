@@ -11,7 +11,7 @@ export default class DatatableRow extends LightningElement {
     @api hideValues;
 
     connectedCallback() {
-        loadStyle(this, 'sfsites/c/resource/Assets/Assets/Styles/datatableRowExternalStyles.css');
+        loadStyle(this, '/sfsites/c/resource/Assets/Assets/Styles/datatableRowExternalStyles.css');
 
     }
     get rowValue(){

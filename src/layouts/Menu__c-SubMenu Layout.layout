@@ -15,9 +15,9 @@
                 <behavior>Required</behavior>
                 <field>Status__c</field>
             </layoutItems>
-			<layoutItems>		
-                <behavior>Edit</behavior>		
-                <field>Order__c</field>		
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Order__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>

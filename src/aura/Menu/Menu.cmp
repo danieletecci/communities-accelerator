@@ -11,7 +11,7 @@
     <div id="navigationMenu" class="{!v.opened ? 'menu-top-opened' : 'menu-top-closed'}">
         
         <!-- DESKTOP -->
-        <aura:if isTrue="{! v.device == 'DESKTOP'}">
+        <aura:if isTrue="{! v.device != 'PHONE'}">
             <div class="slds-grid slds-gutters">
                 <div class="slds-col slds-size_1-of-12 slds-align_absolute-center logo-container">
                     <div class="icons-container"></div>

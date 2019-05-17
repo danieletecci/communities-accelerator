@@ -14,7 +14,7 @@ export default class DatatableModals extends LightningElement {
     @api rowaction;
     @api isDesktop;
     
-    @track showFilterModalFooter = false;
+    @track showFilterModalFooter = true;
     @track rowData = [];
     @track activeFilters = [];
     @track actionModal;
@@ -50,7 +50,7 @@ export default class DatatableModals extends LightningElement {
         if (this.type === "detailModal" && this.rowData.length === 0) { this.dataDetailModal(); }
         if (this.type === "filterModal" && this.table.appliedFilters.length > 0) { 
             this.appliedFilters();
-            this.showFilterModalFooter = true; 
+            // this.showFilterModalFooter = true; 
         }
         if (this.typePicklist.length === 0 && this.typeNumber.length === 0 && this.typeDate.length === 0 && this.typeText.length === 0) { 
             this.setFilters(); 
@@ -195,14 +195,14 @@ export default class DatatableModals extends LightningElement {
                 this.isActive.splice(inactiveIndexFilter, 1);
             }
         }
-        this.showFilterModalFooter = (this.isActive.length > 0) ? true : false;
+        // this.showFilterModalFooter = (this.isActive.length > 0) ? true : false;
     }
 
     filterAllRemove() {
         var buttons = this.template.querySelectorAll('c-datatable-filters');
         buttons.forEach(btn => { btn.removeFilters(); });
         this.removeAllFilters = true;
-        this.showFilterModalFooter = false;
+        // this.showFilterModalFooter = false;
     }
 
     filtersToApply() {

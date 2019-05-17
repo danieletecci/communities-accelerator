@@ -3,7 +3,7 @@
         <div class="header">
             <h1>{table.title}</h1>
             <div class="search-element" >
-                <input class="searchInput" placeholder={GeneralSearch} type="search" value={searchTerm} onkeyup={setSearchTerm} onsearch={searchEvent} onfocus={focusFilter}/>
+                <input class="searchInput" placeholder={GeneralSearch} type="search" value={searchTerm} onkeyup={setSearchTerm} onsearch={searchEvent} onfocus={focusFilter} onblur={searchEventOnBlur}/>
                 <div class="icons-group">
                     <template if:true={showCancelSearch}>
                         <template if:false={isDesktop}>
@@ -19,23 +19,37 @@
                 </div>
             </div>
         </div>
+        
+        <!-- Desktop filters -->
+        <template if:false={isPhone}>
+                <c-datatable-modals  type="filterModal"
+                    table={table} 
+                    rowkey={clickRow}
+                    rowaction={rowAction}
+                    closeicon={closeIcon}
+                    onclose={closeFilterModal}
+                    is-desktop={isDesktop}>
+                </c-datatable-modals>  
+        </template>
 
-        <template if:true={appliedFilters}>
-            <div class="applied-filter-container">
-                <template for:each={table.appliedFilters} for:item="filters">
-                    <div class="pills-container" key={filters.value1}>
-                        <span class="slds-pill" >
-                            <template if:true={filters.label}>
-                                <span class="slds-pill__label">{filters.label}</span>
-                            </template>
-                            <template if:false={filters.label}>
-                                <span class="slds-pill__label">{filters.value1}</span>
-                            </template>
-                            <img src={closeIcon} data-name={filters.filter.name} data-value={filters.value1} onclick={deleteFilter}>
-                        </span>
-                    </div>
-                </template>
-            </div>
+        <template if:true={isPhone}>
+            <template if:true={appliedFilters}>
+                <div class="applied-filter-container">
+                    <template for:each={table.appliedFilters} for:item="filters">
+                        <div class="pills-container" key={filters.value1}>
+                            <span class="slds-pill" >
+                                <template if:true={filters.label}>
+                                    <span class="slds-pill__label">{filters.label}</span>
+                                </template>
+                                <template if:false={filters.label}>
+                                    <span class="slds-pill__label">{filters.value1}</span>
+                                </template>
+                                <img src={closeIcon} data-name={filters.filter.name} data-value={filters.value1} onclick={deleteFilter}>
+                            </span>
+                        </div>
+                    </template>
+                </div>
+            </template>
         </template>
         
         <template if:true={isDesktop}>
@@ -77,7 +91,7 @@
                                         <div class="slds-grid slds-gutters full-list">
                                                 
                                             <template for:each={rowAction} for:item="action">
-                                                <div key={action.label}>
+                                                <div key={action.label} class="actions-visualization">
                                                     {action.label}
                                                     <img src={action.icon}
                                                         data-id={row.Id}
@@ -103,17 +117,20 @@
                                                         onclick={rowActionEvent}>
                                                 </div>
                                             </template>
-                                            <!--<template if:true={hasExtraRowActions}>-->
+                                            <template if:true={hasExtraRowActions}>
                                                 <div onclick={showMoreRowActions}>
                                                     <img src={moreIcon}/>
                                                 </div>
-                                            <!--</template>-->
+                                            </template>
                                         </div>
                                     </td>
 
 
                                 </template>
                             </tr>
+                        </template>
+                        <template if:true={noRecordsToDisplay}>
+                            <p class="no-records-to-display">{table.noRecordsMsg}</p>
                         </template>
                         <template if:true={hasMore}>
                             <tr class="pagination" onclick={getPage}>
@@ -130,7 +147,7 @@
         </template>
 
         <template if:false={isDesktop}>
-            <div class="cards-container"></div>
+            <div class="cards-container">
                 <template for:each={table.tableData} for:item="row">    
                     <article key={row.Id} class="slds-card">   
                         <div class="slds-grid slds-wrap" onclick={openDetailModal} data-key={row.Id}>
@@ -141,7 +158,7 @@
                             </template>
                         </div>
                         <footer class="slds-card__footer slds-grid slds-wrap">
-                            <template for:each={rowAction} for:item="action">
+                            <template for:each={firstLevelRowAction} for:item="action">
                                     <div key={action.label} class="slds-no-flex slds-col slds-size_1-of-4">
                                         <img src={action.icon} 
                                             data-id={row.Id} 
@@ -165,16 +182,21 @@
             </div>
         </template>
         <!--                MODALS                 -->
-        <template if:true={showFilterModal}>
-            <c-datatable-modals  type="filterModal"
-                                    table={table} 
-                                    rowkey={clickRow}
-                                    rowaction={rowAction}
-                                    closeicon={closeIcon}
-                                    onclose={closeFilterModal}
-                                    is-desktop={isDesktop}>
-            </c-datatable-modals>
+
+        <!-- Mobile filters -->
+        <template if:true={isPhone}>
+            <template if:true={showFilterModal}>
+                <c-datatable-modals  type="filterModal"
+                                        table={table} 
+                                        rowkey={clickRow}
+                                        rowaction={rowAction}
+                                        closeicon={closeIcon}
+                                        onclose={closeFilterModal}
+                                        is-desktop={isDesktop}>
+                </c-datatable-modals>
+            </template>
         </template>
+
         <template if:true={showDetailModal}>
             <c-datatable-modals  type="detailModal"
                                     table={table} 

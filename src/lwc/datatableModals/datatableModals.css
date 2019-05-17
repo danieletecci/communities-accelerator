@@ -132,6 +132,42 @@
   width: 25px;
   height: 25px;
 }
+.datatableModals .modal .action-modal {
+  background-color: #F8F8F8;
+  height: 100%;
+  top: 155px;
+  font-family: 'Roboto';
+}
+.datatableModals .modal .action-modal .modal__header {
+  padding: 50px 35px 70px 35px;
+}
+.datatableModals .modal .action-modal .modal__header .action-label-title {
+  font-size: 40px;
+  color: #0B0B0B;
+}
+.datatableModals .modal .action-modal .modal__content {
+  padding: 35px;
+}
+.datatableModals .modal .action-modal .modal__content .action-phone-detail {
+  padding-bottom: 50px;
+  position: relative;
+}
+.datatableModals .modal .action-modal .modal__content .action-phone-detail img {
+  position: absolute;
+  right: 0;
+}
+.datatableModals .modal .action-modal .modal__content .action-phone-detail label {
+  color: #0B0B0B;
+}
+.datatableModals .modal .action-modal .modal__footer button {
+  display: block;
+  margin: auto;
+  background-color: transparent;
+  border: 0;
+  color: #4B96E8;
+  font-size: 16px;
+  padding-top: 50px;
+}
 .datatableModals[data-is-desktop="true"] {
   position: relative;
   width: 100%;
@@ -140,6 +176,7 @@
 .datatableModals[data-is-desktop="true"] .modal {
   position: relative;
   top: 0px;
+  overflow-y: visible;
 }
 .datatableModals[data-is-desktop="true"] .modal .filterModal {
   display: flex;
@@ -168,6 +205,12 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin: 20px;
+}
+.datatableModals[data-is-desktop="true"] .modal .filterModal .modal__content .min,
+.datatableModals[data-is-desktop="true"] .modal .filterModal .modal__content .max {
+  height: 50px;
+  margin: 0;
 }
 .datatableModals[data-is-desktop="true"] .modal .filterModal .modal__content .filterOptions {
   top: 50px;

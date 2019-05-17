@@ -282,6 +282,5 @@ export default class Datatable extends LightningElement {
     clearFilterEvent() {
         const clearFilter = new CustomEvent('clearfilter');
         this.dispatchEvent(clearFilter);
-        this.filterRemove();
     }
 }

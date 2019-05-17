@@ -3,7 +3,7 @@
         <div class="header">
             <h1>{table.title}</h1>
             <div class="search-element" >
-                <input class="searchInput" placeholder={GeneralSearch} type="search" value={searchTerm} onkeyup={setSearchTerm} onsearch={searchEvent} onfocus={focusFilter}/>
+                <input class="searchInput" placeholder={GeneralSearch} type="search" value={searchTerm} onkeyup={setSearchTerm} onsearch={searchEvent} onfocus={focusFilter} onblur={searchEventOnBlur}/>
                 <div class="icons-group">
                     <template if:true={showCancelSearch}>
                         <template if:false={isDesktop}>

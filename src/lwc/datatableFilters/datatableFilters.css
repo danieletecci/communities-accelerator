@@ -25,7 +25,7 @@
   float: right;
   border-radius: 50%;
   background: #2B2B2B;
-  margin: 10px 0px;
+  margin: 5px 0px;
 }
 .datatableFilters[data-is-desktop="true"] button.filter.active {
   color: #F2B005;

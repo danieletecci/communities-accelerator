@@ -12,7 +12,9 @@ export default class DatatableModals extends LightningElement {
     @api rowkey;
     @api type;
     @api rowaction;
-    @api isDesktop;
+    @api isdesktop;
+    @api isphone;
+    @api appliedfilters;
     
     @track showFilterModalFooter = true;
     @track rowData = [];
@@ -58,22 +60,22 @@ export default class DatatableModals extends LightningElement {
     }
 
     get filterTitleClass() {
-        let sldsClass = this.isDesktop?'slds-size_4-of-4':'slds-size_4-of-4';
+        let sldsClass = this.isdesktop?'slds-size_4-of-4':'slds-size_4-of-4';
         return `filter-title slds-col ${sldsClass} slds-grid`;
     }
 
     get filterContainerClass(){
-        let sldsClass = this.isDesktop?'slds-size_2-of-12':'';
+        let sldsClass = this.isdesktop?'slds-size_2-of-12':'';
         return `filterContainer slds-grid slds-wrap slds-gutters_x-small ${sldsClass}`;
     }
 
     get modalContentClass(){
-        let sldsClass = this.isDesktop?'slds-grid slds-grid_align-end':'';
+        let sldsClass = this.isdesktop?'slds-grid slds-grid_align-end':'';
         return `modal__content ${sldsClass}`;
     }
 
     get filterItemClass(){
-        let sldsClass = this.isDesktop?'':'slds-size_2-of-4';
+        let sldsClass = this.isdesktop?'':'slds-size_2-of-4';
         return `filterItemClass slds-col ${sldsClass}`;
     }
 
@@ -83,12 +85,12 @@ export default class DatatableModals extends LightningElement {
     }
 
     get removeAllFiltersClass(){
-        let sldsClass = this.isDesktop?'slds-size_1-of-2':'slds-size_1-of-1';
+        let sldsClass = this.isdesktop?'slds-size_1-of-2':'slds-size_1-of-1';
         return `removeAllFilters slds-col ${sldsClass}`;
     }
 
     get applyFilterClass(){
-        let sldsClass = this.isDesktop?`slds-size_1-of-2`:`slds-size_1-of-1`;
+        let sldsClass = this.isdesktop?`slds-size_1-of-2`:`slds-size_1-of-1`;
         return `applyFilter slds-col ${sldsClass}`;
     }
 
@@ -141,8 +143,8 @@ export default class DatatableModals extends LightningElement {
         return columns;
     }
     toggleOptions(event){
-        this.hideFilterLists();
-        return event.currentTarget.parentNode.querySelector('.filterOptions').classList.remove('slds-hide');
+        // this.hideFilterLists();
+        return event.currentTarget.parentNode.querySelector('.filterOptions').classList.toggle('slds-hide');
     }
 
     setTypeModal() {
@@ -202,6 +204,7 @@ export default class DatatableModals extends LightningElement {
         var buttons = this.template.querySelectorAll('c-datatable-filters');
         buttons.forEach(btn => { btn.removeFilters(); });
         this.removeAllFilters = true;
+        this.applyFilter(null, true);
         // this.showFilterModalFooter = false;
     }
 
@@ -237,12 +240,12 @@ export default class DatatableModals extends LightningElement {
         this.template.querySelectorAll('.filterOptions').forEach( (element) => !element.classList.contains('slds-hide')&&element.classList.add('slds-hide') );
     }
 
-    applyFilter() {
+    applyFilter(event, removeFilters) {
         this.hideFilterLists();
-        var activeFilters;
-        var filters = [];   
-        var filter;
-        var dates = this.formatDate();
+        let activeFilters;
+        let filters = [];   
+        let filter;
+        let dates = this.formatDate();
         this.filtersToApply();
         activeFilters = JSON.parse(JSON.stringify(this.activeFilters));   
         activeFilters.forEach(fil =>{
@@ -274,12 +277,13 @@ export default class DatatableModals extends LightningElement {
         });
         if (this.removeAllFilters) { filters = []; }
         const values = JSON.stringify(filters);
-        this.filterEvent(values);
-        !this.isDesktop && this.closeModal();
+        this.filterEvent(values, removeFilters);
+        !this.isdesktop && this.closeModal();
     }
 
-    filterEvent(values) {
+    filterEvent(values, removeFilters) {
         const filterItemSelected = new CustomEvent('filter', { bubbles: true, composed: true, detail: {values} });
+        if(!removeFilters) this.appliedfilters = true;
         this.dispatchEvent(filterItemSelected);
     }
 

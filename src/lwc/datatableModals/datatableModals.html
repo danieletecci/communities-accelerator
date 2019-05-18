@@ -1,7 +1,7 @@
 <template>
     <div 
         class="datatableModals" 
-        data-is-desktop={isDesktop} 
+        data-is-desktop={isdesktop} 
         data-action-modal={actionModal} 
         data-filter-modal={filterModal} 
         data-detail-modal={detailModal}>
@@ -19,53 +19,71 @@
                                     <div class={filterTitleClass} onclick={toggleOptions}>
                                         <h2 class="slds-col slds-size_3-of-4">{col.label}</h2>
                                     </div>
-                                    <div class={filterOptionsClass}>
-                                        <div>
-                                            <p>Select {col.label}</p>
-                                        </div>
-                                        <template iterator:it={col.filtrableValues}>
-                                            <div key={it.value.value} class={filterItemClass}>
-                                                <c-datatable-filters column={col.fieldName} 
-                                                                type={col.type} 
-                                                                filter={it.value} 
-                                                                appliedfilters={table.appliedFilters} 
-                                                                formartdate={formartDate}
-                                                                onfilter={filterElement}
-                                                                is-desktop={isDesktop}>
-                                                </c-datatable-filters>
+                                    <span class="picklist">
+                                        <div class={filterOptionsClass}>
+                                            <div>
+                                                <p>Select {col.label}</p>
                                             </div>
-                                        </template>
-                                    </div>
+                                            <template iterator:it={col.filtrableValues}>
+                                                <div key={it.value.value} class={filterItemClass}>
+                                                    <c-datatable-filters column={col.fieldName} 
+                                                                    type={col.type} 
+                                                                    filter={it.value} 
+                                                                    appliedfilters={table.appliedFilters} 
+                                                                    formartdate={formartDate}
+                                                                    onfilter={filterElement}
+                                                                    is-desktop={isdesktop}>
+                                                    </c-datatable-filters>
+                                                </div>
+                                            </template>
+                                        </div>
+                                    </span>
                                 </div>
                             </template>
                         </template>
                         <template if:true={number}>
                             <template for:each={typeNumber} for:item="col">
                                 <div key={col.fieldName} class={filterContainerClass}>
-                                    <div class={filterTitleClass}>
+                                    <div class={filterTitleClass} onclick={toggleOptions}>
                                         <h2 class="slds-col slds-size_3-of-4">{col.label}</h2>
                                     </div>
-                                    <div>
-                                        <input class="min" type="number" placeholder="Min" max={selectedMax} data-type={col.type} data-column={col.fieldName} onchange={changeInputMin}>
-                                        <input class="max" type="number" placeholder="Max" min={selectedMin} data-type={col.type} data-column={col.fieldName} onchange={changeInputMax}>
-                                    </div>
+                                    <span class="input-number">
+                                        <div class={filterOptionsClass}>
+                                            <div class="slds-grid slds-gutters">
+                                                <div class="slds-col">
+                                                    <input class="min" type="number" placeholder="Min" max={selectedMax} data-type={col.type} data-column={col.fieldName} onchange={changeInputMin}>
+                                                </div>
+                                                <div class="slds-col">
+                                                    <input class="max" type="number" placeholder="Max" min={selectedMin} data-type={col.type} data-column={col.fieldName} onchange={changeInputMax}>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </span>
                                 </div>
                             </template>
                         </template>
                         <template if:true={date}>
                             <template for:each={typeDate} for:item="col">
                                 <div key={col.fieldName} class={filterContainerClass}>
-                                    <div class={filterTitleClass}>
+                                    <div class={filterTitleClass} onclick={toggleOptions}>
                                         <h2 class="slds-col slds-size_3-of-4">{col.label}</h2>
                                     </div>
-                                    <div>
-                                        <lightning-input class="datefrom" type="date" name="from-day" data-type={col.type} data-column={col.fieldName} max={selectedDateTo} onchange={changeDatepickerFrom} placeholder="From"></lightning-input>
-                                        <lightning-input class="dateto" type="date" name="to-day" min={selectedDateFrom} onchange={changeDatepickerTo} placeholder="To"></lightning-input>
-                                    </div>
+                                    <span class="input-date">
+                                        <div class={filterOptionsClass}>
+                                            <div class="slds-grid slds-gutters">
+                                                <div class="slds-col">
+                                                    <lightning-input class="datefrom" type="date" name="from-day" data-type={col.type} data-column={col.fieldName} max={selectedDateTo} onchange={changeDatepickerFrom} placeholder="From"></lightning-input>
+                                                </div>
+                                                <div class="slds-col">
+                                                    <lightning-input class="dateto" type="date" name="to-day" min={selectedDateFrom} onchange={changeDatepickerTo} placeholder="To"></lightning-input>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </span>
                                 </div>
                             </template>
                         </template>
-                        <template if:true={text}>
+                        <!-- <template if:true={text}>
                             <template for:each={typeText} for:item="col">
                                 <div key={col.fieldName} class={filterContainerClass}>
                                     <div class={filterTitleClass}>
@@ -76,21 +94,23 @@
                                     </div>
                                 </div>
                             </template>
-                        </template>
+                        </template> -->
                         <template if:true={showFilterModalFooter}>
                             <div class="bottom-spacer">&nbsp;</div>
                         </template>
                     </div>
                     <template if:true={showFilterModalFooter}>
                         <div class="modal__footer slds-grid slds-wrap">
-                            <button onclick={filterAllRemove} class={removeAllFiltersClass}>
-                                <template if:true={isDesktop}>
-                                        <img class="closeModal" src={closeicon} onclick={closeModal}>
-                                </template>
-                                <template if:false={isDesktop}>
-                                        {RemoveAllFilters}
-                                </template>
-                            </button>
+                            <template if:true={appliedfilters}>
+                                <button onclick={filterAllRemove} class={removeAllFiltersClass}>
+                                    <template if:true={isphone}>
+                                            <img class="closeModal" src={closeicon} onclick={closeModal}>
+                                    </template>
+                                    <template if:false={isphone}>
+                                            {RemoveAllFilters}
+                                    </template>
+                                </button>
+                            </template>
                             <button class={applyFilterClass} onclick={applyFilter}>{GeneralApply}</button>
                         </div>
                     </template>

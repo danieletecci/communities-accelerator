@@ -28,7 +28,10 @@
                     rowaction={rowAction}
                     closeicon={closeIcon}
                     onclose={closeFilterModal}
-                    is-desktop={isDesktop}>
+                    isdesktop={isDesktop}
+                    isphone={isPhone}
+                    appliedfilters={appliedFilters}
+                    >
                 </c-datatable-modals>  
         </template>
 
@@ -130,16 +133,22 @@
                             </tr>
                         </template>
                         <template if:true={noRecordsToDisplay}>
-                            <p class="no-records-to-display">{table.noRecordsMsg}</p>
-                        </template>
-                        <template if:true={hasMore}>
-                            <tr class="pagination" onclick={getPage}>
-                                <td colspan="100%">
-                                    <div>
-                                        {GeneralShowMore}
-                                    </div> 
-                                </td>
+                            <tr>
+                               <td colspan="100%">
+                                   <p class="no-records-to-display">{table.noRecordsMsg}</p>
+                               </td> 
                             </tr>
+                        </template>
+                        <template if:false={noRecordsToDisplay}>
+                            <template if:true={hasMore}>
+                                <tr class="pagination" onclick={getPage}>
+                                    <td colspan="100%">
+                                        <div>
+                                            {GeneralShowMore}
+                                        </div> 
+                                    </td>
+                                </tr>
+                            </template>
                         </template>
                     </tbody>
                 </table>
@@ -176,11 +185,11 @@
                 </template>
             </div>
         </template>
-        <template if:true={appliedFilters}>
+        <!-- <template if:true={appliedFilters}>
             <div class="table__footer">
                 <button class="remove-filter-btn" onclick={filterAllRemove}>{RemoveAllFilters}</button>
             </div>
-        </template>
+        </template> -->
         <!--                MODALS                 -->
 
         <!-- Mobile filters -->
@@ -192,7 +201,8 @@
                                         rowaction={rowAction}
                                         closeicon={closeIcon}
                                         onclose={closeFilterModal}
-                                        is-desktop={isDesktop}>
+                                        isdesktop={isDesktop}
+                                        isphone={isPhone}>
                 </c-datatable-modals>
             </template>
         </template>
@@ -204,7 +214,8 @@
                                     rowaction={rowAction}
                                     closeicon={closeIcon}
                                     onclose={closeDetailModal}
-                                    is-desktop={isDesktop}>
+                                    isdesktop={isDesktop}
+                                    isphone={isPhone}>
             </c-datatable-modals>
         </template>
         <template if:true={showActionModal}>
@@ -214,7 +225,8 @@
                                     rowkey={clickRow}
                                     closeicon={closeIcon}
                                     onclose={closeActionModal}
-                                    is-desktop={isDesktop}>
+                                    isdesktop={isDesktop}
+                                    isphone={isPhone}>
             </c-datatable-modals>
         </template>
     </div>

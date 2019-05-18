@@ -181,16 +181,17 @@
 .datatableModals[data-is-desktop="true"] .modal .filterModal {
   display: flex;
   background-color: transparent;
-}
-.datatableModals[data-is-desktop="true"] .modal .filterModal .modal__content,
-.datatableModals[data-is-desktop="true"] .modal .filterModal .modal__footer {
-  position: relative;
+  height: 125px;
 }
 .datatableModals[data-is-desktop="true"] .modal .filterModal .modal__header {
   display: none;
 }
 .datatableModals[data-is-desktop="true"] .modal .filterModal .modal__content {
   height: auto;
+  padding-bottom: 0;
+  padding-top: 0;
+  width: 85%;
+  position: relative;
 }
 .datatableModals[data-is-desktop="true"] .modal .filterModal .modal__content .bottom-spacer {
   margin-bottom: 0px;
@@ -209,21 +210,23 @@
 }
 .datatableModals[data-is-desktop="true"] .modal .filterModal .modal__content .filterContainer .filter-title {
   flex-grow: 1;
+  padding-left: 0;
+}
+.datatableModals[data-is-desktop="true"] .modal .filterModal .modal__content .filterContainer .filter-title h2 {
+  padding-left: 0;
 }
 .datatableModals[data-is-desktop="true"] .modal .filterModal .modal__content .min,
 .datatableModals[data-is-desktop="true"] .modal .filterModal .modal__content .max {
-  height: 50px;
+  height: 51px;
   margin: 0;
 }
 .datatableModals[data-is-desktop="true"] .modal .filterModal .modal__content .filterOptions {
   top: 50px;
-  background: #0B0B0B;
-  position: absolute;
   color: #FDFDFD;
   width: 200px;
 }
 .datatableModals[data-is-desktop="true"] .modal .filterModal .modal__content .filterOptions p {
-  padding: 0px 5px;
+  padding: 1px 7px 2px;
   height: 30px;
   display: flex;
   justify-content: center;
@@ -232,19 +235,31 @@
 .datatableModals[data-is-desktop="true"] .modal .filterModal .modal__content .filterOptions .filterItemClass {
   padding: 0px;
 }
-.datatableModals[data-is-desktop="true"] .modal .filterModal .modal__footer {
-  width: 110px;
-  display: flex;
-  justify-content: space-between;
-  padding: 30px 0px;
+.datatableModals[data-is-desktop="true"] .modal .filterModal .modal__content .picklist .filterOptions {
+  background: #0B0B0B;
+  position: absolute;
 }
-.datatableModals[data-is-desktop="true"] .modal .filterModal .modal__footer .removeAllFilters,
-.datatableModals[data-is-desktop="true"] .modal .filterModal .modal__footer .applyFilter {
-  width: auto;
-  /* display: none;*/
+.datatableModals[data-is-desktop="true"] .modal .filterModal .modal__content .input-number {
+  padding-left: 5px;
+}
+.datatableModals[data-is-desktop="true"] .modal .filterModal .modal__content .input-number input {
+  color: black;
+}
+.datatableModals[data-is-desktop="true"] .modal .filterModal .modal__content .input-date lightning-input {
+  color: black;
+}
+.datatableModals[data-is-desktop="true"] .modal .filterModal .modal__footer {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  padding: 5px 0 20px 0;
+  width: 15%;
 }
 .datatableModals[data-is-desktop="true"] .modal .filterModal .modal__footer .removeAllFilters {
-  background: transparent;
+  background-color: #D6EAFF;
+}
+.datatableModals[data-is-desktop="true"] .modal .filterModal .modal__footer .applyFilter {
+  margin-top: auto;
 }
 .datatableModals[data-detail-modal="true"] .modal__content {
   background-color: #F8F8F8;

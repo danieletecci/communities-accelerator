@@ -306,4 +306,8 @@ export default class DatatableModals extends LightningElement {
     closeModal() {
         this.dispatchEvent(new CustomEvent('close'));
     }
+
+    get detailModalActionClass(){
+        return "slds-no-flex slds-col slds-size_1-of-" + this.rowaction.length;
+    }
 }

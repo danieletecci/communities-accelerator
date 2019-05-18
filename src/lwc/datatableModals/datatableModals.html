@@ -119,7 +119,7 @@
 
             <!--                DETAIL'S MODAL                 -->
             <template if:true={detailModal}>
-                <div class="detailmodal">
+                <div class="detailmodal" id="detail-modal">
                     <div class="modal__header">
                         <img class="closeModal" src={closeicon} onclick={closeModal}>
                     </div>
@@ -133,8 +133,8 @@
                     </div>
                     <div class="modal__footer slds-grid slds-wrap">
                         <template for:each={rowaction} for:item="action">
-                                <div key={action.label} class="slds-no-flex slds-col slds-size_1-of-4">
-                                    <img src={action.icon}>
+                                <div key={action.label} class={detailModalActionClass}>
+                                    <span class="action-label">{action.label}</span><img src={action.icon}>
                                 </div>
                         </template>
                     </div>

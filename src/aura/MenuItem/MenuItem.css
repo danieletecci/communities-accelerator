@@ -21,6 +21,7 @@
 }
 .THIS .icon-label{
     padding-left: 30px;
+    line-height: 23px;
 }
 .THIS .menu-icon::after {
     content: ' ';

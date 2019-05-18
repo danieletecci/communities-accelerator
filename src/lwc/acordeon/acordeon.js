@@ -1,12 +1,13 @@
 import { LightningElement, api } from 'lwc';
 import { loadStyle } from 'lightning/platformResourceLoader';
+import ASSETS from '@salesforce/resourceUrl/Assets';
 
 export default class Acordeon extends LightningElement {
 
     @api filters;
 
     connectedCallback() {
-        loadStyle(this, '/sfsites/c/resource/Assets/Assets/Styles/accordeonExternalStyles.css');
+        loadStyle(this, ASSETS + '/Assets/Styles/accordeonExternalStyles.css');
     }
 
     openAccordeon(event){

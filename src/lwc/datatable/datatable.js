@@ -1,5 +1,6 @@
 import Assets from '@salesforce/resourceUrl/Assets';
 import { loadStyle } from 'lightning/platformResourceLoader';
+import ASSETS from '@salesforce/resourceUrl/Assets';
 
 import { LightningElement, api, track } from 'lwc';
 
@@ -76,7 +77,7 @@ export default class Datatable extends LightningElement {
 
     connectedCallback() {
         window.addEventListener("orientationchange", () => this.handleOrientation());
-        loadStyle(this, '/sfsites/c/resource/Assets/Assets/Styles/datatableExternalStyles.css');
+        loadStyle(this, ASSETS + '/Assets/Styles/datatableExternalStyles.css');
         loadStyle(this, Assets + '/Assets/Styles/roboto.css');
     }
 

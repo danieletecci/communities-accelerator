@@ -1,5 +1,6 @@
 import { LightningElement, api } from 'lwc';
 import { loadStyle } from 'lightning/platformResourceLoader';
+import ASSETS from '@salesforce/resourceUrl/Assets';
 
 export default class CardCompressed extends LightningElement {
     @api config; 
@@ -14,7 +15,7 @@ export default class CardCompressed extends LightningElement {
     //}
 
     connectedCallback() {
-        loadStyle(this, '/sfsites/c/resource/Assets/Assets/Styles/cardCompressedExternalStyles.css');
+        loadStyle(this, ASSETS + '/Assets/Styles/cardCompressedExternalStyles.css');
     }
 
     navigateToDetail() {

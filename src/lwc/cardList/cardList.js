@@ -1,5 +1,6 @@
 import { LightningElement, api } from 'lwc';
 import { loadStyle } from 'lightning/platformResourceLoader';
+import ASSETS from '@salesforce/resourceUrl/Assets';
 import ViewMoreLabel from '@salesforce/label/c.CardsViewMore';
 
 
@@ -26,7 +27,7 @@ export default class CardList extends LightningElement {
         this.mobile = navigator.userAgent.toLowerCase().includes('mobi');
     }
     connectedCallback() {
-        loadStyle(this, '/sfsites/c/resource/Assets/Assets/Styles/cardListExternalStyles.css');
+        loadStyle(this, ASSETS + '/Assets/Styles/cardListExternalStyles.css');
     }
 
     get containerClass() {

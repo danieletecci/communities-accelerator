@@ -57,7 +57,44 @@ export default class DatatableModals extends LightningElement {
         if (this.typePicklist.length === 0 && this.typeNumber.length === 0 && this.typeDate.length === 0 && this.typeText.length === 0) { 
             this.setFilters(); 
         }
+        if (this.detailModal && this.firstRender) {
+            let firstRun = true;
+            let modalTop;
+            document.body.onscroll = function(){
+                let actions = this.getElementsByClassName('modal__footer')[0];
+                let modalBox = this.getElementsByClassName('detailmodal')[0];
+                var html = document.getElementsByTagName('html')[0];
+                if(firstRun){
+                    modalTop = modalBox.getBoundingClientRect().top;
+                }
+                if(actions.offsetTop + html.scrollTop - modalTop + actions.offsetHeight >= modalBox.offsetHeight){
+                    actions.style.position = 'absolute';
+                } else {
+                    actions.style.position = 'fixed';
+                }
+                firstRun = false;
+            // 
+            // document.addEventListener("scroll", function () {
+            //   let footer = this.getElementsByClassName('detailmodal')[0];
+            //   let socialFloat = this.getElementsByClassName('modal__footer')[0];
+            //   this.checkOffset(socialFloat, footer);
+            // });
+          }
+        }
+    
+          this.firstRender = false;
     }
+
+    // checkOffset(socialFloat, footer) {
+    //     if (this.getRectTop(socialFloat) + document.body.scrollTop + socialFloat.offsetHeight >= this.getRectTop(footer) + document.body.scrollTop - 10) socialFloat.style.position = 'absolute';
+    //     if (document.body.scrollTop + window.innerHeight < this.getRectTop(footer) + document.body.scrollTop) socialFloat.style.position = 'fixed'; // restore when you scroll up
+    //     // socialFloat.innerHTML = document.body.scrollTop + window.innerHeight;
+    //   }
+  
+    //   getRectTop(el) {
+    //     var rect = el.getBoundingClientRect();
+    //     return rect.top;
+    //   }
 
     get filterTitleClass() {
         let sldsClass = this.isdesktop?'slds-size_4-of-4':'slds-size_4-of-4';

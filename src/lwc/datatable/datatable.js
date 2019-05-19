@@ -34,6 +34,8 @@ export default class Datatable extends LightningElement {
     @track searchTerm = '';
     @track showCancelSearch = false;
     @track showFilterIcon = false;
+    @track hasFilters = false;
+    @track hasSearchables = false;
 
     // Actions
     @track hasGlobalActions = false;
@@ -67,22 +69,24 @@ export default class Datatable extends LightningElement {
         this.setDevices();
         this.FIRST_LEVEL_ROW_ACTION_AMOUNT = this.isPhone ? 3 : 2;
     }
-
+    
     setDevices(){
         let currentDeviceType = eval("$A.get('$Browser.formFactor')");
         let deviceTypeRef = 'is' + currentDeviceType[0] + currentDeviceType.slice(1).toLowerCase();
         this[deviceTypeRef] = true;
     }
-
+    
     connectedCallback() {
         window.addEventListener("orientationchange", () => this.handleOrientation());
         loadStyle(this, 'sfsites/c/resource/Assets/Assets/Styles/datatableExternalStyles.css');
         loadStyle(this, Assets + '/Assets/Styles/roboto.css');
+        this.hasFilters = this.table.columns.filter(f => f.filtrable).length > 0;
+        this.hasSearchables = this.table.columns.filter(f => f.searchable).length > 0;
     }
 
     renderedCallback() {
         if (this.table && !this.columnsToShow) {
-            this.NUMBER_OF_COLUMNS = this.table.NUMBER_OF_COLUMNS > this.NUMBER_OF_COLUMNS ? this.NUMBER_OF_COLUMNS : this.table.NUMBER_OF_COLUMNS;
+            this.NUMBER_OF_COLUMNS = this.table.numberOfColumns > this.NUMBER_OF_COLUMNS ? this.NUMBER_OF_COLUMNS : this.table.numberOfColumns;
             this.columnsToShow = this.table.columns.slice(0, this.NUMBER_OF_COLUMNS);
         }
         if (this.table.actions.length > 0 && this.rowAction.length === 0 && this.globalAction.length === 0) {
@@ -288,4 +292,5 @@ export default class Datatable extends LightningElement {
         const clearFilter = new CustomEvent('clearfilter');
         this.dispatchEvent(clearFilter);
     }
+
 }

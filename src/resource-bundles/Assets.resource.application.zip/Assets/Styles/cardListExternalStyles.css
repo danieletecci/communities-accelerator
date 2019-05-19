@@ -1,0 +1,24 @@
+body.comm-page-home .cMD_BaseTheme .DiageoCMSArticleListHOC .list-header,
+body.comm-page-home .cMD_BaseTheme .DiageoCMSEventListHOC .list-header{
+    padding: 0 7%;
+    font-size: 40px;
+    color: #0B0B0B;
+    font-weight: 300;
+    margin: 30px 0;
+}
+
+body.comm-page-home .cMD_BaseTheme .DiageoCMSArticleListHOC .list-title,
+body.comm-page-home .cMD_BaseTheme .DiageoCMSEventListHOC .list-title,
+body.comm-page-home .cMD_BaseTheme .DiageoCMSArticleListHOC .spacer-tablet,
+body.comm-page-home .cMD_BaseTheme .DiageoCMSEventListHOC .spacer-tablet,
+body.comm-page-home .cMD_BaseTheme .DiageoCMSArticleListHOC .spacer-phone,
+body.comm-page-home .cMD_BaseTheme .DiageoCMSEventListHOC .spacer-phone{
+    display: none;
+}
+
+@media (min-width: 768px) {
+    body.comm-page-home .cMD_BaseTheme .DiageoCMSArticleListHOC .list-header,
+    body.comm-page-home .cMD_BaseTheme .DiageoCMSEventListHOC .list-header{
+        display: none;
+    }
+}

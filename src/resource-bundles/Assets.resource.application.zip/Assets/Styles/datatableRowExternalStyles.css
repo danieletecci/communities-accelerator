@@ -1,0 +1,57 @@
+.DatatableRow[DiageoCMS-datatableRow_datatableRow] .rowdata[DiageoCMS-datatableRow_datatableRow] p.value[DiageoCMS-datatableRow_datatableRow] {
+    font-size: 16px !important;
+    font-weight: 400;
+}
+
+.DatatableRow[DiageoCMS-datatableRow_datatableRow] .rowdata[DiageoCMS-datatableRow_datatableRow] p.column[DiageoCMS-datatableRow_datatableRow] {
+    color: #848484;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+thead .DatatableRow[DiageoCMS-datatableRow_datatableRow] .rowdata[DiageoCMS-datatableRow_datatableRow] p[DiageoCMS-datatableRow_datatableRow]{
+    font-weight: 500;
+}
+
+.DatatableRow[DiageoCMS-datatableRow_datatableRow] .rowdata[DiageoCMS-datatableRow_datatableRow] p[DiageoCMS-datatableRow_datatableRow]{
+    font-weight: 400;
+}
+
+.datatable[DiageoCMS-datatable_datatable] .desktop-table[DiageoCMS-datatable_datatable] tr[DiageoCMS-datatable_datatable] td.extraRowActionContainer.active[DiageoCMS-datatable_datatable] .full-list{
+    padding-right: 22px;
+}
+
+.datatable[data-is-desktop="true"][DiageoCMS-datatable_datatable] .desktop-table[DiageoCMS-datatable_datatable] tr[DiageoCMS-datatable_datatable] td.extraRowActionContainer.active[DiageoCMS-datatable_datatable] .full-list[DiageoCMS-datatable_datatable]{
+    justify-content: flex-end;
+}
+
+.datatable[DiageoCMS-datatable_datatable] .desktop-table[DiageoCMS-datatable_datatable] tr[DiageoCMS-datatable_datatable] td.extraRowActionContainer.active[DiageoCMS-datatable_datatable] .full-list div{
+    padding: 0 40px;
+    color: #F2B005;
+}
+
+.datatable[DiageoCMS-datatable_datatable] .desktop-table[DiageoCMS-datatable_datatable] tr[DiageoCMS-datatable_datatable] td.extraRowActionContainer.active[DiageoCMS-datatable_datatable] .full-list div.trigger{
+    padding: 0;
+}
+
+.PHONE .DatatableRow[DiageoCMS-datatableRow_datatableRow] .rowdata[DiageoCMS-datatableRow_datatableRow] p.value[DiageoCMS-datatableRow_datatableRow]{
+    font-weight: 500;
+}
+
+.PHONE .datatable[DiageoCMS-datatable_datatable] .cards-container[DiageoCMS-datatable_datatable]{
+    background-color: #FFFFFF;
+    margin-bottom: 60px;
+}
+
+.PHONE .datatable[DiageoCMS-datatable_datatable] .slds-card[DiageoCMS-datatable_datatable]{
+    margin: 0 35px;
+    padding: 60px 0 20px 0;
+}
+
+.PHONE .datatable[DiageoCMS-datatable_datatable] .slds-card[DiageoCMS-datatable_datatable]:last-child{
+    border: none;
+}
+
+.PHONE .DatatableRow[DiageoCMS-datatableRow_datatableRow]{
+    padding: 0;
+}

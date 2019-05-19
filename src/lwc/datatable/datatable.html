@@ -1,35 +1,48 @@
 <template>
     <div class="datatable" data-is-desktop={isDesktop} data-is-phone={isPhone} data-is-tablet={isTablet}>
         <div class="header">
-            <h1>{table.title}</h1>
-            <div class="search-element" >
-                <input class="searchInput" placeholder={GeneralSearch} type="search" value={searchTerm} onkeyup={setSearchTerm} onsearch={searchEvent} onfocus={focusFilter} onblur={searchEventOnBlur}/>
-                <div class="icons-group">
-                    <template if:true={showCancelSearch}>
-                        <template if:false={isDesktop}>
-                            <button class="cancelSearch" onclick={cancelFilter}>{GeneralCancel}</button>
-                        </template>
-                        <template if:true={isDesktop}>
-                            <img src={closeIcon}  onclick={cancelFilter}> 
-                        </template>
-                    </template>
-                    <template if:true={showFilterIcon}>
-                        <img class="filterIcon" src={filterIcon} onclick={openFilterModal}>
-                    </template>
-                </div>
-            </div>
+            <template if:true={table.title}>
+                <h1>{table.title}</h1>
+            </template>
+            <template if:false={showDetailModal}>
+                <template if:true={hasSearchables}>
+                    <div class="search-element" >
+                        <input class="searchInput" placeholder={GeneralSearch} type="search" value={searchTerm} onkeyup={setSearchTerm} onsearch={searchEvent} onfocus={focusFilter} onblur={searchEventOnBlur}/>
+                        <div class="icons-group">
+                            <template if:true={showCancelSearch}>
+                                <template if:false={isDesktop}>
+                                    <button class="cancelSearch" onclick={cancelFilter}>{GeneralCancel}</button>
+                                </template>
+                                <template if:true={isDesktop}>
+                                    <img src={closeIcon}  onclick={cancelFilter}> 
+                                </template>
+                            </template>
+                            <template if:true={showFilterIcon}>
+                                <img class="filterIcon" src={filterIcon} onclick={openFilterModal}>
+                            </template>
+                        </div>
+                    </div>
+                </template>
+            </template>
         </div>
-        
-        <!-- Desktop filters -->
-        <template if:false={isPhone}>
-                <c-datatable-modals  type="filterModal"
-                    table={table} 
-                    rowkey={clickRow}
-                    rowaction={rowAction}
-                    closeicon={closeIcon}
-                    onclose={closeFilterModal}
-                    is-desktop={isDesktop}>
-                </c-datatable-modals>  
+            
+        <template if:false={showDetailModal}>
+            <template if:true={hasFilters}>
+                <!-- Desktop filters -->
+                <template if:false={isPhone}>
+                        <c-datatable-modals  type="filterModal"
+                            table={table} 
+                            rowkey={clickRow}
+                            rowaction={rowAction}
+                            closeicon={closeIcon}
+                            onclose={closeFilterModal}
+                            isdesktop={isDesktop}
+                            isphone={isPhone}
+                            appliedfilters={appliedFilters}
+                            >
+                        </c-datatable-modals>  
+                </template>
+            </template>
         </template>
 
         <template if:true={isPhone}>
@@ -130,16 +143,22 @@
                             </tr>
                         </template>
                         <template if:true={noRecordsToDisplay}>
-                            <p class="no-records-to-display">{table.noRecordsMsg}</p>
-                        </template>
-                        <template if:true={hasMore}>
-                            <tr class="pagination" onclick={getPage}>
-                                <td colspan="100%">
-                                    <div>
-                                        {GeneralShowMore}
-                                    </div> 
-                                </td>
+                            <tr>
+                               <td colspan="100%">
+                                   <p class="no-records-to-display">{table.noRecordsMsg}</p>
+                               </td> 
                             </tr>
+                        </template>
+                        <template if:false={noRecordsToDisplay}>
+                            <template if:true={hasMore}>
+                                <tr class="pagination" onclick={getPage}>
+                                    <td colspan="100%">
+                                        <div>
+                                            {GeneralShowMore}
+                                        </div> 
+                                    </td>
+                                </tr>
+                            </template>
                         </template>
                     </tbody>
                 </table>
@@ -176,11 +195,11 @@
                 </template>
             </div>
         </template>
-        <template if:true={appliedFilters}>
+        <!-- <template if:true={appliedFilters}>
             <div class="table__footer">
                 <button class="remove-filter-btn" onclick={filterAllRemove}>{RemoveAllFilters}</button>
             </div>
-        </template>
+        </template> -->
         <!--                MODALS                 -->
 
         <!-- Mobile filters -->
@@ -192,7 +211,8 @@
                                         rowaction={rowAction}
                                         closeicon={closeIcon}
                                         onclose={closeFilterModal}
-                                        is-desktop={isDesktop}>
+                                        isdesktop={isDesktop}
+                                        isphone={isPhone}>
                 </c-datatable-modals>
             </template>
         </template>
@@ -204,7 +224,8 @@
                                     rowaction={rowAction}
                                     closeicon={closeIcon}
                                     onclose={closeDetailModal}
-                                    is-desktop={isDesktop}>
+                                    isdesktop={isDesktop}
+                                    isphone={isPhone}>
             </c-datatable-modals>
         </template>
         <template if:true={showActionModal}>
@@ -214,7 +235,8 @@
                                     rowkey={clickRow}
                                     closeicon={closeIcon}
                                     onclose={closeActionModal}
-                                    is-desktop={isDesktop}>
+                                    isdesktop={isDesktop}
+                                    isphone={isPhone}>
             </c-datatable-modals>
         </template>
     </div>

@@ -62,7 +62,6 @@
   padding: 5px;
 }
 .datatable .search-element {
-  margin-bottom: 60px;
   display: inline-block;
   min-width: 100%;
   height: 50px;
@@ -111,7 +110,7 @@
 }
 .datatable[data-is-desktop="true"] .search-element {
   min-width: 0px;
-  height: 80px;
+  height: 50px;
 }
 .datatable[data-is-desktop="true"] .search-element .searchInput,
 .datatable[data-is-desktop="true"] .search-element .searchInput::placeholder {

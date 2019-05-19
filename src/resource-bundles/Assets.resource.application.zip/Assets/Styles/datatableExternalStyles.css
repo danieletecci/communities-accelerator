@@ -1,0 +1,125 @@
+
+.datatable[DiageoCMS-datatable_datatable] .search-element[DiageoCMS-datatable_datatable] .searchInput[DiageoCMS-datatable_datatable]::-webkit-input-placeholder {
+   font-weight: 200!important;
+}
+.datatable[DiageoCMS-datatable_datatable] .search-element[DiageoCMS-datatable_datatable] .searchInput[DiageoCMS-datatable_datatable]::-moz-placeholder {
+   font-weight: 200!important;
+}
+.datatable[DiageoCMS-datatable_datatable] .search-element[DiageoCMS-datatable_datatable] .searchInput[DiageoCMS-datatable_datatable]:-ms-input-placeholder {
+  font-weight: 200!important;
+}
+.datatable[DiageoCMS-datatable_datatable] .search-element[DiageoCMS-datatable_datatable] .searchInput[DiageoCMS-datatable_datatable]::placeholder {
+  font-weight: 200!important;
+}
+.datatable[DiageoCMS-datatable_datatable] .search-element[DiageoCMS-datatable_datatable] .searchInput[DiageoCMS-datatable_datatable] {
+    font-weight: 200!important;
+}
+.datatable[DiageoCMS-datatable_datatable] h1[DiageoCMS-datatable_datatable]:after {
+    content: 'Puedes revisar y comprobar el estado de cualquier consulta que hayas enviado a MyDiageo';
+    display: block;
+    font-size: 20px;
+}
+
+.datatable[data-is-desktop="true"][DiageoCMS-datatable_datatable] .desktop-table[DiageoCMS-datatable_datatable] tr[DiageoCMS-datatable_datatable].pagination {
+    display: none;
+}
+
+.datatable[data-is-desktop="true"][DiageoCMS-datatable_datatable] .desktop-table[DiageoCMS-datatable_datatable] .pagination[DiageoCMS-datatable_datatable] td[DiageoCMS-datatable_datatable] {
+    background: #FAE7B5 !important;
+    color: #0B0B0B !important;
+    -webkit-column-span: all;
+    column-span: all;
+}
+
+body.comm-page-custom-account-details .datatable[data-is-desktop=true][DiageoCMS-datatable_datatable] .header[DiageoCMS-datatable_datatable] {
+    display: none;
+}
+
+body.comm-page-custom-account-details .datatable[data-is-desktop="true"][DiageoCMS-datatable_datatable] .desktop-table[DiageoCMS-datatable_datatable] tr[DiageoCMS-datatable_datatable].pagination{
+    display: none;
+}
+
+body.comm-page-custom-account-details .datatable[DiageoCMS-datatable_datatable] tr[DiageoCMS-datatable_datatable] {
+    pointer-events: none;
+}
+
+.datatable[data-is-desktop="true"][DiageoCMS-datatable_datatable] .search-element[DiageoCMS-datatable_datatable] .icons-group[DiageoCMS-datatable_datatable] img:first-child {
+    position: relative;
+    left: -360px;
+}
+
+
+/**
+ * Query details page
+ */
+
+body.comm-page-custom-queries .DESKTOP .datatable[DiageoCMS-datatable_datatable]{
+    max-width: 1088px;
+    margin: 0 auto;
+    padding: 60px 0 65px 0;
+}
+
+.DESKTOP .datatable[DiageoCMS-datatable_datatable] .header[DiageoCMS-datatable_datatable]{
+    margin-bottom: 100px;
+}
+
+.DESKTOP .datatable[DiageoCMS-datatable_datatable] .search-element[DiageoCMS-datatable_datatable]{
+    margin: 0;
+    margin-top: 154px;
+    text-align: right;
+}
+
+.DESKTOP .datatable[DiageoCMS-datatable_datatable] .search-element[DiageoCMS-datatable_datatable] .searchInput[DiageoCMS-datatable_datatable]{
+    text-align: right;
+    background-color: transparent;
+}
+
+.DESKTOP .datatable[DiageoCMS-datatable_datatable] h1[DiageoCMS-datatable_datatable]{
+    font-size: 30px;
+    font-weight: 300;
+    line-height: 35px;
+    color: #000000;
+}
+
+.DESKTOP .datatable[DiageoCMS-datatable_datatable] h1[DiageoCMS-datatable_datatable]:after{
+    margin-top: 30px;
+    font-size: 19px;
+    line-height: 29px;
+    color: #2B2B2B;
+    font-weight: 300;
+}
+
+.DESKTOP .datatable[DiageoCMS-datatable_datatable] table,
+.DESKTOP .datatable[DiageoCMS-datatable_datatable] .desktop-table[DiageoCMS-datatable_datatable] tr[DiageoCMS-datatable_datatable] th{
+    background-color: #F2F2F2;
+}
+
+.DESKTOP .datatable[DiageoCMS-datatable_datatable] .columnLabel[DiageoCMS-datatable_datatable]{
+    justify-content: flex-start!important;
+}
+
+.DESKTOP .datatable[DiageoCMS-datatable_datatable] .columnLabel[DiageoCMS-datatable_datatable] img{
+    margin-left: 10px;
+}
+
+.DESKTOP .datatable[data-is-desktop="true"][DiageoCMS-datatable_datatable] .desktop-table[DiageoCMS-datatable_datatable] tr[DiageoCMS-datatable_datatable] td.extraRowActionContainer[DiageoCMS-datatable_datatable]{
+    padding-right: 30px;
+    padding-left: 15px;
+}
+
+body.comm-page-custom-queries .PHONE .mainContentArea,
+body.comm-page-custom-queries .PHONE.cMD_BaseTheme .mainContentArea.mainContentAreaWithSidebar .sideBarArea {
+    margin-top: 0;
+}
+
+.PHONE .datatable[data-is-phone="true"][DiageoCMS-datatable_datatable]{
+    padding: 0;
+}
+
+.PHONE .datatable[data-is-phone="true"][DiageoCMS-datatable_datatable] .header[DiageoCMS-datatable_datatable]{
+    padding: 50px 35px 0 35px;
+}
+
+.PHONE .datatable[DiageoCMS-datatable_datatable] h1[DiageoCMS-datatable_datatable]:after{
+    margin-top: 20px;
+}

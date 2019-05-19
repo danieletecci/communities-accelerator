@@ -1,6 +1,6 @@
 import { LightningElement, api } from 'lwc';
 import { loadStyle } from 'lightning/platformResourceLoader';
-import Style from '@salesforce/resourceUrl/Assets';
+import ASSETS from '@salesforce/resourceUrl/Assets';
 
 export default class CardDetail extends LightningElement {
 
@@ -10,8 +10,8 @@ export default class CardDetail extends LightningElement {
     mobile = navigator.userAgent.toLowerCase().includes('mobi');
 
     renderedCallback() {
-        loadStyle(this, '/sfsites/c/resource/Assets/Assets/Styles/cardDetailExternalStyles.css');
-        loadStyle(this, Style + '/Assets/Styles/roboto.css');
+        loadStyle(this, ASSETS + '/Assets/Styles/cardDetailExternalStyles.css');
+        loadStyle(this, ASSETS + '/Assets/Styles/roboto.css');
     }
 
     get isMobile() {

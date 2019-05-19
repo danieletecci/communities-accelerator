@@ -1,0 +1,84 @@
+/* .datatableModals[data-is-desktop="true"][DiageoCMS-datatableModals_datatableModals] button {
+    color: #FDFDFD;
+}
+
+.datatableModals[DiageoCMS-datatableModals_datatableModals] .modal[DiageoCMS-datatableModals_datatableModals] .detailmodal[DiageoCMS-datatableModals_datatableModals] {
+    background-color: #F8F8F8 !important;
+}
+
+.datatableModals[DiageoCMS-datatableModals_datatableModals] .modal[DiageoCMS-datatableModals_datatableModals] .detailmodal[DiageoCMS-datatableModals_datatableModals] .modal__footer[DiageoCMS-datatableModals_datatableModals] {
+    background-color: #FDFDFD !important;
+}
+
+.datatableModals[data-is-desktop="true"][DiageoCMS-datatableModals_datatableModals] .modal[DiageoCMS-datatableModals_datatableModals] .filterModal[DiageoCMS-datatableModals_datatableModals] .modal__content[DiageoCMS-datatableModals_datatableModals] .filterOptions[DiageoCMS-datatableModals_datatableModals] p[DiageoCMS-datatableModals_datatableModals] {
+    color: #848484;
+    padding: 0px 20px;
+}
+
+.datatableModals[data-is-desktop="true"][DiageoCMS-datatableModals_datatableModals] .modal[DiageoCMS-datatableModals_datatableModals] .filterModal[DiageoCMS-datatableModals_datatableModals] .modal__content[DiageoCMS-datatableModals_datatableModals] .filterOptions[DiageoCMS-datatableModals_datatableModals] {
+    padding: 10px;
+}
+
+.datatableModals[DiageoCMS-datatableModals_datatableModals] .modal[DiageoCMS-datatableModals_datatableModals] .filterModal[DiageoCMS-datatableModals_datatableModals] .modal__footer[DiageoCMS-datatableModals_datatableModals] button:last-child[DiageoCMS-datatableModals_datatableModals] {
+    color: #0B0B0B !important;
+    background-color: #F2B005 !important;
+    padding: 12px;
+}
+
+.datatableModals[DiageoCMS-datatableModals_datatableModals] .modal[DiageoCMS-datatableModals_datatableModals] .filterModal[DiageoCMS-datatableModals_datatableModals] .modal__footer[DiageoCMS-datatableModals_datatableModals] button[DiageoCMS-datatableModals_datatableModals] {
+    font-size: 16px !important;
+    font-weight: 600;
+}
+
+.datatableModals[data-is-desktop="false"][DiageoCMS-datatableModals_datatableModals] .modal[DiageoCMS-datatableModals_datatableModals] .filterModal[DiageoCMS-datatableModals_datatableModals] .modal__footer[DiageoCMS-datatableModals_datatableModals] button[DiageoCMS-datatableModals_datatableModals] {
+    background-color: #FAE7B5;
+    color: #0B0B0B;
+}
+
+.datatable[DiageoCMS-datatable_datatable] .table__footer[DiageoCMS-datatable_datatable] button.remove-filter-btn[DiageoCMS-datatable_datatable] {
+    background-color: #F2B005;
+    color: #0B0B0B;
+}
+
+.datatable[data-is-desktop="false"][DiageoCMS-datatable_datatable] .table__footer[DiageoCMS-datatable_datatable] button.remove-filter-btn[DiageoCMS-datatable_datatable] {
+    background-color: #FAE7B5;
+}
+
+.datatableModals[data-is-desktop="true"][DiageoCMS-datatableModals_datatableModals] .modal[DiageoCMS-datatableModals_datatableModals] .filterModal[DiageoCMS-datatableModals_datatableModals] .modal__footer[DiageoCMS-datatableModals_datatableModals] {
+    width: 12% !important;
+}
+
+.datatableModals[DiageoCMS-datatableModals_datatableModals] .modal[DiageoCMS-datatableModals_datatableModals] {
+    height: 90%!important;
+}
+
+.datatableModals[data-is-desktop="true"][DiageoCMS-datatableModals_datatableModals] .modal[DiageoCMS-datatableModals_datatableModals] .detailmodal[DiageoCMS-datatableModals_datatableModals] .modal__footer[DiageoCMS-datatableModals_datatableModals]{
+    position: inherit!important;
+}
+
+.datatableModals[data-is-desktop="true"][DiageoCMS-datatableModals_datatableModals] .modal[DiageoCMS-datatableModals_datatableModals] .detailmodal[DiageoCMS-datatableModals_datatableModals] .modal__content[DiageoCMS-datatableModals_datatableModals] {
+    padding-top: 20px !important;
+    padding-left: 120px !important;
+}
+
+.datatableModals[data-is-desktop="false"][DiageoCMS-datatableModals_datatableModals] .modal[DiageoCMS-datatableModals_datatableModals] .detailmodal[DiageoCMS-datatableModals_datatableModals] .modal__header[DiageoCMS-datatableModals_datatableModals] {
+    padding-top: 90px;
+}
+
+.datatableModals[DiageoCMS-datatableModals_datatableModals] .modal[DiageoCMS-datatableModals_datatableModals] .detailmodal[DiageoCMS-datatableModals_datatableModals] .modal__content[DiageoCMS-datatableModals_datatableModals] .detailcontent[DiageoCMS-datatableModals_datatableModals] {
+    padding-bottom: 50px;
+} */
+
+div.datatableModals[DiageoCMS-datatableModals_datatableModals] .modal[DiageoCMS-datatableModals_datatableModals] .detailmodal[DiageoCMS-datatableModals_datatableModals] .modal__content[DiageoCMS-datatableModals_datatableModals]{
+    padding: 30px 80px 60px 80px;
+}
+
+div.datatableModals[DiageoCMS-datatableModals_datatableModals] .modal[DiageoCMS-datatableModals_datatableModals] .detailmodal[DiageoCMS-datatableModals_datatableModals] .modal__header[DiageoCMS-datatableModals_datatableModals]{
+    padding-top: 30px;
+    padding-bottom: 0;
+}
+
+div.datatableModals[DiageoCMS-datatableModals_datatableModals] .modal[DiageoCMS-datatableModals_datatableModals] .detailmodal[DiageoCMS-datatableModals_datatableModals],
+div.datatableModals[data-detail-modal="true"][DiageoCMS-datatableModals_datatableModals] .modal__content[DiageoCMS-datatableModals_datatableModals]{
+    background-color: #FDFDFD;
+}

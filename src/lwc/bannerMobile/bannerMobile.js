@@ -1,6 +1,6 @@
 import { LightningElement, track, api} from 'lwc';
 import { loadStyle,loadScript } from 'lightning/platformResourceLoader';
-import Assets from '@salesforce/resourceUrl/Assets';
+import ASSETS from '@salesforce/resourceUrl/Assets';
 
 export default class Banner extends LightningElement {
 
@@ -21,7 +21,7 @@ export default class Banner extends LightningElement {
     connectedCallback() {
         this.elements = this.bannerData.slice();
         loadStyle(this, Assets + '/Assets/Styles/roboto.css');
-        loadStyle(this, '/sfsites/c/resource/Assets/Assets/Styles/bannerMobileExternalStyles.css');
+        loadStyle(this, ASSETS + '/Assets/Styles/bannerMobileExternalStyles.css');
         loadStyle(this, Assets + '/Assets/Styles/bannerExternalStyle.css');
         loadStyle(this, Assets + '/Assets/Bootstrap/css/bootstrap.min.css'); 
         loadScript(this, Assets + '/Assets/Bootstrap/js/bootstrap.min.js');

@@ -1,5 +1,6 @@
 import { LightningElement, api, track } from 'lwc';
 import { loadStyle } from 'lightning/platformResourceLoader';
+import ASSETS from '@salesforce/resourceUrl/Assets';
 
 
 export default class RelatedCardList extends LightningElement {
@@ -16,7 +17,7 @@ export default class RelatedCardList extends LightningElement {
 
     connectedCallback() {
         window.addEventListener("orientationchange", () => this.handleOrientation());
-        loadStyle(this, '/sfsites/c/resource/Assets/Assets/Styles/relatedCardListExternalStyles.css');
+        loadStyle(this, ASSETS + '/Assets/Styles/relatedCardListExternalStyles.css');
     }
     disconnectedCallback() {
         window.removeEventListener("orientationchange")

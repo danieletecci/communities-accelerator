@@ -1,5 +1,6 @@
 import { LightningElement, api } from 'lwc';
 import { loadStyle } from 'lightning/platformResourceLoader';
+import ASSETS from '@salesforce/resourceUrl/Assets';
 
 
 export default class DatatableRow extends LightningElement {
@@ -11,7 +12,7 @@ export default class DatatableRow extends LightningElement {
     @api hideValues;
 
     connectedCallback() {
-        loadStyle(this, '/sfsites/c/resource/Assets/Assets/Styles/datatableRowExternalStyles.css');
+        loadStyle(this, ASSETS + '/Assets/Styles/datatableRowExternalStyles.css');
 
     }
     get rowValue(){

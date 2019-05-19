@@ -4,6 +4,7 @@ import GeneralApply from '@salesforce/label/c.General_Apply';
 import GeneralClose from '@salesforce/label/c.General_Close';
 import GeneralSelect from '@salesforce/label/c.General_Select';
 import { loadStyle } from 'lightning/platformResourceLoader';
+import ASSETS from '@salesforce/resourceUrl/Assets';
 
 
 export default class DatatableModals extends LightningElement {
@@ -42,7 +43,7 @@ export default class DatatableModals extends LightningElement {
     isActive = [];
 
     connectedCallback() {
-        loadStyle(this, '/sfsites/c/resource/Assets/Assets/Styles/datatableModalsExternalStyles.css');
+        loadStyle(this, ASSETS + '/Assets/Styles/datatableModalsExternalStyles.css');
     }
 
     renderedCallback() {

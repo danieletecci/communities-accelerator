@@ -7,9 +7,9 @@
     
     <ltng:require styles="{!$Resource.Assets + '/Assets/Styles/roboto.css'}" />
     
-    <div class="{!if(v.device == 'DESKTOP', 'sidebar', 'mobilebar')}" id="desktopSidebarContainer">
+    <div class="{!if(v.device == 'DESKTOP' || v.device == 'TABLET', 'sidebar', 'mobilebar')}" id="desktopSidebarContainer">
         <!-- DESKTOP -->
-        <aura:if isTrue="{! v.device == 'DESKTOP'}">
+        <aura:if isTrue="{! v.device == 'DESKTOP' || v.device == 'TABLET'}">
             <div class="desktop-sidebar-container" id="desktopSidebarContent">
                 <p class="p-10-greyMediumLight-black">
                     <span>

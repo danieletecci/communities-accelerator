@@ -5,7 +5,7 @@
     font-size: 19px;
     padding: 15px;
     color: #848484;
-    line-height: 19px;
+    line-height: 23px;
     font-weight: 400;
     text-decoration: none;
 }
@@ -32,6 +32,32 @@
 }
 
 @media screen and (min-width: 768px) {
+    .THIS li{
+        display: flex;
+        align-items: center;
+        height: 50px;
+    }
+    .THIS li div{
+        display: flex;
+        align-items: center;
+        height: 50px;
+    }
+    .THIS li div a{
+        display: flex;
+        align-items: center;
+        height: 50px;
+        line-height: 50px;
+        padding: 0;
+    }
+    span.THIS{
+        display: flex;
+        align-items: center;
+        padding-right: 50px;
+        height: 50px;
+    }
+    span.THIS:last-child {
+        padding-right: 20px;
+    }
     .THIS li:hover > div.has-child > a{
         color: #FDFDFD;
     }
@@ -77,7 +103,18 @@
     .THIS .div-ul .ul-level-1,.THIS .div-ul .ul-level-2{
         display: flex;
         margin-bottom: 0;
-        padding: 14px;
+        margin-left: 0;
+        padding-left: 207px;
+        padding-top: 0;
+        padding-bottom: 0;
+        padding-right: 0;
+        height: 50px;
+        width: 100%;
+    }
+    .THIS > li.li-level-1 > div > a {
+        display: flex;
+        align-items: center;
+        padding: 0;
     }
     .THIS a.a-icon{
         display: flex;

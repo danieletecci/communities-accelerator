@@ -18,11 +18,19 @@
 @media screen and (min-width: 768px) {
   .THIS ul.ul-level-0{
     display: flex;
+    align-items: center;
+    height: 50px;
+    margin: 0;
+  }
+  .THIS .nav-container nav{
+    display: flex;
+    align-items: center;
+    height: 50px;
   }
   
 }
 .THIS .nav-container{
-  padding: 14px;
+  padding: 0;
   margin-left: 50px;
 }
 
@@ -55,7 +63,6 @@
   mask: url(sfsites/c/resource/Assets/Assets/Icons/BrandIcon.svg) no-repeat 50% 50%;
   background-color: #0B0B0B;
 }
-
 @media screen and (max-width: 768px) {
   
   .THIS.menu-top-closed{

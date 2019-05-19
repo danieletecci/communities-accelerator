@@ -1,8 +1,6 @@
 <aura:component >
     <aura:attribute name="details" type="Object" />
-    <ltng:require styles="{!join(',', 
-    $Resource.Assets + '/Assets/Styles/cardDetailExternalStyles.css', 
-    $Resource.Assets + '/Assets/Styles/roboto.css')}" />
+    <ltng:require styles="{!$Resource.Assets + '/Assets/Styles/cardDetailExternalStyles.css'}" />
 
     <div class="{! if($Browser.isPhone,'mobile','')}">
         <div class="card-detail slds-grid slds-gutters_direct slds-gutters_x-large slds-grid_align-center">

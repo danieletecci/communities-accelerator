@@ -11,7 +11,6 @@ export default class CardDetail extends LightningElement {
 
     renderedCallback() {
         loadStyle(this, ASSETS + '/Assets/Styles/cardDetailExternalStyles.css');
-        loadStyle(this, ASSETS + '/Assets/Styles/roboto.css');
     }
 
     get isMobile() {

@@ -4,7 +4,6 @@
     <aura:attribute name="heightValue" type="String"/>
     <aura:attribute name="bannerFrameType" type="String"/>
 
-    <ltng:require styles="{!$Resource.Assets + '/Assets/Styles/roboto.css'}" />
     <ltng:require styles="{! v.bannerFrameType == 'Hero' ? $Resource.Assets + '/Assets/Styles/bannerExternalStyle.css' : ''}" />
     <!-- NAHUE TEST --> 
     <aura:attribute name="title" type="String" default=""/>    

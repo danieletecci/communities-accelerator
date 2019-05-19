@@ -74,7 +74,7 @@
   height: 100%;
 }
 .datatable .search-element .searchInput::placeholder {
-  background-image: url('sfsites/c/resource/Assets/Assets/Icons/SearchIcon.svg');
+  background-image: url('/sfsites/c/resource/DiageoCMS__Assets/Assets/Icons/SearchIcon.svg');
   background-repeat: no-repeat;
   height: 23px;
   width: 23px;

@@ -39,7 +39,7 @@ public with sharing class CMSUserSettingsTriggers extends TriggersHandler {
         // CMS-474
         if (!usersSetId.isEmpty()){
             for (CMSUserSettings__c cms : [SELECT Id, User__c FROM CMSUserSettings__c WHERE User__c =: usersSetId]){
-                duplicatedUsersMap.put(cms.User__c, cms);
+                duplicatedUsersSetId.add(cms.User__c);
             }
         }
     }
@@ -49,7 +49,6 @@ public with sharing class CMSUserSettingsTriggers extends TriggersHandler {
     	recalculateAudiences((CMSUserSettings__c)recNew, false);
         validateCMSUserDuplication((CMSUserSettings__c)recNew);
     }
-    
     public override void finalLoop_BeforeUpdate(SObject recNew, SObject recOld) {
     	recalculateAudiences((CMSUserSettings__c)recNew, false);
         validateCMSUserDuplication((CMSUserSettings__c)recNew);
@@ -87,7 +86,8 @@ public with sharing class CMSUserSettingsTriggers extends TriggersHandler {
 	
     // CMS-474
     Set<Id> usersSetId = new Set<Id>();
-    Map<Id, CMSUserSettings__c> duplicatedUsersMap = new Map<Id, CMSUserSettings__c>();
+    Set<Id> duplicatedUsersSetId = new Set<Id>();
+
     private void setUserSettingsIds(CMSUserSettings__c recNew, CMSUserSettings__c recOld){
         // Validate on update only if the user changed, and always on insert
         if (recNew.User__c != null && recOld == null || (recOld.User__c != recNew.User__c)) {
@@ -96,7 +96,7 @@ public with sharing class CMSUserSettingsTriggers extends TriggersHandler {
     }
     
     private void validateCMSUserDuplication(CMSUserSettings__c recNew){
-        if (duplicatedUsersMap.containsKey(recNew.User__c)){
+        if (duplicatedUsersSetId.contains(recNew.User__c)){
             // Duplicated User
             recNew.addError(Label.DuplicatedUserValidation);
         }

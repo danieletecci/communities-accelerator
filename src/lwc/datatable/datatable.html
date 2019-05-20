@@ -80,13 +80,13 @@
                                 <th scope="col" key={col.label}>
                                     <template if:true={col.sortable}>
                                         <div class="slds-truncate columnLabel" title={col.label} data-field-name={col.fieldName} data-direction="ASC"  onclick={sortByColumn}> 
-                                            <c-datatable-row colname={col.label} is-desktop hide-values column={col.fieldName} row={row}></c-datatable-row>                                    
+                                            <c-datatable-row colname={col.label} is-desktop={isDesktop} hide-values column={col.fieldName} row={row}></c-datatable-row>                                    
                                             <img class="sortIcon" src={sortIcon}>
                                         </div>
                                     </template> 
                                     <template if:false={col.sortable}>
                                         <div class="slds-truncate columnLabel" title={col.label}> 
-                                            <c-datatable-row colname={col.label} is-desktop hide-values column={col.fieldName} row={row}></c-datatable-row>                                    
+                                            <c-datatable-row colname={col.label} is-desktop={isDesktop} hide-values column={col.fieldName} row={row}></c-datatable-row>                                    
                                         </div>
                                     </template>
                                 </th>

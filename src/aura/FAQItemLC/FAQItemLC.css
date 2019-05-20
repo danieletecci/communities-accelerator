@@ -12,7 +12,7 @@
   color: #848484;
 }
 .THIS.accordion .slds-button.slds-button_reset:after {
-  content: url('/sfsites/c/resource/DiageoCMS__Assets/Assets/Icons/arrow.svg');
+  content: url('/sfsites/c/resource/Assets/Assets/Icons/arrow.svg');
   float: right;
   margin-left: auto;
   transition: 0.3s;

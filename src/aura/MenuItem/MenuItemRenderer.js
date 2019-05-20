@@ -49,7 +49,7 @@
             }
         }
 
-        var url = '/sfsites/c/resource/DiageoCMS__Assets/Assets/Icons/' + component.get("v.item").iconName;
+        var url = '/sfsites/c/resource/Assets/Assets/Icons/' + component.get("v.item").iconName;
         var divIcon = component.getElement().getElementsByClassName('div-icon-' + menuLevel + '-' + index)[0];
         // var divIcon = component.getElement().querySelector('.div-icon-' + menuLevel + '-' + index)[0];
         var mask = `

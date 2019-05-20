@@ -60,6 +60,7 @@ export default class Datatable extends LightningElement {
     filterIcon = ASSETS + '/Assets/Icons/FilterIcon.svg';
     closeIcon = ASSETS + '/Assets/Icons/CloseIcon.svg';
     moreIcon = ASSETS + '/Assets/Icons/MoreIcon.svg';
+    moreHorizontalIcon = ASSETS + '/Assets/Icons/MoreHorizontalIcon.svg';
     sortIcon = ASSETS + '/Assets/Icons/SortIcon.svg';
     arrowIcon = ASSETS + '/Assets/Icons/arrow.svg';
 

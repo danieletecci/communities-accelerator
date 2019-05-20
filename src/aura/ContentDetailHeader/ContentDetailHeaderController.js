@@ -44,10 +44,10 @@
         }, 0);
     },   
     doArchive: function(component, event, helper){
-        helper.updateContent(component, "Archived", null, null);
+        helper.updateContent(component, "Archived", component.get("v.contentData").Name, null, null);
     },
     doDraftUpdate: function(component, event, helper){
-        helper.updateContent(component, "Draft", null, null);
+        helper.updateContent(component, "Draft", component.get("v.contentData").Name, null, null);
     },
     doDelete: function(component, event, helper){
         helper.deleteContent(component);

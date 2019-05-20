@@ -161,11 +161,11 @@
         width: 20px;
         top: 33px;
         right: 0;
-        -webkit-mask: url(/sfsites/c/resource/DiageoCMS__Assets/Assets/Icons/arrow.svg) no-repeat 50% 50%;
-        -moz-mask: url(/sfsites/c/resource/DiageoCMS__Assets/Assets/Icons/arrow.svg) no-repeat 50% 50%;
-        -o-mask: url(/sfsites/c/resource/DiageoCMS__Assets/Assets/Icons/arrow.svg) no-repeat 50% 50%;
-        -ms-mask: url(/sfsites/c/resource/DiageoCMS__Assets/Assets/Icons/arrow.svg) no-repeat 50% 50%;
-        mask: url(/sfsites/c/resource/DiageoCMS__Assets/Assets/Icons/arrow.svg) no-repeat 50% 50%;
+        -webkit-mask: url(/sfsites/c/resource/Assets/Assets/Icons/arrow.svg) no-repeat 50% 50%;
+        -moz-mask: url(/sfsites/c/resource/Assets/Assets/Icons/arrow.svg) no-repeat 50% 50%;
+        -o-mask: url(/sfsites/c/resource/Assets/Assets/Icons/arrow.svg) no-repeat 50% 50%;
+        -ms-mask: url(/sfsites/c/resource/Assets/Assets/Icons/arrow.svg) no-repeat 50% 50%;
+        mask: url(/sfsites/c/resource/Assets/Assets/Icons/arrow.svg) no-repeat 50% 50%;
         background-color: #D6EAFF;
     }
     

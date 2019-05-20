@@ -19,7 +19,7 @@ public class SidebarMenuController extends ComponentManager{
 
         public NavWrapper(Menu__c menu) {
             this.menu = new ObjectMenuWrapper(menu);
-            this.menu.MenuDynamicLabel = GeneralUtils.replaceDynamicFields(this.menu.MenuDynamicLabel, 'User', UserInfo.getUserId(), false);
+            this.menu.MenuLabel = GeneralUtils.replaceDynamicFields(this.menu.MenuLabel, 'User', UserInfo.getUserId(), false);
             this.behaviour = menu.Navigation__r.Behaviour__c == 'New Tab' ? '_blank' : '_self';
             this.iconName = menu.MenuIcon__c;
     	}

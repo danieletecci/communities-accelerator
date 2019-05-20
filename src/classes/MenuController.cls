@@ -26,6 +26,7 @@ public class MenuController {
 
         public NavWrapper(Menu__c menu) {
             this.menu = new ObjectMenuWrapper(menu);
+            this.menu.MenuLabel = GeneralUtils.replaceDynamicFields(this.menu.MenuLabel, 'User', UserInfo.getUserId(), false);
             this.subMenus = new List<NavWrapper>();
             this.behaviour = menu.Behaviour__c == 'New Tab' ? '_blank' : '_self';
             this.iconName = menu.MenuIcon__c;

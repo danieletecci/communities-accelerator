@@ -1,9 +1,14 @@
 <template>
     <div class="datatable" data-is-desktop={isDesktop} data-is-phone={isPhone} data-is-tablet={isTablet}>
         <div class="header">
-            <template if:true={table.title}>
-                <h1>{table.title}</h1>
-            </template>
+            <div>
+                <template if:true={table.title}>
+                    <h1>{table.title}</h1>
+                </template>
+                <template if:true={table.description}>
+                    <p>{table.description}</p>
+                </template>
+            </div>
             <template if:false={showDetailModal}>
                 <template if:true={hasSearchables}>
                     <div class="search-element" >

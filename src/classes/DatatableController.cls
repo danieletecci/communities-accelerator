@@ -108,6 +108,7 @@ public without sharing class DatatableController extends ComponentManager {
         public String actionLabel {get;set;}
         public String searchTerm {get;set;}
         public String orderBy {get;set;}
+        public String description {get;set;}
 
         public List<DatatableFilterWrapper> appliedFilters {get;set;}
         public List<DatatableController.DatatableElementWrapper> columns {get;set;}

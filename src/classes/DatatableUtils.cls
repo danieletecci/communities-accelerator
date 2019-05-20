@@ -105,6 +105,7 @@ public without sharing class DatatableUtils {
     public static Datatable__c getDatatableInfo(String componentExternalId) {
         List<Datatable__c> datatables = [SELECT Id 
                                         , Title__c
+                                        , Description__c
                                         , Navigation__c
 										, Navigation__r.URL__c
                                         , ObjectApiName__c
@@ -242,6 +243,7 @@ public without sharing class DatatableUtils {
         DatatableController.DatatableWrapper datatableWrapper = new DatatableController.DatatableWrapper();
         datatableWrapper.Id = datatable.Id;
         datatableWrapper.title = datatable.Title__c;
+        datatableWrapper.description = datatable.Description__c;
         datatableWrapper.objectApiName = datatable.ObjectApiName__c;
 		if(datatable.Navigation__c != null) {
 			datatableWrapper.navigation = datatable.Navigation__r.URL__c;

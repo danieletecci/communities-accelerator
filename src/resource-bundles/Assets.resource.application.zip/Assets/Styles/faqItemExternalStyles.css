@@ -31,4 +31,31 @@
     .accordion[DiageoCMS-faqItem_faqItem] {
         padding: 18px 36px;
     }
+    ul.slds-accordion.DiageoCMSFAQ {
+        padding-top: 46px;
+    }
+    .DiageoCMSFAQItemLC.accordion .slds-button.slds-button_reset .title {
+        font-size: 16px;
+        font-weight: 700;
+    }
+    .DiageoCMSFAQItemLC.accordion .slds-button.slds-button_reset {
+        padding-left: 36px;
+        padding-right: 35px;
+    }
+    .DiageoCMSFAQItemLC.accordion {
+        padding-bottom: 30px;
+    }
+    .DiageoCMSFAQItemLC.accordion .content-accordion p {
+        margin-top: 40px;
+        margin-bottom: 10px;
+        color: #848484;
+        font-weight: 400;
+        font-size: 16px;
+        padding-left: 36px;
+        padding-right: 35px;
+    }
+    ul.slds-accordion.DiageoCMSFAQ .slds-grid:last-child .accordion.DiageoCMSFAQItemLC {
+        padding-bottom: 60px;
+    }
 }
+

@@ -1,9 +1,14 @@
 <template>
     <div class="datatable" data-is-desktop={isDesktop} data-is-phone={isPhone} data-is-tablet={isTablet}>
         <div class="header">
-            <template if:true={table.title}>
-                <h1>{table.title}</h1>
-            </template>
+            <div>
+                <template if:true={table.title}>
+                    <h1>{table.title}</h1>
+                </template>
+                <template if:true={table.description}>
+                    <p>{table.description}</p>
+                </template>
+            </div>
             <template if:false={showDetailModal}>
                 <template if:true={hasSearchables}>
                     <div class="search-element" >
@@ -75,13 +80,13 @@
                                 <th scope="col" key={col.label}>
                                     <template if:true={col.sortable}>
                                         <div class="slds-truncate columnLabel" title={col.label} data-field-name={col.fieldName} data-direction="ASC"  onclick={sortByColumn}> 
-                                            <c-datatable-row colname={col.label} is-desktop hide-values column={col.fieldName} row={row}></c-datatable-row>                                    
+                                            <c-datatable-row colname={col.label} is-desktop={isDesktop} hide-values column={col.fieldName} row={row}></c-datatable-row>                                    
                                             <img class="sortIcon" src={sortIcon}>
                                         </div>
                                     </template> 
                                     <template if:false={col.sortable}>
                                         <div class="slds-truncate columnLabel" title={col.label}> 
-                                            <c-datatable-row colname={col.label} is-desktop hide-values column={col.fieldName} row={row}></c-datatable-row>                                    
+                                            <c-datatable-row colname={col.label} is-desktop={isDesktop} hide-values column={col.fieldName} row={row}></c-datatable-row>                                    
                                         </div>
                                     </template>
                                 </th>

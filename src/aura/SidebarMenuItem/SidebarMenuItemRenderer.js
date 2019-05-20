@@ -14,7 +14,7 @@
                 }              
         	);
         }
-        var url = 'sfsites/c/resource/Assets/Assets/Icons/' + component.get("v.item").iconName;
+        var url = '/sfsites/c/resource/DiageoCMS__Assets/Assets/Icons/' + component.get("v.item").iconName;
         var divIcon = component.getElement().getElementsByClassName('div-icon')[0];
         var mask = `
             -webkit-mask: url(${url}) no-repeat 50% 50%;

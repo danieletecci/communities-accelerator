@@ -5,8 +5,6 @@
     <aura:attribute name="navMode" type="String" />
     <aura:attribute name="component" type="Object" />
     
-    <ltng:require styles="{!$Resource.Assets + '/Assets/Styles/roboto.css'}" />
-    
     <div class="{!if(v.device == 'DESKTOP' || v.device == 'TABLET', 'sidebar', 'mobilebar')}" id="desktopSidebarContainer">
         <!-- DESKTOP -->
         <aura:if isTrue="{! v.device == 'DESKTOP' || v.device == 'TABLET'}">

@@ -14,11 +14,6 @@
 .datatable[DiageoCMS-datatable_datatable] .search-element[DiageoCMS-datatable_datatable] .searchInput[DiageoCMS-datatable_datatable] {
     font-weight: 200!important;
 }
-.datatable[DiageoCMS-datatable_datatable] h1[DiageoCMS-datatable_datatable]:after {
-    content: 'Puedes revisar y comprobar el estado de cualquier consulta que hayas enviado a MyDiageo';
-    display: block;
-    font-size: 20px;
-}
 
 .datatable[data-is-desktop="true"][DiageoCMS-datatable_datatable] .desktop-table[DiageoCMS-datatable_datatable] tr[DiageoCMS-datatable_datatable].pagination {
     display: none;

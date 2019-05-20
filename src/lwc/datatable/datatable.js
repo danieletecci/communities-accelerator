@@ -1,4 +1,3 @@
-import Assets from '@salesforce/resourceUrl/Assets';
 import { loadStyle } from 'lightning/platformResourceLoader';
 import ASSETS from '@salesforce/resourceUrl/Assets';
 
@@ -58,11 +57,11 @@ export default class Datatable extends LightningElement {
     NUMBER_OF_COLUMNS = 6;
     hasSearched = false;
 
-    filterIcon = Assets + '/Assets/Icons/FilterIcon.svg';
-    closeIcon = Assets + '/Assets/Icons/CloseIcon.svg';
-    moreIcon = Assets + '/Assets/Icons/MoreIcon.svg';
-    sortIcon = Assets + '/Assets/Icons/SortIcon.svg';
-    arrowIcon = Assets + '/Assets/Icons/arrow.svg';
+    filterIcon = ASSETS + '/Assets/Icons/FilterIcon.svg';
+    closeIcon = ASSETS + '/Assets/Icons/CloseIcon.svg';
+    moreIcon = ASSETS + '/Assets/Icons/MoreIcon.svg';
+    sortIcon = ASSETS + '/Assets/Icons/SortIcon.svg';
+    arrowIcon = ASSETS + '/Assets/Icons/arrow.svg';
 
     constructor() {
         super();
@@ -80,7 +79,6 @@ export default class Datatable extends LightningElement {
     connectedCallback() {
         window.addEventListener("orientationchange", () => this.handleOrientation());
         loadStyle(this, ASSETS + '/Assets/Styles/datatableExternalStyles.css');
-        loadStyle(this, Assets + '/Assets/Styles/roboto.css');
         this.hasFilters = this.table.columns.filter(f => f.filtrable).length > 0;
         this.hasSearchables = this.table.columns.filter(f => f.searchable).length > 0;
     }
@@ -145,7 +143,7 @@ export default class Datatable extends LightningElement {
 
     typeActions() {
         this.table.actions.forEach( (act, index, actionList) => {
-            act.icon = Assets + '/Assets/Icons/' + act.icon +'.svg';
+            act.icon = ASSETS + '/Assets/Icons/' + act.icon +'.svg';
             if (act.recordType === "RowAction") {
                 this.hasRowActions = true;
                 this.rowAction.push(act);

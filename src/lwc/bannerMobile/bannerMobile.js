@@ -20,13 +20,12 @@ export default class Banner extends LightningElement {
 
     connectedCallback() {
         this.elements = this.bannerData.slice();
-        loadStyle(this, Assets + '/Assets/Styles/roboto.css');
         loadStyle(this, ASSETS + '/Assets/Styles/bannerMobileExternalStyles.css');
-        loadStyle(this, Assets + '/Assets/Styles/bannerExternalStyle.css');
-        loadStyle(this, Assets + '/Assets/Bootstrap/css/bootstrap.min.css'); 
-        loadScript(this, Assets + '/Assets/Bootstrap/js/bootstrap.min.js');
-        loadScript(this, Assets + '/Assets/Bootstrap/js/popper.min.js');
-        loadScript(this, Assets + '/Assets/Bootstrap/js/jquery-3.3.1.min.js');
+        loadStyle(this, ASSETS + '/Assets/Styles/bannerExternalStyle.css');
+        loadStyle(this, ASSETS + '/Assets/Bootstrap/css/bootstrap.min.css'); 
+        loadScript(this, ASSETS + '/Assets/Bootstrap/js/bootstrap.min.js');
+        loadScript(this, ASSETS + '/Assets/Bootstrap/js/popper.min.js');
+        loadScript(this, ASSETS + '/Assets/Bootstrap/js/jquery-3.3.1.min.js');
     }
 
     renderedCallback() {

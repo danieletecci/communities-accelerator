@@ -24,10 +24,9 @@ public with sharing class CountrySelectorController {
 	}
 
 	@AuraEnabled
-    public static CountriesWrapper getCountriesCodes(){
-
-    	String userCountry = UserInfo.getLocale().right(2);
-	
+    public static CountriesWrapper getCountriesCodes(String defaultValue){
+        
+        
     	String stringJSON= '[{ "name" : "Afghanistan", "iso" : "af", "phoneCode" : "+93"},' +
     	' {"name" : "Albania",							"iso" : "al", "phoneCode" : "+355" },'+
     	' {"name" : "Algeria",							"iso" : "dz", "phoneCode" : "+213" },'+
@@ -225,14 +224,24 @@ public with sharing class CountrySelectorController {
 		' {"name" : "Zimbabwe", "iso" : "zw", "phoneCode" : "+263" }]';
 
 		List<Map<String,String>> codes = (List<Map<String,String>>) JSON.deserialize(stringJSON, List<Map<String,String>>.class);
-
+		
+        
 		CountrySelectedWrapper countrySelected;
-
+		Map<String,String> countrySelectedMap;
+        String currentUserCountry = UserInfo.getLocale().right(2);
+        
 		for(Map<String,String> country : codes){
-			if(country.get('iso').equalsIgnoreCase(userCountry)){
-				countrySelected = new CountrySelectedWrapper(country.get('name'), country.get('iso'), (String)country.get('phoneCode'));
+            if(defaultValue != null && defaultValue != ''){
+                if(country.get('iso').equalsIgnoreCase(defaultValue)){
+                    countrySelectedMap = country;
+                    break;
+                }
+        	}
+			if(country.get('iso').equalsIgnoreCase(currentUserCountry)){
+				countrySelectedMap = country;
 			}
 		}
+        countrySelected = new CountrySelectedWrapper(countrySelectedMap.get('name'), countrySelectedMap.get('iso'), (String)countrySelectedMap.get('phoneCode'));
 		CountriesWrapper wrap = new CountriesWrapper(countrySelected, codes);
 		return wrap;
     }

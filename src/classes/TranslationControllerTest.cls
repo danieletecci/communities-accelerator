@@ -48,7 +48,7 @@ private class TranslationControllerTest {
 	static void saveTranslationTest() {
 		Content__c cont = [SELECT id from Content__c where Cluster__c!=null LIMIT 1];		
 		String parentLookupName = '[CMS]Content__c';
-		String fieldSet = '[CMS]Description__c, Name,[CMS]Extract__c';
+		String fieldSet = '[CMS]Description__c@RichText, Name,[CMS]Extract__c';
 		TranslationController.RecordsWrapper rw = TranslationController.getLanguages(parentLookupName, fieldSet, cont.id);
 		String queryStr = 'SELECT id FROM ' + parentLookupName + ' LIMIT 1';
 		sObject sobj = Database.query(GeneralUtils.prefix(queryStr));

@@ -5,9 +5,11 @@ public with sharing class TranslationController {
 		@auraEnabled public List<Couple> language;
 		@auraEnabled public List<Couple> dataObject;
 		@auraEnabled public String response;
+		@AuraEnabled public String namespace;
 		public RecordsWrapper(){
 			this.language = new List<Couple>();
 			this.dataObject = new List<Couple>();
+			this.namespace = (String.isBlank(GeneralUtils.namespace)) ? 'c' : GeneralUtils.namespace.replace('_','').toLowerCase();
 		}
 	}
 
@@ -16,13 +18,15 @@ public with sharing class TranslationController {
 		@auraEnabled public String label;
 		@auraEnabled public String typeF;		
 		@auraEnabled public String name;
-		@auraEnabled public String idCouple;	
+		@auraEnabled public String idCouple;
+		@auraEnabled public Boolean isRichTextCustom;
 		
-		public Couple(String value, String label, String typeF, String name){
+		public Couple(String value, String label, String typeF, String name, Boolean isRichTextCustom){
 			this.value = value;
 			this.label = label;
 			this.typeF = typeF;
 			this.name = name;
+			this.isRichTextCustom = isRichTextCustom;
 		}
 	}
 
@@ -46,22 +50,24 @@ public with sharing class TranslationController {
 	public static RecordsWrapper getLanguages(String parentLookupName, String fieldSet, String recordId){
 		parentLookupName = GeneralUtils.prefix(parentLookupName);
 		fieldSet = GeneralUtils.prefix(fieldSet);
-		RecordsWrapper rw = new RecordsWrapper();		
-		List<String> langs= new List<String>();
-		SObject content = Database.query(GeneralUtils.prefix('SELECT id, [CMS]Cluster__r.[CMS]DefaultLanguage__c, [CMS]Cluster__r.[CMS]OtherLanguages__c  FROM ' + getLookupObjectName(parentLookupName, GeneralUtils.prefix('[CMS]Translation__c')) + ' WHERE id=: recordId'));
 		
-		langs.add((String)content.getSobject(GeneralUtils.prefix('[CMS]Cluster__r')).get(GeneralUtils.prefix('[CMS]DefaultLanguage__c')));
-		if(content.getSobject(GeneralUtils.prefix('[CMS]Cluster__r')).get(GeneralUtils.prefix('[CMS]OtherLanguages__c'))!=null){
-			String[] tmpString = ((String) content.getSobject(GeneralUtils.prefix('[CMS]Cluster__r')).get(GeneralUtils.prefix('[CMS]OtherLanguages__c'))).split(';');
-			langs.addAll(tmpString);
-		}	
+		RecordsWrapper rw = new RecordsWrapper();		
+		List<String> langs = new List<String>();
+		
+		//Query Parent Record
+		SObject parentRecord = Database.query(GeneralUtils.prefix('SELECT Id, [CMS]Cluster__r.[CMS]OtherLanguages__c FROM ' + getLookupObjectName(parentLookupName, GeneralUtils.prefix('[CMS]Translation__c')) + ' WHERE id =: recordId'));
 
+		//Languages to translate
+		if(parentRecord.getSobject(GeneralUtils.prefix('[CMS]Cluster__r')).get(GeneralUtils.prefix('[CMS]OtherLanguages__c')) != null){
+			langs = ((String)parentRecord.getSobject(GeneralUtils.prefix('[CMS]Cluster__r')).get(GeneralUtils.prefix('[CMS]OtherLanguages__c'))).split(';');
+		}
+
+		//Check if these languages are active in the object Translation
 		Schema.DescribeSObjectResult sobjectDescribe = Schema.getGlobalDescribe().get(GeneralUtils.prefix('[CMS]Translation__c')).getDescribe();
 		for (Schema.PicklistEntry lan : sobjectDescribe.fields.getMap().get(GeneralUtils.prefix('[CMS]LanguageCode__c')).getDescribe().getPickListValues()){
 			if(langs.contains(lan.getValue()) && lan.isActive()){	
-				rw.language.add(new Couple(lan.getValue(), lan.getLabel(), '', ''));
+				rw.language.add(new Couple(lan.getValue(), lan.getLabel(), '', '', false));
 			}
-			
 		}
 
 		if(SecurityUtils.isObjectAccessible(parentLookupName)) {
@@ -69,6 +75,11 @@ public with sharing class TranslationController {
 			List<String> fieldNameList = fieldSet.deleteWhitespace().split(',');
 			
 			for(String fieldName : fieldNameList){
+				Boolean isRichTextCustom = false;
+				if(fieldName.endsWith('@RichText')){
+					fieldName = fieldName.split('@')[0];
+					isRichTextCustom = true;
+				}
 				if(SecurityUtils.isFieldAccessible(parentLookupName, fieldName)){
 					Schema.DescribeFieldResult fieldDescribe = sobjectDescribeMap.get(fieldName).getDescribe();
 					String typeField;
@@ -87,7 +98,7 @@ public with sharing class TranslationController {
 						typeField = String.valueOf(fieldDescribe.getType());
 					}
 					
-					rw.dataObject.add(new Couple('', fieldDescribe.getLabel(), typeField, String.escapeSingleQuotes(fieldName)));				
+					rw.dataObject.add(new Couple('', fieldDescribe.getLabel(), typeField, String.escapeSingleQuotes(fieldName), isRichTextCustom));				
 				}			
 			}
 		}

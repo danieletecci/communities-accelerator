@@ -2,6 +2,38 @@
 <FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
     <flexiPageRegions>
         <componentInstances>
+            <componentInstanceProperties>
+                <name>bodyRequired</name>
+                <value>false</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>endDateRequired</name>
+                <value>false</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>extractRequired</name>
+                <value>false</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>featureRequired</name>
+                <value>false</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>layoutRequired</name>
+                <value>false</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>locationRequired</name>
+                <value>false</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>startDateRequired</name>
+                <value>false</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>titleRequired</name>
+                <value>true</value>
+            </componentInstanceProperties>
             <componentName>EventContentRecordEdit</componentName>
         </componentInstances>
         <name>Facet-d767aaee-a87e-4bf1-8de4-c60e05d42408</name>
@@ -11,7 +43,7 @@
         <componentInstances>
             <componentInstanceProperties>
                 <name>fieldSet</name>
-                <value>[CMS]Title__c,Extract__c[CMS],[CMS]Body__c</value>
+                <value>[CMS]Title__c,Extract__c[CMS],[CMS]Body__c@RichText</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>parentLookupName</name>

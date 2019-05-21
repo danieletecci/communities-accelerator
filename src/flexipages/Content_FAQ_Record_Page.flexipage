@@ -5,6 +5,14 @@
             <componentName>ComponentBehaviour</componentName>
         </componentInstances>
         <componentInstances>
+            <componentInstanceProperties>
+                <name>bodyRequired</name>
+                <value>false</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>titleRequired</name>
+                <value>true</value>
+            </componentInstanceProperties>
             <componentName>FAQContentRecordEdit</componentName>
         </componentInstances>
         <name>Facet-8633bc9f-86df-40b9-a04d-4907b883f62f</name>
@@ -14,7 +22,7 @@
         <componentInstances>
             <componentInstanceProperties>
                 <name>fieldSet</name>
-                <value>[CMS]Title__c,[CMS]Body__c</value>
+                <value>[CMS]Title__c,[CMS]Body__c@RichText</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>parentLookupName</name>

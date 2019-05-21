@@ -5,14 +5,7 @@
     <!--Attributes-->
     <aura:attribute name="recordId" type="String" />
     
-    <aura:attribute name="defaultLanguage" type="String" />    
     <aura:attribute name="recordsWrapper" type="Object"/>
-    <aura:attribute name="language" type="Object"/>
-    <aura:attribute name="dataObject" type="Object"/>    
-    <aura:attribute name="label" type="String"/>
-    <aura:attribute name="value" type="String"/>
-    <aura:attribute name="typeF" type="String"/>
-    <aura:attribute name="response" type="String" /> 
     <aura:attribute name="isLoading" type="boolean" default="true" />
 
     <!--Parameters-->
@@ -46,7 +39,13 @@
 					    	<div class= "slds-m-top_small">
 						    	<!--TextArea-->
 								<aura:if isTrue="{!rec.typeF == 'TextArea'}">
-							    	<lightning:textarea name="{!rec.name}" label="{!rec.label}" value="{!rec.value}"/>        
+									<aura:if isTrue="{!rec.isRichTextCustom}">
+										<span class="slds-form-element__label slds-form-element__label" >{!rec.label}</span>
+							    		<c:RichTextTinyMCE aura:id="richText" hasEditAccess="true" bodyRequired="false" namespace="{!v.recordsWrapper.namespace}" contentBody="{!rec.value}"/>
+							    		<aura:set attribute="else">
+							    			<lightning:textarea name="{!rec.name}" label="{!rec.label}" value="{!rec.value}"/>
+							    		</aura:set>
+									</aura:if>
 							    </aura:if>
 							    
 							    <!--Text-->
@@ -57,8 +56,8 @@
 							    <!--TextAreaRich-->
 							    <aura:if isTrue="{!rec.typeF == 'TextAreaRich'}">
 							    	<span class="slds-form-element__label slds-form-element__label" >{!rec.label}</span>
-							    	<lightning:inputRichText value="{!rec.value}"/>       
-							    </aura:if>  
+							    	<lightning:inputRichText value="{!rec.value}"/>
+							    </aura:if>
 							    
 							    <!--Email-->
 							    <aura:if isTrue="{!rec.typeF == 'Email'}">

@@ -1,6 +1,6 @@
 @isTest
 private class ClusterUserTriggersTest{
-	
+
 	@testSetup
 	static void setup(){
 		MockupFactory.generateAcceleratorSetting();
@@ -145,5 +145,26 @@ private class ClusterUserTriggersTest{
 		}catch(Exception e){
 			system.assert(groupMembers.isEmpty());
 		}
+	}
+
+	@isTest
+	static void upsertClusterUserCMSUserSetting(){
+		// Given
+		Cluster__c cluster = [SELECT Id FROM Cluster__c WHERE Name = 'Test Cluster Root00' LIMIT 1];
+		User testUser = [SELECT Id FROM User WHERE username = 'userToInsert@cg.com' LIMIT 1];
+		ClusterUser__c clusterUser = new ClusterUser__c();
+		clusterUser.Cluster__c = cluster.Id;
+		clusterUser.User__c = testUser.Id;
+		clusterUser.AccessLevel__c = 'Read Only';
+
+		// When
+		Test.startTest();
+		insert clusterUser;
+		clusterUser.AccessLevel__c = 'Read/Write';
+		update clusterUser;
+		Test.stopTest();
+
+		// Then
+		System.Assert([SELECT User__c FROM CMSUserSettings__c WHERE User__c =: clusterUser.User__c].size() == 1);		
 	}
 }

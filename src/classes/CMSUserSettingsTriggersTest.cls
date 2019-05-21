@@ -66,4 +66,43 @@ public class CMSUserSettingsTriggersTest {
         System.assertEquals(audienceTest.ExternalId__c + ';' + audienceTest3.ExternalId__c, [SELECT Id, Audiences__c FROM CMSUserSettings__c WHERE Id =: cus.Id].Audiences__c);
     }
 
+    @isTest
+    static void duplicatedUsers(){
+        /* Comment: Checks if the trigger of CMS User Settings validates duplicated Users */
+
+        //Given
+        User user1 = MockupFactory.createUser('Tyrion778899@Lannister.com', 'Tyrion778899@Lannister.com');
+        User user2 = MockupFactory.createUser('Varys112239@Eunuch.com', 'Varys112239@Eunuch.com');
+        String insertErrorMessage, updateErrorMessage;
+
+	    CMSUserSettings__c userSetting1 = new CMSUserSettings__c(User__c = user1.Id);
+	    insert userSetting1;
+
+        //When
+        Test.startTest();
+            // Insert
+            try{
+                CMSUserSettings__c userSetting2 = new CMSUserSettings__c(User__c = user1.Id);
+                insert userSetting2;
+            }
+            catch (Exception e){
+                insertErrorMessage = e.getMessage();
+            }
+            // Update
+            try{
+                CMSUserSettings__c userSetting2 = new CMSUserSettings__c(User__c = user2.Id);
+                insert userSetting2;
+                userSetting2.User__c = user1.Id;
+                update userSetting2;
+            }
+            catch (Exception e) {
+                updateErrorMessage = e.getMessage();
+            }
+        Test.stopTest();
+
+        //Then
+		System.Assert(insertErrorMessage.contains(Label.DuplicatedUserValidation));
+        System.Assert(updateErrorMessage.contains(Label.DuplicatedUserValidation));
+    }
+
 }

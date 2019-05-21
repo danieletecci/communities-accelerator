@@ -880,6 +880,14 @@
         <shortDescription>Duplicate Item</shortDescription>
         <value>The item you added is already present in the cart</value>
     </labels>
+	<labels>
+        <fullName>DuplicatedUserValidation</fullName>
+        <categories>CMSUserSettingsTriggers.cls</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DuplicatedUserValidation</shortDescription>
+        <value>Duplicated User</value>
+    </labels>
     <labels>
         <fullName>Equals</fullName>
         <categories>AudienceCriteriaController.cls</categories>

@@ -43,7 +43,7 @@
         <componentInstances>
             <componentInstanceProperties>
                 <name>fieldSet</name>
-                <value>[CMS]Title__c,Extract__c[CMS],[CMS]Body__c@RichText</value>
+                <value>[CMS]Title__c,[CMS]Extract__c,[CMS]Body__c@RichText</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>parentLookupName</name>

@@ -57,6 +57,30 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
+        <fullName>Category__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Category</label>
+        <referenceTo>Category__c</referenceTo>
+        <relationshipLabel>Translations</relationshipLabel>
+        <relationshipName>Translations</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Component__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Component</label>
+        <referenceTo>Component__c</referenceTo>
+        <relationshipLabel>Translations</relationshipLabel>
+        <relationshipName>Translations</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>Content__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -153,11 +177,35 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Menu__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Menu</label>
+        <referenceTo>Menu__c</referenceTo>
+        <relationshipLabel>Translations</relationshipLabel>
+        <relationshipName>Translations</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>SearchSetting__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
         <label>Search Detail</label>
         <referenceTo>SearchSetting__c</referenceTo>
+        <relationshipLabel>Translations</relationshipLabel>
+        <relationshipName>Translations</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Tag__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Tag</label>
+        <referenceTo>Tag__c</referenceTo>
         <relationshipLabel>Translations</relationshipLabel>
         <relationshipName>Translations</relationshipName>
         <required>false</required>

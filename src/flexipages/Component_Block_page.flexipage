@@ -32,6 +32,21 @@
     <flexiPageRegions>
         <componentInstances>
             <componentInstanceProperties>
+                <name>fieldSet</name>
+                <value>[CMS]Title__c</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>parentLookupName</name>
+                <value>[CMS]Component__c</value>
+            </componentInstanceProperties>
+            <componentName>Translation</componentName>
+        </componentInstances>
+        <name>Facet-f93f5f35-8c5c-4773-9fef-14a5169ec427</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <componentInstances>
+            <componentInstanceProperties>
                 <name>active</name>
                 <value>true</value>
             </componentInstanceProperties>
@@ -53,6 +68,17 @@
             <componentInstanceProperties>
                 <name>title</name>
                 <value>Standard.Tab.preview</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:tab</componentName>
+        </componentInstances>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>body</name>
+                <value>Facet-f93f5f35-8c5c-4773-9fef-14a5169ec427</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>title</name>
+                <value>Translation</value>
             </componentInstanceProperties>
             <componentName>flexipage:tab</componentName>
         </componentInstances>

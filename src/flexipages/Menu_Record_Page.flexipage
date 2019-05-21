@@ -26,6 +26,21 @@
     <flexiPageRegions>
         <componentInstances>
             <componentInstanceProperties>
+                <name>fieldSet</name>
+                <value>[CMS]MenuIcon__c,[CMS]MenuLabel__c</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>parentLookupName</name>
+                <value>[CMS]Menu__c</value>
+            </componentInstanceProperties>
+            <componentName>Translation</componentName>
+        </componentInstances>
+        <name>Facet-24cbcd73-9ba4-423e-bffb-9526ac676ef4</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <componentInstances>
+            <componentInstanceProperties>
                 <name>active</name>
                 <value>true</value>
             </componentInstanceProperties>
@@ -47,6 +62,17 @@
             <componentInstanceProperties>
                 <name>title</name>
                 <value>Tree View</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:tab</componentName>
+        </componentInstances>
+        <componentInstances>
+            <componentInstanceProperties>
+                <name>body</name>
+                <value>Facet-24cbcd73-9ba4-423e-bffb-9526ac676ef4</value>
+            </componentInstanceProperties>
+            <componentInstanceProperties>
+                <name>title</name>
+                <value>Translation</value>
             </componentInstanceProperties>
             <componentName>flexipage:tab</componentName>
         </componentInstances>

@@ -6,6 +6,7 @@
     <aura:attribute name="componentType" type="String" default="CountrySelector"/>
 	<aura:attribute name="CountriesWrapper" type="Object"/>
 	<aura:attribute name="inputNumber" type="Object"/>
+    <aura:attribute name="defaultValue" type="Object"/>
 
 	<aura:attribute name="rendercountryMenu" type="Boolean" default="false"/>
 	 

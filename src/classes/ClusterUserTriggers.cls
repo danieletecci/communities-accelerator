@@ -244,9 +244,8 @@ public without sharing class ClusterUserTriggers extends TriggersHandler {
 			for (CMSUserSettings__c userSettingExisting : [SELECT Name, User__c, Cluster__c FROM CMSUserSettings__c WHERE User__c IN: mapUserIdCluster.keySet()]){
 				mapExistingUserSettings.put(userSettingExisting.User__c, userSettingExisting);
 			}
-			// Getting only non Community Users 
 			// Use custom setting to filter salesforce user license
-			List<String> salesforceUserLicenses = (CMSSettings__c.getOrgDefaults().SalesforceUserLicenses__c != null) ? CMSSettings__c.getOrgDefaults().SalesforceUserLicenses__c.split(',') : null;
+			List<String> salesforceUserLicenses = (CMSSettings__c.getOrgDefaults().SalesforceUserLicenses__c != null) ? CMSSettings__c.getOrgDefaults().SalesforceUserLicenses__c.split(',') : new List<String>();
 			for (User user : [SELECT UserName, Profile.UserLicense.Name FROM User WHERE Id IN : mapUserIdCluster.keySet() AND (Profile.UserLicense.Name IN : salesforceUserLicenses)]){
 				CMSUserSettings__c userSetting = (mapExistingUserSettings.containsKey(user.Id)) ? mapExistingUserSettings.get(user.Id) : new CMSUserSettings__c();
 				userSetting.Name = user.UserName;

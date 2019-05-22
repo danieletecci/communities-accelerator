@@ -296,7 +296,9 @@ global class MockupFactory {
         
         for(Integer i = 0; i < quantity; i++){
             mediaElementList.add(new MediaElement__c(Name = 'MediaElement ' + i,
-                                    ExternalId__c = 'MediaElement_' + i, Status__c='Inactive'));
+                                    ExternalId__c = 'MediaElement_' + i, 
+                                    Status__c = 'Inactive',
+                                    FileURLDesktop__c = 'FileURLDesktopImg.jpg'));
         }
         insert mediaElementList;
         return mediaElementList;

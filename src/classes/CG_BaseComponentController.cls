@@ -72,7 +72,7 @@ public with sharing class CG_BaseComponentController {
 						
 						if (fieldApiName == GeneralUtils.prefix('[CMS]PageSize__c')){
 							component.PageSize__c = parentComponent.PageSize__c;
-                        }else if(fieldApiName == GeneralUtils.prefix('[CMS]LinkDetail__r.[CMS]URL__c')){
+                        }else if(fieldApiName == GeneralUtils.prefix('[CMS]LinkDetail__r.[CMS]URL__c') || fieldApiName == GeneralUtils.prefix('[CMS]LinkDetail__r.[CMS]Type__c')){
                             component.LinkDetail__r = parentComponent.LinkDetail__r;
                         }else if (fieldApiName == GeneralUtils.prefix('[CMS]ExcludePastEvents__c')){
                             component.ExcludePastEvents__c = parentComponent.ExcludePastEvents__c;

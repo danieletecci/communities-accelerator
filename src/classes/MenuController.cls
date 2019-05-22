@@ -79,7 +79,9 @@ public class MenuController {
 	public static List<NavWrapper> getWrapperFromComponent(Component__c component, String clusterId, String displayOn){
 		// Busqueda de Menus con Assignments al Component
 		List<MenuAssignment__c> menuAssignments = [SELECT Id, Component__c, Component__r.Cluster__c, Menu__c, Menu__r.Cluster__c 
-		FROM MenuAssignment__c WHERE Component__c =: component.Id ORDER BY Order__c ASC];
+												   FROM MenuAssignment__c
+												   WHERE Component__c =: component.Id ORDER BY Order__c ASC];
+												   
         List<String> menuIds = new List<String>();
 		Set<String> parentClusterIds = ClusterUtils.getClustersParents(clusterId);
 		for(MenuAssignment__c ma : menuAssignments){
@@ -120,6 +122,10 @@ public class MenuController {
 		// Armamos un mapa con el Wrapper de cada Menu
     	map<Id, NavWrapper> menuWrapperMap = new map<Id, NavWrapper>();
     	map<Id, Menu__c> menuMap = new map<Id, Menu__c>();
+
+    	//Translate menu records
+        TranslationUtils.getTranslated(allMenus, UserInfo.getLanguage(), '[CMS]Menu__c');
+
     	for(Menu__c menu : allMenus){
     		menuMap.put(menu.Id, menu);
     		menuWrapperMap.put(menu.Id, new NavWrapper(menu));

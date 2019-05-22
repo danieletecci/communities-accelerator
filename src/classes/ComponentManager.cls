@@ -107,6 +107,10 @@ public without sharing virtual class ComponentManager {
         else{
             componentRecord = ComponentUtils.getComponent(componentId, defaultComponentFieldSet, device);
         }
+
+        //Translate component record
+        TranslationUtils.getTranslated(componentRecord, UserInfo.getLanguage(), '[CMS]Component__c');
+        
         mw.component = new ObjectComponentWrapper(componentRecord);
         mw.navId = GeneralUtils.getNavigationId(navigationUrl);
         mw.namespace = GeneralUtils.getNameSpace();

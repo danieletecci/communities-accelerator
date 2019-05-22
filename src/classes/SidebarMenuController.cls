@@ -4,8 +4,6 @@ public class SidebarMenuController extends ComponentManager{
     public class SidebarComponentWrapper extends ComponentManager.DataWrapper{
 		@auraEnabled public List<NavWrapper> navWrapper;
         @AuraEnabled public String device;
-        
-
 		public SidebarComponentWrapper (String componentExternalId, String clusterId, String device){
 			this.navWrapper = new List<NavWrapper>();
             this.device = device;
@@ -30,8 +28,7 @@ public class SidebarMenuController extends ComponentManager{
         SidebarMenuController ctrl = new SidebarMenuController();
         ctrl.customPermissionView = 'Menu View Frame';
         ctrl.customPermissionEdit = 'Menu Edit Frame';
-        ctrl.componentFieldSet = new set<String>{
-            'Id'};
+        ctrl.componentFieldSet = new set<String>{'Id'};
         ctrl.componentExternalId = componentExternalId;
         ctrl.clusterId = clusterId;
         ctrl.device = device;
@@ -44,8 +41,6 @@ public class SidebarMenuController extends ComponentManager{
         return cw;
     }
     
-
-	
 	private static SidebarComponentWrapper getNavWrapper(String componentExternalId, String clusterId, String device) {
   		if(clusterId == null || clusterId.trim() == ''){
 			clusterId = ClusterUtils.getClusterIdFromMappingObject(UserInfo.getUserId(), Network.getNetworkId());
@@ -60,7 +55,9 @@ public class SidebarMenuController extends ComponentManager{
 	private static List<NavWrapper> getWrapperFromComponent(String componentExternalId, String clusterId, String device){
 		// Busqueda de Menus con Assignments al Component
 		List<MenuAssignment__c> menuAssignments = [SELECT Id, Component__c, Component__r.Cluster__c, Menu__c, Menu__r.Cluster__c 
-		FROM MenuAssignment__c WHERE Component__r.ExternalId__c =: componentExternalId ORDER BY Order__c ASC];
+                                                   FROM MenuAssignment__c
+                                                   WHERE Component__r.ExternalId__c =: componentExternalId ORDER BY Order__c ASC];
+
         List<String> menuIds = new List<String>();
 		Set<String> parentClusterIds = ClusterUtils.getClustersParents(clusterId);
 		for(MenuAssignment__c ma : menuAssignments){
@@ -70,6 +67,10 @@ public class SidebarMenuController extends ComponentManager{
 		}
 		List<NavWrapper> menuWrappers = new List<NavWrapper>();
 		List<Menu__c> menuList = getMenuList(menuIds, device);
+
+        //Translate menu records
+        TranslationUtils.getTranslated(menuList, UserInfo.getLanguage(), '[CMS]Menu__c');
+
 		for(Menu__c menu : menuList){
             NavWrapper newWrapper = new NavWrapper(menu);
    			menuWrappers.add(newWrapper);      
@@ -86,11 +87,11 @@ public class SidebarMenuController extends ComponentManager{
         }else{
             displayOn = 'Mobile';
         }
+
 		return [SELECT Id, MenuLabel__c, MenuDynamicLabel__c, Cluster__c, Navigation__r.URL__c, MenuIcon__c, ComponentName__c, URLParameters__c, Navigation__r.Behaviour__c, Navigation__r.UrlMask__c, StyleClass__c FROM Menu__c 
-                WHERE ParentMenu__c =: menuIds AND (DisplayOn__c = :displayOn OR DisplayOn__c = 'Both') ORDER BY Order__c
-    			];
+                WHERE ParentMenu__c =: menuIds AND (DisplayOn__c = :displayOn OR DisplayOn__c = 'Both')
+                ORDER BY Order__c];
 	}
-    
     
     public override DataWrapper getData() {
     	SidebarComponentWrapper scw = getNavWrapper(componentExternalId, clusterId, device);

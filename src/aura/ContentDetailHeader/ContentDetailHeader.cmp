@@ -63,7 +63,7 @@
 								<lightning:button label="{!$Label.c.General_Save}" onclick="{! c.doSave}" />
 							</aura:if>
 							<!-- <lightning:button label="{!$Label.c.ContentDetailSchedule}" /> -->
-							<aura:if isTrue="{!and(and(v.contentData.IsTemplate,v.contentData.Status == ($Label.c.ContentDetailPublished), v.security.hasCreateContentPermission), v.security.canCreateTemplate)}">
+							<aura:if isTrue="{!and(and(v.contentData.IsTemplate, v.contentData.Status == ($Label.c.ContentDetailPublished)), v.security.hasCreateContentPermission)}">
 								<lightning:button label="{!$Label.c.CreateFromTemplateButton}"  onclick="{! c.doCreateFromTemplate}" />
 							</aura:if>
 							<aura:if isTrue="{!and((v.contentData.Status) == ($Label.c.ContentDetailArchived), v.security.hasEditAccess)}">

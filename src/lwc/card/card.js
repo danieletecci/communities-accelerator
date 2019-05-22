@@ -45,7 +45,11 @@ export default class Card extends LightningElement {
     }
 
     navigateToDetail() {
-        const values = JSON.stringify({ id: this.config.externalId, url: this.config.navigateUrl});
+        const values = JSON.stringify({ 
+            id: this.config.externalId, 
+            url: this.config.navigateUrl,
+            sfid: this.config.id
+        });
         const naivgateEvent = new CustomEvent('navigatetodetail', { bubbles: true, composed: true, detail: { values } });
         this.dispatchEvent(naivgateEvent);
     }

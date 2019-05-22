@@ -166,12 +166,12 @@ public with sharing class CG_BaseComponentController {
 
     private static set<String> getComponentFieldSetByComponentType(String componentType, String device){
         Set<String> setFields;
-        if(componentType == 'ArticleList'){			setFields = new set<String>{'[CMS]ArticleType__c', '[CMS]PagingType__c', '[CMS]LinkDetail__r.[CMS]URL__c', '[CMS]ExternalId__c', '[CMS]NumberOfColumns__c'};}
-        if(componentType == 'EventList'){			setFields = new set<String>{'[CMS]EventsType__c', '[CMS]ExcludePastEvents__c', '[CMS]PagingType__c', '[CMS]LinkDetail__r.[CMS]URL__c', '[CMS]ExternalId__c', '[CMS]NumberOfColumns__c'};}
+        if(componentType == 'ArticleList'){			setFields = new set<String>{'[CMS]ArticleType__c', '[CMS]PagingType__c', '[CMS]LinkDetail__r.[CMS]URL__c', '[CMS]LinkDetail__r.[CMS]Type__c', '[CMS]ExternalId__c', '[CMS]NumberOfColumns__c'};}
+        if(componentType == 'EventList'){			setFields = new set<String>{'[CMS]EventsType__c', '[CMS]ExcludePastEvents__c', '[CMS]PagingType__c', '[CMS]LinkDetail__r.[CMS]URL__c', '[CMS]LinkDetail__r.[CMS]Type__c', '[CMS]ExternalId__c', '[CMS]NumberOfColumns__c'};}
         if(componentType == 'ArticleDetail'){		setFields = new set<String>{};}
         if(componentType == 'EventDetail'){		setFields = new set<String>{};}
-        if(componentType == 'ArticlesRelated'){		setFields = new set<String>{'[CMS]ArticleType__c', '[CMS]PagingType__c', '[CMS]LinkDetail__r.[CMS]URL__c', '[CMS]ExternalId__c'};}
-        if(componentType == 'EventsRelated'){	setFields = new set<String>{'[CMS]EventsType__c', '[CMS]ExcludePastEvents__c', '[CMS]PagingType__c', '[CMS]LinkDetail__r.[CMS]URL__c', '[CMS]ExternalId__c'};}
+        if(componentType == 'ArticlesRelated'){		setFields = new set<String>{'[CMS]ArticleType__c', '[CMS]PagingType__c', '[CMS]LinkDetail__r.[CMS]URL__c', '[CMS]LinkDetail__r.[CMS]Type__c', '[CMS]ExternalId__c'};}
+        if(componentType == 'EventsRelated'){	setFields = new set<String>{'[CMS]EventsType__c', '[CMS]ExcludePastEvents__c', '[CMS]PagingType__c', '[CMS]LinkDetail__r.[CMS]URL__c', '[CMS]LinkDetail__r.[CMS]Type__c', '[CMS]ExternalId__c'};}
         if(componentType == 'LanguageSelector'){	setFields = new set<String>{};}
         if(componentType == 'Menu'){	setFields = new set<String>{};}
         

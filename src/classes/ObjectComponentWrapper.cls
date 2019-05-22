@@ -50,6 +50,7 @@ public class ObjectComponentWrapper {
     @AuraEnabled public Decimal CustomHeight;
 
     @AuraEnabled public String LinkDetailURL;
+    @AuraEnabled public String LinkDetailType;
     
     public ObjectComponentWrapper(Component__c component){
         try{this.Id = component.Id;}catch(Exception e){}
@@ -102,6 +103,7 @@ public class ObjectComponentWrapper {
         try{this.CustomHeight = component.CustomHeight__c;}catch(Exception e){}
 
         try{this.LinkDetailURL = component.LinkDetail__r.URL__c;}catch(Exception e){}
+        try{this.LinkDetailType = component.LinkDetail__r.Type__c;}catch(Exception e){}
     }
 
 }

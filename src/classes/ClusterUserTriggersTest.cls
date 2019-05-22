@@ -160,8 +160,6 @@ private class ClusterUserTriggersTest{
 		// When
 		Test.startTest();
 		insert clusterUser;
-		clusterUser.AccessLevel__c = 'Read/Write';
-		update clusterUser;
 		Test.stopTest();
 
 		// Then

@@ -26,6 +26,21 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
+	<fields>
+        <fullName>SalesforceUserLicenses__c</fullName>
+        <defaultValue>&quot;Salesforce,Salesforce Platform&quot;</defaultValue>
+        <description>List of Salesforce User Licenses used to determine if a User is a backend one. 
+Separated by a comma. (Example: Salesforce,Salesforce Platform)</description>
+        <externalId>false</externalId>
+        <inlineHelpText>List of Salesforce User Licenses used to determine if a User is a backend one. 
+Separated by a comma. (Example: Salesforce,Salesforce Platform)</inlineHelpText>
+        <label>Salesforce User Licenses</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <label>CMS Settings</label>
     <visibility>Public</visibility>
 </CustomObject>

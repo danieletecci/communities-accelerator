@@ -1,8 +1,6 @@
 public without sharing class ClusterUserTriggers extends TriggersHandler { 
 	
-	/*****************************************************************/
-    /************************ CONSTRUCTOR ****************************/
-    /*****************************************************************/
+	// Constructor
 	public ClusterUserTriggers(List<SObject> p_triggerNew, List<SObject> p_triggerOld){
 		super(p_triggerNew, p_triggerOld);
 
@@ -16,10 +14,7 @@ public without sharing class ClusterUserTriggers extends TriggersHandler {
         allow_dataPreparing = true;
 	}
 
-	/*****************************************************************/
-    /********************** Master Loops *****************************/
-    /*****************************************************************/
-	
+	// Master loops	
 	// Ids of the clusters from the new users that need to be inserted in the corresponding groups
 	Set<Id> clusterIdsToGetGroups = new Set<Id>();
     Map<String, Group> groupsByClusterAndAccessLevel = new Map<String, Group>();
@@ -42,6 +37,7 @@ public without sharing class ClusterUserTriggers extends TriggersHandler {
 	public override void masterLoop_AfterInsert(SObject recNew){
 		getClusterIdsToGetGroups((ClusterUser__C) recNew, null);
 		getClusterUsersToModifyGroupMembers((ClusterUser__C) recNew, null);
+		addClusterUserId((ClusterUser__c) recNew);
 	}
 
 	public override void masterLoop_AfterUpdate(SObject recNew, SObject recOld){
@@ -73,31 +69,24 @@ public without sharing class ClusterUserTriggers extends TriggersHandler {
         }
     }
 
-	/*****************************************************************/
-    /********************** DATA PREPARING ***************************/
-    /*****************************************************************/
-
+	// Data preparing
 	public override void dataPreparing(){
-        getGroupsByClusterAndAccessLevel();
-		
+        getGroupsByClusterAndAccessLevel();		
         addGroupMembersToBeInserted();
 		addGroupMembersToBeDeleted();
+		validateClusterUsers();
 	}
 
-	/*****************************************************************/
-    /********************** DMLs *************************************/
-    /*****************************************************************/
-
+	// DMLs
 	public override void executeDMLs(){
         // Future Methods
         insertGroupMembers(JSON.serialize(groupMembersToBeInserted));
         deleteGroupMembers(groupMembersToBeDeleted);
+
+		upsertClusterUserToUserSettings();
 	}
 
-	/*****************************************************************/
-    /********************** USE CASE METHODS *************************/
-    /*****************************************************************/
-
+	// Use case methods
 	private Group getGroupsForClusterUser(ClusterUser__C clusterUser, String accessLevel){
 		String key = (String)clusterUser.Cluster__C + accessLevel;
 		return groupsByClusterAndAccessLevel.get(key);
@@ -238,4 +227,39 @@ public without sharing class ClusterUserTriggers extends TriggersHandler {
         if (! groupMembers.isEmpty()) delete groupMembers;
     }
 
+	// CMS-490 Upserting to CMS User Settings
+	Map<Id, ClusterUser__c> mapUserIdCluster = new Map<Id, ClusterUser__c>();
+	Map<Id, CMSUserSettings__c> mapExistingUserSettings = new Map<Id, CMSUserSettings__c>();
+	List<CMSUserSettings__c> listUserSettingsToUpsert = new List<CMSUserSettings__c>();
+
+	private void addClusterUserId(ClusterUser__c recNew){
+		if (recNew.User__c != null){
+			mapUserIdCluster.put(recNew.User__c, recNew);
+		}
+	}
+ 
+	private void validateClusterUsers(){
+		if (!mapUserIdCluster.isEmpty()){
+			// Duplicate check
+			for (CMSUserSettings__c userSettingExisting : [SELECT Name, User__c, Cluster__c FROM CMSUserSettings__c WHERE User__c IN: mapUserIdCluster.keySet()]){
+				mapExistingUserSettings.put(userSettingExisting.User__c, userSettingExisting);
+			}
+			// Use custom setting to filter salesforce user license
+			List<String> salesforceUserLicenses = (CMSSettings__c.getOrgDefaults().SalesforceUserLicenses__c != null) ? CMSSettings__c.getOrgDefaults().SalesforceUserLicenses__c.split(',') : new List<String>();
+			for (User user : [SELECT UserName, Profile.UserLicense.Name FROM User WHERE Id IN : mapUserIdCluster.keySet() AND (Profile.UserLicense.Name IN : salesforceUserLicenses)]){
+				CMSUserSettings__c userSetting = (mapExistingUserSettings.containsKey(user.Id)) ? mapExistingUserSettings.get(user.Id) : new CMSUserSettings__c();
+				userSetting.Name = user.UserName;
+				userSetting.User__c = user.Id;
+				userSetting.Cluster__c = mapUserIdCluster.get(user.Id).Cluster__c;
+				
+				listUserSettingsToUpsert.add(userSetting);
+			}
+		}
+	}
+
+	private void upsertClusterUserToUserSettings(){	
+		if (!listUserSettingsToUpsert.isEmpty()){
+			upsert listUserSettingsToUpsert;
+		}
+	}
 }

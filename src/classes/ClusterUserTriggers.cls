@@ -43,7 +43,6 @@ public without sharing class ClusterUserTriggers extends TriggersHandler {
 	public override void masterLoop_AfterUpdate(SObject recNew, SObject recOld){
 		getClusterIdsToGetGroups((ClusterUser__C) recNew, (ClusterUser__C) recOld);
 		getClusterUsersToModifyGroupMembers((ClusterUser__C) recNew, (ClusterUser__C) recOld);
-		addClusterUserId((ClusterUser__c) recNew);
 	}
 
 	public override void masterLoop_AfterUndelete(SObject recNew){
@@ -245,8 +244,9 @@ public without sharing class ClusterUserTriggers extends TriggersHandler {
 			for (CMSUserSettings__c userSettingExisting : [SELECT Name, User__c, Cluster__c FROM CMSUserSettings__c WHERE User__c IN: mapUserIdCluster.keySet()]){
 				mapExistingUserSettings.put(userSettingExisting.User__c, userSettingExisting);
 			}
-			// Getting only non Community Users 
-			for (User user : [SELECT UserName, Profile.UserLicense.Name FROM User WHERE Id IN : mapUserIdCluster.keySet() AND (NOT Profile.UserLicense.Name LIKE '%Community%')]){
+			// Use custom setting to filter salesforce user license
+			List<String> salesforceUserLicenses = (CMSSettings__c.getOrgDefaults().SalesforceUserLicenses__c != null) ? CMSSettings__c.getOrgDefaults().SalesforceUserLicenses__c.split(',') : new List<String>();
+			for (User user : [SELECT UserName, Profile.UserLicense.Name FROM User WHERE Id IN : mapUserIdCluster.keySet() AND (Profile.UserLicense.Name IN : salesforceUserLicenses)]){
 				CMSUserSettings__c userSetting = (mapExistingUserSettings.containsKey(user.Id)) ? mapExistingUserSettings.get(user.Id) : new CMSUserSettings__c();
 				userSetting.Name = user.UserName;
 				userSetting.User__c = user.Id;

@@ -251,7 +251,7 @@ public without sharing class ClusterUserTriggers extends TriggersHandler {
 				userSetting.Name = user.UserName;
 				userSetting.User__c = user.Id;
 				userSetting.Cluster__c = mapUserIdCluster.get(user.Id).Cluster__c;
-				
+				userSetting.CustomRecordId__c = user.Id;
 				listUserSettingsToUpsert.add(userSetting);
 			}
 		}

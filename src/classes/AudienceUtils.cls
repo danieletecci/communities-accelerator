@@ -142,52 +142,56 @@ global with sharing class AudienceUtils {
             customRecord = Database.query(GeneralUtils.prefix('SELECT Id, ' + GeneralUtils.joinFields(customObjectFieldsSet) + ' FROM ' + customObjectType + ' WHERE Id =: customRecordId'));
         }
 
-        //Loop audience records to check if it apply for the main objects according to the criteria
-        for(Audience__c aud: audiences){
-            Boolean applyAudience = false;
-            
-            //Audience Criteria "All"
-            if(aud.MatchCriteria__c == 'All' || aud.MatchCriteria__c == null){
-                applyAudience = true;
-                for(AudienceCriterion__c audc: aud.AudienceCriteria__r){
-                    SObject recordMain = getAudienceCriterionMainRecord(audc, account, contact, acRelation, customObjectType, customRecord);
-                    if(!audienceCriterionApply(audc, recordMain)){
-                        applyAudience = false;
-                        break;
+        // CMS-490 Skipping audience calculation if every object is null
+        Boolean calculateUserAudience = (account == null && contact == null && acRelation == null && customRecord == null) ? false : true;
+
+        if(calculateUserAudience){
+            //Loop audience records to check if it apply for the main objects according to the criteria
+            for(Audience__c aud: audiences){
+                Boolean applyAudience = false;
+                
+                //Audience Criteria "All"
+                if(aud.MatchCriteria__c == 'All' || aud.MatchCriteria__c == null){
+                    applyAudience = true;
+                    for(AudienceCriterion__c audc: aud.AudienceCriteria__r){
+                        SObject recordMain = getAudienceCriterionMainRecord(audc, account, contact, acRelation, customObjectType, customRecord);
+                        if(!audienceCriterionApply(audc, recordMain)){
+                            applyAudience = false;
+                            break;
+                        }
                     }
                 }
-            }
 
-            //Audience Criteria "Any"
-            if(aud.MatchCriteria__c == 'Any'){
-                for(AudienceCriterion__c audc: aud.AudienceCriteria__r){
-                    SObject recordMain = getAudienceCriterionMainRecord(audc, account, contact, acRelation, customObjectType, customRecord);
-                    if(audienceCriterionApply(audc, recordMain)){
-                        applyAudience = true;
-                        break;
+                //Audience Criteria "Any"
+                if(aud.MatchCriteria__c == 'Any'){
+                    for(AudienceCriterion__c audc: aud.AudienceCriteria__r){
+                        SObject recordMain = getAudienceCriterionMainRecord(audc, account, contact, acRelation, customObjectType, customRecord);
+                        if(audienceCriterionApply(audc, recordMain)){
+                            applyAudience = true;
+                            break;
+                        }
                     }
                 }
-            }
 
-            //Audience Criteria "Custom"
-            if(aud.MatchCriteria__c == 'Custom'){
-                map<Integer, Boolean> criterionNumberApplyMap = new map<Integer, Boolean>();
-                for(AudienceCriterion__c audc: aud.AudienceCriteria__r){
-                    SObject recordMain = getAudienceCriterionMainRecord(audc, account, contact, acRelation, customObjectType, customRecord);
-                    criterionNumberApplyMap.put(Integer.ValueOf(audc.Order__c), audienceCriterionApply(audc, recordMain));
+                //Audience Criteria "Custom"
+                if(aud.MatchCriteria__c == 'Custom'){
+                    map<Integer, Boolean> criterionNumberApplyMap = new map<Integer, Boolean>();
+                    for(AudienceCriterion__c audc: aud.AudienceCriteria__r){
+                        SObject recordMain = getAudienceCriterionMainRecord(audc, account, contact, acRelation, customObjectType, customRecord);
+                        criterionNumberApplyMap.put(Integer.ValueOf(audc.Order__c), audienceCriterionApply(audc, recordMain));
+                    }
+                    for(Integer audcNumber: criterionNumberApplyMap.keySet()){
+                        aud.AudienceCriteria__c = aud.AudienceCriteria__c.replace(String.ValueOf(audcNumber), String.valueOf(criterionNumberApplyMap.get(audcNumber)).toUpperCase());
+                    }
+                    applyAudience = BooleanExpressionUtils.eval(aud.AudienceCriteria__c);
                 }
-                for(Integer audcNumber: criterionNumberApplyMap.keySet()){
-                    aud.AudienceCriteria__c = aud.AudienceCriteria__c.replace(String.ValueOf(audcNumber), String.valueOf(criterionNumberApplyMap.get(audcNumber)).toUpperCase());
+                
+                //If the Audience apply add it to the list
+                if(applyAudience){
+                    audiencesIdsToReturnList.add(aud.ExternalId__c);
                 }
-                applyAudience = BooleanExpressionUtils.eval(aud.AudienceCriteria__c);
-            }
-            
-            //If the Audience apply add it to the list
-            if(applyAudience){
-                audiencesIdsToReturnList.add(aud.ExternalId__c);
             }
         }
-
         return audiencesIdsToReturnList;
     }
 

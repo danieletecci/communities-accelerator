@@ -61,24 +61,27 @@ public class MediaElementsManagerController {
 		
             Set<String> contentSet = new Set<String>();
             for(MediaElement__c me : Database.query(GeneralUtils.prefix(queryMediaElement))){
-                ContentWrapper cw = new ContentWrapper();
-                cw.idME = me.Id;
-                cw.name = me.Name;
-                cw.fileURLDesktop = me.FileURLDesktop__c;
-                cw.lastModified = String.valueOf(me.LastModifiedDate);
-    
-                if(String.isNotBlank(findContent) && findContent == 'true'){
-                    if(me.FileIdDesktop__c != null){
-                        contentSet.add(me.FileIdDesktop__c);
-                    } else {
-                        cw.size = 'Web';
-                        cw.ext = me.FileURLDesktop__c.substringAfterLast('.');
-                    }
-                    contentWrMap.put(me.FileIdDesktop__c, cw);
-                }else{
-                    contentWrMap.put(me.Id, cw);
-                }
-                
+                if(String.isNotBlank(me.FileURLDesktop__c)){
+
+	                ContentWrapper cw = new ContentWrapper();
+	                cw.idME = me.Id;
+	                cw.name = me.Name;
+	                cw.fileURLDesktop = me.FileURLDesktop__c;
+	                cw.lastModified = String.valueOf(me.LastModifiedDate);
+	    
+	                if(String.isNotBlank(findContent) && findContent == 'true'){
+	                    if(String.isNotBlank(me.FileIdDesktop__c)){
+	                        contentSet.add(me.FileIdDesktop__c);
+	                        contentWrMap.put(me.FileIdDesktop__c, cw);
+	                    } else {
+	                        cw.size = 'Web';
+	                        cw.ext = String.isNotBlank(me.FileURLDesktop__c) ? me.FileURLDesktop__c.substringAfterLast('.').left(4) : '';
+	                        contentWrMap.put(me.Id, cw);
+	                    }                    
+	                }else{
+	                    contentWrMap.put(me.Id, cw);
+	                }                	
+                }                
             }
     
             if(String.isNotBlank(findContent) && findContent == 'true'){

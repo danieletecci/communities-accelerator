@@ -9,15 +9,19 @@
         } else {
             parentComponentId = component.get("v.componentWrapper.component.ExternalId");
         }
+
         if(!values.url) {
             url = component.get("v.componentWrapper.component.LinkDetailURL");
+            if(component.get("v.componentWrapper.component.LinkDetailType") === 'Detail'){
+                url += '/' + values.sfid;
+            }
         } else {
             url = values.url;
         }
 
         var urlEvent = $A.get("e.force:navigateToURL");
         urlEvent.setParams({
-            "url": url +'?eventId=' + values.id + '&parentComponentId=' + parentComponentId
+            "url": url + '?eventId=' + values.id + '&parentComponentId=' + parentComponentId
         });
         urlEvent.fire();
     }

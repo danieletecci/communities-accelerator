@@ -22,7 +22,6 @@ public with sharing class ContentDetailHeaderController {
         @AuraEnabled public Boolean     hasDeleteAccess;
         @AuraEnabled public Boolean     canPublish;
         @AuraEnabled public Boolean     canSchedule;
-        @AuraEnabled public Boolean     canCreateTemplate;
 
         public SecurityWrapper(Boolean hasEditAccess, Boolean hasDeleteAccess, Boolean hasCreateContentPermission){
             this.hasEditAccess              = hasEditAccess;
@@ -48,7 +47,6 @@ public with sharing class ContentDetailHeaderController {
         );
         sw.canPublish = hasContentEditPublishedPerm;
         sw.canSchedule = hasContentEditScheduledPerm;
-        sw.canCreateTemplate = hasContentCreateTemplatePerm;
 
         String tzName = UserInfo.getTimeZone().getDisplayName();
         

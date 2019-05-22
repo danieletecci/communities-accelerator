@@ -194,6 +194,11 @@
                     <default>false</default>
                     <label>External</label>
                 </value>
+                <value>
+                    <fullName>Detail</fullName>
+                    <default>false</default>
+                    <label>Detail</label>
+                </value>
             </valueSetDefinition>
         </valueSet>
     </fields>
@@ -308,6 +313,10 @@
                 <fullName>Internal</fullName>
                 <default>false</default>
             </values>
+            <values>
+                <fullName>Detail</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
@@ -345,6 +354,10 @@
             </values>
             <values>
                 <fullName>Internal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Detail</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

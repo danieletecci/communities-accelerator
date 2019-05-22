@@ -21,7 +21,7 @@ public without sharing class DatatableController extends ComponentManager {
         
         DatatableWrapper dataTableWr = (DatatableWrapper) cw.data;
 
-        cw.hasContent = dataTableWr.tableData.size() > 0;
+        cw.hasContent = dataTableWr.columns.size() > 0;
 
         return JSON.serialize(cw);
     }

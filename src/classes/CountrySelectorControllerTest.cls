@@ -8,7 +8,7 @@ public with sharing class CountrySelectorControllerTest {
 		
 		//When
 		Test.startTest();
-		CountrySelectorController.CountriesWrapper test2 = CountrySelectorController.getCountriesCodes();
+		CountrySelectorController.CountriesWrapper test2 = CountrySelectorController.getCountriesCodes('ec');
 		Test.stopTest();
 
 		//Then
@@ -25,7 +25,7 @@ public with sharing class CountrySelectorControllerTest {
 		
 		//When
 		Test.startTest();
-		CountrySelectorController.CountriesWrapper test2 = CountrySelectorController.getCountriesCodes();
+		CountrySelectorController.CountriesWrapper test2 = CountrySelectorController.getCountriesCodes('');
 		Test.stopTest();
 
 		//Then

@@ -6,7 +6,7 @@
                     <h1>{table.title}</h1>
                 </template>
                 <template if:true={table.description}>
-                    <p>{table.description}</p>
+                    <lightning-formatted-rich-text value={table.description}></lightning-formatted-rich-text>
                 </template>
             </div>
             <template if:false={showDetailModal}>
@@ -149,8 +149,8 @@
                         </template>
                         <template if:true={noRecordsToDisplay}>
                             <tr>
-                               <td colspan="100%">
-                                   <p class="no-records-to-display">{table.noRecordsMsg}</p>
+                               <td class="no-records-to-display" colspan="100%">
+                                   <lightning-formatted-rich-text value={table.noRecordsMsg}></lightning-formatted-rich-text>
                                </td> 
                             </tr>
                         </template>
